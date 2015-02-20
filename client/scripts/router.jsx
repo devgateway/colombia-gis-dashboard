@@ -7,23 +7,18 @@ var Router = require('react-router'),
 
 
 var Root = require('./components/root.jsx');
-var Country = require('./components/country.jsx');
-var Project = require('./components/project.jsx');
-var International = require('./components/international.jsx');
-
+var Map = require('./components/map.jsx');
 
 var routes = (
   <Route name="main" path="/" handler={Root}>
-    <Route name="country" path="country/:countryId" handler={Country} />
-    <Route name="project" path="project/:projectId" handler={Project} />
-    <DefaultRoute handler={International} />
+    <Route name="map" path="map" handler={Map} />
+    <DefaultRoute handler={Map}/>
   </Route>
 );
 
-
 var router = Router.create({
   routes: routes,
-  //location: Router.HistoryLocation  // <- uncomment to enable pushstate (no hash in url)
 });
+
 
 module.exports = router;
