@@ -42,3 +42,61 @@ html,body{height:100%;}
   height: 100%;
   width: 100%;
 }
+
+
+.slider{
+ position: absolute;
+ z-index: 100;
+  height: 500px;
+  background-color:#000;
+}
+
+.slider .slideContent{
+  float: left;
+
+}
+
+.slider .slideToggler{
+  width:20px;
+  float: right;
+  
+ 
+}
+
+.example{
+    width: 300px;
+    background: red;
+    
+    overflow: hidden;
+}
+
+.example-enter {
+    overflow: hidden;
+     width: 0px;
+    background: red;
+   
+}
+
+.example-enter.example-enter-active {
+    
+    -webkit-transition: width 1s; /* For Safari 3.1 to 6.0 */
+    transition: width 1s;
+    width: 300px;
+    background: red;
+  
+
+}
+
+.example-leave {
+   -webkit-transition: width 1s; /* For Safari 3.1 to 6.0 */
+    transition: width 1s;
+    width: 0px;
+    background: red;
+}
+
+.example-leave.example-leave-active {
+   -webkit-transition: width 1s; /* For Safari 3.1 to 6.0 */
+    transition: width 1s;
+    width: 0px;
+    background: red;
+}

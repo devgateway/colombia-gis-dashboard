@@ -1,17 +1,27 @@
 'use strict';
 
-var React = require('react');
+var React = require('react/addons')
+
 var RouteHandler = require('react-router').RouteHandler;
-var Filter=require('./filter/filter.jsx')
+var Filter=require('./filter/filter.jsx');
+var SlideBar=require('./containers/slideBar.jsx');
+
+
+
+
 
 module.exports = React.createClass({
   render: function() {
     return (
         <div className="row layout_root">
-           <div className="col-md-4 col-lg-3 hidden-sm hidden-xs layout_filter">
-            <Filter/>
-           </div>
-          <div className="col-md-8 col-lg-9 col-sm-12  layout_map">
+        <SlideBar>
+        	<div>
+        		<p class="testChild">Content</p>
+        	</div> 
+		</SlideBar>
+		  
+
+          <div className="col-md-12 col-lg-12 col-sm-12  layout_map">
             {/* defer to the child route handler */}
             <RouteHandler {...this.props} /* <- sends props as attributes to child handler */ />
             </div>
