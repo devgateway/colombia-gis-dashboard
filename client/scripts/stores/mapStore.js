@@ -17,6 +17,10 @@ module.exports = Reflux.createStore({
     this.update({ bounds: newBounds }, { silent: true });
   },
 
+  onChangeBaseMap:function(newBaseMap){
+    this.update({baseMap:newBaseMap});
+  },
+
   update: function(assignable, options) {
     options = options || {};
     this.state = assign(this.state, assignable);
@@ -27,6 +31,7 @@ module.exports = Reflux.createStore({
 
   getInitialState: function() {
     return (this.state = {
+      baseMap : 'Gray',
       bounds: [ [61, 195],
                 [-24, 20] ]
     });

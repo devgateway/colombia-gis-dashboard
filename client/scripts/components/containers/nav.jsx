@@ -6,7 +6,7 @@ var Link = require('react-router').Link;
 
 var TabbedArea = require('react-bootstrap/lib/TabbedArea');
 var TabPane = require('react-bootstrap/lib/TabPane');
-
+var BaseMaps = require('../baseMaps.jsx');
 
 module.exports  = React.createClass({
 
@@ -14,6 +14,11 @@ module.exports  = React.createClass({
 
   render: function() {
     return (
+
+      <div className="fixed">
+      <div>
+        <BaseMaps/>
+      </div>
       <TabbedArea defaultActiveKey={2}>
  
         <TabPane eventKey={1} tab="Tab 2">MONITOR DATA </TabPane>
@@ -22,6 +27,7 @@ module.exports  = React.createClass({
         </TabPane>
         <TabPane eventKey={4} tab="Tab 2">PROJECTS</TabPane>
       </TabbedArea>
+      </div>
     );
   }
 
