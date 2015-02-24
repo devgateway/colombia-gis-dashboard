@@ -26,13 +26,16 @@ module.exports = React.createClass({
   componentDidMount: function() {
     var containerNode = this.getDOMNode();
 
-    var mapOptions = {};
+    var mapOptions =  {zoomControl: false};
+
     if (this.props.tiles) {
       mapOptions.layers = L.tileLayer(this.props.tiles);
     }
 
     this.map = L.map(containerNode, mapOptions);
-
+    
+    //this.map.addControl( L.control.zoom({position: 'topright'}) )
+    
     // something is setting the map's position to `relative` >:( so fix it
     containerNode.style.position = 'absolute';
 

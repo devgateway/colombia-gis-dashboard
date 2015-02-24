@@ -7,36 +7,32 @@ var Link = require('react-router').Link;
 var ReactTransitionGroup = React.addons.TransitionGroup;
 var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
  
- 
 
-    var BarContent = React.createClass({
-      render: function() {
-        return <div className="example" ref="drawer">{this.props.children}</div>;
-      }
-    });
+var BarContent = React.createClass({
+  render: function() {
+    return <div className="example" ref="drawer">{this.props.children}</div>;
+  }
+});
     
-
-
-
-
-
 module.exports  = React.createClass({
-
-    getInitialState: function() {
+      getInitialState: function() {
         return {
           open: false
         };
       },
+  
       componentWillMount: function() {
         this.setState({
           open: this.props.open
         });
       },
+  
       componentWillReceiveProps: function(props) {
         this.setState({
           open: props.open
         });
       },
+      
       open: function() {
         this.setState({
           open: true
@@ -48,6 +44,7 @@ module.exports  = React.createClass({
           open: false
         });
       },
+
       toggle: function() {
         this.setState({
           open: !this.state.open
@@ -65,7 +62,6 @@ module.exports  = React.createClass({
             <div className="slideToggler">
                   <button onClick={this.state.open?this.close:this.open}>KKKK</button>
             </div>
-          
           </div>
         );
       }
