@@ -2,5 +2,6 @@
 var Reflux = require('reflux');
 
 module.exports = Reflux.createActions({
-  changeBounds: {children: ['user']},
+  changeBounds : {children: ['user']},
+  changeBaseMap : {}
 });

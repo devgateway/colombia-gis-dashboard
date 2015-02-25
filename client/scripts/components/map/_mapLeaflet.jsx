@@ -20,23 +20,18 @@ function getSimpleBounds(map, boundsChangeHandler) {
   };
 }
 
+var currentBaseMap;
+var currentLabels;
 
 module.exports = React.createClass({
 
   componentDidMount: function() {
     var containerNode = this.getDOMNode();
+    var mapOptions = {zoomControl: false};
 
-    var mapOptions =  {zoomControl: false};
-
-    if (this.props.tiles) {
-      mapOptions.layers = L.tileLayer(this.props.tiles);
-    }
 
     this.map = L.map(containerNode, mapOptions);
-    
-    //this.map.addControl( L.control.zoom({position: 'topright'}) )
-    
-    // something is setting the map's position to `relative` >:( so fix it
+    this.map.addControl( L.control.zoom({position: 'topright'}) )
     containerNode.style.position = 'absolute';
 
     // send map events back to handlers in ./map.jsx
@@ -47,15 +42,22 @@ module.exports = React.createClass({
 
     // leaflet requires a view of the map to show
     if (this.props.bounds) {
-      this.map.fitBounds(this.props.bounds);
+       this.map.fitBounds(this.props.bounds);
     } else {
-      this.map.fitWorld();
+        this.map.fitWorld();
     }
+
+    if (this.props.baseMap) {
+       this.setBaseMap(this.props.baseMap);
+    }
+
   },
 
   componentWillReceiveProps: function(nextProps) {
-    if (nextProps.bounds) {
-      this.map.fitBounds(nextProps.bounds)
+    debugger;
+    if (nextProps.baseMap){
+      console.log('MapView: Change Map '+nextProps.baseMap);
+      this.setBaseMap(nextProps.baseMap);
     }
   },
 
@@ -68,6 +70,28 @@ module.exports = React.createClass({
   // () -> `L.map` instance or `undefined` if the component has not mounted yet
   getLeafletMap: function() {
     return this.map;
+  },
+
+   setBaseMap:function(basemap) {
+    debugger;
+    
+    if (currentBaseMap) {
+      this.map.removeLayer(currentBaseMap);
+    }
+
+    if (currentLabels) {
+      //this.map.removeLayer(currentLabels);
+    }
+
+    
+    currentBaseMap = L.esri.basemapLayer(basemap);
+      this.map.addLayer(currentBaseMap);
+
+    if (basemap === 'ShadedRelief' || basemap === 'Oceans' || basemap === 'Gray' || basemap === 'DarkGray' || basemap === 'Imagery' || basemap === 'Terrain') {
+      //currentLabels = L.esri.basemapLayer(basemap + 'Labels');
+      //this.map.addLayer(currentLabels);
+    }
+
   },
 
   render: function() {

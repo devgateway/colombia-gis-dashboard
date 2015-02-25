@@ -7,11 +7,13 @@ var Router = require('react-router'),
 
 
 var Root = require('./components/root.jsx');
-var Map = require('./components/map.jsx');
+var Map = require('./components/map/map.jsx');
 
 var routes = (
   <Route name="main" path="/" handler={Root}>
     <Route name="map" path="map" handler={Map} />
+    <Route name="baseMap" path="map/baseMap/:baseMapName" handler={Map} />
+    
     <DefaultRoute handler={Map}/>
   </Route>
 );

@@ -16,7 +16,7 @@ var LeafletMap = require('./_mapLeaflet.jsx');
 
 module.exports = React.createClass({
 
-  mixins: [Reflux.connect(MapStore, 'mapView')],
+  mixins: [Reflux.connect(MapStore, 'mapStatus')],
 
   updateCurrentBounds: function(newMapViewBounds) {
     // Triggered whenever the map view changes, including:
@@ -37,20 +37,22 @@ module.exports = React.createClass({
     return this.refs.leafletMapComponent.getLeafletMap();
   },
 
+
+
+
   render: function() {
     // pass a function down to children through props to access the leaflet map
     var children = React.Children.map(this.props.children, function(child) {
       return child ? React.addons.cloneWithProps(child, {getMap: this.getMap}) : null;
     }, this);
 
-    var tiles = 'http://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png';
-    var bounds = this.state.mapView.bounds;
-
+    var bounds = this.state.mapStatus.bounds;
+    var baseMap= this.state.mapStatus.baseMap;
     return (
       <div>
         <LeafletMap
           ref="leafletMapComponent"
-          tiles={tiles}
+          baseMap={baseMap}
           bounds={bounds}
           onMapMove={this.updateCurrentBounds} />
         {children}
