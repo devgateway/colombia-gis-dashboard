@@ -53,17 +53,18 @@ module.exports  = React.createClass({
       
       render: function() {
         return (
-           <div className="slider">
-                 <div className="slideContent">
+          <div className="slider">
+            <div className="slideToggler  icon-white" onClick={this.state.open?this.close:this.open}>
+              <i className="glyphicon glyphicon-th-list"></i>
+            </div>
+            <div className="slideContent">
                 <ReactCSSTransitionGroup  transitionName="example" component="div">
                   {this.state.open && <BarContent key="content">{this.props.children}</BarContent>}
                 </ReactCSSTransitionGroup >
-              </div>
-            <div className="slideToggler">
-                  <button onClick={this.state.open?this.close:this.open}>KKKK</button>
             </div>
+            
           </div>
         );
-      }
+      } 
 
 });

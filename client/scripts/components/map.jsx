@@ -17,7 +17,6 @@ module.exports = React.createClass({
   },
 
   componentDidMount: function() {
-    debugger;
     var mapContainer = this.map.getContainer();
     this.getDOMNode().appendChild(mapContainer);
     mapContainer.classList.add('map');
