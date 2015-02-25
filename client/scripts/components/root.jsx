@@ -10,6 +10,7 @@ module.exports = React.createClass({
   render: function() {
     return (
         <div className="row layout_root">
+        <div>Header</div>
         <SlideBar>
             <Nav></Nav>          
 		    </SlideBar>
@@ -17,6 +18,7 @@ module.exports = React.createClass({
             {/* defer to the child route handler */}
             <RouteHandler {...this.props} /* <- sends props as attributes to child handler */ />
             </div>
+           <div>Footer</div>
         </div>
       
     );
