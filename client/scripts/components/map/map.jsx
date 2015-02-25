@@ -41,6 +41,7 @@ module.exports = React.createClass({
 
 
   render: function() {
+    debugger;
     // pass a function down to children through props to access the leaflet map
     var children = React.Children.map(this.props.children, function(child) {
       return child ? React.addons.cloneWithProps(child, {getMap: this.getMap}) : null;

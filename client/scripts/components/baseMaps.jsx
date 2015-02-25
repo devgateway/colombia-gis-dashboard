@@ -30,7 +30,7 @@ var BaseMapItem= React.createClass({
   },
 
   render: function() {
-    return(<p onClick={this.handleClick}>{this.state.label}</p>);
+    return(<span onClick={this.handleClick} className="btn">{this.state.label}</span>);
   }
 
 });
