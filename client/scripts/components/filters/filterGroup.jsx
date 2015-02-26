@@ -6,16 +6,6 @@ var Link = Router.Link;
 var FilterStore=require('../../stores/filterStore.js')
 var FilterItem = require('./filterItem.jsx');
 
-function getStateFromStores() {
-  return {
-    departaments: FilterStore.getAll("departaments"),
-    departamentsSelected: FilterStore.getAllSelected("departaments"),
-    municipalities: FilterStore.getAll("municipalities"),
-    municipalitiesSelected: FilterStore.getAllSelected("municipalities"),
-    developmentObjectives: FilterStore.getAll("developmentObjectives"),
-    developmentObjectivesSelected: FilterStore.getAllSelected("developmentObjectives")
-  };
-}
 
 var FilterGroup = React.createClass({
  
@@ -41,13 +31,9 @@ var FilterGroup = React.createClass({
     },
 
     componentDidMount: function() {
-        //FilterStore.addChangeListener(this._onChange);
+        
     },
 
-    _onChange: function() {
-        this.setState(getStateFromStores());
-    },
-    
     _searchKeyUp: function(ev) {
         var value = $(ev.target).val();
         var length = value.length;
@@ -80,10 +66,17 @@ var FilterGroup = React.createClass({
         return(
             <div>
                 <input
+                    className="form-control-sm"
                     placeholder="Keyword Search"
                     onKeyUp={this._searchKeyUp} />
-                <ul>
-                
+                <ul className="scrollable-list">
+                {
+                    items.map(function(item){ 
+                        if (!item.hide){   
+                            return <li key={item.id}><FilterItem data={item} filterType={filterType} /></li>;
+                        }
+                    })
+                }
                 </ul>
             </div>
             );

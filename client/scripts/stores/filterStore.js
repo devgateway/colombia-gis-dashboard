@@ -13,10 +13,6 @@ module.exports=Reflux.createStore({
             municipalities: [], departaments: [], developmentObjectives: [],
             municipalitiesSelected: [], departamentsSelected: [], developmentObjectivesSelected: []
         };
-        //this.listenTo(FilterActions.getAllFilterListFromServer, this._getAllFilterList);
-        //this.listenTo(FilterActions.getFilterListFromServer, this._getFilterList);
-        //this.listenTo(FilterActions.receiveFilterListFromServer, this._receiveFilterList);
-        //this.listenTo(FilterActions.changeFilterItemSelection, this._changeFilterItem);
     },
 
     getAll: function(filterType) {
@@ -29,9 +25,7 @@ module.exports=Reflux.createStore({
 
     getItem: function(filterType, id) {
         if (this.state[filterType]) {
-          return this.state[filterType].filter(function (data) {x   
-                return (data.id === id);
-              });
+          return this.state[filterType].filter(function (data) {return (data.id === id);});
         } else {
           return [];
         }
@@ -39,39 +33,29 @@ module.exports=Reflux.createStore({
 
     getAllSelected: function(filterType) {
         if (this.state[filterType]) {
-          return this.state[filterType].filter(function (data) {
-                return (data.selected);
-              });
+          return this.state[filterType].filter(function (data) {return (data.selected);});
         } else {
           return [];
         }
     },
 
-    onGetFilterListFromServerCompleted: function(data){
-        debugger;
-        this.state.departaments = data.GetMunicipalitiesListJsonResult;
+    onGetDepartamentsListCompleted: function(data){
+        this.state.departaments = data.GetDepartmentsListJsonResult;
         this.output();
     },
-    /*
-    _getFilterList:function(filterType){
-        FilterAPIUtils.getFilterListFromServer(filterType);
+    
+    onGetMunicipalitiesListCompleted: function(data){
+        this.state.municipalities = data.GetMunicipalitiesListJsonResult;
         this.output();
     },
-
-     _getAllFilterList:function(){
-        FilterAPIUtils.getAllDepartamentsFromServer();
-        FilterAPIUtils.getAllMunicipalitiesFromServer();
-        FilterAPIUtils.getAllDevelopmentObjectiveFromServer();
-        this.output();
-    },
-    */
-    _changeFilterItem:function(filterType, id, value){
-        debugger;
-        this.state[filterType].map(function(item) {
+    
+    onChangeFilterItemState:function(filterType, id, value){
+        this.state[filterType].filter(function(it){return it.id==id})[0].selected = value;
+        /*this.state[filterType].map(function(item) {
             if (item.id == id) {
                 item.selected = value;
             } 
-        });
+        });*/
         this.output();
     },
 

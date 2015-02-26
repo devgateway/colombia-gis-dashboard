@@ -10,45 +10,36 @@ var FilterGroup = require('./filterGroup.jsx');
 var TabbedArea = require('react-bootstrap/lib/TabbedArea');
 var TabPane = require('react-bootstrap/lib/TabPane');
 
-function getStateFromStores() {
-  //return { filter: {
-  return { 
-    departaments: FilterStore.getAll("departaments"),
-    departamentsSelected: FilterStore.getAllSelected("departaments"),
-    municipalities: FilterStore.getAll("municipalities"),
-    municipalitiesSelected: FilterStore.getAllSelected("municipalities"),
-    developmentObjectives: FilterStore.getAll("developmentObjectives"),
-    developmentObjectivesSelected: FilterStore.getAllSelected("developmentObjectives")
-    //}
-  };
-}
 
 var Filter  = React.createClass({
     mixins: [Reflux.connect(FilterStore)],
 
     componentDidMount: function() {
-        debugger;
     },
     
     componentWillMount :function(){    
-        debugger;
-        FilterActions.getFilterListFromServer();       
+        FilterActions.getDepartamentsList();       
+        FilterActions.getMunicipalitiesList();       
     },
 
     componentWillUnmount: function() {
     },
 
    	componentDidUpdate:function( prevProps,  prevState){
-	     //debugger;
-       //this.setState(getStateFromStores());
+	     
     },
 
     render: function() {
       debugger;
         return(
-          <TabbedArea defaultActiveKey={1}>             
+          <TabbedArea defaultActiveKey={1}>   
               <TabPane eventKey={1} tab="Departaments">
+                 Selected {FilterStore.getAllSelected('departaments').length} from {FilterStore.getAll('departaments').length}
                 <FilterGroup filterType="departaments"/>
+              </TabPane>
+              <TabPane eventKey={2} tab="Municipalities">
+                 Selected {FilterStore.getAllSelected('municipalities').length} from {FilterStore.getAll('municipalities').length}
+                <FilterGroup filterType="municipalities"/>
               </TabPane>
                      
             </TabbedArea>

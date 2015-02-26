@@ -24,7 +24,7 @@ var FilterItem = React.createClass({
     },
     
     _onItemChanged: function(event) {     
-        FilterActions.changeFilterItemSelection(this.props.filterType, event.target.value, event.target.checked);
+        FilterActions.changeFilterItemState(this.props.filterType, event.target.value, event.target.checked);
     },
 
     componentWillMount :function(){
@@ -39,17 +39,18 @@ var FilterItem = React.createClass({
  
     render: function() {
         var item = this.props.data;       
+        debugger;
         return(
-            <label className="checkbox-inline">
-            <input
-                className="toggle"
-                type="checkbox"
-                checked={item.selected}
-                onChange={this._onItemChanged}
-                value={item.id} />
-                {item.name}
-            </label>
-                        
+            <div>
+                <input className="toggle"
+                    type="checkbox"
+                    checked={item.selected}
+                    onChange={this._onItemChanged}
+                    value={item.id} />
+                <label className="checkbox-inline">
+                    {item.name}
+                </label>
+             </div>           
         );
     }
 });

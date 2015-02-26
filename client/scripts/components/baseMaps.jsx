@@ -1,9 +1,11 @@
 'use strict';
 
 var React = require('react/addons')
+var Reflux = require('reflux');
 var RouteHandler = require('react-router').RouteHandler;
 var SlideBar=require('./containers/slideBar.jsx');
-var MapActions=require('../actions/mapActions.js')
+var MapActions=require('../actions/mapActions.js');
+var MapStore=require('../stores/mapStore.js');
 var Link = require('react-router').Link;
 
 
@@ -20,7 +22,7 @@ var Link = require('react-router').Link;
  */
 
 var BaseMapItem= React.createClass({
-
+  
    handleClick: function(event) {
      MapActions.changeBaseMap(this.state.value);
   },
@@ -30,24 +32,29 @@ var BaseMapItem= React.createClass({
   },
 
   render: function() {
-    return(<p onClick={this.handleClick}>{this.state.label}</p>);
+    var currentBaseMap = MapStore.getCurrentBaseMap();
+    if (currentBaseMap == this.state.value){
+      return(<b><span className="basemap-option" onClick={this.handleClick}> {this.state.label} </span></b>);
+    } else {
+      return(<span className="basemap-option" onClick={this.handleClick}> {this.state.label} </span>);
+    }    
   }
 
 });
 
 
 module.exports = React.createClass({
-  
-  render: function() {
-
-   return(   
-      <div className="small">BASE MAP 
-      <BaseMapItem label="Gray" value="Gray"/> 
-      <BaseMapItem label="Topographic" value="Topographic"/> 
-      <BaseMapItem label="National Geographic" value="NationalGeographic"/> 
-      <BaseMapItem label="Dark Gray" value="DarkGray"/> 
-      <BaseMapItem label="Imagery" value="Imagery"/> 
-      <BaseMapItem label="Streets" value="Streets"/>
+  mixins: [Reflux.connect(MapStore)],
+  render: function() {    
+    return(   
+      <div className="small">
+        <i className="glyphicon glyphicon-globe"/>BASE MAP  
+        <BaseMapItem label="Gray" value="Gray" /> | 
+        <BaseMapItem label="Topographic" value="Topographic"/> | 
+        <BaseMapItem label="National Geographic" value="NationalGeographic"/> | 
+        <BaseMapItem label="Dark Gray" value="DarkGray"/> | 
+        <BaseMapItem label="Imagery" value="Imagery"/> | 
+        <BaseMapItem label="Streets" value="Streets"/>
       </div>   
     );
   }
