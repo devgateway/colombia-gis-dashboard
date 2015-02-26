@@ -1,0 +1,310 @@
+{
+  "GetActivityDepartmentsFundingResult": [
+    {
+      "actividades": 334,
+      "department": "BOGOTA",
+      "fundingUS": 23839206.595922,
+      "idDep": "11",
+      "latitude": 5.7805257,
+      "longitude": -73.1116791,
+      "projects": 24
+    },
+    {
+      "actividades": 370,
+      "department": "BOLIVAR",
+      "fundingUS": 20341115.864297,
+      "idDep": "13",
+      "latitude": 8.7404156,
+      "longitude": -74.4978333,
+      "projects": 27
+    },
+    {
+      "actividades": 27,
+      "department": "BOYACA",
+      "fundingUS": 1454117.246182,
+      "idDep": "15",
+      "latitude": 5.7805257,
+      "longitude": -73.1116791,
+      "projects": 4
+    },
+    {
+      "actividades": 26,
+      "department": "CALDAS",
+      "fundingUS": 703839.974482,
+      "idDep": "17",
+      "latitude": 5.349535,
+      "longitude": -75.3114471,
+      "projects": 7
+    },
+    {
+      "actividades": 246,
+      "department": "CAQUETA",
+      "fundingUS": 25854449.726311,
+      "idDep": "18",
+      "latitude": 0.807105,
+      "longitude": -73.9578934,
+      "projects": 18
+    },
+    {
+      "actividades": 280,
+      "department": "CAUCA",
+      "fundingUS": 19131814.741440,
+      "idDep": "19",
+      "latitude": 2.3897445,
+      "longitude": -76.8305664,
+      "projects": 20
+    },
+    {
+      "actividades": 97,
+      "department": "CESAR",
+      "fundingUS": 5862402.165061,
+      "idDep": "20",
+      "latitude": 9.5470476,
+      "longitude": -73.5189133,
+      "projects": 14
+    },
+    {
+      "actividades": 367,
+      "department": "CORDOBA",
+      "fundingUS": 17599765.542641,
+      "idDep": "23",
+      "latitude": 8.3661871,
+      "longitude": -75.7893066,
+      "projects": 18
+    },
+    {
+      "actividades": 39,
+      "department": "CUNDINAMARCA",
+      "fundingUS": 1816041.980833,
+      "idDep": "25",
+      "latitude": 4.7894363,
+      "longitude": -74.1103821,
+      "projects": 10
+    },
+    {
+      "actividades": 346,
+      "department": "CHOCO",
+      "fundingUS": 15094039.760503,
+      "idDep": "27",
+      "latitude": 5.9698219,
+      "longitude": -76.953392,
+      "projects": 22
+    },
+    {
+      "actividades": 29,
+      "department": "HUILA",
+      "fundingUS": 1241487.880271,
+      "idDep": "41",
+      "latitude": 2.5532584,
+      "longitude": -75.6145325,
+      "projects": 10
+    },
+    {
+      "actividades": 192,
+      "department": "LA GUAJIRA",
+      "fundingUS": 5950273.156910,
+      "idDep": "44",
+      "latitude": 11.4660711,
+      "longitude": -72.4522171,
+      "projects": 19
+    },
+    {
+      "actividades": 129,
+      "department": "MAGDALENA",
+      "fundingUS": 7607329.083963,
+      "idDep": "47",
+      "latitude": 10.2577696,
+      "longitude": -74.2702866,
+      "projects": 17
+    },
+    {
+      "actividades": 704,
+      "department": "ANTIOQUIA",
+      "fundingUS": 48571190.747364,
+      "idDep": "5",
+      "latitude": 6.936307,
+      "longitude": -75.5765533,
+      "projects": 29
+    },
+    {
+      "actividades": 424,
+      "department": "META",
+      "fundingUS": 25052821.661264,
+      "idDep": "50",
+      "latitude": 3.3537741,
+      "longitude": -72.952713,
+      "projects": 15
+    },
+    {
+      "actividades": 429,
+      "department": "NARIÑO",
+      "fundingUS": 26290326.713487,
+      "idDep": "52",
+      "latitude": 1.5731781,
+      "longitude": -77.8650513,
+      "projects": 22
+    },
+    {
+      "actividades": 88,
+      "department": "NORTE DE SANTANDER",
+      "fundingUS": 5932760.828258,
+      "idDep": "54",
+      "latitude": 8.099618,
+      "longitude": -72.8827744,
+      "projects": 13
+    },
+    {
+      "actividades": 22,
+      "department": "QUINDIO",
+      "fundingUS": 1346459.675627,
+      "idDep": "63",
+      "latitude": 4.4833679,
+      "longitude": -75.6681595,
+      "projects": 6
+    },
+    {
+      "actividades": 29,
+      "department": "RISARALDA",
+      "fundingUS": 2770697.854958,
+      "idDep": "66",
+      "latitude": 5.0872345,
+      "longitude": -75.853775,
+      "projects": 8
+    },
+    {
+      "actividades": 76,
+      "department": "SANTANDER",
+      "fundingUS": 3557425.964174,
+      "idDep": "68",
+      "latitude": 6.7050638,
+      "longitude": -73.4867477,
+      "projects": 13
+    },
+    {
+      "actividades": 239,
+      "department": "SUCRE",
+      "fundingUS": 11995861.672556,
+      "idDep": "70",
+      "latitude": 9.081027,
+      "longitude": -75.1103287,
+      "projects": 18
+    },
+    {
+      "actividades": 273,
+      "department": "TOLIMA",
+      "fundingUS": 20249197.776745,
+      "idDep": "73",
+      "latitude": 4.0621033,
+      "longitude": -75.2416382,
+      "projects": 13
+    },
+    {
+      "actividades": 389,
+      "department": "VALLE DEL CAUCA",
+      "fundingUS": 18939603.275604,
+      "idDep": "76",
+      "latitude": 3.8638041,
+      "longitude": -76.5036621,
+      "projects": 27
+    },
+    {
+      "actividades": 79,
+      "department": "ATLANTICO",
+      "fundingUS": 5051178.122959,
+      "idDep": "8",
+      "latitude": 10.6848307,
+      "longitude": -74.9766846,
+      "projects": 17
+    },
+    {
+      "actividades": 33,
+      "department": "ARAUCA",
+      "fundingUS": 1499616.388457,
+      "idDep": "81",
+      "latitude": 6.5767756,
+      "longitude": -70.973381,
+      "projects": 9
+    },
+    {
+      "actividades": 24,
+      "department": "CASANARE",
+      "fundingUS": 932721.691123,
+      "idDep": "85",
+      "latitude": 5.4097104,
+      "longitude": -71.6102905,
+      "projects": 8
+    },
+    {
+      "actividades": 78,
+      "department": "PUTUMAYO",
+      "fundingUS": 5272639.819276,
+      "idDep": "86",
+      "latitude": 0.4501203,
+      "longitude": -75.8398132,
+      "projects": 10
+    },
+    {
+      "actividades": 13,
+      "department": "SAN ANDRES",
+      "fundingUS": 691392.808695,
+      "idDep": "88",
+      "latitude": 11.4728336,
+      "longitude": -78.080368,
+      "projects": 2
+    },
+    {
+      "actividades": 4,
+      "department": "AMAZONAS",
+      "fundingUS": 226204.543302,
+      "idDep": "91",
+      "latitude": -1.5194355,
+      "longitude": -71.5183411,
+      "projects": 4
+    },
+    {
+      "actividades": 8,
+      "department": "GUAINIA",
+      "fundingUS": 180413.892058,
+      "idDep": "94",
+      "latitude": 2.7182808,
+      "longitude": -68.811676,
+      "projects": 4
+    },
+    {
+      "actividades": 9,
+      "department": "GUAVIARE",
+      "fundingUS": 2197778.565524,
+      "idDep": "95",
+      "latitude": 1.9398637,
+      "longitude": -72.1201935,
+      "projects": 7
+    },
+    {
+      "actividades": 2,
+      "department": "VAUPES",
+      "fundingUS": 70061.240273,
+      "idDep": "97",
+      "latitude": 0.6621194,
+      "longitude": -70.5728149,
+      "projects": 2
+    },
+    {
+      "actividades": 5,
+      "department": "VICHADA",
+      "fundingUS": 140300.097415,
+      "idDep": "99",
+      "latitude": 4.7167621,
+      "longitude": -69.4221573,
+      "projects": 5
+    },
+    {
+      "actividades": 447,
+      "department": "-- Cobertura Nacional --",
+      "fundingUS": 102796330.941552,
+      "idDep": "CN",
+      "latitude": 0,
+      "longitude": 0,
+      "projects": 42
+    }
+  ]
+}

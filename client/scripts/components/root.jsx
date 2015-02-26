@@ -4,13 +4,15 @@ var React = require('react/addons')
 var RouteHandler = require('react-router').RouteHandler;
 var SlideBar=require('./containers/slideBar.jsx');
 var Nav=require('./containers/nav.jsx');
-
+var MapControl=require('./map/mapControl.jsx')
 
 module.exports = React.createClass({
   render: function() {
     return (
         <div className="row layout_root">
-        <div>Header</div>
+        <div>
+                <MapControl/>
+        </div>
         <SlideBar>
             <Nav></Nav>          
 		    </SlideBar>

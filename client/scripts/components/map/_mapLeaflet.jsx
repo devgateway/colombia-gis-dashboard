@@ -54,7 +54,6 @@ module.exports = React.createClass({
   },
 
   componentWillReceiveProps: function(nextProps) {
-    debugger;
     if (nextProps.baseMap){
       console.log('MapView: Change Map '+nextProps.baseMap);
       this.setBaseMap(nextProps.baseMap);

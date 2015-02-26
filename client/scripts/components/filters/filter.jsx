@@ -27,11 +27,10 @@ var Filter  = React.createClass({
     mixins: [Reflux.connect(FilterStore)],
 
     componentDidMount: function() {
-        debugger;
+       
     },
     
     componentWillMount :function(){    
-        debugger;
         FilterActions.getFilterListFromServer();       
     },
 
@@ -44,7 +43,6 @@ var Filter  = React.createClass({
     },
 
     render: function() {
-      debugger;
         return(
           <TabbedArea defaultActiveKey={1}>             
               <TabPane eventKey={1} tab="Departaments">
