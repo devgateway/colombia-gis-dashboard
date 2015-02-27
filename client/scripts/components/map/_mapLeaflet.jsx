@@ -72,8 +72,6 @@ module.exports = React.createClass({
   },
 
    setBaseMap:function(basemap) {
-    debugger;
-    
     if (currentBaseMap) {
       this.map.removeLayer(currentBaseMap);
     }

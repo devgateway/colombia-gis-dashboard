@@ -9,7 +9,7 @@ function logFailure(err, message) {
 module.exports = {
 
   	getFilterListFromServer: function(filterType) {
-  		  return request({ url: 'mock-data/getActivityDepartmentsFunding.json' }).fail(logFailure);
+  		  //return request({ url: 'mock-data/getActivityDepartmentsFunding.json' }).fail(logFailure);
     }
 };
 

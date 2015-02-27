@@ -4,17 +4,17 @@ var React = require('react/addons')
 var RouteHandler = require('react-router').RouteHandler;
 var SlideBar=require('./containers/slideBar.jsx');
 var Nav=require('./containers/nav.jsx');
-var MapControl=require('./map/mapControl.jsx')
 
 module.exports = React.createClass({
   render: function() {
     return (
         <div className="row layout_root">
         <div>
-                <MapControl/>
+                
         </div>
         <SlideBar>
-            <Nav></Nav>          
+            <Nav>
+            </Nav>          
 		    </SlideBar>
           <div className="col-md-12 col-lg-12 col-sm-12  layout_map">
             {/* defer to the child route handler */}

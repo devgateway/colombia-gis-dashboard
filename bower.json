@@ -9,7 +9,8 @@
     "es5-shim": "~3.4.0",
     "bootstrap": "~3.3.2",
     "leaflet": "~0.7.3",
-    "esri-leaflet": "~1.0.0-rc.5"
+    "esri-leaflet": "~1.0.0-rc.5",
+    "underscore": "~1.8.2"
   },
   "devDependencies": {}
 }
