@@ -8,22 +8,14 @@ function logFailure(err, message) {
 
 module.exports = {
 
-  	getDepartamentsList: function() {
-      /*var dfd = $.Deferred();
-      $.ajax('http://test.monitor.net.co/GisService.svc/Filters/getDepartmentsList/Json', {})
-        .done(function(data) { dfd.resolve(data); })
+  	getListFromAPI: function(filter) {
+      var dfd = $.Deferred();
+      $.ajax(filter.apiEndPoint, {})
+        .done(function(data) { dfd.resolve({data: data, filter: filter}); })
         .fail(function(data) { dfd.error(data); });
-      return dfd.promise(); */       
-      return reqwest({ url: 'http://test.monitor.net.co/GisService.svc/Filters/getDepartmentsList/Json', type: 'json', method: 'get', crossOrigin: true}).fail(logFailure);
-    },
-    
-    getMunicipalitiesList: function() {
-      /*var dfd = $.Deferred();
-      $.ajax('http://test.monitor.net.co/GisService.svc/Filters/getMunicipalitiesList/Json', {})
-        .done(function(data) { dfd.resolve(data); })
-        .fail(function(data) { dfd.error(data); });
-      return dfd.promise();*/        
-      return reqwest({ url: 'http://test.monitor.net.co/GisService.svc/Filters/getMunicipalitiesList/Json', type: 'json', method: 'get', crossOrigin: true}).fail(logFailure);
+      return dfd.promise(); 
+      //debugger;
+      //return reqwest({ url: filter.endPoint, type: 'json', method: 'get', crossOrigin: true}).fail(logFailure);
     },
 };
 

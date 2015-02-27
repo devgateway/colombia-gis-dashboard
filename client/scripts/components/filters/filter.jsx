@@ -3,13 +3,12 @@
 var React = require('react');
 var Router = require('react-router');
 var Reflux = require('reflux');
-var Link = Router.Link;
 var FilterActions = require('../../actions/filterActions.js');
+var FilterMap = require('./filterMap.js');
 var FilterStore=require('../../stores/filterStore.js');
 var FilterGroup = require('./filterGroup.jsx');
 var TabbedArea = require('react-bootstrap/lib/TabbedArea');
 var TabPane = require('react-bootstrap/lib/TabPane');
-
 
 var Filter  = React.createClass({
     mixins: [Reflux.connect(FilterStore)],
@@ -17,9 +16,8 @@ var Filter  = React.createClass({
     componentDidMount: function() {
     },
     
-    componentWillMount :function(){    
-        FilterActions.getDepartamentsList();       
-        FilterActions.getMunicipalitiesList();       
+    componentWillMount :function(){   
+    
     },
 
     componentWillUnmount: function() {
@@ -30,20 +28,20 @@ var Filter  = React.createClass({
     },
 
     render: function() {
-      debugger;
+      var filters = FilterMap.filters;
         return(
-          <TabbedArea defaultActiveKey={1}>   
-              <TabPane eventKey={1} tab="Departaments">
-                 Selected {FilterStore.getAllSelected('departaments').length} from {FilterStore.getAll('departaments').length}
-                <FilterGroup filterType="departaments"/>
-              </TabPane>
-              <TabPane eventKey={2} tab="Municipalities">
-                 Selected {FilterStore.getAllSelected('municipalities').length} from {FilterStore.getAll('municipalities').length}
-                <FilterGroup filterType="municipalities"/>
-              </TabPane>
-                     
-            </TabbedArea>
+          <TabbedArea defaultActiveKey={1}>
+            {
+              filters.map(function(item){
+                var label = item.label + " (" + FilterStore.getAllSelected(item.key).length + "/" + FilterStore.getAll(item.key).length + ")";
+                return <TabPane eventKey={parseInt(item.index)} tab={label}>
+                  <FilterGroup filter={item}/>
+                </TabPane>
+              })
+            }                 
+          </TabbedArea>
         );
+        
     }
 });
 

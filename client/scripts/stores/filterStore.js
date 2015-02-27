@@ -3,16 +3,20 @@
 var assign = require('object-assign');
 var Reflux = require('reflux');
 var FilterActions = require('../actions/filterActions.js');
+var FilterMap = require('../components/filters/filterMap.js');
 
 module.exports=Reflux.createStore({
 
     listenables: FilterActions,
     // Initial setup
     init: function() {
-        this.state = {
-            municipalities: [], departaments: [], developmentObjectives: [],
-            municipalitiesSelected: [], departamentsSelected: [], developmentObjectivesSelected: []
-        };
+        this.state = {};
+        var self = this;
+        var filters = FilterMap.filters;
+        filters.map(function(item, idx){ 
+            self.state[item.key] = [];
+        });
+        
     },
 
     getAll: function(filterType) {
@@ -39,23 +43,21 @@ module.exports=Reflux.createStore({
         }
     },
 
-    onGetDepartamentsListCompleted: function(data){
-        this.state.departaments = data.GetDepartmentsListJsonResult;
-        this.output();
-    },
-    
-    onGetMunicipalitiesListCompleted: function(data){
-        this.state.municipalities = data.GetMunicipalitiesListJsonResult;
+    onGetListFromAPICompleted: function(data){
+        var filterType = data.filter.key;
+        switch(filterType) {
+            case 'departaments':
+                this.state[filterType] = data.data.GetDepartmentsListJsonResult;
+                break;
+            case 'municipalities':
+                this.state[filterType] = data.data.GetMunicipalitiesListJsonResult;
+                break;
+        }
         this.output();
     },
     
     onChangeFilterItemState:function(filterType, id, value){
         this.state[filterType].filter(function(it){return it.id==id})[0].selected = value;
-        /*this.state[filterType].map(function(item) {
-            if (item.id == id) {
-                item.selected = value;
-            } 
-        });*/
         this.output();
     },
 
@@ -66,7 +68,7 @@ module.exports=Reflux.createStore({
     },
 
     serialize: function() {
-        return this.state
+        return this.state;
     },
 
     getInitialState: function() {

@@ -5,25 +5,24 @@ var Reflux = require('reflux');
 var Link = Router.Link;
 var FilterStore=require('../../stores/filterStore.js')
 var FilterItem = require('./filterItem.jsx');
+var FilterActions = require('../../actions/filterActions.js');
 
 
 var FilterGroup = React.createClass({
  
-    mixins: [Reflux.connect(FilterStore)],
-
     _filterByKeyword: function (keyword) {
         var items;
         if (keyword) {
             // filter the collection
             var pattern = new RegExp(keyword, 'i');
-            this.state[this.props.filterType].map(function (item) {
+            FilterStore.getAll(this.props.filter.key).map(function (item) {
                 if (!pattern.test(item.name)){
                     item.hide = true;
                 }
             });
         } else {
             // display the original collection
-            this.state[this.props.filterType].map(function (item) {
+            FilterStore.getAll(this.props.filter.key).map(function (item) {
                 item.hide = false;
             });
         }
@@ -41,15 +40,14 @@ var FilterGroup = React.createClass({
         if (length > 2 || ev.keyCode == 13) {
             this._filterByKeyword(value);
             this.forceUpdate();
-            //this.setState(this.state);
         } else {
             this._filterByKeyword();
             this.forceUpdate();
-            //this.setState(this.state);
         }
     },
     
-    componentWillMount :function(){        
+    componentWillMount :function(){ 
+        FilterActions.getListFromAPI(this.props.filter);          
     },
 
     componentWillUnmount: function() {
@@ -60,9 +58,8 @@ var FilterGroup = React.createClass({
     },
 
     render: function() {
-        var filterType = this.props.filterType;
-        var items = this.state[filterType] || [];  
-        debugger;
+        var filterType = this.props.filter.key;
+        var items = FilterStore.getAll(filterType) || [];  
         return(
             <div>
                 <input

@@ -5,7 +5,6 @@ var Router = require('react-router');
 var Reflux = require('reflux');
 var Link = Router.Link;
 var FilterActions = require('../../actions/filterActions.js');
-var FilterStore=require('../../stores/filterStore.js')
 
 function getStateFromStores() {
   return {};
@@ -13,22 +12,15 @@ function getStateFromStores() {
 
 var FilterItem = React.createClass({
  
-    mixins: [Reflux.connect(FilterStore)],
-
     componentDidMount: function() {
-        //FilterStore.addChangeListener(this._onChange);
+        
     },
 
-    _onChange: function() {
-       //this.setState(getStateFromStores());
-    },
-    
     _onItemChanged: function(event) {     
         FilterActions.changeFilterItemState(this.props.filterType, event.target.value, event.target.checked);
     },
 
     componentWillMount :function(){
-        this.setState(getStateFromStores());
     },
 
     componentWillUnmount: function() {
@@ -39,7 +31,6 @@ var FilterItem = React.createClass({
  
     render: function() {
         var item = this.props.data;       
-        debugger;
         return(
             <div>
                 <input className="toggle"
