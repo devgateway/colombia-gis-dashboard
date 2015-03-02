@@ -1,110 +1,208 @@
-// Main Stylesheet
+//variables
+$black: #000000;
+$grey:#454545;
+$green: #98ca68;
+$blue: #4d749f;
+$bgblue:#74a4d6;
+$white: #ffffff;
 
-// Box sizing partial styles:
-// Apply a natural box layout model to all elements
-// Map component
+$gutter: 1em;
 
-/*sass variables*/
-$font-default:    Verdana;
-$font-default-color:#000;
-$font-upper: uppercase;
+$base-font-family: 'Open Sans', sans-serif;
+$base-line-height: 110%;
+
+//mixins
+@mixin topbottomContainer{padding-left:$gutter*3;width:100%;} //inner container widths in header and footer
+@mixin floatLeft{ float:left;}
+@mixin floatRight{ float:right;}
+@mixin textSmaller{ font-size:0.6rem}
+@mixin textSmall{font-size:1rem}
+@mixin textMedium{font-size:1.5rem}
+@mixin textLarge{font-size:1.8rem}
+@mixin textBold{font-weight:bold}
 
 
-html,body{height:100%;}
+@mixin transitionOpacity {
+  -webkit-transition: opacity 600ms ease;
+  -moz-transition: opacity 600ms ease;
+  -o-transition: opacity 600ms ease;
+  transition: opacity 600ms ease;
+}
 
-#app-wrapper{
-  height: 100%;
+@mixin transitionColor {
+  -webkit-transition: color 600ms ease;
+  -moz-transition: color 600ms ease;
+  -o-transition: color 600ms ease;
+  transition: color 600ms ease;
+}
+
+body{
+  color:$grey;
+  font-family:$base-font-family;
+  overflow-x: hidden!important;
+  font-size: 15px;
+  font-size: 1.5rem;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100%;
+}
+
+a{
+  text-decoration:none;
+  &:hover{text-decoration:none;}
+}
+
+// icons
+.fa{
+  display:inline-block;
+}
+
+i.fa.fa-bars{
+  color: $white;
+  @include textLarge;
+
+  &:hover{
+    color:#74a4d6;
+  }
+}
+
+// header area
+.map-header{
+ background: $black;
+ opacity:0.8;
+ z-index:1000;
+
+  .container{
+    @include topbottomContainer;
+  }
+}
+
+h1{
+  @include floatLeft;
+  @include textLarge;
+  @include textBold;
+  color: $white;
+  text-transform:uppercase;
+  margin-top: $gutter;
+}
+
+h2{
+  color:$white;
+  @include textMedium;
+  @include textBold;
+  display:inline-block;
+  line-height: $base-line-height*1;
+}
+
+.header-nav{
+  @include floatRight;
+  @include textBold;
+  @include textMedium;
+  margin-top:$gutter;
+
+  a{ color: saturate(lighten( $blue, 35), 65);
+     @include transitionColor;
+  &:hover{color:$white}
+   }
 }
 
 
-.layout_root{
-   height: 100%;
-   margin-right: 0px !important; 
-   margin-left: 0px !important; 
+// map
+#map-container{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background: $white;
+}
+
+.map-border{
+  width:$gutter*4;
+  height:100%;
+  position:absolute;
+  z-index: 1001;
+  background: $black;
+  opacity:0.8;
+}
+
+.map-border-right{
+  @extend .map-border;
+  top:3.65em;
+  right:0;
+  position:fixed;
+} //remove the right border in responsive
+
+.map-border-bottom{
+  @extend .map-border;
+  bottom:$gutter*5;
+  right:0;
+  width:100%;
+  height: $gutter*4;
+}
+
+//footer
+.map-footer{
+  background:$white;
+  bottom: 0;
+  margin-bottom: 0;
+  border-width: 1px 0 0;
+  padding:$gutter;
+
+  .container{
+    @include topbottomContainer;
+    padding-left: $gutter*2;
+  }
+}
+
+.navbar-brand{
+  padding:0;
+}
+
+.logo{
+  width:8em;
+  margin:0;
+  &:hover{
+    opacity:0.8;
+    @include transitionOpacity;
+  }
+}
+
+//left bar toggle
+#sidebar-wrapper{
+  width:$gutter*3;
+  z-index:1002;
+  background:#242a2d;
+  height:100%;
+  position:fixed;
+
+  .panel-toggle{
+    top:47%;
+    margin-left:30%;
+    position:absolute;
+  }
 }
 
 
-.layout_filter{
-   font: 100% $font-default;
-   color: $font-default-color;
- }
+//responsive styles
 
+$breakTablets: 786px;
+$breakPhones: 767px;
 
-.layout_map{
-    height:100%;
-    min-height:100%;
- }
-
-.map {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
+@media only screen and (min-device-width : $breakTablets) and (max-device-width : 1024px) {
+  /*tablets*/
+  h2{ margin-left:0;}
 }
 
+@media only screen and (max-width:$breakPhones) {
+    /* phones */
+    h1, h2 {padding-left:$gutter; @include textSmall;}
+    h2{ margin-left:0}
+  }
 
-.slider{
-  position: absolute;
-  z-index: 100;
-  height: 100%;
-  background-color:#666;
-  opacity: 0.9;
-  overflow: hidden;
-}
 
-.fixed{
-  width: 300px;
-}
-
-.slider >>.nav{
-  width: 400px;
-}
-
-.slider .slideContent{
-  float: left;
-  height: 100%;  
-}
-
-.slider .slideToggler{
-  width:28px;
-  float: left;
-  height: 100%;
-  background-color:#333;
-}
-
-.slider .icon-white{
-  color: #fff;
-  display: table-cell;
-   text-align: center;
-   vertical-align: middle;
-}
-
-.example{
-    width: 500px;
-    background-color:#666;
-    overflow: hidden;
-}
-
-.example-enter {
-    overflow: hidden;
-     width: 0px;  
-}
-
-.example-enter.example-enter-active {
-    -webkit-transition: width 1s; /* For Safari 3.1 to 6.0 */
-    transition: width 1s;
-    width: 500px;
-}
-
-.example-leave {
-   -webkit-transition: width 1s; /* For Safari 3.1 to 6.0 */
-    transition: width 1s;
-    width: 0px;
-}
-
-.example-leave.example-leave-active {
-   -webkit-transition: width 1s; /* For Safari 3.1 to 6.0 */
-    transition: width 1s;
-    width: 0px;
-}
+@media only screen and (max-width:$breakPhones) and (orientation: portrait) {
+    /* portrait phones */
+    h1, h2 {width:100%}
+    h2{ margin-left:0; margin-top:0}
+    .header-nav{ margin-bottom:$gutter}
+  }
