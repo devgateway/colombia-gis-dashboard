@@ -1,7 +1,7 @@
 'use strict';
 
 var Reflux = require('reflux');
-var api = require('../utils/filterAPI.js');
+var api = require('../api/filters.js');
 
 
 var getListFromAPI = Reflux.createAction({ asyncResult: true });

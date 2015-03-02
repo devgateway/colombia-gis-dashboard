@@ -1,7 +1,20 @@
 'use strict';
 var Reflux = require('reflux');
+var api = require('../api/layers.js');
 
-module.exports = Reflux.createActions({
-  changeBounds : {children: ['user']},
-  changeBaseMap : {}
-});
+
+
+
+var changeBounds  = Reflux.createAction({children: ['user']});
+var changeBaseMap = Reflux.createAction();
+
+
+module.exports = {
+	changeBounds : changeBounds,
+	changeBaseMap : changeBaseMap
+};
+
+
+
+
+

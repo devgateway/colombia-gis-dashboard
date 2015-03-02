@@ -3,20 +3,20 @@
 var assign = require('object-assign');
 var Reflux = require('reflux');
 var FilterActions = require('../actions/filterActions.js');
-var FilterMap = require('../components/filters/filterMap.js');
 
 module.exports=Reflux.createStore({
 
     listenables: FilterActions,
     // Initial setup
     init: function() {
-        this.state = {};
-        var self = this;
-        var filters = FilterMap.filters;
-        filters.map(function(item, idx){ 
-            self.state[item.key] = [];
-        });
-        
+        this.state = {
+            municipalities: [], departaments: [], developmentObjectives: [],
+            municipalitiesSelected: [], departamentsSelected: [], developmentObjectivesSelected: []
+        };
+        //this.listenTo(FilterActions.getAllFilterListFromServer, this._getAllFilterList);
+        //this.listenTo(FilterActions.getFilterListFromServer, this._getFilterList);
+        //this.listenTo(FilterActions.receiveFilterListFromServer, this._receiveFilterList);
+        //this.listenTo(FilterActions.changeFilterItemSelection, this._changeFilterItem);
     },
 
     getAll: function(filterType) {
@@ -29,7 +29,9 @@ module.exports=Reflux.createStore({
 
     getItem: function(filterType, id) {
         if (this.state[filterType]) {
-          return this.state[filterType].filter(function (data) {return (data.id === id);});
+          return this.state[filterType].filter(function (data) {   
+                return (data.id === id);
+              });
         } else {
           return [];
         }
@@ -37,27 +39,38 @@ module.exports=Reflux.createStore({
 
     getAllSelected: function(filterType) {
         if (this.state[filterType]) {
-          return this.state[filterType].filter(function (data) {return (data.selected);});
+          return this.state[filterType].filter(function (data) {
+                return (data.selected);
+              });
         } else {
           return [];
         }
     },
 
-    onGetListFromAPICompleted: function(data){
-        var filterType = data.filter.key;
-        switch(filterType) {
-            case 'departaments':
-                this.state[filterType] = data.data.GetDepartmentsListJsonResult;
-                break;
-            case 'municipalities':
-                this.state[filterType] = data.data.GetMunicipalitiesListJsonResult;
-                break;
-        }
+    onGetFilterListFromServerCompleted: function(data){
+        this.state.departaments = data.GetMunicipalitiesListJsonResult;
         this.output();
     },
-    
-    onChangeFilterItemState:function(filterType, id, value){
-        this.state[filterType].filter(function(it){return it.id==id})[0].selected = value;
+    /*
+    _getFilterList:function(filterType){
+        FilterAPIUtils.getFilterListFromServer(filterType);
+        this.output();
+    },
+
+     _getAllFilterList:function(){
+        FilterAPIUtils.getAllDepartamentsFromServer();
+        FilterAPIUtils.getAllMunicipalitiesFromServer();
+        FilterAPIUtils.getAllDevelopmentObjectiveFromServer();
+        this.output();
+    },
+    */
+    _changeFilterItem:function(filterType, id, value){
+        debugger;
+        this.state[filterType].map(function(item) {
+            if (item.id === id) {
+                item.selected = value;
+            } 
+        });
         this.output();
     },
 

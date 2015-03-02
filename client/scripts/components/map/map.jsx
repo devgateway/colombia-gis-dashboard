@@ -11,12 +11,15 @@ var React = require('react/addons');
 var Reflux = require('reflux');
 var MapStore = require('../../stores/mapStore.js');
 var MapActions = require('../../actions/mapActions.js');
+var GeoJsonLayer=require('./GeoJsonLayer.jsx');
 var LeafletMap = require('./_mapLeaflet.jsx');
+
+var LayersStore=require('../../stores/layersStore.jsx');
 
 
 module.exports = React.createClass({
 
-  mixins: [Reflux.connect(MapStore, 'mapStatus')],
+  mixins: [Reflux.connect(MapStore, 'mapStatus'),Reflux.connect(LayersStore, 'layerData'),],
 
   updateCurrentBounds: function(newMapViewBounds) {
     // Triggered whenever the map view changes, including:
@@ -38,10 +41,14 @@ module.exports = React.createClass({
   },
 
 
+  componentWillMount :function(){
+    //  MapActions.loadActivitiesByDepartments();
+  },    
 
 
   render: function() {
-    debugger;
+    console.log('Render Map');
+  
     // pass a function down to children through props to access the leaflet map
     var children = React.Children.map(this.props.children, function(child) {
       return child ? React.addons.cloneWithProps(child, {getMap: this.getMap}) : null;
@@ -49,8 +56,11 @@ module.exports = React.createClass({
 
     var bounds = this.state.mapStatus.bounds;
     var baseMap= this.state.mapStatus.baseMap;
-    return (
+    
+     return (
       <div>
+        <GeoJsonLayer getMap={this.getMap} features={this.state.layerData.features}></GeoJsonLayer>
+                
         <LeafletMap
           ref="leafletMapComponent"
           baseMap={baseMap}
