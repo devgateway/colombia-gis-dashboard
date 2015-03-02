@@ -16,7 +16,7 @@ getMunicipalitiesList.listenAndPromise(api.getMunicipalitiesList);
 var changeFilterItemState = Reflux.createAction();
 
 module.exports = {
-	getListFromAPI: getListFromAPI,
+  getListFromAPI: getListFromAPI,
   getDepartamentsList: getDepartamentsList,
   getMunicipalitiesList: getMunicipalitiesList,
   changeFilterItemState: changeFilterItemState

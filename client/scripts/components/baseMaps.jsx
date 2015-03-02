@@ -48,17 +48,10 @@ var BaseMapItem= React.createClass({
 
 module.exports = React.createClass({
   
-  render: function() {
-
   mixins: [Reflux.connect(MapStore)],
+  
   render: function() {    
     return(   
-      <div className="small">BASE MAP 
-      <BaseMapItem label="Gray" value="Gray"/> 
-      <BaseMapItem label="Topographic" value="Topographic"/> 
-      <BaseMapItem label="National Geographic" value="NationalGeographic"/> 
-      <BaseMapItem label="Dark Gray" value="DarkGray"/> 
-      <BaseMapItem label="Imagery" value="Imagery"/> 
       <div className="small">
         <i className="glyphicon glyphicon-globe"/>BASE MAP  
         <BaseMapItem label="Gray" value="Gray" /> | 
