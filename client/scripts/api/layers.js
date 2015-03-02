@@ -24,7 +24,7 @@ module.exports = {
   },
   
 
- findLayersOnArcGisOnline: function(options) {
+ findLayers: function(options) {
     	return request({url: GIS_URL + encodeURIComponent(options.query),type: 'json', method: 'get', crossOrigin: true}).fail(logFailure);
 	}
 

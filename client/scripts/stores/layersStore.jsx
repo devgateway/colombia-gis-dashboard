@@ -10,7 +10,7 @@ module.exports = Reflux.createStore({
   listenables: LayersAction,
 
   onSearchOnArgGisCompleted:function(data){
-      console.log('onSearchOnArgGisCompleted');
+      this.update({argisLayers:data});
   },
 
 
