@@ -1,5 +1,5 @@
 'use strict';
-var request = require('reqwest');
+var reqwest = require('reqwest');
 
 function logFailure(err, message) {
   console.error(message);
@@ -8,8 +8,13 @@ function logFailure(err, message) {
 
 module.exports = {
 
-  	getFilterListFromServer: function(filterType) {
-  		  //return request({ url: 'mock-data/getActivityDepartmentsFunding.json' }).fail(logFailure);
-    }
+  	getListFromAPI: function(filter) {
+      var dfd = $.Deferred();
+      $.ajax(filter.apiEndPoint, {})
+        .done(function(data) { dfd.resolve({data: data, filter: filter}); })
+        .fail(function(data) { dfd.error(data); });
+      return dfd.promise(); 
+      //debugger;
+      //return reqwest({ url: filter.endPoint, type: 'json', method: 'get', crossOrigin: true}).fail(logFailure);
+    },
 };
-

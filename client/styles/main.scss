@@ -55,7 +55,7 @@ html,body{height:100%;}
 
 .fixed{
 
-  width: 300px;
+  width: 500px;
 }
 
 .slider >>.nav{
@@ -109,4 +109,14 @@ html,body{height:100%;}
    -webkit-transition: width 1s; /* For Safari 3.1 to 6.0 */
     transition: width 1s;
     width: 0px;
+}
+
+.scrollable-list {
+  list-style-type: none; 
+  height: 400px; 
+  overflow: scroll;
+}
+
+.basemap-option {
+  cursor: pointer;
 }

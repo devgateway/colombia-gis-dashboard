@@ -34,7 +34,6 @@ var BaseMapItem= React.createClass({
   },
 
   render: function() {
-    return(<p onClick={this.handleClick}>{this.state.label}</p>);
     var currentBaseMap = MapStore.getCurrentBaseMap();
     if (currentBaseMap == this.state.value){
       return(<b><span className="basemap-option" onClick={this.handleClick}> {this.state.label} </span></b>);
