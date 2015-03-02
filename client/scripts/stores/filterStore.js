@@ -29,7 +29,7 @@ module.exports=Reflux.createStore({
 
     getItem: function(filterType, id) {
         if (this.state[filterType]) {
-          return this.state[filterType].filter(function (data) {x   
+          return this.state[filterType].filter(function (data) {   
                 return (data.id === id);
               });
         } else {
@@ -48,7 +48,6 @@ module.exports=Reflux.createStore({
     },
 
     onGetFilterListFromServerCompleted: function(data){
-        debugger;
         this.state.departaments = data.GetMunicipalitiesListJsonResult;
         this.output();
     },
@@ -68,7 +67,7 @@ module.exports=Reflux.createStore({
     _changeFilterItem:function(filterType, id, value){
         debugger;
         this.state[filterType].map(function(item) {
-            if (item.id == id) {
+            if (item.id === id) {
                 item.selected = value;
             } 
         });
@@ -82,7 +81,7 @@ module.exports=Reflux.createStore({
     },
 
     serialize: function() {
-        return this.state
+        return this.state;
     },
 
     getInitialState: function() {

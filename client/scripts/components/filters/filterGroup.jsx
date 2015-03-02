@@ -76,7 +76,7 @@ var FilterGroup = React.createClass({
     render: function() {
         var filterType = this.props.filterType;
         var items = this.state[filterType] || [];  
-        debugger;
+       
         return(
             <div>
                 <input
