@@ -19,9 +19,6 @@ module.exports  = React.createClass({
   render: function() {
     return (
       <div className="fixed">
-      <div>
-        <BaseMaps/>
-      </div>
       <TabbedArea defaultActiveKey={2}>
  
         <TabPane eventKey={1} tab="Tab 2">

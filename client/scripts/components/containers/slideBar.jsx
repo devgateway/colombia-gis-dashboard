@@ -10,7 +10,7 @@ var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 
 var BarContent = React.createClass({
   render: function() {
-    return <div className="slider_content">{this.props.children} MUAAAAAAAAAAAAAAAAAAAAAA</div>;
+    return <div className="slider_content">{this.props.children}</div>;
   }
 });
     
