@@ -10,10 +10,11 @@ var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 
 var BarContent = React.createClass({
   render: function() {
-    return <div className="slider">{this.props.children} AAAAAAAAAAAAAA</div>;
+    return <div className="slider_content">{this.props.children} MUAAAAAAAAAAAAAAAAAAAAAA</div>;
   }
 });
     
+
 module.exports  = React.createClass({
       getInitialState: function() {
         return {
