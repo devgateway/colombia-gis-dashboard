@@ -39,7 +39,7 @@ $base-line-height: 110%;
   -webkit-transition: width 1s ease; /* For Safari 3.1 to 6.0 */
   -moz-transition: width 1s ease;
   -o-transition: width 1s ease;
-    transition: width 1s ease;
+  transition: width 1s;
     width: 500px;
 }
 
@@ -211,33 +211,39 @@ h2{
     }
 }
 
-.slider{
-  background-color: $bgBlack;
-  overflow: hidden;
-  width: 500px;
-  height: 100%;
-  position: absolute;
-  left: 40px;
-  top:50px;
-  @include transitionOpacity;
 
+.slider_content{
+  background: #FFFFFF;
+   width: 300px;
+   background-color: $bgBlack;
+   overflow: hidden;
+   width: 500px;
+   height: 100%;
+   position: absolute;
+   left: 40px;
+   top:50px;
+   @include transitionOpacity;
 }
 
 .slider-enter {
-    width: 500px;
+   overflow: hidden;
+   width: 0px;
+   
 }
 
 .slider-enter.slider-enter-active {
-    @include transitionSliderOn;
+   @include transitionSliderOn 
+   
 }
 
 .slider-leave {
-   @include transitionSliderOff;
+   @include transitionSliderOff 
 }
 
 .slider-leave.slider-leave-active {
-   width: 0px;
+    width: 0px;
 }
+
 
 
 
