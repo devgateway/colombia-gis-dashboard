@@ -111,10 +111,14 @@ html,body{height:100%;}
     width: 0px;
 }
 
+.filter-group {
+  height: 450px; 
+}
+
 .scrollable-list {
   list-style-type: none; 
-  height: 400px; 
-  overflow: scroll;
+  height: 90%; 
+  overflow-y: scroll;
 }
 
 .basemap-option {

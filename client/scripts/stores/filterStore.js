@@ -61,6 +61,34 @@ module.exports=Reflux.createStore({
         this.output();
     },
 
+    onTriggerFilterApply:function(reset){
+        var self = this;
+        var filters = FilterMap.filters;
+        var filtersSelected = {};
+        filters.map(function(filterDefinition){ 
+            var selectedIds = []
+            var itemList = self.state[filterDefinition.key];
+            itemList.map(function(item){ 
+                if (reset){
+                    item.selected = false;
+                } else {
+                    if (item.selected){
+                        selectedIds.push(item.id);
+                    }
+                }
+            });
+            if (selectedIds.length>0){
+                filtersSelected[filterDefinition.param] = selectedIds;
+            }
+        });
+        this.state.filtersSelected = filtersSelected;
+        this.output();
+    },
+
+    onTriggerFilterReset:function(){        
+        this.onTriggerFilterApply(true);
+    },
+
     // Callback
     output: function() {
     // Pass on to listening components

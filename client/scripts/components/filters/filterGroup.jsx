@@ -4,7 +4,7 @@ var Router = require('react-router');
 var Reflux = require('reflux');
 var Link = Router.Link;
 var FilterStore=require('../../stores/filterStore.js')
-var FilterItem = require('./filterItem.jsx');
+var FilterItemList = require('./filterItemList.jsx');
 var FilterActions = require('../../actions/filterActions.js');
 
 
@@ -15,22 +15,18 @@ var FilterGroup = React.createClass({
         if (keyword) {
             // filter the collection
             var pattern = new RegExp(keyword, 'i');
-            FilterStore.getAll(this.props.filter.key).map(function (item) {
+            FilterStore.getAll(this.props.filterDefinition.key).map(function (item) {
                 if (!pattern.test(item.name)){
                     item.hide = true;
                 }
             });
         } else {
             // display the original collection
-            FilterStore.getAll(this.props.filter.key).map(function (item) {
+            FilterStore.getAll(this.props.filterDefinition.key).map(function (item) {
                 item.hide = false;
             });
         }
         return items;  
-    },
-
-    componentDidMount: function() {
-        
     },
 
     _searchKeyUp: function(ev) {
@@ -47,34 +43,23 @@ var FilterGroup = React.createClass({
     },
     
     componentWillMount :function(){ 
-        FilterActions.getListFromAPI(this.props.filter);          
+        FilterActions.getListFromAPI(this.props.filterDefinition);          
     },
 
-    componentWillUnmount: function() {
-    },
-
-    componentDidUpdate:function( prevProps,  prevState){
-        //debugger;
+    _onItemChanged: function(filterType, id, value) {     
+        FilterActions.changeFilterItemState(filterType, id, value);
     },
 
     render: function() {
-        var filterType = this.props.filter.key;
+        var filterType = this.props.filterDefinition.key;
         var items = FilterStore.getAll(filterType) || [];  
         return(
-            <div>
+            <div className="filter-group">
                 <input
                     className="form-control-sm"
                     placeholder="Keyword Search"
                     onKeyUp={this._searchKeyUp} />
-                <ul className="scrollable-list">
-                {
-                    items.map(function(item){ 
-                        if (!item.hide){   
-                            return <li key={item.id}><FilterItem data={item} filterType={filterType} /></li>;
-                        }
-                    })
-                }
-                </ul>
+                <FilterItemList items={items} filterType={filterType} onItemChanged={this._onItemChanged}/>                
             </div>
             );
     }
