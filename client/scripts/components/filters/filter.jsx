@@ -31,7 +31,7 @@ var Filter  = React.createClass({
     },
     
     componentWillMount :function(){    
-        FilterActions.getFilterListFromServer();       
+            
     },
 
     componentWillUnmount: function() {

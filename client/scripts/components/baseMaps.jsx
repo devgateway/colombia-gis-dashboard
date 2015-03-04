@@ -34,10 +34,10 @@ var BaseMapItem= React.createClass({
   },
 
   render: function() {
-    return(<p onClick={this.handleClick}>{this.state.label}</p>);
+
     var currentBaseMap = MapStore.getCurrentBaseMap();
     if (currentBaseMap == this.state.value){
-      return(<b><span className="basemap-option" onClick={this.handleClick}> {this.state.label} </span></b>);
+      return(<b><span  className="basemap-option " onClick={this.handleClick}> {this.state.label} </span></b>);
     } else {
       return(<span className="basemap-option" onClick={this.handleClick}> {this.state.label} </span>);
     }    
@@ -52,7 +52,7 @@ module.exports = React.createClass({
   
   render: function() {    
     return(   
-      <div className="small">
+      <div className="small text-warning">
         <i className="glyphicon glyphicon-globe"/>BASE MAP  
         <BaseMapItem label="Gray" value="Gray" /> | 
         <BaseMapItem label="Topographic" value="Topographic"/> | 
