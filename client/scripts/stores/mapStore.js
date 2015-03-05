@@ -36,8 +36,8 @@ module.exports = Reflux.createStore({
   getInitialState: function() {
     return (this.state = {
       baseMap : 'Gray',
-      bounds: [ [61, 195],
-                [-24, 20] ]
+      bounds: [ [7, -62],
+                [0, -83] ]
     });
   }
 

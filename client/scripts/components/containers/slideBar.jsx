@@ -10,10 +10,11 @@ var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 
 var BarContent = React.createClass({
   render: function() {
-    return <div className="example" ref="drawer">{this.props.children}</div>;
+    return <div className="slider_content">{this.props.children}</div>;
   }
 });
     
+
 module.exports  = React.createClass({
       getInitialState: function() {
         return {
@@ -53,16 +54,13 @@ module.exports  = React.createClass({
       
       render: function() {
         return (
-          <div className="slider">
-            <div className="slideToggler  icon-white" onClick={this.state.open?this.close:this.open}>
-              <i className="glyphicon glyphicon-th-list"></i>
-            </div>
-            <div className="slideContent">
-                <ReactCSSTransitionGroup  transitionName="example" component="div">
-                  {this.state.open && <BarContent key="content">{this.props.children}</BarContent>}
-                </ReactCSSTransitionGroup >
-            </div>
-            
+          <div id="sidebar-wrapper">
+              <div className="panel-toggle">
+                  <i className="fa fa-bars" onClick={this.state.open?this.close:this.open}></i>
+              </div>
+               <ReactCSSTransitionGroup  transitionName="slider" component="div">
+                    {this.state.open && <BarContent key="content"> {this.props.children} </BarContent>}
+               </ReactCSSTransitionGroup>
           </div>
         );
       } 

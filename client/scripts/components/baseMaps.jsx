@@ -1,12 +1,9 @@
 'use strict';
 
 var React = require('react/addons')
-var Reflux = require('reflux');
 var RouteHandler = require('react-router').RouteHandler;
 var SlideBar=require('./containers/slideBar.jsx');
 var MapActions=require('../actions/mapActions.js')
-var MapActions=require('../actions/mapActions.js');
-var MapStore=require('../stores/mapStore.js');
 var Link = require('react-router').Link;
 
 
@@ -24,7 +21,6 @@ var Link = require('react-router').Link;
 
 var BaseMapItem= React.createClass({
 
-  
    handleClick: function(event) {
      MapActions.changeBaseMap(this.state.value);
   },
@@ -34,12 +30,7 @@ var BaseMapItem= React.createClass({
   },
 
   render: function() {
-    var currentBaseMap = MapStore.getCurrentBaseMap();
-    if (currentBaseMap == this.state.value){
-      return(<b><span className="basemap-option" onClick={this.handleClick}> {this.state.label} </span></b>);
-    } else {
-      return(<span className="basemap-option" onClick={this.handleClick}> {this.state.label} </span>);
-    }    
+    return(<span onClick={this.handleClick} className="btn">{this.state.label}</span>);
   }
 
 });
@@ -47,18 +38,16 @@ var BaseMapItem= React.createClass({
 
 module.exports = React.createClass({
   
-  mixins: [Reflux.connect(MapStore)],
-  
-  render: function() {    
-    return(   
-      <div className="small">
-        <i className="glyphicon glyphicon-globe"/>BASE MAP  
-        <BaseMapItem label="Gray" value="Gray" /> | 
-        <BaseMapItem label="Topographic" value="Topographic"/> | 
-        <BaseMapItem label="National Geographic" value="NationalGeographic"/> | 
-        <BaseMapItem label="Dark Gray" value="DarkGray"/> | 
-        <BaseMapItem label="Imagery" value="Imagery"/> | 
-        <BaseMapItem label="Streets" value="Streets"/>
+  render: function() {
+
+   return(   
+      <div className="small">BASE MAP 
+      <BaseMapItem label="Gray" value="Gray"/> 
+      <BaseMapItem label="Topographic" value="Topographic"/> 
+      <BaseMapItem label="National Geographic" value="NationalGeographic"/> 
+      <BaseMapItem label="Dark Gray" value="DarkGray"/> 
+      <BaseMapItem label="Imagery" value="Imagery"/> 
+      <BaseMapItem label="Streets" value="Streets"/>
       </div>   
     );
   }

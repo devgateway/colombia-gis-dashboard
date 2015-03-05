@@ -17,13 +17,14 @@ module.exports  = React.createClass({
 	render: function() {
 		return (  
 
-		<div>
+		<div className="danger">
 			<ul>
-				<li>Financiamiento</li>
+				<li><input type="radio"/>Financiamiento</li>
 				<li>
+
 					<ul>
-						<li onClick={this.showByDepartment}><span className="btn">Show by Department</span></li>
-						<li onClick={this.showByMunicipality}><span className="btn">Show by Municipality</span></li>
+						<li onClick={this.showByDepartment}><input type="radio"/> <span className="btn">Show by Department</span></li>
+						<li onClick={this.showByMunicipality}><input type="radio"/> 	<span className="btn">Show by Municipality</span></li>
 					</ul>
 				</li>
 			</ul>
