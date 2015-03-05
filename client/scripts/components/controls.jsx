@@ -7,6 +7,7 @@ var TabPane = require('react-bootstrap/lib/TabPane');
 var Basemaps=require('./baseMaps.jsx')
 var Selector=require('./layers/selector.jsx')
 var Manager=require('./layers/manager.jsx')
+var Filter=require('./filters/filter.jsx')
 module.exports  = React.createClass({
 
 
@@ -20,6 +21,9 @@ module.exports  = React.createClass({
       </TabPane>
       <TabPane eventKey={2} tab="Contextual Layers">
           <Manager/>    
+      </TabPane>
+      <TabPane eventKey={3} tab="Filters">
+          <Filter/>    
       </TabPane>
 
       </TabbedArea>
