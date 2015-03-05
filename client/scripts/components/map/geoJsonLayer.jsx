@@ -20,7 +20,7 @@
 
 function getRadius(value){
   if (!value){
-    retuen 20;
+    return 20;
   }
 
   if (value < 20 ){
