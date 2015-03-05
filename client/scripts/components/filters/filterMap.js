@@ -13,6 +13,7 @@ var filters = [
           index: 2,
           isChild: true,
           childKey: 'barrio',
+          parentKeyField: 'idDepto',
           key: 'municipalities',
           label: 'Municipalities',
           param: 'mu',
@@ -22,6 +23,7 @@ var filters = [
           index: 2,
           isChild: true,
           childKey: 'calle',
+          parentKeyField: 'idDepto',
           key: 'barrio',
           label: 'Barrio',
           param: 'mu',
@@ -30,6 +32,7 @@ var filters = [
         {
           index: 2,
           isChild: true,
+          parentKeyField: 'idDepto',
           key: 'calle',
           label: 'Calle',
           param: 'mu',

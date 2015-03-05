@@ -47,6 +47,16 @@ var FilterGroup = React.createClass({
         }
     },
     
+    _filterByParentSelected: function (list, parentSelected, parentKeyField) {
+        if (!parentSelected || parentSelected.length==0){
+            return list;
+        } else {
+            return list.filter(function (item){
+                return (parentSelected.indexOf(item[parentKeyField]) != -1)
+                });
+        }
+    },
+
     componentWillMount :function(){ 
         FilterActions.getListFromAPI(this.props.filterDefinition);          
     },
@@ -69,10 +79,10 @@ var FilterGroup = React.createClass({
         var child = FilterMap.filters.filter(function (filterDefinition){return (filterDefinition.key === self.props.filterDefinition.childKey)})[0];
         var childFilterGroup;
         if (child){
-            childFilterGroup = <FilterGroup filterDefinition={child} selectedItems={this.state.selectedItems}/>
+            childFilterGroup = <FilterGroup filterDefinition={child} parentSelected={this.state.selectedItems}/>
         }
-        console.log('filterType: '+filterType);
-        console.log('selectedItems: '+this.props.selectedItems);
+        items = this._filterByParentSelected(items, this.props.parentSelected, this.props.filterDefinition.parentKeyField);
+        
         return(
             <div className="filter-group">
                 <input
