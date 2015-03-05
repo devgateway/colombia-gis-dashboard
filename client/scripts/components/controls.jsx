@@ -13,19 +13,18 @@ module.exports  = React.createClass({
   render: function() {
     return (
       <div className="fixed">
-      <Basemaps/>       
-      
+        <Basemaps/>       
       <TabbedArea defaultActiveKey={1}>
-          <TabPane eventKey={1} tab="Data Selector">
-              <Selector/>      
-          </TabPane>
-          <TabPane eventKey={2} tab="Contextual Layers">
-            <Manager/>    
-          </TabPane>
-    
+      <TabPane eventKey={1} tab="Data Selector">
+        <Selector/>      
+      </TabPane>
+      <TabPane eventKey={2} tab="Contextual Layers">
+          <Manager/>    
+      </TabPane>
+
       </TabbedArea>
       </div>
-    );
+      );
   }
 
 });

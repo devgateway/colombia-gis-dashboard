@@ -19,6 +19,9 @@
 
 
 function getRadius(value){
+  if (!value){
+    retuen 20;
+  }
 
   if (value < 20 ){
         return 12
@@ -42,7 +45,7 @@ function getRadius(value){
     };
 
     if (value < 200){
-      return 60;
+      return 40;
     };
 
     return 70;
