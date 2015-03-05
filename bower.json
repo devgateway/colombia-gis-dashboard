@@ -10,7 +10,8 @@
     "bootstrap": "~3.3.2",
     "leaflet": "~0.7.3",
     "esri-leaflet": "~1.0.0-rc.5",
-    "underscore": "~1.8.2"
+    "underscore": "~1.8.2",
+    "i18next": "~1.7.7"
   },
   "devDependencies": {}
 }

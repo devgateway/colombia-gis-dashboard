@@ -1,0 +1,10 @@
+{
+    "app": {
+        "title": "Esta  area puede ser usada para el titulo del mapa",
+         "credits" : "Todos los derechos bla bla bla"
+    },
+    "map": {
+        "basemaps": "Mapa Base",
+        "labelDescription":"Mapa:"
+    }
+}
