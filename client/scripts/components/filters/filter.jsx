@@ -11,17 +11,34 @@ var TabPane = require('react-bootstrap/lib/TabPane');
 var Filter  = React.createClass({
     mixins: [Reflux.connect(FilterStore)],
 
+    getDescendents: function(filterKey, descendents){
+      if (!descendents) {
+        descendents = [];
+      }
+      var filters = FilterMap.filters;
+      var self = this;
+      filters.map(function(filterDefinition){
+        if (filterDefinition.parentKey == filterKey){
+          descendents.push(filterDefinition);
+          self.getDescendents(filterDefinition.key, descendents);
+        }
+      });
+      return descendents;
+    },
+
     render: function() {
       var filters = FilterMap.filters;
         return(
           <div>
             <TabbedArea defaultActiveKey={1}>
               {
-                filters.map(function(item){
-                  var label = item.label + " (" + FilterStore.getAllSelected(item.key).length + "/" + FilterStore.getAll(item.key).length + ")";
-                  return <TabPane eventKey={parseInt(item.index)} tab={label}>
-                    <FilterGroup filterDefinition={item}/>
-                  </TabPane>
+                filters.map(function(filterDefinition){
+                  if (!filterDefinition.isChild){
+                    var label = filterDefinition.label + " (" + FilterStore.getAllSelected(filterDefinition.key).length + "/" + FilterStore.getAll(filterDefinition.key).length + ")";
+                    return <TabPane eventKey={parseInt(filterDefinition.index)} tab={label}>
+                      <FilterGroup filterDefinition={filterDefinition} />
+                    </TabPane>
+                  }
                 })
               }                 
             </TabbedArea>

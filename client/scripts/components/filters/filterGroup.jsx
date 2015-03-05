@@ -6,10 +6,15 @@ var Link = Router.Link;
 var FilterStore=require('../../stores/filterStore.js')
 var FilterItemList = require('./filterItemList.jsx');
 var FilterActions = require('../../actions/filterActions.js');
+var FilterMap = require('./filterMap.js');
 
 
 var FilterGroup = React.createClass({
  
+    getInitialState: function() {
+        return {selectedItems: []};
+    },
+
     _filterByKeyword: function (keyword) {
         var items;
         if (keyword) {
@@ -48,18 +53,34 @@ var FilterGroup = React.createClass({
 
     _onItemChanged: function(filterType, id, value) {     
         FilterActions.changeFilterItemState(filterType, id, value);
+        var selectedItems = this.state.selectedItems;
+        if (value){
+            selectedItems.push(id);
+        } else {
+            selectedItems.splice(selectedItems.indexOf(id),1);
+        }
+        this.setState({selectedItems: selectedItems});            
     },
 
     render: function() {
         var filterType = this.props.filterDefinition.key;
         var items = FilterStore.getAll(filterType) || [];  
+        var self = this;
+        var child = FilterMap.filters.filter(function (filterDefinition){return (filterDefinition.key === self.props.filterDefinition.childKey)})[0];
+        var childFilterGroup;
+        if (child){
+            childFilterGroup = <FilterGroup filterDefinition={child} selectedItems={this.state.selectedItems}/>
+        }
+        console.log('filterType: '+filterType);
+        console.log('selectedItems: '+this.props.selectedItems);
         return(
             <div className="filter-group">
                 <input
                     className="form-control-sm"
                     placeholder="Keyword Search"
                     onKeyUp={this._searchKeyUp} />
-                <FilterItemList items={items} filterType={filterType} onItemChanged={this._onItemChanged}/>                
+                <FilterItemList items={items} filterType={filterType} onItemChanged={this._onItemChanged}/>
+                {childFilterGroup}                              
             </div>
             );
     }
