@@ -13,9 +13,40 @@
   color: "#000",
   weight: 1,
   opacity: 1,
-  fillOpacity: 0.8
+  fillOpacity: 0.8,
+  title:'TEST'
 };
 
+
+function getRadius(value){
+
+  if (value < 20 ){
+        return 12
+    };
+    if (value < 50){
+      return 18;
+    };
+    if (value > 80){
+      return 20;
+    };
+    if (value < 110){
+      return 24;
+    };
+
+    if (value < 140){
+      return 28;
+    };
+
+    if (value < 170){
+      return 35;
+    };
+
+    if (value < 200){
+      return 60;
+    };
+
+    return 70;
+}
 
 module.exports = React.createClass({
 
@@ -51,17 +82,15 @@ module.exports = React.createClass({
             }.bind(this));  
         }.bind(this),
 
-      pointToLayer: function (feature, latlng) {
-        return L.circleMarker(latlng, _.extend(geojsonMarkerOptions));
-      }
+        pointToLayer: function (feature, latlng) {
+            return L.circleMarker(latlng, _.extend(geojsonMarkerOptions,{radius:getRadius(feature.properties.actividades)}));
+        }
     });
 
     layer.addTo(this.props.getMap());
     this.layer=layer;
     //this.props.getMap().fitBounds(layer.getBounds());
   },
-
-
 
   render: function() {
     return <Popup feature={this.state}/>
