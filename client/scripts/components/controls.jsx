@@ -9,7 +9,6 @@ var Selector=require('./layers/selector.jsx')
 var Manager=require('./layers/manager.jsx')
 module.exports  = React.createClass({
 
-//  mixins: [Reflux.connect(MetaStore)],
 
   render: function() {
     return (

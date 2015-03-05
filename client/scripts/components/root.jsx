@@ -5,7 +5,7 @@ var RouteHandler = require('react-router').RouteHandler;
 var SlideBar=require('./containers/slideBar.jsx');
 var Header=require('./header.jsx');
 var Footer=require('./footer.jsx');
-var Controls=require('./controlPane.jsx');
+var Controls=require('./controls.jsx');
 
 
 module.exports = React.createClass({
