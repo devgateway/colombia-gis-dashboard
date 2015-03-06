@@ -224,7 +224,7 @@ h2{
    top:50px;
    @include transitionOpacity;
   .fixed{
-      width: 300px;
+      width: 485px;
       margin: 3px;
       padding: 5px;
       height: 500px;
@@ -254,7 +254,19 @@ h2{
     width: 0px;
 }
 
+.basemap-selector{
+  width: 485px;
+  overflow: hidden;
+}
 
+.basemap-option {
+  cursor: pointer;
+}
+
+.basemap-option-selected {
+  cursor: pointer;
+  font-weight: bold;
+}
 
 
 $breakTablets: 786px;

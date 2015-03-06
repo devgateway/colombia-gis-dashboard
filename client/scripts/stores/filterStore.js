@@ -45,14 +45,7 @@ module.exports=Reflux.createStore({
 
     onGetListFromAPICompleted: function(data){
         var filterType = data.filter.key;
-        switch(filterType) {
-            case 'departaments':
-                this.state[filterType] = data.data.GetDepartmentsListJsonResult;
-                break;
-            case 'municipalities':
-                this.state[filterType] = data.data.GetMunicipalitiesListJsonResult;
-                break;
-        }
+        this.state[filterType] = data.data[Object.keys(data.data)[0]];//TODO: change when the response field is generic        
         this.output();
     },
     

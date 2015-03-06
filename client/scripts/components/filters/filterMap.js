@@ -10,9 +10,7 @@ var filters = [
           apiEndPoint: 'http://test.monitor.net.co/GisService.svc/Filters/getDepartmentsList/Json'
         },
         {
-          index: 2,
           isChild: true,
-          childKey: 'barrio',
           parentKeyField: 'idDepto',
           key: 'municipalities',
           label: 'Municipalities',
@@ -21,30 +19,33 @@ var filters = [
         },
         {
           index: 2,
-          isChild: true,
-          childKey: 'calle',
-          parentKeyField: 'idDepto',
-          key: 'barrio',
-          label: 'Barrio',
-          param: 'mu',
-          apiEndPoint: 'http://test.monitor.net.co/GisService.svc/Filters/getMunicipalitiesList/Json'
+          key: 'targetPopulation',
+          label: 'Target Population',
+          param: 'tp',
+          apiEndPoint: 'http://test.monitor.net.co/GisService.svc/Filters/getTargetPopulation/Json'
         },
         {
-          index: 2,
-          isChild: true,
-          parentKeyField: 'idDepto',
-          key: 'calle',
-          label: 'Calle',
-          param: 'mu',
-          apiEndPoint: 'http://test.monitor.net.co/GisService.svc/Filters/getMunicipalitiesList/Json'
+          index: 3,
+          key: 'developmentObjectives',
+          label: 'Development Objectives',
+          param: 'do',
+          apiEndPoint: 'http://test.monitor.net.co/GisService.svc/Filters/getDOList/Json'
+        },
+        {
+          index: 4,
+          key: 'crops',
+          label: 'Crops',
+          param: 'cr',
+          apiEndPoint: 'http://test.monitor.net.co/GisService.svc/Filters/getCropsList/Json'
+        },
+        {
+          index: 5,
+          key: 'subActivityStatus',
+          label: 'SubActivity Status',
+          param: 'st',
+          apiEndPoint: 'http://test.monitor.net.co/GisService.svc/Filters/getSubActivityStatus/Json'
         }
-        /*{
-          index: 2,
-          key: 'municipalities',
-          label: 'Municipalities',
-          param: 'mun',
-          apiEndPoint: 'http://test.monitor.net.co/GisService.svc/Filters/getMunicipalitiesList/Json'
-        }*/
+
       ];
       
 module.exports = {
