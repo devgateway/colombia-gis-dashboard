@@ -14,7 +14,7 @@ module.exports=Reflux.createStore({
         var self = this;
         var filters = FilterMap.filters;
         filters.map(function(item, idx){ 
-            self.state[item.key] = [];
+            self.state[item.param] = [];
         });
         
     },
@@ -44,8 +44,8 @@ module.exports=Reflux.createStore({
     },
 
     onGetListFromAPICompleted: function(data){
-        var filterType = data.filter.key;
-        this.state[filterType] = data.data[Object.keys(data.data)[0]];//TODO: change when the response field is generic        
+        var filterType = data.filter.param;
+        this.state[filterType] = data.data;        
         this.output();
     },
     
@@ -57,10 +57,10 @@ module.exports=Reflux.createStore({
     onTriggerFilterApply:function(reset){
         var self = this;
         var filters = FilterMap.filters;
-        var filtersSelected = {};
+        var filtersSelected = [];
         filters.map(function(filterDefinition){ 
             var selectedIds = []
-            var itemList = self.state[filterDefinition.key];
+            var itemList = self.state[filterDefinition.param];
             itemList.map(function(item){ 
                 if (reset){
                     item.selected = false;
@@ -71,7 +71,7 @@ module.exports=Reflux.createStore({
                 }
             });
             if (selectedIds.length>0){
-                filtersSelected[filterDefinition.param] = selectedIds;
+                filtersSelected.push({param: filterDefinition.param, values: selectedIds});
             }
         });
         this.state.filtersSelected = filtersSelected;
@@ -80,6 +80,20 @@ module.exports=Reflux.createStore({
 
     onTriggerFilterReset:function(){        
         this.onTriggerFilterApply(true);
+    },
+
+    
+    onLoadFilterSaved:function(filters){ 
+        //TODO: connect to map store, load filters from saved map and pass it as param for this function   
+        filters = [{param:'tp', values:[31,26,28,27]}, {param:'cr', values:[1,2,3,4]}, {param:'do', values:['DO2','DO3','DO4']}, ];
+        var self = this;
+        filters.map(function(filterGroup){
+            var group = self.state[filterGroup.param];           
+            filterGroup.values.map(function(id){
+                group.filter(function(item){return item.id==id})[0].selected = true;
+            });
+        });         
+        this.output();
     },
 
     // Callback

@@ -47,12 +47,12 @@ var FilterGroup = React.createClass({
         }
     },
     
-    _filterByParentSelected: function (list, parentSelected, parentKeyField) {
+    _filterByParentSelected: function (list, parentSelected, parentParamField) {
         if (!parentSelected || parentSelected.length==0){
             return list;
         } else {
             return list.filter(function (item){
-                return (parentSelected.indexOf(item[parentKeyField]) != -1)
+                return (parentSelected.indexOf(item[parentParamField]) != -1)
                 });
         }
     },
@@ -73,15 +73,15 @@ var FilterGroup = React.createClass({
     },
 
     render: function() {
-        var filterType = this.props.filterDefinition.key;
+        var filterType = this.props.filterDefinition.param;
         var items = FilterStore.getAll(filterType) || [];  
         var self = this;
-        var child = FilterMap.filters.filter(function (filterDefinition){return (filterDefinition.key === self.props.filterDefinition.childKey)})[0];
+        var child = FilterMap.filters.filter(function (filterDefinition){return (filterDefinition.param === self.props.filterDefinition.childParam)})[0];
         var childFilterGroup;
         if (child){
             childFilterGroup = <FilterGroup filterDefinition={child} parentSelected={this.state.selectedItems}/>
         }
-        items = this._filterByParentSelected(items, this.props.parentSelected, this.props.filterDefinition.parentKeyField);
+        items = this._filterByParentSelected(items, this.props.parentSelected, this.props.filterDefinition.parentParamField);
         
         return(
             <div className="filter-group">

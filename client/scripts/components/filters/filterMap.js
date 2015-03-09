@@ -3,47 +3,41 @@
 var filters = [
         {
           index: 1,
-          childKey: 'municipalities',
-          key: 'departaments',
+          childParam: 'mu',
           label: 'Departaments',
           param: 'de',
-          apiEndPoint: 'http://test.monitor.net.co/GisService.svc/Filters/getDepartmentsList/Json'
+          apiEndPoint: 'http://test.monitor.net.co/GisService.svc/Filters/DepartmentsList/Json'
         },
         {
           isChild: true,
-          parentKeyField: 'idDepto',
-          key: 'municipalities',
+          key: 'mu',
           label: 'Municipalities',
           param: 'mu',
-          apiEndPoint: 'http://test.monitor.net.co/GisService.svc/Filters/getMunicipalitiesList/Json'
+          apiEndPoint: 'http://test.monitor.net.co/GisService.svc/Filters/MunicipalitiesList/Json'
         },
         {
           index: 2,
-          key: 'targetPopulation',
           label: 'Target Population',
           param: 'tp',
-          apiEndPoint: 'http://test.monitor.net.co/GisService.svc/Filters/getTargetPopulation/Json'
+          apiEndPoint: 'http://test.monitor.net.co/GisService.svc/Filters/TargetPopulation/Json'
         },
         {
           index: 3,
-          key: 'developmentObjectives',
           label: 'Development Objectives',
           param: 'do',
-          apiEndPoint: 'http://test.monitor.net.co/GisService.svc/Filters/getDOList/Json'
+          apiEndPoint: 'http://test.monitor.net.co/GisService.svc/Filters/DOList/Json'
         },
         {
           index: 4,
-          key: 'crops',
           label: 'Crops',
           param: 'cr',
-          apiEndPoint: 'http://test.monitor.net.co/GisService.svc/Filters/getCropsList/Json'
+          apiEndPoint: 'http://test.monitor.net.co/GisService.svc/Filters/CropsList/Json'
         },
         {
           index: 5,
-          key: 'subActivityStatus',
           label: 'SubActivity Status',
           param: 'st',
-          apiEndPoint: 'http://test.monitor.net.co/GisService.svc/Filters/getSubActivityStatus/Json'
+          apiEndPoint: 'http://test.monitor.net.co/GisService.svc/Filters/SubActivityStatus/Json'
         }
 
       ];
