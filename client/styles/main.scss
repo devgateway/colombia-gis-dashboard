@@ -291,8 +291,9 @@ h2{
 #map-panel{
   width:700px;
   position:absolute;
-  top:30px;
-  left:30px;
+  z-index: 1;
+  top:50px;
+  left:45px;
   padding:10px;
   background: $white;
   background: rgba( white, 0.8);
