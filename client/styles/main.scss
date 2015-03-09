@@ -1,38 +1,48 @@
 //variables
-$black: #000000;
+$black:#000000;
 $bgBlack:#242a2d;
 $grey:#454545;
-$green: #98ca68;
-$blue: #4d749f;
+$green:#98ca68;
+$blue:#4d749f;
 $bgblue:#74a4d6;
-$white: #ffffff;
+$white:#ffffff;
 $gutter: 1em;
 $base-font-family: 'Open Sans', sans-serif;
 $base-line-height: 110%;
 
 //mixins
+@mixin bgLayout{background-color: rgba(0,0,0,0.7);}
 @mixin topbottomContainer{padding-left:$gutter*3;width:100%;} //inner container widths in header and footer
 @mixin floatLeft{ float:left;}
 @mixin floatRight{ float:right;}
-@mixin textSmaller{ font-size:0.6rem}
-@mixin textSmall{font-size:1rem}
+@mixin clearfix{ clear:both;}
 @mixin textMedium{font-size:1.5rem}
 @mixin textLarge{font-size:1.8rem}
 @mixin textBold{font-weight:bold}
+@mixin textUppercase{text-transform: uppercase}
+@mixin textCenter{text-align:center}
+@mixin opacityHigh{opacity: 0.8}
 
-
+// opacity transition
 @mixin transitionOpacity {
   -webkit-transition: opacity 600ms ease;
   -moz-transition: opacity 600ms ease;
   -o-transition: opacity 600ms ease;
   transition: opacity 600ms ease;
 }
-
+// color transition
 @mixin transitionColor {
   -webkit-transition: color 600ms ease;
   -moz-transition: color 600ms ease;
   -o-transition: color 600ms ease;
   transition: color 600ms ease;
+}
+// transition for all
+@mixin transitionAll {
+  -webkit-transition: all 600ms ease;
+  -moz-transition: all 600ms ease;
+  -o-transition: all 600ms ease;
+  transition: all 600ms ease;
 }
 
 @mixin transitionSliderOn{
@@ -51,6 +61,23 @@ $base-line-height: 110%;
   width: 0px;
 }
 
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  border-radius: $radius;
+  background-clip: padding-box;  /* stops bg color from leaking outside the border: */
+}
+
+@mixin button {
+  display: inline-block;
+  width: auto;
+  height: auto;
+  cursor: pointer;
+  padding: 5px 20px;
+  @include textCenter;
+  @include textUppercase;
+  @include transitionAll;
+}
+
 body{
   color:$grey;
   font-family:$base-font-family;
@@ -66,7 +93,6 @@ body{
 }
 
 
-
 a{
   text-decoration:none;
   &:hover{text-decoration:none;}
@@ -80,17 +106,33 @@ a{
 i.fa.fa-bars{
   color: $white;
   @include textLarge;
-
   &:hover{
     color:#74a4d6;
   }
 }
 
+i.fa.fa-globe{
+  color: darken($blue, 20%);
+  margin-right:2px;
+  @include textLarge;
+}
+
+i.fa.fa-search{
+  color: lighten($blue,20%);
+  font-size:16px;
+  margin-top:2px;
+  &:hover{color: darken($blue, 10%);
+  }
+}
+
+.glyphicon.glyphicon-chevron-right{
+  margin-right:5px;
+}
+
 // header area
 .map-header{
- background: $black;
- opacity:0.8;
- z-index:1000;
+  @include bgLayout;
+  z-index:1000;
 
   .container{
     @include topbottomContainer;
@@ -151,7 +193,7 @@ h2{
   position:absolute;
   z-index: 1001;
   background: $black;
-  opacity:0.8;
+  @include opacityHigh;
 }
 
 .map-border-right{
@@ -191,7 +233,7 @@ h2{
   width:8em;
   margin:0;
   &:hover{
-    opacity:0.8;
+    @include opacityHigh;
     @include transitionOpacity;
   }
 }
@@ -228,16 +270,16 @@ h2{
 .slider-enter {
    overflow: hidden;
    width: 0px;
-   
+
 }
 
 .slider-enter.slider-enter-active {
-   @include transitionSliderOn 
-   
+   @include transitionSliderOn
+
 }
 
 .slider-leave {
-   @include transitionSliderOff 
+   @include transitionSliderOff
 }
 
 .slider-leave.slider-leave-active {
@@ -245,8 +287,342 @@ h2{
 }
 
 
+//map panel
+#map-panel{
+  width:700px;
+  position:absolute;
+  top:30px;
+  left:30px;
+  padding:10px;
+  background: $white;
+  background: rgba( white, 0.8);
+}
+
+.map-panel-header{
+   margin:0 0 $gutter 0;
+   padding-bottom:$gutter/2;
+   border-bottom: 1px solid lighten( $grey, 50% );
+   overflow:hidden;
+}
+
+.map-panel-label{
+  @include textBold;
+  @include textUppercase;
+  font-size:1.2rem;
+}
+
+// includes views and predefined maps
+.basemap-label{
+      @extend .map-panel-label;
+      @include floatLeft;
+      color: darken($blue, 20%);
+      margin-right:$gutter;
+    }
+
+ .predefined-maps{
+    @extend .map-panel-label;
+    @include floatRight;
+    @include transitionColor;
+
+    a{
+      color:darken($green, 30%);
+      &:hover{color:$green;}
+
+    }
 
 
+
+    }
+// end:predefined maps
+
+//start: basemap nav
+ul.basemap-list{
+  list-style:none;
+  float:left;
+  padding-left:0;
+
+  li{
+    @include floatLeft;
+    margin-right:$gutter;
+    border-right:1px solid $black;
+    padding-right: $gutter;
+    height:12px;
+    font-size:1.1rem;
+    line-height:85%;
+    margin-top:5px;
+
+    &:last-child{
+      border-right:none;
+    }
+
+  }
+
+  a{
+    color: $black;
+    @include transitionColor;
+
+    &:hover{
+      color:lighten($blue, 10%);
+    }
+  }// ends: a
+}// ends: ul
+
+
+
+
+// start: panel tabs
+ul.tabs{
+  @include clearfix;
+  margin: $gutter 0;
+  overflow: auto;
+  list-style:none;
+  padding:0;
+
+  .tab{
+    @include transitionAll;
+    @include floatLeft;
+    @include textCenter;
+    @include textUppercase;
+    @include border-radius(1px);
+    background: lighten($grey,58%);
+    border:1px solid lighten($grey,50%);
+    color: lighten($grey,20%);
+    padding:$gutter/2 $gutter*2;
+    font-size:1.3rem;
+
+    &:hover,&.active{
+      color: darken($blue,20%);
+      background: none;
+      border:1px solid transparent;
+    }
+  }
+}
+// end:panel tabs
+
+
+// start: tab panel- search box,filters, activity nav
+.tab-panel{
+  // wrapps the cotent pane of each tab
+  @include clearfix;
+  margin-bottom: $gutter;
+}
+
+// activity navigation
+.activity-nav{
+  @include clearfix;
+  overflow: hidden;
+  margin: $gutter 0 $gutter/2 0;
+}
+
+.activity-label{
+  @extend .map-panel-label;
+  @include floatLeft;
+  margin-right:$gutter;
+}
+
+ul.activities{
+  @extend .basemap-list;
+
+  li{
+  margin-top:3px;
+  font-size:1.2rem;
+  &.active a{
+    color: darken($blue,25%);
+    @include textBold;
+    }
+  }
+
+
+  a{ color: lighten($grey,30%);
+    &:hover{
+      color: darken($blue,25%);
+      @include textBold;
+      }
+
+    }
+
+}
+
+
+//start: text search box
+.text-search-wrapper{
+  @include clearfix;
+  background: $white;
+  border:1px solid lighten( $grey, 50% );
+  margin-top: $gutter;
+
+  input[type=text]{
+    border:none;
+    outline:none;
+    width:95%;
+    padding:0.3em;
+  }
+
+}
+
+.search-box{ background: $white}
+.search-button{
+  @include floatLeft;
+
+  button{
+    -webkit-appearance:none;
+    webkit-appearance: caret;
+    border:none;
+    background:none;
+    width:30px;
+    height:30px;
+  }
+}// end: text search box
+
+
+// filters
+.filter-group-panel-container{
+  width:395px;
+}
+.filter-group-panel{
+  opacity: 0.4;
+  background:$white;
+  padding: $gutter;
+  height:385px;
+  @include border-radius(2px);
+  border:1px solid lighten($grey,60%);
+  //selected active filter panel
+  &.selected{@include opacityHigh}
+
+}
+
+.filter-group-panel-header{
+  @include clearfix;
+}
+.panel-count{
+  color: $white;
+  background: $blue;
+  -webkit-border-radius: 50%;
+  -moz-border-radius:  50%;
+  border-radius: 50%;
+  display:inline-block;
+  width:30px;
+  height:30px;
+  line-height:190%;
+  margin-right: $gutter/2;
+  @include textCenter;
+  @include textBold;
+}
+.filter-count{
+  color: $blue;
+  @include textBold;
+}
+.filter-label{
+  font-size:1.3rem;
+}
+.filter-selectors{
+  @include floatRight;
+  font-size:1.1rem;
+  font-style:italic;
+  margin-top:9px;
+}
+
+
+//activity overview section
+.overview-label{
+  @extend .map-panel-label;
+  color: $blue;
+}
+
+// filter list
+.filter-list-container{
+   margin-top:$gutter;
+   max-height: 260px;
+   overflow-y: auto;
+}
+
+ul.filter-list{
+  list-style:none;
+  padding-left:0;
+
+  li{
+    color:darken($blue,10%);
+    font-size:1.4rem;
+    display:block;
+    &:hover{font-weight:bold;}
+    &:hover .glyphicon.glyphicon-stop:before{
+      color: #e9ba00;
+    }
+  }
+}
+
+
+//filter input with glyphicon
+.select{
+    width:12px;
+    height:12px;
+    border:1px solid lighten($grey,30%);
+    @include border-radius(2px);
+    padding:0;
+    margin:0;
+    position:relative;
+    display:inline-block;
+    overflow:hidden;
+}
+
+.glyphicon.glyphicon-stop{
+    width:12px;
+    height:12px;
+    margin:0;
+    position:absolute;
+    left:-2px;
+    top:-3px;
+    display:block;
+}
+
+.glyphicon.glyphicon-stop:before {
+    visibility: visible;
+    color: $white;
+}
+.glyphicon.glyphicon-stop:checked:before {
+    color: #e9ba00;
+}
+input[type=checkbox].glyphicon{
+    visibility: hidden;
+}
+
+
+// filter breadcrumbs
+.filter-breadcrumb{
+  background:lighten($blue,20%);
+  padding: $gutter/3;
+  color: $white;
+  font-size:1.3rem;
+  @include textBold;
+  @include transitionAll;
+
+  &:hover{ background:$blue;
+}
+
+  .filter-count{
+    color: $white;
+    @include floatRight;
+  }
+
+}
+
+.button-pane{
+   margin: $gutter 0;
+   overflow:hidden;
+}
+
+.btn-apply{
+  @include button;
+  color: $white;
+  background: $green;
+  @include floatRight;
+  &:hover{
+    background: darken($green,10%);
+    color:$white;
+  }
+}
+
+// responsive
 $breakTablets: 786px;
 $breakPhones: 767px;
 
@@ -257,17 +633,13 @@ $breakPhones: 767px;
 
 @media only screen and (max-width:$breakPhones) {
     /* phones */
-    h1, h2 {padding-left:$gutter; @include textSmall;}
+    h1, h2 {padding-left:$gutter; font-size:1rem}
     h2{ margin-left:0}
-  }
-
+}
 
 @media only screen and (max-width:$breakPhones) and (orientation: portrait) {
     /* portrait phones */
     h1, h2 {width:100%}
     h2{ margin-left:0; margin-top:0}
     .header-nav{ margin-bottom:$gutter}
-  }
-
-
-
+}
