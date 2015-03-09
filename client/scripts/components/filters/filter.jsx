@@ -1,56 +1,36 @@
-
 /*http://facebook.github.io/react/docs/component-specs.html*/
 var React = require('react');
-var Router = require('react-router');
 var Reflux = require('reflux');
-var Link = Router.Link;
-var FilterActions = require('../../actions/filterActions.js');
+var FilterMap = require('./filterMap.js');
 var FilterStore=require('../../stores/filterStore.js');
 var FilterGroup = require('./filterGroup.jsx');
+var FilterActionButton = require('./filterActionButton.jsx');
 var TabbedArea = require('react-bootstrap/lib/TabbedArea');
 var TabPane = require('react-bootstrap/lib/TabPane');
-
-function getStateFromStores() {
-  //return { filter: {
-  return { 
-    departaments: FilterStore.getAll("departaments"),
-    departamentsSelected: FilterStore.getAllSelected("departaments"),
-    municipalities: FilterStore.getAll("municipalities"),
-    municipalitiesSelected: FilterStore.getAllSelected("municipalities"),
-    developmentObjectives: FilterStore.getAll("developmentObjectives"),
-    developmentObjectivesSelected: FilterStore.getAllSelected("developmentObjectives")
-    //}
-  };
-}
 
 var Filter  = React.createClass({
     mixins: [Reflux.connect(FilterStore)],
 
-    componentDidMount: function() {
-       
-    },
-    
-    componentWillMount :function(){    
-        FilterActions.getFilterListFromServer();       
-    },
-
-    componentWillUnmount: function() {
-    },
-
-   	componentDidUpdate:function( prevProps,  prevState){
-	     //debugger;
-       //this.setState(getStateFromStores());
-    },
-
     render: function() {
+      var filters = FilterMap.filters;
         return(
-          <TabbedArea defaultActiveKey={1}>             
-              <TabPane eventKey={1} tab="Departaments">
-                <FilterGroup filterType="departaments"/>
-              </TabPane>
-                     
+          <div>
+            <TabbedArea defaultActiveKey={1}>
+              {
+                filters.map(function(filterDefinition){
+                  if (!filterDefinition.isChild){
+                    var label = filterDefinition.label + " (" + FilterStore.getAllSelected(filterDefinition.param).length + "/" + FilterStore.getAll(filterDefinition.param).length + ")";
+                    return <TabPane eventKey={parseInt(filterDefinition.index)} tab={label}>
+                      <FilterGroup filterDefinition={filterDefinition} />
+                    </TabPane>
+                  }
+                })
+              }                 
             </TabbedArea>
+            <FilterActionButton/>
+          </div>
         );
+        
     }
 });
 

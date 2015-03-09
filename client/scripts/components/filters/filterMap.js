@@ -3,16 +3,43 @@
 var filters = [
         {
           index: 1,
-          key: 'departaments',
+          childParam: 'mu',
           label: 'Departaments',
-          apiEndPoint: 'http://test.monitor.net.co/GisService.svc/Filters/getDepartmentsList/Json'
+          param: 'de',
+          apiEndPoint: 'http://test.monitor.net.co/GisService.svc/Filters/DepartmentsList/Json'
+        },
+        {
+          isChild: true,
+          key: 'mu',
+          label: 'Municipalities',
+          param: 'mu',
+          apiEndPoint: 'http://test.monitor.net.co/GisService.svc/Filters/MunicipalitiesList/Json'
         },
         {
           index: 2,
-          key: 'municipalities',
-          label: 'Municipalities',
-          apiEndPoint: 'http://test.monitor.net.co/GisService.svc/Filters/getMunicipalitiesList/Json'
+          label: 'Target Population',
+          param: 'tp',
+          apiEndPoint: 'http://test.monitor.net.co/GisService.svc/Filters/TargetPopulation/Json'
+        },
+        {
+          index: 3,
+          label: 'Development Objectives',
+          param: 'do',
+          apiEndPoint: 'http://test.monitor.net.co/GisService.svc/Filters/DOList/Json'
+        },
+        {
+          index: 4,
+          label: 'Crops',
+          param: 'cr',
+          apiEndPoint: 'http://test.monitor.net.co/GisService.svc/Filters/CropsList/Json'
+        },
+        {
+          index: 5,
+          label: 'SubActivity Status',
+          param: 'st',
+          apiEndPoint: 'http://test.monitor.net.co/GisService.svc/Filters/SubActivityStatus/Json'
         }
+
       ];
       
 module.exports = {

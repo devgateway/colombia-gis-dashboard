@@ -201,6 +201,7 @@ h2{
   top:3.65em;
   right:0;
   position:fixed;
+
 } //remove the right border in responsive
 
 .map-border-bottom{
@@ -255,17 +256,26 @@ h2{
 
 
 .slider_content{
-  background: #FFFFFF;
-   width: 300px;
+   background: #FFFFFF;
+   width: 500px;
    background-color: $bgBlack;
    overflow: hidden;
-   width: 500px;
    height: 100%;
    position: absolute;
    left: 40px;
    top:50px;
    @include transitionOpacity;
+  .fixed{
+      width: 485px;
+      margin: 3px;
+      padding: 5px;
+      height: 500px;
+      overflow: hidden;
+      background-color:#FFF;
+  }
 }
+
+
 
 .slider-enter {
    overflow: hidden;
@@ -286,6 +296,10 @@ h2{
     width: 0px;
 }
 
+.basemap-selector{
+  width: 485px;
+  overflow: hidden;
+}
 
 //map panel
 #map-panel{

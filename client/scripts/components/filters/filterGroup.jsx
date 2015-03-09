@@ -4,50 +4,36 @@ var Router = require('react-router');
 var Reflux = require('reflux');
 var Link = Router.Link;
 var FilterStore=require('../../stores/filterStore.js')
-var FilterItem = require('./filterItem.jsx');
+var FilterItemList = require('./filterItemList.jsx');
+var FilterActions = require('../../actions/filterActions.js');
+var FilterMap = require('./filterMap.js');
 
-function getStateFromStores() {
-  return {
-    departaments: FilterStore.getAll("departaments"),
-    departamentsSelected: FilterStore.getAllSelected("departaments"),
-    municipalities: FilterStore.getAll("municipalities"),
-    municipalitiesSelected: FilterStore.getAllSelected("municipalities"),
-    developmentObjectives: FilterStore.getAll("developmentObjectives"),
-    developmentObjectivesSelected: FilterStore.getAllSelected("developmentObjectives")
-  };
-}
 
 var FilterGroup = React.createClass({
  
-    mixins: [Reflux.connect(FilterStore)],
+    getInitialState: function() {
+        return {selectedItems: []};
+    },
 
     _filterByKeyword: function (keyword) {
         var items;
         if (keyword) {
             // filter the collection
             var pattern = new RegExp(keyword, 'i');
-            this.state[this.props.filterType].map(function (item) {
+            FilterStore.getAll(this.props.filterDefinition.key).map(function (item) {
                 if (!pattern.test(item.name)){
                     item.hide = true;
                 }
             });
         } else {
             // display the original collection
-            this.state[this.props.filterType].map(function (item) {
+            FilterStore.getAll(this.props.filterDefinition.key).map(function (item) {
                 item.hide = false;
             });
         }
         return items;  
     },
 
-    componentDidMount: function() {
-        //FilterStore.addChangeListener(this._onChange);
-    },
-
-    _onChange: function() {
-        this.setState(getStateFromStores());
-    },
-    
     _searchKeyUp: function(ev) {
         var value = $(ev.target).val();
         var length = value.length;
@@ -55,36 +41,56 @@ var FilterGroup = React.createClass({
         if (length > 2 || ev.keyCode == 13) {
             this._filterByKeyword(value);
             this.forceUpdate();
-            //this.setState(this.state);
         } else {
             this._filterByKeyword();
             this.forceUpdate();
-            //this.setState(this.state);
         }
     },
     
-    componentWillMount :function(){        
+    _filterByParentSelected: function (list, parentSelected, parentParamField) {
+        if (!parentSelected || parentSelected.length==0){
+            return list;
+        } else {
+            return list.filter(function (item){
+                return (parentSelected.indexOf(item[parentParamField]) != -1)
+                });
+        }
     },
 
-    componentWillUnmount: function() {
+    componentWillMount :function(){ 
+        FilterActions.getListFromAPI(this.props.filterDefinition);          
     },
 
-    componentDidUpdate:function( prevProps,  prevState){
-        //debugger;
+    _onItemChanged: function(filterType, id, value) {     
+        FilterActions.changeFilterItemState(filterType, id, value);
+        var selectedItems = this.state.selectedItems;
+        if (value){
+            selectedItems.push(id);
+        } else {
+            selectedItems.splice(selectedItems.indexOf(id),1);
+        }
+        this.setState({selectedItems: selectedItems});            
     },
 
     render: function() {
-        var filterType = this.props.filterType;
-        var items = this.state[filterType] || [];  
-       
+        var filterType = this.props.filterDefinition.param;
+        var items = FilterStore.getAll(filterType) || [];  
+        var self = this;
+        var child = FilterMap.filters.filter(function (filterDefinition){return (filterDefinition.param === self.props.filterDefinition.childParam)})[0];
+        var childFilterGroup;
+        if (child){
+            childFilterGroup = <FilterGroup filterDefinition={child} parentSelected={this.state.selectedItems}/>
+        }
+        items = this._filterByParentSelected(items, this.props.parentSelected, this.props.filterDefinition.parentParamField);
+        
         return(
-            <div>
+            <div className="filter-group">
                 <input
+                    className="form-control-sm"
                     placeholder="Keyword Search"
                     onKeyUp={this._searchKeyUp} />
-                <ul>
-                
-                </ul>
+                <FilterItemList items={items} filterType={filterType} onItemChanged={this._onItemChanged}/>
+                {childFilterGroup}                              
             </div>
             );
     }

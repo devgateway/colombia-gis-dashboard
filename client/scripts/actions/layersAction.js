@@ -2,7 +2,7 @@
 var Reflux = require('reflux');
 var api = require('../api/layers.js');
 
-debugger;
+
 var loadActivitiesByDepartments = Reflux.createAction({ asyncResult: true });
 	loadActivitiesByDepartments.listenAndPromise(api.getActivitiesByDepartment);
 
