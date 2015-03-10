@@ -13,17 +13,19 @@ var FilterGroup = React.createClass({
         var filterType = this.props.filterType;  
         var self = this;
         return(
-            <ul className="scrollable-list">
-                {
-                    items.map(function(item){ 
-                        if (!item.hide){   
-                            return <li key={item.id}>
-                                <FilterItem id={item.id} name={item.name} selected={item.selected} filterType={filterType} onItemChanged={self._onItemChanged}/>
-                            </li>;
-                        }
-                    })
-                }
-            </ul>
+            <div className="filter-list-container">
+                <ul className="filter-list">
+                    {
+                        items.map(function(item){ 
+                            if (!item.hide){   
+                                return <li key={item.id}>
+                                    <FilterItem id={item.id} name={item.name} selected={item.selected} filterType={filterType} onItemChanged={self._onItemChanged}/>
+                                </li>;
+                            }
+                        })
+                    }
+                </ul>
+            </div>
             );
     }
 });

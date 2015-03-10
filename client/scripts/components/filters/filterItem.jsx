@@ -17,15 +17,16 @@ var FilterItem = React.createClass({
     render: function() {
         return(
             <div>
-                <input className="toggle"
-                    type="checkbox"
-                    checked={this.props.selected}
-                    onChange={this.props.onItemChanged}
-                    value={this.props.id} />
-                <label className="checkbox-inline">
-                    {this.props.name}
-                </label>
-             </div>           
+                <span className="select">
+                    <input className="glyphicon glyphicon-stop"
+                        type="checkbox"
+                        checked={this.props.selected}
+                        onChange={this.props.onItemChanged}
+                        value={this.props.id} />
+                    
+                </span> 
+                {this.props.name}                
+            </div>
         );
     }
 });

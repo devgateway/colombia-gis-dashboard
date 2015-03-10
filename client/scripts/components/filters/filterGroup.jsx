@@ -20,14 +20,14 @@ var FilterGroup = React.createClass({
         if (keyword) {
             // filter the collection
             var pattern = new RegExp(keyword, 'i');
-            FilterStore.getAll(this.props.filterDefinition.key).map(function (item) {
+            FilterStore.getAll(this.props.filterDefinition.param).map(function (item) {
                 if (!pattern.test(item.name)){
                     item.hide = true;
                 }
             });
         } else {
             // display the original collection
-            FilterStore.getAll(this.props.filterDefinition.key).map(function (item) {
+            FilterStore.getAll(this.props.filterDefinition.param).map(function (item) {
                 item.hide = false;
             });
         }
@@ -37,6 +37,7 @@ var FilterGroup = React.createClass({
     _searchKeyUp: function(ev) {
         var value = $(ev.target).val();
         var length = value.length;
+        debugger;
         // filter the items only if we have at least 3 characters
         if (length > 2 || ev.keyCode == 13) {
             this._filterByKeyword(value);
@@ -76,6 +77,7 @@ var FilterGroup = React.createClass({
         var filterType = this.props.filterDefinition.param;
         var items = FilterStore.getAll(filterType) || [];  
         var self = this;
+        var selectCount = "[" + FilterStore.getAllSelected(filterType).length + "/" + items.length + "]";                    
         var child = FilterMap.filters.filter(function (filterDefinition){return (filterDefinition.param === self.props.filterDefinition.childParam)})[0];
         var childFilterGroup;
         if (child){
@@ -84,11 +86,22 @@ var FilterGroup = React.createClass({
         items = this._filterByParentSelected(items, this.props.parentSelected, this.props.filterDefinition.parentParamField);
         
         return(
-            <div className="filter-group">
-                <input
-                    className="form-control-sm"
-                    placeholder="Keyword Search"
-                    onKeyUp={this._searchKeyUp} />
+            <div className="filter-group-panel selected">
+                <div className="filter-group-panel-header">
+                    <span className="panel-count">1</span>
+                    <span className="filter-count">{selectCount}</span>
+                    <span className="filter-label" role="label">Level Selections</span>
+                    <div className="filter-selectors">
+                        <span><a href="#">select all</a></span> / <span><a href="#">diselect all</a></span>
+                    </div>
+                </div>
+                
+                <div className="text-search-wrapper">
+                    <div className="search-box">
+                        <input className="keyword-search" name="keyword-search" type="text" onKeyUp={this._searchKeyUp} />
+                    </div>
+                </div>
+
                 <FilterItemList items={items} filterType={filterType} onItemChanged={this._onItemChanged}/>
                 {childFilterGroup}                              
             </div>

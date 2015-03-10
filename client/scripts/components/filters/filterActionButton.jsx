@@ -19,18 +19,10 @@ var FilterItem = React.createClass({
     render: function() {
         var item = this.props.data;       
         return(
-            <div>
-                <button className="btn btn-primary"
-                    type="button"
-                    onClick={this._onClickApply}>
-                    Apply Filter
-                </button>
-                <button className="btn btn-primary"
-                    type="button"
-                    onClick={this._onClickReset}>
-                    Reset Filter
-                </button>
-             </div>           
+            <div class="button-pane">
+                <button type="button" className="btn btn-apply" role="button" onClick={this._onClickApply}>Apply</button>
+                <button type="button" className="btn btn-apply" role="button" onClick={this._onClickReset}>Reset</button>
+            </div>            
         );
     }
 });

@@ -30,14 +30,19 @@ module.exports = React.createClass({
   render: function() {
 
    return(   
-      <div className="small basemap-selector">
-        <i className="glyphicon glyphicon-globe"/><b>BASE MAP</b>
-        <BaseMapItem label="Gray" value="Gray"/> |
-        <BaseMapItem label="Topographic" value="Topographic"/> |
-        <BaseMapItem label="National Geographic" value="NationalGeographic"/> |
-        <BaseMapItem label="Dark Gray" value="DarkGray"/> |
-        <BaseMapItem label="Imagery" value="Imagery"/> |
-        <BaseMapItem label="Streets" value="Streets"/>
+      <div className="">
+        <div className="basemap-label">
+          <i className="fa fa-globe" aria-hidden="true"></i>
+          Views
+        </div>
+        <ul className="basemap-list">
+          <li><BaseMapItem label="Gray" value="Gray"/></li>
+          <li><BaseMapItem label="Topographic" value="Topographic"/></li>
+          <li><BaseMapItem label="National Geographic" value="NationalGeographic"/></li>
+          <li><BaseMapItem label="Dark Gray" value="DarkGray"/></li>
+          <li><BaseMapItem label="Imagery" value="Imagery"/></li>
+          <li><BaseMapItem label="Streets" value="Streets"/></li>
+        </ul>       
       </div>   
     );
   }

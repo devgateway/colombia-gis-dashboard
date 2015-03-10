@@ -218,7 +218,7 @@ h2{
   bottom: 0;
   margin-bottom: 0;
   border-width: 1px 0 0;
-  padding:$gutter;
+  padding:$gutter/2;
 
   .container{
     @include topbottomContainer;
@@ -228,6 +228,8 @@ h2{
 
 .navbar-brand{
   padding:0;
+  float: none;
+  font-size: inherit;
 }
 
 .logo{
@@ -256,20 +258,18 @@ h2{
 
 
 .slider_content{
-   background: #FFFFFF;
-   width: 500px;
-   background-color: $bgBlack;
+   width: 750px;
    overflow: hidden;
    height: 100%;
    position: absolute;
-   left: 40px;
-   top:50px;
+   left: 42px;
+   top:47px;
    @include transitionOpacity;
   .fixed{
       width: 485px;
       margin: 3px;
       padding: 5px;
-      height: 500px;
+      height: 540px;
       overflow: hidden;
       background-color:#FFF;
   }
@@ -301,13 +301,20 @@ h2{
   overflow: hidden;
 }
 
+.basemap-option-selected {
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.basemap-option {
+  cursor: pointer;
+}
+
 //map panel
 #map-panel{
   width:700px;
   position:absolute;
   z-index: 1;
-  top:50px;
-  left:45px;
   padding:10px;
   background: $white;
   background: rgba( white, 0.8);
@@ -390,10 +397,9 @@ ul.tabs{
   @include clearfix;
   margin: $gutter 0;
   overflow: auto;
-  list-style:none;
   padding:0;
 
-  .tab{
+  ul.tabs .tab{
     @include transitionAll;
     @include floatLeft;
     @include textCenter;
