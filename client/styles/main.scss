@@ -393,32 +393,38 @@ ul.basemap-list{
 
 
 // start: panel tabs
-ul.tabs{
+nav.tab-navigation{
   @include clearfix;
   margin: $gutter 0;
   overflow: auto;
   padding:0;
+}
 
-  ul.tabs .tab{
-    @include transitionAll;
-    @include floatLeft;
-    @include textCenter;
-    @include textUppercase;
-    @include border-radius(1px);
-    background: lighten($grey,58%);
-    border:1px solid lighten($grey,50%);
-    color: lighten($grey,20%);
-    padding:$gutter/2 $gutter*2;
-    font-size:1.3rem;
+.nav-tabs>li.tab{
+  @include floatLeft;
+  @include textCenter;
+  @include textUppercase;
+}
+
+.nav-tabs>li.tab a{
+  padding:8px 20px;
+  color: lighten($grey,20%);
+  border:1px solid lighten($grey,50%);
+  background: lighten($grey,58%);
+  font-size:1.3rem;
+  outline:none;
+  @include border-radius(1px);
+  @include transitionAll;
 
     &:hover,&.active{
-      color: darken($blue,20%);
+      color: darken($blue,1%);
       background: none;
       border:1px solid transparent;
     }
-  }
 }
+
 // end:panel tabs
+
 
 
 // start: tab panel- search box,filters, activity nav

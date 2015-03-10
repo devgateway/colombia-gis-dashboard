@@ -114,14 +114,16 @@ h2 {
   bottom: 0;
   margin-bottom: 0;
   border-width: 1px 0 0;
-  padding: 1em; }
+  padding: 0.5em; }
   .map-footer .container {
     padding-left: 3em;
     width: 100%;
     padding-left: 2em; }
 
 .navbar-brand {
-  padding: 0; }
+  padding: 0;
+  float: none;
+  font-size: inherit; }
 
 .logo {
   width: 8em;
@@ -145,19 +147,23 @@ h2 {
     position: absolute; }
 
 .slider_content {
-  background: #FFFFFF;
-  width: 300px;
-  background-color: #242a2d;
+  width: 750px;
   overflow: hidden;
-  width: 500px;
   height: 100%;
   position: absolute;
-  left: 40px;
-  top: 50px;
+  left: 42px;
+  top: 47px;
   -webkit-transition: opacity 600ms ease;
   -moz-transition: opacity 600ms ease;
   -o-transition: opacity 600ms ease;
   transition: opacity 600ms ease; }
+  .slider_content .fixed {
+    width: 485px;
+    margin: 3px;
+    padding: 5px;
+    height: 540px;
+    overflow: hidden;
+    background-color: #FFF; }
 
 .slider-enter {
   overflow: hidden;
@@ -182,12 +188,21 @@ h2 {
 .slider-leave.slider-leave-active {
   width: 0px; }
 
+.basemap-selector {
+  width: 485px;
+  overflow: hidden; }
+
+.basemap-option-selected {
+  cursor: pointer;
+  font-weight: bold; }
+
+.basemap-option {
+  cursor: pointer; }
+
 #map-panel {
   width: 700px;
   position: absolute;
   z-index: 1;
-  top: 50px;
-  left: 45px;
   padding: 10px;
   background: #ffffff;
   background: rgba(255, 255, 255, 0.8); }
@@ -243,33 +258,36 @@ ul.basemap-list, ul.activities {
     ul.basemap-list a:hover, ul.activities a:hover {
       color: #698eb6; }
 
-ul.tabs {
+nav.tab-navigation {
   clear: both;
   margin: 1em 0;
   overflow: auto;
-  list-style: none;
   padding: 0; }
-  ul.tabs .tab {
-    -webkit-transition: all 600ms ease;
-    -moz-transition: all 600ms ease;
-    -o-transition: all 600ms ease;
-    transition: all 600ms ease;
-    float: left;
-    text-align: center;
-    text-transform: uppercase;
-    -webkit-border-radius: 1px;
-    border-radius: 1px;
-    background-clip: padding-box;
-    /* stops bg color from leaking outside the border: */
-    background: #d9d9d9;
-    border: 1px solid #c5c5c5;
-    color: #787878;
-    padding: 0.5em 2em;
-    font-size: 1.3rem; }
-    ul.tabs .tab:hover, ul.tabs .tab.active {
-      color: #2c425a;
-      background: none;
-      border: 1px solid transparent; }
+
+.nav-tabs > li.tab {
+  float: left;
+  text-align: center;
+  text-transform: uppercase; }
+
+.nav-tabs > li.tab a {
+  padding: 8px 20px;
+  color: #787878;
+  border: 1px solid #c5c5c5;
+  background: #d9d9d9;
+  font-size: 1.3rem;
+  outline: none;
+  -webkit-border-radius: 1px;
+  border-radius: 1px;
+  background-clip: padding-box;
+  /* stops bg color from leaking outside the border: */
+  -webkit-transition: all 600ms ease;
+  -moz-transition: all 600ms ease;
+  -o-transition: all 600ms ease;
+  transition: all 600ms ease; }
+  .nav-tabs > li.tab a:hover, .nav-tabs > li.tab a.active {
+    color: #4b719c;
+    background: none;
+    border: 1px solid transparent; }
 
 .tab-panel {
   clear: both;
