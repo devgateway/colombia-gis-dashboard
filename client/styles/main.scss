@@ -50,7 +50,7 @@ $base-line-height: 110%;
   -moz-transition: width 1s ease;
   -o-transition: width 1s ease;
   transition: width 1s;
-    width: 500px;
+    width: 700px;
 }
 
 @mixin transitionSliderOff{
@@ -400,13 +400,13 @@ nav.tab-navigation{
   padding:0;
 }
 
-.nav-tabs>li.tab{
+.tabs>li{
   @include floatLeft;
   @include textCenter;
   @include textUppercase;
 }
 
-.nav-tabs>li.tab a{
+.tabs>li a{
   padding:8px 20px;
   color: lighten($grey,20%);
   border:1px solid lighten($grey,50%);
@@ -447,9 +447,13 @@ nav.tab-navigation{
   margin-right:$gutter;
 }
 
+nav.activities{
+  height: 30px;
+}
+
 ul.activities{
   @extend .basemap-list;
-
+ 
   li{
   margin-top:3px;
   font-size:1.2rem;

@@ -14,12 +14,12 @@ var Filter  = React.createClass({
     render: function() {
       var filters = FilterMap.filters;
         return(
-          <div>
-            <TabbedArea defaultActiveKey={1}>
+          <div className="activity-nav">
+            <TabbedArea className="activities" defaultActiveKey={1}>
               {
                 filters.map(function(filterDefinition){
                   if (!filterDefinition.isChild){
-                    var label = filterDefinition.label + " (" + FilterStore.getAllSelected(filterDefinition.param).length + "/" + FilterStore.getAll(filterDefinition.param).length + ")";
+                    var label = filterDefinition.label;// + " (" + FilterStore.getAllSelected(filterDefinition.param).length + "/" + FilterStore.getAll(filterDefinition.param).length + ")";
                     return <TabPane eventKey={parseInt(filterDefinition.index)} tab={label}>
                       <FilterGroup filterDefinition={filterDefinition} />
                     </TabPane>
