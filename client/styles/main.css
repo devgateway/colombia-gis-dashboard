@@ -249,7 +249,7 @@ ul.tabs {
   overflow: auto;
   list-style: none;
   padding: 0; }
-  ul.tabs > li {
+  ul.tabs .tab {
     -webkit-transition: all 600ms ease;
     -moz-transition: all 600ms ease;
     -o-transition: all 600ms ease;
@@ -266,11 +266,10 @@ ul.tabs {
     color: #787878;
     padding: 0.5em 2em;
     font-size: 1.3rem; }
-    ul.tabs  > li:hover, ul.tabs  > li.active {
+    ul.tabs .tab:hover, ul.tabs .tab.active {
       color: #2c425a;
       background: none;
       border: 1px solid transparent; }
-
 
 .tab-panel {
   clear: both;
