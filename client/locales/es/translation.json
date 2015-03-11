@@ -1,10 +1,26 @@
 {
-    "app": {
-        "title": "Esta  area puede ser usada para el titulo del mapa",
-         "credits" : "Todos los derechos bla bla bla"
-    },
-    "map": {
-        "basemaps": "Mapa Base",
-        "labelDescription":"Mapa:"
-    }
+	"app": {
+		"title": " Esta area puede ser usada para un titulo largo",
+		"credits" : "Todos los derecho ..  AidData",
+		"description": "MAPA:"
+		},
+
+		"layers": {
+			"search":"Buscar en AGOL",
+			"byDepartment":"Por Departamento",
+			"byMunicipality":"Por Municipalidad"
+		},
+
+		"map": {
+			"baseMaps":{
+				"title":"Mapa Base:",
+				"gray":"Gris",
+				"topo":"Topográfico",
+				"natGeo":"National Geographic",
+				"darkGray":"Gris Oscuro",
+				"image":"Imagenes",
+				"streets":"Calles"
+			}
+
+		}
 }

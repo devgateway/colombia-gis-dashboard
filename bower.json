@@ -11,7 +11,9 @@
     "leaflet": "~0.7.3",
     "esri-leaflet": "~1.0.0-rc.5",
     "underscore": "~1.8.2",
-    "i18next": "~1.7.7"
+    "i18next": "~1.7.7",
+    "Leaflet.label": "~0.2.1"
+    
   },
   "devDependencies": {}
 }

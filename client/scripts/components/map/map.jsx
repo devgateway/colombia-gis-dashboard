@@ -5,21 +5,27 @@
  * components and connecting some pieces for the real leaflet
  */
 
-'use strict';
+ 'use strict';
 
-var React = require('react/addons');
-var Reflux = require('reflux');
-var MapStore = require('../../stores/mapStore.js');
-var MapActions = require('../../actions/mapActions.js');
-var GeoJsonLayer=require('./GeoJsonLayer.jsx');
-var LeafletMap = require('./_mapLeaflet.jsx');
+ var React = require('react/addons');
+ var Reflux = require('reflux');
 
-var LayersStore=require('../../stores/layersStore.jsx');
+ var MapStore = require('../../stores/mapStore.js');
+ var MapActions = require('../../actions/mapActions.js');
+ var LeafletMap = require('./_mapLeaflet.jsx');
 
 
-module.exports = React.createClass({
+ var LayersStore=require('../../stores/layersStore.jsx');
+ var GeoJsonLayer=require('./GeoJsonLayer.jsx');
 
-  mixins: [Reflux.connect(MapStore, 'mapStatus'),Reflux.connect(LayersStore, 'layerData'),],
+
+ var ArcGisLayers=require('./esri/arcgisLayer.jsx'); 
+ var ArcGisSigIn=require('./esri/arcGisSigIn.jsx');
+
+
+ module.exports = React.createClass({
+
+  mixins: [ Reflux.connect(MapStore, 'mapStatus'), Reflux.connect(LayersStore, 'layerData')],
 
   updateCurrentBounds: function(newMapViewBounds) {
     // Triggered whenever the map view changes, including:
@@ -47,27 +53,24 @@ module.exports = React.createClass({
 
 
   render: function() {
-    console.log('Render Map');
-  
-    // pass a function down to children through props to access the leaflet map
-    var children = React.Children.map(this.props.children, function(child) {
-      return child ? React.addons.cloneWithProps(child, {getMap: this.getMap}) : null;
-    }, this);
+   // pass a function down to children through props to access the leaflet map
+   var children = React.Children.map(this.props.children, function(child) {
+    return child ? React.addons.cloneWithProps(child, {getMap: this.getMap}) : null;
+  }, this);
 
-    var bounds = this.state.mapStatus.bounds;
-    var baseMap= this.state.mapStatus.baseMap;
-    
-     return (
-      <div>
-        <GeoJsonLayer getMap={this.getMap} features={this.state.layerData.features}></GeoJsonLayer>
-                
-        <LeafletMap
-          ref="leafletMapComponent"
-          baseMap={baseMap}
-          bounds={bounds}
-          onMapMove={this.updateCurrentBounds} />
-        {children}
-      </div>
+   var bounds = this.state.mapStatus.bounds;
+   var baseMap= this.state.mapStatus.baseMap;
+
+   return (
+    <div>
+
+
+    <LeafletMap   ref="leafletMapComponent" baseMap={baseMap} bounds={bounds} onMapMove={this.updateCurrentBounds} />
+    <GeoJsonLayer getMap={this.getMap} features={this.state.layerData.features}></GeoJsonLayer>
+    <ArcGisLayers getMap={this.getMap}></ArcGisLayers>
+
+
+    {children} </div>
     );
-  }
+ }
 });

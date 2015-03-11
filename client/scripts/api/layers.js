@@ -10,23 +10,22 @@ function logFailure(err, message) {
 
 
 module.exports = {
-  
+
   getActivitiesByDepartment:function(options){
-    	return request({url: 'http://test.monitor.net.co/GisService.svc/Filters/getActivityDepartmentsFunding/Json',
-    		type: 'json', method: 'get', crossOrigin: true}).fail(logFailure);
-  },
-  
+   return request({url: 'http://test.monitor.net.co/GisService.svc/Filters/DepartmentsFunding/Json', type: 'json', method: 'get', crossOrigin: true}).fail(logFailure);
+ },
 
-  getActivitiesByMuncipalities:function(options){
-  	debugger;
-    	return request({url: 'http://test.monitor.net.co/GISService.svc/Filters/getActivityMunicipalitiesFunding/Json',
-    			type: 'json', method: 'get', crossOrigin: true}).fail(logFailure);
-  },
-  
 
- findLayers: function(options) {
-    	return request({url: GIS_URL + encodeURIComponent(options.query),type: 'json', method: 'get', crossOrigin: true}).fail(logFailure);
-	}
+ getActivitiesByMuncipalities:function(options){
+   return request({url: 'http://test.monitor.net.co/GISService.svc/Filters/getActivityMunicipalitiesFunding/Json',type: 'json', method: 'get', crossOrigin: true}).fail(logFailure);
+ },
+
+
+ findLayers: function(query) {
+  return request({ url: GIS_URL + encodeURIComponent(query.q)+"&start="+query.start+'&num='+query.num, type: 'json', method: 'get',  crossOrigin: true} ).fail(logFailure);
+}
+
+
 
 };
 
