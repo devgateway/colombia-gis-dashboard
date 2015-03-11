@@ -317,7 +317,7 @@ h2{
   width:700px;
   position:absolute;
   z-index: 1;
-  padding:10px;
+  padding:15px;
   background: $white;
   background: rgba( white, 0.8);
 }
@@ -378,7 +378,7 @@ ul.basemap-list{
     line-height:85%;
 
     &:hover{
-      color: $blue;
+      color: saturate(lighten($blue, 16), 20);
     }
 
     &:last-child{
@@ -436,6 +436,11 @@ nav.tab-navigation, nav.tabs{
   outline:none;
   @include border-radius(1px);
   @include transitionAll;
+  &:hover{
+    color: saturate(lighten($blue, 16), 20);
+    border:1px solid transparent;
+    background:none;
+  }
 }
 // end:panel tabs
 
@@ -443,9 +448,20 @@ nav.tab-navigation, nav.tabs{
 
 // start: tab panel- search box,filters, activity nav
 .tab-panel{
-  // wrapps the cotent pane of each tab
+  // wrapps the content pane of each tab
   @include clearfix;
   margin-bottom: $gutter;
+}
+
+.tab-content{
+  ul{list-style:none}
+  input[type="checkbox"], input[type="radio"]{
+    margin-right:8px;
+  }
+  span.btn{
+    padding:0;
+
+  }
 }
 
 // activity navigation
@@ -470,17 +486,19 @@ ul.activities{
 
   li{
   font-size:1.2rem;
+  margin-right:5px;
+  padding-right:5px;
 
   a{
     color: lighten($grey, 25%);
     padding-top:0;
     padding-bottom:0;
     line-height:80%;
-
-    &:hover{
+    &:hover, &:focus{
       color: darken($blue,25%);
-      @include textBold;
       background:none;
+      border:none;
+      outline:none;
     }
   }
 
@@ -492,32 +510,27 @@ ul.activities{
     }
   }
 
-
-  a{ color: lighten($grey,30%);
-    &:hover{
-      color: darken($blue,25%);
-      @include textBold;
-      }
-
-    }
-
 }
 
 
 //start: text search box
 .text-search-wrapper{
   @include clearfix;
+  @include transitionAll;
   background: $white;
   border:1px solid lighten( $grey, 50% );
   margin-top: $gutter;
+
+  &:hover{
+    border:1px solid lighten( $blue, 20% );
+  }
 
   input[type=text]{
     border:none;
     outline:none;
     width:95%;
     padding:0.3em;
-  }
-
+    }
 }
 
 .search-box{ background: $white}
