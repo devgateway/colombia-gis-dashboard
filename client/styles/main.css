@@ -41,7 +41,7 @@ i.fa.fa-search {
 
 .map-header {
   background-color: rgba(0, 0, 0, 0.7);
-  z-index: 1000; }
+  z-index: 1001; }
   .map-header .container {
     padding-left: 3em;
     width: 100%; }
@@ -52,14 +52,14 @@ h1 {
   font-weight: bold;
   color: #ffffff;
   text-transform: uppercase;
-  margin-top: 1em; }
+  margin-top: 0.7em; }
 
 h2 {
   color: #ffffff;
   font-size: 1.5rem;
   font-weight: bold;
   display: inline-block;
-  line-height: 110%; }
+  line-height: 55%; }
 
 .header-nav {
   float: right;
@@ -280,7 +280,7 @@ nav.tab-navigation, nav.tabs {
 .nav-tabs > li.active > a,
 .nav-tabs > li.active > a:hover,
 .nav-tabs > li.active > a:focus {
-  color: #4b719c;
+  color: #3775bb;
   background: none;
   border: 1px solid transparent; }
 
@@ -305,7 +305,7 @@ nav.tab-navigation, nav.tabs {
   -o-transition: all 600ms ease;
   transition: all 600ms ease; }
   .tabs > li a:hover {
-    color: #6a9cd3;
+    color: #3775bb;
     border: 1px solid transparent;
     background: none; }
 
@@ -508,7 +508,8 @@ input[type=checkbox].glyphicon {
   width: auto;
   height: auto;
   cursor: pointer;
-  padding: 5px 20px;
+  padding: 4px 55px;
+  margin: 10px 0 10px 10px;
   text-align: center;
   text-transform: uppercase;
   -webkit-transition: all 600ms ease;
@@ -519,8 +520,11 @@ input[type=checkbox].glyphicon {
   background: #98ca68;
   float: right; }
   .btn-apply:hover {
-    background: #7ebd42;
+    background: #689b36;
     color: #ffffff; }
+
+.leaflet-top {
+  top: 4em; }
 
 @media only screen and (min-device-width: 786px) and (max-device-width: 1024px) {
   /*tablets*/
