@@ -72,7 +72,8 @@ $base-line-height: 110%;
   width: auto;
   height: auto;
   cursor: pointer;
-  padding: 5px 20px;
+  padding: 4px 55px;
+  margin: 10px 0 10px 10px;
   @include textCenter;
   @include textUppercase;
   @include transitionAll;
@@ -132,7 +133,7 @@ i.fa.fa-search{
 // header area
 .map-header{
   @include bgLayout;
-  z-index:1000;
+  z-index:1001;
 
   .container{
     @include topbottomContainer;
@@ -145,7 +146,7 @@ h1{
   @include textBold;
   color: $white;
   text-transform:uppercase;
-  margin-top: $gutter;
+  margin-top:0.7em;
 }
 
 h2{
@@ -153,7 +154,7 @@ h2{
   @include textMedium;
   @include textBold;
   display:inline-block;
-  line-height: $base-line-height*1;
+  line-height: $base-line-height/2;
 }
 
 .header-nav{
@@ -416,7 +417,7 @@ nav.tab-navigation, nav.tabs{
 .nav-tabs > li.active > a,
 .nav-tabs > li.active > a:hover,
 .nav-tabs > li.active > a:focus{
-  color: darken($blue,1%);
+  color: saturate(lighten($blue, 1), 20);
   background: none;
   border:1px solid transparent;
 }
@@ -437,7 +438,7 @@ nav.tab-navigation, nav.tabs{
   @include border-radius(1px);
   @include transitionAll;
   &:hover{
-    color: saturate(lighten($blue, 16), 20);
+    color: saturate(lighten($blue, 1), 20);
     border:1px solid transparent;
     background:none;
   }
@@ -557,7 +558,7 @@ ul.activities{
   background:$white;
   padding: $gutter;
   margin-top: $gutter;
-  height:325px;
+  height:385px;
   @include border-radius(2px);
   border:1px solid lighten($grey,60%);
   //selected active filter panel
@@ -607,7 +608,7 @@ ul.activities{
 // filter list
 .filter-list-container{
    margin-top:$gutter;
-   max-height: 210px;
+   max-height: 260px;
    overflow-y: auto;
 }
 
@@ -692,9 +693,14 @@ input[type=checkbox].glyphicon{
   background: $green;
   @include floatRight;
   &:hover{
-    background: darken($green,10%);
+    background: darken($green,19%);
     color:$white;
   }
+}
+
+//map controls
+.leaflet-top{
+  top:$gutter*4;
 }
 
 // responsive
