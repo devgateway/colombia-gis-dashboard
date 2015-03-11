@@ -558,7 +558,7 @@ ul.activities{
   background:$white;
   padding: $gutter;
   margin-top: $gutter;
-  height:385px;
+  height:325px;
   @include border-radius(2px);
   border:1px solid lighten($grey,60%);
   //selected active filter panel
@@ -608,7 +608,7 @@ ul.activities{
 // filter list
 .filter-list-container{
    margin-top:$gutter;
-   max-height: 260px;
+   max-height: 210px;
    overflow-y: auto;
 }
 
