@@ -112,8 +112,8 @@ i.fa.fa-bars{
 }
 
 i.fa.fa-globe{
-  color: darken($blue, 20%);
-  margin-right:2px;
+  color:saturate(darken($blue, 16), 20);
+  margin-right: $gutter/2;
   @include textLarge;
 }
 
@@ -245,9 +245,11 @@ h2{
 #sidebar-wrapper{
   width:$gutter*3;
   z-index:1002;
-  background:$bgBlack;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.8);
   height:100%;
   position:fixed;
+  top:50px;
 
     .panel-toggle{
       top:47%;
@@ -263,13 +265,13 @@ h2{
    height: 100%;
    position: absolute;
    left: 42px;
-   top:47px;
+   top:-3px;
    @include transitionOpacity;
   .fixed{
       width: 485px;
       margin: 3px;
       padding: 5px;
-      height: 540px;
+      height: 100%;
       overflow: hidden;
       background-color:#FFF;
   }
@@ -315,7 +317,7 @@ h2{
   width:700px;
   position:absolute;
   z-index: 1;
-  padding:10px;
+  padding:15px;
   background: $white;
   background: rgba( white, 0.8);
 }
@@ -337,7 +339,7 @@ h2{
 .basemap-label{
       @extend .map-panel-label;
       @include floatLeft;
-      color: darken($blue, 20%);
+      color: saturate(darken($blue, 16), 20);
       margin-right:$gutter;
     }
 
@@ -359,19 +361,25 @@ h2{
 
 //start: basemap nav
 ul.basemap-list{
+  @include floatLeft;
   list-style:none;
-  float:left;
   padding-left:0;
+  margin-top:7px;
+  margin-left:7px;
 
   li{
     @include floatLeft;
+    @include transitionColor;
     margin-right:$gutter;
     border-right:1px solid $black;
     padding-right: $gutter;
     height:12px;
     font-size:1.1rem;
     line-height:85%;
-    margin-top:5px;
+
+    &:hover{
+      color: saturate(lighten($blue, 16), 20);
+    }
 
     &:last-child{
       border-right:none;
@@ -393,11 +401,24 @@ ul.basemap-list{
 
 
 // start: panel tabs
-nav.tab-navigation{
+
+nav.tab-navigation, nav.tabs{
   @include clearfix;
   margin: $gutter 0;
   overflow: auto;
   padding:0;
+}
+.nav-tabs{
+  border-bottom:none;
+  margin-bottom:1px;
+}
+
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus{
+  color: darken($blue,1%);
+  background: none;
+  border:1px solid transparent;
 }
 
 .tabs>li{
@@ -415,23 +436,32 @@ nav.tab-navigation{
   outline:none;
   @include border-radius(1px);
   @include transitionAll;
-
-    &:hover,&.active{
-      color: darken($blue,1%);
-      background: none;
-      border:1px solid transparent;
-    }
+  &:hover{
+    color: saturate(lighten($blue, 16), 20);
+    border:1px solid transparent;
+    background:none;
+  }
 }
-
 // end:panel tabs
 
 
 
 // start: tab panel- search box,filters, activity nav
 .tab-panel{
-  // wrapps the cotent pane of each tab
+  // wrapps the content pane of each tab
   @include clearfix;
   margin-bottom: $gutter;
+}
+
+.tab-content{
+  ul{list-style:none}
+  input[type="checkbox"], input[type="radio"]{
+    margin-right:8px;
+  }
+  span.btn{
+    padding:0;
+
+  }
 }
 
 // activity navigation
@@ -453,24 +483,32 @@ nav.activities{
 
 ul.activities{
   @extend .basemap-list;
- 
+
   li{
-  margin-top:3px;
   font-size:1.2rem;
-  &.active a{
-    color: darken($blue,25%);
-    @include textBold;
+  margin-right:5px;
+  padding-right:5px;
+
+  a{
+    color: lighten($grey, 25%);
+    padding-top:0;
+    padding-bottom:0;
+    line-height:80%;
+    &:hover, &:focus{
+      color: darken($blue,25%);
+      background:none;
+      border:none;
+      outline:none;
     }
   }
 
-
-  a{ color: lighten($grey,30%);
-    &:hover{
-      color: darken($blue,25%);
-      @include textBold;
-      }
-
+  &.active a{
+    color: darken($blue,25%);
+    @include textBold;
+    background:none;
+    outline:none;
     }
+  }
 
 }
 
@@ -478,17 +516,21 @@ ul.activities{
 //start: text search box
 .text-search-wrapper{
   @include clearfix;
+  @include transitionAll;
   background: $white;
   border:1px solid lighten( $grey, 50% );
   margin-top: $gutter;
+
+  &:hover{
+    border:1px solid lighten( $blue, 20% );
+  }
 
   input[type=text]{
     border:none;
     outline:none;
     width:95%;
     padding:0.3em;
-  }
-
+    }
 }
 
 .search-box{ background: $white}
@@ -514,6 +556,7 @@ ul.activities{
   opacity: 0.4;
   background:$white;
   padding: $gutter;
+  margin-top: $gutter;
   height:385px;
   @include border-radius(2px);
   border:1px solid lighten($grey,60%);
@@ -545,6 +588,7 @@ ul.activities{
 }
 .filter-label{
   font-size:1.3rem;
+  margin-left:7px;
 }
 .filter-selectors{
   @include floatRight;
@@ -590,7 +634,7 @@ ul.filter-list{
     border:1px solid lighten($grey,30%);
     @include border-radius(2px);
     padding:0;
-    margin:0;
+    margin:0 10px 0 0;
     position:relative;
     display:inline-block;
     overflow:hidden;

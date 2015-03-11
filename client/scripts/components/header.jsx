@@ -14,7 +14,8 @@ module.exports = React.createClass({
                     <h2> <Message message="app.title"/></h2>
                     <div className="header-nav">
                      <LanSelector/>
-                      <a href="#">Menu</a>
+                     <a href="#">Menu</a>
+
                     </div>
                   </div>
                 </div>
@@ -22,5 +23,3 @@ module.exports = React.createClass({
     );
   }
 });
-
-
