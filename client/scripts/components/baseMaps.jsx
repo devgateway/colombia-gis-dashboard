@@ -5,6 +5,7 @@ var RouteHandler = require('react-router').RouteHandler;
 var SlideBar=require('./containers/slideBar.jsx');
 var MapActions=require('../actions/mapActions.js')
 var Link = require('react-router').Link;
+var Message=require('./lanMessage.jsx');
 
 
 /*
@@ -30,7 +31,7 @@ var BaseMapItem= React.createClass({
   },
 
   render: function() {
-    return(<span onClick={this.handleClick} className="btn">{this.state.label}</span>);
+    return(<span onClick={this.handleClick} className="btn"><Message message={this.state.label}/></span>);
   }
 
 });
@@ -41,13 +42,13 @@ module.exports = React.createClass({
   render: function() {
 
    return(   
-      <div className="small">BASE MAP 
-      <BaseMapItem label="Gray" value="Gray"/> 
-      <BaseMapItem label="Topographic" value="Topographic"/> 
-      <BaseMapItem label="National Geographic" value="NationalGeographic"/> 
-      <BaseMapItem label="Dark Gray" value="DarkGray"/> 
-      <BaseMapItem label="Imagery" value="Imagery"/> 
-      <BaseMapItem label="Streets" value="Streets"/>
+      <div className="small"><Message message="map.baseMaps.title"/>
+      <BaseMapItem label="map.baseMaps.gray" value="Gray"/> 
+      <BaseMapItem label="map.baseMaps.topo" value="Topographic"/> 
+      <BaseMapItem label="map.baseMaps.natGeo" value="NationalGeographic"/> 
+      <BaseMapItem label="map.baseMaps.darkGray" value="DarkGray"/> 
+      <BaseMapItem label="map.baseMaps.image" value="Imagery"/> 
+      <BaseMapItem label="map.baseMaps.streets" value="Streets"/>
       </div>   
     );
   }

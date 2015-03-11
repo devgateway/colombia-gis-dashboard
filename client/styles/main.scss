@@ -66,6 +66,29 @@ body{
 }
 
 
+.marker {
+ border-radius: 100%;
+ background-color: rgba(253, 154, 0, 0.8);
+  box-shadow: 0 0 4px 3px rgba(255, 255, 255, 0.6), 
+              0 0 0 4px rgba(255, 88, 1, 0.4), 
+              0 0 0 8px rgba(242, 129, 0, 0.24);
+  .number{
+       width: 100%;
+      height:100%;
+      line-height: 100%;
+      text-align: center;
+
+    span{
+        display: inline-block;
+        vertical-align: middle;
+        line-height: normal;
+        font:base-font-family;
+      }
+  }
+}
+
+
+
 
 a{
   text-decoration:none;
@@ -223,8 +246,9 @@ h2{
    left: 40px;
    top:50px;
    @include transitionOpacity;
+ 
   .fixed{
-      width: 300px;
+      width: 500px;
       margin: 3px;
       padding: 5px;
       height: 500px;
@@ -241,6 +265,14 @@ h2{
    
 }
 
+
+.scrollable{
+
+  height: 200px;
+  margin: 5px;
+  overflow-x: auto; 
+}
+
 .slider-enter.slider-enter-active {
    @include transitionSliderOn 
    
@@ -255,7 +287,12 @@ h2{
 }
 
 
-
+.arcgis-sig-in{
+  position: absolute;
+  z-index:100;
+  top:100px;
+  right:10px;
+}
 
 $breakTablets: 786px;
 $breakPhones: 767px;

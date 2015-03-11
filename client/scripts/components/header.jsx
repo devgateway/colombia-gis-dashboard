@@ -10,7 +10,7 @@ module.exports = React.createClass({
               <div className="navbar navbar-fixed-top map-header">
                 <div className="navbar-inner">
                   <div className="container" role="main">
-                    <h1> <Message message="map.labelDescription"/> </h1>
+                    <h1> <Message message="app.description"/> </h1>
                     <h2> <Message message="app.title"/></h2>
                     <div className="header-nav">
                      <LanSelector/>
