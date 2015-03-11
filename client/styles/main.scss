@@ -112,8 +112,8 @@ i.fa.fa-bars{
 }
 
 i.fa.fa-globe{
-  color: darken($blue, 20%);
-  margin-right:2px;
+  color:saturate(darken($blue, 16), 20);
+  margin-right: $gutter/2;
   @include textLarge;
 }
 
@@ -339,7 +339,7 @@ h2{
 .basemap-label{
       @extend .map-panel-label;
       @include floatLeft;
-      color: darken($blue, 20%);
+      color: saturate(darken($blue, 16), 20);
       margin-right:$gutter;
     }
 
@@ -361,19 +361,25 @@ h2{
 
 //start: basemap nav
 ul.basemap-list{
+  @include floatLeft;
   list-style:none;
-  float:left;
   padding-left:0;
+  margin-top:7px;
+  margin-left:7px;
 
   li{
     @include floatLeft;
+    @include transitionColor;
     margin-right:$gutter;
     border-right:1px solid $black;
     padding-right: $gutter;
     height:12px;
     font-size:1.1rem;
     line-height:85%;
-    margin-top:5px;
+
+    &:hover{
+      color: $blue;
+    }
 
     &:last-child{
       border-right:none;
@@ -395,7 +401,8 @@ ul.basemap-list{
 
 
 // start: panel tabs
-nav.tab-navigation{
+
+nav.tab-navigation, nav.tabs{
   @include clearfix;
   margin: $gutter 0;
   overflow: auto;

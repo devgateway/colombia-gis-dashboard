@@ -25,8 +25,8 @@ i.fa.fa-bars {
     color: #74a4d6; }
 
 i.fa.fa-globe {
-  color: #2c425a;
-  margin-right: 2px;
+  color: #234b77;
+  margin-right: 0.5em;
   font-size: 1.8rem; }
 
 i.fa.fa-search {
@@ -222,7 +222,7 @@ h2 {
 
 .basemap-label {
   float: left;
-  color: #2c425a;
+  color: #234b77;
   margin-right: 1em; }
 
 .predefined-maps {
@@ -237,18 +237,25 @@ h2 {
       color: #98ca68; }
 
 ul.basemap-list, ul.activities {
-  list-style: none;
   float: left;
-  padding-left: 0; }
+  list-style: none;
+  padding-left: 0;
+  margin-top: 7px;
+  margin-left: 7px; }
   ul.basemap-list li, ul.activities li {
     float: left;
+    -webkit-transition: color 600ms ease;
+    -moz-transition: color 600ms ease;
+    -o-transition: color 600ms ease;
+    transition: color 600ms ease;
     margin-right: 1em;
     border-right: 1px solid #000000;
     padding-right: 1em;
     height: 12px;
     font-size: 1.1rem;
-    line-height: 85%;
-    margin-top: 5px; }
+    line-height: 85%; }
+    ul.basemap-list li:hover, ul.activities li:hover {
+      color: #4d749f; }
     ul.basemap-list li:last-child, ul.activities li:last-child {
       border-right: none; }
   ul.basemap-list a, ul.activities a {
@@ -260,7 +267,7 @@ ul.basemap-list, ul.activities {
     ul.basemap-list a:hover, ul.activities a:hover {
       color: #698eb6; }
 
-nav.tab-navigation {
+nav.tab-navigation, nav.tabs {
   clear: both;
   margin: 1em 0;
   overflow: auto;
