@@ -7,7 +7,6 @@ var FilterGroup = require('./filterGroup.jsx');
 var FilterActionButton = require('./filterActionButton.jsx');
 var TabbedArea = require('react-bootstrap/lib/TabbedArea');
 var TabPane = require('react-bootstrap/lib/TabPane');
-var Scooch = require('react-bootstrap/lib/TabPane');
 
 var Filter  = React.createClass({
     mixins: [Reflux.connect(FilterStore)],
@@ -31,14 +30,13 @@ var Filter  = React.createClass({
             <FilterActionButton/>
           </div>
         );*/
-
-        if ($('.m-carousel').length>0){
+        if ($('.m-scooch').length>0){
           debugger;
-          $('.m-carousel').carousel();
+          $('.m-scooch').scooch();
         }
         return(
-            <div className="m-carousel m-center m-scaled m-fade-out">
-              <div className="m-carousel-inner">
+            <div className="m-scooch m-center m-scaled m-fade-out">
+              <div className="m-scooch-inner">
                 {
                   filters.map(function(filterDefinition){
                     if (!filterDefinition.isChild){
@@ -46,19 +44,20 @@ var Filter  = React.createClass({
                       return  <div className="m-item">
                                 <div className="m-card-light">
                                   <FilterGroup filterDefinition={filterDefinition} />
-                                </div>
-                              </div>  
+                                </div>  
+                              </div> 
                     }
                   })
                 }  
               </div>                   
-              <div className="m-carousel-controls">
-                <a href="#" data-slide="prev">‹ Previous -</a>
-                <a href="#" data-slide="next">- Next ›</a>                
+              <div className="m-scooch-controls m-scooch-bulleted">
+                <a href="#" data-m-slide="prev">‹ Previous -</a>
+                <a href="#" data-m-slide  ="next">- Next ›</a>                
               </div>              
             </div>
 
-          );        
+          ); 
+       
         
     }
 });

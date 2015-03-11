@@ -75,6 +75,7 @@ module.exports=Reflux.createStore({
             }
         });
         this.state.filtersSelected = filtersSelected;
+        alert("Filters Applied: "+ JSON.stringify(this.state.filtersSelected));
         this.output();
     },
 

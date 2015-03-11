@@ -37,7 +37,6 @@ var FilterGroup = React.createClass({
     _searchKeyUp: function(ev) {
         var value = $(ev.target).val();
         var length = value.length;
-        debugger;
         // filter the items only if we have at least 3 characters
         if (length > 2 || ev.keyCode == 13) {
             this._filterByKeyword(value);
@@ -85,7 +84,7 @@ var FilterGroup = React.createClass({
         }
         items = this._filterByParentSelected(items, this.props.parentSelected, this.props.filterDefinition.parentParamField);
         
-        /*return(
+        return(
             <div className="filter-group-panel selected">
                 <div className="filter-group-panel-header">
                     <span className="panel-count">1</span>
@@ -106,8 +105,8 @@ var FilterGroup = React.createClass({
                 {childFilterGroup}  
                                           
             </div>
-            );*/  
-        return(
+            );  
+        /*return(
             <div className="">
                 <div className="filter-group-panel-header">
                     <span className="panel-count">1</span>
@@ -118,7 +117,7 @@ var FilterGroup = React.createClass({
                     </div>
                 </div>                                
             </div>
-            );
+            );*/
     }
 });
 
