@@ -18,19 +18,19 @@ var BaseMapItem= React.createClass({
   render: function() {
     var currentBaseMap = MapStore.getCurrentBaseMap();
     var cls = currentBaseMap==this.state.value? "basemap-option-selected" : "basemap-option";
-    return(<span className={cls} onClick={this.handleClick}> {this.state.label} </span>);    
+    return(<span className={cls} onClick={this.handleClick}> {this.state.label} </span>);
   }
 
 });
 
 
 module.exports = React.createClass({
-  
+
   mixins: [Reflux.connect(MapStore)],
   render: function() {
 
-   return(   
-      <div className="">
+   return(
+      <div className="map-panel-header">
         <div className="basemap-label">
           <i className="fa fa-globe" aria-hidden="true"></i>
           Views
@@ -42,8 +42,8 @@ module.exports = React.createClass({
           <li><BaseMapItem label="Dark Gray" value="DarkGray"/></li>
           <li><BaseMapItem label="Imagery" value="Imagery"/></li>
           <li><BaseMapItem label="Streets" value="Streets"/></li>
-        </ul>       
-      </div>   
+        </ul>
+      </div>
     );
   }
 });

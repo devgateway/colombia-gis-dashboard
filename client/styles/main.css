@@ -273,6 +273,17 @@ nav.tab-navigation, nav.tabs {
   overflow: auto;
   padding: 0; }
 
+.nav-tabs {
+  border-bottom: none;
+  margin-bottom: 1px; }
+
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus {
+  color: #4b719c;
+  background: none;
+  border: 1px solid transparent; }
+
 .tabs > li {
   float: left;
   text-align: center;
@@ -293,10 +304,6 @@ nav.tab-navigation, nav.tabs {
   -moz-transition: all 600ms ease;
   -o-transition: all 600ms ease;
   transition: all 600ms ease; }
-  .tabs > li a:hover, .tabs > li a.active {
-    color: #4b719c;
-    background: none;
-    border: 1px solid transparent; }
 
 .tab-panel {
   clear: both;
@@ -315,11 +322,21 @@ nav.activities {
   height: 30px; }
 
 ul.activities li {
-  margin-top: 3px;
   font-size: 1.2rem; }
+  ul.activities li a {
+    color: #858585;
+    padding-top: 0;
+    padding-bottom: 0;
+    line-height: 80%; }
+    ul.activities li a:hover {
+      color: #233549;
+      font-weight: bold;
+      background: none; }
   ul.activities li.active a {
     color: #233549;
-    font-weight: bold; }
+    font-weight: bold;
+    background: none;
+    outline: none; }
 ul.activities a {
   color: #929292; }
   ul.activities a:hover {
@@ -357,6 +374,7 @@ ul.activities a {
   opacity: 0.4;
   background: #ffffff;
   padding: 1em;
+  margin-top: 1em;
   height: 385px;
   -webkit-border-radius: 2px;
   border-radius: 2px;
@@ -388,7 +406,8 @@ ul.activities a {
   font-weight: bold; }
 
 .filter-label {
-  font-size: 1.3rem; }
+  font-size: 1.3rem;
+  margin-left: 7px; }
 
 .filter-selectors {
   float: right;
@@ -425,7 +444,7 @@ ul.filter-list {
   background-clip: padding-box;
   /* stops bg color from leaking outside the border: */
   padding: 0;
-  margin: 0;
+  margin: 0 10px 0 0;
   position: relative;
   display: inline-block;
   overflow: hidden; }
