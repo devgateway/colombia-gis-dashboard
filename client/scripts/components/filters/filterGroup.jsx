@@ -85,7 +85,7 @@ var FilterGroup = React.createClass({
         }
         items = this._filterByParentSelected(items, this.props.parentSelected, this.props.filterDefinition.parentParamField);
         
-        return(
+        /*return(
             <div className="filter-group-panel selected">
                 <div className="filter-group-panel-header">
                     <span className="panel-count">1</span>
@@ -103,7 +103,20 @@ var FilterGroup = React.createClass({
                 </div>
 
                 <FilterItemList items={items} filterType={filterType} onItemChanged={this._onItemChanged}/>
-                {childFilterGroup}                              
+                {childFilterGroup}  
+                                          
+            </div>
+            );*/  
+        return(
+            <div className="">
+                <div className="filter-group-panel-header">
+                    <span className="panel-count">1</span>
+                    <span className="filter-count">{selectCount}</span>
+                    <span className="filter-label" role="label">Level Selections</span>
+                    <div className="filter-selectors">
+                        <span><a href="#">select all</a></span> / <span><a href="#">diselect all</a></span>
+                    </div>
+                </div>                                
             </div>
             );
     }
