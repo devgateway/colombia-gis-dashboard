@@ -12,8 +12,8 @@ var taskConfig = function(grunt) {
         fileTypes: {
           html: {
             replace: {
-              js: '<script src="/{{filePath}}"></script>',
-              css: '<link rel="stylesheet" href="/{{filePath}}" />'
+              js: '<script src="{{filePath}}"></script>',
+              css: '<link rel="stylesheet" href="{{filePath}}" />'
             }
           }
         },
