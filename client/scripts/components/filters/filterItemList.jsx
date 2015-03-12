@@ -30,4 +30,5 @@ var FilterGroup = React.createClass({
             );
     }
 });
+
 module.exports = FilterGroup;

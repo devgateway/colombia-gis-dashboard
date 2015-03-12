@@ -14,7 +14,9 @@ var FilterItem = React.createClass({
     _onItemChanged: function(event) {     
         FilterActions.changeFilterItemState(this.props.filterType, event.target.value, event.target.checked);
     },
-     render: function() {
+ 
+
+    render: function() {
         return(
             <div>
                 <span className="select">

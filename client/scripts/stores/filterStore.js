@@ -9,7 +9,7 @@ var FilterMap = require('../components/filters/filterMap.js');
 module.exports=Reflux.createStore({
 
     listenables: FilterActions,
-
+    // Initial setup
     init: function() {
         this.state = {};
         var self = this;
@@ -17,6 +17,7 @@ module.exports=Reflux.createStore({
         filters.map(function(item, idx){ 
             self.state[item.param] = [];
         });
+        
     },
 
     getAll: function(filterType) {
