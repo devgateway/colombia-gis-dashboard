@@ -1,3 +1,5 @@
+'use strict';
+
 /*http://facebook.github.io/react/docs/component-specs.html*/
 var React = require('react');
 var Router = require('react-router');
@@ -7,10 +9,8 @@ var FilterStore=require('../../stores/filterStore.js')
 var FilterItemList = require('./filterItemList.jsx');
 var FilterActions = require('../../actions/filterActions.js');
 var FilterMap = require('./filterMap.js');
-
-
 var FilterGroup = React.createClass({
- 
+
     getInitialState: function() {
         return {selectedItems: []};
     },
@@ -54,7 +54,7 @@ var FilterGroup = React.createClass({
         } else {
             return list.filter(function (item){
                 return (parentSelected.indexOf(item[parentParamField]) != -1)
-                });
+            });
         }
     },
 
@@ -87,23 +87,23 @@ var FilterGroup = React.createClass({
         
         return(
             <div className="filter-group-panel selected">
-                <div className="filter-group-panel-header">
-                    <span className="panel-count">1</span>
-                    <span className="filter-count">{selectCount}</span>
-                    <span className="filter-label" role="label">Level Selections</span>
-                    <div className="filter-selectors">
-                        <span><a href="#">select all</a></span> / <span><a href="#">diselect all</a></span>
-                    </div>
-                </div>
-                
-                <div className="text-search-wrapper">
-                    <div className="search-box">
-                        <input className="keyword-search" name="keyword-search" type="text" onKeyUp={this._searchKeyUp} />
-                    </div>
-                </div>
+            <div className="filter-group-panel-header">
+            <span className="panel-count">1</span>
+            <span className="filter-count">{selectCount}</span>
+            <span className="filter-label" role="label">Level Selections</span>
+            <div className="filter-selectors">
+            <span><a href="#">select all</a></span> / <span><a href="#">diselect all</a></span>
+            </div>
+            </div>
 
-                <FilterItemList items={items} filterType={filterType} onItemChanged={this._onItemChanged}/>
-                {childFilterGroup}                              
+            <div className="text-search-wrapper">
+            <div className="search-box">
+            <input className="keyword-search" name="keyword-search" type="text" onKeyUp={this._searchKeyUp} />
+            </div>
+            </div>
+
+            <FilterItemList items={items} filterType={filterType} onItemChanged={this._onItemChanged}/>
+            {childFilterGroup}                              
             </div>
             );
     }

@@ -7,6 +7,7 @@ var MapActions = require('../actions/mapActions.js');
 
 module.exports = Reflux.createStore({
 
+
   listenables: MapActions,
 
   getCurrentBaseMap: function() {

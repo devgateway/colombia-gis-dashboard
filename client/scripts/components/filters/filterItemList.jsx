@@ -1,3 +1,4 @@
+'use strict';
 
 var React = require('react');
 var FilterItem = require('./filterItem.jsx');
@@ -29,5 +30,4 @@ var FilterGroup = React.createClass({
             );
     }
 });
-
 module.exports = FilterGroup;

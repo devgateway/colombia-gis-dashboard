@@ -1,3 +1,4 @@
+'use strict';
 /*http://facebook.github.io/react/docs/component-specs.html*/
 var React = require('react');
 var Reflux = require('reflux');
@@ -9,29 +10,29 @@ var TabbedArea = require('react-bootstrap/lib/TabbedArea');
 var TabPane = require('react-bootstrap/lib/TabPane');
 
 var Filter  = React.createClass({
-    mixins: [Reflux.connect(FilterStore)],
+  mixins: [Reflux.connect(FilterStore)],
 
-    render: function() {
-      var filters = FilterMap.filters;
-        return(
-          <div className="activity-nav">
-            <TabbedArea className="activities" defaultActiveKey={1}>
-              {
-                filters.map(function(filterDefinition){
-                  if (!filterDefinition.isChild){
+  render: function() {
+    var filters = FilterMap.filters;
+    return(
+      <div className="activity-nav">
+      <TabbedArea className="activities" defaultActiveKey={1}>
+      {
+        filters.map(function(filterDefinition){
+          if (!filterDefinition.isChild){
                     var label = filterDefinition.label;// + " (" + FilterStore.getAllSelected(filterDefinition.param).length + "/" + FilterStore.getAll(filterDefinition.param).length + ")";
                     return <TabPane eventKey={parseInt(filterDefinition.index)} tab={label}>
-                      <FilterGroup filterDefinition={filterDefinition} />
+                    <FilterGroup filterDefinition={filterDefinition} />
                     </TabPane>
                   }
                 })
-              }                 
-            </TabbedArea>
-            <FilterActionButton/>
-          </div>
-        );
-        
-    }
+      }                 
+      </TabbedArea>
+      <FilterActionButton/>
+      </div>
+      );
+
+  }
 });
 
 module.exports = Filter;

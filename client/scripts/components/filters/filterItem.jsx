@@ -1,4 +1,6 @@
 
+'use strict';
+
 /*http://facebook.github.io/react/docs/component-specs.html*/
 var React = require('react');
 var Router = require('react-router');
@@ -12,9 +14,7 @@ var FilterItem = React.createClass({
     _onItemChanged: function(event) {     
         FilterActions.changeFilterItemState(this.props.filterType, event.target.value, event.target.checked);
     },
- 
-
-    render: function() {
+     render: function() {
         return(
             <div>
                 <span className="select">

@@ -1,7 +1,3 @@
-/*
- * Leaflet raw map component used by ./map.jsx (use that if you want a map)
- */
-
  'use strict';
  var React = require('react/addons');
  var Reflux = require('reflux');
