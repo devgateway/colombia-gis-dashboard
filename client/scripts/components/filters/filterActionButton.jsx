@@ -1,3 +1,4 @@
+'use strict';
 
 /*http://facebook.github.io/react/docs/component-specs.html*/
 var React = require('react');
@@ -20,10 +21,10 @@ var FilterItem = React.createClass({
         var item = this.props.data;       
         return(
             <div class="button-pane">
-                <button type="button" className="btn btn-apply" role="button" onClick={this._onClickApply}>Apply</button>
-                <button type="button" className="btn btn-apply" role="button" onClick={this._onClickReset}>Reset</button>
+            <button type="button" className="btn btn-apply" role="button" onClick={this._onClickApply}>Apply</button>
+            <button type="button" className="btn btn-apply" role="button" onClick={this._onClickReset}>Reset</button>
             </div>            
-        );
+            );
     }
 });
 

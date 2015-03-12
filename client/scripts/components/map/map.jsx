@@ -1,3 +1,5 @@
+'use strict';
+
 /*
  * Leaflet map component wrapper for React
  *
@@ -5,7 +7,6 @@
  * components and connecting some pieces for the real leaflet
  */
 
- 'use strict';
 
  var React = require('react/addons');
  var Reflux = require('reflux');
