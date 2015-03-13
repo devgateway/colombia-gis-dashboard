@@ -3,7 +3,7 @@
 var React = require('react');
 var FilterItem = require('./filterItem.jsx');
 
-var FilterGroup = React.createClass({
+var FilterItemList = React.createClass({
 
     _onItemChanged: function(event) {  
         this.props.onItemChanged(this.props.filterType, event.target.value, event.target.checked);
@@ -31,4 +31,4 @@ var FilterGroup = React.createClass({
     }
 });
 
-module.exports = FilterGroup;
+module.exports = FilterItemList;
