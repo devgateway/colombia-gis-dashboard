@@ -1,22 +1,19 @@
 {
-  "name": "asdb-phase-ii",
+  "name": "usaid-colombia-monitor",
   "version": "0.0.1",
   "dependencies": {
-    "cookie": "~0.1.2",
-    "flux": "~2.0.0",
     "form-serialize": "~0.4.0",
     "i18next-client": "^1.7.7",
-    "install": "^0.1.8",
     "keymirror": "~0.1.0",
     "node-jsx": "~0.12.4",
-    "npm": "^2.6.0",
     "object-assign": "~1.0.0",
-    "react": "~0.12.0",
-    "react-intl": "^1.1.0",
-    "react-router": "^0.11.6",
-    "reflux": "^0.2.4",
+    "react": "~0.12.2",
+    "react-router": "^0.12.4",
+    "reflux": "^0.2.6",
     "reqwest": "^1.1.5",
-    "superagent": "~0.21.0"
+    "superagent": "~0.21.0",
+    "react-bootstrap": "^0.15.1"
+
   },
   "devDependencies": {
     "balanced-match": "^0.2.0",
@@ -24,7 +21,6 @@
     "browserify": "~6.2.0",
     "concat-map": "0.0.1",
     "core-util-is": "^1.0.1",
-    "esri-leaflet": "^1.0.0-rc.5",
     "grunt": "~0.4.2",
     "grunt-autoprefixer": "~1.0.1",
     "grunt-browserify": "~3.2.0",
@@ -65,8 +61,6 @@
     "lodash": "~2.4.1",
     "minifyify": "~5.0.0",
     "minimatch": "^2.0.1",
-    "npm": "^2.6.0",
-    "react-bootstrap": "^0.15.1",
     "rimraf": "~2.2.8",
     "time-grunt": "0.2.10",
     "underscore.string": "~2.3.3",

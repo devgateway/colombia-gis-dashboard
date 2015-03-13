@@ -9,7 +9,7 @@ var router = require('./router.jsx');
 
 var options ={ 
 	lng: "en" ,  
-	resGetPath: './../locales/__lng__/__ns__.json',
+	resGetPath: './locales/__lng__/__ns__.json',
 	setJqueryExt: false,
 	preload: ['es', 'en']
 };
