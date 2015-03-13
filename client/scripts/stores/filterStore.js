@@ -59,20 +59,39 @@ module.exports=Reflux.createStore({
         var filters = FilterMap.filters;
         var filtersSelected = [];
         filters.map(function(filterDefinition){ 
-            var selectedIds = []
-            var itemList = self.state[filterDefinition.param];
-            itemList.map(function(item){ 
-                if (reset){
-                    item.selected = false;
-                } else {
-                    if (item.selected){
-                        selectedIds.push(item.id);
+            var selectedIds = [];
+            if (filterDefinition.subLevels){ //iterate over sublevels of filter definition
+                filterDefinition.subLevels.map(function(fd){ 
+                    var selIds = [];
+                    var itemList = self.state[fd.param];
+                    itemList.map(function(item){ 
+                        if (reset){
+                            item.selected = false;
+                        } else {
+                            if (item.selected){
+                                selIds.push(item.id);
+                            }
+                        }
+                    });
+                    if (selIds.length>0){
+                        filtersSelected.push({param: fd.param, values: selIds});
+                    }    
+                });
+            } else {
+                var itemList = self.state[filterDefinition.param];
+                itemList.map(function(item){ 
+                    if (reset){
+                        item.selected = false;
+                    } else {
+                        if (item.selected){
+                            selectedIds.push(item.id);
+                        }
                     }
+                });
+                if (selectedIds.length>0){
+                    filtersSelected.push({param: filterDefinition.param, values: selectedIds});
                 }
-            });
-            if (selectedIds.length>0){
-                filtersSelected.push({param: filterDefinition.param, values: selectedIds});
-            }
+            }            
         });
         this.state.filtersSelected = filtersSelected;
         alert("Filters Applied: "+ JSON.stringify(this.state.filtersSelected));
