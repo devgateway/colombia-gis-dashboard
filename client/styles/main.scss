@@ -599,7 +599,7 @@ ul.activities{
 
 
 //activity overview section
-.overview-pane{ padding-right:$gutter*13}
+.overview-pane{ padding-right:$gutter*10}
 .overview-label{
   @extend .map-panel-label;
   color: $blue;
@@ -616,7 +616,10 @@ ul.overview-stats{
     }
 }
 
-.stat{ color:$grey}
+.stat{
+  color:$grey;
+  font-size:17px;
+  }
 
 // filter list
 .filter-list-container{

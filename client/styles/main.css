@@ -431,7 +431,7 @@ ul.activities li {
   margin-top: 9px; }
 
 .overview-pane {
-  padding-right: 13em; }
+  padding-right: 10em; }
 
 .overview-label {
   color: #4d749f; }
@@ -447,7 +447,8 @@ ul.overview-stats {
     line-height: 176%; }
 
 .stat {
-  color: #454545; }
+  color: #454545;
+  font-size: 17px; }
 
 .filter-list-container {
   margin-top: 1em;
