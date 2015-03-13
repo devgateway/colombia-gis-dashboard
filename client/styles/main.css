@@ -196,7 +196,7 @@ h2 {
 
 .basemap-option-selected {
   cursor: pointer;
-  font-weight: bold; }
+  color: #4d749f; }
 
 .basemap-option {
   cursor: pointer; }
@@ -249,23 +249,23 @@ ul.basemap-list, ul.activities {
     -o-transition: color 600ms ease;
     transition: color 600ms ease;
     margin-right: 1em;
-    border-right: 1px solid #000000;
     padding-right: 1em;
+    border-right: 1px solid #b0b0b0;
     height: 12px;
     font-size: 1.1rem;
     line-height: 85%; }
     ul.basemap-list li:hover, ul.activities li:hover {
-      color: #6a9cd3; }
+      color: #4d749f; }
     ul.basemap-list li:last-child, ul.activities li:last-child {
       border-right: none; }
   ul.basemap-list a, ul.activities a {
-    color: #000000;
+    color: #4d749f;
     -webkit-transition: color 600ms ease;
     -moz-transition: color 600ms ease;
     -o-transition: color 600ms ease;
     transition: color 600ms ease; }
     ul.basemap-list a:hover, ul.activities a:hover {
-      color: #698eb6; }
+      color: #4d749f; }
 
 nav.tab-navigation, nav.tabs {
   clear: both;
@@ -333,24 +333,24 @@ nav.activities {
   height: 30px; }
 
 ul.activities li {
-  font-size: 1.2rem;
-  margin-right: 5px;
-  padding-right: 5px; }
+  font-size: 1.2rem; }
   ul.activities li a {
     color: #858585;
-    padding-top: 0;
-    padding-bottom: 0;
-    line-height: 80%; }
-    ul.activities li a:hover, ul.activities li a:focus {
-      color: #233549;
+    line-height: 80%;
+    padding: 0; }
+    ul.activities li a:hover {
       background: none;
       border: none;
-      outline: none; }
+      outline: none;
+      line-height: 85%;
+      padding-left: 1px;
+      padding-right: 1px; }
   ul.activities li.active a {
-    color: #233549;
-    font-weight: bold;
     background: none;
-    outline: none; }
+    outline: none;
+    line-height: 75%; }
+    ul.activities li.active a:hover {
+      padding: 0; }
 
 .text-search-wrapper {
   clear: both;
@@ -442,11 +442,9 @@ ul.filter-list {
   list-style: none;
   padding-left: 0; }
   ul.filter-list li {
-    color: #3c5b7d;
+    color: #4d749f;
     font-size: 1.4rem;
     display: block; }
-    ul.filter-list li:hover {
-      font-weight: bold; }
     ul.filter-list li:hover .glyphicon.glyphicon-stop:before {
       color: #e9ba00; }
 
@@ -549,5 +547,22 @@ input[type=checkbox].glyphicon {
 
   .header-nav {
     margin-bottom: 1em; } }
+.marker {
+  border-radius: 100%;
+  background-color: rgba(253, 154, 0, 0.8);
+  box-shadow: 0 0 4px 3px rgba(255, 255, 255, 0.6), 0 0 0 4px rgba(255, 88, 1, 0.4), 0 0 0 8px rgba(242, 129, 0, 0.24); }
+  .marker .number {
+    width: 100%;
+    height: 100%;
+    line-height: 100%;
+    text-align: center; }
+    .marker .number span {
+      display: inline-block;
+      vertical-align: middle;
+      line-height: normal;
+      font: base-font-family; }
+
+.filter-group-sublevel {
+  width: 450px; }
 
 /*# sourceMappingURL=main.css.map */

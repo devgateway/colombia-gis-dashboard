@@ -306,7 +306,7 @@ h2{
 
 .basemap-option-selected {
   cursor: pointer;
-  font-weight: bold;
+  color:$blue;
 }
 
 .basemap-option {
@@ -355,9 +355,7 @@ h2{
 
     }
 
-
-
-    }
+}
 // end:predefined maps
 
 //start: basemap nav
@@ -372,14 +370,14 @@ ul.basemap-list{
     @include floatLeft;
     @include transitionColor;
     margin-right:$gutter;
-    border-right:1px solid $black;
     padding-right: $gutter;
+    border-right:1px solid lighten($grey,42%);
     height:12px;
     font-size:1.1rem;
     line-height:85%;
 
     &:hover{
-      color: saturate(lighten($blue, 16), 20);
+      color:$blue;
     }
 
     &:last-child{
@@ -389,11 +387,11 @@ ul.basemap-list{
   }
 
   a{
-    color: $black;
+    color: $blue;
     @include transitionColor;
 
     &:hover{
-      color:lighten($blue, 10%);
+      color:$blue;
     }
   }// ends: a
 }// ends: ul
@@ -487,27 +485,27 @@ ul.activities{
 
   li{
   font-size:1.2rem;
-  margin-right:5px;
-  padding-right:5px;
 
   a{
     color: lighten($grey, 25%);
-    padding-top:0;
-    padding-bottom:0;
     line-height:80%;
-    &:hover, &:focus{
-      color: darken($blue,25%);
+    padding:0;
+
+    &:hover{
       background:none;
       border:none;
       outline:none;
+      line-height:85%;
+      padding-left:1px;
+      padding-right:1px;
     }
   }
 
   &.active a{
-    color: darken($blue,25%);
-    @include textBold;
     background:none;
     outline:none;
+    line-height:75%;
+    &:hover{padding:0}
     }
   }
 
@@ -617,10 +615,9 @@ ul.filter-list{
   padding-left:0;
 
   li{
-    color:darken($blue,10%);
+    color:$blue;
     font-size:1.4rem;
     display:block;
-    &:hover{font-weight:bold;}
     &:hover .glyphicon.glyphicon-stop:before{
       color: #e9ba00;
     }
@@ -729,8 +726,8 @@ $breakPhones: 767px;
 .marker {
  border-radius: 100%;
  background-color: rgba(253, 154, 0, 0.8);
- box-shadow: 0 0 4px 3px rgba(255, 255, 255, 0.6), 
- 0 0 0 4px rgba(255, 88, 1, 0.4), 
+ box-shadow: 0 0 4px 3px rgba(255, 255, 255, 0.6),
+ 0 0 0 4px rgba(255, 88, 1, 0.4),
  0 0 0 8px rgba(242, 129, 0, 0.24);
  .number{
    width: 100%;
@@ -750,5 +747,3 @@ $breakPhones: 767px;
 .filter-group-sublevel{
   width: 450px;
 }
-
-  
