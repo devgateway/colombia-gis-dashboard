@@ -69,8 +69,8 @@ body{
 .marker {
  border-radius: 100%;
  background-color: rgba(253, 154, 0, 0.8);
-  box-shadow: 0 0 4px 3px rgba(255, 255, 255, 0.6), 
-              0 0 0 4px rgba(255, 88, 1, 0.4), 
+  box-shadow: 0 0 4px 3px rgba(255, 255, 255, 0.6),
+              0 0 0 4px rgba(255, 88, 1, 0.4),
               0 0 0 8px rgba(242, 129, 0, 0.24);
   .number{
        width: 100%;
@@ -134,7 +134,8 @@ h2{
   @include textMedium;
   @include textBold;
   display:inline-block;
-  line-height: $base-line-height*1;
+  line-height:125%;
+  margin-left:5px;
 }
 
 .header-nav{
@@ -246,7 +247,7 @@ h2{
    left: 40px;
    top:50px;
    @include transitionOpacity;
- 
+
   .fixed{
       width: 500px;
       margin: 3px;
@@ -262,7 +263,7 @@ h2{
 .slider-enter {
    overflow: hidden;
    width: 0px;
-   
+
 }
 
 
@@ -270,16 +271,16 @@ h2{
 
   height: 200px;
   margin: 5px;
-  overflow-x: auto; 
+  overflow-x: auto;
 }
 
 .slider-enter.slider-enter-active {
-   @include transitionSliderOn 
-   
+   @include transitionSliderOn
+
 }
 
 .slider-leave {
-   @include transitionSliderOff 
+   @include transitionSliderOff
 }
 
 .slider-leave.slider-leave-active {
@@ -315,6 +316,3 @@ $breakPhones: 767px;
     h2{ margin-left:0; margin-top:0}
     .header-nav{ margin-bottom:$gutter}
   }
-
-
-
