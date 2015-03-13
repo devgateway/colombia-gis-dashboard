@@ -22,6 +22,7 @@ $base-line-height: 110%;
 @mixin textUppercase{text-transform: uppercase}
 @mixin textCenter{text-align:center}
 @mixin opacityHigh{opacity: 0.8}
+@mixin listUnstyled{ padding-left:0; list-style:none}
 
 // opacity transition
 @mixin transitionOpacity {
@@ -361,8 +362,7 @@ h2{
 //start: basemap nav
 ul.basemap-list{
   @include floatLeft;
-  list-style:none;
-  padding-left:0;
+  @include listUnstyled;
   margin-top:7px;
   margin-left:7px;
 
@@ -454,6 +454,7 @@ nav.tab-navigation, nav.tabs{
 
 .tab-content{
   ul{list-style:none}
+
   input[type="checkbox"], input[type="radio"]{
     margin-right:8px;
   }
@@ -598,10 +599,24 @@ ul.activities{
 
 
 //activity overview section
+.overview-pane{ padding-right:$gutter*13}
 .overview-label{
   @extend .map-panel-label;
   color: $blue;
 }
+
+.stat-container{
+   margin: $gutter 0;
+}
+ul.overview-stats{
+  @include listUnstyled;
+
+  li{color:$blue;
+    line-height: $base-line-height*1.6;
+    }
+}
+
+.stat{ color:$grey}
 
 // filter list
 .filter-list-container{
@@ -611,8 +626,7 @@ ul.activities{
 }
 
 ul.filter-list{
-  list-style:none;
-  padding-left:0;
+  @include listUnstyled;
 
   li{
     color:$blue;
