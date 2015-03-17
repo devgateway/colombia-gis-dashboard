@@ -1,6 +1,6 @@
 'use strict';
 var request = require('reqwest');
-var Util=require('./util.js');
+
 var GIS_URL='http://www.arcgis.com/sharing/rest/search?f=json&q=';
 
 function logFailure(err, message) {
@@ -22,7 +22,8 @@ module.exports = {
 
 
  findLayers: function(query) {
-   return request({ url: GIS_URL + encodeURIComponent(query.q)+"&start="+query.start+'&num='+query.num, type: 'json', method: 'get',  crossOrigin: true} ).fail(logFailure);
+   return request({ url: GIS_URL + encodeURIComponent(query.q)+"&start="+query.start+'&num='+query.num, type: 'json', method: 'get', 
+    crossOrigin: true} ).fail(logFailure);
 }
 
 };
