@@ -24,7 +24,7 @@ module.exports  = React.createClass({
 	
 	 getInitialState: function() {
 	    return {
-	    	query:{num:100},
+	    	query:{num:20},
 	    };
 	  },
 
