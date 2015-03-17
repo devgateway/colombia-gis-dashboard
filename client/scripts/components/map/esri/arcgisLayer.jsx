@@ -9,7 +9,7 @@ function createMapService(layer){
 };
 
 function createFeatureService(layer){
-  debugger;
+  
   return   L.esri.featureLayer(layer.url+'/0', { opacity : 0.25 });
 };
 
@@ -23,7 +23,7 @@ var Layer =React.createClass({
 
 
   onLayerCreated:function(){
-    debugger;
+    
     if (this.props.onLayerCreated){
       this.props.onLayerCreated(this.layer);
     }
@@ -52,7 +52,7 @@ module.exports  = React.createClass({
 
   mixins: [ Reflux.connect(ArcgisLayerStore, 'arcGisLayers')],
   componentWillMount:function(){
-    debugger;
+    
   },
 
   addToMap:function(layer){

@@ -5,6 +5,12 @@ function createPoint(obj){
 		return  {'type': 'Feature','properties': obj,'geometry': {'type': 'Point','coordinates': [obj.longitude,obj.latitude]}};
 }
 
+
+function logFailure(err, message) {
+  console.error(message);
+  console.error(err);
+}
+
 module.exports = {	
 	/*
 	Interate over a simple array of elements and convert them into a GeoJson format.

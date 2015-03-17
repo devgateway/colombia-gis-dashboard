@@ -4,6 +4,7 @@ var api = require('../api/layers.js');
 
 var searchOnArcGis = Reflux.createAction({ asyncResult: true });
 	searchOnArcGis.listenAndPromise(api.findLayers);
+
 var addLayerToMap=Reflux.createAction();
 
 module.exports = {

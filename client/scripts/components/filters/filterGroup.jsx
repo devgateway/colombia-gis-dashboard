@@ -39,7 +39,7 @@ var FilterGroup = React.createClass({
     _searchKeyUp: function(ev) {
         var value = $(ev.target).val();
         var length = value.length;
-        debugger;
+        
         // filter the items only if we have at least 3 characters
         if (length > 2 || ev.keyCode == 13) {
             this._filterByKeyword(value);

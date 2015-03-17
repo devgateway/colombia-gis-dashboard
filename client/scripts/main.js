@@ -5,10 +5,11 @@ var Router = require('react-router');
 
 var router = require('./router.jsx');
 
+var ESRI_CLIENT_ID='Lcs7MzyMULXvbqEB';
 
 
 var options ={ 
-	lng: "en" ,  
+	lng: 'en' ,  
 	resGetPath: './locales/__lng__/__ns__.json',
 	setJqueryExt: false,
 	preload: ['es', 'en']

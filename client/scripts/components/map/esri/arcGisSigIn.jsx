@@ -28,11 +28,11 @@ function oauth(callback) {
 
 module.exports  = React.createClass({
   componentWillMount:function(){
-    debugger;
+    
   },
 
   render: function() {
-     debugger;
+     
     return (
         <div className="arcgis-sig-in">
         <button onClick={oauth()}>AGOL LogIn</button>

@@ -20,10 +20,6 @@
  var GeoJsonLayer=require('./GeoJsonLayer.jsx');
 
 
- var ArcGisLayers=require('./esri/arcgisLayer.jsx'); 
- var ArcGisSigIn=require('./esri/arcGisSigIn.jsx');
-
-
  module.exports = React.createClass({
 
   mixins: [ Reflux.connect(MapStore, 'mapStatus'), Reflux.connect(LayersStore, 'layerData')],
@@ -64,14 +60,10 @@
 
    return (
     <div>
-
-
-    <LeafletMap   ref="leafletMapComponent" baseMap={baseMap} bounds={bounds} onMapMove={this.updateCurrentBounds} />
-    <GeoJsonLayer getMap={this.getMap} features={this.state.layerData.features}></GeoJsonLayer>
-    <ArcGisLayers getMap={this.getMap}></ArcGisLayers>
-
-
-    {children} </div>
+         <LeafletMap   ref="leafletMapComponent" baseMap={baseMap} bounds={bounds} onMapMove={this.updateCurrentBounds} />
+         <GeoJsonLayer getMap={this.getMap} features={this.state.layerData.features}></GeoJsonLayer>
+          {children} 
+      </div>
     );
  }
 });
