@@ -17,6 +17,7 @@ var FilterItem = React.createClass({
  
 
     render: function() {
+        var childSelCount = "("+this.props.childSelCount+")";
         return(
             <div>
                 <span className="select">
@@ -27,7 +28,8 @@ var FilterItem = React.createClass({
                         value={this.props.id} />
                     
                 </span> 
-                {this.props.name}                
+                {this.props.name} 
+                {childSelCount}
             </div>
         );
     }

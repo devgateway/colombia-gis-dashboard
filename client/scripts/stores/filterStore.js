@@ -55,6 +55,11 @@ module.exports=Reflux.createStore({
         this.output();
     },
 
+    onChangeAllFilterItemState:function(filterType, value){
+        this.state[filterType].map(function(it){it.selected = value});
+        this.output();
+    },
+
     onTriggerFilterApply:function(reset){
         var self = this;
         var filters = FilterMap.filters;

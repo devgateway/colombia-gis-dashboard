@@ -6,7 +6,7 @@ var Reflux = require('reflux');
 var Link = Router.Link;
 var FilterActions = require('../../actions/filterActions.js');
 
-var FilterItem = React.createClass({
+var FilterButtons = React.createClass({
 
     _onClickApply: function(event) {     
         FilterActions.triggerFilterApply();
@@ -27,4 +27,4 @@ var FilterItem = React.createClass({
     }
 });
 
-module.exports = FilterItem;
+module.exports = FilterButtons;

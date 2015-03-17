@@ -10,6 +10,7 @@ var FilterItemList = require('./filterItemList.jsx');
 var FilterActions = require('../../actions/filterActions.js');
 var FilterMap = require('./filterMap.js');
 var KeywordSearch = require('./keywordSearch.jsx');
+var AllNoneSelector = require('./allNoneSelector.jsx');
 
 var FilterGroup = React.createClass({
  
@@ -29,22 +30,9 @@ var FilterGroup = React.createClass({
                 item.hide = false;
             });
         }
-        return items;  
+        this.forceUpdate();
     },
 
-    _searchKeyUp: function(ev) {
-        var value = $(ev.target).val();
-        var length = value.length;
-        // filter the items only if we have at least 3 characters
-        if (length > 2 || ev.keyCode == 13) {
-            this._filterByKeyword(value);
-            this.forceUpdate();
-        } else {
-            this._filterByKeyword();
-            this.forceUpdate();
-        }
-    },
-    
     componentWillMount :function(){ 
         FilterActions.getListFromAPI(this.props.filterDefinition);          
     },
@@ -62,17 +50,14 @@ var FilterGroup = React.createClass({
         return(
             <div className="filter-group-panel selected">
                 <div className="filter-group-panel-header">
-                    <span className="panel-count">1</span>
                     <span className="filter-count">{selectCount}</span>
                     <span className="filter-label" role="label">Level Selections</span>
-                    <div className="filter-selectors">
-                        <span><a href="#">select all</a></span> / <span><a href="#">diselect all</a></span>
-                    </div>
+                    <AllNoneSelector filterType={filterType}/>                                                
                 </div>
                 
-                <KeywordSearch onKeyUp={this._searchKeyUp}/>
+                <KeywordSearch onSearch={this._filterByKeyword}/>
                     
-                <FilterItemList items={items} filterType={filterType} onItemChanged={this._onItemChanged}/>
+                <FilterItemList items={items} filterDefinition={this.props.filterDefinition} onItemChanged={this._onItemChanged}/>
                 
             </div>
             );  
