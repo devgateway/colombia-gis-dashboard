@@ -1,0 +1,41 @@
+// activity navigation
+.activity-nav {
+  @include clearfix;
+  overflow: hidden;
+  margin: $gutter 0 $gutter/2;
+}
+.activity-label {
+  @extend .map-panel-label;
+  @include floatLeft;
+  margin-right: $gutter;
+}
+nav.activities {
+  height: 30px;
+}
+ul.activities {
+  @extend .basemap-list;
+  li {
+    font-size: 1.2rem;
+    a {
+      color: lighten($grey, 25%);
+      line-height: 80%;
+      padding: 0;
+      &:hover {
+        background: none;
+        border: none;
+        outline: none;
+        line-height: 85%;
+        padding-left: 1px;
+        padding-right: 1px;
+      }
+    }
+    &.active a {
+      background: none;
+      outline: none;
+      line-height: 75%;
+      &:hover {
+        padding: 0;
+      }
+    }
+  }
+}

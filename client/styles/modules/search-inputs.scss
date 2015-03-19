@@ -1,0 +1,32 @@
+//start: text search box
+.text-search-wrapper {
+  @include clearfix;
+  @include transitionAll;
+  background: $white;
+  border: 1px solid lighten( $grey, 50% );
+  margin-top: $gutter;
+  &:hover {
+    border: 1px solid lighten( $blue, 20% );
+  }
+  input[type=text] {
+    border: none;
+    outline: none;
+    width: 95%;
+    padding: 0.3em;
+  }
+}
+.search-box {
+  background: $white;
+}
+.search-button {
+  @include floatLeft;
+  button {
+    -webkit-appearance: none;
+    webkit-appearance: caret;
+    border: none;
+    background: none;
+    width: 30px;
+    height: 30px;
+  }
+}
+// end: text search box

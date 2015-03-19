@@ -1,0 +1,18 @@
+// start: tab panel- search box,filters, activity nav
+.tab-panel {
+  // wrapps the content pane of each tab
+  @include clearfix;
+  margin-bottom: $gutter;
+}
+.tab-content {
+  ul {
+    list-style: none;
+  }
+  input[type="checkbox"],
+  input[type="radio"] {
+    margin-right: 8px;
+  }
+  span.btn {
+    padding: 0;
+  }
+}

@@ -1,0 +1,40 @@
+// start: panel tabs
+nav.tab-navigation,
+nav.tabs {
+  @include clearfix;
+  margin: $gutter 0;
+  overflow: auto;
+  padding: 0;
+}
+.nav-tabs {
+  border-bottom: none;
+  margin-bottom: 1px;
+}
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus {
+  color: saturate(lighten($blue, 1), 20);
+  background: none;
+  border: 1px solid transparent;
+}
+.tabs>li {
+  @include floatLeft;
+  @include textCenter;
+  @include textUppercase;
+}
+.tabs>li a {
+  padding: 8px 20px;
+  color: lighten($grey,20%);
+  border: 1px solid lighten($grey,50%);
+  background: lighten($grey,58%);
+  font-size: 1.3rem;
+  outline: none;
+  @include border-radius(1px);
+  @include transitionAll;
+  &:hover {
+    color: saturate(lighten($blue, 1), 20);
+    border: 1px solid transparent;
+    background: none;
+  }
+}
+// end:panel tabs

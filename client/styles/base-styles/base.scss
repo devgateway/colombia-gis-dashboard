@@ -1,0 +1,128 @@
+//variables
+$black: #000000;
+$bgBlack:#242a2d;
+$grey:#454545;
+$green: #98ca68;
+$blue: #4d749f;
+$bgblue:#74a4d6;
+$white: #ffffff;
+$gutter: 1em;
+$base-font-family: 'Open Sans', sans-serif;
+$base-line-height: 110%;
+
+//mixins
+@mixin bgLayout{background-color: rgba(0,0,0,0.7);}
+@mixin topbottomContainer{padding-left:$gutter*3;width:100%;} //inner container widths in header and footer
+@mixin floatLeft{ float:left;}
+@mixin floatRight{ float:right;}
+@mixin clearfix{ clear:both;}
+@mixin textMedium{font-size:1.5rem}
+@mixin textLarge{font-size:1.8rem}
+@mixin textBold{font-weight:bold}
+@mixin textUppercase{text-transform: uppercase}
+@mixin textCenter{text-align:center}
+@mixin opacityHigh{opacity: 0.8}
+@mixin listUnstyled{ padding-left:0; list-style:none}
+
+// opacity transition
+@mixin transitionOpacity {
+  -webkit-transition: opacity 600ms ease;
+  -moz-transition: opacity 600ms ease;
+  -o-transition: opacity 600ms ease;
+  transition: opacity 600ms ease;
+}
+// color transition
+@mixin transitionColor {
+  -webkit-transition: color 600ms ease;
+  -moz-transition: color 600ms ease;
+  -o-transition: color 600ms ease;
+  transition: color 600ms ease;
+}
+// transition for all
+@mixin transitionAll {
+  -webkit-transition: all 600ms ease;
+  -moz-transition: all 600ms ease;
+  -o-transition: all 600ms ease;
+  transition: all 600ms ease;
+}
+
+@mixin transitionSliderOn{
+  -webkit-transition: width 1s ease; /* For Safari 3.1 to 6.0 */
+  -moz-transition: width 1s ease;
+  -o-transition: width 1s ease;
+  transition: width 1s;
+    width: 700px;
+}
+
+@mixin transitionSliderOff{
+  -webkit-transition: width 1s ease; /* For Safari 3.1 to 6.0 */
+  -moz-transition: width 1s ease;
+  -o-transition: width 1s ease;
+  transition: width 1s ease;
+  width: 0px;
+}
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  border-radius: $radius;
+  background-clip: padding-box;  /* stops bg color from leaking outside the border: */
+}
+
+@mixin button {
+  display: inline-block;
+  width: auto;
+  height: auto;
+  cursor: pointer;
+  padding: 4px 55px;
+  margin: 10px 0 10px 10px;
+  @include textCenter;
+  @include textUppercase;
+  @include transitionAll;
+}
+
+body{
+  color:$grey;
+  font-family:$base-font-family;
+  overflow-x: hidden!important;
+  font-size: 15px;
+  font-size: 1.5rem;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100%;
+}
+
+a{
+  text-decoration:none;
+  &:hover{text-decoration:none;}
+}
+
+
+// icons
+.fa{
+  display:inline-block;
+}
+
+i.fa.fa-bars{
+  color: $white;
+  @include textLarge;
+  &:hover{
+    color:#74a4d6;
+  }
+}
+
+i.fa.fa-globe{
+  color:saturate(darken($blue, 16), 20);
+  margin-right: $gutter/2;
+  @include textLarge;
+}
+
+i.fa.fa-search{
+  color: lighten($blue,20%);
+  font-size:16px;
+  margin-top:2px;
+  &:hover{color: darken($blue, 10%);
+  }
+}
+
+.glyphicon.glyphicon-chevron-right{
+  margin-right:5px;
+}
