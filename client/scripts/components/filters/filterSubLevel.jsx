@@ -33,6 +33,41 @@ var FilterItem = React.createClass({
         }
     },
 
+    _filterByParent: function (list, parent, parentParamField) {
+        return list.filter(function (item){
+            return (parent.id == item[parentParamField])
+            });
+    },
+
+    _hasSelected: function(items) {
+        var ret = false;
+        items.map(function(it){
+            if (it.selected){
+                ret = true;
+            }
+        });
+        return ret
+    },
+
+    _renderList: function(items, filterDefinition) {
+        var parentList = FilterStore.getAllSelected(filterDefinition.parentParam).length==0 || this.showOnlySelected? 
+                        FilterStore.getAll(filterDefinition.parentParam) : 
+                        FilterStore.getAllSelected(filterDefinition.parentParam);
+        var self = this;
+        if (filterDefinition.parentParam){//if has parent, then render the list separated by parent an with the parentName at top
+            return parentList.map(function (parent){
+                        var list = self._filterByParent(items, parent, filterDefinition.parentParamField);
+                        if (!self.showOnlySelected || (self.showOnlySelected && self._hasSelected(list))){
+                        return <div>
+                                <FilterItemList parentName={parent.name} items={list} filterDefinition={filterDefinition} showOnlySelected={self.showOnlySelected}/>
+                            </div>
+                        }
+                    });
+        } else {
+            return (<FilterItemList items={items} filterDefinition={filterDefinition} showOnlySelected={self.showOnlySelected}/>);    
+        }
+    },
+
     render: function() {
         var filterDefinition = this.props.filterDefinition; 
         var items = this.props.items;
@@ -45,8 +80,8 @@ var FilterItem = React.createClass({
                     <SelectionCounter selected={FilterStore.getAllSelected(filterDefinition.param).length} total={items.length} onCounterClicked={this._onCounterClicked}/>
                     <span className="filter-label" role="label">{filterDefinition.label}</span>
                     <AllNoneSelector filterType={filterDefinition.param}/>                                                
-                </div>    
-                <FilterItemList items={items} filterDefinition={filterDefinition} showOnlySelected={this.showOnlySelected}/>
+                </div> 
+                {this._renderList(items, filterDefinition)}
             </div>
         );
     }

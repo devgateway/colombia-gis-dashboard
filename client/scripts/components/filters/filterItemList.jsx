@@ -26,8 +26,10 @@ var FilterItemList = React.createClass({
         var items = this.props.items;  
         var filterType = this.props.filterDefinition.param;  
         var self = this;
+        var parentName = this.props.parentName;
         return(
             <div className="filter-list-container">
+                {parentName? parentName : ""}
                 <ul className="filter-list">
                     {
                         items.map(function(item){ 
