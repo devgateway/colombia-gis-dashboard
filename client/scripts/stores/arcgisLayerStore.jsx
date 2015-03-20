@@ -2,41 +2,54 @@
 
 var assign = require('object-assign');
 var Reflux = require('reflux');
-var ArcgisLoginActions = require('../actions/arcgisLoginActions.js');
+var ArcgisLayersActions = require('../actions/arcgisLayersActions.js');
 var Util= require('../api/util.js');
-
-
+var API=require('../api/layers.js');
+var _ = require('lodash');
 module.exports = Reflux.createStore({
 
-	listenables: ArcgisLoginActions,
+	listenables: ArcgisLayersActions,
 
-	onSearchOnArcGisCompleted:function(data){
-		console.log(data);
+	onSearchCompleted:function(data){
+		console.log("... onSearchOnArcGisCompleted .... ");
 		if (data){
 			this.update({all:data.results});
 		}
 	},
 
+	onSearch:function(query){
+		API.findLayers(query).then(function(data){
+			ArcgisLayersActions.search.completed(data)
+		}).fail(function(){
+			console.log('Error loading data ...');
+		})
+	},
 
+	onChangeVisibility:function(){
+		
+		this.trigger(this.state);
+	},
 
 	onAddLayerToMap:function(servideMetadata){
 		this.loadLayer(servideMetadata);
 	},
 
 
-	loadLayer:function(servideMetadata){
-		Util.request(servideMetadata.url).fail(function(err, message){
+	loadLayer:function(serviceMetadata){
+		Util.request(serviceMetadata.url).fail(function(err, message){
 		//check if failed due to login redirect 
 			if (arguments[0].responseURL.indexOf('login') > - 1){ // TOOD: Find a better way!
-				servideMetadata.loginRequired=true;
+				assign(serviceMetadata,{'loginRequired':true});
 				this.trigger(this.state);
 			}else{
 				console.log(message);
 			}
 
 		}.bind(this)).then(function(service){
+			
 			if ( !_.findWhere(this.state.services,service) ){
-						assign(service,{metadata:servideMetadata,defaultVisibility:true}); //adding metadata and default visibility
+						assign(service,{metadata:serviceMetadata,defaultVisibility:true}); //adding metadata and default visibility
+						assign(service,{'added':true});
 						this.addService(service);
 					}
 				}.bind(this));      
@@ -48,11 +61,11 @@ module.exports = Reflux.createStore({
 	},
 
 	onToggleLayerVisibility:function(){
-		alert("onToggleLayerVisibility");
+		this.trigger(this.state)
 	},
 
 	onRemoveLayer:function(){
-		alert("onRemoveLayer");
+		//find layer remove and trigger
 	},
 
 	update: function(assignable, options) {
@@ -64,10 +77,10 @@ module.exports = Reflux.createStore({
 	},
 
 	getInitialState: function() {
-		return (this.state = {
-			services:[],
-			all:[]
-		});
+		if (!this.state){
+			this.state={services:[],all:[]};
+		}	
+		return this.state;
 	}
 
 });

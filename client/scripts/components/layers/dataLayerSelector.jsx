@@ -5,13 +5,17 @@ var Reflux = require('reflux');
 var Link = require('react-router').Link;
 var LayersAction=require('../../actions/layersAction.js')
 var Message=require('../lanMessage.jsx');
+
+
 module.exports  = React.createClass({
 
 	showByDepartment:function(){
+		console.log('showByDepartment');
 		LayersAction.loadActivitiesByDepartments();
 	},
 
 	showByMunicipality:function(){
+		console.log('showByMunicipality');
 		LayersAction.loadActivitiesByMuncipalities();
 	},
 

@@ -11,13 +11,10 @@ module.exports =React.createClass({
   	},
 
 	toggle:function(){
-
 		this.props.expanded=( !this.props.expanded);
 	  	this.forceUpdate();
 	},
 
-
-	
 	handleVisbility:function(){
 		this.props.service.defaultVisibility=(!this.props.service.defaultVisibility);
 		this.updateAll(this.props.service.defaultVisibility);
@@ -40,6 +37,7 @@ module.exports =React.createClass({
 
 	render: function() {
 		var service=this.props.service;
+		
 		var layers=this.props.service.layers;
 		return (
 				<div>
@@ -47,7 +45,7 @@ module.exports =React.createClass({
 						<li>
 							<input name={service.metadata.id} onChange={this.handleVisbility} type="checkbox" checked={this.props.service.defaultVisibility}/> 
 							<span onClick={this.toggle} className="clickeable">
-								{service.metadata.title}  
+								{service.metadata.title} ({service.metadata.type})  ( {service.singleFusedMapCache?service.singleFusedMapCache.toString():''})
 							</span>
 							<span>
 								&nbsp;<i onClick={this.toggle} className={this.props.expanded?"fa small fa-minus-circle":"fa small fa-plus-circle"}></i>

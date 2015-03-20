@@ -5,13 +5,23 @@ var assign = require('object-assign');
 var Reflux = require('reflux');
 var LayersAction = require('../actions/layersAction.js');
 var Util= require('../api/util.js');
+var API=require('../api/layers.js');
 
 module.exports = Reflux.createStore({
 
   listenables: LayersAction,
 
   
-
+  onLoadActivitiesByDepartments:function(){
+    debugger;
+    api.getActivitiesByDepartment().then(
+      function(data){
+        LayersAction.loadActivitiesByDepartments.completed(data);
+      }
+      ).fail(function(){
+      console.log('Error loading data ...');
+    })
+  },
   onLoadActivitiesByDepartmentsCompleted:function(data){
      this.update({features:Util.toGeoJson(data)});
   },

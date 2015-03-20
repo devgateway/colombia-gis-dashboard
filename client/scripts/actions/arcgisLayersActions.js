@@ -2,12 +2,13 @@
 var Reflux = require('reflux');
 var api = require('../api/layers.js');
 
-var searchOnArcGis = Reflux.createAction({ asyncResult: true });
-	searchOnArcGis.listenAndPromise(api.findLayers);
 
+var search=Reflux.createAction({ asyncResult: true });
 var addLayerToMap=Reflux.createAction();
+var changeVisibility=Reflux.createAction();
 
 module.exports = {
-	searchOnArcGis:searchOnArcGis,
-	addLayerToMap:addLayerToMap
+	addLayerToMap:addLayerToMap,
+	changeVisibility:changeVisibility,
+	search:search
 };
