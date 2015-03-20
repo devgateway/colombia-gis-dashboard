@@ -49,8 +49,25 @@ var filters = [
         }
 
       ];
-      
+     
+var getFilterDefinitionByParam = function (param){
+    var ret = {};
+    this.filters.map(function (filterDefinition){
+      if (filterDefinition.param && filterDefinition.param == param){
+        ret = filterDefinition;
+      } else if (filterDefinition.subLevels) {
+        filterDefinition.subLevels.map(function (fd){
+          if (fd.param && fd.param == param){
+            ret = fd;
+          }
+        });
+      }
+    });
+    return ret;
+};     
+
 module.exports = {
-  filters: filters
+  filters: filters,
+  getFilterDefinitionByParam: getFilterDefinitionByParam
 };
 

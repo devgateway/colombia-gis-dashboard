@@ -33,34 +33,6 @@ var Filter  = React.createClass({
             <FilterActionButton/>
           </div>
         );
-        /*if ($('.m-scooch').length>0){
-          debugger;
-          $('.m-scooch').scooch();
-        }
-        return(
-            <div className="m-scooch m-center m-scaled m-fade-out">
-              <div className="m-scooch-inner">
-                {
-                  filters.map(function(filterDefinition){
-                    if (!filterDefinition.subLevels){
-                      var label = filterDefinition.label;
-                      return  <div className="m-item">
-                                <div className="">
-                                  <FilterGroup filterDefinition={filterDefinition} />
-                                </div>
-                              </div> 
-                    }
-                  })
-                }  
-              </div>                   
-              <div className="m-scooch-controls ">
-                <a href="#" data-m-slide="prev">‹ Previous -</a>
-                <a href="#" data-m-slide  ="next">- Next ›</a>                
-              </div>              
-            </div>
-
-          ); */
-       
         
     }
 });

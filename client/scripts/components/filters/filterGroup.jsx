@@ -11,9 +11,16 @@ var FilterActions = require('../../actions/filterActions.js');
 var FilterMap = require('./filterMap.js');
 var KeywordSearch = require('./keywordSearch.jsx');
 var AllNoneSelector = require('./allNoneSelector.jsx');
+var SelectionCounter = require('./selectionCounter.jsx');
 
+var showOnlySelected = false;
 var FilterGroup = React.createClass({
  
+    _onCounterClicked: function(selected) {     
+        this.showOnlySelected = selected;
+        this.forceUpdate();
+    },
+
     _filterByKeyword: function (keyword) {
         var items;
         if (keyword) {
@@ -37,28 +44,19 @@ var FilterGroup = React.createClass({
         FilterActions.getListFromAPI(this.props.filterDefinition);          
     },
 
-    _onItemChanged: function(filterType, id, value) {    
-        FilterActions.changeFilterItemState(filterType, id, value);     
-    },
-
     render: function() {
-        var filterType = this.props.filterDefinition.param;
-        var items = FilterStore.getAll(filterType) || [];  
+        var filterDefinition = this.props.filterDefinition;
+        var items = FilterStore.getAll(filterDefinition.param) || [];  
         var self = this;
-        var selectCount = "[" + FilterStore.getAllSelected(filterType).length + "/" + items.length + "]";                    
-        
         return(
             <div className="filter-group-panel selected">
                 <div className="filter-group-panel-header">
-                    <span className="filter-count">{selectCount}</span>
-                    <span className="filter-label" role="label">Level Selections</span>
-                    <AllNoneSelector filterType={filterType}/>                                                
-                </div>
-                
-                <KeywordSearch onSearch={this._filterByKeyword}/>
-                    
-                <FilterItemList items={items} filterDefinition={this.props.filterDefinition} onItemChanged={this._onItemChanged}/>
-                
+                    <SelectionCounter selected={FilterStore.getAllSelected(filterDefinition.param).length} total={items.length} onCounterClicked={this._onCounterClicked}/>
+                    <span className="filter-label" role="label">{this.props.filterDefinition.label}</span>
+                    <AllNoneSelector filterType={filterDefinition.param}/>                                                
+                </div>                
+                <KeywordSearch onSearch={this._filterByKeyword}/>                    
+                <FilterItemList items={items} filterDefinition={this.props.filterDefinition} showOnlySelected={this.showOnlySelected}/>                
             </div>
             );  
         

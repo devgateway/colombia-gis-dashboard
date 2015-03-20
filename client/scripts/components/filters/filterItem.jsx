@@ -17,7 +17,7 @@ var FilterItem = React.createClass({
  
 
     render: function() {
-        var childSelCount = "("+this.props.childSelCount+")";
+        var childSelCount = "  ("+this.props.childSelCount+")";
         return(
             <div>
                 <span className="select">

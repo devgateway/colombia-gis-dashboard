@@ -6,9 +6,9 @@ var Link = Router.Link;
 var FilterStore=require('../../stores/filterStore.js')
 var FilterItemList = require('./filterItemList.jsx');
 var FilterActions = require('../../actions/filterActions.js');
-var FilterMap = require('./filterMap.js');
 var KeywordSearch = require('./keywordSearch.jsx');
 var AllNoneSelector = require('./allNoneSelector.jsx');
+var FilterSubLevel = require('./filterSubLevel.jsx');
 
 var FilterGroup = React.createClass({
  
@@ -39,35 +39,21 @@ var FilterGroup = React.createClass({
         this.forceUpdate();
     },
    
-    _filterByParentSelected: function (list, parent, parentParamField) {
-        var parentSelected = FilterStore.getAllSelected(parent);
-        var selIds = [];
-        parentSelected.map(function (item){
-            selIds.push(item.id);
-        });
-        if (!selIds || selIds.length==0){
-            return list;
-        } else {
-            return list.filter(function (item){
-                return (selIds.indexOf(item[parentParamField]) != -1)
-                });
-        }
-    },
-
-    componentWillMount :function(){
+    componentWillMount: function(){
         this.props.filterDefinition.subLevels.map(function(filterDefinition){ 
             FilterActions.getListFromAPI(filterDefinition); 
         });        
     },
 
-    _onItemChanged: function(filterType, id, value) {    
-        FilterActions.changeFilterItemState(filterType, id, value);                
+    componentDidMount: function(){
+        $('.m-scooch').scooch();      
     },
-   
+
+    _forceUpdate: function(){
+        this.forceUpdate();       
+    },
+
     render: function() {
-        if ($('.m-scooch').length>0){
-          $('.m-scooch').scooch();
-        }
         var self = this;
         return(
             <div className="filter-group-panel selected">
@@ -77,19 +63,9 @@ var FilterGroup = React.createClass({
                         {
                             this.props.filterDefinition.subLevels.map(function(filterDefinition, index){
                                 var items = FilterStore.getAll(filterDefinition.param) || []; 
-                                items = self._filterByParentSelected(items, filterDefinition.parentParam, filterDefinition.parentParamField);
-                                var selectCount = "[" + FilterStore.getAllSelected(filterDefinition.param).length + "/" + items.length + "]"; 
-                                return <div className="m-item">
-                                        <div className="filter-group-sublevel">
-                                            <div className="filter-group-panel-header">
-                                                <span className="panel-count">{index+1}</span>
-                                                <span className="filter-count">{selectCount}</span>
-                                                <span className="filter-label" role="label">{filterDefinition.label}</span>
-                                                <AllNoneSelector filterType={filterDefinition.param}/>                                                
-                                            </div>    
-                                            <FilterItemList items={items} filterDefinition={filterDefinition} onItemChanged={self._onItemChanged}/>
-                                        </div>
-                                    </div>;
+                                return  <div className="m-item">
+                                            <FilterSubLevel items={items} filterDefinition={filterDefinition} position={index+1} />                                        
+                                        </div>;
                             })
                         }  
                     </div>                   

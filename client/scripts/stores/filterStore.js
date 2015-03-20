@@ -51,12 +51,32 @@ module.exports=Reflux.createStore({
     },
     
     onChangeFilterItemState:function(filterType, id, value){
+        var filterDefinition = FilterMap.getFilterDefinitionByParam(filterType);
+        var childFilterDefinition = FilterMap.getFilterDefinitionByParam(filterDefinition.childParam);
+        if (childFilterDefinition){ //if the item is partialy selected (some child selected) then unselect children
+            if (this.getAllSelected(childFilterDefinition.param).filter(function(it){return it[childFilterDefinition.parentParamField]==id}).length>0){
+                this.getAllSelected(childFilterDefinition.param).filter(function(it){return it[childFilterDefinition.parentParamField]==id}).map(function (it){
+                    it.selected = false
+                });
+            }            
+        }
         this.state[filterType].filter(function(it){return it.id==id})[0].selected = value;
         this.output();
     },
 
     onChangeAllFilterItemState:function(filterType, value){
-        this.state[filterType].map(function(it){it.selected = value});
+        var filterDefinition = FilterMap.getFilterDefinitionByParam(filterType);
+        var self = this;
+        this.state[filterType].map(function(it){
+            if (filterDefinition.parentParam){//if has a parent selected, then select only all children for that selection
+                if (self.getAllSelected(filterDefinition.parentParam).length==0 ||
+                    (self.getItem(filterDefinition.parentParam, it[filterDefinition.parentParamField])[0].selected == true)){
+                        it.selected = value;
+                }
+            } else {
+                it.selected = value;
+            }
+        });
         this.output();
     },
 
