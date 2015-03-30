@@ -4,6 +4,7 @@
 var assign = require('object-assign');
 var Reflux = require('reflux');
 var FilterActions = require('../actions/filterActions.js');
+var LayerActions = require('../actions/layersAction.js');
 var FilterMap = require('../components/filters/filterMap.js');
 
 module.exports=Reflux.createStore({
@@ -120,7 +121,8 @@ module.exports=Reflux.createStore({
             }            
         });
         this.state.filtersSelected = filtersSelected;
-        alert("Filters Applied: "+ JSON.stringify(this.state.filtersSelected));
+        LayerActions.triggerFilterApply(this.state.filtersSelected);
+        //alert("Filters Applied: "+ JSON.stringify(this.state.filtersSelected));
         this.output();
     },
 

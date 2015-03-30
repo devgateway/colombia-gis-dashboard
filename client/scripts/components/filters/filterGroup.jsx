@@ -48,6 +48,7 @@ var FilterGroup = React.createClass({
         var filterDefinition = this.props.filterDefinition;
         var items = FilterStore.getAll(filterDefinition.param) || [];  
         var self = this;
+        debugger;
         return(
             <div className="filter-group-panel selected">
                 <div className="filter-group-panel-header">
@@ -55,8 +56,14 @@ var FilterGroup = React.createClass({
                     <span className="filter-label" role="label">{this.props.filterDefinition.label}</span>
                     <AllNoneSelector filterType={filterDefinition.param}/>                                                
                 </div>                
-                <KeywordSearch onSearch={this._filterByKeyword}/>                    
-                <FilterItemList items={items} filterDefinition={this.props.filterDefinition} showOnlySelected={this.showOnlySelected}/>                
+                <KeywordSearch onSearch={this._filterByKeyword}/> 
+                <div className="filter-list-container">                   
+                    <FilterItemList 
+                        onItemChanged={this.props.onItemChanged}
+                        items={items} 
+                        filterDefinition={this.props.filterDefinition} 
+                        showOnlySelected={this.showOnlySelected}/>                
+                </div>
             </div>
             );  
         

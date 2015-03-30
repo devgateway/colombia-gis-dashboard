@@ -58,13 +58,11 @@ var FilterItem = React.createClass({
             return parentList.map(function (parent){
                         var list = self._filterByParent(items, parent, filterDefinition.parentParamField);
                         if (!self.showOnlySelected || (self.showOnlySelected && self._hasSelected(list))){
-                        return <div>
-                                <FilterItemList parentName={parent.name} items={list} filterDefinition={filterDefinition} showOnlySelected={self.showOnlySelected}/>
-                            </div>
+                            return (<FilterItemList onItemChanged={self.props.onItemChanged} parentName={parent.name} items={list} filterDefinition={filterDefinition} showOnlySelected={self.showOnlySelected}/>);
                         }
                     });
         } else {
-            return (<FilterItemList items={items} filterDefinition={filterDefinition} showOnlySelected={self.showOnlySelected}/>);    
+            return (<FilterItemList onItemChanged={self.props.onItemChanged} items={items} filterDefinition={filterDefinition} showOnlySelected={self.showOnlySelected}/>);    
         }
     },
 
@@ -81,7 +79,9 @@ var FilterItem = React.createClass({
                     <span className="filter-label" role="label">{filterDefinition.label}</span>
                     <AllNoneSelector filterType={filterDefinition.param}/>                                                
                 </div> 
-                {this._renderList(items, filterDefinition)}
+                <div className="filter-list-container">
+                    {this._renderList(items, filterDefinition)}
+                </div>
             </div>
         );
     }

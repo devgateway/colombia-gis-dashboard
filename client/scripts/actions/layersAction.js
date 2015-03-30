@@ -8,8 +8,10 @@ var loadActivitiesByDepartments = Reflux.createAction({ asyncResult: true });
 var loadActivitiesByMuncipalities= Reflux.createAction({ asyncResult: true });
 	loadActivitiesByMuncipalities.listenAndPromise(api.getActivitiesByMuncipalities);
 
+var triggerFilterApply = Reflux.createAction();
 
 module.exports = {
+	triggerFilterApply: triggerFilterApply,
 	loadActivitiesByDepartments: loadActivitiesByDepartments,
 	loadActivitiesByMuncipalities:loadActivitiesByMuncipalities,
 };

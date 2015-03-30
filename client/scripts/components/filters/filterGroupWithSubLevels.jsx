@@ -64,7 +64,11 @@ var FilterGroup = React.createClass({
                             this.props.filterDefinition.subLevels.map(function(filterDefinition, index){
                                 var items = FilterStore.getAll(filterDefinition.param) || []; 
                                 return  <div className="m-item">
-                                            <FilterSubLevel items={items} filterDefinition={filterDefinition} position={index+1} />                                        
+                                            <FilterSubLevel 
+                                                onItemChanged={self.props.onItemChanged}
+                                                items={items} 
+                                                filterDefinition={filterDefinition} 
+                                                position={index+1} />                                        
                                         </div>;
                             })
                         }  
