@@ -4,6 +4,7 @@ var Reflux = require('reflux');
 var FilterMap = require('./filterMap.js');
 var FilterStore=require('../../stores/filterStore.js');
 var FilterGroup = require('./filterGroup.jsx');
+var FilterGroupTree = require('./filterGroupTree.jsx');
 var FilterGroupWithSubLevels = require('./filterGroupWithSubLevels.jsx');
 var FilterActionButton = require('./filterActionButton.jsx');
 var TabbedArea = require('react-bootstrap/lib/TabbedArea');
@@ -25,7 +26,11 @@ var Filter  = React.createClass({
     _onClickReset: function(event) {     
         FilterActions.triggerFilterReset();
     },
-
+    
+    _onAllNoneClicked: function(filterType, selected) {
+        FilterActions.changeAllFilterItemState(filterType, selected);  
+    },    
+    
     render: function() {
       var filters = FilterMap.filters;
       var self = this;
@@ -35,9 +40,13 @@ var Filter  = React.createClass({
               {
                 filters.map(function(filterDefinition){
                   if (!filterDefinition.subLevels){
-                    var group = <FilterGroup filterDefinition={filterDefinition} onItemChanged={self._onItemChanged}/>
+                    var group = <FilterGroup filterDefinition={filterDefinition} onItemChanged={self._onItemChanged} onAllNoneClicked={self._onAllNoneClicked}/>
                   } else {
-                    var group = <FilterGroupWithSubLevels filterDefinition={filterDefinition} onItemChanged={self._onItemChanged}/>
+                    if (filterDefinition.showTree){
+                      var group = <FilterGroupTree filterDefinition={filterDefinition} onItemChanged={self._onItemChanged} onAllNoneClicked={self._onAllNoneClicked}/>
+                    } else {
+                      var group = <FilterGroupWithSubLevels filterDefinition={filterDefinition} onItemChanged={self._onItemChanged} onAllNoneClicked={self._onAllNoneClicked}/>
+                    }                    
                   }
                   return <TabPane eventKey={parseInt(filterDefinition.index)} tab={filterDefinition.label}>
                     {group}

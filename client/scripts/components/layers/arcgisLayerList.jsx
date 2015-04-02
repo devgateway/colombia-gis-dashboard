@@ -9,7 +9,6 @@ var ArcgisLayerStore=require('../../stores/arcgisLayerStore.jsx');
 module.exports  = React.createClass({
 
 	componentWillMount: function () {
-    	debugger; 
    	},
 
 	render: function() {

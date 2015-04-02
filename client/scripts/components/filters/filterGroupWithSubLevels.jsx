@@ -7,7 +7,6 @@ var FilterStore=require('../../stores/filterStore.js')
 var FilterItemList = require('./filterItemList.jsx');
 var FilterActions = require('../../actions/filterActions.js');
 var KeywordSearch = require('./keywordSearch.jsx');
-var AllNoneSelector = require('./allNoneSelector.jsx');
 var FilterSubLevel = require('./filterSubLevel.jsx');
 
 var FilterGroup = React.createClass({
@@ -49,10 +48,6 @@ var FilterGroup = React.createClass({
         $('.m-scooch').scooch();      
     },
 
-    _forceUpdate: function(){
-        this.forceUpdate();       
-    },
-
     render: function() {
         var self = this;
         return(
@@ -65,6 +60,7 @@ var FilterGroup = React.createClass({
                                 var items = FilterStore.getAll(filterDefinition.param) || []; 
                                 return  <div className="m-item">
                                             <FilterSubLevel 
+                                                onAllNoneClicked={self.props.onAllNoneClicked}
                                                 onItemChanged={self.props.onItemChanged}
                                                 items={items} 
                                                 filterDefinition={filterDefinition} 

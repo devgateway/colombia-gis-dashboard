@@ -58,11 +58,20 @@ var FilterItem = React.createClass({
             return parentList.map(function (parent){
                         var list = self._filterByParent(items, parent, filterDefinition.parentParamField);
                         if (!self.showOnlySelected || (self.showOnlySelected && self._hasSelected(list))){
-                            return (<FilterItemList onItemChanged={self.props.onItemChanged} parentName={parent.name} items={list} filterDefinition={filterDefinition} showOnlySelected={self.showOnlySelected}/>);
+                            return (<FilterItemList 
+                                        onItemChanged={self.props.onItemChanged} 
+                                        parent={parent} 
+                                        items={list} 
+                                        filterDefinition={filterDefinition} 
+                                        showOnlySelected={self.showOnlySelected}/>);
                         }
                     });
         } else {
-            return (<FilterItemList onItemChanged={self.props.onItemChanged} items={items} filterDefinition={filterDefinition} showOnlySelected={self.showOnlySelected}/>);    
+            return (<FilterItemList 
+                        onItemChanged={self.props.onItemChanged} 
+                        items={items} 
+                        filterDefinition={filterDefinition} 
+                        showOnlySelected={self.showOnlySelected}/>);    
         }
     },
 
@@ -71,13 +80,14 @@ var FilterItem = React.createClass({
         var items = this.props.items;
         items = this._filterByParentSelected(items, filterDefinition.parentParam, filterDefinition.parentParamField); 
         var position = this.props.position; 
+        var self = this;
         return(
             <div className="filter-group-sublevel">
                 <div className="filter-group-panel-header">
                     <span className="panel-count">{position}</span> 
                     <SelectionCounter selected={FilterStore.getAllSelected(filterDefinition.param).length} total={items.length} onCounterClicked={this._onCounterClicked}/>
                     <span className="filter-label" role="label">{filterDefinition.label}</span>
-                    <AllNoneSelector filterType={filterDefinition.param}/>                                                
+                    <AllNoneSelector filterType={filterDefinition.param} onAllNoneClicked={self.props.onAllNoneClicked}/>                                                
                 </div> 
                 <div className="filter-list-container">
                     {this._renderList(items, filterDefinition)}

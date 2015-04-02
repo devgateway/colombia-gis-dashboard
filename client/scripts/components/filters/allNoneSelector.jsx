@@ -1,14 +1,13 @@
 var React = require('react');
-var FilterActions = require('../../actions/filterActions.js');
 
 var AllNoneSelector = React.createClass({
 
     _allSelected: function() {
-        FilterActions.changeAllFilterItemState(this.props.filterType, true);  
+        this.props.onAllNoneClicked(this.props.filterType, true);  
     },    
 
     _noneSelected: function() {  
-        FilterActions.changeAllFilterItemState(this.props.filterType, false);  
+        this.props.onAllNoneClicked(this.props.filterType, false);  
     },
 
     render: function() {
