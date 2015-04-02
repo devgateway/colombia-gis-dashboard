@@ -14,58 +14,55 @@ var ArcgisLayerStore=require('../../stores/arcgisLayerStore.jsx');
 module.exports  = React.createClass({
 
 	mixins: [Reflux.connect(ArcgisLayerStore, 'arcgisState'),Reflux.connect(EsriLoginStore, 'loginState')],
-
+	
 	componentWillMount:function(){
-		
+		console.log('layers->layerControls: componentWillMount ');	
+
 	},
 	componentDidMount: function() {
-		
-        //this.unsubscribe = ArcgisLayerStore.listen(this.onStatusChange);
+		console.log('layers->layerControls: componentDidMount ');
     },
     componentWillUnmount: function() {
-    	
-        //this.unsubscribe();
+    	console.log('layers->layerControls: componentWillUnmount ');
     },
+
 
 
     onAddLayer: function(service){
-    	ArcgisLayersActions.addLayerToMap(service);
+    	ArcgisLayersActions.loadLayer(service);
     },
 
 
     onSearch:function(val){
-		console.log('Search layers with keyword '+val); //
-		this.state.query.q='("'+val+'") AND access:public AND (type:"Feature Service" OR  type:"Map Service" OR type:"Image Service")';
-		ArcgisLayersActions.search(this.state.query);
+		ArcgisLayersActions.search(val);
 	},
 	
-	getInitialState: function() {
-		return {
-			query:{num:400,sortField:"title"},
-		};
-	},
 
 	updateVisiblity:function(){
+
 		ArcgisLayersActions.changeVisibility();
 	},
 
 	
 	render: function() {
 		var store=ArcgisLayerStore;
-		console.log('layers layerControls -- Render')
+		console.log('layers->layerControls: rendering');
 		var all=this.state.arcgisState.all || [];
 		var services=this.state.arcgisState.services || [];
 		var token=this.state.loginState.token || "";
+		var error=this.state.arcgisState.error;
+	
+		return ( 
 
-		return (  
 			<TabbedArea defaultActiveKey={1}>
 			<TabPane eventKey={1} tab="Map Layers">
 			<DataLayerSelector/>   
-			<LayerList services={services}  onChange={this.updateVisiblity}/>   
+				<LayerList services={services}  onChange={this.updateVisiblity}/>   
 			</TabPane>
 			
 			<TabPane eventKey={2} tab="Find External Layers">
-			<Search onAddLayer={this.onAddLayer} onSearch={this.onSearch} token={token}  services={all}  {...this.props}/>    
+			
+				<Search onAddLayer={this.onAddLayer} onSearch={this.onSearch} token={token}  error={error} services={all}  {...this.props}/>    
 			</TabPane>
 
 			</TabbedArea>

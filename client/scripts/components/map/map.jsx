@@ -14,6 +14,7 @@
  
 
  var MapLayers=require('./layers/esriLayers.jsx');
+ var AGOLbtnLogin=require('../AGOLBtnLogin.jsx');
 
  module.exports = React.createClass({
 
@@ -40,7 +41,7 @@
 
 
   componentWillMount :function(){
-    //  MapActions.loadActivitiesByDepartments();
+  
   },    
 
 
@@ -56,6 +57,7 @@
    return (
      <div>
          <MapLayers getMap={this.getMap}/>
+         <AGOLbtnLogin/>
          <LeafletMap ref="leafletMapComponent" baseMap={baseMap} bounds={bounds} onMapMove={this.updateCurrentBounds} />
           {children} 
       </div>

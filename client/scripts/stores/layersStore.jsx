@@ -13,13 +13,13 @@ module.exports = Reflux.createStore({
 
   
   onLoadActivitiesByDepartments:function(){
-    debugger;
+    
     api.getActivitiesByDepartment().then(
       function(data){
         LayersAction.loadActivitiesByDepartments.completed(data);
       }
       ).fail(function(){
-      console.log('Error loading data ...');
+      console.log('layersStore: Error loading data ...');
     })
   },
   onLoadActivitiesByDepartmentsCompleted:function(data){

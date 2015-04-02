@@ -10,12 +10,12 @@ var Message=require('../lanMessage.jsx');
 module.exports  = React.createClass({
 
 	showByDepartment:function(){
-		console.log('showByDepartment');
+		console.log('layers->dataLayerSelector: ShowByDepartment');
 		LayersAction.loadActivitiesByDepartments();
 	},
 
 	showByMunicipality:function(){
-		console.log('showByMunicipality');
+		console.log('layers->dataLayerSelector: showByMunicipality');
 		LayersAction.loadActivitiesByMuncipalities();
 	},
 

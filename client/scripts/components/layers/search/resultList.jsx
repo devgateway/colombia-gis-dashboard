@@ -23,18 +23,21 @@ var EsriService=React.createClass({
 
 	},
 
+
+
 	render: function() {
-		console.log("Render EsriService");
+		console.log("layers->search->resultList: Render EsriService");
 		var service=this.props.service;
 		return(
+
 			<li>
-				<div className="title" data-toggle="Loing is required">{service.title} {service.loginRequired?<i className="text-warning small">Loing is required</i>:''}</div>
-				<div className="thumbnail"><img width="90px" height="60px" src={"http://www.arcgis.com/sharing/content/items/"+service.id+"/info/"+service.thumbnail}/></div>
-				<div className="type">{service.type} </div>
-				<div className="add"> 
-				{service.added?<span>Added</span>:null}
-					<AddButton {...this.props}  disabled={((service.loginRequired && !this.props.token)||service.added)?true:false}/>
-				</div>
+			<div className="title" data-toggle="Loing is required">{service.title} {service.loginRequired?<i className="text-warning small">Loing is required</i>:''}</div>
+			<div className="thumbnail"><img width="90px" height="60px" src={"http://www.arcgis.com/sharing/content/items/"+service.id+"/info/"+service.thumbnail}/></div>
+			<div className="type">{service.type}  - {service.access}  </div>
+			<div className="add"> 
+			{service.added?<span>Added</span>:null}
+			<AddButton {...this.props}  disabled={((service.loginRequired && !this.props.token)||service.added)?true:false}/>
+			</div>
 			</li>
 			)	
 	}
@@ -43,14 +46,20 @@ var EsriService=React.createClass({
 
 module.exports=React.createClass({
 	render: function() {
-		console.log("Render EsriServiceList");
-		return(<ul className="esri-result-list small">
-		{ 
-			this.props.services.map(function(s){
-				return( <EsriService {...this.props} service={s} />)
-			}.bind(this))}
-			<li><a onClick={this.moreResults}>More results</a></li>
-			</ul>);	
+		console.log("layers->search->resultList: Render EsriServiceList");
+		return(
+			<div>
+			{(this.props.error)?<p className='label label-warning'>{this.props.error.message}</p>:null}
+			
+			<ul className="esri-result-list small">
+				{ 
+				this.props.services.map(function(s){
+					return( <EsriService {...this.props} service={s} />)
+				}.bind(this))}
+				<li><a onClick={this.moreResults}>More results</a></li>
+				</ul>
+				</div>
+				);	
 	}	
 
 });

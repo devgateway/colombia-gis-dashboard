@@ -8,12 +8,12 @@ module.exports  = React.createClass({
 
 
   componentWillMount:function(){
-    console.log("manager.list componentWillMount");
+    console.log("layers->manager->list: componentWillMount");
 
   },
 
   componentWillUnmount:function(){
-    console.log("manager.list componentWillUnmount");
+    console.log("layers->manager->list: componentWillUnmount");
 
   },
 

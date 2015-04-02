@@ -19,10 +19,12 @@ module.exports = React.createClass({
 
 	render: function() {
 		return (
+			<span>
 			<select ref="lanSelector" onChange={this.handleLocaleChange}>
 				<option value="en" selected={this.state.lan.locale=='en'?'selected':''}>English</option>
 				<option value="es" selected={this.state.lan.locale=='es'?'selected':''}>Español</option>
-			</select>
+			</select> <span>|</span>
+			</span>
 			);
 	}
 });

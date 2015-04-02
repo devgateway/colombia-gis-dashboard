@@ -104,7 +104,7 @@ module.exports = React.createClass({
   },
 
   addLayerToMap: function(features) {
-    console.log('Add Layer to Map');
+    console.log('map->layers->dataLayer: Add Layer to Map');
     
     if (this.layer){
       this.props.getMap().removeLayer(this.layer)

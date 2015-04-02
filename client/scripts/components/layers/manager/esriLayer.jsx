@@ -6,7 +6,7 @@ var Reflux = require('reflux');
 module.exports=React.createClass({
 
 	componentWillReceiveProps:function(){
-		console.log('layer componentWillReceiveProps');
+		console.log('layers->manager->esriLayer: componentWillReceiveProps');
 	},
 
 	update:function(){
@@ -20,7 +20,7 @@ module.exports=React.createClass({
 	render: function() {
 		
 		/*use this.props.layer */
-		console.log("layer -> render");
+		console.log("layers->manager->esriLayer: render");
 
 		return (<li>
 			
