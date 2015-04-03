@@ -2,11 +2,21 @@
   margin: $gutter 0;
   overflow: hidden;
 }
+
+.btn{
+  cursor: pointer;
+  border-radius: 2px;
+  padding: 5px 35px;
+  text-transform: uppercase;
+}
+
 .btn-apply {
-  @include button;
+  @extend btn;
   color: $white;
   background: $green;
   @include floatRight;
+  margin-left:1em;
+
   &:hover {
     background: darken($green,19%);
     color: $white;
@@ -16,11 +26,22 @@
 .leaflet-top {
   top: $gutter*4;
 }
-// filter slider controls
+//
 .m-scooch-controls {
-  background: #999;
-  width: 40%;
   margin-top: 15px;
+  width:50%;
+  overflow:hidden;
+  border:1px dotted #800;
+}
+
+.m-scooch-controls a{
+    @extend btn-apply;
+    margin-right: 2px;
+    display:block;
+    float:left;
+    padding-left: 5px;
+    padding-right:5px;
+    margin-top:-20px;
 }
 
 // ???
