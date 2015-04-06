@@ -4,25 +4,49 @@ var Reflux = require('reflux');
 var FilterMap = require('./filterMap.js');
 var FilterStore=require('../../stores/filterStore.js');
 var FilterGroup = require('./filterGroup.jsx');
+var FilterGroupTree = require('./filterGroupTree.jsx');
 var FilterGroupWithSubLevels = require('./filterGroupWithSubLevels.jsx');
 var FilterActionButton = require('./filterActionButton.jsx');
 var TabbedArea = require('react-bootstrap/lib/TabbedArea');
 var TabPane = require('react-bootstrap/lib/TabPane');
+var FilterActions = require('../../actions/filterActions.js');
+
 
 var Filter  = React.createClass({
     mixins: [Reflux.connect(FilterStore)],
 
+    _onItemChanged: function(filterType, id, value) {     
+        FilterActions.changeFilterItemState(filterType, id, value);
+    },
+
+    _onClickApply: function(event) {     
+        FilterActions.triggerFilterApply();
+    },
+
+    _onClickReset: function(event) {     
+        FilterActions.triggerFilterReset();
+    },
+    
+    _onAllNoneClicked: function(filterType, selected) {
+        FilterActions.changeAllFilterItemState(filterType, selected);  
+    },    
+    
     render: function() {
       var filters = FilterMap.filters;
+      var self = this;
         return(
           <div className="activity-nav">
             <TabbedArea className="activities" defaultActiveKey={1}>
               {
                 filters.map(function(filterDefinition){
                   if (!filterDefinition.subLevels){
-                    var group = <FilterGroup filterDefinition={filterDefinition} />
+                    var group = <FilterGroup filterDefinition={filterDefinition} onItemChanged={self._onItemChanged} onAllNoneClicked={self._onAllNoneClicked}/>
                   } else {
-                    var group = <FilterGroupWithSubLevels filterDefinition={filterDefinition} />
+                    if (filterDefinition.showTree){
+                      var group = <FilterGroupTree filterDefinition={filterDefinition} onItemChanged={self._onItemChanged} onAllNoneClicked={self._onAllNoneClicked}/>
+                    } else {
+                      var group = <FilterGroupWithSubLevels filterDefinition={filterDefinition} onItemChanged={self._onItemChanged} onAllNoneClicked={self._onAllNoneClicked}/>
+                    }                    
                   }
                   return <TabPane eventKey={parseInt(filterDefinition.index)} tab={filterDefinition.label}>
                     {group}
@@ -30,37 +54,9 @@ var Filter  = React.createClass({
                 })
               }                 
             </TabbedArea>
-            <FilterActionButton/>
+            <FilterActionButton onClickReset={this._onClickReset} onClickApply={this._onClickApply}/>
           </div>
         );
-        /*if ($('.m-scooch').length>0){
-          debugger;
-          $('.m-scooch').scooch();
-        }
-        return(
-            <div className="m-scooch m-center m-scaled m-fade-out">
-              <div className="m-scooch-inner">
-                {
-                  filters.map(function(filterDefinition){
-                    if (!filterDefinition.subLevels){
-                      var label = filterDefinition.label;
-                      return  <div className="m-item">
-                                <div className="">
-                                  <FilterGroup filterDefinition={filterDefinition} />
-                                </div>
-                              </div> 
-                    }
-                  })
-                }  
-              </div>                   
-              <div className="m-scooch-controls ">
-                <a href="#" data-m-slide="prev">‹ Previous -</a>
-                <a href="#" data-m-slide  ="next">- Next ›</a>                
-              </div>              
-            </div>
-
-          ); */
-       
         
     }
 });

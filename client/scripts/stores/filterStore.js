@@ -4,6 +4,7 @@
 var assign = require('object-assign');
 var Reflux = require('reflux');
 var FilterActions = require('../actions/filterActions.js');
+var LayerActions = require('../actions/layersAction.js');
 var FilterMap = require('../components/filters/filterMap.js');
 
 module.exports=Reflux.createStore({
@@ -44,6 +45,24 @@ module.exports=Reflux.createStore({
         }
     },
 
+    getChildren: function(parent, childFilterDefinition) {
+        if (this.state[childFilterDefinition.param]) {
+          return this.state[childFilterDefinition.param].filter(function(it){return it[childFilterDefinition.parentParamField]==parent.id});
+        } else {
+          return [];
+        }
+    },
+
+    getChildrenSelected: function(parent, childFilterDefinition) {
+        if (this.state[childFilterDefinition.param]) { 
+            return this.state[childFilterDefinition.param].filter(function(it){
+                    return it[childFilterDefinition.parentParamField]==parent.id && it.selected;
+                });
+        } else {
+          return [];
+        }
+    },
+
     onGetListFromAPICompleted: function(data){
         var filterType = data.filter.param;
         this.state[filterType] = data.data;        
@@ -51,7 +70,36 @@ module.exports=Reflux.createStore({
     },
     
     onChangeFilterItemState:function(filterType, id, value){
+        var filterDefinition = FilterMap.getFilterDefinitionByParam(filterType);
+        var childFilterDefinition = FilterMap.getFilterDefinitionByParam(filterDefinition.childParam);
+        if (childFilterDefinition){ //if the item is parent, then select children
+            this.state[childFilterDefinition.param].filter(function(it){return it[childFilterDefinition.parentParamField]==id}).map(function (it){
+                it.selected = value;
+            });
+        }
         this.state[filterType].filter(function(it){return it.id==id})[0].selected = value;
+        this.output();
+    },
+
+    onChangeAllFilterItemState:function(filterType, value){
+        var filterDefinition = FilterMap.getFilterDefinitionByParam(filterType);
+        var self = this;
+        this.state[filterType].map(function(it){
+            it.selected = value;
+            /*if (filterDefinition.parentParam){//if has a parent selected, then select only all children for that selection
+                if (self.getAllSelected(filterDefinition.parentParam).length==0 ||
+                    (self.getItem(filterDefinition.parentParam, it[filterDefinition.parentParamField])[0].selected == true)){
+                        it.selected = value;
+                }
+            } else {
+                it.selected = value;
+            }*/
+        });
+        if (filterDefinition.childParam){
+            this.state[filterDefinition.childParam].map(function(it){
+                it.selected = value;            
+            });
+        }
         this.output();
     },
 
@@ -95,7 +143,8 @@ module.exports=Reflux.createStore({
             }            
         });
         this.state.filtersSelected = filtersSelected;
-        alert("Filters Applied: "+ JSON.stringify(this.state.filtersSelected));
+        LayerActions.triggerFilterApply(this.state.filtersSelected);
+        //alert("Filters Applied: "+ JSON.stringify(this.state.filtersSelected));
         this.output();
     },
 

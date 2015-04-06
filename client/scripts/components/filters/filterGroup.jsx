@@ -10,9 +10,17 @@ var FilterItemList = require('./filterItemList.jsx');
 var FilterActions = require('../../actions/filterActions.js');
 var FilterMap = require('./filterMap.js');
 var KeywordSearch = require('./keywordSearch.jsx');
+var AllNoneSelector = require('./allNoneSelector.jsx');
+var SelectionCounter = require('./selectionCounter.jsx');
 
+var showOnlySelected = false;
 var FilterGroup = React.createClass({
  
+    _onCounterClicked: function(selected) {     
+        this.showOnlySelected = selected;
+        this.forceUpdate();
+    },
+
     _filterByKeyword: function (keyword) {
         var items;
         if (keyword) {
@@ -29,51 +37,32 @@ var FilterGroup = React.createClass({
                 item.hide = false;
             });
         }
-        return items;  
+        this.forceUpdate();
     },
 
-    _searchKeyUp: function(ev) {
-        var value = $(ev.target).val();
-        var length = value.length;
-        // filter the items only if we have at least 3 characters
-        if (length > 2 || ev.keyCode == 13) {
-            this._filterByKeyword(value);
-            this.forceUpdate();
-        } else {
-            this._filterByKeyword();
-            this.forceUpdate();
-        }
-    },
-    
     componentWillMount :function(){ 
         FilterActions.getListFromAPI(this.props.filterDefinition);          
     },
 
-    _onItemChanged: function(filterType, id, value) {    
-        FilterActions.changeFilterItemState(filterType, id, value);     
-    },
-
     render: function() {
-        var filterType = this.props.filterDefinition.param;
-        var items = FilterStore.getAll(filterType) || [];  
+        var filterDefinition = this.props.filterDefinition;
+        var items = FilterStore.getAll(filterDefinition.param) || [];  
         var self = this;
-        var selectCount = "[" + FilterStore.getAllSelected(filterType).length + "/" + items.length + "]";                    
-        
         return(
             <div className="filter-group-panel selected">
                 <div className="filter-group-panel-header">
-                    <span className="panel-count">1</span>
-                    <span className="filter-count">{selectCount}</span>
-                    <span className="filter-label" role="label">Level Selections</span>
-                    <div className="filter-selectors">
-                        <span><a href="#">select all</a></span> / <span><a href="#">diselect all</a></span>
-                    </div>
+                    <SelectionCounter selected={FilterStore.getAllSelected(filterDefinition.param).length} total={items.length} onCounterClicked={this._onCounterClicked}/>
+                    <span className="filter-label" role="label">{this.props.filterDefinition.label}</span>
+                    <AllNoneSelector filterType={filterDefinition.param} onAllNoneClicked={self.props.onAllNoneClicked}/>                                                
+                </div>                
+                <KeywordSearch onSearch={this._filterByKeyword}/> 
+                <div className="filter-list-container">                   
+                    <FilterItemList 
+                        onItemChanged={this.props.onItemChanged}
+                        items={items} 
+                        filterDefinition={this.props.filterDefinition} 
+                        showOnlySelected={this.showOnlySelected}/>                
                 </div>
-                
-                <KeywordSearch onKeyUp={this._searchKeyUp}/>
-                    
-                <FilterItemList items={items} filterType={filterType} onItemChanged={this._onItemChanged}/>
-                
             </div>
             );  
         

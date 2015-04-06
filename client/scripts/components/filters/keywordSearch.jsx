@@ -3,9 +3,16 @@ var React = require('react');
 
 var KeywordSearch = React.createClass({
 
-    _onKeyUp: function(event) {  
-        this.props.onKeyUp(event);
-    },
+    _onKeyUp: function(ev) {
+        var value = $(ev.target).val();
+        var length = value.length;
+        // filter the items only if we have at least 3 characters
+        if (length > 2 || ev.keyCode == 13) {
+            this.props.onSearch(value);
+        } else {
+            this.props.onSearch();
+        }
+    },    
 
     render: function() {
         return(

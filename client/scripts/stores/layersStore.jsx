@@ -10,7 +10,9 @@ module.exports = Reflux.createStore({
 
   listenables: LayersAction,
 
-  
+  onTriggerFilterApply:function(filter){
+    alert("Filters Applied: "+ JSON.stringify(filter));
+  },
 
   onLoadActivitiesByDepartmentsCompleted:function(data){
      this.update({features:Util.toGeoJson(data)});
