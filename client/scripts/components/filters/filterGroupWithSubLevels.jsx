@@ -10,7 +10,7 @@ var FilterMap = require('./filterMap.js');
 var KeywordSearch = require('./keywordSearch.jsx');
 
 var FilterGroup = React.createClass({
- 
+
     getInitialState: function() {
         return {selectedItems: []};
     },
@@ -20,22 +20,22 @@ var FilterGroup = React.createClass({
         if (keyword) {
             // filter the collection
             var pattern = new RegExp(keyword, 'i');
-            this.props.filterDefinition.subLevels.map(function(filterDefinition){ 
+            this.props.filterDefinition.subLevels.map(function(filterDefinition){
                 FilterStore.getAll(filterDefinition.param).map(function (item) {
                 if (!pattern.test(item.name)){
                     item.hide = true;
                 }
                 });
-            });                    
+            });
         } else {
             // display the original collection
-            this.props.filterDefinition.subLevels.map(function(filterDefinition){ 
+            this.props.filterDefinition.subLevels.map(function(filterDefinition){
                 FilterStore.getAll(filterDefinition.param).map(function (item) {
                     item.hide = false;
                 });
             });
         }
-        return items;  
+        return items;
     },
 
     _searchKeyUp: function(ev) {
@@ -50,7 +50,7 @@ var FilterGroup = React.createClass({
             this.forceUpdate();
         }
     },
-    
+
     _filterByParentSelected: function (list, parent, parentParamField) {
         var parentSelected = FilterStore.getAllSelected(parent);
         if (!parentSelected || parentSelected.length==0){
@@ -63,15 +63,15 @@ var FilterGroup = React.createClass({
     },
 
     componentWillMount :function(){
-        this.props.filterDefinition.subLevels.map(function(filterDefinition){ 
-            FilterActions.getListFromAPI(filterDefinition); 
-        });        
+        this.props.filterDefinition.subLevels.map(function(filterDefinition){
+            FilterActions.getListFromAPI(filterDefinition);
+        });
     },
 
-    _onItemChanged: function(filterType, id, value) {    
-        FilterActions.changeFilterItemState(filterType, id, value);                
+    _onItemChanged: function(filterType, id, value) {
+        FilterActions.changeFilterItemState(filterType, id, value);
     },
-   
+
     render: function() {
         if ($('.m-scooch').length>0){
           $('.m-scooch').scooch();
@@ -84,9 +84,9 @@ var FilterGroup = React.createClass({
                     <div className="m-scooch-inner">
                         {
                             this.props.filterDefinition.subLevels.map(function(filterDefinition){
-                                var items = FilterStore.getAll(filterDefinition.param) || []; 
+                                var items = FilterStore.getAll(filterDefinition.param) || [];
                                 items = self._filterByParentSelected(items, filterDefinition.parentParam, filterDefinition.parentParamField);
-                                var selectCount = "[" + FilterStore.getAllSelected(filterDefinition.param).length + "/" + items.length + "]"; 
+                                var selectCount = "[" + FilterStore.getAllSelected(filterDefinition.param).length + "/" + items.length + "]";
                                 return <div className="m-item">
                                         <div className="filter-group-sublevel">
                                             <div className="filter-group-panel-header">
@@ -95,19 +95,19 @@ var FilterGroup = React.createClass({
                                                 <div className="filter-selectors">
                                                     <span><a href="#">select all</a></span> / <span><a href="#">diselect all</a></span>
                                                 </div>
-                                            </div>    
+                                            </div>
                                             <FilterItemList items={items} filterType={filterDefinition.param} onItemChanged={self._onItemChanged}/>
                                         </div>
                                     </div>;
                             })
-                        }  
-                    </div>                   
-                    <div className="m-scooch-controls ">
-                        <a href="#" data-m-slide="prev">‹ Previous -</a>
-                        <a href="#" data-m-slide  ="next">- Next ›</a>                
-                    </div>              
+                        }
+                    </div>
                 </div>
-            </div>  
+                  <div className="m-scooch-controls ">
+                        <a href="#" data-m-slide="prev">Previous</a>
+                        <a href="#" data-m-slide="next"> Next </a>
+                  </div>
+            </div>
           );
     }
 });

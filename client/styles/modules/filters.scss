@@ -3,10 +3,11 @@
   width: 395px;
 }
 .filter-group-panel {
-  opacity: 0.4;
+  opacity:1;
   background: $white;
-  padding: $gutter;
+  padding: $gutter/2 $gutter;
   margin-top: $gutter/2;
+  margin-bottom: $gutter/2;
   height: 385px;
   @include border-radius(2px);
   border: 1px solid lighten($grey,60%);
