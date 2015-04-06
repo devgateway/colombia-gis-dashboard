@@ -5,7 +5,6 @@ var filters = [
         {
           index: 1,
           label: 'Locations',
-          showTree: true,
           subLevels:[
             {
               level: 1,
