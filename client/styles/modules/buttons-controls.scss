@@ -18,9 +18,32 @@
 }
 // filter slider controls
 .m-scooch-controls {
+<<<<<<< HEAD
   background: #999;
   width: 40%;
   margin-top: 15px;
+=======
+  margin-top: 16px;
+  width:60%;
+  overflow:hidden;
+  height:48px;
+  margin-left:-30px;
+}
+
+.m-scooch-controls a{
+    @extend .btn;
+    @extend .btn-apply;
+    margin-right: 2px;
+    display:block;
+    float:left;
+    line-height:100%;
+    margin-top:-5px;
+    padding: 9px 35px;
+    -webkit-border-radius: 3px;
+-moz-border-radius: 3px;
+border-radius: 3px;
+    &:hover{ text-decoration:none}
+>>>>>>> parent of 33c043b... SRICO-182
 }
 
 // ???
