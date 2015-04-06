@@ -3,7 +3,7 @@ var React = require('react')
 var RouteHandler = require('react-router').RouteHandler;
 var LanSelector=require('./lanSelector.jsx');
 var Message=require('./lanMessage.jsx');
-
+var AGOLProfile=require('./AGOLProfile.jsx');
 module.exports = React.createClass({
   render: function() {
     return (
@@ -13,10 +13,9 @@ module.exports = React.createClass({
                     <h1> <Message message="app.description"/> </h1>
                     <h2> <Message message="app.title"/></h2>
                     <div className="header-nav">
-                     <LanSelector/>
-                     <a href="#">Menu</a>
-
+                      <AGOLProfile/> <a href="#">Menu <span>|</span></a> <LanSelector/>
                     </div>
+
                   </div>
                 </div>
               </div>

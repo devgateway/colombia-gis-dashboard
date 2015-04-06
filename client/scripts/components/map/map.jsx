@@ -6,27 +6,22 @@
  * This component is a wrapper providing a friendly react-like API to other
  * components and connecting some pieces for the real leaflet
  */
-
-
  var React = require('react/addons');
  var Reflux = require('reflux');
-
  var MapStore = require('../../stores/mapStore.js');
  var MapActions = require('../../actions/mapActions.js');
  var LeafletMap = require('./_mapLeaflet.jsx');
+ 
 
+ var MapLayers=require('./layers/esriLayers.jsx');
+ var DataMapLayers=require('./layers/dataLayers.jsx');
 
- var LayersStore=require('../../stores/layersStore.jsx');
- var GeoJsonLayer=require('./GeoJsonLayer.jsx');
-
-
- var ArcGisLayers=require('./esri/arcgisLayer.jsx'); 
- var ArcGisSigIn=require('./esri/arcGisSigIn.jsx');
+ var AGOLbtnLogin=require('../AGOLBtnLogin.jsx');
 
 
  module.exports = React.createClass({
 
-  mixins: [ Reflux.connect(MapStore, 'mapStatus'), Reflux.connect(LayersStore, 'layerData')],
+  mixins: [ Reflux.connect(MapStore, 'mapStatus')],
 
   updateCurrentBounds: function(newMapViewBounds) {
     // Triggered whenever the map view changes, including:
@@ -49,7 +44,7 @@
 
 
   componentWillMount :function(){
-    //  MapActions.loadActivitiesByDepartments();
+
   },    
 
 
@@ -61,17 +56,14 @@
 
    var bounds = this.state.mapStatus.bounds;
    var baseMap= this.state.mapStatus.baseMap;
-
    return (
-    <div>
-
-
-    <LeafletMap   ref="leafletMapComponent" baseMap={baseMap} bounds={bounds} onMapMove={this.updateCurrentBounds} />
-    <GeoJsonLayer getMap={this.getMap} features={this.state.layerData.features}></GeoJsonLayer>
-    <ArcGisLayers getMap={this.getMap}></ArcGisLayers>
-
-
-    {children} </div>
-    );
+     <div>
+     <DataMapLayers  getMap={this.getMap}/>
+     <MapLayers getMap={this.getMap}/>
+     <AGOLbtnLogin/>
+     <LeafletMap ref="leafletMapComponent" baseMap={baseMap} bounds={bounds} onMapMove={this.updateCurrentBounds} />
+      {children} 
+     </div>
+     );
  }
 });

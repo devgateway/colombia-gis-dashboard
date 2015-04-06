@@ -2,17 +2,18 @@
   "name": "usaid-colombia-monitor",
   "version": "0.0.1",
   "dependencies": {
-    "form-serialize": "~0.4.0",
-    "i18next-client": "^1.7.7",
+    "form-serialize": "^0.4.1",
     "keymirror": "~0.1.0",
     "node-jsx": "~0.12.4",
-    "object-assign": "~1.0.0",
-    "react": "~0.12.2",
+    "object-assign": "^1.0.0",
+    "react": "^0.12.2",
+    "react-bootstrap": "^0.15.1",
     "react-router": "^0.12.4",
-    "reflux": "^0.2.6",
+    "reflux": "^0.2.7",
     "reqwest": "^1.1.5",
     "superagent": "~0.21.0",
-    "react-bootstrap": "^0.15.1"
+    "react-bootstrap": "^0.15.1",
+    "superagent": "^0.21.0"
   },
   "devDependencies": {
     "balanced-match": "^0.2.0",
@@ -41,7 +42,7 @@
     "grunt-newer": "~0.7.0",
     "grunt-open": "~0.2.3",
     "grunt-react": "~0.10.0",
-    "grunt-sass": "~0.17.0",
+    "grunt-sass": "~0.18.1",
     "grunt-styleguide": "~0.2.17",
     "grunt-usemin": "2.1.1",
     "grunt-wiredep": "~2.0.0",

@@ -3,15 +3,24 @@
 var React = require('react');
 var Reflux = require('reflux');
 var Link = require('react-router').Link;
-var LayersAction=require('../../actions/layersAction.js')
+
+var LayersAction=require('../../actions/layersAction.js');
+var DataLayerStore=require('../../stores/dataLayerStore.jsx');
+
+
 var Message=require('../lanMessage.jsx');
+
+
 module.exports  = React.createClass({
+ mixins: [Reflux.connect(DataLayerStore, 'layers')],
 
 	showByDepartment:function(){
+		console.log('layers->dataLayerSelector: ShowByDepartment');
 		LayersAction.loadActivitiesByDepartments();
 	},
 
 	showByMunicipality:function(){
+		console.log('layers->dataLayerSelector: showByMunicipality');
 		LayersAction.loadActivitiesByMuncipalities();
 	},
 

@@ -49,7 +49,7 @@ module.exports = React.createClass({
 
 componentWillReceiveProps: function(nextProps) {
   if (nextProps.baseMap){
-    console.log('MapView: Change Map '+nextProps.baseMap);
+    console.log('map->_mapLeaflet Change Map '+nextProps.baseMap);
     this.setBaseMap(nextProps.baseMap);
   }
 
