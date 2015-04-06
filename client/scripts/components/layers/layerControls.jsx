@@ -26,24 +26,19 @@ module.exports  = React.createClass({
     	console.log('layers->layerControls: componentWillUnmount ');
     },
 
-
-
     onAddLayer: function(service){
     	ArcgisLayersActions.loadLayer(service);
     },
 
-
     onSearch:function(val){
 		ArcgisLayersActions.search(val);
 	},
-	
 
 	updateVisiblity:function(){
 
 		ArcgisLayersActions.changeVisibility();
 	},
 
-	
 	render: function() {
 		var store=ArcgisLayerStore;
 		console.log('layers->layerControls: rendering');

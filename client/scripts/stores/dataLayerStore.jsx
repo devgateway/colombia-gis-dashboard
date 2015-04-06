@@ -10,24 +10,22 @@ var API=require('../api/layers.js');
 module.exports = Reflux.createStore({
 
   listenables: LayersAction,
-
-  
   onLoadActivitiesByDepartments:function(){
-    
-    api.getActivitiesByDepartment().then(
+    API.getActivitiesByDepartment().then(
       function(data){
         LayersAction.loadActivitiesByDepartments.completed(data);
       }
       ).fail(function(){
-      console.log('layersStore: Error loading data ...');
-    })
-  },
+        console.log('layersStore: Error loading data ...');
+      })
+    },
+
   onLoadActivitiesByDepartmentsCompleted:function(data){
      this.update({features:Util.toGeoJson(data)});
-  },
+   },
 
   onLoadActivitiesByMuncipalitiesCompleted:function(data){
-      this.update({features:Util.toGeoJson(data)});
+    this.update({features:Util.toGeoJson(data)});
   },
 
 

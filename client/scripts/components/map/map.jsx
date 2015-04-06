@@ -14,7 +14,10 @@
  
 
  var MapLayers=require('./layers/esriLayers.jsx');
+ var DataMapLayers=require('./layers/dataLayers.jsx');
+
  var AGOLbtnLogin=require('../AGOLBtnLogin.jsx');
+
 
  module.exports = React.createClass({
 
@@ -41,7 +44,7 @@
 
 
   componentWillMount :function(){
-  
+
   },    
 
 
@@ -53,14 +56,14 @@
 
    var bounds = this.state.mapStatus.bounds;
    var baseMap= this.state.mapStatus.baseMap;
-
    return (
      <div>
-         <MapLayers getMap={this.getMap}/>
-         <AGOLbtnLogin/>
-         <LeafletMap ref="leafletMapComponent" baseMap={baseMap} bounds={bounds} onMapMove={this.updateCurrentBounds} />
-          {children} 
-      </div>
-    );
+     <DataMapLayers  getMap={this.getMap}/>
+     <MapLayers getMap={this.getMap}/>
+     <AGOLbtnLogin/>
+     <LeafletMap ref="leafletMapComponent" baseMap={baseMap} bounds={bounds} onMapMove={this.updateCurrentBounds} />
+      {children} 
+     </div>
+     );
  }
 });

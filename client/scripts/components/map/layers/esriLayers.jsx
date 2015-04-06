@@ -4,8 +4,7 @@ var React = require('react');
 var Reflux = require('reflux');
 var ArcgisLayerStore = require('../../../stores/arcgisLayerStore.jsx')
 var ArcgisLayerActions = require('../../../actions/arcgisLayersActions.js')
-    //var token='2QcB84Fheuqexz7FenUQBpJzDif-Kvjzb7Ea7J8FpTUZE4hcNX_RBtAjC9PQaz2SLjXQzFQu8JeSpbv9Q6kH0BntJvE0dhsyI_E_H6BQgaQbeqTYTy9fyXKnp5VkR9VeUfjAMIVFWDCI9HRL3eRmwg..';
-
+var API=require('../../../api/esri.js');
     var _ = require('lodash');
 
 
@@ -51,26 +50,7 @@ var ArcgisLayerActions = require('../../../actions/arcgisLayersActions.js')
 
 
         loadLayer: function (options, url) {
-            var uri = url || this.getService().metadata.url;
-
-            var layer = this.lClass(uri, _.assign({proxy:window.PROXY_URL,useCors: true
-            }, options));
-
-            layer.on('map->layers->esriLayers: authenticationrequired', function (e) {
-
-                console.log('map->layers->esriLayers: authenticationrequired');
-            });
-
-            layer.on('requestsuccess', function () {
-                console.log('map->layers->esriLayers: requestsuccess');
-            });
-
-            layer.on('requestend', function () {
-                console.log('map->layers->esriLayers: requestend');
-            });
-
-            return layer;
-
+            return API.createLefleatLayer(this.lClass,options,url);
         },
 
         render: function () {

@@ -18,6 +18,7 @@ module.exports = Reflux.createStore({
 	},
 
 	onSearch:function(options){
+		_.assign(options,{})
 		API.findLayers(options).then(function(data){
 			ArcgisLayersActions.search.completed(data)
 		}).fail(function(){

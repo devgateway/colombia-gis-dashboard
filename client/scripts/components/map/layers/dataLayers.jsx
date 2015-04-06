@@ -2,7 +2,7 @@
  var React = require('react/addons');
  var Reflux = require('reflux');
  var Popup=require('./popup.jsx')
-
+ 
  var geojsonMarkerOptions = {
   radius: 8,
   fillColor: "#ff7800",
@@ -68,7 +68,7 @@ L.NumberedDivIcon = L.Icon.extend({
     shadowUrl: null,
     className: 'marker'
   },
- 
+
   createIcon: function () {
     var div = document.createElement('div');
     var numdiv = document.createElement('div');
@@ -82,7 +82,7 @@ L.NumberedDivIcon = L.Icon.extend({
     this._setIconStyles(div, 'icon');
     return div;
   },
- 
+
   //you could change this to add a shadow like in the normal marker if you really wanted
   createShadow: function () {
     return null;
@@ -90,48 +90,52 @@ L.NumberedDivIcon = L.Icon.extend({
 });
 
 
+/*Layer component*/
+var DataLayerStore=require('../../../stores/dataLayerStore.jsx');
+
 module.exports = React.createClass({
+  mixins: [  Reflux.connect(DataLayerStore, 'dataLayers')],
+
   componentDidMount: function() {
     if (this.props.features){
       this.addLayerToMap(this.props.features);
     }
   },
 
-  componentWillReceiveProps: function(nextProps) {
-    if (nextProps.features){
-      this.addLayerToMap(nextProps.features);
+  componentWillUpdate: function(props,newState) {
+    debugger;
+    if (newState.dataLayers.features){
+      this.addLayerToMap(newState.dataLayers.features);
     }
   },
 
   addLayerToMap: function(features) {
     console.log('map->layers->dataLayer: Add Layer to Map');
-    
     if (this.layer){
       this.props.getMap().removeLayer(this.layer)
     } 
-    
     var layer=L.geoJson(features, 
     {
-         style: function (feature) {
-          return {color: '#FF0000'};
-          },
+     style: function (feature) {
+      return {color: '#FF0000'};
+    },
 
-        onEachFeature: function (feature, layer) {
-          layer.bindPopup('');
-          layer.on('popupopen', function(e) {
-            this.setState(feature);
-            e.popup.setContent(this.getDOMNode().innerHTML) 
-          }.bind(this));  
-        }.bind(this),
+    onEachFeature: function (props, layer) {
+      layer.bindPopup('');
+      layer.on('popupopen', function(e) {
+        this.setState(feature);
+        e.popup.setContent(this.getDOMNode().innerHTML) 
+      }.bind(this));  
+    }.bind(this),
 
-        pointToLayer: function (feature, latlng) {
+    pointToLayer: function (feature, latlng) {
           //var marker= L.circleMarker(latlng, _.extend(geojsonMarkerOptions,{radius:getRadius(feature.properties.actividades)}));
-            var marker = new L.Marker(latlng, {
-                icon:   new L.NumberedDivIcon({number: feature.properties.actividades, iconSize:[getRadius(feature.properties.actividades),getRadius(feature.properties.actividades)] })
-            });
-            return marker
+          var marker = new L.Marker(latlng, {
+            icon:   new L.NumberedDivIcon({number: feature.properties.actividades, iconSize:[getRadius(feature.properties.actividades),getRadius(feature.properties.actividades)] })
+          });
+          return marker
         }
-  });
+      });
 
 
     layer.addTo(this.props.getMap());
@@ -139,7 +143,7 @@ module.exports = React.createClass({
   },
 
   render: function() {
-    return <Popup feature={this.state}/>
+    return (this.state.dataLayers.features?null:null);
   }
 
 });

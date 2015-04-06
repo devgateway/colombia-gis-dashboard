@@ -23,7 +23,7 @@ module.exports = Reflux.createStore({
 	
 	onLogin:function(token){
 		API.self(token).then(function(profile){
-			ArcgisLoginActions.loadUserProfile(profile,token);
+				ArcgisLoginActions.loadUserProfile(profile,token);
 		}.bind(this));
 	},
 	
@@ -31,17 +31,14 @@ module.exports = Reflux.createStore({
 		this.trigger(_.assign(this.state,{error:error}));
 	},
 	
-	onLogOut:function(error){
-		this.trigger(_.assign(this.state,{error:error}));
+	onLogOut:function(){
+		Storage.remove('token');
+		Storage.remove('profile');
+		this.trigger(this.state={});
 	},
 	
 	getInitialState: function() {
-
-		var state=_.assign({},
-				Storage.get('token')?{'token':Storage.get('token')}:{}, 
-				Storage.get('profile')?{'profile':Storage.get('profile')}:{}
-			)
-
+		var state=_.assign({},Storage.get('token')?{'token':Storage.get('token')}:{}, Storage.get('profile')?{'profile':Storage.get('profile')}:{});
 		return (this.state = state);
 	}
 

@@ -28,6 +28,7 @@ var EsriService=React.createClass({
 	render: function() {
 		console.log("layers->search->resultList: Render EsriService");
 		var service=this.props.service;
+		debugger;
 		return(
 
 			<li>
