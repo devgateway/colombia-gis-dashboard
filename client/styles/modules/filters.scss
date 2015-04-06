@@ -13,7 +13,7 @@
   border: 1px solid lighten($grey,60%);
   //selected active filter panel
   &.selected {
-    opacity: 1;
+    @include opacityHigh
   }
 }
 .filter-group-panel-header {
