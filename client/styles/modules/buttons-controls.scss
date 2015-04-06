@@ -1,6 +1,6 @@
 .button-pane {
   margin: $gutter 0;
-  border:1px dotted #800;
+  overflow: hidden;
 }
 
 .btn{
@@ -28,26 +28,20 @@
 }
 //
 .m-scooch-controls {
-  margin-top: 16px;
-  width:60%;
+  margin-top: 15px;
+  width:50%;
   overflow:hidden;
-  height:48px;
-  margin-left:-30px;
+  border:1px dotted #800;
 }
 
 .m-scooch-controls a{
-    @extend .btn;
-    @extend .btn-apply;
+    @extend btn-apply;
     margin-right: 2px;
     display:block;
     float:left;
-    line-height:100%;
-    margin-top:-5px;
-    padding: 9px 35px;
-    -webkit-border-radius: 3px;
--moz-border-radius: 3px;
-border-radius: 3px;
-    &:hover{ text-decoration:none}
+    padding-left: 5px;
+    padding-right:5px;
+    margin-top:-20px;
 }
 
 // ???
