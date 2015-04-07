@@ -29,7 +29,7 @@ h2 {
   @include floatRight;
   @include textBold;
   @include textMedium;
-  margin-top: $gutter;
+  margin-top: 0.3em;
   a {
     color: saturate(lighten( $blue, 35), 65);
     @include transitionColor;

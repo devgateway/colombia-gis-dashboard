@@ -72,6 +72,14 @@
     &:hover{ text-decoration:none}
 }
 
+// layer search button
+button.layer-search{
+  @extend .btn-apply;
+  padding: 5px;
+  float:right;
+  margin-left:0;
+}
+
 // ???
 .marker {
   @include border-radius(100%);
