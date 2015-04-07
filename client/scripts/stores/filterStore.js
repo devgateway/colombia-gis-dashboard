@@ -5,7 +5,7 @@ var assign = require('object-assign');
 var Reflux = require('reflux');
 var FilterActions = require('../actions/filterActions.js');
 var LayerActions = require('../actions/layersAction.js');
-var FilterMap = require('../components/filters/filterMap.js');
+var FilterMap = require('../conf/filterMap.js');
 
 module.exports=Reflux.createStore({
 

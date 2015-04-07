@@ -3,8 +3,8 @@
 var React = require('react');
 var Reflux = require('Reflux');
 
-var ArcgisLoginActions=require('../actions/arcgisLoginActions.js');
-var ArcgisLoginStore = require('../stores/arcgisLoginStore.jsx');
+var ArcgisLoginActions=require('../../actions/arcgisLoginActions.js');
+var ArcgisLoginStore = require('../../stores/arcgisLoginStore.js');
 
 module.exports =React.createClass({
 

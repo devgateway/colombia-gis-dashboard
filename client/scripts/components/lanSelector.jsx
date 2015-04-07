@@ -4,7 +4,7 @@ var React = require('react')
 var LanActions=require('../actions/lanActions.js');
 var LanStore=require('../stores/lanStore.js');
 var Reflux = require('reflux');
-var LanStore=require('../stores/lanStore.js');
+
 
 
 module.exports = React.createClass({
