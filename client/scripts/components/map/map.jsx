@@ -13,10 +13,10 @@
  var LeafletMap = require('./_mapLeaflet.jsx');
  
 
- var MapLayers=require('./layers/esriLayers.jsx');
- var DataMapLayers=require('./layers/dataLayers.jsx');
+ var EsriLayers=require('./layers/esri/esriLayers.jsx');
+ var DataLayer=require('./layers/data/dataLayers.jsx');
 
- var AGOLbtnLogin=require('../AGOLBtnLogin.jsx');
+ var AGOLbtnLogin=require('../esri/AGOLBtnLogin.jsx');
 
 
  module.exports = React.createClass({
@@ -58,8 +58,8 @@
    var baseMap= this.state.mapStatus.baseMap;
    return (
      <div>
-     <DataMapLayers  getMap={this.getMap}/>
-     <MapLayers getMap={this.getMap}/>
+     <DataLayer  getMap={this.getMap}/>
+     <EsriLayers getMap={this.getMap}/>
      <AGOLbtnLogin/>
      <LeafletMap ref="leafletMapComponent" baseMap={baseMap} bounds={bounds} onMapMove={this.updateCurrentBounds} />
       {children} 

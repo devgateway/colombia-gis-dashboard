@@ -2,8 +2,8 @@
 var React = require('react')
 var RouteHandler = require('react-router').RouteHandler;
 var LanSelector=require('./lanSelector.jsx');
-var Message=require('./lanMessage.jsx');
-var AGOLProfile=require('./AGOLProfile.jsx');
+
+var AGOLProfile=require('./esri/AGOLProfile.jsx');
 module.exports = React.createClass({
   render: function() {
     return (
