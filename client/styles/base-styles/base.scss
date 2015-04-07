@@ -126,3 +126,19 @@ i.fa.fa-search{
 .glyphicon.glyphicon-chevron-right{
   margin-right:5px;
 }
+
+// states
+.collapsed{
+  display:none;
+}
+.collapse-icon{
+  cursor: pointer;
+}
+
+.clickeable{
+  cursor: pointer;
+}
+
+.inline{
+  display: inline-flex;
+}
