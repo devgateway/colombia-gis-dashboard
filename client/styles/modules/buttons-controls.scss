@@ -1,12 +1,22 @@
 .button-pane {
-  margin: $gutter 0;
   overflow: hidden;
+  margin-top: $gutter;
 }
+
+.btn{
+  cursor: pointer;
+  @include border-radius(2px);
+  padding: 5px 35px;
+  text-transform: uppercase;
+}
+
 .btn-apply {
-  @include button;
+  @extend btn;
   color: $white;
   background: $green;
   @include floatRight;
+  margin-left:1em;
+
   &:hover {
     background: darken($green,19%);
     color: $white;
@@ -16,14 +26,38 @@
 .leaflet-top {
   top: $gutter*4;
 }
-// filter slider controls
+
+//filter slider
+.m-scaled .m-item{
+  opacity: 0.6;
+  -webkit-box-shadow: inset -5px 4px 142px 0px rgba(184,180,184,0.5);
+  -moz-box-shadow: inset -5px 4px 142px 0px rgba(184,180,184,0.5);
+  box-shadow: inset -5px 4px 142px 0px rgba(184,180,184,0.5);
+  padding:10px;
+}
+
+.m-scaled .m-active{
+  opacity:1;
+  box-shadow:none;
+  padding:0;
+}
+
+.m-center:not(.m-fluid)>.m-scooch-inner>*{
+  background: $white;
+  // width:635px;
+  width:550px;
+  margin-left:-80px;
+}
+
+.m-fade-out{
+  -webkit-mask-image:none;
+}
+
 .m-scooch-controls {
-  background: #999;
-  width: 40%;
-  margin-top: 15px;
-  overflow:hidden;
-  height:48px;
-  margin-left:-30px;
+  width:45%;
+  margin-left:-10px;
+  padding-top:0;
+  margin-top:-13px;
 }
 
 .m-scooch-controls a{
@@ -32,19 +66,15 @@
     margin-right: 2px;
     display:block;
     float:left;
-    line-height:100%;
-    margin-top:-5px;
+    line-height:80%;
     padding: 9px 35px;
-    -webkit-border-radius: 3px;
-   -moz-border-radius: 3px;
-    border-radius: 3px;
+    font-size:0.8em;
     &:hover{ text-decoration:none}
- 
 }
 
 // ???
 .marker {
-  border-radius: 100%;
+  @include border-radius(100%);
   background-color: rgba(253, 154, 0, 0.8);
   box-shadow: 0 0 4px 3px rgba(255, 255, 255, 0.6), 0 0 0 4px rgba(255, 88, 1, 0.4), 0 0 0 8px rgba(242, 129, 0, 0.24);
   .number {
