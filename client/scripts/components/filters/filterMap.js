@@ -47,6 +47,12 @@ var filters = [
           label: 'SubActivity Status',
           param: 'st',
           apiEndPoint: 'http://test.monitor.net.co/GisService.svc/Filters/SubActivityStatus/Json'
+        },
+        {
+          index: 6,
+          label: 'Sub Implementer',
+          param: 'si',
+          apiEndPoint: 'http://test.monitor.net.co/GisService.svc/Filters/SubImplementers/Json'
         }
 
       ];
