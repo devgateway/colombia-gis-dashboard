@@ -19,7 +19,7 @@ var SearchInput=React.createClass({
 	},
 
 	getInitialState: function() {
-		
+
 		return {'feature': true,'image':true,'map':true ,'start':0 ,'num':500};
 	},
 
@@ -32,20 +32,38 @@ var SearchInput=React.createClass({
 
 	render: function() {
 		console.log("layers->search->search: Render EsriSearch");
-		return(  
+		return(
+			<div className="layer-search-wrapper">
+			<span className="layer-search-label"><Message message="layers.search"/></span>
+			<input className="layer-search" type="text" placeholder="Search layer" ref="search_input"/>
+			<button className="btn layer-search" onClick={this.handleCLick}>Search</button>
 			<div>
-			<p><Message message="layers.search"/></p>
-			<input type="text" placeholder="Search layer"  ref="search_input"/> 
-			<button onClick={this.handleCLick}>Search</button>
-			<div> 
-			&nbsp;<input type="checkbox" value="feature" onClick={this.checkOption} checked={this.state.feature}/> Feature Service
-			&nbsp;<input type="checkbox" value="map" onClick={this.checkOption} checked={this.state.map}/> Map Service
-			&nbsp;<input type="checkbox" value="image" onClick={this.checkOption} checked={this.state.image}/> Image Service
-			
+			<div className="layer-search-options">
+				<ul>
+					<li>
+						<span className="select">
+							<input className="glyphicon glyphicon-stop" type="checkbox" value="feature" onClick={this.checkOption} checked={this.state.feature}/>
+						</span>
+						Feature Service
+					</li>
+					<li>
+						<span className="select">
+							<input className="glyphicon glyphicon-stop" type="checkbox" value="map" onClick={this.checkOption} checked={this.state.map}/>
+						</span>
+						Map Service
+					</li>
+					<li>
+						<span className="select">
+							<input className="glyphicon glyphicon-stop" type="checkbox" value="image" onClick={this.checkOption} checked={this.state.image}/>
+						</span>
+						Image Service
+					</li>
+				</ul>
+			</div>
 			</div>
 			</div>
 			);
-	}	
+	}
 });
 
 /*
@@ -54,7 +72,7 @@ var SearchInput=React.createClass({
   module.exports  = React.createClass({
   	render: function() {
   		console.log("layers->search->search: Render Layer Search");
-  		return (  
+  		return (
   			<div>
   		<SearchInput  {...this.props /* passing properties down to sub components*/}/>
   	{this.props.services?   <ResultList {...this.props /* passing properties down to sub components*/}/>:null}
