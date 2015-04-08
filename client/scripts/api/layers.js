@@ -15,7 +15,7 @@ module.exports = {
             url: 'http://test.monitor.net.co/GisService.svc/Filters/DepartmentsFunding/Json',
             type: 'json',
             method: 'post',
-            data: {filters:filters},
+            data: JSON.stringify(filters),
             crossOrigin: true
         }).fail(logFailure);
     },
