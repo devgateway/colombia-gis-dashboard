@@ -2,9 +2,9 @@
 var React = require('react');
 var Reflux = require('reflux');
 var Link = require('react-router').Link;
-var Message=require('../../lanMessage.jsx');
-var ArcgisLayersActions=require('../../../actions/arcgisLayersActions.js');
-var ResultList=require('./resultList.jsx');
+
+var ArcgisLayersActions=require('../../../../actions/arcgisLayersActions.js');
+var ResultList=require('./results.jsx');
 var _=require('lodash');
 
 /*The button to add the layer to the map*/
