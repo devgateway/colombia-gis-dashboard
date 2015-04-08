@@ -9,7 +9,6 @@ var AGOLConfirm= require('./components/esri/AGOLConfirm.jsx');
 var APP=require('./components/app.jsx'); // basic page without layout
 var MapLayout=require('./components/mapLayout.jsx');
 
-debugger;
 var routes = (
 		<Route name="app" path="/" handler={APP}>
 			
@@ -18,7 +17,6 @@ var routes = (
 			</Route>
 
 			<Route name="arcLogin" path="/arcLogin*" handler={AGOLConfirm} />
-			
 			<Redirect from="/" to="map"/>
 		</Route>
 	);
