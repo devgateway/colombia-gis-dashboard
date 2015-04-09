@@ -11,7 +11,7 @@ module.exports = Reflux.createStore({
 
   listenables: LayersAction,
   onLoadActivitiesByDepartments:function(){
-    API.getActivitiesByDepartment().then(
+    API.getActivitiesByDepartment(this.state.filters).then(
       function(data){
         LayersAction.loadActivitiesByDepartments.completed(data);
       }
@@ -21,13 +21,16 @@ module.exports = Reflux.createStore({
     },
 
   onLoadActivitiesByDepartmentsCompleted:function(data){
-     this.update({features:Util.toGeoJson(data)});
-   },
+    this.update({features:Util.toGeoJson(data)});
+  },
 
   onLoadActivitiesByMuncipalitiesCompleted:function(data){
     this.update({features:Util.toGeoJson(data)});
   },
 
+  onTriggerFilterApply:function(data){
+    this.update({filters:data});
+  },
 
   update: function(assignable, options) {
     options = options || {};

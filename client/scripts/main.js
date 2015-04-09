@@ -22,7 +22,7 @@ var options = {
 
 window.i18n.init(options, function (t) {
 	router.run(function (Handler, state) {
-
+		debugger;
 		React.render(React.createElement(Handler, state), document.getElementById('app-wrapper'));
 	});
 });
