@@ -5,6 +5,7 @@ var filters = [
         {
           index: 1,
           label: 'Locations',
+          showTree: true,
           subLevels:[
             {
               level: 1,
@@ -46,8 +47,34 @@ var filters = [
           label: 'SubActivity Status',
           param: 'st',
           apiEndPoint: 'http://test.monitor.net.co/GisService.svc/Filters/SubActivityStatus/Json'
+        },
+        {
+          index: 6,
+          label: 'Sub Implementer',
+          param: 'si',
+          apiEndPoint: 'http://test.monitor.net.co/GisService.svc/Filters/SubImplementers/Json'
+        },
+        {
+          index: 7,
+          label: 'Activity Classification',
+          subLevels:[
+            {
+              level: 1,
+              childParam: 'ac1',
+              label: 'Activity Classification Type',
+              param: 'ac',
+              apiEndPoint: 'http://test.monitor.net.co/GisService.svc/Filters/ClasificationType/Json'
+            },
+            {
+              level: 2,
+              parentParam: 'ac',
+              label: 'Activity Classification Sub-Type 1',
+              param: 'ac1',
+              parentParamField: 'idTipo',
+              apiEndPoint: 'http://test.monitor.net.co/GisService.svc/Filters/ClasificationSubType/Json'
+            }
+          ]
         }
-
       ];
      
 var getFilterDefinitionByParam = function (param){
