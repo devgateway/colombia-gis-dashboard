@@ -3,27 +3,28 @@
   width: 395px;
 }
 .filter-group-panel {
+  @include border-radius(2px);
   opacity: 0.4;
   background: $white;
   padding: $gutter;
-  margin-top: $gutter;
+  margin-top: $gutter/2;
   height: 385px;
-  @include border-radius(2px);
+  overflow:auto;
   border: 1px solid lighten($grey,60%);
   //selected active filter panel
   &.selected {
-    @include opacityHigh
+    opacity:1;
   }
 }
+
 .filter-group-panel-header {
-  @include clearfix;
+  width:634px;
 }
+
 .panel-count {
   color: $white;
   background: $blue;
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  border-radius: 50%;
+  @include border-radius(50%);
   display: inline-block;
   width: 30px;
   height: 30px;
@@ -35,21 +36,24 @@
 .filter-count {
   color: $blue;
   @include textBold;
+  float:right;
 }
 .filter-label {
-  font-size: 1.3rem;
-  margin-left: 7px;
+  @include textMedium;
 }
 .filter-selectors {
   @include floatRight;
   font-size: 1.1rem;
   font-style: italic;
-  margin-top: 9px;
+  margin-top: 5px;
+  margin-right:$gutter;
+
 }
 // filter list
 .filter-list-container {
   margin-top: $gutter;
-  max-height: 260px;
+  max-height: 220px;
+  width:530px;
   overflow-y: auto;
 }
 ul.filter-list {
@@ -80,8 +84,8 @@ ul.filter-list {
   height: 12px;
   margin: 0;
   position: absolute;
-  left: -2px;
-  top: -3px;
+  left: -3px;
+  top: -4px;
   display: block;
 }
 .glyphicon.glyphicon-stop:before {
@@ -98,3 +102,5 @@ input[type=checkbox].glyphicon {
 .filter-group-sublevel {
   width: 450px;
 }
+
+.fade{opacity:0.9;}
