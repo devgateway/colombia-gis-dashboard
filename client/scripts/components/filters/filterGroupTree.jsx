@@ -61,7 +61,6 @@ var FilterGroup = React.createClass({
         var parentLevelItems = FilterStore.getAll(parentFilterDefinition.param) || [];  
         var childLevelItems = FilterStore.getAll(childFilterDefinition.param) || [];  
         var self = this;
-        debugger;
         return(
             <div className="filter-group-panel selected">
                 <div className="filter-group-panel-header">
@@ -73,7 +72,6 @@ var FilterGroup = React.createClass({
                 <div className="filter-list-container">                   
                 {    
                     parentLevelItems.map(function (parent){
-                        debugger;
                         var list = self._filterByParent(childLevelItems, parent, childFilterDefinition.parentParamField);
                         return (<FilterItemList 
                                     onItemChanged={self.props.onItemChanged} 

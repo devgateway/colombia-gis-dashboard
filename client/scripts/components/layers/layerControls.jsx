@@ -4,12 +4,19 @@ var React = require('react');
 var Reflux = require('reflux');
 var TabbedArea = require('react-bootstrap/lib/TabbedArea');
 var TabPane = require('react-bootstrap/lib/TabPane');
-var DataLayerSelector=require('./dataLayerSelector.jsx');
-var LayerList=require('./manager/list.jsx');
-var Search=require('./search/search.jsx');
+
+
+
 var ArcgisLayersActions=require('../../actions/ArcgisLayersActions.js')
 var EsriLoginStore=require('../../stores/arcgisLoginStore.jsx');
 var ArcgisLayerStore=require('../../stores/arcgisLayerStore.jsx');
+
+
+var DataLayerManager=require('./dataLayerManager.jsx');
+var EsriLayerManager=require('./esri_manager/esriLayerManager.jsx');
+var Search=require('./search/search.jsx');
+
+
 
 module.exports  = React.createClass({
 
@@ -17,47 +24,47 @@ module.exports  = React.createClass({
 	
 	componentWillMount:function(){
 		console.log('layers->layerControls: componentWillMount ');	
-
 	},
 	componentDidMount: function() {
 		console.log('layers->layerControls: componentDidMount ');
-    },
-    componentWillUnmount: function() {
-    	console.log('layers->layerControls: componentWillUnmount ');
-    },
+	},
+	componentWillUnmount: function() {
+		console.log('layers->layerControls: componentWillUnmount ');
+	},
 
-    onAddLayer: function(service){
-    	ArcgisLayersActions.loadLayer(service);
-    },
+	_addLayer: function(service){
+		ArcgisLayersActions.loadLayer(service);
+	},
 
-    onSearch:function(val){
+	_search:function(val){
 		ArcgisLayersActions.search(val);
 	},
 
-	updateVisiblity:function(){
+	_updateVisiblity:function(){
 
 		ArcgisLayersActions.changeVisibility();
 	},
 
 	render: function() {
 		var store=ArcgisLayerStore;
-		console.log('layers->layerControls: rendering');
 		var all=this.state.arcgisState.all || [];
 		var services=this.state.arcgisState.services || [];
 		var token=this.state.loginState.token || "";
 		var error=this.state.arcgisState.error;
-	
+
 		return ( 
 
 			<TabbedArea defaultActiveKey={1}>
-			<TabPane eventKey={1} tab="Map Layers">
-			<DataLayerSelector/>   
-				<LayerList services={services}  onChange={this.updateVisiblity}/>   
+			<TabPane eventKey={1} tab="Data Layers">
+			<DataLayerManager/>   
+			</TabPane>
+
+			<TabPane eventKey={2} tab="Esri Layers">
+			<EsriLayerManager services={services}  onChange={this._updateVisiblity}/>   
 			</TabPane>
 			
-			<TabPane eventKey={2} tab="Find External Layers">
-			
-				<Search onAddLayer={this.onAddLayer} onSearch={this.onSearch} token={token}  error={error} services={all}  {...this.props}/>    
+			<TabPane eventKey={3} tab="Find External Layers">
+			<Search onAddLayer={this._addLayer} onSearch={this._search} token={token}  error={error} services={all}  {...this.props}/>    
 			</TabPane>
 
 			</TabbedArea>

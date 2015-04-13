@@ -68,7 +68,7 @@ module.exports = {
         var types = (image + map + feature).slice(0, -3); //remove last OR;
         var start = '&start=' + (options.start || '0');
         var num = '&num=' + (options.num || '100');
-        var query = '(' + options.query + ')' + ' AND (' + types + ')  '; //AND ('+access+')
+        var query = '(' + options.query + ')' + ' AND (' + types + ')   '; //AND (access:shared)
         return 'q='+ query;
     },
 

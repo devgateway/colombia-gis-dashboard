@@ -28,7 +28,7 @@ var EsriService=React.createClass({
 	render: function() {
 		console.log("layers->search->resultList: Render EsriService");
 		var service=this.props.service;
-		debugger;
+	
 		return(
 
 			<li>
@@ -50,7 +50,7 @@ module.exports=React.createClass({
 		console.log("layers->search->resultList: Render EsriServiceList");
 		return(
 			<div>
-			{(this.props.error)?<p className='label label-warning'>{this.props.error.message}</p>:null}
+			
 			
 			<ul className="esri-result-list small">
 				{ 

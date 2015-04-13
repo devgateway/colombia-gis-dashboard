@@ -22,8 +22,11 @@ module.exports = Reflux.createStore({
 		API.findLayers(options).then(function(data){
 			ArcgisLayersActions.search.completed(data)
 		}).fail(function(){
+			debugger;
 			console.log('arcgisLayerStore:  Error loading data ...');
-		})
+			this.state.error='Can\'t load data please check your network connection';
+			this.trigger(this.state);
+		}.bind(this));
 	},
 
 	onChangeVisibility:function(){
@@ -46,19 +49,19 @@ module.exports = Reflux.createStore({
 					this.loadLayerFailed("This service is alredy added")
 
 				}
-	},	
+			},	
 
-	addService:function(layer){
-		this.state.services.push(layer);
-		this.state.error=null;
-		this.trigger(this.state);
-	},
+			addService:function(layer){
+				this.state.services.push(layer);
+				this.state.error=null;
+				this.trigger(this.state);
+			},
 
-	onToggleLayerVisibility:function(){
-		this.trigger(this.state)
-	},
+			onToggleLayerVisibility:function(){
+				this.trigger(this.state)
+			},
 
-	onRemoveLayer:function(){
+			onRemoveLayer:function(){
 		//find layer remove and trigger
 	},
 
