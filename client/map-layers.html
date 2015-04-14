@@ -83,39 +83,37 @@
     </nav>
     <!--end: tabs-->
 
+		<!--start panel content-->
+	<div class="tab-panel">
 
-    <!--start: filter types basic and advanced-->
-    <div class="activity-nav">
-      <div class="filter-type-wrapper">
-        <ul>
-          <li class="filter-type-label">
-            <span><a class="active" href="">Basic Filters</a></span>
-          </li>
-          <li class="filter-type-label">
-            <span><a href="">Advanced Filters</a></span>
-          </li>
-        </ul>
-      </div>
-      <!-- end: filter types basic and advanced-->
+    <!--start:layer search box-->
 
-		<!--start: basic filter nav-->
-			<ul class="activities">
-        <li role="option" name="location"><a class="active" name="location">Location</a></li>
-        <li role="option"><a name="date">Date</a></li>
-        <li role="option"><a name="objective">Development Objectives</a></li>
-        <li role="option"><a name="status">Sub-Activity Status</a></li>
-        <li role="option"><a name="implementer">Sub Implementer</a></li>
-        <li role="option"><a name="classification">Activity Classification</a></li>
-        <li role="option"><a name="ppp">PPP</a></li>
-				<li role="option"><a name="population">Target Population</a></li>
-      </ul>
+		<div class="layer-search-wrapper" data-reactid="">
+			<span class="layer-search-label" data-reactid=""><span data-reactid="">Search Layers</span></span><input class="layer-search" data-reactid="" placeholder="Search layer" type="text"><button class="btn layer-search" data-reactid="">Search</button>
+			<div data-reactid="">
+				<div class="layer-search-options" data-reactid="">
+					<ul data-reactid="">
+						<li data-reactid="">
+							<span class="select" data-reactid=""><input checked class="glyphicon glyphicon-stop" data-reactid="" type="checkbox" value="feature"></span><span data-reactid="">Feature Service</span>
+						</li>
+
+						<li data-reactid="">
+							<span class="select" data-reactid=""><input checked class="glyphicon glyphicon-stop" data-reactid="" type="checkbox" value="map"></span><span data-reactid="">Map Service</span>
+						</li>
+
+						<li data-reactid="">
+							<span class="select" data-reactid=""><input checked class="glyphicon glyphicon-stop" data-reactid="" type="checkbox" value="image"></span><span data-reactid="">Image Service</span>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	 <!--end: layer search box-->
+
 			<hr class="h-divider">
 
     </div>
     <!--end: basic filter nav-->
-
-		<!--start panel content-->
-	<div class="tab-panel">
 
 		<div>
 			<!--start: temporary div to display filter container-->
