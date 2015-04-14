@@ -2,7 +2,7 @@ var proxy=require('./proxy.js');
 var cluster = require('cluster');
 
 
-/*
+
 
 var numCPUs = require('os').cpus().length;
     if (cluster.isMaster) {
@@ -22,7 +22,7 @@ var numCPUs = require('os').cpus().length;
 
        startWorker();
     }
-*/
+
 
 
 function startWorker(){
@@ -36,5 +36,5 @@ function startWorker(){
     }).init();
 }
 
-     startWorker();
+     
   

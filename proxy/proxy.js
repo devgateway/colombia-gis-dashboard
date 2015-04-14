@@ -24,9 +24,6 @@ module.exports = function (options) {
             });
         };
 
-        this.refreshToken=function(){
-            console.log('refresh application token'+ new Date());
-        }
 
         this.resetRefresInterval=function(){
             var now=new Date();
@@ -40,59 +37,67 @@ module.exports = function (options) {
 
             expirationDate.setTime( time + (minutes * 60 * 1000)); //token expiration date 
             refreshDate.setTime( time + timeout); 
-           
+
             setTimeout( this.refreshToken.bind(this),timeout); 
 
             console.log('Token base date is  '+ now);
             console.log('Token expiration will expires on '+ expirationDate);
             console.log('Token  will refresh on '+refreshDate);
-         }
-
-         /*Get oauth2 token*/
-         this.getToken = function () {
-
-
-            var deferred = Q.defer();
-            var data = {'f': 'json', 'client_id': options.client_id, 'client_secret': options.client_secret, 'grant_type': 'client_credentials', 'expiration': options.expiration_time};
-            this.resetRefresInterval();
-            request.post({
-                url: ESRI_OAUTH2_URL,
-                json: true,
-                form: data
-            }, function (error, response, body) {
-                if (error) {
-                    deferred.reject(err);
-                }else {
-
-                 deferred.resolve(_.assign(options, {'access_token': body.access_token})); //add access token to options
-
-
-
-             }
-         });
-
-            return deferred.promise;
         }
 
-        /*Start Server */
-        this.listen = function (options) {
+        this.refreshToken=function(){
+            console.log('..Keep an eye here token will be updated ...')
+         
+            this.getToken().then(function(){
+                console.log('...token was updated, new token is'+options.access_token);
+            })
+        }
 
-            console.log('Starting proxy server at ' + options.port + (options.use_credentials) ? ' using app token ' + options.access_token : '');
-            http.createServer(
-                function (pReq, pResp) {
-                    var target = pReq.url.substring(pReq.url.indexOf('?') + 1);
-                    var targetUrl = url.parse(target, true);
 
-                    /*If user is not logged in we will use the application token*/
-                    if (!targetUrl.query.token && options.use_credentials) {
-                        console.log('..................Making new request using application token ...........................');
-                        target = target + '&token=' + options.access_token;
-                        targetUrl = url.parse(target, true);
-                    } else {
-                        console.log('..................Making new request using user\'s token ...........................');
-                    }
-                    /*Collect new request options*/
-                    var reqOptions = {
+        this.getToken=function(){
+           var deferred = Q.defer();
+
+           var data = {'f': 'json', 'client_id': options.client_id, 'client_secret': options.client_secret,  'grant_type': 'client_credentials',  'expiration': options.expiration_time};
+           this.resetRefresInterval();
+           
+           request.post({
+            url: ESRI_OAUTH2_URL,
+            json: true,
+            form: data
+        }, function (error, response, body) {
+            if (error) {
+                deferred.reject(err);
+            }else {
+                if(body.error){
+                    console.log('something didn\'t go well so now ??' + body.error);
+                }
+                console.log('Got a new token ...')
+                 deferred.resolve(_.assign(options, {'access_token': body.access_token})); //add access token to options
+             }
+         });
+           return deferred.promise;
+       }
+
+       this.get
+       /*Start Server */
+       this.listen = function (options) {
+
+        console.log('Starting proxy server at ' + options.port + (options.use_credentials) ? ' using app token ' + options.access_token : '');
+        http.createServer(
+            function (pReq, pResp) {
+                var target = pReq.url.substring(pReq.url.indexOf('?') + 1);
+                var targetUrl = url.parse(target, true);
+
+                /*If user is not logged in we will use the application token*/
+                if (!targetUrl.query.token && options.use_credentials) {
+                    console.log('..................Making new request using application token ...........................');
+                    target = target + '&token=' + options.access_token;
+                    targetUrl = url.parse(target, true);
+                } else {
+                    console.log('..................Making new request using user\'s token ...........................');
+                }
+                /*Collect new request options*/
+                var reqOptions = {
                     url: targetUrl, //destination url
                     method: pReq.method, //use same method as source
                     followRedirect: true,  //followRedirect - follow HTTP 3xx responses as redirects
