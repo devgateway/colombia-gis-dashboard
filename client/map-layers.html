@@ -23,7 +23,7 @@
 
   <!--custom css - sass compiled
 <link rel="stylesheet" type="text/css" href="/styles/main.css"/>-->
-  <link rel="stylesheet" type="text/css" href="styles/main.css" />
+  <link rel="stylesheet" type="text/css" href="main.css" />
 </head>
 
 <body style="background: url(../../html/images/temp-img.png)">
@@ -89,21 +89,33 @@
     <!--start:layer search box-->
 
 		<div class="layer-search-wrapper" data-reactid="">
-			<span class="layer-search-label" data-reactid=""><span data-reactid="">Search Layers</span></span><input class="layer-search" data-reactid="" placeholder="Search layer" type="text"><button class="btn layer-search" data-reactid="">Search</button>
-			<div data-reactid="">
+      <!--start: search box-->
+    				<div class="text-search-wrapper">
+    					<div class="search-box">
+                <button type="submit" class="search-button">
+                  <i class="fa fa-search"></i>
+                </button>
+    						<input class="keyword-search" name="keyword-search" type="text">
+    					</div>
+    				</div>
+    				<!--end: search box-->
+
+      <div data-reactid="">
 				<div class="layer-search-options" data-reactid="">
 					<ul data-reactid="">
-						<li data-reactid="">
-							<span class="select" data-reactid=""><input checked class="glyphicon glyphicon-stop" data-reactid="" type="checkbox" value="feature"></span><span data-reactid="">Feature Service</span>
+						<li class="layer-type-option" data-reactid="">
+                <span class="selectable selected" data-reactid=""></span>
+                <span class="layer-label" data-reactid="">Feature Service</span>
 						</li>
 
-						<li data-reactid="">
-							<span class="select" data-reactid=""><input checked class="glyphicon glyphicon-stop" data-reactid="" type="checkbox" value="map"></span><span data-reactid="">Map Service</span>
-						</li>
-
-						<li data-reactid="">
-							<span class="select" data-reactid=""><input checked class="glyphicon glyphicon-stop" data-reactid="" type="checkbox" value="image"></span><span data-reactid="">Image Service</span>
-						</li>
+            <li class="layer-type-option" data-reactid="">
+                <span class="selectable selected" data-reactid=""></span>
+                <span class="layer-label" data-reactid="">Map Service</span>
+            </li>
+            <li class="layer-type-option" data-reactid="">
+                <span class="selectable selected" data-reactid=""></span>
+                <span class="layer-label" data-reactid="">Image Service</span>
+            </li>
 					</ul>
 				</div>
 			</div>

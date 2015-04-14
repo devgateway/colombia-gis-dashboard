@@ -660,36 +660,22 @@ ul.overview-stats {
   .text-search-wrapper:hover {
     border: 1px solid #8ba8c7; }
   .text-search-wrapper input[type=text] {
-    border: none;
+    border: 1px solid #fff;
     outline: none;
-    width: 95%;
+    width: 93%;
     padding: 0.3em; }
 
 .search-box {
   background: #ffffff; }
 
-.search-button {
-  float: left; }
-  .search-button button {
-    -webkit-appearance: none;
-    webkit-appearance: caret;
-    border: none;
-    background: none;
-    width: 30px;
-    height: 30px; }
+button.search-button {
+  background: #ffffff;
+  border: 1px solid #ffffff;
+  -webkit-appearance: none; }
 
 .layer-search-wrapper {
   clear: both;
   margin-bottom: 1em; }
-  .layer-search-wrapper input[type=text] {
-    border: 1px solid #c5c5c5;
-    outline: none;
-    width: 69%;
-    padding: 0.3em; }
-
-.layer-search-label {
-  text-transform: uppercase;
-  margin-right: 1em; }
 
 .layer-search-options {
   padding-top: 0.5em;
@@ -697,12 +683,31 @@ ul.overview-stats {
   .layer-search-options ul {
     padding-left: 0;
     list-style: none;
-    clear: both;
-    margin-left: 8.3em; }
+    clear: both; }
     .layer-search-options ul li {
       float: left;
       margin-right: 2em;
       position: relative; }
+
+.selectable {
+  width: 14px;
+  height: 14px;
+  border: 1px solid #cccccc;
+  background: #ffffff;
+  float: left;
+  margin-right: 0.5em;
+  -webkit-transition: all 600ms ease;
+  -moz-transition: all 600ms ease;
+  -o-transition: all 600ms ease;
+  transition: all 600ms ease; }
+  .selectable:hover {
+    background: #800; }
+  .selectable.selected {
+    background: #800; }
+
+.layer-label {
+  float: left;
+  line-height: 100%; }
 
 .tab-panel {
   clear: both;
