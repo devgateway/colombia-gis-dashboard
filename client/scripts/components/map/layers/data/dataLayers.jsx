@@ -91,7 +91,7 @@ L.NumberedDivIcon = L.Icon.extend({
 
 
 /*Layer component*/
-var DataLayerStore=require('../../../stores/dataLayerStore.jsx');
+var DataLayerStore=require('../../../../stores/dataLayerStore.js');
 
 module.exports = React.createClass({
   mixins: [  Reflux.connect(DataLayerStore, 'dataLayers')],

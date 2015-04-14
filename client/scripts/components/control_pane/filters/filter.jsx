@@ -1,15 +1,17 @@
 /*http://facebook.github.io/react/docs/component-specs.html*/
 var React = require('react');
 var Reflux = require('reflux');
-var FilterMap = require('./filterMap.js');
-var FilterStore=require('../../stores/filterStore.js');
+var FilterMap = require('../../../conf/filterMap.js');
+
 var FilterGroup = require('./filterGroup.jsx');
 var FilterGroupTree = require('./filterGroupTree.jsx');
 var FilterGroupWithSubLevels = require('./filterGroupWithSubLevels.jsx');
 var FilterActionButton = require('./filterActionButton.jsx');
 var TabbedArea = require('react-bootstrap/lib/TabbedArea');
 var TabPane = require('react-bootstrap/lib/TabPane');
-var FilterActions = require('../../actions/filterActions.js');
+
+var FilterActions = require('../../../actions/filterActions.js');
+var FilterStore=require('../../../stores/filterStore.js');
 
 
 var Filter  = React.createClass({

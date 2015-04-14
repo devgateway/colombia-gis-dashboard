@@ -6,8 +6,8 @@ var accessToken;
 var callbacks = [];
 var callbackPage =window.location.protocol+'//'+ window.location.host+'/#/arcLogin?';
 
-var ArcgisLoginActions=require('../actions/arcgisLoginActions.js');
-var ArcgisLoginStore = require('../stores/arcgisLoginStore.jsx');
+var ArcgisLoginActions=require('../../actions/arcgisLoginActions.js');
+var ArcgisLoginStore = require('../../stores/arcgisLoginStore.js');
 
 module.exports  = React.createClass({
 

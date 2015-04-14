@@ -2,7 +2,7 @@
 var React = require('react')
 var Reflux = require('reflux');
 
-var LanStore=require('../stores/lanStore.js');
+var LanStore=require('../../stores/lanStore.js');
 
 module.exports = React.createClass({
 

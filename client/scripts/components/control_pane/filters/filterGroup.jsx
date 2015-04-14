@@ -5,10 +5,12 @@ var React = require('react');
 var Router = require('react-router');
 var Reflux = require('reflux');
 var Link = Router.Link;
-var FilterStore=require('../../stores/filterStore.js')
+var FilterStore=require('../../../stores/filterStore.js')
+var FilterActions = require('../../../actions/filterActions.js');
+
 var FilterItemList = require('./filterItemList.jsx');
-var FilterActions = require('../../actions/filterActions.js');
-var FilterMap = require('./filterMap.js');
+
+
 var KeywordSearch = require('./keywordSearch.jsx');
 var AllNoneSelector = require('./allNoneSelector.jsx');
 var SelectionCounter = require('./selectionCounter.jsx');

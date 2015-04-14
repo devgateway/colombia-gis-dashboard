@@ -2,8 +2,8 @@
 
 var React = require('react/addons')
 var Reflux = require('reflux');
-var MapActions=require('../actions/mapActions.js')
-var MapStore=require('../stores/mapStore.js');
+var MapActions=require('../../actions/mapActions.js')
+var MapStore=require('../../stores/mapStore.js');
 
 var BaseMapItem= React.createClass({
 
@@ -14,7 +14,7 @@ var BaseMapItem= React.createClass({
    getInitialState: function() {
       return {value:this.props.value, label:this.props.label};
   },
-
+  
   render: function() {
     var currentBaseMap = MapStore.getCurrentBaseMap();
     var cls = currentBaseMap==this.state.value? "basemap-option-selected" : "basemap-option";

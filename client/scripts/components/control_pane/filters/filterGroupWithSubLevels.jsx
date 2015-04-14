@@ -3,9 +3,11 @@ var React = require('react');
 var Router = require('react-router');
 var Reflux = require('reflux');
 var Link = Router.Link;
-var FilterStore=require('../../stores/filterStore.js')
+var FilterStore=require('../../../stores/filterStore.js')
+var FilterActions = require('../../../actions/filterActions.js');
+
 var FilterItemList = require('./filterItemList.jsx');
-var FilterActions = require('../../actions/filterActions.js');
+
 var KeywordSearch = require('./keywordSearch.jsx');
 var FilterSubLevel = require('./filterSubLevel.jsx');
 

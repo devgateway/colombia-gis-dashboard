@@ -2,8 +2,8 @@
 
 var React = require('react');
 var FilterItem = require('./filterItem.jsx');
-var FilterStore=require('../../stores/filterStore.js')
-var FilterMap = require('./filterMap.js');
+var FilterStore=require('../../../stores/filterStore.js')
+var FilterMap = require('../../../conf/filterMap.js');
 
 var FilterItemList = React.createClass({
     
