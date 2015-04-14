@@ -29,17 +29,13 @@
 
 //filter slider
 .m-scaled .m-item{
-  opacity: 0.6;
-  -webkit-box-shadow: inset -5px 4px 142px 0px rgba(184,180,184,0.5);
-  -moz-box-shadow: inset -5px 4px 142px 0px rgba(184,180,184,0.5);
-  box-shadow: inset -5px 4px 142px 0px rgba(184,180,184,0.5);
+  opacity: 0.4;
   padding:10px;
 }
 
 .m-scaled .m-active{
   opacity:1;
   box-shadow:none;
-  padding:0;
 }
 
 .m-center:not(.m-fluid)>.m-scooch-inner>*{
