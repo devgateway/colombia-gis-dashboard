@@ -2,9 +2,6 @@
 .activity-nav {
   @include clearfix;
   overflow: hidden;
-  background: rgba(255, 255, 255, 0.8);
-  padding: $gutter $gutter*1.7 0 $gutter*1.7;
-
 }
 .filter-type-wrapper {
   overflow: hidden;

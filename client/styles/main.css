@@ -249,9 +249,7 @@ ul.tabbed {
     margin-bottom: 1em; } }
 .activity-nav {
   clear: both;
-  overflow: hidden;
-  background: rgba(255, 255, 255, 0.8);
-  padding: 1em 1.7em 0 1.7em; }
+  overflow: hidden; }
 
 .filter-type-wrapper {
   overflow: hidden;
