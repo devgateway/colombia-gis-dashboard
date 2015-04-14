@@ -678,7 +678,7 @@ button.search-button {
   margin-bottom: 1em; }
 
 .layer-search-options {
-  padding-top: 0.5em;
+  padding-top: 1.2em;
   padding-bottom: 0.5em; }
   .layer-search-options ul {
     padding-left: 0;
@@ -726,30 +726,6 @@ button.search-button {
 ul.tabs {
   list-style: none;
   padding-left: 0; }
-
-.esri-result-list {
-  border: 1px solid red;
-  overflow: auto;
-  height: 500px; }
-  .esri-result-list li {
-    margin: 2px;
-    margin-left: 15px;
-    float: left;
-    padding: 3px;
-    width: 40%;
-    vertical-align: bottom; }
-    .esri-result-list li .title {
-      clear: right;
-      font-weight: bold;
-      font-size: 90%;
-      padding: 4px; }
-    .esri-result-list li .thumbnail {
-      float: left;
-      min-height: 60px; }
-    .esri-result-list li .type {
-      font-size: 75%; }
-    .esri-result-list li .add {
-      text-align: right; }
 
 .arcgis-sig-in {
   position: absolute;
