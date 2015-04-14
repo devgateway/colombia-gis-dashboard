@@ -163,3 +163,12 @@ h2 {
 ul.tabbed{
   margin-left: 20px;
 }
+
+.h-divider{
+  border:none;
+  height:1px;
+  background: lighten($grey,60%);
+  width:99%;
+  display:block;
+  margin: $gutter auto;
+}
