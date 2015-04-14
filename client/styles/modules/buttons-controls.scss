@@ -11,7 +11,7 @@
 }
 
 .btn-apply {
-  @extend btn;
+  @extend .btn;
   color: $white;
   background: $green;
   @include floatRight;
