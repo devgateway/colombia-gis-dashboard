@@ -713,7 +713,8 @@ button.search-button {
   clear: both;
   margin-bottom: 1em;
   background: rgba(255, 255, 255, 0.8);
-  padding: 1em 1.8em; }
+  padding: 1em 1.8em;
+  overflow: hidden; }
 
 .tab-content ul {
   list-style: none; }
@@ -728,11 +729,16 @@ ul.tabs {
   padding-left: 0; }
 
 .layer-wrapper {
-  width: 300px;
+  width: 50%;
   float: left;
   height: 150px; }
   .layer-wrapper .thumbnail {
-    width: 120px; }
+    width: 120px;
+    margin-right: 1em; }
+  .layer-wrapper .title {
+    color: #000000; }
+  .layer-wrapper .btn, .layer-wrapper .btn-apply, .layer-wrapper .m-scooch-controls a, .m-scooch-controls .layer-wrapper a, .layer-wrapper button.layer-search {
+    font-size: 0.8em; }
 
 .arcgis-sig-in {
   position: absolute;

@@ -1,9 +1,19 @@
 .layer-wrapper{
-  width:300px;
+  width:50%;
   @include floatLeft;
   height:150px;
 
   .thumbnail{
     width:120px;
+    margin-right: $gutter;
   }
+
+  .title{
+    color: $black;
+  }
+
+  .btn{
+    font-size:0.8em;
+  }
+
 }
