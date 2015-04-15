@@ -40,7 +40,8 @@ i.fa.fa-search {
   display: none; }
 
 .collapse-icon {
-  cursor: pointer; }
+  cursor: pointer;
+  padding: 3px; }
 
 .clickeable {
   cursor: pointer; }
@@ -293,6 +294,9 @@ ul.activities {
       color: #7d7d7d;
       line-height: 80%;
       padding: 0;
+      border-radius: 0;
+      display: inline;
+      margin-right: 0px;
       text-transform: uppercase;
       -webkit-transition: all 600ms ease;
       -moz-transition: all 600ms ease;
@@ -405,20 +409,16 @@ ul.basemap-list {
   top: 4em; }
 
 .m-scaled .m-item {
-  opacity: 0.6;
-  -webkit-box-shadow: inset -5px 4px 142px 0px rgba(184, 180, 184, 0.5);
-  -moz-box-shadow: inset -5px 4px 142px 0px rgba(184, 180, 184, 0.5);
-  box-shadow: inset -5px 4px 142px 0px rgba(184, 180, 184, 0.5);
+  opacity: 0.4;
   padding: 10px; }
 
 .m-scaled .m-active {
   opacity: 1;
-  box-shadow: none;
-  padding: 0; }
+  box-shadow: none; }
 
 .m-center:not(.m-fluid) > .m-scooch-inner > * {
   background: #ffffff;
-  width: 550px;
+  width: 480px;
   margin-left: -80px; }
 
 .m-fade-out {
@@ -497,9 +497,6 @@ button.layer-search {
   .filter-group-panel.selected {
     opacity: 1; }
 
-.filter-group-panel-header {
-  width: 634px; }
-
 .panel-count {
   color: #98ca68;
   background: #4d749f;
@@ -532,8 +529,7 @@ button.layer-search {
 
 .filter-list-container {
   margin-top: 1em;
-  max-height: 220px;
-  width: 530px;
+  max-height: 270px;
   overflow-y: auto; }
 
 ul.filter-list {
@@ -578,9 +574,6 @@ ul.filter-list {
 
 input[type=checkbox].glyphicon {
   visibility: hidden; }
-
-.filter-group-sublevel {
-  width: 450px; }
 
 .fade {
   opacity: 0.9; }
@@ -728,17 +721,48 @@ ul.tabs {
   list-style: none;
   padding-left: 0; }
 
+.esri-result-list {
+  overflow-y: scroll;
+  height: 380px; }
+
+  .esri-result-list ul {
+    padding-left: 0;
+    list-style: none; }
+
 .layer-wrapper {
-  width: 50%;
+  width: 305px;
   float: left;
-  height: 150px; }
-  .layer-wrapper .thumbnail {
-    width: 120px;
-    margin-right: 1em; }
-  .layer-wrapper .title {
-    color: #000000; }
-  .layer-wrapper .btn, .layer-wrapper .btn-apply, .layer-wrapper .m-scooch-controls a, .m-scooch-controls .layer-wrapper a, .layer-wrapper button.layer-search {
-    font-size: 0.8em; }
+  height: 150px;
+  padding: 0 0.5em 0 0;
+  padding-left: 0;
+  list-style: none;
+  display: block; }
+
+.thumbnail {
+  width: 120px;
+  margin-right: 1em; }
+
+.layer-info {
+  float: left;
+  display: inline;
+  width: 155px; }
+
+.title {
+  color: #000000;
+  font-size: 0.85em;
+  line-height: 98%;
+  margin-bottom: 0.5em; }
+
+.type {
+  line-height: 98%;
+  margin-bottom: 0.5em;
+  color: #6b6b6b;
+  font-size: 0.85em; }
+
+.btn, .btn-apply, .m-scooch-controls a, button.layer-search {
+  font-size: 0.8em;
+  float: left;
+  margin-left: 0; }
 
 .arcgis-sig-in {
   position: absolute;
