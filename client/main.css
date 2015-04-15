@@ -721,18 +721,26 @@ ul.tabs {
   list-style: none;
   padding-left: 0; }
 
-.layers-panel {
+.esri-result-list {
   overflow-y: scroll;
   height: 380px; }
+
+  .esri-result-list ul {
+    padding-left: 0;
+    list-style: none; }
 
 .layer-wrapper {
   width: 305px;
   float: left;
   height: 150px;
-  padding: 0 0.5em 0 0; }
-  .layer-wrapper .thumbnail {
-    width: 120px;
-    margin-right: 1em; }
+  padding: 0 0.5em 0 0;
+  padding-left: 0;
+  list-style: none;
+  display: block; }
+
+.thumbnail {
+  width: 120px;
+  margin-right: 1em; }
 
 .layer-info {
   float: left;

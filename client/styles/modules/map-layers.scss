@@ -1,17 +1,24 @@
-.layers-panel{
+.esri-result-list{
   overflow-y:scroll;
   height:380px;
+
+  ul{
+    @include listUnstyled;
+  }
 }
+
 .layer-wrapper{
   width:305px;
   @include floatLeft;
   height:150px;
   padding: 0 0.5em 0 0;
+  @include listUnstyled;
+  display:block;
+}
 
-  .thumbnail{
-    width:120px;
-    margin-right: $gutter;
-  }
+.thumbnail{
+  width:120px;
+  margin-right: $gutter;
 }
 
 .layer-info{
