@@ -35,7 +35,7 @@ var EsriService=React.createClass({
 			<div className="layer-wrapper">
 
 				<div className="thumbnail pull-left">
-				<img width="110px" height=73px" src={"http://www.arcgis.com/sharing/content/items/"+service.id+"/info/"+service.thumbnail}/>
+				<img width="110px" height="73px" src={"http://www.arcgis.com/sharing/content/items/"+service.id+"/info/"+service.thumbnail}/>
 				</div>
 
 				<div className="layer-info">
