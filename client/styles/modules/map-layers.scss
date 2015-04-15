@@ -1,0 +1,9 @@
+.layer-wrapper{
+  width:300px;
+  @include floatLeft;
+  height:150px;
+
+  .thumbnail{
+    width:120px;
+  }
+}
