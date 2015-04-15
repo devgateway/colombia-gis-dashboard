@@ -38,7 +38,7 @@ var FilterItemList = React.createClass({
         if (this.props.parentSelectable){
             listClass += " tabbed";
             var _parent = this.props.parent;
-            var collapseIcon = this.state.collapsed? "collapse-icon glyphicon glyphicon-plus" : "collapse-icon glyphicon glyphicon-minus";
+            var collapseIcon = this.state.collapsed? "collapse-icon fa fa-plus-circle" : "collapse-icon fa fa-minus-circle";
             var childSelectedCount = FilterStore.getChildrenSelected(_parent, filterDefinition).length+"/"+FilterStore.getChildren(_parent, filterDefinition).length;
             if ((!_parent.hide && !(showOnlySelected && (!_parent.selected))) || FilterStore.getChildrenSelected(_parent, filterDefinition).length>0){
                 parent = <div className="inline">

@@ -18,7 +18,6 @@
 }
 
 .filter-group-panel-header {
-  width:634px;
 }
 
 .panel-count {
@@ -52,8 +51,7 @@
 // filter list
 .filter-list-container {
   margin-top: $gutter;
-  max-height: 220px;
-  width:530px;
+  max-height: 270px;
   overflow-y: auto;
 }
 ul.filter-list {
@@ -100,7 +98,6 @@ input[type=checkbox].glyphicon {
 }
 
 .filter-group-sublevel {
-  width: 450px;
 }
 
 .fade{opacity:0.9;}
