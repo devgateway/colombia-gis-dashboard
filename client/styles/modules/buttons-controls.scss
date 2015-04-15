@@ -41,7 +41,7 @@
 .m-center:not(.m-fluid)>.m-scooch-inner>*{
   background: $white;
   // width:635px;
-  width:550px;
+  width:480px;
   margin-left:-80px;
 }
 
@@ -49,24 +49,6 @@
   -webkit-mask-image:none;
 }
 
-.m-scooch-controls {
-  width:45%;
-  margin-left:-10px;
-  padding-top:0;
-  margin-top:-13px;
-}
-
-.m-scooch-controls a{
-    @extend .btn;
-    @extend .btn-apply;
-    margin-right: 2px;
-    display:block;
-    float:left;
-    line-height:80%;
-    padding: 9px 35px;
-    font-size:0.8em;
-    &:hover{ text-decoration:none}
-}
 
 // layer search button
 button.layer-search{
