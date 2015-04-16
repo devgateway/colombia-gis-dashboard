@@ -53,7 +53,8 @@ module.exports = function (options) {
         return deferred.promise;
     }
 
-    /*Main Method*/
+
+ 
     this.init = function () {
 
         this.getToken(options)
