@@ -33,11 +33,16 @@ var SearchInput=React.createClass({
 	render: function() {
 		console.log("layers->search->search: Render EsriSearch");
 		return(
-			<div className="layer-search-wrapper">
-			<span className="layer-search-label"><Message message="layers.search"/></span>
-			<input className="layer-search" type="text" placeholder="Search layer" ref="search_input"/>
-			<button className="btn layer-search" onClick={this.handleCLick}>Search</button>
+			<div className="text-search-wrapper">
+			<div className="search-box">
+				<button type="submit" className="search-button" onClick={this.handleCLick}>
+					<i className="fa fa-search"></i>
+				</button>
+				<input className="keyword-search" type="text" placeholder="Search layer" ref="search_input"/>
+			</div>
 			<div>
+
+			
 			<div className="layer-search-options">
 				<ul>
 					<li>
