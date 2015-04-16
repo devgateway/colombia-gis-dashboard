@@ -23,41 +23,54 @@ module.exports = function (options) {
 
     options.port = options.port || 3553; //if port is not set default will be 3553
 
-    this.getServerInfo=function(target){
+    this.getServerInfo=function(url){
      var deferred = Q.defer();
-        request('http://'+target.host+'/arcgis/rest/info?f=json', function (error, response, body) { //what if 
+        request(url, function (error, response, body) { //what if 
           if (!error && response.statusCode == 200) {
-            debugger;
-            deferred.resolve(body)
+            deferred.resolve(JSON.parse(body));
         }else{
-          deferred.reject(error);
-      }
-  });
+            console.log('Got an error ' +error);
+            deferred.reject(error);
+        }
+    });
         return deferred.promise;
     }
 
     this.requireToken = function (target) {
      var deferred = Q.defer();
      var found=false;
-     var server=_.findWhere(knownServers, { host: target.host});
+     var server=_.findWhere(knownServers, { host: target.host.replace('www.','')});
      if (server){
                deferred.resolve(server.isTokenBasedSecurity); //use_credentials is false we dont't need a token
            }else{
             console.log('I don\'t know about this server let check if supports token');
-            var PATH_TO_INFO=target.path.split('/')[1];
-            this.getServerInfo(target).then(function(){
-                debugger;
-            })  
-        }
-        
-        return deferred.promise;
-    }
+            var uri=target.href.substring(0,target.href.indexOf('rest')+5)+'info?f=json';
+            
+            this.getServerInfo(uri).then(function(serverInfo){
+            console.log('Adding new server to the known server list ')
+             knownServers.push({
+                'isTokenBasedSecurity':serverInfo.authInfo.isTokenBasedSecurity,
+                'host':target.host.replace('www.','')
+            });
+            console.log('Known server list size is '+knownServers.length);
+             
+            //call again now the server is in the known list 
+              deferred.resolve(serverInfo.authInfo.isTokenBasedSecurity); //use_credentials is false we dont't need a token
+
+          }).fail(function(error){
+            console.log('Got an error ' +error);
+            deferred.reject(error);
+        }) 
+      }
+
+      return deferred.promise;
+  }
 
 
- 
-    this.init = function () {
 
-        this.getToken(options)
+  this.init = function () {
+
+    this.getToken(options)
             .then(this.listen.bind(this)) //start http server
             .fail(function (error) {
                 this.log('Failed to initialize prox ' + error);
@@ -66,12 +79,10 @@ module.exports = function (options) {
 
 
         this.resetRefresInterval = function () {
-            var now = new Date();
-            var time = now.getTime();
-
-            var expirationDate = new Date();
-            var refreshDate = new Date();
-
+        var now = new Date();
+        var time = now.getTime();
+        var expirationDate = new Date();
+        var refreshDate = new Date();
         var minutes = options.expiration_time;  //ensure we refresh ;
         var timeout = ((minutes - (minutes / 3)) * 60 * 1000); //update token when 2/3   expiration time was consumed
 
@@ -120,7 +131,6 @@ module.exports = function (options) {
         return deferred.promise;
     }
 
-
     /*Start Server */
     this.listen = function () {
         console.log('Starting proxy server at ' + options.port + ( (options.use_credentials === true) ? ' application token is  ' + options.access_token : ''));
@@ -130,46 +140,60 @@ module.exports = function (options) {
                 var targetUrl = url.parse(target, true);
 
 
-                //499 indicates that a token is required
-                //498 indicates an expired or otherwise invalid token
-                this.requireToken(targetUrl).then(function(useTokens){
+                if (targetUrl.host==null){
+                    pResp.statusCode=404,
+                    pResp.end();
 
-                    if (useTokens){
-                        /*If user is not logged in we will use the application token*/
-                        if (!targetUrl.query.token && options.use_credentials === true) {
-                            console.log('..................Making new request using application token ...........................');
-                            target = target + '&token=' + options.access_token;
-                            targetUrl = url.parse(target, true);
-                        } else {
-                            console.log('..................Making new request using user\'s token ...........................');
-                        }
-                    }else{
-                        console.log('Token is not needed for this server ');
-                        delete targetUrl.query.token;
-                    }
+                }else{
+                    //499 indicates that a token is required
+                    //498 indicates an expired or otherwise invalid token
+                    this.requireToken(targetUrl).then(
+                        function(useTokens){
 
+                            if (useTokens){
+                                /*If user is not logged in we will use the application token*/
+                                if (!targetUrl.query.token && options.use_credentials === true) {
+                                    console.log('..................Making new request using application token ...........................');
+                                    target = target + '&token=' + options.access_token;
+                                    targetUrl = url.parse(target, true);
+                                } else {
+                                    console.log('..................Making new request using user\'s token ...........................');
+                                }
+                            }else{
+                                console.log('Token is not needed for this server ');
+                                delete targetUrl.query.token;
+                                delete targetUrl.query.search;
+                                targetUrl=url.format({protocol:targetUrl.protocol,hostname:targetUrl.hostname,query:targetUrl.query,pathname:targetUrl.pathname })
+                            }
 
-                    /*Collect new request options*/
-                    var reqOptions = {
-                    url: targetUrl, //destination url
-                    method: pReq.method, //use same method as source
-                    followRedirect: true,  //followRedirect - follow HTTP 3xx responses as redirects
-                    followAllRedirects: true,   // follow non-GET HTTP 3xx responses as redirects
-                    jar: true// remember cookies for future use, when the token is present on the query string ESRI respond a redirect to the same url but adding the oauth cookies we need to preserve cookies and send it back to the redirected location
-                    //gzip: true //allow gzip encoding
-                };
+                            
+                            /*Collect new request options*/
+                            var reqOptions = {
+                             url: targetUrl, //destination url
+                              method: pReq.method, //use same method as source
+                              followRedirect: true,  //followRedirect - follow HTTP 3xx responses as redirects
+                            followAllRedirects: true,   // follow non-GET HTTP 3xx responses as redirects
+                            jar: true,//, remember cookies for future use, when the token is present on the query string ESRI respond a redirect to the same url but adding the oauth cookies we need to preserve cookies and send it back to the redirected location
+                            headers:[pReq.headers['accept'],pReq.headers['accept-encoding'],
+                            pReq.headers['accept-language'],pReq.headers['connection'],pReq.headers['content-type']],
+                           // React.PropTypes..isRequired //allow gzip encoding
+                       };
 
-                //make request
-                this.request(reqOptions, pResp);
-            }.bind(this));
-}.bind(this)).listen(options.port);
+                       this.request(reqOptions, pResp);
+
+                   }.bind(this)
+                    ); //end then if requiere token
+}
+}.bind(this)
+).listen(options.port);
 }
 
 /*Request url*/
 this.request = function (options, pResp) {
 
     request(options).on('error', function (err) {
-        deferred.reject(err);
+        console.log('ups got an error!!');
+        console.log(err);
     })
     .on('response', function (response) {
         pResp.writeHead(200, this.normalizeHeaders(response));

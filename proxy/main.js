@@ -2,9 +2,9 @@ var proxy=require('./proxy.js');
 var cluster = require('cluster');
 
 
-/*
+
 var numCPUs = require('os').cpus().length;
-    if (cluster.isMaster) {
+    /*if (cluster.isMaster) {
         // Fork workers.
         for (var i = 0; i < numCPUs; i++) {
             cluster.fork();
@@ -19,12 +19,10 @@ var numCPUs = require('os').cpus().length;
         });
     } else {
 
-            startWorker();      
-    }
-*/
+           
+    }*/
+ startWorker();      
 
-
- startWorker();  
 function startWorker(){
      new proxy({
         'port':3553,
