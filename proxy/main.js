@@ -2,8 +2,7 @@ var proxy=require('./proxy.js');
 var cluster = require('cluster');
 
 
-
-
+/*
 var numCPUs = require('os').cpus().length;
     if (cluster.isMaster) {
         // Fork workers.
@@ -20,16 +19,17 @@ var numCPUs = require('os').cpus().length;
         });
     } else {
 
-       startWorker();
+            startWorker();      
     }
+*/
 
 
-
+ startWorker();  
 function startWorker(){
      new proxy({
         'port':3553,
         'use_credentials':true,
-        'expiration_time':1,
+        'expiration_time':1440,
         'client_id':'Lcs7MzyMULXvbqEB',
         'client_secret':'c9aae480e2aa47dc8e9c4ebb4d20b0d5',
         'grant_type':'client_credentials'

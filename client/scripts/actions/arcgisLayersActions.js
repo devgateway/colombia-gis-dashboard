@@ -10,7 +10,7 @@ var changeVisibility=Reflux.createAction();
 var loadLayerFailed=Reflux.createAction();
 
 loadLayer.preEmit = function(metadata) {
-	
+	debugger;
 	API.getService(metadata.url).fail(function(err,message){
 		loadLayerFailed(message);
 	}).then(function(service){
@@ -21,7 +21,6 @@ loadLayer.preEmit = function(metadata) {
 		}
 	});
 };
-
 
 
 module.exports = {

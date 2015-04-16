@@ -4,8 +4,8 @@ var _=require('lodash');
 var Storage=require('./storage.js');
 
 function logFailure(err, message) {
-    console.error(message);
-    console.error(err);
+    console.log(message);
+    console.log(err);
 }
 
 
@@ -75,6 +75,7 @@ module.exports = {
 
     createLefleatLayer:function(lClass,options, url){
 
+        debugger;
         var uri = url || this.getService().metadata.url;
 
         _.assign({useCors: true}, options)

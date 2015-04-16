@@ -1,4 +1,5 @@
 var http = require('http');
+var https = require('https');
 var url = require('url');
 var _ = require('lodash');
 var request = require('request');
@@ -11,12 +12,50 @@ var CONTROL_HEADERS_HEADER = 'Access-Control-Allow-Headers';
 var CONTROL_HEADERS_HEADER_VALUE = 'X-Requested-With'
 var ESRI_OAUTH2_URL = 'https://www.arcgis.com/sharing/rest/oauth2/token/';
 
+var knownServers = [
+{host: 'services.arcgisonline.com', isTokenBasedSecurity: false},
+{host: 'server.arcgisonline.com', isTokenBasedSecurity: false},
+{host: 'server.arcgisonline.com', isTokenBasedSecurity: false},
+{host: 'arcgis.com', isTokenBasedSecurity: true}
+];
+
 module.exports = function (options) {
 
-     options.port= options.port || 3553; //if port is not set default will be 3553
+    options.port = options.port || 3553; //if port is not set default will be 3553
 
-     /*Main Method*/
-     this.init = function () {
+    this.getServerInfo=function(target){
+     var deferred = Q.defer();
+        request('http://'+target.host+'/arcgis/rest/info?f=json', function (error, response, body) { //what if 
+          if (!error && response.statusCode == 200) {
+            debugger;
+            deferred.resolve(body)
+        }else{
+          deferred.reject(error);
+      }
+  });
+        return deferred.promise;
+    }
+
+    this.requireToken = function (target) {
+     var deferred = Q.defer();
+     var found=false;
+     var server=_.findWhere(knownServers, { host: target.host});
+     if (server){
+               deferred.resolve(server.isTokenBasedSecurity); //use_credentials is false we dont't need a token
+           }else{
+            console.log('I don\'t know about this server let check if supports token');
+            var PATH_TO_INFO=target.path.split('/')[1];
+            this.getServerInfo(target).then(function(){
+                debugger;
+            })  
+        }
+        
+        return deferred.promise;
+    }
+
+    /*Main Method*/
+    this.init = function () {
+
         this.getToken(options)
             .then(this.listen.bind(this)) //start http server
             .fail(function (error) {
@@ -25,110 +64,116 @@ module.exports = function (options) {
         };
 
 
-        this.resetRefresInterval=function(){
-            var now=new Date();
-            var time=now.getTime();
+        this.resetRefresInterval = function () {
+            var now = new Date();
+            var time = now.getTime();
 
             var expirationDate = new Date();
-            var refreshDate =  new Date();
+            var refreshDate = new Date();
 
-            var minutes = options.expiration_time ;  //ensure we refresh ;
-            var timeout=   ((minutes -(minutes / 3))  * 60 * 1000); //update token when 2/3   expiration time was consumed    
+        var minutes = options.expiration_time;  //ensure we refresh ;
+        var timeout = ((minutes - (minutes / 3)) * 60 * 1000); //update token when 2/3   expiration time was consumed
 
-            expirationDate.setTime( time + (minutes * 60 * 1000)); //token expiration date 
-            refreshDate.setTime( time + timeout); 
+        expirationDate.setTime(time + (minutes * 60 * 1000)); //token expiration date
+        refreshDate.setTime(time + timeout);
+        setTimeout(this.refreshToken.bind(this), timeout);
+        console.log('Token base date is  ' + now);
+        console.log('Token expiration will expires on ' + expirationDate);
+        console.log('Token  will refresh on ' + refreshDate);
+    }
 
-            setTimeout( this.refreshToken.bind(this),timeout); 
-
-            console.log('Token base date is  '+ now);
-            console.log('Token expiration will expires on '+ expirationDate);
-            console.log('Token  will refresh on '+refreshDate);
-        }
-
-        this.refreshToken=function(){
-            console.log('..Keep an eye here token will be updated ...')
-         
-            this.getToken().then(function(){
-                console.log('...token was updated, new token is'+options.access_token);
-            })
-        }
+    this.refreshToken = function () {
+        console.log('..Keep an eye here token will be updated ...')
+        this.getToken().then(function () {
+            console.log('...token was updated, new token is' + options.access_token);
+        })
+    }
 
 
-        this.getToken=function(){
-           var deferred = Q.defer();
+    this.getToken = function () {
+        var deferred = Q.defer();
+        if (options.use_credentials) {
+            var data = {'f': 'json', 'client_id': options.client_id, 'client_secret': options.client_secret, 'grant_type': 'client_credentials', 'expiration': options.expiration_time};
 
-           var data = {'f': 'json', 'client_id': options.client_id, 'client_secret': options.client_secret,  'grant_type': 'client_credentials',  'expiration': options.expiration_time};
-           this.resetRefresInterval();
-           
-           request.post({
-            url: ESRI_OAUTH2_URL,
-            json: true,
-            form: data
-        }, function (error, response, body) {
-            if (error) {
-                deferred.reject(err);
-            }else {
-                if(body.error){
-                    console.log('something didn\'t go well so now ??' + body.error);
+            this.resetRefresInterval();
+
+            request.post({
+                url: ESRI_OAUTH2_URL,
+                json: true,
+                form: data
+            }, function (error, response, body) {
+                if (error) {
+                    deferred.reject(err);
+                } else {
+                    if (body.error) {
+                        console.log('something didn\'t go well so now ??' + body.error);
+                    }
+                    console.log('Got a new token ...')
+                    deferred.resolve(_.assign(options, {'access_token': body.access_token})); //add access token to options
                 }
-                console.log('Got a new token ...')
-                 deferred.resolve(_.assign(options, {'access_token': body.access_token})); //add access token to options
-             }
-         });
-           return deferred.promise;
-       }
+            });
+        } else {
+            deferred.resolve(); //use_credentials is false we dont't need a token
 
-       this.get
-       /*Start Server */
-       this.listen = function (options) {
+        }
+        return deferred.promise;
+    }
 
-        console.log('Starting proxy server at ' + options.port + (options.use_credentials) ? ' using app token ' + options.access_token : '');
+
+    /*Start Server */
+    this.listen = function () {
+        console.log('Starting proxy server at ' + options.port + ( (options.use_credentials === true) ? ' application token is  ' + options.access_token : ''));
         http.createServer(
             function (pReq, pResp) {
                 var target = pReq.url.substring(pReq.url.indexOf('?') + 1);
                 var targetUrl = url.parse(target, true);
 
-                /*If user is not logged in we will use the application token*/
-                if (!targetUrl.query.token && options.use_credentials) {
-                    console.log('..................Making new request using application token ...........................');
-                    target = target + '&token=' + options.access_token;
-                    targetUrl = url.parse(target, true);
-                } else {
-                    console.log('..................Making new request using user\'s token ...........................');
-                }
-                /*Collect new request options*/
-                var reqOptions = {
+
+                //499 indicates that a token is required
+                //498 indicates an expired or otherwise invalid token
+                this.requireToken(targetUrl).then(function(useTokens){
+
+                    if (useTokens){
+                        /*If user is not logged in we will use the application token*/
+                        if (!targetUrl.query.token && options.use_credentials === true) {
+                            console.log('..................Making new request using application token ...........................');
+                            target = target + '&token=' + options.access_token;
+                            targetUrl = url.parse(target, true);
+                        } else {
+                            console.log('..................Making new request using user\'s token ...........................');
+                        }
+                    }else{
+                        console.log('Token is not needed for this server ');
+                        delete targetUrl.query.token;
+                    }
+
+
+                    /*Collect new request options*/
+                    var reqOptions = {
                     url: targetUrl, //destination url
                     method: pReq.method, //use same method as source
                     followRedirect: true,  //followRedirect - follow HTTP 3xx responses as redirects
                     followAllRedirects: true,   // follow non-GET HTTP 3xx responses as redirects
-                    jar: true, // remember cookies for future use, when the token is present on the query string ESRI respond a redirect to the same url but adding the oauth cookies we need to preserve cookies and send it back to the redirected location
-                    gzip: true //allow gzip encoding
+                    jar: true// remember cookies for future use, when the token is present on the query string ESRI respond a redirect to the same url but adding the oauth cookies we need to preserve cookies and send it back to the redirected location
+                    //gzip: true //allow gzip encoding
                 };
 
                 //make request
-                this.request(reqOptions).then(
-                    function (response) {
-                      //write response headers 
-                      pResp.writeHead(200,this.normalizeHeaders(response));
-                         //pipe rsults  and end response;
-                         response.pipe(pResp);
-                     }.bind(this)).fail(function (error) {
-                        console.log(error);
-                    });
-                 }.bind(this)).listen(options.port);
+                this.request(reqOptions, pResp);
+            }.bind(this));
+}.bind(this)).listen(options.port);
 }
 
 /*Request url*/
-this.request = function (options) {
-    var deferred = Q.defer();
+this.request = function (options, pResp) {
+
     request(options).on('error', function (err) {
         deferred.reject(err);
-    }).on('response', function (response) {
-                deferred.resolve(response); //add access token to options
-            });
+    })
+    .on('response', function (response) {
+        pResp.writeHead(200, this.normalizeHeaders(response));
+    }.bind(this)).pipe(pResp);
 
-    return deferred.promise;
 }
 
 /*Get reponse headers */
