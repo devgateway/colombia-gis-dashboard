@@ -12,13 +12,8 @@
 <head>
   <meta charset="UTF-8">
   <title>USAID Colombia - Map Panel</title>
-  <!-- temporary map embed element-->
-  <link rel="stylesheet" href="bower_components/leaflet/dist/leaflet.css" />
-  <!--font awesome-->
   <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
-  <!--normalize css -->
   <link rel="stylesheet" href="bower_components/normalize.css/normalize.css" />
-
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
 
   <!--custom css - sass compiled
@@ -72,7 +67,7 @@
           <a data-reactid="" href="#">Map Content</a>
         </li>
 
-        <li class="active" class="" data-reactid="">
+        <li class="active" data-reactid="">
           <a data-reactid="" href="#">Filters</a>
         </li>
 
@@ -99,34 +94,35 @@
 					</li>
 				</ul>
 			</div>
+    </div>
 			<!-- end: filter types basic and advanced-->
 
 		<!--start: basic filter nav-->
-			<ul class="activities">
-				<li role="option" name="location"><a class="active" name="location">Location</a></li>
-				<li role="option"><a name="date">Date</a></li>
-				<li role="option"><a name="objective">Development Objectives</a></li>
-				<li role="option"><a name="status">Sub-Activity Status</a></li>
-				<li role="option"><a name="implementer">Sub Implementer</a></li>
-				<li role="option"><a name="classification">Activity Classification</a></li>
-				<li role="option"><a name="ppp">PPP</a></li>
-				<li role="option"><a name="population">Target Population</a></li>
+    <div>
+			<ul class="activities" role="list">
+				<li role="listitem" name="location"><a class="active" name="location">Location</a></li>
+				<li role="listitem"><a name="date">Date</a></li>
+				<li role="listitem"><a name="objective">Development Objectives</a></li>
+				<li role="listitem"><a name="status">Sub-Activity Status</a></li>
+				<li role="listitem"><a name="implementer">Sub Implementer</a></li>
+				<li role="listitem"><a name="classification">Activity Classification</a></li>
+				<li role="listitem"><a name="ppp">PPP</a></li>
+				<li role="listitem"><a name="population">Target Population</a></li>
 			</ul>
 			<hr class="h-divider">
-
 		</div>
 		<!--end: basic filter nav-->
 
 
-
-
-		<div>
 			<!--start: temporary div to display filter container-->
 			<div>
-			<p>Section containing filters.</p>
+			     <p>Section containing filters.</p>
 			</div>
 			<!--start: temporary div to display filter container-->
+
 	</div>
+
+</div>
 
 
 
