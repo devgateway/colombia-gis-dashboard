@@ -131,9 +131,16 @@ i.fa.fa-search{
 .collapsed{
   display:none;
 }
+
 .collapse-icon{
   cursor: pointer;
   padding: 3px;
+  font-size:0.7em;
+  line-height:160%;
+  margin-left: $gutter;
+  &:hover{
+    color: $green;
+  }
 }
 
 .clickeable{

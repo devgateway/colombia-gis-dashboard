@@ -1,6 +1,7 @@
 .button-pane {
   overflow: hidden;
   margin-top: $gutter;
+  @include floatRight;
 }
 
 .btn{
@@ -21,6 +22,11 @@
     background: darken($green,19%);
     color: $white;
   }
+
+  &.space-left{
+     margin-left: $gutter;
+  }
+
 }
 //map controls
 .leaflet-top {

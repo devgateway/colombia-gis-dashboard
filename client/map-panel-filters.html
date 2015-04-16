@@ -9,87 +9,195 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <head>
-<meta charset="UTF-8">
-<title>Map Panel Filters</title>
-<!-- temporary map embed element-->
-<link rel="stylesheet" href="bower_components/leaflet/dist/leaflet.css"/>
-<!--font awesome-->
-<link rel="stylesheet" href="styles/font-awesome.min.css">
-<!--normalize css -->
-<link rel="stylesheet" href="/bower_components/normalize.css/normalize.css"/>
-<!--bootstrap css-->
-<link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css" />
-<!--custom css - sass compiled-->
-<link rel="stylesheet" type="text/css" href="/styles/main.css"/>
-</head>
-<body>
+  <meta charset="UTF-8">
+  <title>USAID Colombia - Map Panel</title>
+  <!-- temporary map embed element-->
+  <link rel="stylesheet" href="bower_components/leaflet/dist/leaflet.css" />
+  <!--font awesome-->
+  <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+  <!--normalize css -->
+  <link rel="stylesheet" href="bower_components/normalize.css/normalize.css" />
 
-<!--start panel content-->
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+
+  <!--custom css - sass compiled
+<link rel="stylesheet" type="text/css" href="/styles/main.css"/>-->
+  <link rel="stylesheet" type="text/css" href="main.css" />
+</head>
+
+<body style="background: url(../../html/images/temp-img.png)">
+  <div id="map-panel">
+
+    <!--start: top map panel container-->
+    <div class="map-panel-header">
+
+      <!--start: basemap nav-->
+      <div class="basemap-nav-container">
+
+        <div class="basemap-label">
+          <i class="fa fa-globe" aria-hidden="true"></i> Views
+        </div>
+
+        <ul class="basemap-list">
+          <li>
+            <span>Gray</span>
+          </li>
+          <li>
+            <span>Topographic</span>
+          </li>
+          <li>
+            <span>National Geographic</span>
+          </li>
+          <li>
+            <span>Dark Grey</span>
+          </li>
+          <li>
+            <span>Imagery</span>
+          </li>
+          <li>
+            <span>Streets</span>
+          </li>
+        </ul>
+      </div>
+      <!--ends: basemap nav-->
+
+    </div>
+    <!--end: top map panel container-->
+
+    <!--start: tabs-->
+    <nav class="tabs" data-reactid="">
+      <ul class="tabs nav nav-tabs" data-reactid="">
+        <li data-reactid="">
+          <a data-reactid="" href="#">Map Content</a>
+        </li>
+
+        <li class="active" data-reactid="">
+          <a data-reactid="" href="#">Filters</a>
+        </li>
+
+        <li data-reactid="">
+          <a data-reactid="" href="#">Map Layers</a>
+        </li>
+      </ul>
+    </nav>
+    <!--end: tabs-->
+
+		<!--start panel content-->
 	<div class="tab-panel">
 
-		<div class="filter-group-panel-container">
-			<div class="filter-group-panel selected">
-				<div class="filter-group-panel-header">
-					<span class="panel-count">1</span>
-					<span class="filter-count">[2/12]</span>
-					<span class="filter-label" role="label">Level Selections</span>
-					<div class="filter-selectors">
-						<span><a href="#">select all</a></span> / <span><a href="#">diselect all</a></span>
-					</div>
-				</div>
-				<!--end: filter group panel header-->
-				<!--start: search box-->
-				<div class="text-search-wrapper">
-					<div class="search-box">
-						<input class="keyword-search" name="keyword-search" type="text">
-					</div>
-				</div>
-				<!--end: search box-->
+    <!--start: filter types basic and advanced-->
+    <div class="activity-nav">
+      <div class="filter-type-wrapper">
+        <ul>
+          <li class="filter-type-label">
+            <span><a class="active" href="">Basic Filters</a></span>
+          </li>
+          <li class="filter-type-label">
+            <span><a href="">Advanced Filters</a></span>
+          </li>
+        </ul>
+      </div>
+    </div>
+      <!-- end: filter types basic and advanced-->
+
+      <!--start: basic filter nav-->
+        <div class="activity-nav">
+        <ul class="activities">
+          <li role="option" name="location"><a class="active" name="location">Location</a></li>
+          <li role="option"><a name="date">Date</a></li>
+          <li role="option"><a name="objective">Development Objectives</a></li>
+          <li role="option"><a name="status">Sub-Activity Status</a></li>
+          <li role="option"><a name="implementer">Sub Implementer</a></li>
+          <li role="option"><a name="classification">Activity Classification</a></li>
+          <li role="option"><a name="ppp">PPP</a></li>
+          <li role="option"><a name="population">Target Population</a></li>
+        </ul>
+        <hr class="h-divider">
+      </div>
+      <!--end: basic filter nav-->
 
 
-				<!--start: filter list  -->
-				<div class="filter-list-container">
-					<ul class="filter-list">
-						<li>
-						<span class="select">
-						<input type="checkbox" class="glyphicon glyphicon-stop">
-						</span>
-              Training
-						</li>
-						<li>
-						<span class="select">
-						<input type="checkbox" class="glyphicon glyphicon-stop">
-						</span>
-              Conservation
-						</li>
-						<li>
-						<span class="select">
-						<input type="checkbox" class="glyphicon glyphicon-stop">
-						</span>
-              Training and Development
-						</li>
-						<li>
-						<span class="select">
-						<input type="checkbox" class="glyphicon glyphicon-stop">
-						</span>
-						      Monitoring </li>
-					</ul>
-				</div>
-				<!--end: filter list  -->
-			</div>
+    <div class="filter-group-panel selected">
 
-			<!--filter group panel-->
-			<div class="filter-breadcrumb">
-				<i class="glyphicon glyphicon-chevron-right"></i>Filter Level 1
-        <span class="filter-count">[2/12]</span>
-			</div>
-		</div>
-		<!--end: filter groups panel container  -->
+    <div class="filter-group-panel-header" data-reactid="">
+    <div data-reactid="" style="display:inline;">
+      <span class="filter-count" data-original-title="Show All" data-placement="left" data-reactid="" title="">
+      <a data-reactid="" href="#">1150</a></span><span class="filter-count" data-original-title="" data-reactid="" title="">/</span>
+      <span class="filter-count" data-original-title="Show Only Selected" data-placement="left" data-reactid="" title=""><a data-reactid="" href="#">0</a></span>
+    </div>
+    <span class="filter-label" data-reactid="">Locations</span>
+    <div class="filter-selectors" data-reactid="">
+      <span data-reactid="">
+        <a data-reactid="" href="#">select all</a></span>
+        <span data-reactid="">/</span>
+        <span data-reactid=""><a data-reactid="" href="#">diselect all</a></span>
+    </div>
+    </div>
+
+            <!--start: search box-->
+    				<div class="text-search-wrapper">
+    					<div class="search-box">
+                <button type="submit" class="search-button">
+                  <i class="fa fa-search"></i>
+                </button>
+    						<input class="keyword-search" name="keyword-search" type="text">
+    					</div>
+    				</div>
+    				<!--end: search box-->
 
 
-	</div>
-	<!--end: filter container-->
+            <!--start: filter list-->
+
+        <div class="filter-list-container">
+
+        <div data-reactid="">
+        <div class="inline" data-reactid="">
+          <div data-reactid="">
+              <span class="selectable"></span>
+            <span class="filter-label" data-reactid="">Cobertura Nacional</span>
+              <span data-reactid="">(0/1)</span>
+          </div>
+          <span class="collapse-icon fa fa-minus" data-reactid=""></span>
+        </div>
+
+        <ul class="filter-list tabbed" data-reactid="">
+          <li data-reactid="">
+            <div data-reactid="">
+                <span data-reactid="">--Cobertura Nacional--</span><span data-reactid=""></span>
+            </div>
+          </li>
+        </ul>
+        </div>
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </div>
+            <!--end: filter list-->
+
+
+
+      </div><!--end: filter group panel-->
+
+
+
+
+
+    </div>
+    <!--end: panel content-->
+
+  </div>
 </body>
+
 </html>

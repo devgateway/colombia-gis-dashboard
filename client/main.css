@@ -41,7 +41,12 @@ i.fa.fa-search {
 
 .collapse-icon {
   cursor: pointer;
-  padding: 3px; }
+  padding: 3px;
+  font-size: 0.7em;
+  line-height: 160%;
+  margin-left: 1em; }
+  .collapse-icon:hover {
+    color: #98ca68; }
 
 .clickeable {
   cursor: pointer; }
@@ -385,7 +390,8 @@ ul.basemap-list {
 
 .button-pane {
   overflow: hidden;
-  margin-top: 1em; }
+  margin-top: 1em;
+  float: right; }
 
 .btn, .btn-apply, .m-scooch-controls a, button.layer-search {
   cursor: pointer;
@@ -404,6 +410,8 @@ ul.basemap-list {
   .btn-apply:hover, .m-scooch-controls a:hover, button.layer-search:hover {
     background: #689b36;
     color: #ffffff; }
+  .btn-apply.space-left, .m-scooch-controls a.space-left, button.space-left.layer-search {
+    margin-left: 1em; }
 
 .leaflet-top {
   top: 4em; }
