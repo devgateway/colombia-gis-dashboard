@@ -41,7 +41,12 @@ i.fa.fa-search {
 
 .collapse-icon {
   cursor: pointer;
-  padding: 3px; }
+  padding: 3px;
+  font-size: 0.7em;
+  line-height: 160%;
+  margin-left: 1em; }
+  .collapse-icon:hover {
+    color: #98ca68; }
 
 .clickeable {
   cursor: pointer; }
