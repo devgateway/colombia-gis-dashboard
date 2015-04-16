@@ -586,6 +586,12 @@ input[type=checkbox].glyphicon {
 .fade {
   opacity: 0.9; }
 
+.filter-col {
+  width: 290px;
+  float: left;
+  display: block;
+  padding-right: 10px; }
+
 nav.tab-navigation,
 nav.tabs {
   clear: both;

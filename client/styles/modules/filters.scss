@@ -101,3 +101,11 @@ input[type=checkbox].glyphicon {
 }
 
 .fade{opacity:0.9;}
+
+
+.filter-col{
+  width:290px;
+  @include floatLeft;
+  display:block;
+  padding-right:10px;
+}

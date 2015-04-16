@@ -8,6 +8,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 <head>
   <meta charset="UTF-8">
   <title>USAID Colombia - Map Panel</title>
@@ -82,26 +83,26 @@
     </nav>
     <!--end: tabs-->
 
-		<!--start panel content-->
-	<div class="tab-panel">
+    <!--start panel content-->
+    <div class="tab-panel">
 
-    <!--start: filter types basic and advanced-->
-    <div class="activity-nav">
-      <div class="filter-type-wrapper">
-        <ul>
-          <li class="filter-type-label">
-            <span><a class="active" href="">Basic Filters</a></span>
-          </li>
-          <li class="filter-type-label">
-            <span><a href="">Advanced Filters</a></span>
-          </li>
-        </ul>
+      <!--start: filter types basic and advanced-->
+      <div class="activity-nav">
+        <div class="filter-type-wrapper">
+          <ul>
+            <li class="filter-type-label">
+              <span><a class="active" href="">Basic Filters</a></span>
+            </li>
+            <li class="filter-type-label">
+              <span><a href="">Advanced Filters</a></span>
+            </li>
+          </ul>
+        </div>
       </div>
-    </div>
       <!-- end: filter types basic and advanced-->
 
       <!--start: basic filter nav-->
-        <div class="activity-nav">
+      <div class="activity-nav">
         <ul class="activities">
           <li role="option" name="location"><a class="active" name="location">Location</a></li>
           <li role="option"><a name="date">Date</a></li>
@@ -117,78 +118,165 @@
       <!--end: basic filter nav-->
 
 
-    <div class="filter-group-panel selected">
+      <div class="filter-group-panel selected">
 
-    <div class="filter-group-panel-header" data-reactid="">
-    <div data-reactid="" style="display:inline;">
-      <span class="filter-count" data-original-title="Show All" data-placement="left" data-reactid="" title="">
-      <a data-reactid="" href="#">1150</a></span><span class="filter-count" data-original-title="" data-reactid="" title="">/</span>
-      <span class="filter-count" data-original-title="Show Only Selected" data-placement="left" data-reactid="" title=""><a data-reactid="" href="#">0</a></span>
-    </div>
-    <span class="filter-label" data-reactid="">Locations</span>
-    <div class="filter-selectors" data-reactid="">
-      <span data-reactid="">
-        <a data-reactid="" href="#">select all</a></span>
-        <span data-reactid="">/</span>
-        <span data-reactid=""><a data-reactid="" href="#">diselect all</a></span>
-    </div>
-    </div>
+        <div class="filter-group-panel-header" data-reactid="">
+          <div data-reactid="" style="display:inline;">
+            <span class="filter-count" data-original-title="Show All" data-placement="left" data-reactid="" title="">
+              <a data-reactid="" href="#">1150</a></span>
+            <span class="filter-count" data-original-title="" data-reactid="" title="">/</span>
+            <span class="filter-count" data-original-title="Show Only Selected" data-placement="left" data-reactid="" title=""><a data-reactid="" href="#">0</a></span>
+          </div>
+          <span class="filter-label" data-reactid="">Locations</span>
+          <div class="filter-selectors" data-reactid="">
+            <span data-reactid="">
+              <a data-reactid="" href="#">select all</a></span>
+            <span data-reactid="">/</span>
+            <span data-reactid=""><a data-reactid="" href="#">diselect all</a></span>
+          </div>
+        </div>
 
-            <!--start: search box-->
-    				<div class="text-search-wrapper">
-    					<div class="search-box">
-                <button type="submit" class="search-button">
-                  <i class="fa fa-search"></i>
-                </button>
-    						<input class="keyword-search" name="keyword-search" type="text">
-    					</div>
-    				</div>
-    				<!--end: search box-->
+        <!--start: search box-->
+        <div class="text-search-wrapper">
+          <div class="search-box">
+            <button type="submit" class="search-button">
+              <i class="fa fa-search"></i>
+            </button>
+            <input class="keyword-search" name="keyword-search" type="text">
+          </div>
+        </div>
+        <!--end: search box-->
 
 
-            <!--start: filter list-->
+        <!--start: filter list-->
 
         <div class="filter-list-container">
 
-        <div data-reactid="">
-        <div class="inline" data-reactid="">
-          <div data-reactid="">
-              <span class="selectable"></span>
-            <span class="filter-label" data-reactid="">Cobertura Nacional</span>
-              <span data-reactid="">(0/1)</span>
+          <div class="filter-col">
+            <div class="inline">
+
+              <div>
+                <span class="selectable"></span>
+                <span class="filter-label">Cobertura Nacional</span>
+                <span>(0/1)</span>
+              </div>
+              <span class="collapse-icon fa fa-minus"></span>
+            </div>
+
+            <ul class="filter-list tabbed">
+              <li>
+                <div>
+                  <span class="selectable"></span>
+                  <span data-reactid="">Item 1</span>
+                  <span data-reactid=""></span>
+                </div>
+              </li>
+              <li>
+                <div>
+                  <span class="selectable"></span>
+                  <span data-reactid="">Item 2</span>
+                  <span data-reactid=""></span>
+                </div>
+              </li>
+
+              <li>
+                <div>
+                  <span class="selectable"></span>
+                  <span data-reactid="">Item 3</span>
+                  <span data-reactid=""></span>
+                </div>
+              </li>
+              <li>
+                <div>
+                  <span class="selectable"></span>
+                  <span data-reactid="">Item 4</span>
+                  <span data-reactid=""></span>
+                </div>
+              </li>
+
+              <li>
+                <div>
+                  <span class="selectable"></span>
+                  <span data-reactid="">Item 5</span>
+                  <span data-reactid=""></span>
+                </div>
+              </li>
+
+
+            </ul>
+
           </div>
-          <span class="collapse-icon fa fa-minus" data-reactid=""></span>
-        </div>
 
-        <ul class="filter-list tabbed" data-reactid="">
-          <li data-reactid="">
-            <div data-reactid="">
-                <span data-reactid="">--Cobertura Nacional--</span><span data-reactid=""></span>
+          <!--end: column left-->
+
+
+          <!--start: column right-->
+          <div class="filter-col">
+            <div class="inline">
+
+              <div>
+                <span class="selectable"></span>
+                <span class="filter-label">Cobertura Nacional</span>
+                <span>(0/1)</span>
+              </div>
+              <span class="collapse-icon fa fa-minus"></span>
             </div>
-          </li>
-        </ul>
+
+            <ul class="filter-list tabbed">
+              <li>
+                <div>
+                  <span class="selectable"></span>
+                  <span data-reactid="">Item 1</span>
+                  <span data-reactid=""></span>
+                </div>
+              </li>
+              <li>
+                <div>
+                  <span class="selectable"></span>
+                  <span data-reactid="">Item 2</span>
+                  <span data-reactid=""></span>
+                </div>
+              </li>
+
+              <li>
+                <div>
+                  <span class="selectable"></span>
+                  <span data-reactid="">Item 3</span>
+                  <span data-reactid=""></span>
+                </div>
+              </li>
+              <li>
+                <div>
+                  <span class="selectable"></span>
+                  <span data-reactid="">Item 4</span>
+                  <span data-reactid=""></span>
+                </div>
+              </li>
+
+              <li>
+                <div>
+                  <span class="selectable"></span>
+                  <span data-reactid="">Item 5</span>
+                  <span data-reactid=""></span>
+                </div>
+              </li>
+
+            </ul>
+
+          </div>
+          <!--end: column right-->
+
+
+
+
+
         </div>
+        <!--end: filter list-->
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-            </div>
-            <!--end: filter list-->
-
-
-
-      </div><!--end: filter group panel-->
+      </div>
+      <!--end: filter group panel-->
 
 
 
