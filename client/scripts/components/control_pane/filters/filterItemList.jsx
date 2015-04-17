@@ -41,7 +41,7 @@ var FilterItemList = React.createClass({
             var collapseIcon = this.state.collapsed? "collapse-icon fa fa-plus" : "collapse-icon fa fa-minus";
             var childSelectedCount = FilterStore.getChildrenSelected(_parent, filterDefinition).length+"/"+FilterStore.getChildren(_parent, filterDefinition).length;
             if ((!_parent.hide && !(showOnlySelected && (!_parent.selected))) || FilterStore.getChildrenSelected(_parent, filterDefinition).length>0){
-                parent = <div className="inline">
+                parent = <div className="filter-parent">
                             <FilterItem
                             onItemChanged={self.props.onItemChanged}
                             id={this.props.parent.id}
