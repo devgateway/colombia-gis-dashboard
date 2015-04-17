@@ -817,7 +817,8 @@ ul.tabs {
         padding: 0; }
       .language-btn .dropdown-menu li a {
         color: #a0cdff;
-        padding: 0 0 0 1.1em; }
+        padding: 0 0 0 1.1em;
+        outline: none; }
         .language-btn .dropdown-menu li a:hover {
           background: none;
           color: #ffffff; }
