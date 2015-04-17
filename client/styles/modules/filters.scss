@@ -42,7 +42,8 @@
 }
 .filter-selectors {
   @include floatRight;
-  font-size: 1.1rem;
+  font-size: 1.4rem;
+  line-height:80%;
   font-style: italic;
   margin-top: 5px;
   margin-right:$gutter;
