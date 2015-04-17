@@ -12,12 +12,15 @@ var KeywordSearch = React.createClass({
         } else {
             this.props.onSearch();
         }
-    },    
+    },
 
     render: function() {
         return(
               <div className="text-search-wrapper">
                   <div className="search-box">
+                  <button type="submit" className="search-button" onClick={this.handleCLick}>
+          					<i className="fa fa-search"></i>
+          				</button>
                       <input className="keyword-search" name="keyword-search" type="text" onKeyUp={this._onKeyUp} />
                   </div>
               </div>
