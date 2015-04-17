@@ -27,12 +27,13 @@ h2 {
 }
 .header-nav {
   @include floatRight;
-  @include textBold;
-  @include textMedium;
-  margin-top: 0.3em;
+  text-transform: uppercase;
+  margin-top: 0.5em;
+  padding-top:$gutter/2.4;
   a {
     color: saturate(lighten( $blue, 35), 65);
     @include transitionColor;
+    font-size:0.9em;
     &:hover {
       color: $white;
     }

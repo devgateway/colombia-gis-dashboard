@@ -81,15 +81,16 @@ h2 {
 
 .header-nav {
   float: right;
-  font-weight: bold;
-  font-size: 1.5rem;
-  margin-top: 0.3em; }
+  text-transform: uppercase;
+  margin-top: 0.5em;
+  padding-top: 0.41667em; }
   .header-nav a {
     color: #a0cdff;
     -webkit-transition: color 600ms ease;
     -moz-transition: color 600ms ease;
     -o-transition: color 600ms ease;
-    transition: color 600ms ease; }
+    transition: color 600ms ease;
+    font-size: 0.9em; }
     .header-nav a:hover {
       color: #ffffff; }
 
@@ -797,5 +798,54 @@ ul.tabs {
         vertical-align: middle;
         line-height: normal;
         font: base-font-family; }
+
+.language-btn {
+  float: right;
+  position: relative;
+  border-left: 1px solid #a0cdff;
+  margin-left: 1.1em; }
+  .language-btn .dropdown-menu {
+    background-color: black;
+    border: none;
+    -webkit-border-radius: 0;
+    border-radius: 0;
+    background-clip: padding-box;
+    /* stops bg color from leaking outside the border: */ }
+    .language-btn .dropdown-menu li {
+      background: none; }
+      .language-btn .dropdown-menu li:hover {
+        padding: 0; }
+      .language-btn .dropdown-menu li a {
+        color: #a0cdff;
+        padding: 0 0 0 1.1em; }
+        .language-btn .dropdown-menu li a:hover {
+          background: none;
+          color: #ffffff; }
+  .language-btn .btn-input {
+    display: block; }
+  .language-btn .btn-input .btn.form-control, .language-btn .btn-input .form-control.btn-apply, .language-btn .btn-input .m-scooch-controls a.form-control, .m-scooch-controls .language-btn .btn-input a.form-control, .language-btn .btn-input button.form-control.layer-search {
+    text-align: left; }
+  .language-btn .btn-input .btn.form-control span:first-child, .language-btn .btn-input .form-control.btn-apply span:first-child, .language-btn .btn-input .m-scooch-controls a.form-control span:first-child, .m-scooch-controls .language-btn .btn-input a.form-control span:first-child, .language-btn .btn-input button.form-control.layer-search span:first-child {
+    left: 10px;
+    overflow: hidden;
+    position: absolute;
+    right: 25px; }
+  .language-btn .btn-input .btn.form-control .caret, .language-btn .btn-input .form-control.btn-apply .caret, .language-btn .btn-input .m-scooch-controls a.form-control .caret, .m-scooch-controls .language-btn .btn-input a.form-control .caret, .language-btn .btn-input button.form-control.layer-search .caret {
+    margin-top: -1px;
+    position: absolute;
+    right: 10px;
+    top: 50%; }
+  .language-btn .btn-language-select {
+    background: none;
+    color: #a0cdff;
+    -webkit-transition: color 600ms ease;
+    -moz-transition: color 600ms ease;
+    -o-transition: color 600ms ease;
+    transition: color 600ms ease;
+    font-size: 0.9em;
+    padding: 0;
+    margin-left: 1em; }
+    .language-btn .btn-language-select:hover {
+      color: #ffffff; }
 
 /*# sourceMappingURL=main.css.map */
