@@ -128,7 +128,7 @@ module.exports=Reflux.createStore({
 
         this.state.filtersSelected = filtersSelected;
         LayerActions.triggerFilterApply(this.state.filtersSelected);
-        alert("Filters Applied: "+ JSON.stringify(this.state.filtersSelected));
+        //alert("Filters Applied: "+ JSON.stringify(this.state.filtersSelected));
         this.output();
     },
 

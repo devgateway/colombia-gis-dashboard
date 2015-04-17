@@ -13,7 +13,9 @@ module.exports = React.createClass({
                     <h1> <Message message="app.description"/> </h1>
                     <h2> <Message message="app.title"/></h2>
                     <div className="header-nav">
-                      <AGOLProfile/> <a href="#">Menu <span>|</span></a> <LanSelector/>
+                      <AGOLProfile/>
+                      <a href="#">Menu</a>
+                      <LanSelector/>
                     </div>
 
                   </div>
