@@ -28,8 +28,7 @@ h2 {
 .header-nav {
   @include floatRight;
   text-transform: uppercase;
-  margin-top: 0.5em;
-  padding-top:$gutter/2.4;
+  margin-top: 0.3em;
   a {
     color: saturate(lighten( $blue, 35), 65);
     @include transitionColor;

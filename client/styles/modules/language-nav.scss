@@ -6,6 +6,8 @@
   .dropdown-menu {
     background-color: rgba(0, 0, 0, 1);
     border: none;
+    min-width: 100px;
+    margin: 0 0 0 6px;
     @include border-radius(0);
     li {
       background: none;
@@ -14,7 +16,7 @@
       }
       a {
         color: saturate(lighten( $blue, 35), 65);
-        padding: 0 0 0 $gutter*1.1;
+        padding: 0 0 0 $gutter*1.2;
         outline: none;
         &:hover {
           background: none;
