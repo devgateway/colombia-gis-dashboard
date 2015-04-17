@@ -58,11 +58,9 @@ ul.filter-list {
   @include listUnstyled;
   li {
     color: $blue;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
+    line-height:140%;
     display: block;
-    &:hover .glyphicon.glyphicon-stop:before {
-      color: #e9ba00;
-    }
   }
 }
 //filter input with glyphicon -> remove -> using selectable div
