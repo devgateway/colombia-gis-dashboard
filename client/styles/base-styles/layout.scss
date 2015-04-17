@@ -174,4 +174,20 @@ ul.tabbed{
   margin: $gutter auto;
 }
 
-// tab content panel
+// loading icon
+.loader{
+  height: 25px;
+  width: 25px;
+  text-align: center;
+  padding: 1em;
+  margin: auto;
+  vertical-align: top;
+}
+
+/*
+Set the color of the icon
+*/
+svg path,
+svg rect{
+  fill: #FF6700;
+}

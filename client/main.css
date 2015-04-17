@@ -229,6 +229,21 @@ ul.tabbed {
   display: block;
   margin: 1em auto; }
 
+.loader {
+  height: 25px;
+  width: 25px;
+  text-align: center;
+  padding: 1em;
+  margin: auto;
+  vertical-align: top; }
+
+/*
+Set the color of the icon
+*/
+svg path,
+svg rect {
+  fill: #FF6700; }
+
 @media only screen and (min-device-width: 786px) and (max-device-width: 1024px) {
   /*tablets*/
   h2 {
