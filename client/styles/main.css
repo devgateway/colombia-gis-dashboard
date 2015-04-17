@@ -40,7 +40,13 @@ i.fa.fa-search {
   display: none; }
 
 .collapse-icon {
-  cursor: pointer; }
+  cursor: pointer;
+  padding: 3px;
+  font-size: 0.7em;
+  line-height: 160%;
+  margin-left: 1em; }
+  .collapse-icon:hover {
+    color: #98ca68; }
 
 .clickeable {
   cursor: pointer; }
@@ -303,7 +309,7 @@ ul.activities {
       transition: all 600ms ease;
       background: #eeeeee;
       padding: 0.3em 0.7em; }
-      ul.activities li a:hover, ul.activities li.active  a{
+      ul.activities li a:hover, ul.activities li a.active {
         background: #ffffff;
         border: none;
         outline: none;
@@ -384,7 +390,8 @@ ul.basemap-list {
 
 .button-pane {
   overflow: hidden;
-  margin-top: 1em; }
+  margin-top: 1em;
+  float: right; }
 
 .btn, .btn-apply, .m-scooch-controls a, button.layer-search {
   cursor: pointer;
@@ -403,25 +410,23 @@ ul.basemap-list {
   .btn-apply:hover, .m-scooch-controls a:hover, button.layer-search:hover {
     background: #689b36;
     color: #ffffff; }
+  .btn-apply.space-left, .m-scooch-controls a.space-left, button.space-left.layer-search {
+    margin-left: 1em; }
 
 .leaflet-top {
   top: 4em; }
 
 .m-scaled .m-item {
-  opacity: 0.6;
-  -webkit-box-shadow: inset -5px 4px 142px 0px rgba(184, 180, 184, 0.5);
-  -moz-box-shadow: inset -5px 4px 142px 0px rgba(184, 180, 184, 0.5);
-  box-shadow: inset -5px 4px 142px 0px rgba(184, 180, 184, 0.5);
+  opacity: 0.4;
   padding: 10px; }
 
 .m-scaled .m-active {
   opacity: 1;
-  box-shadow: none;
-  padding: 0; }
+  box-shadow: none; }
 
 .m-center:not(.m-fluid) > .m-scooch-inner > * {
   background: #ffffff;
-  width: 550px;
+  width: 480px;
   margin-left: -80px; }
 
 .m-fade-out {
@@ -500,9 +505,6 @@ button.layer-search {
   .filter-group-panel.selected {
     opacity: 1; }
 
-.filter-group-panel-header {
-  width: 634px; }
-
 .panel-count {
   color: #98ca68;
   background: #4d749f;
@@ -535,8 +537,7 @@ button.layer-search {
 
 .filter-list-container {
   margin-top: 1em;
-  max-height: 220px;
-  width: 530px;
+  max-height: 270px;
   overflow-y: auto; }
 
 ul.filter-list {
@@ -582,11 +583,14 @@ ul.filter-list {
 input[type=checkbox].glyphicon {
   visibility: hidden; }
 
-.filter-group-sublevel {
-  width: 450px; }
-
 .fade {
   opacity: 0.9; }
+
+.filter-col {
+  width: 290px;
+  float: left;
+  display: block;
+  padding-right: 10px; }
 
 nav.tab-navigation,
 nav.tabs {
@@ -681,7 +685,7 @@ button.search-button {
   margin-bottom: 1em; }
 
 .layer-search-options {
-  padding-top: 0.5em;
+  padding-top: 1.2em;
   padding-bottom: 0.5em; }
   .layer-search-options ul {
     padding-left: 0;
@@ -704,9 +708,9 @@ button.search-button {
   -o-transition: all 600ms ease;
   transition: all 600ms ease; }
   .selectable:hover {
-    background: #800; }
+    background: #e9ba00; }
   .selectable.selected {
-    background: #800; }
+    background: #e9ba00; }
 
 .layer-label {
   float: left;
@@ -716,7 +720,8 @@ button.search-button {
   clear: both;
   margin-bottom: 1em;
   background: rgba(255, 255, 255, 0.8);
-  padding: 1em 1.8em; }
+  padding: 1em 1.8em;
+  overflow: hidden; }
 
 .tab-content ul {
   list-style: none; }
@@ -729,6 +734,48 @@ button.search-button {
 ul.tabs {
   list-style: none;
   padding-left: 0; }
+
+.esri-result-list {
+  overflow-y: scroll;
+  height: 380px; }
+  .esri-result-list ul {
+    padding-left: 0;
+    list-style: none; }
+
+.layer-wrapper {
+  width: 305px;
+  float: left;
+  height: 150px;
+  padding: 0 0.5em 0 0;
+  padding-left: 0;
+  list-style: none;
+  display: block; }
+
+.thumbnail {
+  width: 120px;
+  margin-right: 1em; }
+
+.layer-info {
+  float: left;
+  display: inline;
+  width: 155px; }
+
+.title {
+  color: #000000;
+  font-size: 0.85em;
+  line-height: 98%;
+  margin-bottom: 0.5em; }
+
+.type {
+  line-height: 98%;
+  margin-bottom: 0.5em;
+  color: #6b6b6b;
+  font-size: 0.85em; }
+
+.btn, .btn-apply, .m-scooch-controls a, button.layer-search {
+  font-size: 0.8em;
+  float: left;
+  margin-left: 0; }
 
 .arcgis-sig-in {
   position: absolute;
@@ -750,5 +797,26 @@ ul.tabs {
         vertical-align: middle;
         line-height: normal;
         font: base-font-family; }
+
+.language-btn {
+  float: right;
+  background: #800;
+  display: inline; }
+  .language-btn .btn-input {
+    display: block; }
+  .language-btn .btn-input .btn.form-control, .language-btn .btn-input .form-control.btn-apply, .language-btn .btn-input .m-scooch-controls a.form-control, .m-scooch-controls .language-btn .btn-input a.form-control, .language-btn .btn-input button.form-control.layer-search {
+    text-align: left; }
+  .language-btn .btn-input .btn.form-control span:first-child, .language-btn .btn-input .form-control.btn-apply span:first-child, .language-btn .btn-input .m-scooch-controls a.form-control span:first-child, .m-scooch-controls .language-btn .btn-input a.form-control span:first-child, .language-btn .btn-input button.form-control.layer-search span:first-child {
+    left: 10px;
+    overflow: hidden;
+    position: absolute;
+    right: 25px; }
+  .language-btn .btn-input .btn.form-control .caret, .language-btn .btn-input .form-control.btn-apply .caret, .language-btn .btn-input .m-scooch-controls a.form-control .caret, .m-scooch-controls .language-btn .btn-input a.form-control .caret, .language-btn .btn-input button.form-control.layer-search .caret {
+    margin-top: -1px;
+    position: absolute;
+    right: 10px;
+    top: 50%; }
+  .language-btn .btn-language {
+    background: #f00; }
 
 /*# sourceMappingURL=main.css.map */

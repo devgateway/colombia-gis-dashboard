@@ -27,12 +27,13 @@ h2 {
 }
 .header-nav {
   @include floatRight;
-  @include textBold;
-  @include textMedium;
-  margin-top: 0.3em;
+  text-transform: uppercase;
+  margin-top: 0.5em;
+  padding-top:$gutter/2.4;
   a {
     color: saturate(lighten( $blue, 35), 65);
     @include transitionColor;
+    font-size:0.9em;
     &:hover {
       color: $white;
     }
@@ -173,4 +174,20 @@ ul.tabbed{
   margin: $gutter auto;
 }
 
-// tab content panel
+// loading icon
+.loader{
+  height: 25px;
+  width: 25px;
+  text-align: center;
+  padding: 1em;
+  margin: auto;
+  vertical-align: top;
+}
+
+/*
+Set the color of the icon
+*/
+svg path,
+svg rect{
+  fill: $green;
+}
