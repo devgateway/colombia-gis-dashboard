@@ -57,6 +57,7 @@ button{
 // checkbox replacement- using div and jquery
 .layer-type-option{
 }
+
 .selectable{
   width:14px;
   height:14px;
@@ -68,9 +69,16 @@ button{
   &:hover{
     background:#e9ba00;
   }
+
   &.selected{
     background:#e9ba00;
   }
+
+}
+
+.selectable-radio{
+  @extend .selectable;
+  @include border-radius(50%);
 }
 
 .layer-label{
