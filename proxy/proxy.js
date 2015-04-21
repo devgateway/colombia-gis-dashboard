@@ -134,7 +134,7 @@ module.exports = function (options) {
         console.log('Starting proxy server at ' + options.port + ( (options.use_credentials === true) ? ' application token is  ' + options.access_token : ''));
         http.createServer(
             function (pReq, pResp) {
-                var target = pReq.url.substring(pReq.url.indexOf('?') > 1);
+                var target = pReq.url.substring(pReq.url.indexOf('?')+1);
                 var targetUrl = url.parse(target, true);
 
                 if (targetUrl.host == null && ( targetUrl.pathname && targetUrl.pathname.indexOf('favicon')>-1 ) ) {
