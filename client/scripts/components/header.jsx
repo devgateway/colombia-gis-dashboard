@@ -9,11 +9,13 @@ module.exports = React.createClass({
     return (
               <div className="navbar navbar-fixed-top map-header">
                 <div className="navbar-inner">
-                  <div className="container" role="main">
+                  <div className="container-fluid" role="main">
                     <h1> <Message message="app.description"/> </h1>
                     <h2> <Message message="app.title"/></h2>
                     <div className="header-nav">
-                      <AGOLProfile/> <a href="#">Menu <span>|</span></a> <LanSelector/>
+                      <AGOLProfile/>
+                      <a href="#">Menu</a>
+                      <LanSelector/>
                     </div>
 
                   </div>

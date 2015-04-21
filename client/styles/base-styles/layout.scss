@@ -27,12 +27,12 @@ h2 {
 }
 .header-nav {
   @include floatRight;
-  @include textBold;
-  @include textMedium;
+  text-transform: uppercase;
   margin-top: 0.3em;
   a {
     color: saturate(lighten( $blue, 35), 65);
     @include transitionColor;
+    font-size:0.9em;
     &:hover {
       color: $white;
     }
@@ -162,4 +162,31 @@ h2 {
 // other
 ul.tabbed{
   margin-left: 20px;
+}
+
+.h-divider{
+  border:none;
+  height:1px;
+  background: lighten($grey,60%);
+  width:99%;
+  display:block;
+  margin: $gutter auto;
+}
+
+// loading icon
+.loader{
+  height: 25px;
+  width: 25px;
+  text-align: center;
+  padding: 1em;
+  margin: auto;
+  vertical-align: top;
+}
+
+/*
+Set the color of the icon
+*/
+svg path,
+svg rect{
+  fill: $green;
 }

@@ -33,38 +33,40 @@ var SearchInput=React.createClass({
 	render: function() {
 		console.log("layers->search->search: Render EsriSearch");
 		return(
-		<div className="layer-search-wrapper">
-			<span className="layer-search-label"><Message message="layers.search"/></span>
-			<input className="layer-search" type="text" placeholder="Search layer" ref="search_input"/>
-
-			<button className="btn layer-search" onClick={this.handleCLick}>Search</button>
-			{this.props.error&&<div className="label label-warning">{this.props.error}</div>}
-			<div>
-				<div className="layer-search-options">
-					<ul>
-						<li>
-							<span className="select">
-								<input className="glyphicon glyphicon-stop" type="checkbox" value="feature" onClick={this.checkOption} checked={this.state.feature}/>
-							</span>
-							Feature Service
-						</li>
-						<li>
-							<span className="select">
-								<input className="glyphicon glyphicon-stop" type="checkbox" value="map" onClick={this.checkOption} checked={this.state.map}/>
-							</span>
-							Map Service
-						</li>
-						<li>
-							<span className="select">
-								<input className="glyphicon glyphicon-stop" type="checkbox" value="image" onClick={this.checkOption} checked={this.state.image}/>
-							</span>
-							Image Service
-						</li>
-					</ul>
-				</div>
+			<div className="text-search-wrapper">
+			<div className="search-box">
+				<button type="submit" className="search-button" onClick={this.handleCLick}>
+					<i className="fa fa-search"></i>
+				</button>
+				<input className="keyword-search" type="text" placeholder="Search layer" ref="search_input"/>
 			</div>
+			<div>
 
-		</div>
+			
+			<div className="layer-search-options">
+				<ul>
+					<li>
+						<span className="select">
+							<input className="glyphicon glyphicon-stop" type="checkbox" value="feature" onClick={this.checkOption} checked={this.state.feature}/>
+						</span>
+						Feature Service
+					</li>
+					<li>
+						<span className="select">
+							<input className="glyphicon glyphicon-stop" type="checkbox" value="map" onClick={this.checkOption} checked={this.state.map}/>
+						</span>
+						Map Service
+					</li>
+					<li>
+						<span className="select">
+							<input className="glyphicon glyphicon-stop" type="checkbox" value="image" onClick={this.checkOption} checked={this.state.image}/>
+						</span>
+						Image Service
+					</li>
+				</ul>
+			</div>
+			</div>
+			</div>
 			);
 	}
 });

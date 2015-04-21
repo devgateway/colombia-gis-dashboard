@@ -81,15 +81,15 @@ h2 {
 
 .header-nav {
   float: right;
-  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 1.5rem;
   margin-top: 0.3em; }
   .header-nav a {
     color: #a0cdff;
     -webkit-transition: color 600ms ease;
     -moz-transition: color 600ms ease;
     -o-transition: color 600ms ease;
-    transition: color 600ms ease;
-    font-size: 0.9em; }
+    transition: color 600ms ease; }
     .header-nav a:hover {
       color: #ffffff; }
 
@@ -228,21 +228,6 @@ ul.tabbed {
   display: block;
   margin: 1em auto; }
 
-.loader {
-  height: 25px;
-  width: 25px;
-  text-align: center;
-  padding: 1em;
-  margin: auto;
-  vertical-align: top; }
-
-/*
-Set the color of the icon
-*/
-svg path,
-svg rect {
-  fill: #98ca68; }
-
 @media only screen and (min-device-width: 786px) and (max-device-width: 1024px) {
   /*tablets*/
   h2 {
@@ -270,9 +255,7 @@ svg rect {
     margin-bottom: 1em; } }
 .activity-nav {
   clear: both;
-  overflow: hidden;
-  padding-top: 0.7em;
-  margin-left: 0.7em; }
+  overflow: hidden; }
 
 .filter-type-wrapper {
   overflow: hidden;
@@ -326,9 +309,9 @@ ul.activities {
       transition: all 600ms ease;
       background: #eeeeee;
       padding: 0.3em 0.7em; }
-      ul.activities li a:hover, ul.activities li a.active, ul.activities li a:focus {
+      ul.activities li a:hover, ul.activities li a.active {
         background: #ffffff;
-        border: 1px solid #ffffff;
+        border: none;
         outline: none;
         line-height: 85%;
         color: #2472c8;
@@ -516,7 +499,7 @@ button.layer-search {
   background: #ffffff;
   padding: 1em;
   margin-top: 0.5em;
-  height: 390px;
+  height: 385px;
   overflow: auto;
   border: 1px solid #dedede; }
   .filter-group-panel.selected {
@@ -547,8 +530,7 @@ button.layer-search {
 
 .filter-selectors {
   float: right;
-  font-size: 1.4rem;
-  line-height: 80%;
+  font-size: 1.1rem;
   font-style: italic;
   margin-top: 5px;
   margin-right: 1em; }
@@ -563,11 +545,10 @@ ul.filter-list {
   list-style: none; }
   ul.filter-list li {
     color: #4d749f;
-    font-size: 1.2rem; }
-    ul.filter-list li span {
-      display: table;
-      margin-bottom: 0.25em;
-      line-height: 1.1em; }
+    font-size: 1.3rem;
+    display: block; }
+    ul.filter-list li:hover .glyphicon.glyphicon-stop:before {
+      color: #e9ba00; }
 
 .select {
   width: 12px;
@@ -604,10 +585,6 @@ input[type=checkbox].glyphicon {
 
 .fade {
   opacity: 0.9; }
-
-.filter-parent {
-  display: inline-flex;
-  padding-top: 15px; }
 
 .filter-col {
   width: 290px;
@@ -701,8 +678,7 @@ ul.overview-stats {
 button.search-button {
   background: #ffffff;
   border: 1px solid #ffffff;
-  -webkit-appearance: none;
-  outline: none; }
+  -webkit-appearance: none; }
 
 .layer-search-wrapper {
   clear: both;
@@ -720,7 +696,7 @@ button.search-button {
       margin-right: 2em;
       position: relative; }
 
-.selectable, .selectable-radio {
+.selectable {
   width: 14px;
   height: 14px;
   border: 1px solid #cccccc;
@@ -731,16 +707,10 @@ button.search-button {
   -moz-transition: all 600ms ease;
   -o-transition: all 600ms ease;
   transition: all 600ms ease; }
-  .selectable:hover, .selectable-radio:hover {
+  .selectable:hover {
     background: #e9ba00; }
-  .selectable.selected, .selected.selectable-radio {
+  .selectable.selected {
     background: #e9ba00; }
-
-.selectable-radio {
-  -webkit-border-radius: 50%;
-  border-radius: 50%;
-  background-clip: padding-box;
-  /* stops bg color from leaking outside the border: */ }
 
 .layer-label {
   float: left;
@@ -753,15 +723,13 @@ button.search-button {
   padding: 1em 1.8em;
   overflow: hidden; }
 
-.tab-content {
-  background: rgba(255, 255, 255, 0.8); }
-  .tab-content ul {
-    list-style: none; }
-  .tab-content input[type="checkbox"],
-  .tab-content input[type="radio"] {
-    margin-right: 8px; }
-  .tab-content span.btn, .tab-content span.btn-apply {
-    padding: 0; }
+.tab-content ul {
+  list-style: none; }
+.tab-content input[type="checkbox"],
+.tab-content input[type="radio"] {
+  margin-right: 8px; }
+.tab-content span.btn, .tab-content span.btn-apply {
+  padding: 0; }
 
 ul.tabs {
   list-style: none;
@@ -811,27 +779,10 @@ ul.tabs {
 
 .arcgis-sig-in {
   position: absolute;
-  top: 60px;
-  right: 75px;
+  top: 100px;
+  right: 50px;
   z-index: 100;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
-  color: #787878;
-  text-transform: uppercase;
-  font-size: 0.9em;
-  -webkit-transition: all 600ms ease;
-  -moz-transition: all 600ms ease;
-  -o-transition: all 600ms ease;
-  transition: all 600ms ease; }
-  .arcgis-sig-in button {
-    background: #eee;
-    border: 1px solid #eee;
-    -webkit-transition: all 600ms ease;
-    -moz-transition: all 600ms ease;
-    -o-transition: all 600ms ease;
-    transition: all 600ms ease; }
-    .arcgis-sig-in button:hover {
-      background: #ffffff;
-      color: #2472c8; }
+  border: 1px solid red; }
   .arcgis-sig-in .marker {
     border-radius: 100%;
     background-color: rgba(253, 154, 0, 0.8);
@@ -849,29 +800,8 @@ ul.tabs {
 
 .language-btn {
   float: right;
-  position: relative;
-  border-left: 1px solid #a0cdff;
-  margin-left: 1.1em; }
-  .language-btn .dropdown-menu {
-    background-color: black;
-    border: none;
-    min-width: 100px;
-    margin: 0 0 0 6px;
-    -webkit-border-radius: 0;
-    border-radius: 0;
-    background-clip: padding-box;
-    /* stops bg color from leaking outside the border: */ }
-    .language-btn .dropdown-menu li {
-      background: none; }
-      .language-btn .dropdown-menu li:hover {
-        padding: 0; }
-      .language-btn .dropdown-menu li a {
-        color: #a0cdff;
-        padding: 0 0 0 1.2em;
-        outline: none; }
-        .language-btn .dropdown-menu li a:hover {
-          background: none;
-          color: #ffffff; }
+  background: #800;
+  display: inline; }
   .language-btn .btn-input {
     display: block; }
   .language-btn .btn-input .btn.form-control, .language-btn .btn-input .form-control.btn-apply, .language-btn .btn-input .m-scooch-controls a.form-control, .m-scooch-controls .language-btn .btn-input a.form-control, .language-btn .btn-input button.form-control.layer-search {
@@ -886,17 +816,7 @@ ul.tabs {
     position: absolute;
     right: 10px;
     top: 50%; }
-  .language-btn .btn-language-select {
-    background: none;
-    color: #a0cdff;
-    -webkit-transition: color 600ms ease;
-    -moz-transition: color 600ms ease;
-    -o-transition: color 600ms ease;
-    transition: color 600ms ease;
-    font-size: 0.9em;
-    padding: 0;
-    margin-left: 1em; }
-    .language-btn .btn-language-select:hover {
-      color: #ffffff; }
+  .language-btn .btn-language {
+    background: #f00; }
 
 /*# sourceMappingURL=main.css.map */

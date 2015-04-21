@@ -93,8 +93,23 @@ var getFilterDefinitionByParam = function (param){
     return ret;
 };     
 
+var getFilterFlatList = function (param){
+    var ret = [];
+    this.filters.map(function (filterDefinition){
+      if (filterDefinition.subLevels) {
+        filterDefinition.subLevels.map(function (fd){
+          ret.push(fd);
+        });
+      } else {
+        ret.push(filterDefinition);
+      }
+    });
+    return ret;
+};     
+
 module.exports = {
   filters: filters,
-  getFilterDefinitionByParam: getFilterDefinitionByParam
+  getFilterDefinitionByParam: getFilterDefinitionByParam,
+  getFilterFlatList: getFilterFlatList
 };
 
