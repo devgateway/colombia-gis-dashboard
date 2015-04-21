@@ -326,9 +326,9 @@ ul.activities {
       transition: all 600ms ease;
       background: #eeeeee;
       padding: 0.3em 0.7em; }
-      ul.activities li a:hover, ul.activities li a.active {
+      ul.activities li a:hover, ul.activities li a.active, ul.activities li a:focus {
         background: #ffffff;
-        border: none;
+        border: 1px solid #ffffff;
         outline: none;
         line-height: 85%;
         color: #2472c8;

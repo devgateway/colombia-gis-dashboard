@@ -71,9 +71,10 @@ ul.activities {
       padding:0.3em 0.7em;
 
       &:hover,
-      &.active {
+      &.active,
+      &:focus {
         background: $white;
-        border: none;
+        border: 1px solid $white;
         outline: none;
         line-height: 85%;
         color: saturate($blue,35%);
