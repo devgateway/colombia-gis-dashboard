@@ -563,9 +563,11 @@ ul.filter-list {
   list-style: none; }
   ul.filter-list li {
     color: #4d749f;
-    font-size: 1.2rem;
-    line-height: 140%;
-    display: block; }
+    font-size: 1.2rem; }
+    ul.filter-list li span {
+      display: table;
+      margin-bottom: 0.25em;
+      line-height: 1.1em; }
 
 .select {
   width: 12px;
