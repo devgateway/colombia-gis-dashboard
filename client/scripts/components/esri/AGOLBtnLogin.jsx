@@ -4,7 +4,7 @@ var React = require('react');
 var Reflux = require('reflux');
 var accessToken;
 var callbacks = [];
-var callbackPage =window.location.protocol+'//'+ window.location.host+'/#/arcLogin?';
+var callbackPage =window.location.protocol+'//'+ window.location.host+window.location.pathname+'/#/arcLogin?';
 
 var ArcgisLoginActions=require('../../actions/arcgisLoginActions.js');
 var ArcgisLoginStore = require('../../stores/arcgisLoginStore.js');
