@@ -137,12 +137,13 @@ module.exports = function (options) {
                 var target = pReq.url.substring(pReq.url.indexOf('?') > 1);
                 var targetUrl = url.parse(target, true);
 
-
-                if (targetUrl.host == null && (targetUrl.pathname&&targetUrl.pathname.indexOf('favicon'))) {
+                if (targetUrl.host == null && ( targetUrl.pathname && targetUrl.pathname.indexOf('favicon')>-1 ) ) {
+                    console.log('Wrong request!..')
                     pResp.statusCode = 404,
-                        pResp.end();
+                     pResp.end();
 
                 } else {
+                    console.log(targetUrl.href);
                     this.requireToken(targetUrl).then(
                         function (useTokens) {
                             if (useTokens) {
