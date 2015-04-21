@@ -6,6 +6,7 @@ var Link = require('react-router').Link;
 
 var LayersAction=require('../../../../actions/layersAction.js');
 var DataLayerStore=require('../../../../stores/dataLayerStore.js');
+var RadioButton=require('../../../commons/customRadioButton.jsx');
 
 
 
@@ -23,21 +24,43 @@ module.exports  = React.createClass({
 		LayersAction.loadActivitiesByMuncipalities();
 	},
 
-	render: function() {
-		return (  
-		<div className="danger">
-			<ul>
-				<li><input type="radio"/>Financiamiento</li>
-				<li>
+	enableFinancingSelector:function(event){
+		this.setState({'layerLevel': 'Financing'});
+	},
 
+	enableIndicatorSelector:function(event){
+		this.setState({'layerLevel': 'Indicators'});
+	},
+
+	render: function() {
+		var finSelectorClass = this.state.layerLevel == 'Financing'? "" : "disabled";
+		var indSelectorClass = this.state.layerLevel == 'Indicators'? "" : "disabled";
+		return (  
+		<div className="inline">
+			<div className="">
+				<RadioButton name="layerLevel" label="Financing" onClick={this.enableFinancingSelector}/>
+				<div className={finSelectorClass}>
 					<ul>
-						<li onClick={this.showByDepartment}><input type="radio"/> <span className="btn"><Message message="layers.byDepartment"/></span></li>
-						<li onClick={this.showByMunicipality}><input type="radio"/> 	<span className="btn"><Message message="layers.byMunicipality"/></span></li>
+						<li>
+							<RadioButton name="finLevel" onClick={this.showByDepartment} label="layers.byDepartment"/>
+							<RadioButton name="finLevel" onClick={this.showByMunicipality} label="layers.byMunicipality"/>	
+						</li>
+					</ul>					
+				</div>
+			</div>
+			<div className="">
+				<RadioButton name="layerLevel" label="Indicators" onClick={this.enableIndicatorSelector}/>
+				<div className={indSelectorClass}>
+					<ul>
+						<li>
+							<RadioButton name="indLevel" onClick={this.showByDepartment} label="layers.byDepartment"/>
+							<RadioButton name="indLevel" onClick={this.showByMunicipality} label="layers.byMunicipality"/>
+						</li>
 					</ul>
-				</li>
-			</ul>
+				</div>
+			</div>	
 		</div>   
-			);
+		);
 	}
 
 });

@@ -56,7 +56,6 @@ var FilterItem = React.createClass({
         var self = this;
         if (filterDefinition.parentParam){//if has parent, then render the list separated by parent an with the parentName at top
             return parentList.map(function (parent){
-                        debugger;
                         var list = self._filterByParent(items, parent, filterDefinition.parentParamField);
                         if (!self.showOnlySelected || (self.showOnlySelected && self._hasSelected(list))){
                             return (<FilterItemList 

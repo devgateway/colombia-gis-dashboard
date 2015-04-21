@@ -12,10 +12,14 @@ var CustomCheckbox = React.createClass({
     _onClick: function() { 
         if (!this.state.selected) {
             this.setState({selected: true});
-            this.props.onChange(this.props.value, true);
+            if (this.props.onChange){
+                this.props.onChange(this.props.value, true);                
+            }
         } else {
             this.setState({selected: false});
-            this.props.onChange(this.props.value, false);
+            if (this.props.onChange){
+                this.props.onChange(this.props.value, false);                
+            }
         }
     },
  
