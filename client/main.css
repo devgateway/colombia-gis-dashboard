@@ -270,7 +270,9 @@ svg rect {
     margin-bottom: 1em; } }
 .activity-nav {
   clear: both;
-  overflow: hidden; }
+  overflow: hidden;
+  padding-top: 0.7em;
+  margin-left: 0.7em; }
 
 .filter-type-wrapper {
   overflow: hidden;
@@ -749,13 +751,15 @@ button.search-button {
   padding: 1em 1.8em;
   overflow: hidden; }
 
-.tab-content ul {
-  list-style: none; }
-.tab-content input[type="checkbox"],
-.tab-content input[type="radio"] {
-  margin-right: 8px; }
-.tab-content span.btn, .tab-content span.btn-apply {
-  padding: 0; }
+.tab-content {
+  background: rgba(255, 255, 255, 0.8); }
+  .tab-content ul {
+    list-style: none; }
+  .tab-content input[type="checkbox"],
+  .tab-content input[type="radio"] {
+    margin-right: 8px; }
+  .tab-content span.btn, .tab-content span.btn-apply {
+    padding: 0; }
 
 ul.tabs {
   list-style: none;
