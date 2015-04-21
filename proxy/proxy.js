@@ -7,54 +7,53 @@ var Q = require('q');
 
 
 var CONTROL_ORIGIN_HEADER = 'Access-Control-Allow-Origin';
-var CONTROL_ORIGIN_HEADER_VALUE = '*'; //this must be changed to allow only known domains
+var CONTROL_ORIGIN_HEADER_VALUE = 'http://devgateway.github.io'//'http://localhost:9010'; //this must be changed to allow only known domains
 var CONTROL_HEADERS_HEADER = 'Access-Control-Allow-Headers';
 var CONTROL_HEADERS_HEADER_VALUE = 'X-Requested-With'
 var ESRI_OAUTH2_URL = 'https://www.arcgis.com/sharing/rest/oauth2/token/';
 
 var knownServers = [
-    {host: 'services.arcgisonline.com', isTokenBasedSecurity: false},
-    {host: 'server.arcgisonline.com', isTokenBasedSecurity: false},
-    {host: 'server.arcgisonline.com', isTokenBasedSecurity: false},
-    {host: 'arcgis.com', isTokenBasedSecurity: true}
+{host: 'services.arcgisonline.com', isTokenBasedSecurity: false},
+{host: 'server.arcgisonline.com', isTokenBasedSecurity: false},
+{host: 'server.arcgisonline.com', isTokenBasedSecurity: false},
+{host: 'arcgis.com', isTokenBasedSecurity: true}
 ];
 
 module.exports = function (options) {
 
     options.port = options.port || 3553; //if port is not set default will be 3553
-
-
     /*Everything start here */
     this.init = function () {
+        console.log('Allowed origins: ' +CONTROL_ORIGIN_HEADER_VALUE);
         this.getToken(options)  //generate an esri
             .then(this.listen.bind(this)) //start http server
             .fail(function (error) {
                 this.log('Failed to initialize prox ' + error);
             });
-    };
+        };
 
-    this.getServerInfo = function (url) {
-        var deferred = Q.defer();
-        request(url, function (error, response, body) {
-            if (!error && response.statusCode == 200) {
-                deferred.resolve(JSON.parse(body));
+        this.getServerInfo = function (url) {
+            var deferred = Q.defer();
+            request(url, function (error, response, body) {
+                if (!error && response.statusCode == 200) {
+                    deferred.resolve(JSON.parse(body));
+                } else {
+                    console.log('Got an error ' + error);
+                    deferred.reject(error);
+                }
+            });
+            return deferred.promise;
+        }
+
+        this.requireToken = function (target) {
+            var deferred = Q.defer();
+            var found = false;
+            var server = _.findWhere(knownServers, { host: target.host.replace('www.', '')});
+
+            if (server) {
+                deferred.resolve(server.isTokenBasedSecurity);
             } else {
-                console.log('Got an error ' + error);
-                deferred.reject(error);
-            }
-        });
-        return deferred.promise;
-    }
-
-    this.requireToken = function (target) {
-        var deferred = Q.defer();
-        var found = false;
-        var server = _.findWhere(knownServers, { host: target.host.replace('www.', '')});
-
-        if (server) {
-            deferred.resolve(server.isTokenBasedSecurity);
-        } else {
-            console.log('I don\'t know about this server let check if it supports token');
+                console.log('I don\'t know about this server let check if it supports token');
 
             var uri = target.href.substring(0, target.href.indexOf('rest') + 5) + 'info?f=json';     //info end point it doesn't work for sharing server I have to
 
@@ -129,6 +128,11 @@ module.exports = function (options) {
         return deferred.promise;
     }
 
+    this.isOriginAllowed=function(origin){
+
+        return (CONTROL_ORIGIN_HEADER_VALUE.indexOf(origin) > -1);
+    }
+
     /*Start Server */
     this.listen = function () {
         console.log('Starting proxy server at ' + options.port + ( (options.use_credentials === true) ? ' application token is  ' + options.access_token : ''));
@@ -137,11 +141,16 @@ module.exports = function (options) {
                 var target = pReq.url.substring(pReq.url.indexOf('?')+1);
                 var targetUrl = url.parse(target, true);
 
-                if (targetUrl.host == null && ( targetUrl.pathname && targetUrl.pathname.indexOf('favicon')>-1 ) ) {
-                    console.log('Wrong request!..')
-                    pResp.statusCode = 404,
-                     pResp.end();
 
+                if (!this.isOriginAllowed(pReq.headers.origin)){
+                    console.log('Not allowed origin');
+                    pResp.statusCode = 403,
+                    pResp.statusMessage = 'You are not allowed';
+                    pResp.end();
+                }else if (targetUrl.host == null && ( targetUrl.pathname && targetUrl.pathname.indexOf('favicon')>-1 )) {
+                    console.log('Wrong request');
+                    pResp.statusCode = 500,
+                    pResp.end();
                 } else {
                     console.log(targetUrl.href);
                     this.requireToken(targetUrl).then(
@@ -178,41 +187,39 @@ module.exports = function (options) {
 
                         }.bind(this)
                     ); //end then if requiere token
-                }
-            }.bind(this)
-        ).listen(options.port);
-    }
+}
+}.bind(this)
+).listen(options.port);
+}
 
-    /*Request url*/
-    this.request = function (options, pResp) {
-        request(options).on('error', function (err) {
-            pResp.statusCode     = 500;
-            pResp.statusCode = 500;
+/*Request url*/
+this.request = function (options, pResp) {
+    request(options).on('error', function (err) {
+        pResp.statusCode     = 500;
+        pResp.statusCode = 500;
+        pResp.end()
+        console.log('Ups got an error!');
+        console.log(err);
+    }).on('response', function (response) {
+        /*response headers*/
+        pResp.writeHead(200, this.normalizeHeaders(response));
+    }.bind(this)).pipe(pResp);
 
-            pResp.end()
-            console.log('Ups got an error!');
-            console.log(err);
+}
 
-        }).on('response', function (response) {
-            /*response headers*/
-                pResp.writeHead(200, this.normalizeHeaders(response));
-            }.bind(this)).pipe(pResp);
-
-    }
-
-    /*Get reponse headers */
-    this.normalizeHeaders = function (response) {
-        var headers = response.headers;
-        var normalizedHeaders = {};
-        _.keysIn(headers).map(function (key) {
-            var standarName = key.split('-').map(function (t) {
-                return t.charAt(0).toLocaleUpperCase() + t.slice(1)
-            }).join('-');
-            normalizedHeaders[standarName] = headers[key];
-        });
-        normalizedHeaders[CONTROL_ORIGIN_HEADER] = CONTROL_ORIGIN_HEADER_VALUE;
-        normalizedHeaders[CONTROL_HEADERS_HEADER] = CONTROL_HEADERS_HEADER_VALUE;
-        return normalizedHeaders;
-    }
+/*Get reponse headers */
+this.normalizeHeaders = function (response) {
+    var headers = response.headers;
+    var normalizedHeaders = {};
+    _.keysIn(headers).map(function (key) {
+        var standarName = key.split('-').map(function (t) {
+            return t.charAt(0).toLocaleUpperCase() + t.slice(1)
+        }).join('-');
+        normalizedHeaders[standarName] = headers[key];
+    });
+    normalizedHeaders[CONTROL_ORIGIN_HEADER] = CONTROL_ORIGIN_HEADER_VALUE;
+    normalizedHeaders[CONTROL_HEADERS_HEADER] = CONTROL_HEADERS_HEADER_VALUE;
+    return normalizedHeaders;
+}
 
 }
