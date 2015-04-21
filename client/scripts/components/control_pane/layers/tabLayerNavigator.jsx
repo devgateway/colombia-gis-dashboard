@@ -36,26 +36,25 @@ module.exports  = React.createClass({
 		var services=this.state.arcgisState.services || [];
 		var token=this.state.loginState.token || "";
 		var error=this.state.arcgisState.error;
-	
-		return ( 
 
-			<TabbedArea defaultActiveKey={1}>
+		return (
+
+			<div className="activity-nav">
+			<TabbedArea className="activities" defaultActiveKey={1}>
 			<TabPane eventKey={1} tab="Map Layers">
-				
-				<DataLayersManager/>   
-				
-				<EsriLayersManager services={services}  onChange={this.updateVisiblity}/>   
-			
+
+				<DataLayersManager/>
+
+				<EsriLayersManager services={services}  onChange={this.updateVisiblity}/>
+
 			</TabPane>
-			
+
 			<TabPane eventKey={2} tab="Find External Layers">
-				<EsriSearch onAddLayer={this.onAddLayer} onSearch={this.onSearch} token={token}  error={error} services={all}  {...this.props}/>    
+				<EsriSearch onAddLayer={this.onAddLayer} onSearch={this.onSearch} token={token}  error={error} services={all}  {...this.props}/>
 			</TabPane>
 
 			</TabbedArea>
+			</div>
 			);
 	}
 });
-
-
-

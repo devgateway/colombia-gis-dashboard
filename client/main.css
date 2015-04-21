@@ -270,7 +270,9 @@ svg rect {
     margin-bottom: 1em; } }
 .activity-nav {
   clear: both;
-  overflow: hidden; }
+  overflow: hidden;
+  padding-top: 0.7em;
+  margin-left: 0.7em; }
 
 .filter-type-wrapper {
   overflow: hidden;
@@ -324,9 +326,9 @@ ul.activities {
       transition: all 600ms ease;
       background: #eeeeee;
       padding: 0.3em 0.7em; }
-      ul.activities li a:hover, ul.activities li a.active {
+      ul.activities li a:hover, ul.activities li a.active, ul.activities li a:focus {
         background: #ffffff;
-        border: none;
+        border: 1px solid #ffffff;
         outline: none;
         line-height: 85%;
         color: #2472c8;
@@ -561,9 +563,11 @@ ul.filter-list {
   list-style: none; }
   ul.filter-list li {
     color: #4d749f;
-    font-size: 1.2rem;
-    line-height: 140%;
-    display: block; }
+    font-size: 1.2rem; }
+    ul.filter-list li span {
+      display: table;
+      margin-bottom: 0.25em;
+      line-height: 1.1em; }
 
 .select {
   width: 12px;
@@ -749,13 +753,15 @@ button.search-button {
   padding: 1em 1.8em;
   overflow: hidden; }
 
-.tab-content ul {
-  list-style: none; }
-.tab-content input[type="checkbox"],
-.tab-content input[type="radio"] {
-  margin-right: 8px; }
-.tab-content span.btn, .tab-content span.btn-apply {
-  padding: 0; }
+.tab-content {
+  background: rgba(255, 255, 255, 0.8); }
+  .tab-content ul {
+    list-style: none; }
+  .tab-content input[type="checkbox"],
+  .tab-content input[type="radio"] {
+    margin-right: 8px; }
+  .tab-content span.btn, .tab-content span.btn-apply {
+    padding: 0; }
 
 ul.tabs {
   list-style: none;
