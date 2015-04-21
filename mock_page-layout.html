@@ -1,10 +1,92 @@
-<!doctype html><!--[if IE 8 ]>
+<!doctype html>
+<!--[if IE 8 ]>
 <html class="no-js ie8 lt-ie9" lang="ro" dir="ltr" xmlns:svg="http://www.w3.org/2000/svg"
-      xmlns:xlink="http://www.w3.org/1999/xlink"> <![endif]--><!--[if (gte IE 9)|!(IE)]><!--> <html xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"> <!--<![endif]--> <meta charset="utf-8"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <meta name="viewport" content="width=device-width,initial-scale=1"> <head> <meta charset="UTF-8"> <title>USAID Colombia Basic Layout</title> <!-- temporary map embed element--> <link rel="stylesheet" href="bower_components/leaflet/dist/leaflet.css"> <!--font awesome--> <link rel="stylesheet" href="/styles/font-awesome.min.css"> <!--normalize css --> <link rel="stylesheet" href="/bower_components/normalize.css/normalize.css"> <!--bootstrap css --> <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css"> <!--custom css - sass compiled--> <link rel="stylesheet" type="text/css" href="/styles/main.css"> <!--end:footer--> <script src="scripts/global.js"></script> </head> <body> <!--begin: map header  --> <div class="navbar navbar-fixed-top map-header"> <div class="navbar-inner"> <div class="container" role="main"> <h1>Map Description: </h1> <h2>This area can be translated as a written legend of what is being actualized on the map</h2> <div class="header-nav"> <a href="#">Menu</a> </div> </div> </div> </div> <!--begin: left side toggle--> <div id="sidebar-wrapper"> <div class="panel-toggle"> <i class="fa fa-bars"></i> </div> <!--end: toggle--> </div> <!--end: left side toggle--> <!-- begin: map--> <div id="map-container"> <!--temporary--> <div id="map" style="width:100%; height:100%"> </div> </div> <!--end: map--> <!--begin: footer--> <nav class="nav navbar-inverse navbar-fixed-bottom map-footer"> <div class="container"> <a class="navbar-brand" href="#"> <img src="images/usaid-logo.png" class="logo"> </a> </div> </nav> <script>var map = L.map('map').setView([51.505, -0.09], 13);
+      xmlns:xlink="http://www.w3.org/1999/xlink"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<!--<![endif]-->
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+<meta charset="UTF-8">
+<title>USAID Colombia Basic Layout</title>
+<!-- temporary map embed element-->
+
+<link rel="stylesheet" href="bower_components/leaflet/dist/leaflet.css"/>
+<!--font awesome-->
+<link rel="stylesheet" href="/styles/font-awesome.min.css">
+<!--normalize css -->
+<link rel="stylesheet" href="/bower_components/normalize.css/normalize.css" />
+<!--bootstrap css -->
+<link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css" />
+
+<!--custom css - sass compiled-->
+<link rel="stylesheet" type="text/css" href="/styles/main.css"/>
+
+
+<!--end:footer-->
+
+    <!-- build:js(client) scripts/global.js -->
+      <!-- bower:js -->
+      <script src="/bower_components/jquery/dist/jquery.js"></script>
+      <script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+      <script src="/bower_components/leaflet/dist/leaflet.js"></script>
+      <script src="/bower_components/leaflet/dist/leaflet-src.js"></script>
+      <script src="/bower_components/esri-leaflet/dist/esri-leaflet.js"></script>
+      <!-- endbower -->
+    <!-- endbuild -->
+
+
+</head>
+<body>
+<!--begin: map header  -->
+<div class="navbar navbar-fixed-top map-header">
+	<div class="navbar-inner">
+		<div class="container" role="main">
+			<h1>Map Description: </h1>
+			<h2>This area can be translated as a written legend of what is being actualized on the map</h2>
+			<div class="header-nav">
+				<a href="#">Menu</a>
+			</div>
+		</div>
+	</div>
+</div>
+<!--begin: left side toggle-->
+<div id="sidebar-wrapper">
+	<div class="panel-toggle">
+		<i class="fa fa-bars"></i>
+	</div>
+	<!--end: toggle-->
+</div>
+<!--end: left side toggle-->
+<!-- begin: map-->
+<div id="map-container">
+	<!--temporary-->
+	<div id="map" style="width:100%; height:100%;">
+	</div>
+</div>
+<!--end: map-->
+<!--begin: footer-->
+<nav class="nav navbar-inverse navbar-fixed-bottom map-footer">
+<div class="container">
+	<a class="navbar-brand" href="#">
+	<img src="images/usaid-logo.png" class="logo">
+	</a>
+</div>
+</nav>
+
+
+
+<script>
+		var map = L.map('map').setView([51.505, -0.09], 13);
 		L.tileLayer('https://{s}.tiles.mapbox.com/v3/{id}/{z}/{x}/{y}.png', {
 			maxZoom: 18,
 			attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
 				'<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
 				'Imagery © <a href="http://mapbox.com">Mapbox</a>',
 			id: 'examples.map-i875mjb7'
-		}).addTo(map);</script> </body> </html>
+		}).addTo(map);
+	</script>
+</body>
+</html>
