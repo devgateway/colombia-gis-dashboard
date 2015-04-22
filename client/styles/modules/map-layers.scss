@@ -1,6 +1,7 @@
 .esri-result-list{
   overflow-y:scroll;
   height:380px;
+  background:#800;
 
   ul{
     @include listUnstyled;
@@ -39,7 +40,6 @@
   margin-bottom:$gutter/2;
   color: lighten($grey,15%);
   font-size:0.85em;
-
 }
 
 .btn{
@@ -52,4 +52,9 @@
   ul{
     line-height:80%;
   }
+}
+
+.seemore{
+  @include floatRight;
+  font-size:0.9em;
 }

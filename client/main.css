@@ -774,7 +774,8 @@ ul.tabs {
 
 .esri-result-list {
   overflow-y: scroll;
-  height: 380px; }
+  height: 380px;
+  background: #800; }
   .esri-result-list ul {
     padding-left: 0;
     list-style: none; }
@@ -816,6 +817,10 @@ ul.tabs {
 
 .layer-search-options ul {
   line-height: 80%; }
+
+.seemore {
+  float: right;
+  font-size: 0.9em; }
 
 .arcgis-sig-in {
   position: absolute;
