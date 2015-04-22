@@ -622,8 +622,7 @@ nav.tabs {
   overflow: auto; }
 
 .nav-tabs {
-  border-bottom: none;
-  margin-bottom: 1px; }
+  border-bottom: none; }
 
 .nav-tabs > li.active > a,
 .nav-tabs > li.active > a:hover,
@@ -685,7 +684,7 @@ ul.overview-stats {
   -o-transition: all 600ms ease;
   transition: all 600ms ease;
   background: #ffffff;
-  margin-top: 1em; }
+  margin-top: 0.4em; }
   .text-search-wrapper input[type=text] {
     border: 1px solid #fff;
     outline: none;

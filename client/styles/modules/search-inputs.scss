@@ -3,7 +3,8 @@
   @include clearfix;
   @include transitionAll;
   background: $white;
-  margin-top: $gutter;
+  margin-top: 0.4em;
+
   input[type=text] {
     border:1px solid #fff;;
     outline: none;
