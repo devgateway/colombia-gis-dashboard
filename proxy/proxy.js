@@ -7,7 +7,7 @@ var Q = require('q');
 
 
 var CONTROL_ORIGIN_HEADER = 'Access-Control-Allow-Origin';
-var CONTROL_ORIGIN_HEADER_VALUE = 'http://devgateway.github.io'//  //this must be changed to allow only known domains
+var CONTROL_ORIGIN_HEADER_VALUE = 'http://localhost:9010'//'http://devgateway.github.io'//  //this must be changed to allow only known domains
 var CONTROL_HEADERS_HEADER = 'Access-Control-Allow-Headers';
 var CONTROL_HEADERS_HEADER_VALUE = 'X-Requested-With'
 var ESRI_OAUTH2_URL = 'https://www.arcgis.com/sharing/rest/oauth2/token/';

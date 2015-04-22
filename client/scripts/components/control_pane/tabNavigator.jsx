@@ -17,11 +17,11 @@ module.exports  = React.createClass({
         <Basemaps/>       
       
       <TabbedArea className="tabs" role="tablist" defaultActiveKey={1}>
-        <TabPane className="YYY" eventKey={1} tab="Map Content">
+        <TabPane className="" eventKey={1} tab="Map Content">
                <TabLayerNavigator/>    
              
         </TabPane>
-        <TabPane className="YYY" eventKey={3} tab="Filters">
+        <TabPane className="" eventKey={2} tab="Filters">
             <Filter/>    
         </TabPane>
 

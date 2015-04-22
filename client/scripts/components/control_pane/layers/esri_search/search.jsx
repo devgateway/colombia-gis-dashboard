@@ -35,41 +35,39 @@ var SearchInput=React.createClass({
 		console.log("layers->search->search: Render EsriSearch");
 		return(
 			<div className="text-search-wrapper">
-			<div className="search-box">
-				<button type="submit" className="search-button" onClick={this.handleCLick}>
-					<i className="fa fa-search"></i>
-				</button>
-				<input className="keyword-search" type="text" placeholder="Search layer" ref="search_input"/>
-			</div>
-			<div>
-
-			
-			<div className="layer-search-options">
-				<ul>
-					<li>
-						<CustomCheckbox 
-                        	selected={this.state.feature}
-                        	onChange={this.checkOption}
-                        	value="feature"/>
-							Feature Service
-					</li>
-					<li>
-						<CustomCheckbox 
-                        	selected={this.state.map}
-                        	onChange={this.checkOption}
-                        	value="map"/>
-							Map Service
-					</li>
-					<li>
-						<CustomCheckbox 
-                        	selected={this.state.image}
-                        	onChange={this.checkOption}
-                        	value="image"/>
-							Image Service
-					</li>
-				</ul>
-			</div>
-			</div>
+				<div className="search-box">
+					<button type="submit" className="search-button" onClick={this.handleCLick}>
+						<i className="fa fa-search"></i>
+					</button>
+					<input className="keyword-search" type="text" placeholder="Search layer" ref="search_input"/>
+				</div>
+				<div>			
+					<div className="layer-search-options">
+						<ul>
+							<li>
+								<CustomCheckbox 
+		                        	selected={this.state.feature}
+		                        	onChange={this.checkOption}
+		                        	value="feature"/>
+									Feature Service
+							</li>
+							<li>
+								<CustomCheckbox 
+		                        	selected={this.state.map}
+		                        	onChange={this.checkOption}
+		                        	value="map"/>
+									Map Service
+							</li>
+							<li>
+								<CustomCheckbox 
+		                        	selected={this.state.image}
+		                        	onChange={this.checkOption}
+		                        	value="image"/>
+									Image Service
+							</li>
+						</ul>
+					</div>
+				</div>
 			</div>
 			);
 	}
