@@ -6,6 +6,7 @@ var Link = require('react-router').Link;
 var ArcgisLayersActions=require('../../../../actions/arcgisLayersActions.js');
 var ResultList=require('./results.jsx');
 var _=require('lodash');
+var CustomCheckbox = require('../../../commons/customCheckbox.jsx');
 
 /*The button to add the layer to the map*/
 
@@ -23,9 +24,9 @@ var SearchInput=React.createClass({
 		return {'feature': true,'image':true,'map':true ,'start':0 ,'num':500};
 	},
 
-	checkOption:function(evnt){
+	checkOption:function(value, selected){
 		var newState={};
-		newState[evnt.target.value]=evnt.target.checked;
+		newState[value]=selected;
 		this.setState(newState);
 	},
 
@@ -34,42 +35,39 @@ var SearchInput=React.createClass({
 		console.log("layers->search->search: Render EsriSearch");
 		return(
 			<div className="text-search-wrapper">
-			<div className="search-box">
-				<button type="submit" className="search-button" onClick={this.handleCLick}>
-					<i className="fa fa-search"></i>
-				</button>
-				<input className="keyword-search" type="text" placeholder="Search layer" ref="search_input"/>
-			</div>
-			<div>
-
-
-
-			</div>
-
-			<div className="layer-search-options">
-				<ul>
-					<li>
-						<span className="select">
-							<input className="glyphicon glyphicon-stop" type="checkbox" value="feature" onClick={this.checkOption} checked={this.state.feature}/>
-						</span>
-						Feature Service
-					</li>
-					<li>
-						<span className="select">
-							<input className="glyphicon glyphicon-stop" type="checkbox" value="map" onClick={this.checkOption} checked={this.state.map}/>
-						</span>
-						Map Service
-					</li>
-					<li>
-						<span className="select">
-							<input className="glyphicon glyphicon-stop" type="checkbox" value="image" onClick={this.checkOption} checked={this.state.image}/>
-						</span>
-						Image Service
-					</li>
-				</ul>
-			</div>
-
-
+				<div className="search-box">
+					<button type="submit" className="search-button" onClick={this.handleCLick}>
+						<i className="fa fa-search"></i>
+					</button>
+					<input className="keyword-search" type="text" placeholder="Search layer" ref="search_input"/>
+				</div>
+				<div>			
+					<div className="layer-search-options">
+						<ul>
+							<li>
+								<CustomCheckbox 
+		                        	selected={this.state.feature}
+		                        	onChange={this.checkOption}
+		                        	value="feature"/>
+									Feature Service
+							</li>
+							<li>
+								<CustomCheckbox 
+		                        	selected={this.state.map}
+		                        	onChange={this.checkOption}
+		                        	value="map"/>
+									Map Service
+							</li>
+							<li>
+								<CustomCheckbox 
+		                        	selected={this.state.image}
+		                        	onChange={this.checkOption}
+		                        	value="image"/>
+									Image Service
+							</li>
+						</ul>
+					</div>
+				</div>
 			</div>
 			);
 	}

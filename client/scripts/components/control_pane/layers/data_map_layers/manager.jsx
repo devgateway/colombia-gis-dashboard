@@ -24,17 +24,17 @@ module.exports  = React.createClass({
 		LayersAction.loadActivitiesByMuncipalities();
 	},
 
-	enableFinancingSelector:function(event){
+	enableFinancingSelector:function(){
 		this.setState({'layerLevel': 'Financing'});
 	},
 
-	enableIndicatorSelector:function(event){
+	enableIndicatorSelector:function(){
 		this.setState({'layerLevel': 'Indicators'});
 	},
 
 	render: function() {
-		var finSelectorClass = this.state.layerLevel == 'Financing'? "" : "disabled";
-		var indSelectorClass = this.state.layerLevel == 'Indicators'? "" : "disabled";
+		var finSelectorClass = this.state.layerLevel=='Financing'? "" : "disabled";
+		var indSelectorClass = this.state.layerLevel=='Indicators'? "" : "disabled";
 		return (  
 		<div className="inline">
 			<div className="">

@@ -4,8 +4,8 @@ var _=require('lodash');
 var Storage=require('./storage.js');
 
 function logFailure(err, message) {
-    console.error(message);
-    console.error(err);
+    console.log(message);
+    console.log(err);
 }
 
 
@@ -68,13 +68,14 @@ module.exports = {
         var types = (image + map + feature).slice(0, -3); //remove last OR;
         var start = '&start=' + (options.start || '0');
         var num = '&num=' + (options.num || '100');
-        var query = '(' + options.query + ')' + ' AND (' + types + ')  '; //AND ('+access+')
+        var query = '(' + options.query + ')' + ' AND (' + types + ')   '; //AND (access:shared)
         return 'q='+ query;
     },
 
 
     createLefleatLayer:function(lClass,options, url){
 
+        debugger;
         var uri = url || this.getService().metadata.url;
 
         _.assign({useCors: true}, options)

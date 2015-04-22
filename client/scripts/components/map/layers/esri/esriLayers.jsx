@@ -19,12 +19,7 @@ module.exports = React.createClass({
 
         return ( < div > {
             visibleServices.map(function (service) {
-                return <Service {...this.props
-                }
-                service = {
-                    service
-                }
-                />
+                return <Service {...this.props} service = { service}/>
             }.bind(this))
         } < /div>);
         }
