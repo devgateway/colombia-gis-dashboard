@@ -774,8 +774,7 @@ ul.tabs {
 
 .esri-result-list {
   overflow-y: scroll;
-  height: 380px;
-  background: #800; }
+  height: 380px; }
   .esri-result-list ul {
     padding-left: 0;
     list-style: none; }

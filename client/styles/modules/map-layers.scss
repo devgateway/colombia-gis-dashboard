@@ -1,7 +1,6 @@
 .esri-result-list{
   overflow-y:scroll;
   height:380px;
-  background:#800;
 
   ul{
     @include listUnstyled;
