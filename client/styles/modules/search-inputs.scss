@@ -1,0 +1,93 @@
+//start: text search box
+.text-search-wrapper {
+  @include clearfix;
+  @include transitionAll;
+  background: $white;
+  border: 1px solid lighten( $grey, 50% );
+  margin-top: $gutter;
+  &:hover {
+    border: 1px solid lighten( $blue, 20% );
+  }
+  input[type=text] {
+    border:1px solid #fff;;
+    outline: none;
+    width: 93%;
+    padding: 0.3em;
+  }
+}
+.search-box {
+  background: $white;
+}
+
+button{
+  &.search-button{
+    background: $white;
+    border: 1px solid $white;
+    -webkit-appearance:none;
+    outline:none;
+  }
+
+}
+// end: text search box
+
+
+// layer search
+.layer-search-wrapper{
+  @include clearfix;
+  margin-bottom:$gutter;
+}
+
+.layer-search-options{
+   padding-top:$gutter*1.2;
+   padding-bottom:$gutter/2;
+
+   ul{
+     @include listUnstyled;
+     @include clearfix;
+
+     li{
+       float:left;
+       margin-right: $gutter*2;
+       position:relative;
+
+     }
+   }
+}
+
+// checkbox replacement- using div and jquery
+.layer-type-option{
+}
+
+.selectable{
+  width:14px;
+  height:14px;
+  border:1px solid #cccccc;
+  background: $white;
+  float:left;
+  margin-right: $gutter/2;
+  @include transitionAll;
+  &:hover{
+    background:#e9ba00;
+  }
+
+  &.selected{
+    background:#e9ba00;
+  }
+
+}
+
+.selectable-radio{
+  @extend .selectable;
+  @include border-radius(50%);
+}
+
+.layer-label{
+  float: left;
+  line-height:100%;
+}
+
+.disabled {
+    z-index: 1000;
+    opacity: 0.6;
+    pointer-events: none;
+}

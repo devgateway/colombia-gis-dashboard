@@ -4,25 +4,31 @@ var React = require('react')
 var LanActions=require('../actions/lanActions.js');
 var LanStore=require('../stores/lanStore.js');
 var Reflux = require('reflux');
-var LanStore=require('../stores/lanStore.js');
+
 
 
 module.exports = React.createClass({
 
 	mixins: [Reflux.connect(LanStore, 'lan')],
 
-	handleLocaleChange:function(){
-		var locale=this.refs.lanSelector.getDOMNode().value;
-		LanActions.changeLocale(locale);
+	handleLocaleChange:function(event){
+		var target = $( event.currentTarget );
+   		target.closest('.language-btn').find('[data-bind="label"]').text(target.text());
+       	LanActions.changeLocale(target.data("value"));
 	},
 	
 
 	render: function() {
 		return (
-			<select ref="lanSelector" onChange={this.handleLocaleChange}>
-				<option value="en" selected={this.state.lan.locale=='en'?'selected':''}>English</option>
-				<option value="es" selected={this.state.lan.locale=='es'?'selected':''}>Español</option>
-			</select>
+			<div className="language-btn">
+	            <button type="button" className="btn btn-language-select dropdown-toggle" data-toggle="dropdown">
+	              <span data-bind="label">Language</span>&nbsp;<span className="caret"></span>
+	            </button>
+	            <ul className="dropdown-menu" role="menu">
+	              <li onClick={this.handleLocaleChange} data-value="en"><a href="#">English</a></li>
+	              <li onClick={this.handleLocaleChange} data-value="es"><a href="#">Spanish</a></li>
+	            </ul>
+          	</div>
 			);
 	}
 });

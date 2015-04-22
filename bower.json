@@ -10,10 +10,12 @@
     "bootstrap": "~3.3.2",
     "leaflet": "~0.7.3",
     "esri-leaflet": "~1.0.0-rc.5",
+    "Leaflet.label": "~0.2.1",
     "underscore": "~1.8.2",
     "i18next": "~1.7.7",
-    "Leaflet.label": "~0.2.1"
-    
+    "scooch": "~0.5.0",
+    "font-awesome": "~4.3.0",
+    "esri-leaflet-renderers": "https://github.com/Esri/esri-leaflet-renderers.git#~0.0.1-beta.3"
   },
   "devDependencies": {}
 }

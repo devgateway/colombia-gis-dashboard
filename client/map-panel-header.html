@@ -1,0 +1,52 @@
+<!doctype html>
+<!--[if IE 8 ]>
+<html class="no-js ie8 lt-ie9" lang="ro" dir="ltr" xmlns:svg="http://www.w3.org/2000/svg"
+      xmlns:xlink="http://www.w3.org/1999/xlink"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<!--<![endif]-->
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+<meta charset="UTF-8">
+<title>Panel Header</title>
+<!-- temporary map embed element-->
+<link rel="stylesheet" href="/bower_components/leaflet/dist/leaflet.css"/>
+<!--font awesome-->
+<link rel="stylesheet" href="styles/font-awesome.min.css">
+<!--normalize css -->
+<link rel="stylesheet" href="/bower_components/normalize.css/normalize.css"/>
+<!--bootstrap css-->
+<link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css" />
+<!--custom css - sass compiled-->
+<link rel="stylesheet" type="text/css" href="styles/main.css"/>
+</head>
+<body>
+<div id="map-panel">
+	<!--start: top map panel container-->
+	<div class="map-panel-header">
+		<!--start: basemap nav-->
+		<div class="basemap-nav-container">
+			<div class="basemap-label">
+				<i class="fa fa-globe" aria-hidden="true"></i>
+				Views
+			</div>
+			<ul class="basemap-list">
+				<li><a href="#" role="option">Map</a></li>
+				<li><a href="#" role="option">Satellite</a></li>
+				<li><a href="#" role="option">Hybrid</a></li>
+				<li><a href="#" role="option">Terrain</a></li>
+			</ul>
+			<div class="predefined-maps" role="label">
+				 Predefined Maps
+			</div>
+		</div>
+		<!--ends: basemap nav-->
+	</div>
+	<!--end: top map panel container-->
+
+</div>
+<!--map panel container ends-->
+</body>
+</html>

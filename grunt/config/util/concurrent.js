@@ -14,7 +14,7 @@ var taskConfig = function(grunt) {
     ],
     docs: [
       'jsdoc:dist',
-      'styleguide:dist'
+      //'styleguide:dist'
     ]
   });
 

@@ -1,13 +1,14 @@
+
 'use strict';
 var assign = require('object-assign');
 var Reflux = require('reflux');
 var LanActions = require('../actions/lanActions.js');
+
 module.exports = Reflux.createStore({
 
   listenables: LanActions,
-
   onChangeLocale:function(lan){
-    i18n.setLng(lan);
+    window.i18n.setLng(lan);
     this.update({'lan':lan});
 
   },
