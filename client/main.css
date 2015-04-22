@@ -814,6 +814,9 @@ ul.tabs {
   float: left;
   margin-left: 0; }
 
+.layer-search-options ul {
+  line-height: 80%; }
+
 .arcgis-sig-in {
   position: absolute;
   top: 60px;
