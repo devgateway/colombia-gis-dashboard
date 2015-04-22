@@ -685,10 +685,7 @@ ul.overview-stats {
   -o-transition: all 600ms ease;
   transition: all 600ms ease;
   background: #ffffff;
-  border: 1px solid #c5c5c5;
   margin-top: 1em; }
-  .text-search-wrapper:hover {
-    border: 1px solid #8ba8c7; }
   .text-search-wrapper input[type=text] {
     border: 1px solid #fff;
     outline: none;
@@ -696,7 +693,10 @@ ul.overview-stats {
     padding: 0.3em; }
 
 .search-box {
-  background: #ffffff; }
+  background: #ffffff;
+  border: 1px solid #c5c5c5; }
+  .search-box:hover {
+    border: 1px solid #8ba8c7; }
 
 button.search-button {
   background: #ffffff;
@@ -745,6 +745,11 @@ button.search-button {
 .layer-label {
   float: left;
   line-height: 100%; }
+
+.disabled {
+  z-index: 1000;
+  opacity: 0.6;
+  pointer-events: none; }
 
 .tab-panel {
   clear: both;

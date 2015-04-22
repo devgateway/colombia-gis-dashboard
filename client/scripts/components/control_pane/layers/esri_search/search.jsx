@@ -42,7 +42,10 @@ var SearchInput=React.createClass({
 			</div>
 			<div>
 
-			
+
+
+			</div>
+
 			<div className="layer-search-options">
 				<ul>
 					<li>
@@ -65,7 +68,8 @@ var SearchInput=React.createClass({
 					</li>
 				</ul>
 			</div>
-			</div>
+
+
 			</div>
 			);
 	}
