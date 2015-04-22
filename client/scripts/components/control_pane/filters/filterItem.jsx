@@ -21,6 +21,7 @@ var FilterItem = React.createClass({
                         value={this.props.id}/>
                 {this.props.name} 
                 {childSelectedCount}
+                {this.props.collapseIcon}
             </div>
         );
     }
