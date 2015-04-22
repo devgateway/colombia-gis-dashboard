@@ -36,7 +36,9 @@ var layerMixins = {
     },
     componentWillMount: function () {
         var url = this.getService().metadata.url + (this.getLayer() ? '/' + this.getLayer().id.toString() : '');
-        this.addtoMap(this.loadLayer({}, url));
+       this.addtoMap(this.loadLayer({}, url));
+
+        //L.control.layers((this.loadLayer({}, url)]]).addTo(map);
     },
 
 
