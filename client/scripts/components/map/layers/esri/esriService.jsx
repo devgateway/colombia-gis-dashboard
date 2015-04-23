@@ -1,5 +1,4 @@
 'use strict';
-
 var React = require('react');
 var Reflux = require('reflux');
 var ArcgisLayerStore =   require('../../../../stores/arcgisLayerStore.js')

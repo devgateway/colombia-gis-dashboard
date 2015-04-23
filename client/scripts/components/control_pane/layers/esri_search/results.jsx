@@ -5,51 +5,41 @@ var Reflux = require('reflux');
 
 
 var AddButton= React.createClass({
-
 	handleAdd:function(){
 		this.props.onAddLayer(this.props.service);
 	},
 
 	render: function() {
 		return(<button disabled={this.props.disabled}
-			className={this.props.disabled?"btn btn-xs btn-default":"btn btn-xs btn-info"} onClick={this.handleAdd}>ADD</button>);
+			className={this.props.disabled?"btn btn-xs btn-default":"btn btn-apply"} onClick={this.handleAdd}>ADD</button>);
 	}
 });
 
 
 var EsriService=React.createClass({
-
-	componentWillReceiveProps: function(nextProps) {
-
-	},
-
-
-
 	render: function() {
 		console.log("layers->search->resultList: Render EsriService");
 		var service=this.props.service;
-		debugger;
 		return(
 
 			<li>
-			<div className="layer-wrapper">
-
-				<div className="thumbnail pull-left">
-				<img width="110px" height="73px" src={"http://www.arcgis.com/sharing/content/items/"+service.id+"/info/"+service.thumbnail}/>
-				</div>
-
-				<div className="layer-info">
-					<div className="title" data-toggle="Loing is required">{service.title} {service.loginRequired?<i className="text-warning small">Loing is required</i>:''}
+				<div className="layer-wrapper">
+					<div className="thumbnail pull-left">
+					<img width="110px" height="73px" src={"http://www.arcgis.com/sharing/content/items/"+service.id+"/info/"+service.thumbnail+  (this.props.token?"?token="+this.props.token:"") }/>
 					</div>
-					<div className="type">{service.type}  - {service.access}</div>
 
-					<div className="add">
-					{service.added?<span>Added</span>:null}
-					<AddButton className="btn btn-apply" {...this.props}  disabled={((service.loginRequired && !this.props.token)||service.added)?true:false}/>
+					<div className="layer-info">
+						<div className="title" data-toggle="Loing is required">{service.title} {service.loginRequired?<i className="text-warning small">Loing is required</i>:''}
+						</div>
+						<div className="details">{service.snippet}</div>
+						<div className="details small">{service.type}  - {service.access}</div>
+						<div className="add">
+						<AddButton className="btn btn-apply"  onAddLayer={this.props.onAddLayer}  service={service}
+									disabled={((service.loginRequired && !this.props.token)|| service.added)?true:false}/>
+						</div>
 					</div>
-				</div>
 
-			</div>
+				</div>
 			</li>
 			)
 	}
@@ -59,19 +49,35 @@ var EsriService=React.createClass({
 module.exports=React.createClass({
 	render: function() {
 		console.log("layers->search->resultList: Render EsriServiceList");
+		debugger;
 		return(
 			<div>
-			{(this.props.error)?<p className='label label-warning'>{this.props.error.message}</p>:null}
+				{(this.props.error)?<div><hr class="h-divider"></hr> <p className='label label-error'>{this.props.error.message}</p><hr class="h-divider"></hr></div>:null}
+				
+				<ul className="esri-result-list">
+						{
+							this.props.results.results.map(function(s){ 
+								return( <EsriService  onAddLayer={this.props.onAddLayer}  token={this.props.token}  service={s}/>)
+							}.bind(this))
+						}
 
-			<ul className="esri-result-list">
-				{
-				this.props.services.map(function(s){
-					return( <EsriService {...this.props} service={s} />)
-				}.bind(this))}
-				<li><a onClick={this.moreResults}>More results</a></li>
-				</ul>
-				</div>
-				);
+
+					{(this.props.results.nextStart>-1)?(
+							<li>
+								<div className="layer-info text-rigth">
+									<button className="btn btn-info" onClick={this.props.onNextPage}>Click to load more Results</button>
+								</div>
+
+							</li>):""
+					}
+
+				</ul>	
+
+
+			
+			
+			</div>
+		);
 	}
 
 });

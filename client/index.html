@@ -40,15 +40,13 @@
 
     <!-- Application loads here -->
     <div id="app-wrapper" ></div>
-
+    
     <!-- build:js(client) scripts/lt-ie9.js -->
     <!--[if lt IE 9]>
-    <script src="/bower_components/es5-shim/es5-shim.js"></script>
-
-
+      <script src="/bower_components/es5-shim/es5-shim.js"></script>
     <![endif]-->
     <!-- endbuild -->
-
+   
     <!-- build:js(client) scripts/global.js -->
       <!-- bower:js -->
       <script src="bower_components/jquery/dist/jquery.js"></script>
@@ -56,13 +54,14 @@
       <script src="bower_components/leaflet/dist/leaflet.js"></script>
       <script src="bower_components/leaflet/dist/leaflet-src.js"></script>
       <script src="bower_components/esri-leaflet/dist/esri-leaflet.js"></script>
-      <script src="bower_components/underscore/underscore.js"></script>
       <script src="bower_components/i18next/i18next.js"></script>
       <script src="bower_components/scooch/build/scooch.min.js"></script>
       <!-- endbower -->
     <!-- endbuild -->
+    <!-- build:js(client) scripts/leaflet-renderers.js -->
+      <script src="bower_components/esri-leaflet-renderers/dist/esri-leaflet-renderers.js"></script>
+    <!-- endbuild -->
 
-    
 
     <script src="scripts/main.js"></script>
   </body>
