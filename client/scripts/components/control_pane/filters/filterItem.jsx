@@ -13,8 +13,9 @@ var FilterItem = React.createClass({
  
     render: function() {
         var childSelectedCount = this.props.childSelectedCount? "  ("+this.props.childSelectedCount+")" : "";
+        var className = this.props.collapseIcon? "filter-col-parent" : "filter-col";
         return(
-            <div className="filter-col">
+            <div className={className}>
                 <CustomCheckbox 
                         selected={this.props.selected}
                         onChange={this._onItemChanged}

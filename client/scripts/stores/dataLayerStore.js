@@ -11,6 +11,7 @@ module.exports = Reflux.createStore({
 
   listenables: LayersAction,
   onLoadActivitiesByDepartments:function(){
+    this.update({'dataLevel': 'departament'});
     API.getActivitiesByDepartment(this.state.filters).then(
       function(data){
         LayersAction.loadActivitiesByDepartments.completed(data);
@@ -30,6 +31,11 @@ module.exports = Reflux.createStore({
 
   onTriggerFilterApply:function(data){
     this.update({filters:data});
+    if (this.state.dataLevel == 'departament'){
+      this.onLoadActivitiesByDepartments();
+    } else if (this.state.dataLevel == 'municipality'){
+      this.onLoadActivitiesByMuncipalities();
+    }
   },
 
   update: function(assignable, options) {

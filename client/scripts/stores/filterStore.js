@@ -79,8 +79,10 @@ module.exports=Reflux.createStore({
         var filterDefinition = FilterMap.getFilterDefinitionByParam(filterType);
         var childFilterDefinition = FilterMap.getFilterDefinitionByParam(filterDefinition.childParam);
         if (childFilterDefinition){ //if the item is parent, then select children
-            this.state[childFilterDefinition.param].filter(function(it){return it[childFilterDefinition.parentParamField]==id}).map(function (it){
-                it.selected = value;
+            this.state[childFilterDefinition.param].map(function (it){
+                if (it[childFilterDefinition.parentParamField]==id){
+                    it.selected = value;
+                }
             });
         }
         this.state[filterType].filter(function(it){return it.id==id})[0].selected = value;

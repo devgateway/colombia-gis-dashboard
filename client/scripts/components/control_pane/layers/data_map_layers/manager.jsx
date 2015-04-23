@@ -14,6 +14,10 @@ var RadioButton=require('../../../commons/customRadioButton.jsx');
 module.exports  = React.createClass({
  mixins: [Reflux.connect(DataLayerStore, 'layers')],
 
+	getInitialState: function() {
+        return {'dataLayer': 'Financing'};
+    },    
+
 	showByDepartment:function(){
 		console.log('layers->dataLayerSelector: ShowByDepartment');
 		LayersAction.loadActivitiesByDepartments();
@@ -25,31 +29,35 @@ module.exports  = React.createClass({
 	},
 
 	enableFinancingSelector:function(){
-		this.setState({'layerLevel': 'Financing'});
+		this.setState({'dataLayer': 'Financing'});
 	},
 
 	enableIndicatorSelector:function(){
-		this.setState({'layerLevel': 'Indicators'});
+		this.setState({'dataLayer': 'Indicators'});
 	},
 
-	render: function() {
-		var finSelectorClass = this.state.layerLevel=='Financing'? "" : "disabled";
-		var indSelectorClass = this.state.layerLevel=='Indicators'? "" : "disabled";
+	componentDidMount :function(){ 
+        this.showByDepartment();          
+    },
+
+    render: function() {
+		var finSelectorClass = this.state.dataLayer=='Financing'? "" : "disabled";
+		var indSelectorClass = this.state.dataLayer=='Indicators'? "" : "disabled";
 		return (  
 		<div className="inline">
 			<div className="">
-				<RadioButton name="layerLevel" label="Financing" onClick={this.enableFinancingSelector}/>
+				<RadioButton name="dataLayer" label="Financing" selected={true} onClick={this.enableFinancingSelector}/>
 				<div className={finSelectorClass}>
 					<ul>
 						<li>
-							<RadioButton name="finLevel" onClick={this.showByDepartment} label="layers.byDepartment"/>
+							<RadioButton name="finLevel" selected={true} onClick={this.showByDepartment} label="layers.byDepartment"/>
 							<RadioButton name="finLevel" onClick={this.showByMunicipality} label="layers.byMunicipality"/>	
 						</li>
 					</ul>					
 				</div>
-			</div>
+			</div>	
 			<div className="">
-				<RadioButton name="layerLevel" label="Indicators" onClick={this.enableIndicatorSelector}/>
+				<RadioButton name="dataLayer" label="Indicators" onClick={this.enableIndicatorSelector}/>
 				<div className={indSelectorClass}>
 					<ul>
 						<li>

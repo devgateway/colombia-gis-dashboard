@@ -49,9 +49,7 @@ var FilterItemList = React.createClass({
                             selected={this.props.parent.selected}
                             filterType={filterDefinition.parentParam}
                             childSelectedCount={childSelectedCount}
-                            collapseIcon={<span className={collapseIcon} onClick={self._expandCollapse}></span>}
-                            />
-                            
+                            collapseIcon={<span className={collapseIcon} onClick={self._expandCollapse}></span>}/>
                         </div>
                         ;
             }
