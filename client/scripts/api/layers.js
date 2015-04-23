@@ -10,12 +10,12 @@ function logFailure(err, message) {
 module.exports = {
 
     getActivitiesByDepartment: function (filters) {
-        debugger;
         return request({
             url: 'http://test.monitor.net.co/GisService.svc/Filters/DepartmentsFunding/Json',
             type: 'json',
             method: 'post',
-            data: JSON.stringify(filters),
+            //contentType: "application/json",
+            data: {"filters": JSON.stringify(filters)},
             crossOrigin: true
         }).fail(logFailure);
     },

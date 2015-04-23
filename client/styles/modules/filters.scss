@@ -116,3 +116,8 @@ input[type=checkbox].glyphicon {
   display:block;
   padding-right:10px;
 }
+
+.filter-col-parent{
+  @extend .filter-col;
+  width:580px;
+}

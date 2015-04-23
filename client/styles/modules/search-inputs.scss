@@ -65,9 +65,8 @@ button{
   background: $white;
   float:left;
   margin-right: $gutter/2;
-  @include transitionAll;
   &:hover{
-    background:#e9ba00;
+    background:#fff593;
   }
 
   &.selected{
