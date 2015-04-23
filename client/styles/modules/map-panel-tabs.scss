@@ -19,7 +19,7 @@ nav.tabs {
 }
 .main-tabs .nav-tabs li.active a{
   color: saturate(lighten($blue, 1), 20);
-  border-bottom:1px solid $white;
+  border-bottom:1px solid transparent;
   background: rgba(255, 255, 255, 0.8);
 }
 .tabs>li {

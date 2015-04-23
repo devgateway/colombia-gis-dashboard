@@ -655,7 +655,7 @@ nav.tabs {
 
 .main-tabs .nav-tabs li.active a {
   color: #3775bb;
-  border-bottom: 1px solid #ffffff;
+  border-bottom: 1px solid transparent;
   background: rgba(255, 255, 255, 0.8); }
 
 .tabs > li {
