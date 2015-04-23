@@ -1,6 +1,7 @@
 .button-pane {
   overflow: hidden;
-  margin-top: $gutter;
+  padding-bottom: $gutter;
+  padding-right:0.6em;
   @include floatRight;
 }
 

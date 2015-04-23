@@ -6,11 +6,10 @@
   @include border-radius(2px);
   opacity: 0.4;
   background: $white;
-  padding: $gutter;
-  margin-top: $gutter/2;
-  height: 390px;
-  overflow:auto;
-  border: 1px solid lighten($grey,60%);
+  padding: 0.3em $gutter $gutter $gutter;
+  margin-top: 0.2em;
+  height: 300px;
+  overflow:hidden;
   //selected active filter panel
   &.selected {
     opacity:1;
@@ -36,9 +35,18 @@
   color: $blue;
   @include textBold;
   float:right;
+  line-height:160%;
+  a{
+    @include transitionAll;
+    &:hover{
+    color: $green;
+  }
+  }
+
 }
 .filter-label {
-  @include textMedium;
+  @include textUppercase;
+  font-size:1em;
 }
 .filter-selectors {
   @include floatRight;
@@ -47,6 +55,13 @@
   font-style: italic;
   margin-top: 5px;
   margin-right:$gutter;
+  a{
+    @include transitionAll;
+    &:hover{
+      color: $green;
+    }
+  }
+
 
 }
 // filter list
