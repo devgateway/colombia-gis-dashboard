@@ -27,9 +27,16 @@ var FilterGroup = React.createClass({
             var pattern = new RegExp(keyword, 'i');
             this.props.filterDefinition.subLevels.map(function(filterDefinition){ 
                 FilterStore.getAll(filterDefinition.param).map(function (item) {
-                if (!pattern.test(item.name)){
-                    item.hide = true;
-                }
+                    if (!pattern.test(item.name)){
+                        item.hide = true;
+                    } else {
+                        if (filterDefinition.parentParam){
+                            FilterStore.getAll(filterDefinition.parentParam).filter(
+                                function(i){return i.id==item[filterDefinition.parentParamField]}
+                            )[0].hide = false;
+                        }
+                        item.hide = false;
+                    }
                 });
             });                    
         } else {
