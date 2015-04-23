@@ -75,11 +75,10 @@ ul.filter-list {
   li {
     color: $blue;
     font-size: 1.2rem;
-
     span{
       display:table;
       margin-bottom:$gutter/4;
-      line-height:1.1em;
+      line-height:1em;
     }
   }
 }
@@ -126,7 +125,7 @@ input[type=checkbox].glyphicon {
 }
 
 .filter-col{
-  width:290px;
+  width:280px;
   @include floatLeft;
   display:block;
   padding-right:10px;

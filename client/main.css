@@ -212,8 +212,7 @@ h2 {
   position: absolute;
   z-index: 1;
   padding: 15px;
-  background: #ffffff;
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(221, 230, 234, 0.8);
   overflow: auto;
   height: 102%; }
 
@@ -408,6 +407,7 @@ ul.basemap-list {
 .button-pane {
   overflow: hidden;
   padding-bottom: 1em;
+  padding-top: 0.5em;
   padding-right: 0.6em;
   float: right; }
 
@@ -424,9 +424,13 @@ ul.basemap-list {
   color: #ffffff;
   background: #98ca68;
   float: right;
+  -webkit-transition: all 600ms ease;
+  -moz-transition: all 600ms ease;
+  -o-transition: all 600ms ease;
+  transition: all 600ms ease;
   margin-left: 1em; }
   .btn-apply:hover, .m-scooch-controls a:hover, button.layer-search:hover {
-    background: #689b36;
+    background: #659735;
     color: #ffffff; }
   .btn-apply.space-left, .m-scooch-controls a.space-left, button.space-left.layer-search {
     margin-left: 1em; }
@@ -583,7 +587,7 @@ ul.filter-list {
     ul.filter-list li span {
       display: table;
       margin-bottom: 0.25em;
-      line-height: 1.1em; }
+      line-height: 1em; }
 
 .select {
   width: 12px;
@@ -626,7 +630,7 @@ input[type=checkbox].glyphicon {
   padding-top: 15px; }
 
 .filter-col {
-  width: 290px;
+  width: 280px;
   float: left;
   display: block;
   padding-right: 10px; }
@@ -644,7 +648,7 @@ nav.tabs {
 .nav-tabs > li.active > a:focus {
   color: #3775bb;
   background: rgba(255, 255, 255, 0.8);
-  border: 1px solid #ececec; }
+  border: 1px solid #cccccc; }
 
 .main-tabs .nav-tabs li a {
   background: #ececec; }
@@ -680,7 +684,7 @@ nav.tabs {
     background: #ffffff; }
 
 .tab-pane.active {
-  border: 1px solid #ececec;
+  border: 1px solid #cccccc;
   padding: 0.6em; }
 
 .tab-content .inline {
@@ -717,8 +721,7 @@ ul.overview-stats {
   .text-search-wrapper input[type=text] {
     border: 1px solid #fff;
     outline: none;
-    width: 93%;
-    padding: 0.3em; }
+    width: 93%; }
 
 .search-box {
   background: #ffffff;
@@ -749,18 +752,14 @@ button.search-button {
       position: relative; }
 
 .selectable, .selectable-radio {
-  width: 14px;
-  height: 14px;
+  width: 10px;
+  height: 10px;
   border: 1px solid #cccccc;
   background: #ffffff;
   float: left;
-  margin-right: 0.5em;
-  -webkit-transition: all 600ms ease;
-  -moz-transition: all 600ms ease;
-  -o-transition: all 600ms ease;
-  transition: all 600ms ease; }
+  margin-right: 1em; }
   .selectable:hover, .selectable-radio:hover {
-    background: #e9ba00; }
+    background: #ffe683; }
   .selectable.selected, .selected.selectable-radio {
     background: #e9ba00; }
 

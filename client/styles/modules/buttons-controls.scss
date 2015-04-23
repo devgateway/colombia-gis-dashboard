@@ -1,6 +1,7 @@
 .button-pane {
   overflow: hidden;
   padding-bottom: $gutter;
+  padding-top: $gutter/2;
   padding-right:0.6em;
   @include floatRight;
 }
@@ -17,10 +18,11 @@
   color: $white;
   background: $green;
   @include floatRight;
+  @include transitionAll;
   margin-left:1em;
 
   &:hover {
-    background: darken($green,19%);
+    background: darken($green,20%);
     color: $white;
   }
 

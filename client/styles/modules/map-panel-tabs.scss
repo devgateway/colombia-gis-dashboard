@@ -12,7 +12,7 @@ nav.tabs {
 .nav-tabs > li.active > a:focus {
   color: saturate(lighten($blue, 1), 20);
   background: rgba(255, 255, 255, 0.8);
-  border: 1px solid #ececec;
+  border: 1px solid #cccccc;
 }
 .main-tabs .nav-tabs li a{
   background: #ececec;
@@ -44,7 +44,7 @@ nav.tabs {
 }
 
 .tab-pane.active{
-  border:1px solid #ececec;
+  border:1px solid #cccccc;
   padding:0.6em;
 }
 

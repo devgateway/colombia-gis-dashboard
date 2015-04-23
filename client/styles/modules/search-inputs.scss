@@ -9,7 +9,6 @@
     border:1px solid #fff;;
     outline: none;
     width: 93%;
-    padding: 0.3em;
   }
 }
 .search-box {
@@ -55,24 +54,20 @@ button{
    }
 }
 
-// checkbox replacement- using div and jquery
-.layer-type-option{
-}
-
+.layer-type-option{}
 .selectable{
-  width:14px;
-  height:14px;
+  width:10px;
+  height:10px;
   border:1px solid #cccccc;
   background: $white;
   float:left;
-  margin-right: $gutter/2;
-  @include transitionAll;
+  margin-right: $gutter;
   &:hover{
-    background:#e9ba00;
+    background: lighten($yellow,30%);
   }
 
   &.selected{
-    background:#e9ba00;
+    background: $yellow;
   }
 
 }
