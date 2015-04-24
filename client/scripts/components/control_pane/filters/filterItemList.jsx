@@ -56,7 +56,7 @@ var FilterItemList = React.createClass({
             }
         } else if (this.props.parent) {
             listClass  += " tabbed";
-            parent = this.props.parent.name
+            parent = <div className="filter-col-parent">{this.props.parent.name}</div>
         }
         if (this.state.collapsed){
             listClass  += " hide";

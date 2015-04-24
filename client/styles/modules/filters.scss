@@ -46,7 +46,7 @@
 }
 .filter-label {
   @include textUppercase;
-  font-size:1em;
+  font-size:14px;
 }
 .filter-selectors {
   @include floatRight;
@@ -70,6 +70,13 @@
   max-height: 270px;
   overflow-y: auto;
 }
+
+.filter-list-container-carousel {
+  @extend filter-list-container;
+  height: 170px;
+  overflow-x: hidden;
+}
+
 ul.filter-list {
   @include listUnstyled;
   li {
@@ -79,6 +86,7 @@ ul.filter-list {
       display:table;
       margin-bottom:$gutter/4;
       line-height:1em;
+      padding-right: 4px;
     }
   }
 }
@@ -127,11 +135,12 @@ input[type=checkbox].glyphicon {
 .filter-col{
   width:280px;
   @include floatLeft;
-  display:block;
+  display:inline-flex;
   padding-right:10px;
 }
 
 .filter-col-parent{
   @extend .filter-col;
   width:580px;
+  font-size: 14px;
 }
