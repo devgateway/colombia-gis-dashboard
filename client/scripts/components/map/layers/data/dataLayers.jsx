@@ -130,7 +130,7 @@ module.exports = React.createClass({
     pointToLayer: function (feature, latlng) {
           //var marker= L.circleMarker(latlng, _.extend(geojsonMarkerOptions,{radius:getRadius(feature.properties.actividades)}));
           var marker = new L.Marker(latlng, {
-            icon:   new L.NumberedDivIcon({number: feature.properties.actividades, iconSize:[getRadius(feature.properties.actividades),getRadius(feature.properties.actividades)] })
+            icon:   new L.NumberedDivIcon({number: feature.properties.activities, iconSize:[getRadius(feature.properties.activities),getRadius(feature.properties.activities)] })
           });
           return marker
         }

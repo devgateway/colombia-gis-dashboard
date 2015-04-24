@@ -21,18 +21,16 @@ module.exports  = React.createClass({
     	ArcgisLayersActions.loadLayer(service);
     },
 
-    onSearch:function(val){
-		ArcgisLayersActions.search(val);
+    onSearch:function(val,append){
+		ArcgisLayersActions.search(val,append);
 	},
 
 	updateVisiblity:function(){
-
 		ArcgisLayersActions.changeVisibility();
 	},
 
 	render: function() {
-
-		var all=this.state.arcgisState.all || [];
+		var results=this.state.arcgisState.results;
 		var services=this.state.arcgisState.services || [];
 		var token=this.state.loginState.token || "";
 		var error=this.state.arcgisState.error;
@@ -41,17 +39,18 @@ module.exports  = React.createClass({
 
 			<div className="activity-nav">
 			<TabbedArea className="activities" defaultActiveKey={1}>
-			<TabPane eventKey={1} tab="Map Layers">
+				<TabPane eventKey={1} tab="Map Layers">
+					<DataLayersManager/>
+					<EsriLayersManager services={services}  onChange={this.updateVisiblity}/>
+				</TabPane>
 
-				<DataLayersManager/>
-
-				<EsriLayersManager services={services}  onChange={this.updateVisiblity}/>
-
-			</TabPane>
-
-			<TabPane eventKey={2} tab="Find External Layers">
-				<EsriSearch onAddLayer={this.onAddLayer} onSearch={this.onSearch} token={token}  error={error} services={all}  {...this.props}/>
-			</TabPane>
+				<TabPane eventKey={2} tab="Find External Layers">
+					<EsriSearch onAddLayer={this.onAddLayer} 
+					onSearch={this.onSearch} 
+					token={token}  
+					error={error} 
+					results={results}/>
+				</TabPane>
 
 			</TabbedArea>
 			</div>

@@ -67,9 +67,10 @@ module.exports = {
         var feature = options.feature ? 'type:"Feature Service" OR ' : '';
         var types = (image + map + feature).slice(0, -3); //remove last OR;
         var start = '&start=' + (options.start || '0');
-        var num = '&num=' + (options.num || '100');
+        var num = '&num=' + (options.num || '10');
         var query = '(' + options.query + ')' + ' AND (' + types + ')   '; //AND (access:shared)
-        return 'q='+ query;
+
+        return 'q='+ query+start+num
     },
 
 
