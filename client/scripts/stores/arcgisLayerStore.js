@@ -6,6 +6,8 @@ var ArcgisLayersActions = require('../actions/arcgisLayersActions.js');
 var Util= require('../api/util.js');
 var API=require('../api/esri.js');
 var _ = require('lodash');
+
+//var storedState=require('./layer_samples.js')
 module.exports = Reflux.createStore({
 
 	listenables: ArcgisLayersActions,
@@ -20,9 +22,10 @@ module.exports = Reflux.createStore({
 		}
 	},
 
+
 	appendSearchResults:function(items){
 		var previous=this.state.results.results;
-			return previous.concat(items);	
+		return previous.concat(items);	
 	},
 
 
@@ -48,28 +51,28 @@ module.exports = Reflux.createStore({
 	},
 
 	loadLayerCompleted:function(service,serviceMetadata){
+		if ( _.findWhere(this.state.services,service)){ //check if service was already added 
+			this.loadLayerFailed("This service is alredy added")
 
-		if ( !_.findWhere(this.state.services,service) ){
-					assign(service,{metadata:serviceMetadata,defaultVisibility:true}); //adding metadata and default visibility
-					assign(serviceMetadata,{'added':true}); // mark as added 
-					this.addService(service);
-				}else{
-					this.loadLayerFailed("This service is alredy added")
+		}else{
+			assign(serviceMetadata,{'added':true}); // mark record as added 
+			assign(service,{defaultVisibility:true,metadata:serviceMetadata}) // set default visibility to true we want
+			this.addService(service); //add service to map services 
+		}
+		 
+	},	
 
-				}
-			},	
+	addService:function(layer){
+		this.state.services.push(layer);
+		this.state.error=null;
+		this.trigger(this.state);
+	},
 
-			addService:function(layer){
-				this.state.services.push(layer);
-				this.state.error=null;
-				this.trigger(this.state);
-			},
+	onToggleLayerVisibility:function(){
+		this.trigger(this.state)
+	},
 
-			onToggleLayerVisibility:function(){
-				this.trigger(this.state)
-			},
-
-			onRemoveLayer:function(){
+	onRemoveLayer:function(){
 		//find layer remove and trigger
 	},
 
@@ -83,7 +86,7 @@ module.exports = Reflux.createStore({
 
 	getInitialState: function() {
 		if (!this.state){
-			this.state={services:[], results:{}};
+			this.state={services:[], results:{}}; //storedState
 		}	
 		return this.state;
 	}

@@ -56,10 +56,11 @@
 
    var bounds = this.state.mapStatus.bounds;
    var baseMap= this.state.mapStatus.baseMap;
+   //
+     
    return (
      <div>
      <DataLayer  getMap={this.getMap}/>
-     
      <EsriLayers getMap={this.getMap}/>
      
      <AGOLbtnLogin/>

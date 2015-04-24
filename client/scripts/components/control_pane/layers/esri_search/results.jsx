@@ -6,7 +6,7 @@ var Reflux = require('reflux');
 
 var AddButton= React.createClass({
 	handleAdd:function(){
-		this.props.onAddLayer(this.props.service);
+		this.props.onAddLayer(this.props.service); //add current service to map
 	},
 
 	render: function() {

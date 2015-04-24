@@ -1,0 +1,60 @@
+.esri-result-list{
+  overflow-y:scroll;
+  height:380px;
+
+  ul{
+    @include listUnstyled;
+  }
+}
+
+.layer-wrapper{
+  height:150px;
+  padding: 0 0.5em 0 0;
+  @include listUnstyled;
+  display:block;
+}
+
+.thumbnail{
+  width:120px;
+  margin-right: $gutter;
+}
+
+.layer-info{
+  @include floatLeft;
+  display:inline;
+  width:400px;
+
+  .title{
+    color: $black;
+    font-size:0.85em;
+    line-height:98%;
+    margin-bottom:$gutter/2;
+  }
+  
+  .details{
+    line-height:98%;
+    margin-bottom:$gutter/2;
+    color: lighten($grey,15%);
+    font-size:0.85em;
+  }
+
+
+}
+
+.btn{
+  font-size:0.8em;
+  @include floatLeft;
+  margin-left:0;
+}
+
+.layer-search-options{
+  ul{
+    line-height:80%;
+  }
+}
+
+.seemore{
+  @include floatRight;
+  font-size:0.9em;
+  padding-right:0.4em;
+}
