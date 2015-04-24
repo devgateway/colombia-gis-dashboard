@@ -426,9 +426,8 @@ ul.basemap-list {
   box-shadow: none; }
 
 .m-center:not(.m-fluid) > .m-scooch-inner > * {
-  background: #ffffff;
   width: 480px;
-  margin-left: -80px; }
+  }
 
 .m-fade-out {
   -webkit-mask-image: none; }

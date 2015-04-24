@@ -2,8 +2,6 @@
 .activity-nav {
   @include clearfix;
   overflow: hidden;
-  padding-top:0.7em;
-  margin-left:0.7em;
 }
 .filter-type-wrapper {
   overflow: hidden;
@@ -28,10 +26,9 @@
     a {
       color: lighten($grey,20%);
       font-size:1.0em;
-
       &:hover,
       &.active {
-        color: saturate($blue,35%);
+        color: $blue;
       }
     }
     .fa {
@@ -59,25 +56,25 @@ ul.activities {
     margin-bottom:$gutter*1.2;
 
     a {
-      color: lighten($grey, 45%);
+      color: lighten($grey,35%);
       line-height: 80%;
       padding: 0;
       border-radius: 0;
       display: inline;
       margin-right: 0px;
-      text-transform: uppercase;
       @include transitionAll;
-      background: #eeeeee;
+      background: lighten($grey,68%);
       padding:0.3em 0.7em;
-
-      &:hover,
+      border: 1px solid lighten($grey,60%);
+      &:hover{
+        color: $blue;
+      }
       &.active,
       &:focus {
-        background: $white;
-        border: 1px solid #cccccc;
+        background: none;
+        border:1px solid transparent;
         outline: none;
         line-height: 85%;
-        color: saturate($blue,35%);
         cursor:pointer;
       }
     }
