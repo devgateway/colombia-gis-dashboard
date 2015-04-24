@@ -155,3 +155,15 @@ i.fa.fa-search{
 .inline{
   display: inline-flex;
 }
+
+.bs-callout-info{
+  border-left-color:#f00;
+}
+.bs-callout{
+  @include border-radius(0);
+  padding: $gutter;
+  margin: 20px 0;
+  border: 1px solid #eeeeee;
+  border-left-width: 5px;
+  background: rbga(255,255,255,0.6);
+}

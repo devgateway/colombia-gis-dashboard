@@ -58,6 +58,20 @@ i.fa.fa-search {
 .inline {
   display: inline-flex; }
 
+.bs-callout-info {
+  border-left-color: #f00; }
+
+.bs-callout {
+  -webkit-border-radius: 0;
+  border-radius: 0;
+  background-clip: padding-box;
+  /* stops bg color from leaking outside the border: */
+  padding: 1em;
+  margin: 20px 0;
+  border: 1px solid #eeeeee;
+  border-left-width: 5px;
+  background: rbga(255, 255, 255, 0.6); }
+
 #app-wrapper {
   height: 100%;
   font-family: "Open Sans", sans-serif; }
