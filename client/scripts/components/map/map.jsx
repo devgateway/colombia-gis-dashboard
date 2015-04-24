@@ -59,7 +59,9 @@
    return (
      <div>
      <DataLayer  getMap={this.getMap}/>
+     
      <EsriLayers getMap={this.getMap}/>
+     
      <AGOLbtnLogin/>
      <LeafletMap ref="leafletMapComponent" baseMap={baseMap} bounds={bounds} onMapMove={this.updateCurrentBounds} />
       {children} 
