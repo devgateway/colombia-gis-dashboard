@@ -649,7 +649,10 @@ input[type=checkbox].glyphicon {
   padding-right: 10px; }
 
 .filter-col-parent {
-  width: 580px; }
+  width: 560px;
+  padding-right: 1em;
+  font-weight: bold;
+  line-height: 2.2em; }
 
 .fa.fa-minus,
 .fa.fa-plus {

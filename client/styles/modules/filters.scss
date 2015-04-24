@@ -148,7 +148,10 @@ input[type=checkbox].glyphicon {
 
 .filter-col-parent{
   @extend .filter-col;
-  width:580px;
+  width:560px;
+  padding-right: $gutter;
+  @include textBold;
+  line-height:2.2em;
 }
 
 .fa.fa-minus,
