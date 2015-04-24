@@ -3,16 +3,16 @@ var React = require('react');
 
 var SelectionCounter = React.createClass({
 
-    _showSelected: function(event) {     
+    _showSelected: function(event) {
         this.props.onCounterClicked(true);
     },
 
-    _showAll: function(event) {     
+    _showAll: function(event) {
         this.props.onCounterClicked(false);
     },
 
     componentDidMount: function(){
-        $('.filter-count').tooltip();      
+        $('.filter-count').tooltip();
     },
 
     render: function() {
@@ -25,7 +25,7 @@ var SelectionCounter = React.createClass({
                   <span className="filter-count">/</span>
                   <span className="filter-count" title="Show Only Selected" data-placement="left">
                     <a href="#" onClick={this._showSelected}>{this.props.selected}</a>
-                  </span>                                       
+                  </span>
               </div>
             );
     }
