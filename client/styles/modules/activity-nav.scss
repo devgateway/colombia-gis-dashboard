@@ -2,8 +2,6 @@
 .activity-nav {
   @include clearfix;
   overflow: hidden;
-  padding-top:0.7em;
-  margin-left:0.7em;
 }
 .filter-type-wrapper {
   overflow: hidden;
@@ -65,11 +63,10 @@ ul.activities {
       border-radius: 0;
       display: inline;
       margin-right: 0px;
-      text-transform: uppercase;
       @include transitionAll;
       background: #eeeeee;
       padding:0.3em 0.7em;
-
+      border: 1px solid lighten($grey,55%);
       &:hover,
       &.active,
       &:focus {

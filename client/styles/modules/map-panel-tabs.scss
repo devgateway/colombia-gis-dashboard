@@ -19,7 +19,6 @@ nav.tabs {
 }
 .main-tabs .nav-tabs li.active a{
   color: saturate(lighten($blue, 1), 20);
-  border-bottom:1px solid transparent;
   background: rgba(255, 255, 255, 0.8);
 }
 .tabs>li {
@@ -44,8 +43,11 @@ nav.tabs {
 }
 
 .tab-pane.active{
-  border:1px solid #cccccc;
-  padding:0.6em;
+  padding:0.55em;
+}
+
+.tab-pane.fade.active{
+  background:none;
 }
 
 .tab-content .inline{

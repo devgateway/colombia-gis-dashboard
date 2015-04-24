@@ -12,18 +12,20 @@
 }
 h1 {
   @include floatLeft;
-  @include textLarge;
   @include textBold;
+  font-size:1.4rem;
   color: $white;
   text-transform: uppercase;
-  margin-top: 0.7em;
+  margin-top:$gutter;
 }
 h2 {
   color: $white;
-  @include textMedium;
+  font-size:1.3rem;
   @include textBold;
   display: inline-block;
-  line-height: $base-line-height/2;
+  line-height: $base-line-height;
+  margin-top:1.2em;
+  margin-left: $gutter/2.5;
 }
 .header-nav {
   @include floatRight;
@@ -103,7 +105,7 @@ h2 {
 }
 //left bar toggle
 #sidebar-wrapper {
-  width: $gutter*3;
+  width: $gutter*3.5;
   z-index: 1002;
   background-color: rgb(0,0,0);
   background-color: rgba(0,0,0,0.8);
@@ -111,8 +113,8 @@ h2 {
   position: fixed;
   top: 50px;
   .panel-toggle {
-    top: 47%;
-    margin-left: 30%;
+    top: 40%;
+    margin-left: 22%;
     position: absolute;
   }
 }
@@ -120,7 +122,7 @@ h2 {
   width: 750px;
   height: 87%;
   position: absolute;
-  left:36px;
+  left:42px;
   top: -3px;
 
   @include transitionOpacity;
@@ -170,22 +172,4 @@ ul.tabbed{
   width:99%;
   display:block;
   margin: $gutter auto;
-}
-
-// loading icon
-.loader{
-  height: 25px;
-  width: 25px;
-  text-align: center;
-  padding: 1em;
-  margin: auto;
-  vertical-align: top;
-}
-
-/*
-Set the color of the icon
-*/
-svg path,
-svg rect{
-  fill: $green;
 }

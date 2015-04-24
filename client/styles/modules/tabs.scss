@@ -3,12 +3,10 @@
   // wrapps the content pane of each tab
   @include clearfix;
   margin-bottom: $gutter;
-  background: rgba(255, 255, 255, 0.8);
   padding: 1em 1.8em;
   overflow:hidden;
 }
 .tab-content {
-  background: rgba(255, 255, 255, 0.8);
   min-height:320px;
   height:auto;
   overflow:hidden;
