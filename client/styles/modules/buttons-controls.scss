@@ -1,7 +1,7 @@
 .button-pane {
   overflow: hidden;
   padding-bottom: $gutter;
-  padding-top: $gutter*1.6;
+  padding-top: $gutter/2;
   padding-right:0.6em;
   @include floatRight;
 }
@@ -20,6 +20,7 @@
   @include floatRight;
   @include transitionAll;
   margin-left:1em;
+
   &:hover {
     background: darken($green,20%);
     color: $white;
@@ -44,22 +45,6 @@
 .m-scaled .m-active{
   opacity:1;
   box-shadow:none;
-}
-
-.m-center:not(.m-fluid)>.m-scooch-inner>*{
-  // width:635px;
-  width:480px;
-}
-
-.m-fade-out{
-  -webkit-mask-image:none;
-}
-
-.m-scooch-controls {
-  width:45%;
-  margin-left:-10px;
-  padding-top:0;
-  margin-top:-13px;
 }
 
 .m-scooch-controls a{
