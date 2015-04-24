@@ -81,6 +81,10 @@ $base-line-height: 110%;
   @include transitionAll;
 }
 
+html{
+  font-family:$base-font-family;
+}
+
 body{
   color:$grey;
   font-family:$base-font-family;

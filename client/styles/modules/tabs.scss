@@ -7,10 +7,11 @@
   overflow:hidden;
 }
 .tab-content {
-  min-height:320px;
+  min-height:280px;
   height:auto;
   overflow:hidden;
   width:99%;
+  padding:$gutter/2 $gutter;
 
   ul {
     list-style: none;
