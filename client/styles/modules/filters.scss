@@ -35,8 +35,9 @@
 .filter-count {
   color: $blue;
   @include textBold;
-  float:right;
+  display: inline;
   line-height:160%;
+  padding-left: 7px;
   a{
     @include transitionAll;
     color: $blue;

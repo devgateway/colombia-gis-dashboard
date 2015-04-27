@@ -12,20 +12,22 @@ var SelectionCounter = React.createClass({
     },
 
     componentDidMount: function(){
-        $('.filter-count').tooltip();
+        $('.filter-count span').tooltip();
     },
 
     render: function() {
         var divStyle = {display: 'inline'};
         return(
-              <div style={divStyle}>
-                  <span className="filter-count" title="Show All" data-placement="left">
-                    <a href="#" onClick={this._showAll}>{this.props.total}</a>
-                  </span>
-                  <span className="filter-count">/</span>
-                  <span className="filter-count" title="Show Only Selected" data-placement="left">
+              <div className="filter-count">
+                  <span>[</span>
+                  <span title="Show All" data-placement="top">
                     <a href="#" onClick={this._showSelected}>{this.props.selected}</a>
                   </span>
+                  <span>/</span>
+                  <span title="Show Only Selected" data-placement="top">
+                    <a href="#" onClick={this._showAll}>{this.props.total}</a>
+                  </span>
+                  <span>]</span>                  
               </div>
             );
     }
