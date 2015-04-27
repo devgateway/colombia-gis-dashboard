@@ -103,6 +103,7 @@ module.exports = React.createClass({
   },
 
   componentWillUpdate: function(props,newState) {
+    debugger;
     if (newState.dataLayers.features){
       this.addLayerToMap(newState.dataLayers.features);
     }
