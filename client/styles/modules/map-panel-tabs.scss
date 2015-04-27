@@ -2,20 +2,26 @@
 nav.tab-navigation,
 nav.tabs {
   @include clearfix;
-  margin: $gutter 0;
-  overflow: auto;
-  padding: 0;
+  margin: 0;
 }
 .nav-tabs {
   border-bottom: none;
-  margin-bottom: 1px;
 }
 .nav-tabs > li.active > a,
 .nav-tabs > li.active > a:hover,
 .nav-tabs > li.active > a:focus {
-  color: saturate(lighten($blue, 1), 20);
   background: none;
-  border: 1px solid transparent;
+  border:1px solid transparent;
+  color: $blue;
+}
+.main-tabs .nav-tabs li a{
+  background:lighten($grey,66%);
+  font-weight:600;
+}
+.main-tabs .nav-tabs li.active a{
+  background: rgba(242,246,247,0.6);
+  border:1px solid transparent;
+  margin-bottom:1px;
 }
 .tabs>li {
   @include floatLeft;
@@ -23,18 +29,34 @@ nav.tabs {
   @include textUppercase;
 }
 .tabs>li a {
-  padding: 8px 20px;
-  color: lighten($grey,20%);
-  border: 1px solid lighten($grey,50%);
-  background: lighten($grey,58%);
-  font-size: 1.3rem;
+  padding: 8px 25px;
+  color: lighten($grey,35%);
+  border:1px solid transparent;
+  background: lighten($grey,56%);
+  font-size: 1.2rem;
   outline: none;
   @include border-radius(1px);
   @include transitionAll;
   &:hover {
-    color: saturate(lighten($blue, 1), 20);
-    border: 1px solid transparent;
-    background: none;
+    color: $blue;
+    border:1px solid transparent;
+    background: $white;
   }
+
+}
+
+.tab-pane.active{
+  padding:0.55em 0;
+}
+
+.tab-pane.fade.active{
+  background:none;
+}
+.tab-content{
+  border-bottom:1px solid #cccccc;
+  background: rgba(242,246,247,0.6);
+}
+.tab-content .inline{
+    padding:0.3em;
 }
 // end:panel tabs

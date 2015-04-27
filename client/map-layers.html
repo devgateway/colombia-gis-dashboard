@@ -1,0 +1,268 @@
+<!doctype html>
+<!--[if IE 8 ]>
+<html class="no-js ie8 lt-ie9" lang="ro" dir="ltr" xmlns:svg="http://www.w3.org/2000/svg"
+      xmlns:xlink="http://www.w3.org/1999/xlink"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<!--<![endif]-->
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<head>
+  <meta charset="UTF-8">
+  <title>USAID Colombia - Map Panel</title>
+  <!-- temporary map embed element-->
+  <link rel="stylesheet" href="bower_components/leaflet/dist/leaflet.css" />
+  <!--font awesome-->
+  <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+  <!--normalize css -->
+  <link rel="stylesheet" href="bower_components/normalize.css/normalize.css" />
+
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+
+  <!--custom css - sass compiled
+<link rel="stylesheet" type="text/css" href="/styles/main.css"/>-->
+  <link rel="stylesheet" type="text/css" href="main.css" />
+</head>
+
+<body style="background: url(../../html/images/temp-img.png)">
+  <div id="map-panel">
+
+    <!--start: top map panel container-->
+    <div class="map-panel-header">
+
+      <!--start: basemap nav-->
+      <div class="basemap-nav-container">
+
+        <div class="basemap-label">
+          <i class="fa fa-globe" aria-hidden="true"></i> Views
+        </div>
+
+        <ul class="basemap-list">
+          <li>
+            <span>Gray</span>
+          </li>
+          <li>
+            <span>Topographic</span>
+          </li>
+          <li>
+            <span>National Geographic</span>
+          </li>
+          <li>
+            <span>Dark Grey</span>
+          </li>
+          <li>
+            <span>Imagery</span>
+          </li>
+          <li>
+            <span>Streets</span>
+          </li>
+        </ul>
+      </div>
+      <!--ends: basemap nav-->
+
+    </div>
+    <!--end: top map panel container-->
+
+    <!--start: tabs-->
+    <nav class="tabs" data-reactid="">
+      <ul class="tabs nav nav-tabs" data-reactid="">
+        <li data-reactid="">
+          <a data-reactid="" href="#">Map Content</a>
+        </li>
+
+        <li data-reactid="">
+          <a data-reactid="" href="#">Filters</a>
+        </li>
+
+        <li class="active" data-reactid="">
+          <a data-reactid="" href="#">Map Layers</a>
+        </li>
+      </ul>
+    </nav>
+    <!--end: tabs-->
+
+		<!--start panel content-->
+	<div class="tab-panel">
+
+    <!--start:layer search box-->
+
+		<div class="layer-search-wrapper" data-reactid="">
+      <!--start: search box-->
+    				<div class="text-search-wrapper">
+    					<div class="search-box">
+                <button type="submit" class="search-button">
+                  <i class="fa fa-search"></i>
+                </button>
+    						<input class="keyword-search" name="keyword-search" type="text">
+    					</div>
+    				</div>
+    				<!--end: search box-->
+
+      <div data-reactid="">
+				<div class="layer-search-options" data-reactid="">
+					<ul data-reactid="">
+						<li class="layer-type-option" data-reactid="">
+                <span class="selectable selected" data-reactid=""></span>
+                <span class="layer-label" data-reactid="">Feature Service</span>
+						</li>
+
+            <li class="layer-type-option" data-reactid="">
+                <span class="selectable selected" data-reactid=""></span>
+                <span class="layer-label" data-reactid="">Map Service</span>
+            </li>
+            <li class="layer-type-option" data-reactid="">
+                <span class="selectable selected" data-reactid=""></span>
+                <span class="layer-label" data-reactid="">Image Service</span>
+            </li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	 <!--end: layer search box-->
+
+			<hr class="h-divider">
+
+      <!--start: temporary div to display filter container-->
+			<div class="esri-result-list">
+        <ul>
+        <li class="layer-wrapper">
+          <div class="thumbnail pull-left">
+            <img src="http://www.arcgis.com/sharing/content/items/ded470dca67445bbbf3bf6215da1038b/info/thumbnail/Colombia_Service_-_PPPC.png">
+          </div>
+          <div class="title">Colombia Purchasing Power per Capita. This is a longer title.</div>
+          <div class="type">Map layer type goes here.</div>
+          <div class="add">
+            <div class="btn btn-apply">Add</div>
+          </div>
+        </li>
+
+        <li class="layer-wrapper">
+          <div class="thumbnail pull-left">
+            <img src="http://www.arcgis.com/sharing/content/items/ded470dca67445bbbf3bf6215da1038b/info/thumbnail/Colombia_Service_-_PPPC.png">
+          </div>
+          <div class="layer-info">
+            <div class="title">Colombia Purchasing Power per Capita</div>
+            <div class="type">Map layer type goes here</div>
+            <div class="add">
+              <div class="btn btn-apply">Add</div>
+            </div>
+        </div>
+      </li>
+
+        <li class="layer-wrapper">
+          <div class="thumbnail pull-left">
+            <img src="http://www.arcgis.com/sharing/content/items/ded470dca67445bbbf3bf6215da1038b/info/thumbnail/Colombia_Service_-_PPPC.png">
+          </div>
+          <div class="layer-info">
+            <div class="title">DGCM_Colombia_Reference</div>
+            <div class="type">Map service - public</div>
+            <div class="add">
+              <div class="btn btn-apply">Add</div>
+            </div>
+          </div>
+        </li>
+
+        <li class="layer-wrapper">
+          <div class="thumbnail pull-left">
+            <img src="http://www.arcgis.com/sharing/content/items/ded470dca67445bbbf3bf6215da1038b/info/thumbnail/Colombia_Service_-_PPPC.png">
+          </div>
+          <div class="layer-info">
+            <div class="title">Colombia Purchasing Power per Capita</div>
+            <div class="type">Map service - public</div>
+            <div class="add">
+              <div class="btn btn-apply">Add</div>
+            </div>
+          </div>
+        </li>
+
+        <li class="layer-wrapper">
+          <div class="thumbnail pull-left">
+            <img src="http://www.arcgis.com/sharing/content/items/ded470dca67445bbbf3bf6215da1038b/info/thumbnail/Colombia_Service_-_PPPC.png">
+          </div>
+          <div class="layer-info">
+            <div class="title">DGCM_Colombia_Base</div>
+            <div class="type">Map service - public</div>
+            <div class="add">
+              <div class="btn btn-apply">Add</div>
+            </div>
+          </div>
+        </li>
+
+        <li class="layer-wrapper">
+          <div class="thumbnail pull-left">
+            <img src="http://www.arcgis.com/sharing/content/items/ded470dca67445bbbf3bf6215da1038b/info/thumbnail/Colombia_Service_-_PPPC.png">
+          </div>
+          <div class="layer-info">
+            <div class="title">DGCM_Colombia_forUI_BASE</div>
+            <div class="type">Map layer type goes here</div>
+            <div class="add">
+              <div class="btn btn-apply">Add</div>
+            </div>
+          </div>
+        </li>
+
+        <li class="layer-wrapper">
+          <div class="thumbnail pull-left">
+            <img src="http://www.arcgis.com/sharing/content/items/ded470dca67445bbbf3bf6215da1038b/info/thumbnail/Colombia_Service_-_PPPC.png">
+          </div>
+          <div class="layer-info">
+            <div class="title">DGCM_Colombia_Base</div>
+            <div class="type">Map service - public</div>
+            <div class="add">
+              <div class="btn btn-apply">Add</div>
+            </div>
+          </div>
+        </li>
+
+        <li class="layer-wrapper">
+          <div class="thumbnail pull-left">
+            <img src="http://www.arcgis.com/sharing/content/items/ded470dca67445bbbf3bf6215da1038b/info/thumbnail/Colombia_Service_-_PPPC.png">
+          </div>
+          <div class="layer-info">
+            <div class="title">DGCM_Colombia_forUI_BASE</div>
+            <div class="type">Map layer type goes here</div>
+            <div class="add">
+              <div class="btn btn-apply">Add</div>
+            </div>
+          </div>
+        </li>
+
+        <li class="layer-wrapper">
+          <div class="thumbnail pull-left">
+            <img src="http://www.arcgis.com/sharing/content/items/ded470dca67445bbbf3bf6215da1038b/info/thumbnail/Colombia_Service_-_PPPC.png">
+          </div>
+          <div class="layer-info">
+            <div class="title">DGCM_Colombia_Base</div>
+            <div class="type">Map service - public</div>
+            <div class="add">
+              <div class="btn btn-apply">Add</div>
+            </div>
+          </div>
+        </li>
+
+        <li class="layer-wrapper">
+          <div class="thumbnail pull-left">
+            <img src="http://www.arcgis.com/sharing/content/items/ded470dca67445bbbf3bf6215da1038b/info/thumbnail/Colombia_Service_-_PPPC.png">
+          </div>
+          <div class="layer-info">
+            <div class="title">DGCM_Colombia_forUI_BASE</div>
+            <div class="type">Map layer type goes here</div>
+            <div class="add">
+              <div class="btn btn-apply">Add</div>
+            </div>
+          </div>
+        </li>
+
+      </ul>
+
+			</div>
+			<!--start: temporary div to display filter container-->
+
+    </div>
+
+
+</body>
+
+</html>

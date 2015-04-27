@@ -3,7 +3,7 @@
 @import 'base-styles/base';
 @import 'base-styles/layout';
 @import 'base-styles/responsive';
-
+@import 'base-styles/callouts';
 // map panel components
 @import 'modules/activity-nav';
 @import 'modules/basemaps';
@@ -17,3 +17,6 @@
 @import 'modules/map-popup';
 @import 'modules/map-layers';
 @import 'modules/login';
+@import 'modules/language-nav';
+
+

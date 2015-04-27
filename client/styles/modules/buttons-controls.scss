@@ -1,6 +1,9 @@
 .button-pane {
   overflow: hidden;
-  margin-top: $gutter;
+  padding-bottom: $gutter;
+  padding-top: $gutter/2;
+  padding-right:0.6em;
+  @include floatRight;
 }
 
 .btn{
@@ -11,16 +14,22 @@
 }
 
 .btn-apply {
-  @extend btn;
+  @extend .btn;
   color: $white;
   background: $green;
   @include floatRight;
+  @include transitionAll;
   margin-left:1em;
 
   &:hover {
-    background: darken($green,19%);
+    background: darken($green,20%);
     color: $white;
   }
+
+  &.space-left{
+     margin-left: $gutter;
+  }
+
 }
 //map controls
 .leaflet-top {
@@ -29,23 +38,19 @@
 
 //filter slider
 .m-scaled .m-item{
-  opacity: 0.6;
-  -webkit-box-shadow: inset -5px 4px 142px 0px rgba(184,180,184,0.5);
-  -moz-box-shadow: inset -5px 4px 142px 0px rgba(184,180,184,0.5);
-  box-shadow: inset -5px 4px 142px 0px rgba(184,180,184,0.5);
+  opacity: 0.4;
   padding:10px;
 }
 
 .m-scaled .m-active{
   opacity:1;
   box-shadow:none;
-  padding:0;
 }
 
 .m-center:not(.m-fluid)>.m-scooch-inner>*{
   background: $white;
   // width:635px;
-  width:550px;
+  width:480px;
   margin-left:-80px;
 }
 
@@ -58,18 +63,6 @@
   margin-left:-10px;
   padding-top:0;
   margin-top:-13px;
-}
-
-.m-scooch-controls a{
-    @extend .btn;
-    @extend .btn-apply;
-    margin-right: 2px;
-    display:block;
-    float:left;
-    line-height:80%;
-    padding: 9px 35px;
-    font-size:0.8em;
-    &:hover{ text-decoration:none}
 }
 
 // layer search button

@@ -5,8 +5,8 @@ var api = require('../api/filters.js');
 
 
 var getListFromAPI = Reflux.createAction({ asyncResult: true });
-getListFromAPI.listenAndPromise(api.getListFromAPI);
 
+var getAllListsFromAPI = Reflux.createAction();
 var changeFilterItemState = Reflux.createAction();
 var changeAllFilterItemState = Reflux.createAction();
 
@@ -15,6 +15,7 @@ var triggerFilterReset = Reflux.createAction();
 
 module.exports = {
   getListFromAPI: getListFromAPI,
+  getAllListsFromAPI: getAllListsFromAPI,
   changeFilterItemState: changeFilterItemState,
   changeAllFilterItemState: changeAllFilterItemState,
   triggerFilterApply: triggerFilterApply,

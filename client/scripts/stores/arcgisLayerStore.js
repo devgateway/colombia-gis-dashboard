@@ -6,23 +6,34 @@ var ArcgisLayersActions = require('../actions/arcgisLayersActions.js');
 var Util= require('../api/util.js');
 var API=require('../api/esri.js');
 var _ = require('lodash');
+
+//var storedState=require('./layer_samples.js')
 module.exports = Reflux.createStore({
 
 	listenables: ArcgisLayersActions,
 
-	onSearchCompleted:function(data){
+	onSearchCompleted:function(data,append){
 		console.log("arcgisLayerStore: ... onSearchOnArcGisCompleted .... ");
 		if (data){
-			this.update({all:data.results});
+			if(append){
+				data.results=this.appendSearchResults(data.results)
+			};
+			this.update({results:data});
 		}
 	},
 
-	onSearch:function(options){
+
+	appendSearchResults:function(items){
+		var previous=this.state.results.results;
+		return previous.concat(items);	
+	},
+
+
+	onSearch:function(options,append){
 		_.assign(options,{})
 		API.findLayers(options).then(function(data){
-			ArcgisLayersActions.search.completed(data)
+			ArcgisLayersActions.search.completed(data,append)
 		}).fail(function(){
-			debugger;
 			console.log('arcgisLayerStore:  Error loading data ...');
 			this.state.error='Can\'t load data please check your network connection';
 			this.trigger(this.state);
@@ -40,28 +51,28 @@ module.exports = Reflux.createStore({
 	},
 
 	loadLayerCompleted:function(service,serviceMetadata){
-		
-		if ( !_.findWhere(this.state.services,service) ){
-					assign(service,{metadata:serviceMetadata,defaultVisibility:true}); //adding metadata and default visibility
-					assign(service,{'added':true});
-					this.addService(service);
-				}else{
-					this.loadLayerFailed("This service is alredy added")
+		if ( _.findWhere(this.state.services,service)){ //check if service was already added 
+			this.loadLayerFailed("This service is alredy added")
 
-				}
-			},	
+		}else{
+			assign(serviceMetadata,{'added':true}); // mark record as added 
+			assign(service,{defaultVisibility:true,metadata:serviceMetadata}) // set default visibility to true we want
+			this.addService(service); //add service to map services 
+		}
+		 
+	},	
 
-			addService:function(layer){
-				this.state.services.push(layer);
-				this.state.error=null;
-				this.trigger(this.state);
-			},
+	addService:function(layer){
+		this.state.services.push(layer);
+		this.state.error=null;
+		this.trigger(this.state);
+	},
 
-			onToggleLayerVisibility:function(){
-				this.trigger(this.state)
-			},
+	onToggleLayerVisibility:function(){
+		this.trigger(this.state)
+	},
 
-			onRemoveLayer:function(){
+	onRemoveLayer:function(){
 		//find layer remove and trigger
 	},
 
@@ -75,7 +86,7 @@ module.exports = Reflux.createStore({
 
 	getInitialState: function() {
 		if (!this.state){
-			this.state={services:[],all:[]};
+			this.state={services:[], results:{}}; //storedState
 		}	
 		return this.state;
 	}

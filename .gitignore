@@ -8,3 +8,5 @@ server/config/secrets.js
 .DS_Store
 .yo-rc.json
 .idea/
+
+client/main.css.map

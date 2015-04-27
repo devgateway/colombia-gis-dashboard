@@ -3,30 +3,26 @@
 
 /*http://facebook.github.io/react/docs/component-specs.html*/
 var React = require('react');
-var Router = require('react-router');
-var Reflux = require('reflux');
-var Link = Router.Link;
+var CustomCheckbox = require('../../commons/customCheckbox.jsx');
 
 var FilterItem = React.createClass({
  
-    _onItemChanged: function(event) {  
-       this.props.onItemChanged(this.props.filterType, event.target.value, event.target.checked);
+    _onItemChanged: function(value, selected) {  
+       this.props.onItemChanged(this.props.filterType, value, selected);
     },
  
     render: function() {
         var childSelectedCount = this.props.childSelectedCount? "  ("+this.props.childSelectedCount+")" : "";
+        var className = this.props.collapseIcon? "filter-col-parent" : "filter-col";
         return(
-            <div>
-                <span className="select">
-                    <input className="glyphicon glyphicon-stop"
-                        type="checkbox"
-                        checked={this.props.selected}
+            <div className={className}>
+                <CustomCheckbox 
+                        selected={this.props.selected}
                         onChange={this._onItemChanged}
-                        value={this.props.id} />
-                    
-                </span> 
+                        value={this.props.id}/>
                 {this.props.name} 
                 {childSelectedCount}
+                {this.props.collapseIcon}
             </div>
         );
     }

@@ -14,15 +14,15 @@ module.exports  = React.createClass({
   render: function() {
     return (
       <div className="fixed" id="map-panel">
-        <Basemaps/>       
-      
-      <TabbedArea className="tabs" role="tablist" defaultActiveKey={1}>
-        <TabPane className="YYY" eventKey={1} tab="Map Content">
-               <TabLayerNavigator/>    
-             
+        <Basemaps/>
+
+      <TabbedArea className="tabs main-tabs" role="tablist" defaultActiveKey={1}>
+        <TabPane className="" eventKey={1} tab="Map Content">
+               <TabLayerNavigator/>
+
         </TabPane>
-        <TabPane className="YYY" eventKey={3} tab="Filters">
-            <Filter/>    
+        <TabPane className="" eventKey={2} tab="Filters">
+            <Filter/>
         </TabPane>
 
       </TabbedArea>

@@ -89,7 +89,7 @@ var FilterItem = React.createClass({
                     <span className="filter-label" role="label">{filterDefinition.label}</span>
                     <AllNoneSelector filterType={filterDefinition.param} onAllNoneClicked={self.props.onAllNoneClicked}/>                                                
                 </div> 
-                <div className="filter-list-container">
+                <div className="filter-list-container-carousel">
                     {this._renderList(items, filterDefinition)}
                 </div>
             </div>

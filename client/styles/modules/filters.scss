@@ -5,20 +5,19 @@
 .filter-group-panel {
   @include border-radius(2px);
   opacity: 0.4;
-  background: $white;
-  padding: $gutter;
-  margin-top: $gutter/2;
-  height: 385px;
-  overflow:auto;
-  border: 1px solid lighten($grey,60%);
+  padding: 0.3em $gutter $gutter $gutter;
+  height: 270px;
+  overflow:hidden;
   //selected active filter panel
   &.selected {
     opacity:1;
+    // background: rgba(255,255,255,0.6);
+    // border:1px solid lighten($grey,55%);
+    // padding:$gutter $gutter*1.5;
   }
 }
 
 .filter-group-panel-header {
-  width:634px;
 }
 
 .panel-count {
@@ -28,7 +27,7 @@
   display: inline-block;
   width: 30px;
   height: 30px;
-  line-height: 190%;
+  line-height: 270%;
   margin-right: $gutter/2;
   @include textCenter;
   @include textBold;
@@ -37,37 +36,66 @@
   color: $blue;
   @include textBold;
   float:right;
+  line-height:160%;
+  a{
+    @include transitionAll;
+    color: $blue;
+    &:hover{
+    color: $green;
+  }
+  }
+
 }
 .filter-label {
-  @include textMedium;
+  font-size:1em;
+  color:$black;
 }
 .filter-selectors {
   @include floatRight;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
+  line-height:80%;
   font-style: italic;
   margin-top: 5px;
   margin-right:$gutter;
+  a{
+    @include transitionAll;
+    color: $blue;
+    &:hover{
+      color: $green;
+    }
+  }
+
 
 }
 // filter list
 .filter-list-container {
   margin-top: $gutter;
-  max-height: 220px;
-  width:530px;
+  max-height: 270px;
   overflow-y: auto;
+  padding: 0.1em 1em 0.7em 1em;
+}
+.filter-list-container-carousel {
+  @extend filter-list-container;
+  height: 170px;
+  overflow-x: hidden;
 }
 ul.filter-list {
   @include listUnstyled;
+  display:block;
+  margin-top: $gutter;
+
   li {
-    color: $blue;
-    font-size: 1.3rem;
-    display: block;
-    &:hover .glyphicon.glyphicon-stop:before {
-      color: #e9ba00;
+    color: $grey;
+    font-size: 110%;
+    span{
+      display:table;
+      margin-bottom:$gutter/4;
+      line-height:1.3em;
+      padding-right: 4px;
     }
   }
 }
-//filter input with glyphicon
+//filter input with glyphicon -> remove -> using selectable div
 .select {
   width: 12px;
   height: 12px;
@@ -100,7 +128,41 @@ input[type=checkbox].glyphicon {
 }
 
 .filter-group-sublevel {
-  width: 450px;
 }
 
 .fade{opacity:0.9;}
+
+.filter-parent{
+  display: inline-flex;
+  padding-top: 15px;
+  background:#eaf0f3;
+  padding:0.5em;
+  margin-top:10px;
+
+  .selectable{
+    margin-top: 0.7em;
+    margin-left:0.4em;
+  }
+}
+
+.filter-col{
+  width:270px;
+  @include floatLeft;
+  display:inline-flex;
+  padding-right:10px;
+
+}
+
+.filter-col-parent{
+  @extend .filter-col;
+  width:560px;
+  padding-right: $gutter;
+  @include textBold;
+  line-height:2.2em;
+  font-size: 14px;
+}
+
+.fa.fa-minus,
+.fa.fa-plus{
+  float:right;
+}

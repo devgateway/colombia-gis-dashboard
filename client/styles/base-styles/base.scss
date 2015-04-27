@@ -6,6 +6,7 @@ $green: #98ca68;
 $blue: #4d749f;
 $bgblue:#74a4d6;
 $white: #ffffff;
+$yellow: #e9ba00;
 $gutter: 1em;
 $base-font-family: 'Open Sans', sans-serif;
 $base-line-height: 110%;
@@ -80,12 +81,16 @@ $base-line-height: 110%;
   @include transitionAll;
 }
 
+html{
+  font-family:$base-font-family;
+}
+
 body{
   color:$grey;
   font-family:$base-font-family;
   overflow-x: hidden!important;
-  font-size: 15px;
-  font-size: 1.5rem;
+  font-size: 13px;
+  font-size: 1.2rem;
   -webkit-font-smoothing: antialiased;
   min-height: 100%;
 }
@@ -103,7 +108,7 @@ a{
 
 i.fa.fa-bars{
   color: $white;
-  @include textLarge;
+  &:before{font-size:2.5rem;}
   &:hover{
     color:#74a4d6;
   }
@@ -131,8 +136,16 @@ i.fa.fa-search{
 .collapsed{
   display:none;
 }
+
 .collapse-icon{
   cursor: pointer;
+  padding: 3px;
+  font-size:0.7em;
+  line-height:160%;
+  margin-left: $gutter;
+  &:hover{
+    color: $green;
+  }
 }
 
 .clickeable{
@@ -141,4 +154,16 @@ i.fa.fa-search{
 
 .inline{
   display: inline-flex;
+}
+
+.bs-callout-info{
+  border-left-color:#f00;
+}
+.bs-callout{
+  @include border-radius(0);
+  padding: $gutter;
+  margin: 20px 0;
+  border: 1px solid #eeeeee;
+  border-left-width: 5px;
+  background: rbga(255,255,255,0.6);
 }

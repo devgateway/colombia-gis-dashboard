@@ -8,181 +8,110 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 <head>
-<meta charset="UTF-8">
-<title>USAID Colombia - Map Panel</title>
-<!-- temporary map embed element-->
-<link rel="stylesheet" href="bower_components/leaflet/dist/leaflet.css"/>
-<!--font awesome-->
-<link rel="stylesheet" href="styles/font-awesome.min.css">
-<!--normalize css -->
-<link rel="stylesheet" href="/bower_components/normalize.css/normalize.css"/>
-<!--bootstrap css
-<link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css" />-->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<!--custom css - sass compiled
+  <meta charset="UTF-8">
+  <title>USAID Colombia - Map Panel</title>
+  <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="bower_components/normalize.css/normalize.css" />
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+
+  <!--custom css - sass compiled
 <link rel="stylesheet" type="text/css" href="/styles/main.css"/>-->
-<link rel="stylesheet" type="text/css" href="styles/main.css"/>
+  <link rel="stylesheet" type="text/css" href="main.css" />
 </head>
+
 <body style="background: url(../../html/images/temp-img.png)">
-<div id="map-panel">
+  <div id="map-panel">
 
-	<!--start: top map panel container-->
-	<div class="map-panel-header">
+    <!--start: top map panel container-->
+    <div class="map-panel-header">
 
-    <!--start: basemap nav-->
-		<div class="basemap-nav-container">
+      <!--start: basemap nav-->
+      <div class="basemap-nav-container">
 
-    	<div class="basemap-label">
-				<i class="fa fa-globe" aria-hidden="true"></i>
-				Views
-			</div>
+        <div class="basemap-label">
+          <i class="fa fa-globe" aria-hidden="true"></i> Views
+        </div>
 
-			<ul class="basemap-list">
-				<li><a href="#">Map</a></li>
-				<li><a href="#">Satellite</a></li>
-				<li><a href="#">Hybrid</a></li>
-				<li><a href="#">Terrain</a></li>
-			</ul>
-			<div class="predefined-maps" role="label">
-				 Predefined Maps
-			</div>
-		</div>
-		<!--ends: basemap nav-->
+        <ul class="basemap-list">
+          <li>
+            <span>Gray</span>
+          </li>
+          <li>
+            <span>Topographic</span>
+          </li>
+          <li>
+            <span>National Geographic</span>
+          </li>
+          <li>
+            <span>Dark Grey</span>
+          </li>
+          <li>
+            <span>Imagery</span>
+          </li>
+          <li>
+            <span>Streets</span>
+          </li>
+        </ul>
+      </div>
+      <!--ends: basemap nav-->
 
+    </div>
+    <!--end: top map panel container-->
 
+    <!--start: tabs-->
+    <nav class="tabs" data-reactid="">
+      <ul class="tabs nav nav-tabs" data-reactid="">
+        <li data-reactid="">
+          <a data-reactid="" href="#">Map Content</a>
+        </li>
 
-	</div>
-	<!--end: top map panel container-->
-
-
-
-	<!--start: tabs-->
-	<ul class="tabs" role="tablist">
-		<li class="tab active" role="tab">
-			Monitor Data
-		</li>
-		<li class="tab" role="tab">
-			Layers
-		</li>
-		<li class="tab" role="tab">
-			Filters
-		</li>
-		<li class="tab" role="tab">
-			Projects
-		</li>
-	</ul>
-	<!--end: tabs  -->
-
-
-
-	<!--start: search box-->
-	<div class="text-search-wrapper">
-		<div class="search-box">
-			<span class="search-button">
-			<button type="submit"><i class="fa fa-search"></i></button>
-			</span>
-			<input class="keyword-search" name="keyword-search" placeholder="Enter Text Search" type="text">
-		</div>
-	</div>
-	<!--end: search box-->
+        <li class="active" data-reactid="">
+          <a data-reactid="" href="#">Filters</a>
+        </li>
 
 
+      </ul>
+    </nav>
+    <!--end: tabs-->
 
-
-	<!--start: activity nav-->
-	<div class="activity-nav">
-		<span class="activity-label">Activity</span>
-		<ul class="activities">
-			<li class="active" role="option" name="type"><a>Type</a></li>
-			<li role="option"><a name="sector">Sector</a></li>
-			<li role="option"><a name="class">Class</a></li>
-			<li role="option"><a name="scope">Scope</a></li>
-		</ul>
-	</div>
-	<!--end: activity nav-->
-
-
-<!--start panel content-->
+		<!--start panel content-->
 	<div class="tab-panel">
 
-		<div class="filter-group-panel-container">
-			<div class="filter-group-panel selected">
-				<div class="filter-group-panel-header">
-					<span class="panel-count">1</span>
-					<span class="filter-count">[2/12]</span>
-					<span class="filter-label" role="label">Level Selections</span>
-					<div class="filter-selectors">
-						<span><a href="#">select all</a></span> / <span><a href="#">diselect all</a></span>
-					</div>
-				</div>
-				<!--end: filter group panel header-->
-				<!--start: search box-->
-				<div class="text-search-wrapper">
-					<div class="search-box">
-						<input class="keyword-search" name="keyword-search" type="text">
-					</div>
-				</div>
-				<!--end: search box-->
 
 
-				<!--start: filter list  -->
-				<div class="filter-list-container">
-					<ul class="filter-list">
-						<li>
-						<span class="select">
-						<input type="checkbox" class="glyphicon glyphicon-stop">
-						</span>
-              Training
-						</li>
-						<li>
-						<span class="select">
-						<input type="checkbox" class="glyphicon glyphicon-stop">
-						</span>
-              Conservation
-						</li>
-						<li>
-						<span class="select">
-						<input type="checkbox" class="glyphicon glyphicon-stop">
-						</span>
-              Training and Development
-						</li>
-						<li>
-						<span class="select">
-						<input type="checkbox" class="glyphicon glyphicon-stop">
-						</span>
-						      Monitoring </li>
-					</ul>
-				</div>
-				<!--end: filter list  -->
-			</div>
 
-			<!--filter group panel-->
-			<div class="filter-breadcrumb">
-				<i class="glyphicon glyphicon-chevron-right"></i>Filter Level 1
-        <span class="filter-count">[2/12]</span>
-			</div>
+		<!--start: basic filter nav-->
+    <div class="activity-nav">
+			<ul class="activities" role="list">
+				<li role="listitem" name="location"><a class="active" name="location">Location</a></li>
+				<li role="listitem"><a name="date">Target Population</a></li>
+				<li role="listitem"><a name="objective">Development Objectives</a></li>
+        <li role="listitem"><a name="population">Crops</a></li>
+				<li role="listitem"><a name="status">Sub-Activity Status</a></li>
+				<li role="listitem"><a name="implementer">Sub Implementer</a></li>
+				<li role="listitem"><a name="classification">Activity Classification</a></li>
+				<li role="listitem"><a name="ppp">PPP</a></li>
+			</ul>
 		</div>
-		<!--end: filter groups panel container  -->
+		<!--end: basic filter nav-->
 
+
+			<!--start: temporary div to display filter container-->
+			<div>
+
+
+
+			</div>
+			<!--start: temporary div to display filter container-->
 
 	</div>
-	<!--end: filter container-->
-
-
-  <!--start: apply button container-->
-  <div class="button-pane">
-    <button type="button" class="btn btn-apply" role="button">Apply</button>
-  </div>
-  <!--end:apply button container-->
-
-	<div class="overview-label">
-		Activity Overview
-	</div>
-	<!--end:activity nav-->
 
 </div>
-<!--map panel container ends-->
+
+
 
 </body>
+
 </html>

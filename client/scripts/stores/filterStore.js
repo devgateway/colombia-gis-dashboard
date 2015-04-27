@@ -6,6 +6,7 @@ var Reflux = require('reflux');
 var FilterActions = require('../actions/filterActions.js');
 var LayerActions = require('../actions/layersAction.js');
 var FilterMap = require('../conf/filterMap.js');
+var API = require('../api/filters.js');
 
 module.exports=Reflux.createStore({
 
@@ -19,6 +20,23 @@ module.exports=Reflux.createStore({
             self.state[item.param] = [];
         });
         
+    },
+
+    onGetAllListsFromAPI: function() {
+        var filters = FilterMap.getFilterFlatList();
+        var self = this;
+        filters.map(function(fd){
+            self.onGetListFromAPI(fd);
+        });
+    },
+
+    onGetListFromAPI: function(filterDefinition) {
+        API.getListFromAPI(filterDefinition).then(
+          function(data){
+            FilterActions.getListFromAPI.completed(data, filterDefinition);
+          }).fail(function(){
+            console.log('layersStore: Error loading data ...');
+          });
     },
 
     getAll: function(filterType) {
@@ -63,9 +81,13 @@ module.exports=Reflux.createStore({
         }
     },
 
-    onGetListFromAPICompleted: function(data){
-        var filterType = data.filter.param;
-        this.state[filterType] = data.data;        
+    onGetListFromAPICompleted: function(data, filterDefinition){
+        this.state[filterDefinition.param] = data;
+         if (filterDefinition.parentParamField){
+            this.state[filterDefinition.param].map(function (it){
+                it.id = it.id+"#"+it[filterDefinition.parentParamField];
+            });
+        }        
         this.output();
     },
     
@@ -73,8 +95,10 @@ module.exports=Reflux.createStore({
         var filterDefinition = FilterMap.getFilterDefinitionByParam(filterType);
         var childFilterDefinition = FilterMap.getFilterDefinitionByParam(filterDefinition.childParam);
         if (childFilterDefinition){ //if the item is parent, then select children
-            this.state[childFilterDefinition.param].filter(function(it){return it[childFilterDefinition.parentParamField]==id}).map(function (it){
-                it.selected = value;
+            this.state[childFilterDefinition.param].map(function (it){
+                if (it[childFilterDefinition.parentParamField]==id){
+                    it.selected = value;
+                }
             });
         }
         this.state[filterType].filter(function(it){return it.id==id})[0].selected = value;
@@ -85,15 +109,7 @@ module.exports=Reflux.createStore({
         var filterDefinition = FilterMap.getFilterDefinitionByParam(filterType);
         var self = this;
         this.state[filterType].map(function(it){
-            it.selected = value;
-            /*if (filterDefinition.parentParam){//if has a parent selected, then select only all children for that selection
-                if (self.getAllSelected(filterDefinition.parentParam).length==0 ||
-                    (self.getItem(filterDefinition.parentParam, it[filterDefinition.parentParamField])[0].selected == true)){
-                        it.selected = value;
-                }
-            } else {
-                it.selected = value;
-            }*/
+            it.selected = value;            
         });
         if (filterDefinition.childParam){
             this.state[filterDefinition.childParam].map(function(it){
@@ -105,43 +121,29 @@ module.exports=Reflux.createStore({
 
     onTriggerFilterApply:function(reset){
         var self = this;
-        var filters = FilterMap.filters;
+        var filters = FilterMap.getFilterFlatList();
         var filtersSelected = [];
-        filters.map(function(filterDefinition){ 
-            var selectedIds = [];
-            if (filterDefinition.subLevels){ //iterate over sublevels of filter definition
-                filterDefinition.subLevels.map(function(fd){ 
-                    var selIds = [];
-                    var itemList = self.state[fd.param];
-                    itemList.map(function(item){ 
-                        if (reset){
-                            item.selected = false;
+        filters.map(function(filter){
+            var selectedIds = []; 
+            var itemList = self.state[filter.param];
+            itemList.map(function(item){ 
+                if (reset){
+                    item.selected = false;
+                } else {
+                    if (item.selected){
+                        if (filter.parentParamField){
+                            selectedIds.push(item.id.split("#")[0]);
                         } else {
-                            if (item.selected){
-                                selIds.push(item.id);
-                            }
-                        }
-                    });
-                    if (selIds.length>0){
-                        filtersSelected.push({param: fd.param, values: selIds});
-                    }    
-                });
-            } else {
-                var itemList = self.state[filterDefinition.param];
-                itemList.map(function(item){ 
-                    if (reset){
-                        item.selected = false;
-                    } else {
-                        if (item.selected){
                             selectedIds.push(item.id);
-                        }
+                        }                        
                     }
-                });
-                if (selectedIds.length>0){
-                    filtersSelected.push({param: filterDefinition.param, values: selectedIds});
                 }
-            }            
+            });
+            if (selectedIds.length>0){
+                filtersSelected.push({param: filter.param, values: selectedIds});
+            }  
         });
+
         this.state.filtersSelected = filtersSelected;
         LayerActions.triggerFilterApply(this.state.filtersSelected);
         //alert("Filters Applied: "+ JSON.stringify(this.state.filtersSelected));

@@ -4,7 +4,6 @@ var Router = require('react-router');
 var Reflux = require('reflux');
 var Link = Router.Link;
 var FilterStore=require('../../../stores/filterStore.js')
-var FilterActions = require('../../../actions/filterActions.js');
 
 var FilterItemList = require('./filterItemList.jsx');
 
@@ -40,12 +39,6 @@ var FilterGroup = React.createClass({
         this.forceUpdate();
     },
    
-    componentWillMount: function(){
-        this.props.filterDefinition.subLevels.map(function(filterDefinition){ 
-            FilterActions.getListFromAPI(filterDefinition); 
-        });        
-    },
-
     componentDidMount: function(){
         $('.m-scooch').scooch();      
     },
@@ -72,11 +65,9 @@ var FilterGroup = React.createClass({
                         }  
                     </div>                   
                     <div className="m-scooch-controls m-scooch-pagination">
-                        {
-                            this.props.filterDefinition.subLevels.map(function(filterDefinition, index){
-                                return <a href="#" data-m-slide={index+1}>{filterDefinition.label}</a>
-                            })
-                        }                          
+                        <a href="#" data-m-slide="prev">Previous</a>
+                        <a href="#" data-m-slide="next">Next</a>
+                                               
                     </div>              
                 </div>
             </div>  

@@ -7,7 +7,6 @@ var Reflux = require('reflux');
 var Link = Router.Link;
 var FilterStore=require('../../../stores/filterStore.js')
 var FilterItemList = require('./filterItemList.jsx');
-var FilterActions = require('../../../actions/filterActions.js');
 var KeywordSearch = require('./keywordSearch.jsx');
 var AllNoneSelector = require('./allNoneSelector.jsx');
 var SelectionCounter = require('./selectionCounter.jsx');
@@ -27,9 +26,16 @@ var FilterGroup = React.createClass({
             var pattern = new RegExp(keyword, 'i');
             this.props.filterDefinition.subLevels.map(function(filterDefinition){ 
                 FilterStore.getAll(filterDefinition.param).map(function (item) {
-                if (!pattern.test(item.name)){
-                    item.hide = true;
-                }
+                    if (!pattern.test(item.name)){
+                        item.hide = true;
+                    } else {
+                        if (filterDefinition.parentParam){
+                            FilterStore.getAll(filterDefinition.parentParam).filter(
+                                function(i){return i.id==item[filterDefinition.parentParamField]}
+                            )[0].hide = false;
+                        }
+                        item.hide = false;
+                    }
                 });
             });                    
         } else {
@@ -41,11 +47,6 @@ var FilterGroup = React.createClass({
             });
         }
         this.forceUpdate();
-    },
-
-    componentWillMount :function(){ 
-        FilterActions.getListFromAPI(this.props.filterDefinition.subLevels[0]);          
-        FilterActions.getListFromAPI(this.props.filterDefinition.subLevels[1]);          
     },
 
     _filterByParent: function (list, parent, parentParamField) {

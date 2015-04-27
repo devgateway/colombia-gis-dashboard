@@ -10,21 +10,23 @@ function logFailure(err, message) {
 module.exports = {
 
     getActivitiesByDepartment: function (filters) {
-        debugger;
         return request({
             url: 'http://test.monitor.net.co/GisService.svc/Filters/DepartmentsFunding/Json',
             type: 'json',
             method: 'post',
-            data: JSON.stringify(filters),
+            contentType: "application/json",
+            data: JSON.stringify({"filters": filters? filters : []}),
             crossOrigin: true
         }).fail(logFailure);
     },
 
-    getActivitiesByMuncipalities: function (options) {
+    getActivitiesByMuncipalities: function (filters) {
         return request({
             url: 'http://test.monitor.net.co/GISService.svc/Filters/getActivityMunicipalitiesFunding/Json',
             type: 'json',
-            method: 'get',
+            method: 'post',
+            contentType: "application/json",
+            data: JSON.stringify({"filters": filters? filters : []}),
             crossOrigin: true
         }).fail(logFailure);
     }

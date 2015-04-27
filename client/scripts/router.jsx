@@ -12,7 +12,7 @@ var MapLayout=require('./components/mapLayout.jsx');
 var routes = (
 		<Route name="app" path="/" handler={APP}>
 			
-			<Route name="main" path="/main" handler={MapLayout}>
+			<Route name="main" path="/main" handler={MapLayout}> 
 				<Route name="map" path="/map" handler={Map} />
 			</Route>
 

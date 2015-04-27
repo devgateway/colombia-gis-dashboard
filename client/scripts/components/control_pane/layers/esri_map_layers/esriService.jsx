@@ -2,9 +2,9 @@ var React = require('react');
 var Reflux = require('reflux');
 var EsriLayer=require('./esriLayer.jsx');
 
-module.exports =React.createClass({ 
+module.exports =React.createClass({
 
-	
+
 
 	getDefaultProps: function() {
        return {expanded:false};
@@ -37,30 +37,31 @@ module.exports =React.createClass({
 
 	render: function() {
 		var service=this.props.service;
-		
+
 		var layers=this.props.service.layers;
 		return (
 				<div>
 					<ul>
 						<li>
-							<input name={service.metadata.id} onChange={this.handleVisbility} type="checkbox" checked={this.props.service.defaultVisibility}/> 
 							<span onClick={this.toggle} className="clickeable">
-								{service.metadata.title} ({service.metadata.type})  ( {service.singleFusedMapCache?service.singleFusedMapCache.toString():''})
+								{service.serviceDescription} 
 							</span>
+							
 							<span>
-								&nbsp;<i onClick={this.toggle} className={this.props.expanded?"fa small fa-minus-circle":"fa small fa-plus-circle"}></i>
+								&nbsp;<i onClick={this.toggle} className={this.props.expanded?"fa small fa-minus":"fa small fa-plus"}></i>
 							</span>
+							
 							<ul ref="list" className={this.props.expanded?"expanded":"collapsed"}>
-								{   
+								{
 									layers.map( function (l){
-										return (<EsriLayer onChange={this.update} layer={l}/>) 
+										return (<EsriLayer onChange={this.update} layer={l}/>)
 									}.bind(this))
 							}
 							</ul>
 						</li>
 					</ul>
 				</div>
-				) 
+				)
 	}
 
 });
