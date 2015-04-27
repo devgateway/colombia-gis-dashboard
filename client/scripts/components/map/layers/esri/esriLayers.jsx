@@ -14,7 +14,6 @@ module.exports = React.createClass({
 
     mixins: [Reflux.connect(ArcgisLayerStore, 'layers')],
     render: function () {
-        debugger;
         var visibleServices = _.filter(this.state.layers.services, {defaultVisibility: true}) || [];
          return (<div>{
                 visibleServices.map(function (service) {
