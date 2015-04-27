@@ -13,18 +13,20 @@ module.exports = {
         return request({
             url: 'http://test.monitor.net.co/GisService.svc/Filters/DepartmentsFunding/Json',
             type: 'json',
-            method: 'get',
-            //contentType: "application/json",
-          //  data: {"filters": JSON.stringify(filters)},
+            method: 'post',
+            contentType: "application/json",
+            data: JSON.stringify({"filters": filters? filters : []}),
             crossOrigin: true
         }).fail(logFailure);
     },
 
-    getActivitiesByMuncipalities: function (options) {
+    getActivitiesByMuncipalities: function (filters) {
         return request({
             url: 'http://test.monitor.net.co/GISService.svc/Filters/getActivityMunicipalitiesFunding/Json',
             type: 'json',
-            method: 'get',
+            method: 'post',
+            contentType: "application/json",
+            data: JSON.stringify({"filters": filters? filters : []}),
             crossOrigin: true
         }).fail(logFailure);
     }

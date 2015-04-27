@@ -15,8 +15,8 @@ module.exports = React.createClass({
 
 	componentDidMount:function(){
 		/*trigger startup actions*/
-		actions.loadActivitiesByDepartments()
-		
+		actions.loadActivitiesByDepartments();
+		actions.getAllListsFromAPI();
 	},
 
 	render: function() {

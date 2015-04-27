@@ -6,6 +6,7 @@ var Reflux = require('reflux');
 var FilterActions = require('../actions/filterActions.js');
 var LayerActions = require('../actions/layersAction.js');
 var FilterMap = require('../conf/filterMap.js');
+var API = require('../api/filters.js');
 
 module.exports=Reflux.createStore({
 
@@ -19,6 +20,23 @@ module.exports=Reflux.createStore({
             self.state[item.param] = [];
         });
         
+    },
+
+    onGetAllListsFromAPI: function() {
+        var filters = FilterMap.getFilterFlatList();
+        var self = this;
+        filters.map(function(fd){
+            self.onGetListFromAPI(fd);
+        });
+    },
+
+    onGetListFromAPI: function(filterDefinition) {
+        API.getListFromAPI(filterDefinition).then(
+          function(data){
+            FilterActions.getListFromAPI.completed(data, filterDefinition);
+          }).fail(function(){
+            console.log('layersStore: Error loading data ...');
+          });
     },
 
     getAll: function(filterType) {
@@ -63,12 +81,10 @@ module.exports=Reflux.createStore({
         }
     },
 
-    onGetListFromAPICompleted: function(data){
-        var filterType = data.filter.param;
-        this.state[filterType] = data.data;
-        var filterDefinition = FilterMap.getFilterDefinitionByParam(filterType);
-        if (filterDefinition.parentParamField){
-            this.state[filterType].map(function (it){
+    onGetListFromAPICompleted: function(data, filterDefinition){
+        this.state[filterDefinition.param] = data;
+         if (filterDefinition.parentParamField){
+            this.state[filterDefinition.param].map(function (it){
                 it.id = it.id+"#"+it[filterDefinition.parentParamField];
             });
         }        

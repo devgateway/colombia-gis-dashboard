@@ -6,7 +6,6 @@ var Router = require('react-router');
 var Reflux = require('reflux');
 var Link = Router.Link;
 var FilterStore=require('../../../stores/filterStore.js')
-var FilterActions = require('../../../actions/filterActions.js');
 
 var FilterItemList = require('./filterItemList.jsx');
 
@@ -40,10 +39,6 @@ var FilterGroup = React.createClass({
             });
         }
         this.forceUpdate();
-    },
-
-    componentWillMount :function(){ 
-        FilterActions.getListFromAPI(this.props.filterDefinition);          
     },
 
     render: function() {
