@@ -273,6 +273,62 @@ ul.tabbed {
 
   .header-nav {
     margin-bottom: 1em; } }
+.bs-callout {
+  padding: 20px;
+  margin: 20px 0;
+  border: 1px solid #eee;
+  border-left-width: 5px;
+  border-radius: 3px; }
+
+.bs-callout h4 {
+  margin-top: 0;
+  margin-bottom: 5px; }
+
+.bs-callout p:last-child {
+  margin-bottom: 0; }
+
+.bs-callout code {
+  border-radius: 3px; }
+
+.bs-callout + .bs-callout {
+  margin-top: -5px; }
+
+.bs-callout-default {
+  border-left-color: #777; }
+
+.bs-callout-default h4 {
+  color: #777; }
+
+.bs-callout-primary {
+  border-left-color: #428bca; }
+
+.bs-callout-primary h4 {
+  color: #428bca; }
+
+.bs-callout-success {
+  border-left-color: #5cb85c; }
+
+.bs-callout-success h4 {
+  color: #5cb85c; }
+
+.bs-callout-danger {
+  border-left-color: #d9534f; }
+
+.bs-callout-danger h4 {
+  color: #d9534f; }
+
+.bs-callout-warning {
+  border-left-color: #f0ad4e; }
+
+.bs-callout-warning h4 {
+  color: #f0ad4e; }
+
+.bs-callout-info {
+  border-left-color: #5bc0de; }
+
+.bs-callout-info h4 {
+  color: #5bc0de; }
+
 .activity-nav {
   clear: both;
   overflow: hidden; }
@@ -413,11 +469,11 @@ ul.basemap-list {
 .button-pane {
   overflow: hidden;
   padding-bottom: 1em;
-  padding-top: 1.6em;
+  padding-top: 0.5em;
   padding-right: 0.6em;
   float: right; }
 
-.btn, .btn-apply, .m-scooch-controls a, button.layer-search {
+.btn, .btn-apply, button.layer-search {
   cursor: pointer;
   -webkit-border-radius: 2px;
   border-radius: 2px;
@@ -426,7 +482,7 @@ ul.basemap-list {
   padding: 5px 35px;
   text-transform: uppercase; }
 
-.btn-apply, .m-scooch-controls a, button.layer-search {
+.btn-apply, button.layer-search {
   color: #ffffff;
   background: #98ca68;
   float: right;
@@ -435,10 +491,10 @@ ul.basemap-list {
   -o-transition: all 600ms ease;
   transition: all 600ms ease;
   margin-left: 1em; }
-  .btn-apply:hover, .m-scooch-controls a:hover, button.layer-search:hover {
+  .btn-apply:hover, button.layer-search:hover {
     background: #659735;
     color: #ffffff; }
-  .btn-apply.space-left, .m-scooch-controls a.space-left, button.space-left.layer-search {
+  .btn-apply.space-left, button.space-left.layer-search {
     margin-left: 1em; }
 
 .leaflet-top {
@@ -450,10 +506,13 @@ ul.basemap-list {
 
 .m-scaled .m-active {
   opacity: 1;
-  box-shadow: none; }
+  box-shadow: none;
+  z-index: 1; }
 
 .m-center:not(.m-fluid) > .m-scooch-inner > * {
-  width: 480px; }
+  background: #ffffff;
+  width: 400px;
+  margin-left: -180px; }
 
 .m-fade-out {
   -webkit-mask-image: none; }
@@ -462,17 +521,8 @@ ul.basemap-list {
   width: 45%;
   margin-left: -10px;
   padding-top: 0;
-  margin-top: -13px; }
-
-.m-scooch-controls a {
-  margin-right: 2px;
-  display: block;
-  float: left;
-  line-height: 80%;
-  padding: 9px 35px;
-  font-size: 0.8em; }
-  .m-scooch-controls a:hover {
-    text-decoration: none; }
+  margin-top: -13px;
+  border: 1px solid #800; }
 
 button.layer-search {
   padding: 5px;
@@ -541,13 +591,14 @@ button.layer-search {
   line-height: 270%;
   margin-right: 0.5em;
   text-align: center;
-  font-weight: bold; }
+  font-weight: bold;
+  line-height: 175%; }
 
 .filter-count {
   color: #4d749f;
   font-weight: bold;
   float: right;
-  line-height: 160%; }
+  line-height: 120%; }
   .filter-count a {
     -webkit-transition: all 600ms ease;
     -moz-transition: all 600ms ease;
@@ -577,11 +628,16 @@ button.layer-search {
     .filter-selectors a:hover {
       color: #98ca68; }
 
-.filter-list-container {
+.filter-list-container, .filter-list-container-carousel {
   margin-top: 1em;
   max-height: 270px;
   overflow-y: auto;
   padding: 0.1em 1em 0.7em 1em; }
+
+.filter-list-container-carousel {
+  height: 170px;
+  overflow-x: hidden;
+  font-size: 0.7em; }
 
 ul.filter-list {
   padding-left: 0;
@@ -594,7 +650,8 @@ ul.filter-list {
     ul.filter-list li span {
       display: table;
       margin-bottom: 0.25em;
-      line-height: 1.3em; }
+      line-height: 1.3em;
+      padding-right: 4px; }
 
 .select {
   width: 12px;
@@ -643,16 +700,17 @@ input[type=checkbox].glyphicon {
     margin-left: 0.4em; }
 
 .filter-col, .filter-col-parent {
-  width: 270px;
+  width: 280px;
   float: left;
-  display: block;
-  padding-right: 10px; }
+  display: inline-flex;
+  padding-right: 20px; }
 
 .filter-col-parent {
   width: 560px;
   padding-right: 1em;
   font-weight: bold;
-  line-height: 2.2em; }
+  line-height: 2.2em;
+  font-size: 14px; }
 
 .fa.fa-minus,
 .fa.fa-plus {
@@ -873,7 +931,7 @@ ul.tabs {
   color: #6b6b6b;
   font-size: 0.85em; }
 
-.btn, .btn-apply, .m-scooch-controls a, button.layer-search {
+.btn, .btn-apply, button.layer-search {
   font-size: 0.8em;
   float: left;
   margin-left: 0; }
@@ -955,14 +1013,14 @@ ul.tabs {
           color: #ffffff; }
   .language-btn .btn-input {
     display: block; }
-  .language-btn .btn-input .btn.form-control, .language-btn .btn-input .form-control.btn-apply, .language-btn .btn-input .m-scooch-controls a.form-control, .m-scooch-controls .language-btn .btn-input a.form-control, .language-btn .btn-input button.form-control.layer-search {
+  .language-btn .btn-input .btn.form-control, .language-btn .btn-input .form-control.btn-apply, .language-btn .btn-input button.form-control.layer-search {
     text-align: left; }
-  .language-btn .btn-input .btn.form-control span:first-child, .language-btn .btn-input .form-control.btn-apply span:first-child, .language-btn .btn-input .m-scooch-controls a.form-control span:first-child, .m-scooch-controls .language-btn .btn-input a.form-control span:first-child, .language-btn .btn-input button.form-control.layer-search span:first-child {
+  .language-btn .btn-input .btn.form-control span:first-child, .language-btn .btn-input .form-control.btn-apply span:first-child, .language-btn .btn-input button.form-control.layer-search span:first-child {
     left: 10px;
     overflow: hidden;
     position: absolute;
     right: 25px; }
-  .language-btn .btn-input .btn.form-control .caret, .language-btn .btn-input .form-control.btn-apply .caret, .language-btn .btn-input .m-scooch-controls a.form-control .caret, .m-scooch-controls .language-btn .btn-input a.form-control .caret, .language-btn .btn-input button.form-control.layer-search .caret {
+  .language-btn .btn-input .btn.form-control .caret, .language-btn .btn-input .form-control.btn-apply .caret, .language-btn .btn-input button.form-control.layer-search .caret {
     margin-top: -1px;
     position: absolute;
     right: 10px;

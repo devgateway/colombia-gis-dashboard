@@ -31,12 +31,13 @@
   margin-right: $gutter/2;
   @include textCenter;
   @include textBold;
+  line-height:175%;
 }
 .filter-count {
   color: $blue;
   @include textBold;
   float:right;
-  line-height:160%;
+  line-height:120%;
   a{
     @include transitionAll;
     color: $blue;
@@ -75,9 +76,10 @@
   padding: 0.1em 1em 0.7em 1em;
 }
 .filter-list-container-carousel {
-  @extend filter-list-container;
+  @extend .filter-list-container;
   height: 170px;
   overflow-x: hidden;
+  font-size: 0.7em;
 }
 ul.filter-list {
   @include listUnstyled;
@@ -127,8 +129,7 @@ input[type=checkbox].glyphicon {
   visibility: hidden;
 }
 
-.filter-group-sublevel {
-}
+.filter-group-sublevel {}
 
 .fade{opacity:0.9;}
 
@@ -146,10 +147,10 @@ input[type=checkbox].glyphicon {
 }
 
 .filter-col{
-  width:270px;
+  width:280px;
   @include floatLeft;
   display:inline-flex;
-  padding-right:10px;
+  padding-right:20px;
 
 }
 

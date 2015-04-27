@@ -45,13 +45,14 @@
 .m-scaled .m-active{
   opacity:1;
   box-shadow:none;
+  z-index:1;
 }
 
 .m-center:not(.m-fluid)>.m-scooch-inner>*{
   background: $white;
   // width:635px;
-  width:480px;
-  margin-left:-80px;
+  width:400px;
+  margin-left:-180px;
 }
 
 .m-fade-out{
@@ -63,6 +64,7 @@
   margin-left:-10px;
   padding-top:0;
   margin-top:-13px;
+  border:1px solid #800;
 }
 
 // layer search button
