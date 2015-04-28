@@ -11,7 +11,7 @@ var KeywordSearch = require('./keywordSearch.jsx');
 var FilterSubLevel = require('./filterSubLevel.jsx');
 
 var FilterGroup = React.createClass({
- 
+
     getInitialState: function() {
         return {selectedItems: []};
     },
@@ -21,16 +21,16 @@ var FilterGroup = React.createClass({
         if (keyword) {
             // filter the collection
             var pattern = new RegExp(keyword, 'i');
-            this.props.filterDefinition.subLevels.map(function(filterDefinition){ 
+            this.props.filterDefinition.subLevels.map(function(filterDefinition){
                 FilterStore.getAll(filterDefinition.param).map(function (item) {
                 if (!pattern.test(item.name)){
                     item.hide = true;
                 }
                 });
-            });                    
+            });
         } else {
             // display the original collection
-            this.props.filterDefinition.subLevels.map(function(filterDefinition){ 
+            this.props.filterDefinition.subLevels.map(function(filterDefinition){
                 FilterStore.getAll(filterDefinition.param).map(function (item) {
                     item.hide = false;
                 });
@@ -38,9 +38,9 @@ var FilterGroup = React.createClass({
         }
         this.forceUpdate();
     },
-   
+
     componentDidMount: function(){
-        $('.m-scooch').scooch();      
+        $('.m-scooch').scooch();
     },
 
     render: function() {
@@ -52,25 +52,27 @@ var FilterGroup = React.createClass({
                     <div className="m-scooch-inner">
                         {
                             this.props.filterDefinition.subLevels.map(function(filterDefinition, index){
-                                var items = FilterStore.getAll(filterDefinition.param) || []; 
+                                var items = FilterStore.getAll(filterDefinition.param) || [];
                                 return  <div className="m-item">
-                                            <FilterSubLevel 
+                                            <FilterSubLevel
                                                 onAllNoneClicked={self.props.onAllNoneClicked}
                                                 onItemChanged={self.props.onItemChanged}
-                                                items={items} 
-                                                filterDefinition={filterDefinition} 
-                                                position={index+1} />                                        
+                                                items={items}
+                                                filterDefinition={filterDefinition}
+                                                position={index+1} />
                                         </div>;
                             })
-                        }  
-                    </div>                   
-                    <div className="m-scooch-controls m-scooch-pagination">
-                        <a href="#" data-m-slide="prev">Previous</a>
-                        <a href="#" data-m-slide="next">Next</a>
-                                               
-                    </div>              
+                        }
+                    </div>
+<div className="m-scooch-controls m-scooch-pagination">
+    <a className="scooch-prev" href="#" data-m-slide="prev">&laquo;</a>
+    <a className="scooch-next" href="#" data-m-slide="next">&raquo;</a>
+</div>
+
                 </div>
-            </div>  
+
+
+            </div>
           );
     }
 });
