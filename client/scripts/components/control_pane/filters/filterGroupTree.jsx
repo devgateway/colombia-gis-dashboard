@@ -7,7 +7,6 @@ var Reflux = require('reflux');
 var Link = Router.Link;
 var FilterStore=require('../../../stores/filterStore.js')
 var FilterItemList = require('./filterItemList.jsx');
-var FilterActions = require('../../../actions/filterActions.js');
 var KeywordSearch = require('./keywordSearch.jsx');
 var AllNoneSelector = require('./allNoneSelector.jsx');
 var SelectionCounter = require('./selectionCounter.jsx');
@@ -48,11 +47,6 @@ var FilterGroup = React.createClass({
             });
         }
         this.forceUpdate();
-    },
-
-    componentWillMount :function(){ 
-        FilterActions.getListFromAPI(this.props.filterDefinition.subLevels[0]);          
-        FilterActions.getListFromAPI(this.props.filterDefinition.subLevels[1]);          
     },
 
     _filterByParent: function (list, parent, parentParamField) {

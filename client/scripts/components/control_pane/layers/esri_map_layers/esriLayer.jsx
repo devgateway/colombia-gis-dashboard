@@ -6,7 +6,7 @@ var Reflux = require('reflux');
 module.exports=React.createClass({
 
 	componentWillReceiveProps:function(){
-		console.log('layers->manager->esriLayer: componentWillReceiveProps');
+	  console.log("layers->manager->esriLayer: componentWillReceiveProps");
 	},
 
 	update:function(){
@@ -18,12 +18,9 @@ module.exports=React.createClass({
 	
 
 	render: function() {
-		
+	  console.log("layers->manager->esriLayer: render");
 		/*use this.props.layer */
-		console.log("layers->manager->esriLayer: render");
-
 		return (<li>
-			
 			<input name={this.props.layer.id}  checked={this.props.layer.defaultVisibility} onChange={this.update}  type="checkbox"/> 
 		      	{this.props.layer.name} 
 		     </li>)

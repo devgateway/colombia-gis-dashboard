@@ -9,8 +9,6 @@ var DataLayerStore=require('../../../../stores/dataLayerStore.js');
 var RadioButton=require('../../../commons/customRadioButton.jsx');
 
 
-
-
 module.exports  = React.createClass({
  mixins: [Reflux.connect(DataLayerStore, 'layers')],
 
@@ -37,10 +35,11 @@ module.exports  = React.createClass({
 	},
 
 	componentDidMount :function(){ 
-        this.showByDepartment();          
+		console.log('layers->manager: componentDidMount');
     },
 
     render: function() {
+    	console.log('layers->dataLayerSelector: Render');
 		var finSelectorClass = this.state.dataLayer=='Financing'? "" : "disabled";
 		var indSelectorClass = this.state.dataLayer=='Indicators'? "" : "disabled";
 		return (  

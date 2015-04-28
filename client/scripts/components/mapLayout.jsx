@@ -15,8 +15,8 @@ module.exports = React.createClass({
 
 	componentDidMount:function(){
 		/*trigger startup actions*/
-		actions.loadActivitiesByDepartments()
-		
+		actions.loadActivitiesByDepartments();
+		actions.getAllListsFromAPI();
 	},
 
 	render: function() {
@@ -26,10 +26,10 @@ module.exports = React.createClass({
 				<SlideBar>
 					<ControlPane/>
 				</SlideBar>
-			<div id="map-container">
-			{/* defer to the child route handler */}
-			<RouteHandler {...this.props}/>
-			</div>
+				<div id="map-container">
+					{/* defer to the child route handler */}
+					<RouteHandler {...this.props}/>
+				</div>
 			<Footer/>
 			</div>
 		);

@@ -7,7 +7,7 @@ var Util= require('../api/util.js');
 var API=require('../api/esri.js');
 var _ = require('lodash');
 
-//var storedState=require('./layer_samples.js')
+var storedState//=require('./layer_samples.js')
 module.exports = Reflux.createStore({
 
 	listenables: ArcgisLayersActions,
@@ -86,7 +86,7 @@ module.exports = Reflux.createStore({
 
 	getInitialState: function() {
 		if (!this.state){
-			this.state={services:[], results:{}}; //storedState
+			this.state=storedState || {services:[], results:{}};
 		}	
 		return this.state;
 	}

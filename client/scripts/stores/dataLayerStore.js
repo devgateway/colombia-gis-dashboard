@@ -21,6 +21,17 @@ module.exports = Reflux.createStore({
       })
     },
 
+  onLoadActivitiesByMuncipalities:function(){
+    this.update({'dataLevel': 'municipality'});
+    API.getActivitiesByMuncipalities(this.state.filters).then(
+      function(data){
+        LayersAction.loadActivitiesByMuncipalities.completed(data);
+      }
+      ).fail(function(){
+        console.log('layersStore: Error loading data ...');
+      })
+    },
+
   onLoadActivitiesByDepartmentsCompleted:function(data){
     this.update({features:Util.toGeoJson(data)});
   },
@@ -47,7 +58,7 @@ module.exports = Reflux.createStore({
   },
 
   getInitialState: function() {
-    return (this.state = {});
+    return (this.state = {dataLevel: "departament"});
   }
 
 });
