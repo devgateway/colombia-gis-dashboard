@@ -64,9 +64,12 @@ var FilterGroup = React.createClass({
                             })
                         }
                     </div>
-<div className="m-scooch-controls m-scooch-pagination">
+<div className="m-scooch-controls m-scooch-pagination left">
     <a className="scooch-prev" href="#" data-m-slide="prev">&laquo;</a>
-    <a className="scooch-next" href="#" data-m-slide="next">&raquo;</a>
+</div>
+
+<div className="m-scooch-controls m-scooch-pagination right">
+  <a className="scooch-next" href="#" data-m-slide="next">&raquo;</a>
 </div>
 
                 </div>

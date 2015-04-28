@@ -540,25 +540,28 @@ ul.basemap-list {
   -webkit-mask-image: none; }
 
 .m-scooch-controls {
-  width: 107%;
   margin-left: -15px;
   position: absolute;
   top: 90px;
-  left: -2px;
-  height: 40px;
   font-size: 40px;
-  z-index: 300; }
+  z-index: 0; }
   .m-scooch-controls:hover {
     text-decoration: none; }
   .m-scooch-controls a {
     outline: none;
     text-decoration: none; }
+  .m-scooch-controls.right {
+    right: -15px; }
+  .m-scooch-controls.left {
+    left: -2px; }
 
 .scooch-prev {
-  float: left; }
+  float: left;
+  z-index: 300; }
 
 .scooch-next {
-  float: right; }
+  float: right;
+  z-index: 300; }
 
 button.layer-search {
   padding: 5px;

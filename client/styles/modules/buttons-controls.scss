@@ -64,14 +64,11 @@
   -webkit-mask-image: none;
 }
 .m-scooch-controls {
-  width: 107%;
   margin-left: -15px;
   position: absolute;
   top: 90px;
-  left: -2px;
-  height: 40px;
   font-size: 40px;
-  z-index: 300;
+  z-index:0;
   &:hover {
     text-decoration: none;
   }
@@ -79,12 +76,16 @@
     outline: none;
     text-decoration: none;
   }
+  &.right{ right:-15px}
+  &.left{ left:-2px}
 }
 .scooch-prev {
   float: left;
+  z-index: 300;
 }
 .scooch-next {
   float: right;
+  z-index: 300;
 }
 // layer search button
 button.layer-search {
