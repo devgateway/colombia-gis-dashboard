@@ -35,9 +35,11 @@ module.exports  = React.createClass({
 	},
 
 	componentDidMount :function(){ 
+		console.log('layers->manager: componentDidMount');
     },
 
     render: function() {
+    	console.log('layers->dataLayerSelector: Render');
 		var finSelectorClass = this.state.dataLayer=='Financing'? "" : "disabled";
 		var indSelectorClass = this.state.dataLayer=='Indicators'? "" : "disabled";
 		return (  

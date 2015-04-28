@@ -8,29 +8,30 @@ module.exports  = React.createClass({
 
 
   componentWillMount:function(){
-    console.log("layers->manager->list: componentWillMount");
+    console.log("layers->manager: componentWillMount");
 
   },
 
   componentWillUnmount:function(){
-    console.log("layers->manager->list: componentWillUnmount");
+    console.log("layers->manager: componentWillUnmount");
 
   },
 
 
- render: function() {
-  var services=this.props.services|| [];
-  return (
-    <div className="layerList">
-    <h3>Map Layers</h3>
-        {
-          services.map(function(s){
+  render: function() {
+    console.log("layers->manager: render");
+    var services=this.props.services|| [];
+    return (
+      <div className="layerList">
+      <h3>Map Layers</h3>
+      {
+        services.map(function(s){
           return (<EsriService onChange={this.props.onChange} service={s}/>)
         }.bind(this))
-    }
-    </div>
-    );
+      }
+      </div>
+      );
 
-}
+  }
 
 });
