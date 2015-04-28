@@ -26,10 +26,10 @@ module.exports = React.createClass({
 				<SlideBar>
 					<ControlPane/>
 				</SlideBar>
-			<div id="map-container">
-			{/* defer to the child route handler */}
-			<RouteHandler {...this.props}/>
-			</div>
+				<div id="map-container">
+					{/* defer to the child route handler */}
+					<RouteHandler {...this.props}/>
+				</div>
 			<Footer/>
 			</div>
 		);

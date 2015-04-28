@@ -4,7 +4,7 @@ var React = require('react/addons');
 var Router = require('react-router'), Route = Router.Route,  DefaultRoute = Router.DefaultRoute;
 var RouteHandler = require('react-router').RouteHandler;
 var Redirect = require('react-router').Redirect;
-var Map = require('./components/map/map.jsx');
+var Map = require('./components/mapDashboard.jsx');
 var AGOLConfirm= require('./components/esri/AGOLConfirm.jsx');
 var APP=require('./components/app.jsx'); // basic page without layout
 var MapLayout=require('./components/mapLayout.jsx');

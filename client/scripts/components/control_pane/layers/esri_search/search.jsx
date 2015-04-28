@@ -99,11 +99,11 @@ var NoResutsMessage=React.createClass({
   	},
 
   	componentWillReceiveProps:function(nextProps){
-  		debugger;
+  		
   	},
 
 	componentWillUpdate:function( nextProps, nextState){
-  		debugger;  	
+  		  	
   	},
 
   	render: function() {

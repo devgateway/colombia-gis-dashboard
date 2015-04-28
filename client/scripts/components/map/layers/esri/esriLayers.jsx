@@ -13,6 +13,14 @@ var Service= require('./esriService.jsx');
 module.exports = React.createClass({
 
     mixins: [Reflux.connect(ArcgisLayerStore, 'layers')],
+
+
+
+  componentWillMount :function(){
+
+  },    
+
+
     render: function () {
         var visibleServices = _.filter(this.state.layers.services, {defaultVisibility: true}) || [];
          return (<div>{
