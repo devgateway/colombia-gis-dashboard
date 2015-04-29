@@ -2,77 +2,98 @@
   overflow: hidden;
   padding-bottom: $gutter;
   padding-top: $gutter/2;
-  padding-right:0.6em;
+  padding-right: 0.6em;
   @include floatRight;
 }
-
-.btn{
+.btn {
   cursor: pointer;
   @include border-radius(2px);
   padding: 5px 35px;
   text-transform: uppercase;
 }
-
 .btn-apply {
   @extend .btn;
   color: $white;
   background: $green;
   @include floatRight;
   @include transitionAll;
-  margin-left:1em;
-
+  margin-left: 1em;
   &:hover {
     background: darken($green,20%);
     color: $white;
   }
-
-  &.space-left{
-     margin-left: $gutter;
+  &.space-left {
+    margin-left: $gutter;
   }
-
 }
 //map controls
 .leaflet-top {
   top: $gutter*4;
 }
-
 //filter slider
-.m-scaled .m-item{
-  opacity: 0.4;
-  padding:10px;
+.m-scaled .m-item {
+  opacity: 0.15;
+  padding: 10px;
 }
-
-.m-scaled .m-active{
-  opacity:1;
-  box-shadow:none;
+.m-scaled .m-active {
+  opacity: 1;
+  box-shadow: none;
+  z-index: 1;
 }
-
-.m-center:not(.m-fluid)>.m-scooch-inner>*{
+.m-center {
+  overflow: visible;
+}
+.m-center:not(.m-fluid)>.m-scooch-inner>* {
   background: $white;
   // width:635px;
-  width:480px;
-  margin-left:-80px;
+  width: 430px;
+  margin-left: -140px;
+  .filter-label {
+    font-size: 0.9em;
+    color: $grey;
+  }
+  .filter-selectors {
+    margin-top: 10px;
+  }
+  .filter-count {
+    margin-top: 5px;
+    font-size:0.9em;
+  }
 }
-
-.m-fade-out{
-  -webkit-mask-image:none;
+.m-fade-out {
+  -webkit-mask-image: none;
 }
-
 .m-scooch-controls {
-  width:45%;
-  margin-left:-10px;
-  padding-top:0;
-  margin-top:-13px;
+  margin-left: -15px;
+  position: absolute;
+  top: 90px;
+  font-size: 40px;
+  z-index:0;
+  &:hover {
+    text-decoration: none;
+  }
+  a {
+    outline: none;
+    text-decoration: none;
+  }
+  &.right{ right:-15px}
+  &.left{ left:-2px}
 }
-
+.scooch-prev {
+  float: left;
+  z-index: 300;
+}
+.scooch-next {
+  float: right;
+  z-index: 300;
+}
 // layer search button
-button.layer-search{
+button.layer-search {
   @extend .btn-apply;
   padding: 5px;
-  float:right;
-  margin-left:0;
+  float: right;
+  margin-left: 0;
 }
-
 // ???
 .marker {
   @include border-radius(100%);

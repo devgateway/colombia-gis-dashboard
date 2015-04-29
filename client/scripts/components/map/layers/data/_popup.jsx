@@ -30,30 +30,30 @@ module.exports  = React.createClass({
      <div className="leaflet-popup-content">
        <div className="panel panel-default" data-reactid="">
          <div className="panel-heading popup-header" data-reactid="">
-           <h3 className="panel-title" data-reactid="">{this.props.name}- Total Activities</h3>
+           <h3 className="panel-title" data-reactid="">{this.props.name}</h3>
+            <span className="title-label"> - Total Activities</span>
          </div>
          <div className="popup-nav-wrapper">
            <nav className="tabs" role="tablist" data-reactid="">
              <ul className="tabs nav nav-tabs" role="tablist" data-reactid="">
                <li className="active" data-reactid="" role="tab">
                  <a href="#" data-reactid="">
-                   <span className="fa fa-list-alt"></span>
+                   <span className="popup-icon chart"></span>
                  </a>
                </li>
                <li className="" data-reactid="" role="tab">
                  <a href="#" data-reactid="">
-                   <span className="fa fa-dollar"></span>
+                   <span className="popup-icon funding-dev-obj"></span>
                  </a>
                </li>
                <li className="" data-reactid="" role="tab">
                  <a href="#" data-reactid="">
-                   <span className="fa fa-link"></span>
-
+                   <span className="popup-icon subactivities"></span>
                  </a>
                </li>
                <li data-reactid="">
                  <a href="#" data-reactid="" role="tab">
-                   <span className="fa fa-map-marker"></span>
+                   <span className="popup-icon export"></span>
                  </a>
                </li>
              </ul>
@@ -86,12 +86,12 @@ module.exports  = React.createClass({
 
 
            </div>
-           
+
          </div>
        </div>
      </div>
    </div>
-     
+
      )
 }
 

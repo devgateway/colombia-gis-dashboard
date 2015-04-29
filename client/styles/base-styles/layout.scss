@@ -1,7 +1,6 @@
-
 #app-wrapper {
   height: 100%;
-  font-family:$base-font-family;
+  font-family: $base-font-family;
 }
 // header area
 .map-header {
@@ -14,18 +13,18 @@
 h1 {
   @include floatLeft;
   @include textBold;
-  font-size:1.4rem;
+  font-size: 1.4rem;
   color: $white;
   text-transform: uppercase;
-  margin-top:$gutter;
+  margin-top: $gutter;
 }
 h2 {
   color: $white;
-  font-size:1.3rem;
+  font-size: 1.3rem;
   @include textBold;
   display: inline-block;
   line-height: $base-line-height;
-  margin-top:1.2em;
+  margin-top: 1.2em;
   margin-left: $gutter/2.5;
 }
 .header-nav {
@@ -35,7 +34,7 @@ h2 {
   a {
     color: saturate(lighten( $blue, 35), 65);
     @include transitionColor;
-    font-size:0.9em;
+    font-size: 0.9em;
     &:hover {
       color: $white;
     }
@@ -124,9 +123,8 @@ h2 {
   height: 87%;
   overflow: hidden;
   position: absolute;
-  left:38px;
+  left: 38px;
   top: -3px;
-
   @include transitionOpacity;
   .fixed {
     width: 485px;
@@ -150,7 +148,6 @@ h2 {
 .slider-leave.slider-leave-active {
   width: 0;
 }
-
 //map panel
 #map-panel {
   width: 700px;
@@ -159,19 +156,26 @@ h2 {
   padding: 15px;
   background: rgba( 221, 230, 234, 0.8);
   overflow: auto;
-  height:102%;
+  height: 102%;
 }
-
 // other
-ul.tabbed{
+ul.tabbed {
   margin-left: 20px;
 }
-
-.h-divider{
-  border:none;
-  height:1px;
+.h-divider {
+  border: none;
+  height: 1px;
   background: lighten($grey,60%);
-  width:99%;
-  display:block;
+  width: 99%;
+  display: block;
   margin: $gutter auto;
+}
+.loader {
+  position: absolute;
+  left: 50%;
+  top: 40%;
+}
+.fa.fa-spinner {
+  color: $green;
+  font-size: 2em;
 }
