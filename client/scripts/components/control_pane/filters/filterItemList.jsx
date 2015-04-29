@@ -8,7 +8,7 @@ var FilterMap = require('../../../conf/filterMap.js');
 var FilterItemList = React.createClass({
 
     getInitialState: function() {
-        return {collapsed: false};
+        return {collapsed: this.props.collapsed? true : false};
     },
 
     _getChildrenSelection: function(parent) {

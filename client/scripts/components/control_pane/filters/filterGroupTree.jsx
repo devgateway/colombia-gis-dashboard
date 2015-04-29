@@ -77,6 +77,7 @@ var FilterGroup = React.createClass({
                                     onItemChanged={self.props.onItemChanged} 
                                     parent={parent} 
                                     parentSelectable="true" 
+                                    collapsed="true"
                                     items={list} 
                                     filterDefinition={childFilterDefinition} 
                                     parentFilterDefinition={parentFilterDefinition} 
