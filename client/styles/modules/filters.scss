@@ -6,7 +6,7 @@
   @include border-radius(2px);
   opacity: 0.4;
   padding: 0.3em $gutter $gutter $gutter;
-  height: 270px;
+  height: 300px;
   overflow:visible;
   //selected active filter panel
   &.selected {
@@ -74,7 +74,7 @@
 // filter list
 .filter-list-container {
   margin-top: $gutter;
-  max-height: 210px;
+  max-height: 240px;
   overflow-x: hidden;
   overflow-y: auto;
   padding: 0.1em 1em 0.7em 0;
@@ -152,7 +152,7 @@ input[type=checkbox].glyphicon {
 }
 
 .filter-col{
-  width:260px;
+  min-width:260px;
   @include floatLeft;
   display:inline-flex;
   padding-right:10px;

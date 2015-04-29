@@ -612,7 +612,7 @@ button.layer-search {
   /* stops bg color from leaking outside the border: */
   opacity: 0.4;
   padding: 0.3em 1em 1em 1em;
-  height: 270px;
+  height: 300px;
   overflow: visible; }
   .filter-group-panel.selected {
     opacity: 1; }
@@ -673,7 +673,7 @@ button.layer-search {
 
 .filter-list-container, .filter-list-container-carousel {
   margin-top: 1em;
-  max-height: 210px;
+  max-height: 240px;
   overflow-x: hidden;
   overflow-y: auto;
   padding: 0.1em 1em 0.7em 0; }
@@ -745,7 +745,7 @@ input[type=checkbox].glyphicon {
     margin-left: 0.4em; }
 
 .filter-col, .filter-col-parent {
-  width: 260px;
+  min-width: 260px;
   float: left;
   display: inline-flex;
   padding-right: 10px; }
