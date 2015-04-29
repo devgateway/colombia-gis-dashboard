@@ -6,9 +6,7 @@ var Link = require('react-router').Link;
 var ArcgisLayersActions=require('../../../../actions/arcgisLayersActions.js');
 var Results=require('./results.jsx');
 var _=require('lodash');
-
-/*The button to add the layer to the map*/
-
+var CustomCheckbox = require('../../../commons/customCheckbox.jsx');
 
 
 var SearchInput=React.createClass({
@@ -29,10 +27,10 @@ var SearchInput=React.createClass({
 		return {'feature': true,'image':true,'map':true ,'start':0 ,'num':20};
 	},
 
-	checkOption:function(evnt){
+	checkOption:function(value, selected){
 		var newState={};
-		newState[evnt.target.value]=evnt.target.checked;
-		this.setState(newState);
+		newState[value]=selected;
+ 		this.setState(newState);
 	},
 
 	render: function() {
@@ -50,21 +48,15 @@ var SearchInput=React.createClass({
 					<div className="layer-search-options">
 					<ul>
 						<li>
-							<span className="select">
-								<input className="glyphicon glyphicon-stop" type="checkbox" value="feature" onClick={this.checkOption} checked={this.state.feature}/>
-							</span>
-								Feature Service
+							<CustomCheckbox selected={this.state.feature} onChange={this.checkOption} value="feature"/>
+							Feature Service
 						</li>
 						<li>
-							<span className="select">
-							<input className="glyphicon glyphicon-stop" type="checkbox" value="map" onClick={this.checkOption} checked={this.state.map}/>
-							</span>
-								Map Service
+							<CustomCheckbox selected={this.state.feature} onChange={this.checkOption} value="map"/>
+							Map Service
 						</li>
 						<li>
-						<span className="select">
-							<input className="glyphicon glyphicon-stop" type="checkbox" value="image" onClick={this.checkOption} checked={this.state.image}/>
-						</span>
+							<CustomCheckbox selected={this.state.feature} onChange={this.checkOption} value="image"/>
 							Image Service
 						</li>
 					</ul>			
