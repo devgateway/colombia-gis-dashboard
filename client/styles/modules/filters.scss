@@ -140,9 +140,10 @@ input[type=checkbox].glyphicon {
 .filter-parent{
   display: inline-flex;
   padding-top: 15px;
-  background:#eaf0f3;
+  background: lighten($grey,70%);
+  border:1px solid lighten($grey,60%);
   padding:0.5em;
-  margin-top:10px;
+  margin-bottom:-1px;
 
   .selectable{
     margin-top: 0.7em;
@@ -161,8 +162,9 @@ input[type=checkbox].glyphicon {
 .filter-col-parent{
   @extend .filter-col;
   width:560px;
-  padding-right: $gutter;
+  padding: $gutter/2;
   @include textBold;
+  color:$grey;
   line-height:2.2em;
   font-size: 14px;
 }
