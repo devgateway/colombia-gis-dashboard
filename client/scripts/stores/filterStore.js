@@ -91,6 +91,11 @@ module.exports=Reflux.createStore({
         this.output();
     },
     
+    onChangeFilterValue:function(filterType, value){        
+        this.state[filterType] = value;
+        this.output();
+    },
+
     onChangeFilterItemState:function(filterType, id, value){
         var filterDefinition = FilterMap.getFilterDefinitionByParam(filterType);
         var childFilterDefinition = FilterMap.getFilterDefinitionByParam(filterDefinition.childParam);
@@ -143,10 +148,15 @@ module.exports=Reflux.createStore({
                 filtersSelected.push({param: filter.param, values: selectedIds});
             }  
         });
-
+        if (this.state['sd'] && this.state['sd']!=""){
+            filtersSelected.push({param: 'sd', value: this.state['sd']});
+        }
+        if (this.state['ed'] && this.state['ed']!=""){
+            filtersSelected.push({param: 'ed', value: this.state['ed']});
+        }
         this.state.filtersSelected = filtersSelected;
         LayerActions.triggerFilterApply(this.state.filtersSelected);
-        //alert("Filters Applied: "+ JSON.stringify(this.state.filtersSelected));
+        alert("Filters Applied: "+ JSON.stringify(this.state.filtersSelected));
         this.output();
     },
 

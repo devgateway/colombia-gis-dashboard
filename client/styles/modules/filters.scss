@@ -71,7 +71,8 @@
 // filter list
 .filter-list-container {
   margin-top: $gutter;
-  max-height: 270px;
+  max-height: 210px;
+  overflow-x: hidden;
   overflow-y: auto;
   padding: 0.1em 1em 0.7em 1em;
 }
@@ -147,7 +148,7 @@ input[type=checkbox].glyphicon {
 }
 
 .filter-col{
-  width:270px;
+  width:260px;
   @include floatLeft;
   display:inline-flex;
   padding-right:10px;
@@ -166,4 +167,9 @@ input[type=checkbox].glyphicon {
 .fa.fa-minus,
 .fa.fa-plus{
   float:right;
+}
+
+.hasDatepicker {
+    position: relative;
+    z-index: 10000 !important;
 }

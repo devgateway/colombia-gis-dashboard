@@ -3,6 +3,7 @@ var React = require('react');
 var Reflux = require('reflux');
 var FilterMap = require('../../../conf/filterMap.js');
 
+var FilterDate = require('./dateFilter.jsx');
 var FilterGroup = require('./filterGroup.jsx');
 var FilterGroupTree = require('./filterGroupTree.jsx');
 var FilterGroupWithSubLevels = require('./filterGroupWithSubLevels.jsx');
@@ -19,6 +20,10 @@ var Filter  = React.createClass({
 
     _onItemChanged: function(filterType, id, value) {     
         FilterActions.changeFilterItemState(filterType, id, value);
+    },
+
+    _onValueChanged: function(filterType,value) {     
+        FilterActions.changeFilterValue(filterType, value);
     },
 
     _onClickApply: function(event) {     
@@ -54,7 +59,10 @@ var Filter  = React.createClass({
                     {group}
                   </TabPane>                  
                 })
-              }                 
+              } 
+              <TabPane tab="Date">
+                  <FilterDate onValueChanged={self._onValueChanged}/>
+              </TabPane>               
             </TabbedArea>
             <FilterActionButton onClickReset={this._onClickReset} onClickApply={this._onClickApply}/>
           </div>
