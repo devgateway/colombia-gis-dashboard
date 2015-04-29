@@ -22,7 +22,7 @@ module.exports = {
 
     getActivitiesByMuncipalities: function (filters) {
         return request({
-            url: 'http://test.monitor.net.co/GISService.svc/Filters/getActivityMunicipalitiesFunding/Json',
+            url: 'http://test.monitor.net.co/GisService.svc/Filters/MunicipalitiesFunding/Json',
             type: 'json',
             method: 'post',
             contentType: "application/json",
