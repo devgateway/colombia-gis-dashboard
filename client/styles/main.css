@@ -945,13 +945,14 @@ ul.tabs {
 
 .esri-result-list {
   overflow-y: scroll;
-  height: 380px; }
+  height: 380px;
+  padding-left: 0; }
   .esri-result-list ul {
     padding-left: 0;
     list-style: none; }
 
 .layer-wrapper {
-  width: 283px;
+  width: 300px;
   float: left;
   height: 280px;
   overflow: hidden;
@@ -967,7 +968,7 @@ ul.tabs {
 .layer-info {
   float: left;
   display: inline;
-  width: 130px; }
+  width: 150px; }
 
 .title {
   color: #000000;

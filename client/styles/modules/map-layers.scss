@@ -1,12 +1,13 @@
 .esri-result-list {
   overflow-y: scroll;
   height: 380px;
+  padding-left:0;
   ul {
     @include listUnstyled;
   }
 }
 .layer-wrapper {
-  width: 283px;
+  width:300px;
   @include floatLeft;
   height: 280px;
   overflow:hidden;
@@ -21,7 +22,7 @@
 .layer-info {
   @include floatLeft;
   display: inline;
-  width: 130px;
+  width: 150px;
 }
 .title {
   color: $black;
