@@ -85,8 +85,8 @@ var FilterItem = React.createClass({
             <div className="filter-group-sublevel">
                 <div className="filter-group-panel-header">
                     <span className="panel-count">{position}</span> 
-                    <SelectionCounter selected={FilterStore.getAllSelected(filterDefinition.param).length} total={items.length} onCounterClicked={this._onCounterClicked}/>
                     <span className="filter-label" role="label">{filterDefinition.label}</span>
+                    <SelectionCounter selected={FilterStore.getAllSelected(filterDefinition.param).length} total={items.length} onCounterClicked={this._onCounterClicked}/>
                     <AllNoneSelector filterType={filterDefinition.param} onAllNoneClicked={self.props.onAllNoneClicked}/>                                                
                 </div> 
                 <div className="filter-list-container-carousel">
