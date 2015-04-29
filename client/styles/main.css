@@ -951,34 +951,49 @@ ul.tabs {
     list-style: none; }
 
 .layer-wrapper {
-  width: 280px;
+  width: 283px;
   float: left;
-  height: 150px;
+  height: 280px;
+  overflow: hidden;
   padding: 0 0.5em 0 0;
   padding-left: 0;
   list-style: none;
   display: block; }
 
 .thumbnail {
-  width: 120px;
+  width: 110px;
   margin-right: 1em; }
 
 .layer-info {
   float: left;
   display: inline;
-  width: 125px; }
+  width: 130px; }
 
 .title {
   color: #000000;
-  font-size: 0.85em;
-  line-height: 98%;
-  margin-bottom: 0.5em; }
+  font-size: 1.1em;
+  line-height: 100%;
+  margin-bottom: 0.5em;
+  white-space: no-wrap;
+  overflow: hidden;
+  text-overflow: ellipsis; }
 
 .type {
   line-height: 98%;
   margin-bottom: 0.5em;
   color: #6b6b6b;
   font-size: 0.85em; }
+
+.details {
+  width: 116%;
+  color: #000000;
+  margin-bottom: 7px; }
+  .details.small {
+    font-size: 0.95em; }
+
+.add {
+  overflow: hidden;
+  margin-top: 7em; }
 
 .btn, .btn-apply, button.layer-search {
   font-size: 0.8em;
