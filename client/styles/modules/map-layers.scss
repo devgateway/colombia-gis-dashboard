@@ -6,7 +6,7 @@
   }
 }
 .layer-wrapper {
-  width: 305px;
+  width: 280px;
   @include floatLeft;
   height: 150px;
   padding: 0 0.5em 0 0;
@@ -20,7 +20,7 @@
 .layer-info {
   @include floatLeft;
   display: inline;
-  width: 155px;
+  width: 125px;
 }
 .title {
   color: $black;

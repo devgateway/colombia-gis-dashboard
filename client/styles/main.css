@@ -640,7 +640,9 @@ button.layer-search {
 .filter-count {
   color: #74a4d6;
   font-weight: bold;
-  float: right; }
+  display: inline;
+  line-height: 160%;
+  padding-left: 7px; }
   .filter-count a {
     -webkit-transition: all 600ms ease;
     -moz-transition: all 600ms ease;
@@ -949,7 +951,7 @@ ul.tabs {
     list-style: none; }
 
 .layer-wrapper {
-  width: 305px;
+  width: 280px;
   float: left;
   height: 150px;
   padding: 0 0.5em 0 0;
@@ -964,7 +966,7 @@ ul.tabs {
 .layer-info {
   float: left;
   display: inline;
-  width: 155px; }
+  width: 125px; }
 
 .title {
   color: #000000;
