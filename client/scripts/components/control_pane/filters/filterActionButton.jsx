@@ -11,9 +11,9 @@ var FilterButtons = React.createClass({
         var item = this.props.data;
         return(
             <div className="button-pane">
-                <button type="button" className="btn btn-apply" role="button" onClick={this.props.onClickApply}>Apply</button>
-                <button type="button" className="btn btn-apply space-left" role="button" onClick={this.props.onClickReset}>Reset</button>
-            </div>            
+              <button type="button" className="btn btn-apply" role="button" onClick={this.props.onClickReset}>Reset</button>
+              <button type="button" className="btn btn-apply space-left" role="button" onClick={this.props.onClickApply}>Apply</button>
+            </div>
         );
     }
 });
