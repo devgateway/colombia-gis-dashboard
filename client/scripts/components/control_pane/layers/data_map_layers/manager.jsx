@@ -10,28 +10,40 @@ var RadioButton=require('../../../commons/customRadioButton.jsx');
 
 
 module.exports  = React.createClass({
- mixins: [Reflux.connect(DataLayerStore, 'layers')],
-
-	getInitialState: function() {
-        return {'dataLayer': 'Financing'};
-    },    
+ mixins: [Reflux.connect(DataLayerStore)], 
 
 	showByDepartment:function(){
-		console.log('layers->dataLayerSelector: ShowByDepartment');
-		LayersAction.loadActivitiesByDepartments();
+		console.log('layers->dataLayerSelector: ShowByDepartment');		
+		if (this.state.dataLayer=='indicator'){
+			LayersAction.loadIndicatorsByDepartments();
+		} else {
+			LayersAction.loadActivitiesByDepartments();
+		}
 	},
 
 	showByMunicipality:function(){
 		console.log('layers->dataLayerSelector: showByMunicipality');
-		LayersAction.loadActivitiesByMuncipalities();
+		if (this.state.dataLayer=='indicator'){
+			LayersAction.loadIndicatorsByMuncipalities();
+		} else {
+			LayersAction.loadActivitiesByMuncipalities();
+		}
 	},
 
 	enableFinancingSelector:function(){
-		this.setState({'dataLayer': 'Financing'});
+		if (this.state.dataLevel=='departament'){
+			LayersAction.loadActivitiesByDepartments();
+		} else {
+			LayersAction.loadActivitiesByMuncipalities();
+		}
 	},
 
 	enableIndicatorSelector:function(){
-		this.setState({'dataLayer': 'Indicators'});
+		if (this.state.dataLevel=='departament'){
+			LayersAction.loadIndicatorsByDepartments();
+		} else {
+			LayersAction.loadIndicatorsByMuncipalities();
+		}
 	},
 
 	componentDidMount :function(){ 
@@ -40,28 +52,30 @@ module.exports  = React.createClass({
 
     render: function() {
     	console.log('layers->dataLayerSelector: Render');
-		var finSelectorClass = this.state.dataLayer=='Financing'? "" : "disabled";
-		var indSelectorClass = this.state.dataLayer=='Indicators'? "" : "disabled";
+    	var dataLayer = this.state.dataLayer;
+		var dataLevel = this.state.dataLevel;
+		var finSelectorClass = dataLayer=='funding'? "" : "disabled";
+		var indSelectorClass = dataLayer=='indicator'? "" : "disabled";
 		return (  
 		<div className="inline">
 			<div className="">
-				<RadioButton name="dataLayer" label="Financing" selected={true} onClick={this.enableFinancingSelector}/>
+				<RadioButton name="dataLayer" label="Financing" selected={dataLayer=='funding'? true : false} onClick={this.enableFinancingSelector}/>
 				<div className={finSelectorClass}>
 					<ul>
 						<li>
-							<RadioButton name="finLevel" selected={true} onClick={this.showByDepartment} label="layers.byDepartment"/>
-							<RadioButton name="finLevel" onClick={this.showByMunicipality} label="layers.byMunicipality"/>	
+							<RadioButton name="finLevel" selected={(dataLayer=='funding'&&dataLevel=='departament')? true : false} onClick={this.showByDepartment} label="layers.byDepartment"/>
+							<RadioButton name="finLevel" selected={(dataLayer=='funding'&&dataLevel=='municipality')? true : false} onClick={this.showByMunicipality} label="layers.byMunicipality"/>	
 						</li>
 					</ul>					
 				</div>
 			</div>	
 			<div className="">
-				<RadioButton name="dataLayer" label="Indicators" onClick={this.enableIndicatorSelector}/>
+				<RadioButton name="dataLayer" label="Indicators" selected={dataLayer=='indicator'? true : false} onClick={this.enableIndicatorSelector}/>
 				<div className={indSelectorClass}>
 					<ul>
 						<li>
-							<RadioButton name="indLevel" onClick={this.showByDepartment} label="layers.byDepartment"/>
-							<RadioButton name="indLevel" onClick={this.showByMunicipality} label="layers.byMunicipality"/>
+							<RadioButton name="indLevel" selected={(dataLayer=='indicator'&&dataLevel=='departament')? true : false} onClick={this.showByDepartment} label="layers.byDepartment"/>
+							<RadioButton name="indLevel" selected={(dataLayer=='indicator'&&dataLevel=='municipality')? true : false} onClick={this.showByMunicipality} label="layers.byMunicipality"/>
 						</li>
 					</ul>
 				</div>

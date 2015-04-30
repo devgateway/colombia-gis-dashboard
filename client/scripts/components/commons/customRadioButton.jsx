@@ -19,7 +19,7 @@ var CustomCheckbox = React.createClass({
     },
  
     render: function() {
-        var classes = this.state.selected? "selectable-radio selected" : "selectable-radio ";
+        var classes = this.props.selected? "selectable-radio selected" : "selectable-radio ";
         var updatedClass = this.state.updated? " y" : " n"
         return(
                 <div>
