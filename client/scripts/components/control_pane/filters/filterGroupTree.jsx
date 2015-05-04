@@ -6,6 +6,7 @@ var Router = require('react-router');
 var Reflux = require('reflux');
 var Link = Router.Link;
 var FilterStore=require('../../../stores/filterStore.js')
+var FilterMap=require('../../../conf/filterMap.js')
 var FilterItemList = require('./filterItemList.jsx');
 var KeywordSearch = require('./keywordSearch.jsx');
 var AllNoneSelector = require('./allNoneSelector.jsx');
@@ -27,12 +28,23 @@ var FilterGroup = React.createClass({
             this.props.filterDefinition.subLevels.map(function(filterDefinition){ 
                 FilterStore.getAll(filterDefinition.param).map(function (item) {
                     if (!pattern.test(item.name)){
-                        item.hide = true;
+                        if (filterDefinition.parentParam){
+                            if (FilterStore.getAll(filterDefinition.parentParam).filter(
+                                function(i){return i.id==item[filterDefinition.parentParamField]})[0].hide){
+                                    item.hide= true;
+                                }
+                        } else {
+                            item.hide = true;
+                        }
                     } else {
                         if (filterDefinition.parentParam){
                             FilterStore.getAll(filterDefinition.parentParam).filter(
                                 function(i){return i.id==item[filterDefinition.parentParamField]}
                             )[0].hide = false;
+                        }
+                        if (filterDefinition.childParam){
+                            FilterStore.getChildren(item, FilterMap.getFilterDefinitionByParam(filterDefinition.childParam))
+                                .map(function(i){i.hide = false;});
                         }
                         item.hide = false;
                     }
