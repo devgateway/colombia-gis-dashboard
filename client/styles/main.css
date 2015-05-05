@@ -186,7 +186,8 @@ h2 {
   #sidebar-wrapper .panel-toggle {
     top: 40%;
     margin-left: 22%;
-    position: absolute; }
+    position: absolute;
+    cursor: pointer; }
 
 .slider_content {
   width: 750px;
