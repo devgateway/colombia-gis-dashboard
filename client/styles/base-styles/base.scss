@@ -27,10 +27,10 @@ $base-line-height: 110%;
 
 // opacity transition
 @mixin transitionOpacity {
-  -webkit-transition: opacity 600ms ease;
-  -moz-transition: opacity 600ms ease;
-  -o-transition: opacity 600ms ease;
-  transition: opacity 600ms ease;
+  -webkit-transition: opacity 400ms ease;
+  -moz-transition: opacity 400ms ease;
+  -o-transition: opacity 400ms ease;
+  transition: opacity 400ms ease;
 }
 // color transition
 @mixin transitionColor {

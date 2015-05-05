@@ -10,7 +10,12 @@
   @include border-radius(2px);
   padding: 5px 35px;
   text-transform: uppercase;
+    &:focus{
+      outline:none;
+    }
 }
+
+
 .btn-apply {
   @extend .btn;
   color: $white;
@@ -18,6 +23,7 @@
   @include floatRight;
   @include transitionAll;
   margin-left: 1em;
+  outline:none;
   &:hover {
     background: darken($green,20%);
     color: $white;

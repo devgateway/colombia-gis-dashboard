@@ -170,10 +170,10 @@ h2 {
   margin: 0; }
   .logo:hover {
     opacity: 0.8;
-    -webkit-transition: opacity 600ms ease;
-    -moz-transition: opacity 600ms ease;
-    -o-transition: opacity 600ms ease;
-    transition: opacity 600ms ease; }
+    -webkit-transition: opacity 400ms ease;
+    -moz-transition: opacity 400ms ease;
+    -o-transition: opacity 400ms ease;
+    transition: opacity 400ms ease; }
 
 #sidebar-wrapper {
   width: 3.5em;
@@ -196,10 +196,10 @@ h2 {
   position: absolute;
   left: 38px;
   top: -3px;
-  -webkit-transition: opacity 600ms ease;
-  -moz-transition: opacity 600ms ease;
-  -o-transition: opacity 600ms ease;
-  transition: opacity 600ms ease; }
+  -webkit-transition: opacity 400ms ease;
+  -moz-transition: opacity 400ms ease;
+  -o-transition: opacity 400ms ease;
+  transition: opacity 400ms ease; }
   .slider_content .fixed {
     width: 485px;
     margin: 3px;
@@ -495,6 +495,8 @@ ul.basemap-list {
   /* stops bg color from leaking outside the border: */
   padding: 5px 35px;
   text-transform: uppercase; }
+  .btn:focus, .btn-apply:focus, button.layer-search:focus {
+    outline: none; }
 
 .btn-apply, button.layer-search {
   color: #ffffff;
@@ -504,7 +506,8 @@ ul.basemap-list {
   -moz-transition: all 600ms ease;
   -o-transition: all 600ms ease;
   transition: all 600ms ease;
-  margin-left: 1em; }
+  margin-left: 1em;
+  outline: none; }
   .btn-apply:hover, button.layer-search:hover {
     background: #659735;
     color: #ffffff; }
