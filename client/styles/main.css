@@ -186,7 +186,8 @@ h2 {
   #sidebar-wrapper .panel-toggle {
     top: 40%;
     margin-left: 22%;
-    position: absolute; }
+    position: absolute;
+    cursor: pointer; }
 
 .slider_content {
   width: 750px;
@@ -285,11 +286,11 @@ ul.tabbed {
   .header-nav {
     margin-bottom: 1em; } }
 .bs-callout {
-  padding: 20px;
-  margin: 20px 0;
-  border: 1px solid #eee;
-  border-left-width: 5px;
-  border-radius: 3px; }
+  padding: 10px;
+  margin: 10px 0;
+  background: #f8f8f8;
+  border: 1px solid #dedede;
+  border-left-width: 2px; }
 
 .bs-callout h4 {
   margin-top: 0;
@@ -305,22 +306,22 @@ ul.tabbed {
   margin-top: -5px; }
 
 .bs-callout-default {
-  border-left-color: #777; }
+  border: 1px solid #dedede; }
 
 .bs-callout-default h4 {
   color: #777; }
 
 .bs-callout-primary {
-  border-left-color: #428bca; }
+  border-left-color: #a0cdff; }
 
 .bs-callout-primary h4 {
   color: #428bca; }
 
 .bs-callout-success {
-  border-left-color: #5cb85c; }
+  border-left-color: #98ca68; }
 
 .bs-callout-success h4 {
-  color: #5cb85c; }
+  color: #98ca68; }
 
 .bs-callout-danger {
   border-left-color: #d9534f; }
@@ -335,7 +336,7 @@ ul.tabbed {
   color: #f0ad4e; }
 
 .bs-callout-info {
-  border-left-color: #5bc0de; }
+  border-left-color: #4d749f; }
 
 .bs-callout-info h4 {
   color: #5bc0de; }
@@ -995,7 +996,7 @@ ul.tabs {
 
 .add {
   overflow: hidden;
-  margin-top: 7em; }
+  margin-top: 1em; }
 
 .btn, .btn-apply, button.layer-search {
   font-size: 0.8em;
