@@ -39,7 +39,7 @@ var Filter  = React.createClass({
     },    
     
     render: function() {
-      var filters = FilterMap.filters;
+      var filters = this.props.type=="basic"? FilterMap.basicFilters : FilterMap.advancedFilters;
       var self = this;
         return(
           <div className="activity-nav">

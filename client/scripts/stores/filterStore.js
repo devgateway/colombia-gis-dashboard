@@ -15,7 +15,7 @@ module.exports=Reflux.createStore({
     init: function() {
         this.state = {};
         var self = this;
-        var filters = FilterMap.filters;
+        var filters = FilterMap.advancedFilters;
         filters.map(function(item, idx){ 
             self.state[item.param] = [];
         });

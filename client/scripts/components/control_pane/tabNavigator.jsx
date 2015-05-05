@@ -7,7 +7,7 @@ var TabPane = require('react-bootstrap/lib/TabPane');
 
 var Basemaps=require('./baseMap.jsx')
 var TabLayerNavigator=require('./layers/tabLayerNavigator.jsx');
-var Filter=require('./filters/filter.jsx')
+var FilterSelector=require('./filters/filterSelector.jsx')
 
 module.exports  = React.createClass({
 
@@ -22,7 +22,7 @@ module.exports  = React.createClass({
 
         </TabPane>
         <TabPane className="" eventKey={2} tab="Filters">
-            <Filter/>
+            <FilterSelector/>
         </TabPane>
 
       </TabbedArea>
