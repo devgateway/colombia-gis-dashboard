@@ -47,25 +47,25 @@ var SearchInput=React.createClass({
 					</button>
 					<input className="keyword-search" type="text" placeholder="Search layer" ref="search_input"/>
 				</div>
-				<div>			
+				<div>
 					<div className="layer-search-options">
 						<ul>
 							<li>
-								<CustomCheckbox 
+								<CustomCheckbox
 		                        	selected={this.state.feature}
 		                        	onChange={this.checkOption}
 		                        	value="feature"/>
 									Feature Service
 							</li>
 							<li>
-								<CustomCheckbox 
+								<CustomCheckbox
 		                        	selected={this.state.map}
 		                        	onChange={this.checkOption}
 		                        	value="map"/>
 									Map Service
 							</li>
 							<li>
-								<CustomCheckbox 
+								<CustomCheckbox
 		                        	selected={this.state.image}
 		                        	onChange={this.checkOption}
 		                        	value="image"/>
@@ -77,7 +77,7 @@ var SearchInput=React.createClass({
 			</div>
 			);
 =======
-				<div class="layer-search-wrapper">
+				<div className="layer-search-wrapper">
 					<div className="text-search-wrapper">
 						<div className="search-box">
 						<button type="submit" className="search-button" onClick={this.handleCLick}>
@@ -106,7 +106,7 @@ var SearchInput=React.createClass({
 						</span>
 							Image Service
 						</li>
-					</ul>			
+					</ul>
 				</div>
 			</div>);
 		}
@@ -139,11 +139,11 @@ var NoResutsMessage=React.createClass({
   	},
 
   	componentWillReceiveProps:function(nextProps){
-  	
+
   	},
 
 	componentWillUpdate:function( nextProps, nextState){
-  	  	
+
   	},
 
   	render: function() {
@@ -151,15 +151,15 @@ var NoResutsMessage=React.createClass({
   		return (
   			<div>
   			<SearchInput  onSearch={this.onSearch}/>
-  			<hr class="h-divider"></hr>
+  			<hr className="h-divider"></hr>
   			{this.props.results && this.props.results.results?
-				<Results  
+				<Results
   				onNextPage={this.handleNextPage}
-  				results={this.props.results} 
-  				onAddLayer={this.props.onAddLayer} 
-  				token={this.props.token}  
+  				results={this.props.results}
+  				onAddLayer={this.props.onAddLayer}
+  				token={this.props.token}
   				error={this.props.error}/>:<NoResutsMessage/>}
-  				
+
   			</div>
   		);
   	}
