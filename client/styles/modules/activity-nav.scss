@@ -3,19 +3,23 @@
   @include clearfix;
   overflow: hidden;
 }
+
+
+
 .filter-type-wrapper {
   overflow: hidden;
   margin-bottom: $gutter;
 
   ul.filter-type-label {
     padding-left:0;
- 
+
    li{
       @extend .map-panel-label;
       @include floatLeft;
       @include listUnstyled;
       margin-right: $gutter;
-      line-height:110%;
+      height:20px;
+      margin-bottom: $gutter;
 
       &:first-child{
         border-right:1px solid lighten($grey,40%);
@@ -25,6 +29,8 @@
       a {
         color: lighten($grey,20%);
         font-size:1.0em;
+        line-height:10%;
+
         &:hover,
         &.active {
           color: $blue;
@@ -38,6 +44,7 @@
     }
   }
 }
+
 
 nav.activities {
   overflow:hidden;

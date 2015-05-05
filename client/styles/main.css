@@ -348,27 +348,29 @@ ul.tabbed {
 .filter-type-wrapper {
   overflow: hidden;
   margin-bottom: 1em; }
-  .filter-type-wrapper ul {
+  .filter-type-wrapper ul.filter-type-label {
     padding-left: 0; }
-  .filter-type-wrapper li.filter-type-label {
-    float: left;
-    padding-left: 0;
-    list-style: none;
-    margin-right: 1em;
-    line-height: 110%; }
-    .filter-type-wrapper li.filter-type-label:first-child {
-      border-right: 1px solid #ababab;
-      padding-right: 2.1em;
-      margin-right: 2.1em; }
-    .filter-type-wrapper li.filter-type-label a {
-      color: #787878;
-      font-size: 1.0em; }
-      .filter-type-wrapper li.filter-type-label a:hover, .filter-type-wrapper li.filter-type-label a.active {
-        color: #4d749f; }
-    .filter-type-wrapper li.filter-type-label .fa {
-      margin-right: 0.5em;
-      font-size: 0.8em;
-      line-height: 110%; }
+    .filter-type-wrapper ul.filter-type-label li {
+      float: left;
+      padding-left: 0;
+      list-style: none;
+      margin-right: 1em;
+      height: 20px;
+      margin-bottom: 1em; }
+      .filter-type-wrapper ul.filter-type-label li:first-child {
+        border-right: 1px solid #ababab;
+        padding-right: 2.1em;
+        margin-right: 2.1em; }
+      .filter-type-wrapper ul.filter-type-label li a {
+        color: #787878;
+        font-size: 1.0em;
+        line-height: 10%; }
+        .filter-type-wrapper ul.filter-type-label li a:hover, .filter-type-wrapper ul.filter-type-label li a.active {
+          color: #4d749f; }
+      .filter-type-wrapper ul.filter-type-label li .fa {
+        margin-right: 0.5em;
+        font-size: 0.8em;
+        line-height: 110%; }
 
 nav.activities {
   overflow: hidden; }
@@ -424,7 +426,7 @@ ul.activities {
   border-bottom: 1px solid #d1d1d1;
   overflow: hidden; }
 
-.map-panel-label, .filter-type-wrapper li.filter-type-label, .basemap-label, .predefined-maps, .overview-label {
+.map-panel-label, .filter-type-wrapper ul.filter-type-label li, .basemap-label, .predefined-maps, .overview-label {
   font-weight: bold;
   text-transform: uppercase;
   font-size: 1.3rem; }
@@ -753,11 +755,11 @@ input[type=checkbox].glyphicon {
 
 .filter-col-parent {
   width: 570px;
-  padding: 0.5em;
   font-weight: bold;
   color: #454545;
   line-height: 2.2em;
-  font-size: 14px; }
+  font-size: 14px;
+  height: 30px; }
 
 .fa.fa-minus,
 .fa.fa-plus {
