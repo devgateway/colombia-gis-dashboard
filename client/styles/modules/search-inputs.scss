@@ -58,14 +58,13 @@ button{
   background: $white;
   float:left;
   margin-right: $gutter/2;
+  margin-top:3px;
   &:hover{
     background: lighten($yellow,30%);
   }
-
   &.selected{
     background: $yellow;
   }
-
 }
 
 .selectable-radio{

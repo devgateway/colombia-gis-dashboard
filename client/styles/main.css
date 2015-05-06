@@ -170,10 +170,10 @@ h2 {
   margin: 0; }
   .logo:hover {
     opacity: 0.8;
-    -webkit-transition: opacity 600ms ease;
-    -moz-transition: opacity 600ms ease;
-    -o-transition: opacity 600ms ease;
-    transition: opacity 600ms ease; }
+    -webkit-transition: opacity 400ms ease;
+    -moz-transition: opacity 400ms ease;
+    -o-transition: opacity 400ms ease;
+    transition: opacity 400ms ease; }
 
 #sidebar-wrapper {
   width: 3.5em;
@@ -196,10 +196,10 @@ h2 {
   position: absolute;
   left: 38px;
   top: -3px;
-  -webkit-transition: opacity 600ms ease;
-  -moz-transition: opacity 600ms ease;
-  -o-transition: opacity 600ms ease;
-  transition: opacity 600ms ease; }
+  -webkit-transition: opacity 400ms ease;
+  -moz-transition: opacity 400ms ease;
+  -o-transition: opacity 400ms ease;
+  transition: opacity 400ms ease; }
   .slider_content .fixed {
     width: 485px;
     margin: 3px;
@@ -348,27 +348,29 @@ ul.tabbed {
 .filter-type-wrapper {
   overflow: hidden;
   margin-bottom: 1em; }
-  .filter-type-wrapper ul {
+  .filter-type-wrapper ul.filter-type-label {
     padding-left: 0; }
-  .filter-type-wrapper li.filter-type-label {
-    float: left;
-    padding-left: 0;
-    list-style: none;
-    margin-right: 1em;
-    line-height: 110%; }
-    .filter-type-wrapper li.filter-type-label:first-child {
-      border-right: 1px solid #ababab;
-      padding-right: 2.1em;
-      margin-right: 2.1em; }
-    .filter-type-wrapper li.filter-type-label a {
-      color: #787878;
-      font-size: 1.0em; }
-      .filter-type-wrapper li.filter-type-label a:hover, .filter-type-wrapper li.filter-type-label a.active {
-        color: #4d749f; }
-    .filter-type-wrapper li.filter-type-label .fa {
-      margin-right: 0.5em;
-      font-size: 0.8em;
-      line-height: 110%; }
+    .filter-type-wrapper ul.filter-type-label li {
+      float: left;
+      padding-left: 0;
+      list-style: none;
+      margin-right: 1em;
+      height: 20px;
+      margin-bottom: 1em; }
+      .filter-type-wrapper ul.filter-type-label li:first-child {
+        border-right: 1px solid #ababab;
+        padding-right: 2.1em;
+        margin-right: 2.1em; }
+      .filter-type-wrapper ul.filter-type-label li a {
+        color: #787878;
+        font-size: 1.0em;
+        line-height: 10%; }
+        .filter-type-wrapper ul.filter-type-label li a:hover, .filter-type-wrapper ul.filter-type-label li a.active {
+          color: #4d749f; }
+      .filter-type-wrapper ul.filter-type-label li .fa {
+        margin-right: 0.5em;
+        font-size: 0.8em;
+        line-height: 110%; }
 
 nav.activities {
   overflow: hidden; }
@@ -424,7 +426,7 @@ ul.activities {
   border-bottom: 1px solid #d1d1d1;
   overflow: hidden; }
 
-.map-panel-label, .filter-type-wrapper li.filter-type-label, .basemap-label, .predefined-maps, .overview-label {
+.map-panel-label, .filter-type-wrapper ul.filter-type-label li, .basemap-label, .predefined-maps, .overview-label {
   font-weight: bold;
   text-transform: uppercase;
   font-size: 1.3rem; }
@@ -493,6 +495,8 @@ ul.basemap-list {
   /* stops bg color from leaking outside the border: */
   padding: 5px 35px;
   text-transform: uppercase; }
+  .btn:focus, .btn-apply:focus, button.layer-search:focus {
+    outline: none; }
 
 .btn-apply, button.layer-search {
   color: #ffffff;
@@ -502,7 +506,8 @@ ul.basemap-list {
   -moz-transition: all 600ms ease;
   -o-transition: all 600ms ease;
   transition: all 600ms ease;
-  margin-left: 1em; }
+  margin-left: 1em;
+  outline: none; }
   .btn-apply:hover, button.layer-search:hover {
     background: #659735;
     color: #ffffff; }
@@ -753,11 +758,11 @@ input[type=checkbox].glyphicon {
 
 .filter-col-parent {
   width: 570px;
-  padding: 0.5em;
   font-weight: bold;
   color: #454545;
   line-height: 2.2em;
-  font-size: 14px; }
+  font-size: 14px;
+  height: 30px; }
 
 .fa.fa-minus,
 .fa.fa-plus {
@@ -766,6 +771,26 @@ input[type=checkbox].glyphicon {
 .hasDatepicker {
   position: relative;
   z-index: 10000 !important; }
+
+.input-group {
+  width: 300px; }
+
+.start-date,
+.end-date {
+  width: 205px;
+  outline: none;
+  float: right;
+  padding: 0.5em;
+  margin-bottom: 1em; }
+
+.fa-trash {
+  font-size: 1.2em;
+  float: right;
+  margin-right: 0.5em;
+  margin-top: 0.35714em;
+  color: #4d749f; }
+  .fa-trash:hover {
+    color: #98ca68; }
 
 nav.tab-navigation,
 nav.tabs {
@@ -823,7 +848,6 @@ nav.tabs {
   background: none; }
 
 .tab-content {
-  border-bottom: 1px solid #cccccc;
   background: rgba(242, 246, 247, 0.6); }
 
 .tab-content .inline {
@@ -898,7 +922,8 @@ button.search-button {
   border: 1px solid #cccccc;
   background: #ffffff;
   float: left;
-  margin-right: 0.5em; }
+  margin-right: 0.5em;
+  margin-top: 3px; }
   .selectable:hover, .selectable-radio:hover {
     background: #ffe683; }
   .selectable.selected, .selected.selectable-radio {
@@ -1004,7 +1029,7 @@ ul.tabs {
   margin-left: 0; }
 
 .layer-search-options ul {
-  line-height: 80%; }
+  line-height: 130%; }
 
 .seemore {
   float: right;
