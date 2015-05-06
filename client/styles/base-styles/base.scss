@@ -24,6 +24,7 @@ $base-line-height: 110%;
 @mixin textCenter{text-align:center}
 @mixin opacityHigh{opacity: 0.8}
 @mixin listUnstyled{ padding-left:0; list-style:none}
+@mixin noOutline{ outline:none;}
 
 // opacity transition
 @mixin transitionOpacity {
@@ -98,7 +99,7 @@ body{
 a{
   text-decoration:none;
   &:hover{text-decoration:none;}
-  &:focus{outline:none;}
+  &:focus{ @include noOutline;}
 }
 
 

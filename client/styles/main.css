@@ -359,11 +359,11 @@ ul.tabbed {
       margin-bottom: 1em; }
       .filter-type-wrapper ul.filter-type-label li:first-child {
         border-right: 1px solid #ababab;
-        padding-right: 2.1em;
-        margin-right: 2.1em; }
+        padding-right: 1em;
+        margin-right: 1em; }
       .filter-type-wrapper ul.filter-type-label li a {
-        color: #787878;
-        font-size: 1.0em;
+        color: #454545;
+        font-size: 0.9em;
         line-height: 10%; }
         .filter-type-wrapper ul.filter-type-label li a:hover, .filter-type-wrapper ul.filter-type-label li a.active {
           color: #4d749f; }
@@ -693,7 +693,8 @@ ul.filter-list {
   padding-left: 0;
   list-style: none;
   display: block;
-  margin-top: 1em; }
+  margin-top: 1em;
+  overflow: hidden; }
   ul.filter-list li {
     color: #454545;
     font-size: 110%; }
@@ -774,6 +775,11 @@ input[type=checkbox].glyphicon {
 
 .input-group {
   width: 300px; }
+  .input-group.date {
+    margin-top: 2em;
+    margin-bottom: 1.5em; }
+    .input-group.date:last-child {
+      margin-top: 0; }
 
 .start-date,
 .end-date {
@@ -781,7 +787,7 @@ input[type=checkbox].glyphicon {
   outline: none;
   float: right;
   padding: 0.5em;
-  margin-bottom: 1em; }
+  margin-top: -3px; }
 
 .fa-trash {
   font-size: 1.2em;
@@ -791,6 +797,48 @@ input[type=checkbox].glyphicon {
   color: #4d749f; }
   .fa-trash:hover {
     color: #98ca68; }
+
+.ui-widget-header {
+  background: none;
+  border: none; }
+
+.ui-state-active,
+.ui-widget-content .ui-state-active,
+.ui-widget-header .ui-state-active {
+  background: #98ca68;
+  border: 1px solid #98ca68;
+  color: #000000; }
+
+.ui-state-highlight,
+.ui-widget-content .ui-state-highlight,
+.ui-widget-header .ui-state-highlight {
+  background: #e9ba00;
+  border: 1px solid #e9ba00;
+  color: #000000; }
+
+.ui-datepicker table {
+  font-size: 1em;
+  font-family: "Open Sans", sans-serif; }
+
+.ui-corner-all,
+.ui-corner-bottom,
+.ui-corner-right,
+.ui-corner-br {
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0; }
+
+.ui-datepicker-month {
+  margin-right: 10px; }
+
+.ui-datepicker .ui-datepicker-title select {
+  margin: 1px 3px 0 3px;
+  border: 1px solid #ffffff;
+  background: #eeeeee;
+  font-size: 1em;
+  padding: 4px;
+  outline: none; }
 
 nav.tab-navigation,
 nav.tabs {
@@ -809,7 +857,8 @@ nav.tabs {
 
 .main-tabs .nav-tabs li a {
   background: #ededed;
-  font-weight: 600; }
+  font-weight: 600;
+  color: #454545; }
 
 .main-tabs .nav-tabs li.active a {
   background: rgba(242, 246, 247, 0.6);
@@ -1126,8 +1175,11 @@ ul.tabs {
     transition: color 600ms ease;
     font-size: 0.9em;
     padding: 0;
-    margin-left: 1em; }
+    margin-left: 1em;
+    outline: none; }
     .language-btn .btn-language-select:hover {
       color: #ffffff; }
+    .language-btn .btn-language-select:focus {
+      outline: none; }
 
 /*# sourceMappingURL=main.css.map */

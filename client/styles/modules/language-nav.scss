@@ -17,7 +17,7 @@
       a {
         color: saturate(lighten( $blue, 35), 65);
         padding: 0 0 0 $gutter*1.2;
-        outline: none;
+        @include noOutline;
         &:hover {
           background: none;
           color: $white;
@@ -50,8 +50,12 @@
     font-size: 0.9em;
     padding: 0;
     margin-left: $gutter;
+    @include noOutline;
     &:hover {
       color: $white;
     }
+    &:focus{
+    @include noOutline;
+}
   }
 }

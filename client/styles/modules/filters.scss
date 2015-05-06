@@ -89,6 +89,7 @@ ul.filter-list {
   @include listUnstyled;
   display:block;
   margin-top: $gutter;
+  overflow: hidden;
 
   li {
     color: $grey;
@@ -182,16 +183,23 @@ input[type=checkbox].glyphicon {
 // date filter
 .input-group{
   width:300px;
+  &.date{
+  margin-top:$gutter*2;
+  margin-bottom: $gutter*1.5;
+  &:last-child{
+    margin-top:0;
+  }
+  }
 }
 
 .start-date,
 .end-date
   {
   width:205px;
-  outline:none;
+  @include noOutline;
   @include floatRight;
   padding: $gutter/2;
-  margin-bottom: $gutter;
+  margin-top:-3px;
 }
 
 .fa-trash{
@@ -202,5 +210,53 @@ input[type=checkbox].glyphicon {
   color: $blue;
   &:hover{
   color: $green;
+  }
 }
+
+// date filter calendar customizations
+.ui-widget-header{
+  background:none;
+  border:none;
+}
+.ui-state-active,
+.ui-widget-content .ui-state-active,
+.ui-widget-header .ui-state-active{
+  background: $green;
+  border: 1px solid $green;
+  color: $black;
+}
+.ui-state-highlight,
+.ui-widget-content .ui-state-highlight,
+.ui-widget-header .ui-state-highlight{
+  background: $yellow;
+  border:1px solid $yellow;
+  color: $black;
+}
+.ui-datepicker table{
+  font-size:1em;
+  font-family: $base-font-family;
+}
+
+.ui-corner-all,
+.ui-corner-bottom,
+.ui-corner-right,
+.ui-corner-br{
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.ui-datepicker-month{
+  margin-right:10px;
+}
+.ui-datepicker .ui-datepicker-title {
+  select{
+  margin: 1px 3px 0 3px;
+  border:1px solid #ffffff;
+  background:#eeeeee;
+  font-size:1em;
+  padding:4px;
+  @include noOutline;
+  }
 }

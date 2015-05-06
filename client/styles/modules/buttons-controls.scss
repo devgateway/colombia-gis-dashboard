@@ -11,7 +11,7 @@
   padding: 5px 35px;
   text-transform: uppercase;
     &:focus{
-      outline:none;
+      @include noOutline;
     }
 }
 
@@ -78,7 +78,7 @@
     text-decoration: none;
   }
   a {
-    outline: none;
+    @include noOutline;
     text-decoration: none;
   }
   &.right{ right:-15px}

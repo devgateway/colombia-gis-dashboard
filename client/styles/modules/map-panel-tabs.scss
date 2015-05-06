@@ -17,6 +17,7 @@ nav.tabs {
 .main-tabs .nav-tabs li a{
   background:lighten($grey,66%);
   font-weight:600;
+  color:$grey;
 }
 .main-tabs .nav-tabs li.active a{
   background: rgba(242,246,247,0.6);
