@@ -775,6 +775,11 @@ input[type=checkbox].glyphicon {
 
 .input-group {
   width: 300px; }
+  .input-group.date {
+    margin-top: 2em;
+    margin-bottom: 1.5em; }
+    .input-group.date:last-child {
+      margin-top: 0; }
 
 .start-date,
 .end-date {
@@ -782,7 +787,7 @@ input[type=checkbox].glyphicon {
   outline: none;
   float: right;
   padding: 0.5em;
-  margin-bottom: 1em; }
+  margin-top: -3px; }
 
 .fa-trash {
   font-size: 1.2em;

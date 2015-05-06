@@ -183,6 +183,13 @@ input[type=checkbox].glyphicon {
 // date filter
 .input-group{
   width:300px;
+  &.date{
+  margin-top:$gutter*2;
+  margin-bottom: $gutter*1.5;
+  &:last-child{
+    margin-top:0;
+  }
+  }
 }
 
 .start-date,
@@ -192,7 +199,7 @@ input[type=checkbox].glyphicon {
   outline:none;
   @include floatRight;
   padding: $gutter/2;
-  margin-bottom: $gutter;
+  margin-top:-3px;
 }
 
 .fa-trash{
