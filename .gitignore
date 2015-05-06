@@ -10,3 +10,5 @@ server/config/secrets.js
 .idea/
 
 client/main.css.map
+
+client/images/ui-icons.png
