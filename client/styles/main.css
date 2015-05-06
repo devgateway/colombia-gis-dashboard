@@ -772,6 +772,26 @@ input[type=checkbox].glyphicon {
   position: relative;
   z-index: 10000 !important; }
 
+.input-group {
+  width: 300px; }
+
+.start-date,
+.end-date {
+  width: 205px;
+  outline: none;
+  float: right;
+  padding: 0.5em;
+  margin-bottom: 1em; }
+
+.fa-trash {
+  font-size: 1.2em;
+  float: right;
+  margin-right: 0.5em;
+  margin-top: 0.35714em;
+  color: #4d749f; }
+  .fa-trash:hover {
+    color: #98ca68; }
+
 nav.tab-navigation,
 nav.tabs {
   clear: both;

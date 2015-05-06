@@ -178,3 +178,29 @@ input[type=checkbox].glyphicon {
     position: relative;
     z-index: 10000 !important;
 }
+
+// date filter
+.input-group{
+  width:300px;
+}
+
+.start-date,
+.end-date
+  {
+  width:205px;
+  outline:none;
+  @include floatRight;
+  padding: $gutter/2;
+  margin-bottom: $gutter;
+}
+
+.fa-trash{
+  font-size:1.2em;
+  @include floatRight;
+  margin-right:$gutter/2;
+  margin-top:$gutter/2.8;
+  color: $blue;
+  &:hover{
+  color: $green;
+}
+}
