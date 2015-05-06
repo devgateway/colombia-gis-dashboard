@@ -50,8 +50,12 @@
     font-size: 0.9em;
     padding: 0;
     margin-left: $gutter;
+    outline:none;
     &:hover {
       color: $white;
     }
+    &:focus{
+    outline:none;
+}
   }
 }

@@ -1168,8 +1168,11 @@ ul.tabs {
     transition: color 600ms ease;
     font-size: 0.9em;
     padding: 0;
-    margin-left: 1em; }
+    margin-left: 1em;
+    outline: none; }
     .language-btn .btn-language-select:hover {
       color: #ffffff; }
+    .language-btn .btn-language-select:focus {
+      outline: none; }
 
 /*# sourceMappingURL=main.css.map */
