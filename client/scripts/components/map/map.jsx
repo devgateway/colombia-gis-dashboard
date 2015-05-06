@@ -42,13 +42,13 @@
    var children = React.Children.map(this.props.children, function(child) {
     return child ? React.addons.cloneWithProps(child, {getMap: this.getMap}) : null;
   }, this);
-
    var bounds = this.state.mapStatus.bounds;
    var baseMap= this.state.mapStatus.baseMap;
     console.log('Map>map: Render');
    return (
 
      <div>
+     
      <LeafletMap ref="leafletMapComponent" baseMap={baseMap} bounds={bounds} onMapMove={this.updateCurrentBounds}/>
            {children} 
      </div>

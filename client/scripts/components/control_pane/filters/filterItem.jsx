@@ -12,18 +12,31 @@ var FilterItem = React.createClass({
     },
  
     render: function() {
-        var childSelectedCount = this.props.childSelectedCount? "  ("+this.props.childSelectedCount+")" : "";
-        var className = this.props.collapseIcon? "filter-col-parent" : "filter-col";
+        var childSelectedCount = "";
+        var className = "filter-col";
+        var collapseDiv = "";
+        if (this.props.onExpandCollapse){
+            className = "filter-col-parent";
+            collapseDiv = <div className="parent-toggle" onClick={this.props.onExpandCollapse}>
+                            <span>{this.props.collapsed? "expand" : "collapse"}</span>
+                            <span className={this.props.collapsed? "collapse-icon fa fa-plus" : "collapse-icon fa fa-minus"}></span>
+                        </div>;
+        }
+        if (this.props.childSelectedCount){
+            childSelectedCount = <div className="children-count">
+                                    ({this.props.childSelectedCount})
+                                </div>;
+        }
         return(
-            <div className={className}>
-                <CustomCheckbox 
-                        selected={this.props.selected}
-                        onChange={this._onItemChanged}
-                        value={this.props.id}/>
-                {this.props.name} 
-                {childSelectedCount}
-                {this.props.collapseIcon}
-            </div>
+        <div className={className}>
+            <CustomCheckbox 
+                    selected={this.props.selected}
+                    onChange={this._onItemChanged}
+                    value={this.props.id}/>
+            {this.props.name} 
+            {childSelectedCount}
+            {collapseDiv}
+        </div>
         );
     }
 });
