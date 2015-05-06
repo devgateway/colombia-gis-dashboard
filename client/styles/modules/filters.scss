@@ -196,7 +196,7 @@ input[type=checkbox].glyphicon {
 .end-date
   {
   width:205px;
-  outline:none;
+  @include noOutline;
   @include floatRight;
   padding: $gutter/2;
   margin-top:-3px;
@@ -257,6 +257,6 @@ input[type=checkbox].glyphicon {
   background:#eeeeee;
   font-size:1em;
   padding:4px;
-  outline:none;
+  @include noOutline;
   }
 }

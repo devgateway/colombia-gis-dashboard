@@ -22,7 +22,7 @@ button{
     background: $white;
     border: 1px solid $white;
     -webkit-appearance:none;
-    outline:none;
+    @include noOutline;
   }
 
 }
