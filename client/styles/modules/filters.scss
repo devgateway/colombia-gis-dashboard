@@ -89,6 +89,7 @@ ul.filter-list {
   @include listUnstyled;
   display:block;
   margin-top: $gutter;
+  overflow: hidden;
 
   li {
     color: $grey;
@@ -252,5 +253,3 @@ input[type=checkbox].glyphicon {
   outline:none;
   }
 }
-
-
