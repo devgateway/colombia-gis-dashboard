@@ -67,6 +67,11 @@ var FilterGroup = React.createClass({
             });
     },
 
+    componentDidMount: function(){
+        debugger;
+        $(this.getDOMNode()).find('.filter-list-container').mCustomScrollbar({theme:"inset-dark"});
+    },
+
     render: function() {
         var parentFilterDefinition = this.props.filterDefinition.subLevels[0];
         var childFilterDefinition = this.props.filterDefinition.subLevels[1];
