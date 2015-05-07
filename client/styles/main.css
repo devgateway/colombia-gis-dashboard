@@ -47,8 +47,8 @@ i.fa.fa-search {
 
 .collapse-icon {
   cursor: pointer;
-  padding: 11px;
-  font-size: 0.7em;
+  padding: 11px 0 11px 0;
+  font-size: 0.9em;
   margin-left: 1em; }
   .collapse-icon:hover {
     color: #98ca68; }
@@ -190,7 +190,7 @@ h2 {
     cursor: pointer; }
 
 .slider_content {
-  width: 750px;
+  width: 705px;
   height: 87%;
   overflow: hidden;
   position: absolute;
@@ -758,16 +758,29 @@ input[type=checkbox].glyphicon {
   padding-right: 10px; }
 
 .filter-col-parent {
-  width: 570px;
+  width: 540px;
   font-weight: bold;
   color: #454545;
   line-height: 2.2em;
   font-size: 14px;
-  height: 30px; }
+  height: 30px;
+  position: relative; }
 
 .fa.fa-minus,
 .fa.fa-plus {
   float: right; }
+
+.children-count {
+  margin-left: 1em; }
+
+.parent-toggle {
+  position: absolute;
+  right: 1.5em;
+  font-style: italic;
+  font-size: 0.8em;
+  line-height: 2.9em; }
+  .parent-toggle:hover {
+    color: #98ca68; }
 
 .hasDatepicker {
   position: relative;

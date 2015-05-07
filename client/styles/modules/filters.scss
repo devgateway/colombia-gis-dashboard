@@ -162,17 +162,32 @@ input[type=checkbox].glyphicon {
 
 .filter-col-parent{
   @extend .filter-col;
-  width:570px;
+  width:540px;
   @include textBold;
   color:$grey;
   line-height:2.2em;
   font-size: 14px;
   height: 30px;
+  position:relative;
 }
 
 .fa.fa-minus,
 .fa.fa-plus{
   float:right;
+}
+
+.children-count{
+   margin-left: $gutter;
+}
+.parent-toggle{
+  position:absolute;
+  right: $gutter*1.5;
+  font-style: italic;
+  font-size:0.8em;
+  line-height:2.9em;
+  &:hover{
+  color:$green;
+  }
 }
 
 .hasDatepicker {

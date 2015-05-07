@@ -141,8 +141,8 @@ i.fa.fa-search{
 
 .collapse-icon{
   cursor: pointer;
-  padding: 11px;
-  font-size:0.7em;
+  padding: 11px 0 11px 0;
+  font-size:0.9em;
   margin-left: $gutter;
   &:hover{
     color: $green;
