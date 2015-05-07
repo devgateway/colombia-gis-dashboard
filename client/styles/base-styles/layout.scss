@@ -161,7 +161,7 @@ h2 {
 }
 // other
 ul.tabbed {
-  margin-left: 20px;
+  margin-left: 13px;
 }
 .h-divider {
   border: none;
@@ -179,4 +179,15 @@ ul.tabbed {
 .fa.fa-spinner {
   color: $green;
   font-size: 2em;
+}
+
+// scrollbar styles
+.mCSB_inside > .mCSB_container{
+  margin-right:0;
+}
+
+.mCS-inset-dark.mCSB_scrollTools .mCSB_draggerRail,
+.mCS-inset-2-dark.mCSB_scrollTools .mCSB_draggerRail,
+.mCS-inset-3-dark.mCSB_scrollTools .mCSB_draggerRail{
+  background-color: rgba(221, 230, 234, 1);
 }
