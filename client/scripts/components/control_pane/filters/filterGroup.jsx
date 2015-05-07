@@ -1,5 +1,3 @@
-'use strict';
-
 /*http://facebook.github.io/react/docs/component-specs.html*/
 var React = require('react');
 var Router = require('react-router');
@@ -39,6 +37,11 @@ var FilterGroup = React.createClass({
             });
         }
         this.forceUpdate();
+    },
+
+    componentDidMount: function(){
+        debugger;
+        $(this.getDOMNode()).find('.filter-list-container').mCustomScrollbar({theme:"inset-dark"});
     },
 
     render: function() {
