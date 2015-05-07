@@ -241,7 +241,7 @@ h2 {
   height: 102%; }
 
 ul.tabbed {
-  margin-left: 20px; }
+  margin-left: 13px; }
 
 .h-divider {
   border: none;
@@ -259,6 +259,14 @@ ul.tabbed {
 .fa.fa-spinner {
   color: #98ca68;
   font-size: 2em; }
+
+.mCSB_inside > .mCSB_container {
+  margin-right: 0; }
+
+.mCS-inset-dark.mCSB_scrollTools .mCSB_draggerRail,
+.mCS-inset-2-dark.mCSB_scrollTools .mCSB_draggerRail,
+.mCS-inset-3-dark.mCSB_scrollTools .mCSB_draggerRail {
+  background-color: #dde6ea; }
 
 @media only screen and (min-device-width: 786px) and (max-device-width: 1024px) {
   /*tablets*/
@@ -682,7 +690,7 @@ button.layer-search {
   max-height: 240px;
   overflow-x: hidden;
   overflow-y: auto;
-  padding: 0.1em 1em 0.7em 0; }
+  padding: 0.1em 0 0.7em 0; }
 
 .filter-list-container-carousel {
   height: 170px;
@@ -757,10 +765,10 @@ input[type=checkbox].glyphicon {
   width: 260px;
   float: left;
   display: inline-flex;
-  padding-right: 10px; }
+  padding-right: 30px; }
 
 .filter-col-parent {
-  width: 540px;
+  width: 510px;
   font-weight: bold;
   color: #787878;
   line-height: 2.2em;
