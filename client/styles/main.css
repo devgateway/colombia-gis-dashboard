@@ -747,12 +747,14 @@ input[type=checkbox].glyphicon {
   border: 1px solid #dedede;
   padding: 0.5em;
   margin-bottom: -1px; }
+  .filter-parent:hover {
+    opacity: 0.8; }
   .filter-parent .selectable, .filter-parent .selectable-radio {
     margin-top: 0.7em;
     margin-left: 0.4em; }
 
 .filter-col, .filter-col-parent {
-  min-width: 260px;
+  width: 260px;
   float: left;
   display: inline-flex;
   padding-right: 10px; }
@@ -760,7 +762,7 @@ input[type=checkbox].glyphicon {
 .filter-col-parent {
   width: 540px;
   font-weight: bold;
-  color: #454545;
+  color: #787878;
   line-height: 2.2em;
   font-size: 14px;
   height: 30px;
@@ -771,11 +773,11 @@ input[type=checkbox].glyphicon {
   float: right; }
 
 .children-count {
-  margin-left: 1em; }
+  margin-left: 0.4em; }
 
 .parent-toggle {
   position: absolute;
-  right: 1.5em;
+  right: 1.1em;
   font-style: italic;
   font-size: 0.8em;
   line-height: 2.9em; }
