@@ -11,7 +11,11 @@ var FilterSelector=require('./filters/filterSelector.jsx')
 
 module.exports  = React.createClass({
 
-  render: function() {
+    componentDidMount: function(){
+        $(this.getDOMNode()).mCustomScrollbar({theme:"inset-dark"});
+    },
+
+    render: function() {
     return (
       <div className="fixed" id="map-panel">
         <Basemaps/>

@@ -75,6 +75,10 @@ var FilterItem = React.createClass({
         }
     },
 
+    componentDidMount: function(){
+        $(this.getDOMNode()).find('.filter-list-container-carousel').mCustomScrollbar({theme:"inset-dark"});
+    },
+
     render: function() {
         var filterDefinition = this.props.filterDefinition; 
         var items = this.props.items;
