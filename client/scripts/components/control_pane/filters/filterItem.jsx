@@ -15,6 +15,7 @@ var FilterItem = React.createClass({
         var childSelectedCount = "";
         var className = "filter-col";
         var collapseDiv = "";
+        var label = "";
         if (this.props.onExpandCollapse){
             className = "filter-col-parent";
             collapseDiv = <div className="parent-toggle" onClick={this.props.onExpandCollapse}>
@@ -27,13 +28,22 @@ var FilterItem = React.createClass({
                                     ({this.props.childSelectedCount})
                                 </div>;
         }
+        if (this.props.selected){
+            label = <span className="label-selected">
+                        {this.props.name}
+                    </span>;
+        } else {
+            label = <span>
+                        {this.props.name}
+                    </span>;
+        }
         return(
         <div className={className}>
             <CustomCheckbox 
                     selected={this.props.selected}
                     onChange={this._onItemChanged}
                     value={this.props.id}/>
-            {this.props.name} 
+            {label} 
             {childSelectedCount}
             {collapseDiv}
         </div>

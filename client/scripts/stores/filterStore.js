@@ -26,7 +26,11 @@ module.exports=Reflux.createStore({
         var filters = FilterMap.getFilterFlatList();
         var self = this;
         filters.map(function(fd){
-            self.onGetListFromAPI(fd);
+            if (fd.apiEndPoint){
+                self.onGetListFromAPI(fd);
+            } else {
+                self.state[fd.param] = fd.dataObjectList;
+            }
         });
     },
 

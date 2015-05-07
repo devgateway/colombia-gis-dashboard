@@ -69,13 +69,13 @@ var basicFilters = [
               apiEndPoint: 'http://test.monitor.net.co/GisService.svc/Filters/ClasificationSubType/Json'
             }
           ]
-        }/*,
+        },
         {
           index: 7,
           label: 'PPP',
           param: 'pp',
-          apiEndPoint: 'http://test.monitor.net.co/GisService.svc/Filters/PPP/Json'
-        }*/
+          dataObjectList: [{"id": "on", "name": "With PPP"}, {"id": "off", "name": "Without PPP"}]
+        }
       ];
      
 var advancedFilters = [
@@ -151,13 +151,13 @@ var advancedFilters = [
               apiEndPoint: 'http://test.monitor.net.co/GisService.svc/Filters/ClasificationSubType/Json'
             }
           ]
-        }/*,
+        },
         {
           index: 8,
           label: 'PPP',
           param: 'pp',
-          apiEndPoint: 'http://test.monitor.net.co/GisService.svc/Filters/PPP/Json'
-        }*/
+          dataObjectList: [{"id": "on", "name": "With PPP"}, {"id": "off", "name": "Without PPP"}]
+        }
       ];
      
 var getFilterDefinitionByParam = function (param){
