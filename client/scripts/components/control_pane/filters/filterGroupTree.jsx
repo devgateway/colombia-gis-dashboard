@@ -72,6 +72,7 @@ var FilterGroup = React.createClass({
     },
 
     render: function() {
+        //console.log("filters->filter-group-tree: render - " + this.props.filterDefinition.label);
         var parentFilterDefinition = this.props.filterDefinition.subLevels[0];
         var childFilterDefinition = this.props.filterDefinition.subLevels[1];
         var parentLevelItems = FilterStore.getAll(parentFilterDefinition.param) || [];  

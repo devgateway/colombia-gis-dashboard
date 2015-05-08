@@ -44,6 +44,7 @@ var FilterGroup = React.createClass({
     },
 
     render: function() {
+        //console.log("filters->filter-group: render - " + this.props.filterDefinition.label);
         var filterDefinition = this.props.filterDefinition;
         var items = FilterStore.getAll(filterDefinition.param) || [];  
         var self = this;

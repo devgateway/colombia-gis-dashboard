@@ -11,7 +11,12 @@ var FilterItem = React.createClass({
        this.props.onItemChanged(this.props.filterType, value, selected);
     },
  
+    componentDidMount: function(){
+        $(this.getDOMNode()).find(' span').tooltip({container: 'body'});
+    },
+
     render: function() {
+        //console.log("filters->filter-item: render");
         var childSelectedCount = "";
         var className = "filter-col";
         var collapseDiv = "";
@@ -29,11 +34,11 @@ var FilterItem = React.createClass({
                                 </div>;
         }
         if (this.props.selected){
-            label = <span className="label-selected">
+            label = <span title={this.props.name} data-placement="top" className="label-selected">
                         {this.props.name}
                     </span>;
         } else {
-            label = <span>
+            label = <span title={this.props.name} data-placement="top">
                         {this.props.name}
                     </span>;
         }
