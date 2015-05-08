@@ -7,7 +7,7 @@
     background-color: rgba(0, 0, 0, 1);
     border: none;
     min-width: 100px;
-    margin: 0 0 0 6px;
+    margin: 4px 0 0 0;
     @include border-radius(0);
     li {
       background: none;
@@ -16,8 +16,9 @@
       }
       a {
         color: saturate(lighten( $blue, 35), 65);
-        padding: 0 0 0 $gutter*1.2;
+        padding: $gutter/2 0 0 $gutter*1.2;
         @include noOutline;
+        font-size:0.9em;
         &:hover {
           background: none;
           color: $white;
@@ -47,7 +48,7 @@
     background: none;
     color: saturate(lighten( $blue, 35), 65);
     @include transitionColor;
-    font-size: 0.9em;
+    font-size: 1em;
     padding: 0;
     margin-left: $gutter;
     @include noOutline;

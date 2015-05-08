@@ -34,7 +34,8 @@ h2 {
   a {
     color: saturate(lighten( $blue, 35), 65);
     @include transitionColor;
-    font-size: 0.9em;
+    font-size: 1em;
+    line-height:1.74em;
     &:hover {
       color: $white;
     }
@@ -121,16 +122,16 @@ h2 {
 }
 .slider_content {
   width: 705px;
-  height: 87%;
+  height: 88%;
   overflow: hidden;
   position: absolute;
-  left: 38px;
-  top: -3px;
+  left: 42px;
+  top: 0;
   @include transitionOpacity;
   .fixed {
     width: 485px;
-    margin: 3px;
-    padding: 5px;
+    margin: 0 auto 0 0;
+    padding: 0;
     height: 100%;
     overflow: hidden;
     background-color: #fff;
@@ -154,8 +155,8 @@ h2 {
   width: 700px;
   position: absolute;
   z-index: 1;
-  padding: 15px;
-  background: rgba( 221, 230, 234, 0.8);
+  padding: 10px 7px 5px 12px;
+  background: rgba( 221, 230, 234, 0.9);
   overflow: auto;
   height: 102%;
 }
@@ -182,6 +183,9 @@ ul.tabbed {
 }
 
 // scrollbar styles
+.mCustomScrollbar{
+}
+
 .mCSB_inside > .mCSB_container{
   margin-right:0;
 }
@@ -190,4 +194,9 @@ ul.tabbed {
 .mCS-inset-2-dark.mCSB_scrollTools .mCSB_draggerRail,
 .mCS-inset-3-dark.mCSB_scrollTools .mCSB_draggerRail{
   background-color: rgba(221, 230, 234, 1);
+}
+
+.filter-list-container-carousel{
+  .filter-col{width:97%;}
+  .filter-col-parent{float:none;height:auto;line-height:100%}
 }

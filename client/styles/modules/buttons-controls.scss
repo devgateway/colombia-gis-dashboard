@@ -22,6 +22,7 @@
   background: $green;
   @include floatRight;
   @include transitionAll;
+  @include textBold;
   margin-left: 1em;
   outline:none;
   &:hover {

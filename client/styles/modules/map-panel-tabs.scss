@@ -14,6 +14,22 @@ nav.tabs {
   border:1px solid transparent;
   color: $blue;
 }
+.main-tabs .nav-tabs li:first-child a{
+  &:before{
+  font-family: FontAwesome;
+  content:'\f041';
+  color: $blue;
+  margin-right:5px;
+  }
+}
+.main-tabs .nav-tabs li:last-child a{
+  &:before{
+  font-family: FontAwesome;
+  content:'\f0b0';
+  color: $blue;
+  margin-right:5px;
+  }
+}
 .main-tabs .nav-tabs li a{
   background:lighten($grey,66%);
   font-weight:600;
@@ -24,6 +40,7 @@ nav.tabs {
   border:1px solid transparent;
   margin-bottom:1px;
 }
+
 .tabs>li {
   @include floatLeft;
   @include textCenter;

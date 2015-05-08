@@ -25,7 +25,7 @@ i.fa.fa-bars {
   i.fa.fa-bars:before {
     font-size: 2.5rem; }
   i.fa.fa-bars:hover {
-    color: #74a4d6; }
+    color: #e9ba00; }
 
 i.fa.fa-globe {
   color: #234b77;
@@ -111,7 +111,8 @@ h2 {
     -moz-transition: color 600ms ease;
     -o-transition: color 600ms ease;
     transition: color 600ms ease;
-    font-size: 0.9em; }
+    font-size: 1em;
+    line-height: 1.74em; }
     .header-nav a:hover {
       color: #ffffff; }
 
@@ -191,19 +192,19 @@ h2 {
 
 .slider_content {
   width: 705px;
-  height: 87%;
+  height: 88%;
   overflow: hidden;
   position: absolute;
-  left: 38px;
-  top: -3px;
+  left: 42px;
+  top: 0;
   -webkit-transition: opacity 400ms ease;
   -moz-transition: opacity 400ms ease;
   -o-transition: opacity 400ms ease;
   transition: opacity 400ms ease; }
   .slider_content .fixed {
     width: 485px;
-    margin: 3px;
-    padding: 5px;
+    margin: 0 auto 0 0;
+    padding: 0;
     height: 100%;
     overflow: hidden;
     background-color: #fff; }
@@ -235,8 +236,8 @@ h2 {
   width: 700px;
   position: absolute;
   z-index: 1;
-  padding: 15px;
-  background: rgba(221, 230, 234, 0.8);
+  padding: 10px 7px 5px 12px;
+  background: rgba(221, 230, 234, 0.9);
   overflow: auto;
   height: 102%; }
 
@@ -267,6 +268,13 @@ ul.tabbed {
 .mCS-inset-2-dark.mCSB_scrollTools .mCSB_draggerRail,
 .mCS-inset-3-dark.mCSB_scrollTools .mCSB_draggerRail {
   background-color: #dde6ea; }
+
+.filter-list-container-carousel .filter-col, .filter-list-container-carousel .filter-col-parent {
+  width: 97%; }
+.filter-list-container-carousel .filter-col-parent {
+  float: none;
+  height: auto;
+  line-height: 100%; }
 
 @media only screen and (min-device-width: 786px) and (max-device-width: 1024px) {
   /*tablets*/
@@ -355,7 +363,7 @@ ul.tabbed {
 
 .filter-type-wrapper {
   overflow: hidden;
-  margin-bottom: 1em; }
+  margin-top: 0.83333em; }
   .filter-type-wrapper ul.filter-type-label {
     padding-left: 0; }
     .filter-type-wrapper ul.filter-type-label li {
@@ -384,8 +392,7 @@ nav.activities {
   overflow: hidden; }
 
 ul.activities {
-  padding-left: 0;
-  margin-top: 0.5em; }
+  margin-top: 1em; }
   ul.activities li {
     padding-left: 0;
     list-style: none;
@@ -429,10 +436,11 @@ ul.activities {
   cursor: pointer; }
 
 .map-panel-header {
-  margin: 0 0 1em;
+  margin: 0 0 1em 0;
   padding-bottom: 0.5em;
   border-bottom: 1px solid #d1d1d1;
-  overflow: hidden; }
+  overflow: hidden;
+  width: 98%; }
 
 .map-panel-label, .filter-type-wrapper ul.filter-type-label li, .basemap-label, .predefined-maps, .overview-label {
   font-weight: bold;
@@ -460,7 +468,8 @@ ul.basemap-list {
   padding-left: 0;
   list-style: none;
   margin-top: 6px;
-  margin-left: 7px; }
+  margin-left: 7px;
+  margin-bottom: 7px; }
   ul.basemap-list li {
     float: left;
     -webkit-transition: color 600ms ease;
@@ -514,6 +523,7 @@ ul.basemap-list {
   -moz-transition: all 600ms ease;
   -o-transition: all 600ms ease;
   transition: all 600ms ease;
+  font-weight: bold;
   margin-left: 1em;
   outline: none; }
   .btn-apply:hover, button.layer-search:hover {
@@ -620,12 +630,8 @@ button.layer-search {
   width: 395px; }
 
 .filter-group-panel {
-  -webkit-border-radius: 2px;
-  border-radius: 2px;
-  background-clip: padding-box;
-  /* stops bg color from leaking outside the border: */
   opacity: 0.4;
-  padding: 0.3em 1em 1em 1em;
+  padding: 0 1em 1em 1em;
   height: 300px;
   overflow: visible; }
   .filter-group-panel.selected {
@@ -707,10 +713,12 @@ ul.filter-list {
     color: #454545;
     font-size: 110%; }
     ul.filter-list li span {
-      display: table;
       margin-bottom: 0.25em;
       line-height: 1.3em;
-      padding-right: 4px; }
+      padding-right: 8px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis; }
 
 .select {
   width: 12px;
@@ -750,10 +758,9 @@ input[type=checkbox].glyphicon {
 
 .filter-parent {
   display: inline-flex;
-  padding-top: 15px;
   background: #f8f8f8;
   border: 1px solid #dedede;
-  padding: 0.5em;
+  padding: 0.5em 0.5em 0.2em 0.5em;
   margin-bottom: -1px; }
   .filter-parent:hover {
     opacity: 0.8; }
@@ -765,14 +772,17 @@ input[type=checkbox].glyphicon {
   width: 260px;
   float: left;
   display: inline-flex;
-  padding-right: 30px; }
+  margin-right: 12px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis; }
 
 .filter-col-parent {
   width: 510px;
   font-weight: bold;
   color: #787878;
   line-height: 2.2em;
-  font-size: 14px;
+  font-size: 12px;
   height: 30px;
   position: relative; }
 
@@ -877,6 +887,18 @@ nav.tabs {
   background: none;
   border: 1px solid transparent;
   color: #4d749f; }
+
+.main-tabs .nav-tabs li:first-child a:before {
+  font-family: FontAwesome;
+  content: '\f041';
+  color: #4d749f;
+  margin-right: 5px; }
+
+.main-tabs .nav-tabs li:last-child a:before {
+  font-family: FontAwesome;
+  content: '\f0b0';
+  color: #4d749f;
+  margin-right: 5px; }
 
 .main-tabs .nav-tabs li a {
   background: #ededed;
@@ -1029,7 +1051,7 @@ button.search-button {
   height: auto;
   overflow: hidden;
   width: 99%;
-  padding: 0.5em 1em; }
+  padding: 0 1em 0.5em 1em; }
   .tab-content ul {
     list-style: none; }
   .tab-content input[type="checkbox"],
@@ -1159,7 +1181,7 @@ ul.tabs {
     background-color: black;
     border: none;
     min-width: 100px;
-    margin: 0 0 0 6px;
+    margin: 4px 0 0 0;
     -webkit-border-radius: 0;
     border-radius: 0;
     background-clip: padding-box;
@@ -1170,8 +1192,9 @@ ul.tabs {
         padding: 0; }
       .language-btn .dropdown-menu li a {
         color: #a0cdff;
-        padding: 0 0 0 1.2em;
-        outline: none; }
+        padding: 0.5em 0 0 1.2em;
+        outline: none;
+        font-size: 0.9em; }
         .language-btn .dropdown-menu li a:hover {
           background: none;
           color: #ffffff; }
@@ -1196,7 +1219,7 @@ ul.tabs {
     -moz-transition: color 600ms ease;
     -o-transition: color 600ms ease;
     transition: color 600ms ease;
-    font-size: 0.9em;
+    font-size: 1em;
     padding: 0;
     margin-left: 1em;
     outline: none; }
