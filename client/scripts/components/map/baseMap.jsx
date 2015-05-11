@@ -27,23 +27,23 @@ var BaseMapItem= React.createClass({
 module.exports = React.createClass({
 
   mixins: [Reflux.connect(MapStore)],
+  
   render: function() {
-
-   return(
-      <div className="map-panel-header">
-        <div className="basemap-label">
-          <i className="fa fa-globe" aria-hidden="true"></i>
-          Views
+    return(
+        <div className="map-panel-header">
+          <div className="basemap-label">
+            <i className="fa fa-globe" aria-hidden="true"></i>
+            Views
+          </div>
+          <ul className="basemap-list">
+            <li><BaseMapItem label="Gray" value="Gray"/></li>
+            <li><BaseMapItem label="Topographic" value="Topographic"/></li>
+            <li><BaseMapItem label="National Geographic" value="NationalGeographic"/></li>
+            <li><BaseMapItem label="Dark Gray" value="DarkGray"/></li>
+            <li><BaseMapItem label="Imagery" value="Imagery"/></li>
+            <li><BaseMapItem label="Streets" value="Streets"/></li>
+          </ul>
         </div>
-        <ul className="basemap-list">
-          <li><BaseMapItem label="Gray" value="Gray"/></li>
-          <li><BaseMapItem label="Topographic" value="Topographic"/></li>
-          <li><BaseMapItem label="National Geographic" value="NationalGeographic"/></li>
-          <li><BaseMapItem label="Dark Gray" value="DarkGray"/></li>
-          <li><BaseMapItem label="Imagery" value="Imagery"/></li>
-          <li><BaseMapItem label="Streets" value="Streets"/></li>
-        </ul>
-      </div>
-    );
+      );
   }
 });

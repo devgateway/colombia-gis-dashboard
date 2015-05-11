@@ -22,7 +22,7 @@ module.exports = Reflux.createStore({
 	},
 	
 	onLogin:function(token){
-		debugger;
+
 		API.self(token).then(function(profile){
 				ArcgisLoginActions.loadUserProfile(profile,token);
 		}.bind(this));

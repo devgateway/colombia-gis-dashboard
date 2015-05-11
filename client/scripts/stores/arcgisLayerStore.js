@@ -3,95 +3,99 @@
 var assign = require('object-assign');
 var Reflux = require('reflux');
 var ArcgisLayersActions = require('../actions/arcgisLayersActions.js');
-var Util= require('../api/util.js');
-var API=require('../api/esri.js');
+var Util = require('../api/util.js');
+var API = require('../api/esri.js');
 var _ = require('lodash');
 
-var storedState//=require('./layer_samples.js')
+var storedState;//= require('./layer_samples.js')
+
 module.exports = Reflux.createStore({
 
 	listenables: ArcgisLayersActions,
-
-	onSearchCompleted:function(data,append){
-		console.log("arcgisLayerStore: ... onSearchOnArcGisCompleted .... ");
-		if (data){
-			if(append){
-				data.results=this.appendSearchResults(data.results)
-			};
-			this.update({results:data});
-		}
-	},
-
-
-	appendSearchResults:function(items){
-		var previous=this.state.results.results;
-		return previous.concat(items);	
-	},
-
-
-	onSearch:function(options,append){
-		_.assign(options,{})
-		API.findLayers(options).then(function(data){
-			ArcgisLayersActions.search.completed(data,append)
-		}).fail(function(){
-			console.log('arcgisLayerStore:  Error loading data ...');
-			this.state.error='Can\'t load data please check your network connection';
+	
+	onAddLayerToMap: function(layerInfo) {
+		if (!_.findWhere(this.state.layers,{id:layerInfo.id})) {
+			this.state.layers.push(layerInfo);
 			this.trigger(this.state);
-		}.bind(this));
-	},
-
-	onChangeVisibility:function(){
-		this.trigger(this.state);
-	},
-
-	loadLayerFailed:function(error,code){
-		this.state.error={'message':error,'code':code}
-		this.trigger(this.state);
-		console.log('Error '+error);
-	},
-
-	loadLayerCompleted:function(service,serviceMetadata){
-		if ( _.findWhere(this.state.services,service)){ //check if service was already added 
-			this.loadLayerFailed("This service is alredy added")
-
-		}else{
-			assign(serviceMetadata,{'added':true}); // mark record as added 
-			assign(service,{defaultVisibility:true,metadata:serviceMetadata}) // set default visibility to true we want
-			this.addService(service); //add service to map services 
 		}
-		 
-	},	
+	},
 
-	addService:function(layer){
-		this.state.services.push(layer);
-		this.state.error=null;
+
+
+	onServiceCreated:function(layerInfo){
+		_.assign(_.findWhere(this.state.layers,{id:layerInfo.id}),{created:true})
+	},
+
+
+	onLayerAdded:function(leaFletLayerInfo){
+		
+		_.assign(leaFletLayerInfo,{'opacity':1,'zIndex':this.nextZindex()});
+
+		this.state.leafletLayers.push(leaFletLayerInfo);
 		this.trigger(this.state);
+		
 	},
 
-	onToggleLayerVisibility:function(){
+	onChangeLayerValue:function(property,id,value){
+		console.log(arguments);
+		var theLayer=_.findWhere(this.state.leafletLayers,{'id':id});
+			
+		if(property=='opacity'){
+			theLayer.opacity=value;
+		}
+
+		if(property=='moveDown'){
+			var currentZindex=theLayer.zIndex;
+				if (currentZindex >0){
+					//next will be 
+					var newZindex=currentZindex-1;
+					var replaceWith=_.findWhere(this.state.leafletLayers,{zIndex:newZindex});
+					theLayer.zIndex=newZindex; //the layer gets z-index-1
+					replaceWith.zIndex=currentZindex; //the one that was in tha position takes  theLayer's z-index
+				}
+		}
+
+		if(property=='moveUp'){
+			var currentZindex=theLayer.zIndex;
+				if (currentZindex < this.state.leafletLayers.length-1){
+					//next will be 
+					var newZindex=currentZindex+1;
+					var replaceWith=_.findWhere(this.state.leafletLayers,{zIndex:newZindex});
+					theLayer.zIndex=newZindex; //the layer gets z-index-1
+					replaceWith.zIndex=currentZindex; //the one that was in tha position takes  theLayer's z-index
+				}
+		}
 		this.trigger(this.state)
-	},
 
-	onRemoveLayer:function(){
-		//find layer remove and trigger
 	},
 
 	update: function(assignable, options) {
 		options = options || {};
-		this.state = assign(this.state, assignable);
+		this.state = _.assign(this.state, assignable);
 		if (!options.silent) {
 			this.trigger(this.state);
 		}
 	},
 
+	nextZindex:function(){
+		if (!this.lastZindex){
+			this.lastZindex=0
+		}
+		return  this.lastZindex++;
+	},
+
 	getInitialState: function() {
-		if (!this.state){
-			this.state=storedState || {services:[], results:{}};
-		}	
+		if (!this.state) {
+			this.state = storedState || {
+				layers: [],
+				leafletLayers:[]
+			};
+		}
 		return this.state;
+	},
+
+	getControlLayers:function(){
+		return this.state.leafletLayers;
 	}
 
 });
-
-
-
