@@ -12,7 +12,7 @@ var basicFilters = [
               childParam: 'mu',
               label: 'Departaments',
               param: 'de',
-              apiEndPoint: 'http://test.monitor.net.co/GisService.svc/Filters/DepartmentsList/Json'
+              apiEndPoint: '/json-data/departmentList.json'
             },
             {
               level: 2,
@@ -20,7 +20,7 @@ var basicFilters = [
               label: 'Municipalities',
               param: 'mu',
               parentParamField: 'idDepto',
-              apiEndPoint: 'http://test.monitor.net.co/GisService.svc/Filters/MunicipalitiesList/Json'
+              apiEndPoint: '/json-data/municipalitiesList.json'
             }
           ]
         }, 
@@ -28,25 +28,25 @@ var basicFilters = [
           index: 2,
           label: 'Target Population',
           param: 'tp',
-          apiEndPoint: 'http://test.monitor.net.co/GisService.svc/Filters/TargetPopulation/Json'
+          apiEndPoint: '/json-data/targetPopulation.json'
         },
         {
           index: 3,
           label: 'Development Objectives',
           param: 'do',
-          apiEndPoint: 'http://test.monitor.net.co/GisService.svc/Filters/DOList/Json'
+          apiEndPoint: '/json-data/doList.json'
         },
         {
           index: 4,
           label: 'SubActivity Status',
           param: 'st',
-          apiEndPoint: 'http://test.monitor.net.co/GisService.svc/Filters/SubActivityStatus/Json'
+          apiEndPoint: '/json-data/subActivityStatus.json'
         },
         {
           index: 5,
           label: 'Sub Implementer',
           param: 'si',
-          apiEndPoint: 'http://test.monitor.net.co/GisService.svc/Filters/SubImplementersType/Json'
+          apiEndPoint: '/json-data/subImplementers.json'
         },
         {
           index: 6,
@@ -58,7 +58,7 @@ var basicFilters = [
               childParam: 'ac1',
               label: 'Activity Classification Type',
               param: 'ac',
-              apiEndPoint: 'http://test.monitor.net.co/GisService.svc/Filters/ClasificationType/Json'
+              apiEndPoint: '/json-data/clasificationType.json'
             },
             {
               level: 2,
@@ -66,7 +66,7 @@ var basicFilters = [
               label: 'Activity Classification Sub-Type 1',
               param: 'ac1',
               parentParamField: 'idTipo',
-              apiEndPoint: 'http://test.monitor.net.co/GisService.svc/Filters/ClasificationSubType/Json'
+              apiEndPoint: '/json-data/clasificationSubType.json'
             }
           ]
         },
@@ -89,7 +89,7 @@ var advancedFilters = [
               childParam: 'mu',
               label: 'Departaments',
               param: 'de',
-              apiEndPoint: 'http://test.monitor.net.co/GisService.svc/Filters/DepartmentsList/Json'
+              apiEndPoint: '/json-data/departmentList.json'
             },
             {
               level: 2,
@@ -97,7 +97,7 @@ var advancedFilters = [
               label: 'Municipalities',
               param: 'mu',
               parentParamField: 'idDepto',
-              apiEndPoint: 'http://test.monitor.net.co/GisService.svc/Filters/MunicipalitiesList/Json'
+              apiEndPoint: '/json-data/municipalitiesList.json'
             }
           ]
         }, 
@@ -105,31 +105,31 @@ var advancedFilters = [
           index: 2,
           label: 'Target Population',
           param: 'tp',
-          apiEndPoint: 'http://test.monitor.net.co/GisService.svc/Filters/TargetPopulation/Json'
+          apiEndPoint: '/json-data/targetPopulation.json'
         },
         {
           index: 3,
           label: 'Development Objectives',
           param: 'do',
-          apiEndPoint: 'http://test.monitor.net.co/GisService.svc/Filters/DOList/Json'
+          apiEndPoint: '/json-data/doList.json'
         },
         {
           index: 4,
           label: 'Crops',
           param: 'cr',
-          apiEndPoint: 'http://test.monitor.net.co/GisService.svc/Filters/CropsList/Json'
+          apiEndPoint: '/json-data/cropsList.json'
         },
         {
           index: 5,
           label: 'SubActivity Status',
           param: 'st',
-          apiEndPoint: 'http://test.monitor.net.co/GisService.svc/Filters/SubActivityStatus/Json'
+          apiEndPoint: '/json-data/subActivityStatus.json'
         },
         {
           index: 6,
           label: 'Sub Implementer',
           param: 'si',
-          apiEndPoint: 'http://test.monitor.net.co/GisService.svc/Filters/SubImplementersType/Json'
+          apiEndPoint: '/json-data/subImplementers.json'
         },
         {
           index: 7,
@@ -140,7 +140,7 @@ var advancedFilters = [
               childParam: 'ac1',
               label: 'Activity Classification Type',
               param: 'ac',
-              apiEndPoint: 'http://test.monitor.net.co/GisService.svc/Filters/ClasificationType/Json'
+              apiEndPoint: '/json-data/clasificationType.json'
             },
             {
               level: 2,
@@ -148,7 +148,7 @@ var advancedFilters = [
               label: 'Activity Classification Sub-Type 1',
               param: 'ac1',
               parentParamField: 'idTipo',
-              apiEndPoint: 'http://test.monitor.net.co/GisService.svc/Filters/ClasificationSubType/Json'
+              apiEndPoint: '/json-data/clasificationSubType.json'
             }
           ]
         },
