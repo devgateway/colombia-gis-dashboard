@@ -181,7 +181,7 @@ render: function() {
       onRemoveLayer={this._handleRemoveLayer}
       onChangeOpacity={this._handleChangeOpacity}
       getMap={this.props.getMap} 
-
+      type={this.props.type}
       zIndex={l.zIndex} 
       layer={l.leafletLayer}
       opacity={l.opacity}
