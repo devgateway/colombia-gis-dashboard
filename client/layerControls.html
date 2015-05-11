@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<!--[if lte IE 8]><html class="lt-ie9  no-js" lang="en"><![endif]-->
+<!--[if gt IE 8]><!--><html lang="en"  class="no-js"><!--<![endif]-->
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>USAID - Monitor GIS </title>
+  <meta name="description" content=""/>
+  <meta name="author" content=""/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+  
+  <!-- build:css(client) styles/global.css -->
+  <!-- bower:css -->
+  <link rel="stylesheet" href="bower_components/normalize.css/normalize.css" />
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+  <link rel="stylesheet" href="bower_components/leaflet/dist/leaflet.css" />
+  <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
+  <!-- endbower -->
+  <link rel="stylesheet" href="bower_components/scooch/build/scooch.min.css"/>
+  <link rel="stylesheet" href="styles/modules/leaflet-custom.css"/>
+  <!-- endbuild -->
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="styles/main.css" />
+  
+
+  <!-- build:js(client) scripts/modernizr.js -->
+  <script src="/bower_components/modernizr/modernizr.js"></script>
+  <!-- endbuild -->
+
+  <!-- HTML5 and consolelog shims for IE8 support -->
+  <!-- build:js(client) scripts/lt-ie9.js -->
+    <!--[if lt IE 9]>
+    <script src="/bower_components/consolelog/consolelog.js"></script>
+    <script src="/bower_components/html5shiv/dist/html5shiv-printshiv.js"></script>
+    <![endif]-->
+    <!-- endbuild -->
+
+
+        <!--[if lte IE 7]>
+    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <!-- Application loads here -->
+    
+    <!-- build:js(client) scripts/lt-ie9.js -->
+    <!--[if lt IE 9]>
+    <script src="/bower_components/es5-shim/es5-shim.js"></script>
+
+
+    <![endif]-->
+    <!-- endbuild -->
+
+    <!-- build:js(client) scripts/global.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/leaflet/dist/leaflet.js"></script>
+    <script src="bower_components/leaflet/dist/leaflet-src.js"></script>
+    <script src="bower_components/esri-leaflet/dist/esri-leaflet.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:js(client) scripts/leaflet-renderers.js -->
+    <script src="bower_components/esri-leaflet-renderers/dist/esri-leaflet-renderers.js"></script>
+    <!-- endbuild -->
+
+    <script src="leaflet.control.orderlayers.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.8.0/lodash.min.js"></script>
+
+  </head>
+  <style type="text/css">
+    .leaflet-row{
+      clear: both;
+    }
+    .leaflet-control-layers-selector{
+      margin: 2px;
+      float: left;
+    }
+    
+    .leaflet-name{
+      margin: 2px;
+      float: left;
+    }
+
+    .leaflet-up{
+      margin: 2px;
+      float: left;
+      cursor: pointer;
+    }
+
+    .leaflet-down{
+     margin: 2px;
+     float: left;
+     cursor: pointer;
+   }
+ </style>
+
+ <body>
+  <div id="map" class="map" ></div>
+  <script>
+
+    debugger;
+    var map = L.map('map').setView([37.75, -122.23], 10);
+
+    var FeatureLayerZ=L.esri.FeatureLayer.extend({
+      _getZIndex:function(){
+        return this.options.zIndex;
+      },
+      setZIndex:function(newIndex){
+        this.options.zIndex=newIndex;
+        var countLayers=Object.keys(this._layers ).length;
+        if (countLayers > 0){ 
+          var l=this._layers[Object.keys(this._layers )[0]];
+          if(l._icon){
+            l._icon.parentElement.style.zIndex=newIndex;
+
+          }else if( l._path){
+            console.log("Old "+l._path.parentElement.parentElement.parentElement.style.zIndex);
+
+            l._path.parentElement.parentElement.parentElement.style.zIndex=newIndex;
+            console.log("New "+l._path.parentElement.parentElement.parentElement.style.zIndex);
+
+          }else{
+            console.log("Can't do it");
+          }
+        }
+      } 
+
+    })
+
+    var tiled1 = L.esri.tiledMapLayer("http://services.arcgisonline.com/arcgis/rest/services/USA_Topo_Maps/MapServer");
+    var tiled2 = L.esri.tiledMapLayer("http://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer");
+    var feature1 = new  FeatureLayerZ('http://services1.arcgis.com/p1fBF7MSQeyrqtIr/ArcGIS/rest/services/Distritos_de_Riego_Colombia/FeatureServer/0')
+    var feature2 = new  FeatureLayerZ('http://services1.arcgis.com/p1fBF7MSQeyrqtIr/ArcGIS/rest/services/Distritos_de_Riego_Colombia/FeatureServer/1')
+    var feature3 = new FeatureLayerZ('http://services5.arcgis.com/UUuZh8hMoZILoa8U/arcgis/rest/services/Colombia_States/FeatureServer/0') 
+
+    var layers2={
+      "Feature 1":feature1,
+      "Paths":feature2,
+      "Tiled1":tiled1,
+      "Tiled2":tiled2,
+    }
+
+    var controls = L.control.orderlayers({},layers2, {collapsed: true});
+    controls.addTo(map);
+    map.setView([4.649, -74.086], 11);
+
+
+  </script>
+
+</body>
+</html>

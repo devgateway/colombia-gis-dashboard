@@ -4,53 +4,58 @@ var React = require('react');
 var Reflux = require('reflux');
 var TabbedArea = require('react-bootstrap/lib/TabbedArea');
 var TabPane = require('react-bootstrap/lib/TabPane');
-
 var DataLayersManager=require('./data_map_layers/manager.jsx');
-var EsriLayersManager=require('./esri_map_layers/manager.jsx')
-var EsriSearch = require('./esri_search/search.jsx')
-
-var ArcgisLayersActions=require('../../../actions/ArcgisLayersActions.js')
+var LayerControl=require('../../map/layers/manager/layerControl.jsx');
+var EsriSearch = require('./esri_search/search.jsx');
 var EsriLoginStore=require('../../../stores/arcgisLoginStore.js');
-var ArcgisLayerStore=require('../../../stores/arcgisLayerStore.js');
+var ArcgisLayersActions=require('../../../actions/ArcgisLayersActions.js');
+var ArcgisSearchStore=require('../../../stores/arcgisSearchStore.js');
 
 module.exports  = React.createClass({
 
-	mixins: [Reflux.connect(ArcgisLayerStore, 'arcgisState'),Reflux.connect(EsriLoginStore, 'loginState')],
+	mixins: [Reflux.connect(ArcgisSearchStore, 'esri'),
+	Reflux.connect(EsriLoginStore, 'loginState')],
 
-    onAddLayer: function(service){
-    	ArcgisLayersActions.loadLayer(service);
-    },
-
-    onSearch:function(val,append){
-		ArcgisLayersActions.search(val,append);
+	onAddLayer: function(options){
+		ArcgisLayersActions.loadLayer(options);
 	},
 
-	updateVisiblity:function(){
-		ArcgisLayersActions.changeVisibility();
+	onSearch:function(options){
+		ArcgisLayersActions.search(options);
 	},
 
+	_handleSelect:function(key){
+		
+		this.refs.tabbedArea.setState({
+        activeKey: key,
+        previousActiveKey: this.refs.tabbedArea.getActiveKey()
+      });
+
+		this.forceUpdate();
+		
+	},
+	
 	render: function() {
-		var results=this.state.arcgisState.results;
-		var services=this.state.arcgisState.services || [];
+	
+		var search=this.state.esri.search;
+		var error=this.state.esri.error;
 		var token=this.state.loginState.token || "";
-		var error=this.state.arcgisState.error;
-
 		return (
-
 			<div className="activity-nav">
-			<TabbedArea className="activities" defaultActiveKey={1}>
-				<TabPane eventKey={1} tab="Map Layers">
+			<TabbedArea ref="tabbedArea" className="activities" defaultActiveKey={1} onSelect={this._handleSelect}>
+					<TabPane   key={1} eventKey={1} tab="Map Layers" >
 					<DataLayersManager/>
-					<EsriLayersManager services={services}  onChange={this.updateVisiblity}/>
-				</TabPane>
+					<LayerControl {...this.props} ref="layerControl"/>
+					</TabPane>
 
-				<TabPane eventKey={2} tab="Find External Layers">
-					<EsriSearch onAddLayer={this.onAddLayer} 
+					<TabPane key={2} eventKey={2} tab="Find External Layers">
+					<EsriSearch 
+					onAddLayer={this.onAddLayer}
 					onSearch={this.onSearch} 
 					token={token}  
 					error={error} 
-					results={results}/>
-				</TabPane>
+					search={search}/>
+					</TabPane>
 
 			</TabbedArea>
 			</div>
