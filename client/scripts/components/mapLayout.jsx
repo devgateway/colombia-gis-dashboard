@@ -3,10 +3,9 @@
 var React = require('react/addons');
 var Router = require('react-router'),Route = Router.Route,  RouteHandler = require('react-router').RouteHandler;
 
-var Header=require('./header.jsx') ,
-SlideBar=require('./commons/slideBar.jsx'),
-Footer=require('./footer.jsx'),
-ControlPane=require('./control_pane/tabNavigator.jsx');
+var Header=require('./header.jsx');
+
+var Footer=require('./footer.jsx');
 
 
 var actions=require('../actions/startUpActions.js');
@@ -14,24 +13,21 @@ var actions=require('../actions/startUpActions.js');
 module.exports = React.createClass({
 
 	componentDidMount:function(){
-		/*trigger startup actions*/
 		actions.loadActivitiesByDepartments();
-		actions.getAllListsFromAPI();
+		actions.getAllListsFromAPI(); //TODO:Improve Perfomance 
 	},
+
 
 	render: function() {
 		return (
 			<div>
 			<Header/>
-				<SlideBar>
-					<ControlPane/>
-				</SlideBar>
-				<div id="map-container">
+			<div id="map-container">
 					{/* defer to the child route handler */}
 					<RouteHandler {...this.props}/>
-				</div>
-			<Footer/>
 			</div>
+		<Footer/>
+		</div>
 		);
 	}
 });

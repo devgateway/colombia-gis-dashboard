@@ -76,10 +76,9 @@ module.exports = {
 
     createLefleatLayer:function(lClass,options, url){
 
-        debugger;
         var uri = url || this.getService().metadata.url;
 
-        _.assign({useCors: true}, options)
+        _.assign( options,{useCors: true,cacheLayers:false})
 
         if(window.ESIR_USE_PROXY){
             _.assign(options,{proxy:window.ESRI_PROXY_URL})
@@ -94,15 +93,15 @@ module.exports = {
 
         layer.on('map->layers->esriLayers: authenticationrequired', function (e) {
 
-            console.log('map->layers->esriLayers: authenticationrequired');
+           // console.log('map->layers->esriLayers: authenticationrequired');
         });
 
         layer.on('requestsuccess', function () {
-            console.log('map->layers->esriLayers: requestsuccess');
+           // console.log('map->layers->esriLayers: requestsuccess');
         });
 
         layer.on('requestend', function () {
-            console.log('map->layers->esriLayers: requestend');
+            //console.log('map->layers->esriLayers: requestend');
         });
 
         return layer;
