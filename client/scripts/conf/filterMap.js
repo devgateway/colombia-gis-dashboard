@@ -46,7 +46,7 @@ var basicFilters = [
           index: 5,
           label: 'Sub Implementer',
           param: 'si',
-          apiEndPoint: 'http://test.monitor.net.co/GisService.svc/Filters/SubImplementers/Json'
+          apiEndPoint: 'http://test.monitor.net.co/GisService.svc/Filters/SubImplementersType/Json'
         },
         {
           index: 6,
@@ -129,7 +129,7 @@ var advancedFilters = [
           index: 6,
           label: 'Sub Implementer',
           param: 'si',
-          apiEndPoint: 'http://test.monitor.net.co/GisService.svc/Filters/SubImplementers/Json'
+          apiEndPoint: 'http://test.monitor.net.co/GisService.svc/Filters/SubImplementersType/Json'
         },
         {
           index: 7,
