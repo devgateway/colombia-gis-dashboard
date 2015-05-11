@@ -38,6 +38,10 @@ var Filter  = React.createClass({
         FilterActions.changeAllFilterItemState(filterType, selected);  
     },    
     
+    componentDidMount: function(){
+        $('.item-label').tooltip({container: 'body'});
+    },
+
     render: function() {
       var filters = this.props.type=="basic"? FilterMap.basicFilters : FilterMap.advancedFilters;
       var self = this;

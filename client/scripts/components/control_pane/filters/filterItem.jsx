@@ -12,7 +12,7 @@ var FilterItem = React.createClass({
     },
  
     componentDidMount: function(){
-        $(this.getDOMNode()).find(' span').tooltip({container: 'body'});
+        //$(this.getDOMNode()).find(' span').tooltip({container: 'body'});
     },
 
     render: function() {
@@ -34,11 +34,11 @@ var FilterItem = React.createClass({
                                 </div>;
         }
         if (this.props.selected){
-            label = <span title={this.props.name} data-placement="top" className="label-selected">
+            label = <span title={this.props.name} data-placement="top" className="item-label label-selected">
                         {this.props.name}
                     </span>;
         } else {
-            label = <span title={this.props.name} data-placement="top">
+            label = <span title={this.props.name} data-placement="top" className="item-label">
                         {this.props.name}
                     </span>;
         }

@@ -7,6 +7,7 @@
     "modernizr": "~2.8.1",
     "normalize.css": "~3.0.1",
     "es5-shim": "~3.4.0",
+    "jquery-ui": "~1.11.4",
     "bootstrap": "~3.3.2",
     "leaflet": "~0.7.3",
     "esri-leaflet": "~1.0.0-rc.5",
@@ -15,7 +16,6 @@
     "scooch": "~0.5.0",
     "font-awesome": "~4.3.0",
     "esri-leaflet-renderers": "https://github.com/Esri/esri-leaflet-renderers.git#~0.0.1-beta.3",
-    "jquery-ui": "~1.11.4",
     "malihu-custom-scrollbar-plugin": "~3.0.8"
   },
   "devDependencies": {}
