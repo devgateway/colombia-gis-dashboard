@@ -33,11 +33,12 @@ var SearchInput=React.createClass({
  		this.setState(newState);
 	},
 
+
 	render: function() {
 		console.log("layers->search->search: Render EsriSearch");
 	return(
 
-				<div class="layer-search-wrapper">
+				<div className="layer-search-wrapper">
 					<div className="text-search-wrapper">
 						<div className="search-box">
 							<button type="submit" className="search-button" onClick={this.handleCLick}>
@@ -48,16 +49,17 @@ var SearchInput=React.createClass({
 					</div>
 					<div className="layer-search-options">
 						<ul>
+
 							<li>
 								<CustomCheckbox selected={this.state.feature} onChange={this.checkOption} value="feature"/>
 								Feature Service
 							</li>
 							<li>
-								<CustomCheckbox selected={this.state.feature} onChange={this.checkOption} value="map"/>
+								<CustomCheckbox selected={this.state.map} onChange={this.checkOption} value="map"/>
 								Map Service
 							</li>
 							<li>
-								<CustomCheckbox selected={this.state.feature} onChange={this.checkOption} value="image"/>
+								<CustomCheckbox selected={this.state.image} onChange={this.checkOption} value="image"/>
 								Image Service
 							</li>
 						</ul>			
@@ -110,7 +112,7 @@ var NoResutsMessage=React.createClass(
   		return (
   			<div>
   			<SearchInput  onSearch={this.onSearch}/>
-  			<hr class="h-divider"></hr>
+  			<hr className="h-divider"></hr>
   			{this.props.search && this.props.search.results?
   				<Results  
   				onNextPage={this.handleNextPage}
