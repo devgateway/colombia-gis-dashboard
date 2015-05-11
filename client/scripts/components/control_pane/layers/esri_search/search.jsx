@@ -35,84 +35,91 @@ var SearchInput=React.createClass({
 
 	render: function() {
 		console.log("layers->search->search: Render EsriSearch");
-		return(
+	return(
+
 				<div class="layer-search-wrapper">
 					<div className="text-search-wrapper">
 						<div className="search-box">
-						<button type="submit" className="search-button" onClick={this.handleCLick}>
-							<i className="fa fa-search"></i>
-						</button>
-						<input onKeyPress={this.handleOnkeypress} className="keyword-search" type="text" placeholder="Search layer" ref="search_input"/>
+							<button type="submit" className="search-button" onClick={this.handleCLick}>
+								<i className="fa fa-search"></i>
+							</button>
+							<input onKeyPress={this.handleOnkeypress} className="keyword-search" type="text" placeholder="Search layer" ref="search_input"/>
+						</div>
 					</div>
-				</div>
 					<div className="layer-search-options">
-					<ul>
-						<li>
-							<CustomCheckbox selected={this.state.feature} onChange={this.checkOption} value="feature"/>
-							Feature Service
-						</li>
-						<li>
-							<CustomCheckbox selected={this.state.feature} onChange={this.checkOption} value="map"/>
-							Map Service
-						</li>
-						<li>
-							<CustomCheckbox selected={this.state.feature} onChange={this.checkOption} value="image"/>
-							Image Service
-						</li>
-					</ul>			
-				</div>
-			</div>);
-		}
-	});
+						<ul>
+							<li>
+								<CustomCheckbox selected={this.state.feature} onChange={this.checkOption} value="feature"/>
+								Feature Service
+							</li>
+							<li>
+								<CustomCheckbox selected={this.state.feature} onChange={this.checkOption} value="map"/>
+								Map Service
+							</li>
+							<li>
+								<CustomCheckbox selected={this.state.feature} onChange={this.checkOption} value="image"/>
+								Image Service
+							</li>
+						</ul>			
+					</div>
+				</div>);
 
-var NoResutsMessage=React.createClass({
+	}
+		
+});
+
+
+var NoResutsMessage=React.createClass(
+{
 	render:function(){
 		return <div className="bs-callout bs-callout-info" id="callout-help-text-accessibility">
-					<p>Use input search for finding Arcgis Online Layers and add them to your <code>Map</code></p>
-				</div>
+		<p>Use input search for finding Arcgis Online Layers and add them to your <code>Map</code></p>
+		</div>
 	}
-});
+}
+);
 
 /*
   Root Element input text + search list
   */
+
+
+
   module.exports  = React.createClass({
 
   	handleNextPage:function(){
-  		if (this.query){
-  			this.query.start=this.props.results.nextStart;
-  			this.onSearch(this.query,true)
+  		if (this.state){
+  			var newState=_.assign({},this.state,{'start':this.props.search.nextStart,'append':true});
+ 			this.setState(newState);
+ 			this.props.onSearch(newState);
   		}
   	},
 
-  	onSearch:function(val,append){
-  		this.query=val;
-  		this.props.onSearch(val,append);
+  	onSearch:function(val){
+  		var newState=_.assign(val,{'append':false});
+  		this.setState(newState);
+  		this.props.onSearch(newState);
   	},
 
-  	componentWillReceiveProps:function(nextProps){
-  		
-  	},
 
-	componentWillUpdate:function( nextProps, nextState){
-  		  	
-  	},
+
 
   	render: function() {
+  		
   		console.log("layers->search->search: Render Layer Search");
   		return (
   			<div>
   			<SearchInput  onSearch={this.onSearch}/>
   			<hr class="h-divider"></hr>
-  			{this.props.results && this.props.results.results?
-				<Results  
+  			{this.props.search && this.props.search.results?
+  				<Results  
   				onNextPage={this.handleNextPage}
-  				results={this.props.results} 
+  				search={this.props.search} 
   				onAddLayer={this.props.onAddLayer} 
   				token={this.props.token}  
   				error={this.props.error}/>:<NoResutsMessage/>}
   				
-  			</div>
-  		);
+  				</div>
+  				);
   	}
   });

@@ -20,7 +20,6 @@ module.exports  = React.createClass({
 
   render: function() {
     console.log('popup>render');
-    debugger;
     if (!this.props){
       return (<p></p>)
     }
@@ -31,7 +30,7 @@ module.exports  = React.createClass({
        <div className="panel panel-default" data-reactid="">
          <div className="panel-heading popup-header" data-reactid="">
            <h3 className="panel-title" data-reactid="">{this.props.name}</h3>
-            <span className="title-label"> - Total Activities</span>
+           <span className="title-label"> - Total Activities</span>
          </div>
          <div className="popup-nav-wrapper">
            <nav className="tabs" role="tablist" data-reactid="">
