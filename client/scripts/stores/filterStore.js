@@ -39,7 +39,7 @@ module.exports=Reflux.createStore({
           function(data){
             FilterActions.getListFromAPI.completed(data, filterDefinition);
           }).fail(function(){
-            console.log('layersStore: Error loading data ...');
+            console.log('filterStore: Error loading data ...');
           });
     },
 
