@@ -38,15 +38,39 @@ var Filter  = React.createClass({
         FilterActions.changeAllFilterItemState(filterType, selected);  
     },    
     
+    _showAdvancedMode: function() {
+        this.setState({advancedMode: "true"}); 
+    },    
+    
+    _showBasicMode: function() {
+        this.setState({advancedMode: "false"}); 
+    },    
+    
     componentDidMount: function(){
         $('.item-label').tooltip({container: 'body'});
     },
 
+    getInitialState: function() {
+      this.state = this.state || {};
+      return this.state;
+    },
+
     render: function() {
-      var filters = this.props.type=="basic"? FilterMap.basicFilters : FilterMap.advancedFilters;
+      var filters = FilterMap.filters;
+      var idx = 1;
       var self = this;
         return(
           <div className="activity-nav">
+            <div className="filter-type-wrapper">
+              <ul className="filter-type-label nav nav-tabs">
+                <li className={self.state.advancedMode=="true"? "" : "active"}>
+                  <a href="#" onClick={this._showBasicMode}>Basic Filters</a>
+                </li>
+                <li className={self.state.advancedMode=="true"? "active" : ""}>
+                  <a href="#" onClick={this._showAdvancedMode}>Advanced Filters</a>
+                </li>
+              </ul>
+            </div>
             <TabbedArea className="activities" defaultActiveKey={1}>
               {
                 filters.map(function(filterDefinition){
@@ -59,9 +83,11 @@ var Filter  = React.createClass({
                       var group = <FilterGroupWithSubLevels filterDefinition={filterDefinition} onItemChanged={self._onItemChanged} onAllNoneClicked={self._onAllNoneClicked}/>
                     }                    
                   }
-                  return <TabPane eventKey={parseInt(filterDefinition.index)} tab={filterDefinition.label}>
-                    {group}
-                  </TabPane>                  
+                  if (!filterDefinition.advanced || (filterDefinition.advanced && self.state.advancedMode=="true")){
+                    return <TabPane eventKey={idx++} tab={filterDefinition.label}>
+                      {group}
+                    </TabPane> 
+                  }                 
                 })
               } 
               <TabPane tab="Date">
