@@ -13,7 +13,7 @@ module.exports  = React.createClass({
 
 
   componentDidMount: function(){
-      //$(this.getDOMNode()).mCustomScrollbar({theme:"inset-dark"}); //TODO: can't this be done by a css??  
+      $(this.getDOMNode()).mCustomScrollbar({theme:"inset-dark"}); //TODO: can't this be done by a css??  
   },
 
   render: function() {

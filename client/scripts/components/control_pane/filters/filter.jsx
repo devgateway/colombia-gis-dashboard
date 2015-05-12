@@ -51,20 +51,26 @@ var Filter  = React.createClass({
     },
 
     getInitialState: function() {
-      debugger;
-      this.state = this.state || {
-        advancedMode: "false"
-      };
+      this.state = this.state || {};
       return this.state;
     },
 
     render: function() {
       var filters = FilterMap.advancedFilters;
+      var idx = 1;
       var self = this;
         return(
           <div className="activity-nav">
-            <a onClick={this._showBasicMode}>Basic Filters</a>
-            <a onClick={this._showAdvancedMode}>Advanced Filters</a>
+            <div className="filter-type-wrapper">
+              <ul className="filter-type-label nav nav-tabs">
+                <li className={self.state.advancedMode=="true"? "" : "active"}>
+                  <a href="#" onClick={this._showBasicMode}>Basic Filters</a>
+                </li>
+                <li className={self.state.advancedMode=="true"? "active" : ""}>
+                  <a href="#" onClick={this._showAdvancedMode}>Advanced Filters</a>
+                </li>
+              </ul>
+            </div>
             <TabbedArea className="activities" defaultActiveKey={1}>
               {
                 filters.map(function(filterDefinition){
@@ -78,7 +84,7 @@ var Filter  = React.createClass({
                     }                    
                   }
                   if (!filterDefinition.advanced || (filterDefinition.advanced && self.state.advancedMode=="true")){
-                    return <TabPane eventKey={parseInt(filterDefinition.index)} tab={filterDefinition.label}>
+                    return <TabPane eventKey={idx++} tab={filterDefinition.label}>
                       {group}
                     </TabPane> 
                   }                 
