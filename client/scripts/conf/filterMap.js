@@ -82,6 +82,7 @@ var advancedFilters = [
         {
           index: 1,
           label: 'Locations',
+          advanced: false,
           showTree: true,
           subLevels:[
             {
@@ -104,36 +105,42 @@ var advancedFilters = [
         {
           index: 2,
           label: 'Target Population',
+          advanced: false,
           param: 'tp',
           apiEndPoint: '/json-data/targetPopulation.json'
         },
         {
           index: 3,
           label: 'Development Objectives',
+          advanced: false,
           param: 'do',
           apiEndPoint: '/json-data/doList.json'
         },
         {
           index: 4,
           label: 'Crops',
+          advanced: true,
           param: 'cr',
           apiEndPoint: '/json-data/cropsList.json'
         },
         {
           index: 5,
           label: 'SubActivity Status',
+          advanced: false,
           param: 'st',
           apiEndPoint: '/json-data/subActivityStatus.json'
         },
         {
           index: 6,
           label: 'Sub Implementer',
+          advanced: false,
           param: 'si',
           apiEndPoint: '/json-data/subImplementers.json'
         },
         {
           index: 7,
           label: 'Activity Classification',
+          advanced: false,
           subLevels:[
             {
               level: 1,
@@ -155,6 +162,7 @@ var advancedFilters = [
         {
           index: 8,
           label: 'PPP',
+          advanced: false,
           param: 'pp',
           dataObjectList: [{"id": "on", "name": "With PPP"}, {"id": "off", "name": "Without PPP"}]
         }

@@ -168,3 +168,20 @@ i.fa.fa-search{
   border-left-width: 5px;
   background: rbga(255,255,255,0.6);
 }
+
+::-webkit-scrollbar {
+    width: 6px;
+    height: 1em;      
+}
+::-webkit-scrollbar-button {
+    height: 0px;
+    background: #888;
+}
+::-webkit-scrollbar-track-piece {
+    background: #ddd;
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+    background: #555;
+    border-radius: 10px;
+}

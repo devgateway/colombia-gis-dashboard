@@ -7,13 +7,13 @@ var TabPane = require('react-bootstrap/lib/TabPane');
 
 var Basemaps=require('../map/baseMap.jsx')
 var TabLayerNavigator=require('./layers/tabLayerNavigator.jsx');
-var FilterSelector=require('./filters/filterSelector.jsx')
+var Filter=require('./filters/filter.jsx')
 
 module.exports  = React.createClass({
 
 
   componentDidMount: function(){
-      $(this.getDOMNode()).mCustomScrollbar({theme:"inset-dark"}); //TODO: can't this be done by a css??  
+      //$(this.getDOMNode()).mCustomScrollbar({theme:"inset-dark"}); //TODO: can't this be done by a css??  
   },
 
   render: function() {
@@ -26,7 +26,7 @@ module.exports  = React.createClass({
 
         </TabPane>
         <TabPane className="" eventKey={2} tab="Filters">
-            <FilterSelector/>
+            <Filter/>
         </TabPane>
 
       </TabbedArea>

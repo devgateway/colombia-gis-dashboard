@@ -165,7 +165,6 @@ _handleMoveDown:function(id){
 
 
 render: function() {
-  debugger;
   var sortedLayer=_.sortBy(this.state.layers,'zIndex').reverse();
   return (
     <div className="layer-control">

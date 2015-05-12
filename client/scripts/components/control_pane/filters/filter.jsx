@@ -38,15 +38,33 @@ var Filter  = React.createClass({
         FilterActions.changeAllFilterItemState(filterType, selected);  
     },    
     
+    _showAdvancedMode: function() {
+        this.setState({advancedMode: "true"}); 
+    },    
+    
+    _showBasicMode: function() {
+        this.setState({advancedMode: "false"}); 
+    },    
+    
     componentDidMount: function(){
         $('.item-label').tooltip({container: 'body'});
     },
 
+    getInitialState: function() {
+      debugger;
+      this.state = this.state || {
+        advancedMode: "false"
+      };
+      return this.state;
+    },
+
     render: function() {
-      var filters = this.props.type=="basic"? FilterMap.basicFilters : FilterMap.advancedFilters;
+      var filters = FilterMap.advancedFilters;
       var self = this;
         return(
           <div className="activity-nav">
+            <a onClick={this._showBasicMode}>Basic Filters</a>
+            <a onClick={this._showAdvancedMode}>Advanced Filters</a>
             <TabbedArea className="activities" defaultActiveKey={1}>
               {
                 filters.map(function(filterDefinition){
@@ -59,9 +77,11 @@ var Filter  = React.createClass({
                       var group = <FilterGroupWithSubLevels filterDefinition={filterDefinition} onItemChanged={self._onItemChanged} onAllNoneClicked={self._onAllNoneClicked}/>
                     }                    
                   }
-                  return <TabPane eventKey={parseInt(filterDefinition.index)} tab={filterDefinition.label}>
-                    {group}
-                  </TabPane>                  
+                  if (!filterDefinition.advanced || (filterDefinition.advanced && self.state.advancedMode=="true")){
+                    return <TabPane eventKey={parseInt(filterDefinition.index)} tab={filterDefinition.label}>
+                      {group}
+                    </TabPane> 
+                  }                 
                 })
               } 
               <TabPane tab="Date">
