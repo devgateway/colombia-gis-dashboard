@@ -62,12 +62,12 @@ var Filter  = React.createClass({
         return(
           <div className="activity-nav">
             <div className="filter-type-wrapper">
-              <ul className="filter-type-label nav nav-tabs">
-                <li className={self.state.advancedMode=="true"? "" : "active"}>
-                  <a href="#" onClick={this._showBasicMode}>Basic Filters</a>
+              <ul className="filter-type-label">
+                <li>
+                  <span  className={self.state.advancedMode=="true"? "" : "active"} onClick={this._showBasicMode}>Basic Filters</span>
                 </li>
-                <li className={self.state.advancedMode=="true"? "active" : ""}>
-                  <a href="#" onClick={this._showAdvancedMode}>Advanced Filters</a>
+                <li>
+                  <span className={self.state.advancedMode=="true"? "active" : ""} onClick={this._showAdvancedMode}>Advanced Filters</span>
                 </li>
               </ul>
             </div>

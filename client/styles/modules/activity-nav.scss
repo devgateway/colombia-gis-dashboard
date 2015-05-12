@@ -11,7 +11,7 @@
   margin-top: $gutter/1.2;
 
   ul.filter-type-label {
-    padding-left:0;
+    padding-left:15px;
 
    li{
       @extend .map-panel-label;
@@ -26,11 +26,11 @@
         padding-right:$gutter;
         margin-right: $gutter;
       }
-      a {
+      span {
         color: $grey;
         font-size:0.9em;
         line-height:10%;
-
+        cursor: pointer;
         &:hover,
         &.active {
           color: $blue;
