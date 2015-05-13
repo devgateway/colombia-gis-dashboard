@@ -7,64 +7,65 @@ var Util = require('../api/util.js');
 var API = require('../api/esri.js');
 var _ = require('lodash');
 
-var storedState;//= require('./layer_samples.js')
+var storedState; //= require('./layer_samples.js')
 
 module.exports = Reflux.createStore({
 
 	listenables: ArcgisLayersActions,
-	
-	onAddLayerToMap: function(layerInfo) {
-		if (!_.findWhere(this.state.layers,{id:layerInfo.id})) {
-			this.state.layers.push(layerInfo);
+
+	onAddLayerToMap: function(layer) {
+		if (!_.findWhere(this.state.layers, {id: layer.id})) {
+			this.state.layers.push(layer);
+			_.assign(layer, {'opacity': 1,'zIndex': this.nextZindex(),'visible':true});
 			this.trigger(this.state);
 		}
+
 	},
 
-
-
-	onServiceCreated:function(layerInfo){
-		_.assign(_.findWhere(this.state.layers,{id:layerInfo.id}),{created:true})
+	onServiceCreated: function(id) {
+		_.assign(_.findWhere(this.state.layers, {id: id}), {
+			created: true
+		})
 	},
 
-
-	onLayerAdded:function(leaFletLayerInfo){
-		
-		_.assign(leaFletLayerInfo,{'opacity':1,'zIndex':this.nextZindex()});
-
-		this.state.leafletLayers.push(leaFletLayerInfo);
+	onLayerAdded: function(id) {
+		var layer = _.findWhere(this.state.layers, {id: id});
+		_.assign(layer, {'added':true});
 		this.trigger(this.state);
-		
 	},
 
-	onChangeLayerValue:function(property,id,value){
+	onChangeLayerValue: function(property, id, value) {
 		console.log(arguments);
-		var theLayer=_.findWhere(this.state.leafletLayers,{'id':id});
-			
-		if(property=='opacity'){
-			theLayer.opacity=value;
+		var theLayer = _.findWhere(this.state.layers, {
+			'id': id
+		});
+
+		if (property == 'moveDown') {
+			var currentZindex = theLayer.zIndex;
+			if (currentZindex > 0) {
+				var newZindex = currentZindex - 1;
+				var replaceWith = _.findWhere(this.state.layers, {
+					zIndex: newZindex
+				});
+				theLayer.zIndex = newZindex; //the layer gets z-index-1
+				replaceWith.zIndex = currentZindex; //the one that was in tha position takes  theLayer's z-index
+			}
+		} else if (property == 'moveUp') {
+			var currentZindex = theLayer.zIndex;
+			if (currentZindex < this.state.layers.length) {
+				//next will be 
+				var newZindex = currentZindex + 1;
+				var replaceWith = _.findWhere(this.state.layers, {
+					zIndex: newZindex
+				});
+				theLayer.zIndex = newZindex; //the layer gets z-index-1
+				replaceWith.zIndex = currentZindex; //the one that was in tha position takes  theLayer's z-index
+			}
+		} else {
+			theLayer[property] = value;
 		}
 
-		if(property=='moveDown'){
-			var currentZindex=theLayer.zIndex;
-				if (currentZindex >0){
-					//next will be 
-					var newZindex=currentZindex-1;
-					var replaceWith=_.findWhere(this.state.leafletLayers,{zIndex:newZindex});
-					theLayer.zIndex=newZindex; //the layer gets z-index-1
-					replaceWith.zIndex=currentZindex; //the one that was in tha position takes  theLayer's z-index
-				}
-		}
 
-		if(property=='moveUp'){
-			var currentZindex=theLayer.zIndex;
-				if (currentZindex < this.state.leafletLayers.length-1){
-					//next will be 
-					var newZindex=currentZindex+1;
-					var replaceWith=_.findWhere(this.state.leafletLayers,{zIndex:newZindex});
-					theLayer.zIndex=newZindex; //the layer gets z-index-1
-					replaceWith.zIndex=currentZindex; //the one that was in tha position takes  theLayer's z-index
-				}
-		}
 		this.trigger(this.state)
 
 	},
@@ -77,25 +78,21 @@ module.exports = Reflux.createStore({
 		}
 	},
 
-	nextZindex:function(){
-		if (!this.lastZindex){
-			this.lastZindex=0
+	nextZindex: function() {
+		if (!this.lastZindex) {
+			this.lastZindex = 0
 		}
-		return  this.lastZindex++;
+		return this.lastZindex++;
 	},
 
 	getInitialState: function() {
 		if (!this.state) {
 			this.state = storedState || {
-				layers: [],
-				leafletLayers:[]
+				layers: []
 			};
 		}
 		return this.state;
 	},
 
-	getControlLayers:function(){
-		return this.state.leafletLayers;
-	}
 
 });
