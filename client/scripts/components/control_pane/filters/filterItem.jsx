@@ -11,10 +11,6 @@ var FilterItem = React.createClass({
        this.props.onItemChanged(this.props.filterType, value, selected);
     },
  
-    componentDidMount: function(){
-        //$(this.getDOMNode()).find(' span').tooltip({container: 'body'});
-    },
-
     render: function() {
         //console.log("filters->filter-item: render");
         var childSelectedCount = "";

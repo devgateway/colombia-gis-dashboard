@@ -13,7 +13,7 @@ module.exports=Reflux.createStore({
     listenables: FilterActions,
     // Initial setup
     init: function() {
-        this.state = {};
+        this.state = {pendingLoad: 0};
         var self = this;
         var filters = FilterMap.getFilterFlatList();
         filters.map(function(item, idx){ 
@@ -35,6 +35,7 @@ module.exports=Reflux.createStore({
     },
 
     onGetListFromAPI: function(filterDefinition) {
+        this.state.pendingLoad = this.state.pendingLoad + 1;
         API.getListFromAPI(filterDefinition).then(
           function(data){
             FilterActions.getListFromAPI.completed(data, filterDefinition);
@@ -86,6 +87,7 @@ module.exports=Reflux.createStore({
     },
 
     onGetListFromAPICompleted: function(data, filterDefinition){
+        this.state.pendingLoad = this.state.pendingLoad - 1;
         this.state[filterDefinition.param] = data;
          if (filterDefinition.parentParamField){
             this.state[filterDefinition.param].map(function (it){
@@ -103,7 +105,7 @@ module.exports=Reflux.createStore({
     onChangeFilterItemState:function(filterType, id, value){
         var filterDefinition = FilterMap.getFilterDefinitionByParam(filterType);
         var childFilterDefinition = FilterMap.getFilterDefinitionByParam(filterDefinition.childParam);
-        if (childFilterDefinition){ //if the item is parent, then select children
+        if (childFilterDefinition.param){ //if the item is parent, then select children
             this.state[childFilterDefinition.param].map(function (it){
                 if (it[childFilterDefinition.parentParamField]==id){
                     it.selected = value;

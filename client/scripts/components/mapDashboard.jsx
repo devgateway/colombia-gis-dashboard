@@ -16,7 +16,9 @@ module.exports = React.createClass({
 
 
 	_getMap:function(){
-		return this.refs.map.getMap();
+		if (this.refs.map){
+			return this.refs.map.getMap();
+		}
 	},
 
 	_getControl:function(){
