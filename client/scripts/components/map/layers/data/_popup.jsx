@@ -2,8 +2,16 @@
 
 var React = require('react');
 var Reflux = require('reflux');
+var TabbedArea = require('react-bootstrap/lib/TabbedArea');
+var TabPane = require('react-bootstrap/lib/TabPane');
+var InfoWindowMap = require('../../../../conf/infoWindowMap.js');
+var InfoWindowActions=require('../../../../actions/infoWindowActions.js');
+var InfoWindowStore=require('../../../../stores/infoWindowStore.js');
+var MyChart=require('./_charts.js');
+
 
 module.exports  = React.createClass({
+  mixins: [Reflux.connect(InfoWindowStore)],
 
   componentDidMount:function(){
     console.log('popup>componentDidMount');
@@ -11,85 +19,46 @@ module.exports  = React.createClass({
 
   componentWillMount:function(){
     console.log('popup>componentWillMount');
+    this._getCostShareBreakDown(); 
   },
 
-  handleClick:function(){
-    alert('handleClick');
+  _getCostShareBreakDown: function () {
+      return InfoWindowActions.getInfoFromAPI(InfoWindowMap.getCostShareBreakDown()) || [];
+  },
+
+  _getDevelopmentObjectives: function () {
+      return InfoWindowActions.getInfoFromAPI(InfoWindowMap.getDevelopmentObjectives()) || [];
+  },
+
+  handleSelect(key) {
+    console.log('popup>handleSelect key=' + key);
+    if(key == "1"){
+        this._getCostShareBreakDown();
+    } else if(key == "2"){
+        this._getDevelopmentObjectives();
+    }
   },
 
 
   render: function() {
     console.log('popup>render');
+    debugger;
+    var self = this;
     if (!this.props){
       return (<p></p>)
     }
+    
     return (
-
-    <div className="leaflet-popup-content-wrapper">
-     <div className="leaflet-popup-content">
-       <div className="panel panel-default" data-reactid="">
-         <div className="panel-heading popup-header" data-reactid="">
-           <h3 className="panel-title" data-reactid="">{this.props.name}</h3>
-           <span className="title-label"> - Total Activities</span>
-         </div>
-         <div className="popup-nav-wrapper">
-           <nav className="tabs" role="tablist" data-reactid="">
-             <ul className="tabs nav nav-tabs" role="tablist" data-reactid="">
-               <li className="active" data-reactid="" role="tab">
-                 <a href="#" data-reactid="">
-                   <span className="popup-icon chart"></span>
-                 </a>
-               </li>
-               <li className="" data-reactid="" role="tab">
-                 <a href="#" data-reactid="">
-                   <span className="popup-icon funding-dev-obj"></span>
-                 </a>
-               </li>
-               <li className="" data-reactid="" role="tab">
-                 <a href="#" data-reactid="">
-                   <span className="popup-icon subactivities"></span>
-                 </a>
-               </li>
-               <li data-reactid="">
-                 <a href="#" data-reactid="" role="tab">
-                   <span className="popup-icon export"></span>
-                 </a>
-               </li>
-             </ul>
-           </nav>
-         </div>
-         <div className="panel-body" data-reactid="">
-           <div className="popup-content">
-
-             This is where the chart will be displayed. We could also have a text.
-
-             <h4>Sub-Activities</h4>
-
-             <ul>
-               <li>This is subactivity 1</li>
-               <li>This is subactivity 2</li>
-               <li>This is subactivity 3</li>
-               <li><a href="#">This is subactivity 4</a></li>
-             </ul>
-
-             This is where the chart will be displayed. We could also have a text.
-
-             <h4>Sub-Activities</h4>
-
-             <ul>
-               <li>This is subactivity 1</li>
-               <li>This is subactivity 2</li>
-               <li>This is subactivity 3</li>
-               <li><a href="#">Example of a link</a></li>
-             </ul>
-
-
-           </div>
-
-         </div>
-       </div>
-     </div>
-   </div>
+      <div className="leaflet-popup-content-wrapper">
+        <TabbedArea className="leaflet-popup-content" defaultActiveKey={1} onSelect={this.handleSelect}>
+          <TabPane className="popup-icon chart" eventKey={1} tab="By Origin">
+              <MyChart infoWindow={this.state.infoWindow} type="pie"/>
+          </TabPane>
+          <TabPane className="popup-icon funding-dev-obj" eventKey={2} tab="By Objective" >
+              <MyChart infoWindow={this.state.infoWindow} type="treeMap"/>
+          </TabPane>
+        </TabbedArea>
+      </div>
 
      )
 }
