@@ -28,6 +28,10 @@ var FilterItemList = React.createClass({
         }
     },
 
+    componentDidMount: function(){
+        $('.item-label').tooltip({container: 'body'});
+    },
+    
     render: function() {
         var showOnlySelected = this.props.showOnlySelected;
         var items = this.props.items;
