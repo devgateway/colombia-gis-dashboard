@@ -22,47 +22,27 @@ module.exports  = React.createClass({
     };
   },
   
-  componentWillMount: function() {
-    this.setState({
-      open: this.props.open
-    });
-  },
-  
-  componentWillReceiveProps: function(props) {
-    this.setState({
-      open: props.open
-    });
-  },
-  
-  open: function() {
+  toggle: function() {
+    $(this.getDOMNode()).find(".slider_content").toggle( "slide" );
     this.setState({
       open: true
     });
   },
-
-  close: function() {
-    this.setState({
-      open: false
-    });
-  },
-
-  toggle: function() {
-    this.setState({
-      open: !this.state.open
-    });
-  },
   
   render: function() {
+    var content = this.state.open? this.props.children : "";
     return (
       <div id="sidebar-wrapper">
-      <div className="panel-toggle">
-      <i className="fa fa-bars" onClick={this.state.open?this.close:this.open}></i>
-      </div>
-      <ReactCSSTransitionGroup  transitionName="slider" component="div">
-      {this.state.open && <BarContent key="content"> {this.props.children} </BarContent>}
-      </ReactCSSTransitionGroup>
+        <div className="panel-toggle">
+          <i className="fa fa-bars" onClick={this.toggle}></i>
+        </div>
+        
+        <div className="slider_content">
+          {this.props.children}
+        </div>
       </div>
       );
   } 
 
 });
+

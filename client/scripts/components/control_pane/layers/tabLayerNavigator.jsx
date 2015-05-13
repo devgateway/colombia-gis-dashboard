@@ -45,7 +45,7 @@ module.exports  = React.createClass({
 			<TabbedArea ref="tabbedArea" className="activities" defaultActiveKey={1} onSelect={this._handleSelect}>
 					<TabPane   key={1} eventKey={1} tab="Map Layers" >
 					<DataLayersManager/>
-					<LayerControl {...this.props} ref="layerControl"/>
+					
 					</TabPane>
 
 					<TabPane key={2} eventKey={2} tab="Find External Layers">

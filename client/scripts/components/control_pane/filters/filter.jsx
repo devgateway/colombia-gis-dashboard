@@ -46,10 +46,6 @@ var Filter  = React.createClass({
         this.setState({advancedMode: "false"}); 
     },    
     
-    componentDidMount: function(){
-        $('.item-label').tooltip({container: 'body'});
-    },
-
     getInitialState: function() {
       this.state = this.state || {};
       return this.state;
@@ -59,6 +55,9 @@ var Filter  = React.createClass({
       var filters = FilterMap.filters;
       var idx = 1;
       var self = this;
+        if (this.state.pendingLoad>0){
+          return null; //it doesn't render until all filters lists are loaded
+        }
         return(
           <div className="activity-nav">
             <div className="filter-type-wrapper">
