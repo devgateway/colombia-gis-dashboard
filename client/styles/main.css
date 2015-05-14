@@ -1132,7 +1132,8 @@ ul.tabs {
 
 .layer-control li {
   margin: 5px;
-  height: 50px; }
+  height: 50px;
+  width: 55%; }
 .layer-control .horizontal-slider {
   width: 150px;
   height: 10px;
@@ -1156,6 +1157,15 @@ ul.tabs {
   border: 1px solid green; }
 .layer-control .newStyle {
   border: 1px solid red; }
+
+.fa.fa-arrow-up,
+.fa.fa-arrow-down {
+  margin-top: 10px;
+  float: right;
+  color: #4d749f; }
+  .fa.fa-arrow-up:hover,
+  .fa.fa-arrow-down:hover {
+    color: #e9ba00; }
 
 .layer-control .horizontal-slider .bar {
   top: 3px;

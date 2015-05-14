@@ -83,6 +83,7 @@
   li{
     margin:5px;
     height:50px;
+    width:55%;
   }
 
   .horizontal-slider {
@@ -129,8 +130,16 @@
 }
 
 // layer controls
-.fa.fa-arrow-up{
+.fa.fa-arrow-up,
+.fa.fa-arrow-down{
+  margin-top:10px;
+  @include floatRight;
+  color:$blue;
+  &:hover{
+    color:$yellow;
+  }
 }
+
 
 .layer-control{
   .horizontal-slider{
