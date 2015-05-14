@@ -16,7 +16,6 @@ var SelectionCounter = React.createClass({
     },
 
     render: function() {
-        var divStyle = {display: 'inline'};
         return(
               <div className="filter-count">
                   <span>[</span>

@@ -283,3 +283,6 @@ input[type=checkbox].glyphicon {
   @include noOutline;
   }
 }
+.item-label{
+  cursor: pointer;
+}
