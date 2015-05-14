@@ -551,7 +551,7 @@ ul.basemap-list {
   background: #ffffff;
   width: 460px;
   margin-left: -105px; }
-  .m-center:not(.m-fluid) > .m-scooch-inner > * .filter-label {
+  .m-center:not(.m-fluid) > .m-scooch-inner > * .filter-label, .m-center:not(.m-fluid) > .m-scooch-inner > * .layer-control h3, .layer-control .m-center:not(.m-fluid) > .m-scooch-inner > * h3 {
     font-size: 0.9em;
     color: #454545; }
   .m-center:not(.m-fluid) > .m-scooch-inner > * .filter-selectors {
@@ -671,7 +671,7 @@ button.layer-search {
     .filter-count a:hover {
       color: #98ca68; }
 
-.filter-label {
+.filter-label, .layer-control h3 {
   font-size: 1.2em;
   color: #454545; }
 
@@ -1130,9 +1130,50 @@ ul.tabs {
   font-size: 0.9em;
   padding-right: 0.4em; }
 
-.layerList h3 {
-  font-size: 1em;
-  color: #000000; }
+.layer-control li {
+  margin: 5px;
+  height: 50px;
+  width: 55%; }
+.layer-control .horizontal-slider {
+  width: 150px;
+  height: 10px;
+  margin-left: 20px; }
+.layer-control .bar {
+  position: relative;
+  background: #ddd; }
+.layer-control .bar.bar-1 {
+  background: #f00; }
+.layer-control .bar.bar-2 {
+  background: #0f0; }
+.layer-control .horizontal-slider .bar {
+  top: 5px;
+  height: 10px; }
+.layer-control .horizontal-slider .handle {
+  top: 1px;
+  width: 10px;
+  height: 20px;
+  line-height: 10px; }
+.layer-control .handle {
+  border: 1px solid green; }
+.layer-control .newStyle {
+  border: 1px solid red; }
+
+.fa.fa-arrow-up,
+.fa.fa-arrow-down {
+  margin-top: 10px;
+  float: right;
+  color: #4d749f; }
+  .fa.fa-arrow-up:hover,
+  .fa.fa-arrow-down:hover {
+    color: #e9ba00; }
+
+.layer-control .horizontal-slider .bar {
+  top: 3px;
+  height: 17px; }
+.layer-control .handle {
+  background: #4d749f; }
+  .layer-control .handle:hover {
+    background: #e9ba00; }
 
 .arcgis-sig-in {
   position: absolute;
