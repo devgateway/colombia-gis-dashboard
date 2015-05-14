@@ -78,12 +78,12 @@
 }
 .layer-control {
   h3 {
-    font-size: 1em;
-    color: $black;
+    @extend .filter-label;
   }
   li{
     margin:5px;
     height:50px;
+    width:55%;
   }
 
   .horizontal-slider {
@@ -129,5 +129,27 @@
 
 }
 
+// layer controls
+.fa.fa-arrow-up,
+.fa.fa-arrow-down{
+  margin-top:10px;
+  @include floatRight;
+  color:$blue;
+  &:hover{
+    color:$yellow;
+  }
+}
 
 
+.layer-control{
+  .horizontal-slider{
+    .bar{
+      top:3px;
+      height:17px;
+    }
+  }
+  .handle{
+    background: $blue;
+    &:hover{ background: $yellow}
+  }
+}
