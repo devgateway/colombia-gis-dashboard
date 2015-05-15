@@ -29,7 +29,6 @@ var FilterItem = React.createClass({
 
     render: function() {
         //console.log("filters->filter-item: render");
-        debugger;
         var childSelectedCount = "";
         var className = "filter-col";
         var collapseDiv = "";
