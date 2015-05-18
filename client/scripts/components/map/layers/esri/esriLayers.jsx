@@ -14,6 +14,48 @@ var ImageServerClass = L.esri.imageMapLayer;
 var API = require('../../../../api/esri.js');
 var _ = require('lodash');
 
+//Adding some leaflet hooks
+L.Path.prototype.setOpacity=function(value){
+ this._path.setAttribute('stroke-opacity', value)
+ this._path.setAttribute('fill-opacity', value);
+}
+
+L.Path.prototype.hide=function(value){
+
+  this._path.style.display='none';
+}
+L.Path.prototype.show=function(value){
+  this._path.style.display='block';
+}
+
+
+L.Marker.prototype.hide=function(){
+  this._icon.style.display='none'
+}
+L.Marker.prototype.show=function(){
+  this._icon.style.display='block'
+}
+
+
+L.FeatureGroup.prototype.setOpacity=function(value){
+  _.map(this._layers,function(l){
+    l.setOpacity(value)
+  })
+}
+
+L.FeatureGroup.prototype.show=function(value){
+  _.map(this._layers,function(l){
+    l.show()
+  })
+}
+
+L.FeatureGroup.prototype.hide=function(value){
+  _.map(this._layers,function(l){
+    l.hide()
+  })
+}
+
+//
 
 function writeLog(message){
   console.log('Map>esriLayers: '+message)
@@ -46,8 +88,8 @@ function writeLog(message){
     }; //create a new array in order to isolate the state
   },
 
-  _addToList: function(leafletLayer, id) {
-
+  _addToList: function(leafletLayer, id, index) {
+    var id=id +( (index!=undefined)?'-'+index.toString():'');
     this.state.leafletLayers[id] = leafletLayer; //keep related the real leaflet layer and the layer metadata comming from the store 
   },
 
@@ -80,7 +122,6 @@ function writeLog(message){
   },
 
   _loadLayers: function(layers) {
-     debugger;
     var newLayers = _.filter(layers,{created:undefined});
     newLayers.map(function(l) {
       if (l.type === "Feature Service") {
@@ -117,18 +158,26 @@ function writeLog(message){
   },
 
   _createFeatureService: function(layer) {
+
     var featureLayers = [];
     var baseURL = layer.url;
     //feature layer is an special case we need to redenr all the sub layers
-    layer.layer.layers.map(function(layer) {
-      var url = baseURL + (layer ? '/' + layer.id.toString() : '');
-      var lLayer = API.createLefleatLayer(FeatureLayerClass, {}, url);
-      // this._addLayer(lLayer); //map layer, feature layer, esri service 
-      var title = layer.name;
+    layer.layer.layers.map(function(l) {
+      var url = baseURL + (l ? '/' + l.id.toString() : '');
+      var lLayer = API.createLefleatLayer(FeatureLayerClass, {onEachFeature:function(feature, layer){
+        // console.log(layer)
+      }}, url);
+
+      lLayer.on('createfeature',function(){
+      //  called each time a feature is created;
+    })
+
+      var title = l.name;
       var obj = new Object();
       obj[title] = lLayer;
       featureLayers.push(obj);
-
+      this._addLayer(lLayer);
+      this._addToList(lLayer, layer.id,l.id); //keep internal state 
     }.bind(this));
 
     this._onCreated(layer.id);
@@ -143,30 +192,63 @@ function writeLog(message){
   },
 
   _updateLayers: function(layers) {        
-    debugger;
-    layers.map(function(l) {
-      var leafletLayer = this.state.leafletLayers[l.id]; ///find layer by metadata id 
-      if (!leafletLayer) {
-        return;
-      }
-      //set leaflet layers properties from metadata values 
-      leafletLayer.setOpacity(l.opacity);
-      leafletLayer.setZIndex(l.zIndex);
-      leafletLayer._update();
+
+   layers.map(function(l) {
+
+    if(l.type=='Feature Service'){
+
+      _.map(l.layer.layers,function(fl){
+        var index=fl.id.toString();
+              var leafletLayer = this.state.leafletLayers[l.id+'-'+index]; ///find layer by metadata id 
+              var features=_.values(leafletLayer._layers);
+              debugger;
+
+              _.map(features,function(feature){
+                try{
+                  if(l.layers_opacity){
+                    feature.setOpacity(l.layers_opacity[[fl.id]] || l.opacity);
+                  }
+
+                  if (l.layers_visible && l.layers_visible[fl.id]){
+                    feature.show();
+                  }else{
+                    feature.hide();
+                  }
+
+                }catch(error){
+                  console.log('error');
+                }
+              })
+
+            }.bind(this));   
+
+
+
+    }else{
+
+    var leafletLayer = this.state.leafletLayers[l.id]; ///find layer by metadata id 
+
+    if (!leafletLayer) {
+      return;
+    }
+        //set leaflet layers properties from metadata values 
+        leafletLayer.setOpacity(l.opacity);
+        leafletLayer.setZIndex(l.zIndex * 3000);
+        leafletLayer._update();
       if (l.visible) { //check if metadata is visible 
         this._addLayer(leafletLayer);
       } else {
         this._removeLayer(leafletLayer);
       }
+    }
 
+  }.bind(this));
+},
 
-    }.bind(this));
-  },
-
-  componentDidMount: function() {
-    this._enableMapListeners();
-    if (this.state.layers.length > 0) {
-      this._loadLayers(); //load default layers
+componentDidMount: function() {
+  this._enableMapListeners();
+  if (this.state.layers.length > 0) {
+      this._loadLayers(this.state.layers); //load default layers
     }
   },
 

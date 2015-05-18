@@ -5,7 +5,9 @@ var Reflux = require('reflux');
 var TabbedArea = require('react-bootstrap/lib/TabbedArea');
 var TabPane = require('react-bootstrap/lib/TabPane');
 var DataLayersManager=require('./data_map_layers/manager.jsx');
-var LayerControl=require('../../map/layers/manager/layerControl.jsx');
+
+var LayerControl=require('../../map/layers/esri/layerControl.jsx');
+
 var EsriSearch = require('./esri_search/search.jsx');
 var EsriLoginStore=require('../../../stores/arcgisLoginStore.js');
 var ArcgisLayersActions=require('../../../actions/ArcgisLayersActions.js');
@@ -45,7 +47,7 @@ module.exports  = React.createClass({
 			<TabbedArea ref="tabbedArea" className="activities" defaultActiveKey={1} onSelect={this._handleSelect}>
 					<TabPane   key={1} eventKey={1} tab="Map Layers" >
 					<DataLayersManager/>
-					
+					<LayerControl/>
 					</TabPane>
 
 					<TabPane key={2} eventKey={2} tab="Find External Layers">
