@@ -23,33 +23,32 @@ var FilterGroup = React.createClass({
     _filterByKeyword: function (keyword) {
         var items;
         if (keyword) {
-            // filter the collection
             var pattern = new RegExp(keyword, 'i');
-            this.props.filterDefinition.subLevels.map(function(filterDefinition){ 
+            var levels = this.props.filterDefinition.subLevels;
+            for (var i = levels.length; i > 0; i--) {;// iterate array backwards
+                var filterDefinition = levels[i-1];
                 FilterStore.getAll(filterDefinition.param).map(function (item) {
                     if (!pattern.test(item.name)){
-                        if (filterDefinition.parentParam){
-                            if (FilterStore.getAll(filterDefinition.parentParam).filter(
-                                function(i){return i.id==item[filterDefinition.parentParamField]})[0].hide){
-                                    item.hide= true;
-                                }
-                        } else {
-                            item.hide = true;
-                        }
-                    } else {
-                        if (filterDefinition.parentParam){
-                            FilterStore.getAll(filterDefinition.parentParam).filter(
-                                function(i){return i.id==item[filterDefinition.parentParamField]}
-                            )[0].hide = false;
-                        }
+                        item.hide = true;
                         if (filterDefinition.childParam){
                             FilterStore.getChildren(item, FilterMap.getFilterDefinitionByParam(filterDefinition.childParam))
-                                .map(function(i){i.hide = false;});
+                                .map(function(i){
+                                    if (i.hide == false){
+                                        item.hide = false;
+                                    }
+                                });
+                        } 
+                    } else {
+                        if (filterDefinition.childParam){
+                            FilterStore.getChildren(item, FilterMap.getFilterDefinitionByParam(filterDefinition.childParam))
+                                .map(function(i){
+                                    i.hide = false;
+                                });
                         }
                         item.hide = false;
                     }
                 });
-            });                    
+            }                        
         } else {
             // display the original collection
             this.props.filterDefinition.subLevels.map(function(filterDefinition){ 

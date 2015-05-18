@@ -55,11 +55,27 @@ var filters = [
         },
         {
           index: 6,
-          label: 'Sub Implementer',
+          label: 'Sub Implementers',
           advanced: false,
-          param: 'si',
-          apiEndPoint: '/json-data/subImplementers.json'
-        },
+          showTree: true,
+          subLevels:[
+            {
+              level: 1,
+              childParam: 'si',
+              label: 'Sub Implementers Type',
+              param: 'sit',
+              apiEndPoint: '/json-data/subImplementersType.json'
+            },
+            {
+              level: 2,
+              parentParam: 'sit',
+              label: 'Sub Implementers',
+              param: 'si',
+              parentParamField: 'idType',
+              apiEndPoint: '/json-data/subImplementers.json'
+            }
+          ]
+        }, 
         {
           index: 7,
           label: 'Activity Classification',

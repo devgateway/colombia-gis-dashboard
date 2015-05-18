@@ -49,7 +49,7 @@ var FilterItemList = React.createClass({
                             onItemChanged={self.props.onItemChanged}
                             id={this.props.parent.id}
                             name={this.props.parent.name}
-                            selected={this.props.parent.selected}
+                            selected={this.props.parent.selected || false}
                             filterType={filterDefinition.parentParam}
                             childSelectedCount={childSelectedCount}
                             onExpandCollapse={self._expandCollapse}
@@ -77,7 +77,7 @@ var FilterItemList = React.createClass({
                                         onItemChanged={self.props.onItemChanged}
                                         id={item.id}
                                         name={item.name}
-                                        selected={item.selected}
+                                        selected={item.selected || false}
                                         filterType={filterDefinition.param}
                                         childSelectedCount={childSelectedCount}/>
                                 </li>;
