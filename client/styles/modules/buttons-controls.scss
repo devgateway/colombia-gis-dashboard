@@ -69,6 +69,10 @@
 .m-fade-out {
   -webkit-mask-image: none;
 }
+.scooch-disabled {
+  color: rgba(168, 165, 165, 0.8) !important;
+  cursor: default !important;
+}
 .m-scooch-controls {
   margin-left: -15px;
   position: absolute;
@@ -78,9 +82,14 @@
   &:hover {
     text-decoration: none;
   }
-  a {
+  span {
     @include noOutline;
     text-decoration: none;
+    cursor: pointer;
+    color: #7493B4;
+    &:hover {
+      color: #13538B;
+    }
   }
   &.right{ right:-15px}
   &.left{ left:-2px}
