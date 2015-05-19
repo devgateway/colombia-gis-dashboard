@@ -39,6 +39,9 @@ var FilterItemList = React.createClass({
         var self = this;
         var parent = "";
         var listClass = "filter-list";
+        if (filterDefinition.labelFunction){
+            var labelFunction = new Function('return ' + filterDefinition.labelFunction)();
+        } 
         if (this.props.parentSelectable){
             listClass += " tabbed";
             var _parent = this.props.parent;
@@ -48,7 +51,7 @@ var FilterItemList = React.createClass({
                             <FilterItem
                             onItemChanged={self.props.onItemChanged}
                             id={this.props.parent.id}
-                            name={this.props.parent.name}
+                            name={labelFunction? labelFunction(this.props.parent.name) : this.props.parent.name}
                             selected={this.props.parent.selected || false}
                             filterType={filterDefinition.parentParam}
                             childSelectedCount={childSelectedCount}
@@ -76,7 +79,7 @@ var FilterItemList = React.createClass({
                                     <FilterItem
                                         onItemChanged={self.props.onItemChanged}
                                         id={item.id}
-                                        name={item.name}
+                                        name={labelFunction? labelFunction(item.name) : item.name}
                                         selected={item.selected || false}
                                         filterType={filterDefinition.param}
                                         childSelectedCount={childSelectedCount}/>

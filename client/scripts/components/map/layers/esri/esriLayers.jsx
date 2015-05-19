@@ -201,8 +201,7 @@ function writeLog(message){
         var index=fl.id.toString();
               var leafletLayer = this.state.leafletLayers[l.id+'-'+index]; ///find layer by metadata id 
               var features=_.values(leafletLayer._layers);
-              debugger;
-
+              
               _.map(features,function(feature){
                 try{
                   if(l.layers_opacity){
