@@ -13,7 +13,7 @@ var FilterSubLevel = require('./filterSubLevel.jsx');
 var FilterGroup = React.createClass({
 
     getInitialState: function() {
-        return {selectedItems: []};
+        return {pageLimit: 'left'};
     },
 
     _filterByKeyword: function (keyword) {
@@ -43,8 +43,22 @@ var FilterGroup = React.createClass({
         $('.m-scooch').scooch();
     },
    
-    render: function() {
+    _movePrev: function(){
+        if ($(this.getDOMNode()).find('.m-active').is(':first-child')){
+            this.setState({'pageLimit': 'left'});
+        }
+    },
+   
+    _moveNext: function(){
+        if ($(this.getDOMNode()).find('.m-active').is(':last-child')){
+            this.setState({'pageLimit': 'right'});
+        }
+    },
+   
+    render: function() {    
         var self = this;
+        var prevClass = this.state.pageLimit=='left'? "scooch-prev scooch-disabled" : "scooch-prev";
+        var nextClass = this.state.pageLimit=='right'? "scooch-next scooch-disabled" : "scooch-next";
         return(
             <div className="filter-group-panel selected">
                 <KeywordSearch onSearch={this._filterByKeyword}/>
@@ -65,11 +79,11 @@ var FilterGroup = React.createClass({
                         }
                     </div>
                     <div className="m-scooch-controls m-scooch-pagination left">
-                        <a className="scooch-prev" href="#" data-m-slide="prev">&laquo;</a>
+                        <span className={prevClass} onClick={this._movePrev} data-m-slide="prev">&laquo;</span>
                     </div>
 
                     <div className="m-scooch-controls m-scooch-pagination right">
-                      <a className="scooch-next" href="#" data-m-slide="next">&raquo;</a>
+                      <span className={nextClass} onClick={this._moveNext} data-m-slide="next">&raquo;</span>
                     </div>
 
                 </div>

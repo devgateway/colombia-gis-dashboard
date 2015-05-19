@@ -1,6 +1,13 @@
 
 'use strict';
-     
+
+var capitalizeLocation = function (label){
+    str = label.toLowerCase();
+    return str[0].toUpperCase() + str.replace(/ ([a-z])/g, function(a, b)         {
+        return ' ' + b.toUpperCase();
+    }).slice(1);
+};  
+
 var filters = [
         {
           index: 1,
@@ -13,6 +20,7 @@ var filters = [
               childParam: 'mu',
               label: 'Departaments',
               param: 'de',
+              labelFunction: capitalizeLocation.toString(),
               apiEndPoint: window.DATA_PATH + '/departmentList.json'
             },
             {
@@ -21,6 +29,7 @@ var filters = [
               label: 'Municipalities',
               param: 'mu',
               parentParamField: 'idDepto',
+              labelFunction: capitalizeLocation.toString(),
               apiEndPoint: window.DATA_PATH + '/municipalitiesList.json'
             }
           ]
