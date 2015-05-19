@@ -4,69 +4,85 @@ var React = require('react');
 var Reflux = require('reflux');
 var TabbedArea = require('react-bootstrap/lib/TabbedArea');
 var TabPane = require('react-bootstrap/lib/TabPane');
-var InfoWindowMap = require('../../../../conf/infoWindowMap.js');
-var InfoWindowActions=require('../../../../actions/infoWindowActions.js');
 var InfoWindowStore=require('../../../../stores/infoWindowStore.js');
 var MyChart=require('./_charts.js');
 
 module.exports  = React.createClass({
   mixins: [Reflux.connect(InfoWindowStore)],
 
-  componentDidMount:function(){
-    console.log('popup>componentDidMount');
+
+  componentWillUpdate: function(props,newState) {  
+    console.log('popup>componentWillUpdate');
   },
 
-  componentWillMount:function(){
-    console.log('popup>componentWillMount');
-    this._getCostShareBreakDown(this.props.id); 
+  handleClick:function(){
+    console.log('popup>handleClick');
+    
   },
-
-
-  _getCostShareBreakDown: function (id) {
-      return InfoWindowActions.getInfoFromAPI(InfoWindowMap.getCostShareBreakDown(), id) || [];
-  },
-
-  _getDevelopmentObjectives: function (id) {
-      return InfoWindowActions.getInfoFromAPI(InfoWindowMap.getDevelopmentObjectives(), id) || [];
-  },
-
-  handleSelect(key) {
-    console.log('popup>handleSelect selectedKey=' + key);
-    this.setState({key});
-    if(key == "1"){
-        this._getCostShareBreakDown();
-    } else if(key == "2"){
-        this._getDevelopmentObjectives();
-    }
-  },
-
 
   render: function() {
-    console.log('popup>render');
+    console.log('popup>render id:' + this.props.id);
     var self = this;
-    if (!this.props){
-      return (<p></p>)
-    }
-    var chartType = "pie";
-    if(this.state.key=="2"){
-      chartType = "treeMap";
-    }
-    var chart;
-    if(this.state.infoWindow){
-      chart = <MyChart infoWindow={this.state.infoWindow} type={chartType}/>;
+    
+    var chartData = [];
+    if(self.state.infoWindow){
+      self.state.infoWindow.map(function(node, index) {
+        node.value.map(function(innerNode, index) {
+          if(innerNode.id==self.props.id){
+            chartData.push(innerNode.value);
+          }
+        });
+      });
     } 
+
     
     return (
-      <div className="leaflet-popup-content-wrapper">
-        <TabbedArea className="leaflet-popup-content" defaultActiveKey={1}>
-          <TabPane className="popup-icon chart" eventKey={1} tab="By Origin">
-            {chart}
-          </TabPane>
-          <TabPane className="popup-icon funding-dev-obj" eventKey={2} tab="By Objective" >
-          </TabPane>
-        </TabbedArea>
 
-      </div>
+    <div className="leaflet-popup-content-wrapper">
+     <div className="leaflet-popup-content">
+       <div className="panel panel-default" data-reactid="">
+         <div className="panel-heading popup-header" data-reactid="">
+           <h3 className="panel-title" data-reactid="">{this.props.name}</h3>
+           <span className="title-label"> - Total Activities</span>
+         </div>
+         <div className="popup-nav-wrapper">
+           <nav className="tabs" role="tablist" data-reactid="">
+             <ul className="tabs nav nav-tabs" role="tablist" data-reactid="">
+               <li className="active" role="tab" >
+                 <a href="#" onClick={this.handleClick}>
+                   <span className="popup-icon chart" data-reactid=""></span>
+                 </a>
+               </li>
+               <li className="" role="tab" >
+                 <a href="#" onClick={this.handleClick}>
+                   <span className="popup-icon funding-dev-obj" data-reactid=""></span>
+                 </a>
+               </li>
+               <li className="" role="tab" >
+                 <a href="#" onClick={this.handleClick}>
+                   <span className="popup-icon subactivities" data-reactid=""></span>
+                 </a>
+               </li>
+               <li className="" role="tab" >
+                 <a href="#" onClick={this.handleClick}>
+                   <span className="popup-icon export" data-reactid=""></span>
+                 </a>
+               </li>
+             </ul>
+           </nav>
+         </div>
+         <div className="panel-body" data-reactid="">
+           <div className="popup-content">
+
+             <MyChart data={chartData[0]} />
+
+
+           </div>
+
+         </div>
+       </div>
+     </div>
+   </div>
 
      )
 }

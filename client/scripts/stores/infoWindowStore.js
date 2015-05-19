@@ -14,24 +14,18 @@ module.exports=Reflux.createStore({
         var self = this; 
     },
 
-    onGetInfoFromAPI: function(infoDefinition, id) {
+    onGetInfoFromAPI: function(infoDefinition) {
         console.log("stores->infoWindowStore: onGetInfoFromAPI");
-        this.state[infoDefinition.key] = [];
         API.getInfoFromAPI(infoDefinition).then(
           function(data){
-            InfoWindowActions.getInfoFromAPI.completed(data, id);
+            InfoWindowActions.getInfoFromAPI.completed(data, infoDefinition);
           }).fail(function(){
             console.log('infoWindowStore: Error loading data ...');
           });
     },
 
-    onGetInfoFromAPICompleted: function(data, id){
-        var self = this;
-        data.map(function(node, index) {
-            if(node.id == id){
-                self.state['infoWindow'] = node.value;
-            }
-        });
+    onGetInfoFromAPICompleted: function(data, infoDefinition){
+        this.state['infoWindow'] = data;
         this.output();
     },
 
