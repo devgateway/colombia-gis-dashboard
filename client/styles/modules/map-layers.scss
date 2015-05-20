@@ -31,7 +31,7 @@
 .title {
   color: $black;
   font-size: 1.1em;
-  line-height: 100%;
+  line-height: 120%;
   margin-bottom: $gutter/2;
   white-space: no-wrap;
   overflow: hidden;
@@ -78,34 +78,29 @@
 }
 .layer-control {
   h3 {
-    font-size: 1.4em;
-    color: $black;
-    font-weight: bold;
+  @extend .filter-label;
   }
-
-
+  ul{
+    padding-left:0;
   li{
+    padding: 3px;
     margin-left: -15px;
+    display:block;
+
     margin-bottom: 20px;
 
     .ui-slider-pip {
-      top: 28px; 
+      top: 30px;
     }
 
     .ui-slider-pip .ui-slider-label {
-      top: -18px; 
+      top: -18px;
     }
-
     .title{
       font-size: 1em;
-      color: $blue;
-      clear: right;
+      color: $grey;
+      line-height:150%;
     }
-    .updown{
-      float: left;  
-      margin-right: 5px;
-    }
-
     .slider-holder{
       position: relative;
       display: block;
@@ -129,14 +124,43 @@
         margin-left: 10px;
       }
 
+.updown{
+  float: left;
+  margin-right: 5px;
+  width:35px;
+}
       .clear-fix{
         clear: both;
       }
     }
     
 
-  }  
-
+.fa.fa-arrow-down{
+  margin-left:$gutter/2;
+}
+.fa.fa-arrow-down,
+.fa.fa-arrow-up{
+  color: $blue;
+  &:hover{ color: $green}
 }
 
-
+// new slider controls
+.ui-state-default,
+.ui-widget-content .ui-state-default,
+.ui-widget-header .ui-state-default{
+  background: $blue;
+  @include transitionAll;
+  outline:none;
+  &:hover{ background: $green;}
+}
+.ui-slider-horizontal{
+  .ui-slider-handle{
+    margin-top:0.15em;
+  }
+}
+.ui-slider-horizontal{
+  height:1em;
+}
+.ui-slider-label {
+  color: $blue;
+}

@@ -1,6 +1,13 @@
 
 'use strict';
-     
+
+var capitalizeLocation = function (label){
+    str = label.toLowerCase();
+    return str[0].toUpperCase() + str.replace(/ ([a-z])/g, function(a, b)         {
+        return ' ' + b.toUpperCase();
+    }).slice(1);
+};  
+
 var filters = [
         {
           index: 1,
@@ -13,7 +20,8 @@ var filters = [
               childParam: 'mu',
               label: 'Departaments',
               param: 'de',
-              apiEndPoint: '/json-data/departmentList.json'
+              labelFunction: capitalizeLocation.toString(),
+              apiEndPoint: window.DATA_PATH + '/departmentList.json'
             },
             {
               level: 2,
@@ -21,7 +29,8 @@ var filters = [
               label: 'Municipalities',
               param: 'mu',
               parentParamField: 'idDepto',
-              apiEndPoint: '/json-data/municipalitiesList.json'
+              labelFunction: capitalizeLocation.toString(),
+              apiEndPoint: window.DATA_PATH + '/municipalitiesList.json'
             }
           ]
         }, 
@@ -30,28 +39,28 @@ var filters = [
           label: 'Target Population',
           advanced: false,
           param: 'tp',
-          apiEndPoint: '/json-data/targetPopulation.json'
+          apiEndPoint: window.DATA_PATH + '/targetPopulation.json'
         },
         {
           index: 3,
           label: 'Development Objectives',
           advanced: false,
           param: 'do',
-          apiEndPoint: '/json-data/doList.json'
+          apiEndPoint: window.DATA_PATH + '/doList.json'
         },
         {
           index: 4,
           label: 'Crops',
           advanced: true,
           param: 'cr',
-          apiEndPoint: '/json-data/cropsList.json'
+          apiEndPoint: window.DATA_PATH + '/cropsList.json'
         },
         {
           index: 5,
           label: 'SubActivity Status',
           advanced: false,
           param: 'st',
-          apiEndPoint: '/json-data/subActivityStatus.json'
+          apiEndPoint: window.DATA_PATH + '/subActivityStatus.json'
         },
         {
           index: 6,
@@ -64,7 +73,7 @@ var filters = [
               childParam: 'si',
               label: 'Sub Implementers Type',
               param: 'sit',
-              apiEndPoint: '/json-data/subImplementersType.json'
+              apiEndPoint: window.DATA_PATH + '/subImplementersType.json'
             },
             {
               level: 2,
@@ -72,7 +81,7 @@ var filters = [
               label: 'Sub Implementers',
               param: 'si',
               parentParamField: 'idType',
-              apiEndPoint: '/json-data/subImplementers.json'
+              apiEndPoint: window.DATA_PATH + '/subImplementers.json'
             }
           ]
         }, 
@@ -86,7 +95,7 @@ var filters = [
               childParam: 'ac1',
               label: 'Activity Classification Type',
               param: 'ac',
-              apiEndPoint: '/json-data/clasificationType.json'
+              apiEndPoint: window.DATA_PATH + '/clasificationType.json'
             },
             {
               level: 2,
@@ -94,7 +103,7 @@ var filters = [
               label: 'Activity Classification Sub-Type 1',
               param: 'ac1',
               parentParamField: 'idTipo',
-              apiEndPoint: '/json-data/clasificationSubType.json'
+              apiEndPoint: window.DATA_PATH + '/clasificationSubType.json'
             }
           ]
         },

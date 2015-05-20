@@ -15,7 +15,6 @@
     }
 }
 
-
 .btn-apply {
   @extend .btn;
   color: $white;
@@ -75,8 +74,11 @@
   top: 90px;
   font-size: 40px;
   z-index:0;
+  cursor:pointer;
+  @include transitionAll;
   &:hover {
     text-decoration: none;
+    color: $green;
   }
   a {
     @include noOutline;
@@ -93,6 +95,10 @@
   float: right;
   z-index: 300;
 }
+.scooch-disabled {
+display:none;
+}
+
 // layer search button
 button.layer-search {
   @extend .btn-apply;
