@@ -3,24 +3,35 @@
 		"title": " Esta area puede ser usada para un titulo largo",
 		"credits" : "Todos los derecho ..  AidData",
 		"description": "MAPA:"
-		},
+	},
 
-		"layers": {
-			"search":"Buscar en AGOL",
-			"byDepartment":"Por Departamento",
-			"byMunicipality":"Por Municipalidad"
-		},
+	"filters": {
+		"title":"Filtros",
+		"selectAll":"seleccionar todos",
+		"deselectAll":"deseleccionar todos",
+		"searchFilters":"Buscar filtros",
+		"reset":"Reiniciar",
+		"apply":"Aplicar",
+		"showAll":"Mostrar todos",
+		"showOnlySelected":"Mostrar solo los seleccionados"
+	},
 
-		"map": {
-			"baseMaps":{
-				"title":"Mapa Base:",
-				"gray":"Gris",
-				"topo":"Topográfico",
-				"natGeo":"National Geographic",
-				"darkGray":"Gris Oscuro",
-				"image":"Imagenes",
-				"streets":"Calles"
-			}
+	"layers": {
+		"search":"Buscar en AGOL",
+		"byDepartment":"Por Departamento",
+		"byMunicipality":"Por Municipalidad"
+	},
 
+	"map": {
+		"baseMaps":{
+			"title":"Mapa Base:",
+			"gray":"Gris",
+			"topo":"Topográfico",
+			"natGeo":"National Geographic",
+			"darkGray":"Gris Oscuro",
+			"image":"Imagenes",
+			"streets":"Calles"
 		}
+
+	}
 }

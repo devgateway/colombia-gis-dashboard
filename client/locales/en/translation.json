@@ -3,25 +3,36 @@
 		"title": "This area can be translated as a written legend of what is being actualized on the map",
 		"credits" : "Copy Rigths AidData",
 		"description": "Map description -"
-		},
+	},
 
-		"layers": {
-			"search":"Search Layers",
-			"byDepartment":"Departments",
-			"byMunicipality":"Municipalities"
-		},
+	"filters": {
+		"title":"Filters",
+		"selectAll":"select all",
+		"deselectAll":"deselect all",
+		"searchFilters":"Search filters",
+		"reset":"Reset",
+		"apply":"Apply",
+		"showAll":"Show all",
+		"showOnlySelected":"Show only selected"
+	},
 
-		"map": {
-			"baseMaps":{
-				"title":"Base Maps:",
-				"gray":"Gray",
-				"topo":"Topographic",
-				"natGeo":"National Geographic",
-				"darkGray":"Dark Gray",
-				"image":"Imagery",
-				"streets":"Streets"
-			}
+	"layers": {
+		"search":"Search Layers",
+		"byDepartment":"Departments",
+		"byMunicipality":"Municipalities"
+	},
 
-
+	"map": {
+		"baseMaps":{
+			"title":"Base Maps:",
+			"gray":"Gray",
+			"topo":"Topographic",
+			"natGeo":"National Geographic",
+			"darkGray":"Dark Gray",
+			"image":"Imagery",
+			"streets":"Streets"
 		}
+
+
+	}
 }
