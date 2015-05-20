@@ -15,7 +15,6 @@
     }
 }
 
-
 .btn-apply {
   @extend .btn;
   color: $white;
@@ -69,27 +68,21 @@
 .m-fade-out {
   -webkit-mask-image: none;
 }
-.scooch-disabled {
-  color: rgba(168, 165, 165, 0.8) !important;
-  cursor: default !important;
-}
 .m-scooch-controls {
   margin-left: -15px;
   position: absolute;
   top: 90px;
   font-size: 40px;
   z-index:0;
+  cursor:pointer;
+  @include transitionAll;
   &:hover {
     text-decoration: none;
+    color: $green;
   }
-  span {
+  a {
     @include noOutline;
     text-decoration: none;
-    cursor: pointer;
-    color: #7493B4;
-    &:hover {
-      color: #13538B;
-    }
   }
   &.right{ right:-15px}
   &.left{ left:-2px}
@@ -102,6 +95,10 @@
   float: right;
   z-index: 300;
 }
+.scooch-disabled {
+display:none;
+}
+
 // layer search button
 button.layer-search {
   @extend .btn-apply;
