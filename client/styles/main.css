@@ -191,6 +191,7 @@ h2 {
     cursor: pointer; }
 
 .slider_content {
+  display: none;
   width: 705px;
   height: 88%;
   overflow: hidden;
@@ -365,7 +366,7 @@ ul.tabbed {
   overflow: hidden;
   margin-top: 0.83333em; }
   .filter-type-wrapper ul.filter-type-label {
-    padding-left: 0; }
+    padding-left: 15px; }
     .filter-type-wrapper ul.filter-type-label li {
       float: left;
       padding-left: 0;
@@ -377,11 +378,12 @@ ul.tabbed {
         border-right: 1px solid #ababab;
         padding-right: 1em;
         margin-right: 1em; }
-      .filter-type-wrapper ul.filter-type-label li a {
+      .filter-type-wrapper ul.filter-type-label li span {
         color: #454545;
         font-size: 0.9em;
-        line-height: 10%; }
-        .filter-type-wrapper ul.filter-type-label li a:hover, .filter-type-wrapper ul.filter-type-label li a.active {
+        line-height: 10%;
+        cursor: pointer; }
+        .filter-type-wrapper ul.filter-type-label li span:hover, .filter-type-wrapper ul.filter-type-label li span.active {
           color: #4d749f; }
       .filter-type-wrapper ul.filter-type-label li .fa {
         margin-right: 0.5em;
@@ -778,7 +780,7 @@ input[type=checkbox].glyphicon {
   text-overflow: ellipsis; }
 
 .filter-col-parent {
-  width: 510px;
+  width: 545px;
   font-weight: bold;
   color: #787878;
   line-height: 2.2em;
@@ -794,6 +796,7 @@ input[type=checkbox].glyphicon {
   margin-left: 0.4em; }
 
 .parent-toggle {
+  cursor: pointer;
   position: absolute;
   right: 1.1em;
   font-style: italic;
@@ -872,6 +875,13 @@ input[type=checkbox].glyphicon {
   font-size: 1em;
   padding: 4px;
   outline: none; }
+
+.item-label {
+  cursor: pointer; }
+
+.label-selected {
+  font-weight: bold;
+  color: #454545; }
 
 nav.tab-navigation,
 nav.tabs {
@@ -1047,7 +1057,7 @@ button.search-button {
   overflow: hidden; }
 
 .tab-content {
-  min-height: 280px;
+  min-height: 600px;
   height: auto;
   overflow: hidden;
   width: 99%;
@@ -1130,50 +1140,49 @@ ul.tabs {
   font-size: 0.9em;
   padding-right: 0.4em; }
 
-.layer-control li {
-  margin: 5px;
-  height: 50px;
-  width: 55%; }
-.layer-control .horizontal-slider {
-  width: 150px;
-  height: 10px;
-  margin-left: 20px; }
-.layer-control .bar {
-  position: relative;
-  background: #ddd; }
-.layer-control .bar.bar-1 {
-  background: #f00; }
-.layer-control .bar.bar-2 {
-  background: #0f0; }
-.layer-control .horizontal-slider .bar {
-  top: 5px;
-  height: 10px; }
-.layer-control .horizontal-slider .handle {
-  top: 1px;
-  width: 10px;
-  height: 20px;
-  line-height: 10px; }
-.layer-control .handle {
-  border: 1px solid green; }
-.layer-control .newStyle {
-  border: 1px solid red; }
+.layer-control ul {
+  padding-left: 0; }
+  .layer-control ul li {
+    padding: 3px;
+    display: block; }
+    .layer-control ul li .ui-slider-pip {
+      top: 30px; }
+    .layer-control ul li .ui-slider-pip .ui-slider-label {
+      top: -18px; }
+    .layer-control ul li .title {
+      font-size: 1em;
+      color: #454545; }
+    .layer-control ul li .updown {
+      float: left;
+      margin-right: 5px; }
+    .layer-control ul li .slider-holder {
+      position: relative;
+      display: block;
+      width: 200px;
+      margin-left: 25px; }
 
-.fa.fa-arrow-up,
-.fa.fa-arrow-down {
-  margin-top: 10px;
-  float: right;
+.ui-state-default,
+.ui-widget-content .ui-state-default,
+.ui-widget-header .ui-state-default {
+  background: #4d749f;
+  -webkit-transition: all 600ms ease;
+  -moz-transition: all 600ms ease;
+  -o-transition: all 600ms ease;
+  transition: all 600ms ease;
+  outline: none; }
+  .ui-state-default:hover,
+  .ui-widget-content .ui-state-default:hover,
+  .ui-widget-header .ui-state-default:hover {
+    background: #98ca68; }
+
+.ui-slider-horizontal .ui-slider-handle {
+  margin-top: 0.15em; }
+
+.ui-slider-horizontal {
+  height: 1em; }
+
+.ui-slider-label {
   color: #4d749f; }
-  .fa.fa-arrow-up:hover,
-  .fa.fa-arrow-down:hover {
-    color: #e9ba00; }
-
-.layer-control .horizontal-slider .bar {
-  top: 3px;
-  height: 17px; }
-.layer-control .handle {
-  background: #4d749f; }
-  .layer-control .handle:hover {
-    background: #e9ba00; }
 
 .arcgis-sig-in {
   position: absolute;
