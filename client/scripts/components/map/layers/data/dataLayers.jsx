@@ -93,17 +93,100 @@ module.exports = React.createClass({
   _bindPopup:function(feature, layer){
     layer.bindPopup('');
     layer.on('popupopen', function(e) {
-      var popupHolder= document.createElement('div');
+      var popupHolder=this.getDOMNode();
       //document.body.appendChild(popupHolder);
+      //
       
-      React.render(React.createElement(Popup, feature.properties, this.state.data), popupHolder);
+      var _onChange=function(){
+         e.popup.setContent(popupHolder.innerHTML);
+           this.fixReactIds(e.popup);
+         //  this.fixReactEvents(e.popup);
+      }.bind(this)
+
+      React.render(React.createElement(Popup, _.assign(feature.properties,{onChange:_onChange}), this.state.data), popupHolder);
       //this.fixReactIdsFromDiv(popupHolder);
       e.popup.setContent(popupHolder.innerHTML);
+      this.fixReactIds(e.popup);
+      this.fixReactEvents(e.popup);
       //this.fixReactIdsFromDiv(popupHolder);
       //this.fixReactIdsFromPopup(e.popup);
       //document.body.removeChild(popupHolder);
    }.bind(this));  
   },
+
+
+  fixReactIds: function(popup) {
+    var el = popup._container;
+    // replace all the `data-reactid`s so react doesn't get confused.
+    var allEls = el.querySelectorAll('*');
+    Array.prototype.forEach.call(allEls, function(el) {
+      var reactId = el.dataset.reactid;
+      if (reactId !== undefined) {  // leaflet's containers, etc.
+        delete el.dataset.reactid;
+        el.dataset.originalreactid = reactId;
+      }
+    });
+  },
+
+  /**
+   * Proxy all events that react listens for from our popup that react ignores,
+   * to the off-screen popup content that react listens to.
+   * It's awful and it works. Though it may be pretty mouse-event-focused.
+   */
+  fixReactEvents: function(popup) {
+    debugger;
+    var el = popup._contentNode;
+
+    reactEventNames.forEach(function(eventName) {
+      el.addEventListener(eventName, function(e) {
+        debugger;
+        var popupEl = e.target,
+            reactId = e.target.dataset.originalreactid,
+            reactTarget = document.querySelector('[data-reactid="' + reactId + '"]'),
+            proxiedEvent;
+
+        if (typeof window.Event === 'function') {  // IE10+
+          proxiedEvent = new Event(e.type, {
+            bubbles: e.bubbles,
+            cancelable: e.cancelable,
+            view: e.view,
+            detail: e.detail,
+            screenX: e.screenX,
+            screenY: e.screenY,
+            clientX: e.clientX,
+            clientY: e.clientY,
+            ctrlKey: e.ctrlKey,
+            altKey: e.altKey,
+            shiftKey: e.shiftKey,
+            metaKey: e.metaKey,
+            button: e.button,
+            relatedTarget: e.reactTarget,
+          });
+        } else {  // IE9
+          proxiedEvent = document.createEvent('Event');
+          proxiedEvent.initEvent(
+            e.type,
+            e.bubbles,
+            e.cancelable,
+            'window',  // e.view?
+            e.detail,
+            e.screenX,
+            e.screenY,
+            e.clientX,
+            e.clientY,
+            e.ctrlKey,
+            e.altKey,
+            e.shiftKey,
+            e.metaKey,
+            e.button,
+            e.relatedTarget
+          );
+        }
+        if(reactTarget)
+          reactTarget.dispatchEvent(proxiedEvent);
+      });
+    });
+},
 
   _pointToLayer:function(feature, latlng){
     var marker = new L.Marker(latlng, {icon: NumberedDivIcon({number: feature.properties.activities})});
@@ -118,7 +201,7 @@ module.exports = React.createClass({
 
 
   render: function() {
-   return null;
+   return <div/>;
  }
 
 });
