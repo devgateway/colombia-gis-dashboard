@@ -1104,7 +1104,7 @@ ul.tabs {
 .title {
   color: #000000;
   font-size: 1.1em;
-  line-height: 100%;
+  line-height: 120%;
   margin-bottom: 0.5em;
   white-space: no-wrap;
   overflow: hidden;
@@ -1151,15 +1151,28 @@ ul.tabs {
       top: -18px; }
     .layer-control ul li .title {
       font-size: 1em;
-      color: #454545; }
-    .layer-control ul li .updown {
-      float: left;
-      margin-right: 5px; }
+      color: #454545;
+      line-height: 150%; }
     .layer-control ul li .slider-holder {
       position: relative;
       display: block;
       width: 200px;
       margin-left: 25px; }
+
+.updown {
+  float: left;
+  margin-right: 5px;
+  width: 35px; }
+
+.fa.fa-arrow-down {
+  margin-left: 0.5em; }
+
+.fa.fa-arrow-down,
+.fa.fa-arrow-up {
+  color: #4d749f; }
+  .fa.fa-arrow-down:hover,
+  .fa.fa-arrow-up:hover {
+    color: #98ca68; }
 
 .ui-state-default,
 .ui-widget-content .ui-state-default,

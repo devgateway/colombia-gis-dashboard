@@ -31,7 +31,7 @@
 .title {
   color: $black;
   font-size: 1.1em;
-  line-height: 100%;
+  line-height: 120%;
   margin-bottom: $gutter/2;
   white-space: no-wrap;
   overflow: hidden;
@@ -95,12 +95,8 @@
     .title{
       font-size: 1em;
       color: $grey;
+      line-height:150%;
     }
-    .updown{
-      float: left;
-      margin-right: 5px;
-   }
-
     .slider-holder{
       position: relative;
       display: block;
@@ -110,6 +106,22 @@
     }
   }
 }
+
+.updown{
+  float: left;
+  margin-right: 5px;
+  width:35px;
+}
+
+.fa.fa-arrow-down{
+  margin-left:$gutter/2;
+}
+.fa.fa-arrow-down,
+.fa.fa-arrow-up{
+  color: $blue;
+  &:hover{ color: $green}
+}
+
 // new slider controls
 .ui-state-default,
 .ui-widget-content .ui-state-default,
