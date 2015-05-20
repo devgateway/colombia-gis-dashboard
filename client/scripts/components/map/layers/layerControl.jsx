@@ -3,8 +3,8 @@
 var React = require('react/addons');
 
 var Reflux = require('reflux');
-var ArcgisLayerStore = require('../../../../stores/arcgisLayerStore.js');
-var ArcgisLayerActions = require('../../../../actions/arcgisLayersActions.js')
+var ArcgisLayerStore = require('../../../stores/arcgisLayerStore.js');
+var ArcgisLayerActions = require('../../../actions/arcgisLayersActions.js')
 var _=require('lodash')
 
 
@@ -164,7 +164,7 @@ var FeatureLayer=React.createClass({
       </TogglerContent>
 
       <TogglerContent visibleWhen="expanded">
-      <div toggler={true} className="toggler-btn"><i className="fa fa-minus-square-o"></i></div>
+        <div toggler={true} className="toggler-btn"><i className="fa fa-minus-square-o"></i></div>
       </TogglerContent>
 
       <TogglerContent visibleWhen="always">
@@ -230,13 +230,33 @@ module.exports  = React.createClass({
     var tiles=_.sortBy(_.filter(this.state.layers,{type:'Map Service'}),'zIndex').reverse();
     var features=_.sortBy(_.filter(this.state.layers,{type:'Feature Service'}),'zIndex').reverse();
     return (
-      <ul className="layer-control">
+    <ul className="layer-control">
       <li>
-      <h3>Overlays</h3>
+        <div className="title">Data Layers</div>
+        <ul>
+          <li>
+           <Toggler ref='toggler'>
+            <TogglerContent visibleWhen="collapsed">
+              <div toggler={true} className="toggler-btn"><i className="fa fa-plus-square-o"></i></div>
+            </TogglerContent>
+            <TogglerContent visibleWhen="expanded">
+             <div toggler={true} className="toggler-btn"><i className="fa fa-minus-square-o"></i></div>
+           </TogglerContent>
+           <TogglerContent visibleWhen="always">
+            <div>Funding</div>
+          </TogglerContent>
+          <TogglerContent visibleWhen="expanded">
+            <div>Funding</div>
+          </TogglerContent>
+        </Toggler>
       </li>
+    </ul>
+  </li>
+        
       <li>
-      <div className="title">Data Layers (define options here )</div>
+        <h3>Overlays</h3>
       </li>
+     
       {
         features.map(function(l){
          return (<li>
