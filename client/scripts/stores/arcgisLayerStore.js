@@ -7,7 +7,20 @@ var Util = require('../api/util.js');
 var API = require('../api/esri.js');
 var _ = require('lodash');
 
-var storedState= require('./layer_samples.js');
+var storedState;//= require('./layer_samples.js');
+
+function setVisibility(layers){
+	layers.map(function(l){
+		l.visible=l.defaultVisibility; 
+	})
+	
+}
+function setOpaciy(layers){
+	layers.map(function(l){
+		l.opacity=1; 
+	})
+	
+}
 
 module.exports = Reflux.createStore({
 
@@ -15,9 +28,12 @@ module.exports = Reflux.createStore({
 
 	onAddLayerToMap: function(layer) {
 		if (!_.findWhere(this.state.layers, {id: layer.id})) {
-			var options={'opacity': 1,'visible':true};
+			
+			var options={'opacity': 1,'visible':true}; //default values for all layers 
+
 			if (layer.type=='Feature Service'){
-				//_.assign(options,'zIndexOffset': )				
+				setVisibility(layer.layer.layers);
+				setOpaciy(layer.layer.layers);	
 			}else{
 				_.assign(options,{'zIndex': this.nextZindex()});
 			}
@@ -42,9 +58,10 @@ module.exports = Reflux.createStore({
 	},
 
 	onChangeLayerValue: function(property, id, value, idx) {
+		debugger;
 		console.log(arguments);
 		var theLayer = _.findWhere(this.state.layers, {'id': id});
-		var isTile=theLayer.type!='Feature Service';
+		var isFeature=theLayer.type=='Feature Service';
 
 		if (property == 'moveDown' && isTile) {
 			var currentZindex = theLayer.zIndex;
@@ -67,46 +84,52 @@ module.exports = Reflux.createStore({
 				replaceWith.zIndex = currentZindex; //the one that was in tha position takes  theLayer's z-index
 			}
 		} else {
+			
+				if(!idx){
+					theLayer[property] = value;
+				}
 
-			if (idx){ //if idx is present this is a layer of feature service 
-				var prop='layers_'+property;
-				theLayer[prop]=theLayer[prop]||{}
-				theLayer[prop][idx]=value;
-			}else{
-				theLayer[property] = value;
+				if (isFeature){ //this is feature layer
+					if (idx){
+						_.find(theLayer.layer.layers,{id:parseInt(idx)})[property]=value;	
+					}else{
+						theLayer.layer.layers.map(function(l){
+							l[property]=value
+						})
+					}
+				}
 			}
-		}
-		this.trigger(this.state)
-	},
+			this.trigger(this.state)
+		},
 
-	update: function(assignable, options) {
-		options = options || {};
-		this.state = _.assign(this.state, assignable);
-		if (!options.silent) {
-			this.trigger(this.state);
-		}
-	},
+		update: function(assignable, options) {
+			options = options || {};
+			this.state = _.assign(this.state, assignable);
+			if (!options.silent) {
+				this.trigger(this.state);
+			}
+		},
 
-	nextZindex: function() {
-		if (!this.lastZindex) {
-			this.lastZindex = 0
-		}
-		return this.lastZindex++;
-	},
+		nextZindex: function() {
+			if (!this.lastZindex) {
+				this.lastZindex = 0
+			}
+			return this.lastZindex++;
+		},
 
-	getInitialState: function() {
-		debugger;	
-		if (!this.state) {
-			this.state = storedState || {
-				layers: [],
+		getInitialState: function() {
 
-			};
-		}
-		return this.state;
-	},
+			if (!this.state) {
+				this.state = storedState || {
+					layers: [],
 
+				};
+			}
+			return this.state;
+		},
 
 
 
 
-});
+
+	});

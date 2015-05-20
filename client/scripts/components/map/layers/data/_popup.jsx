@@ -2,6 +2,7 @@
 
 var React = require('react');
 var Reflux = require('reflux');
+var _=require('lodash')
 
 module.exports  = React.createClass({
 
@@ -13,7 +14,10 @@ module.exports  = React.createClass({
     console.log('popup>componentWillMount');
   },
 
-  handleClick:function(){
+  handleClick:function(event){
+   
+   this.setProps(_.assign(this.props,{key:Math.random()}))
+   this.forceUpdate();
     alert('handleClick');
   },
 
@@ -30,7 +34,7 @@ module.exports  = React.createClass({
        <div className="panel panel-default" data-reactid="">
          <div className="panel-heading popup-header" data-reactid="">
            <h3 className="panel-title" data-reactid="">{this.props.name}</h3>
-           <span className="title-label"> - Total Activities</span>
+           <span className="title-label" onClick={this.handleClick}> - Total Activities</span>
          </div>
          <div className="popup-nav-wrapper">
            <nav className="tabs" role="tablist" data-reactid="">

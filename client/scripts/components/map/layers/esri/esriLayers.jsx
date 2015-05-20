@@ -196,25 +196,19 @@ function writeLog(message){
    layers.map(function(l) {
 
     if(l.type=='Feature Service'){
-
-      _.map(l.layer.layers,function(fl){
-        var index=fl.id.toString();
+      debugger;
+      _.map(l.layer.layers,function(featureLayer){
+       var index=featureLayer.id.toString();
               var leafletLayer = this.state.leafletLayers[l.id+'-'+index]; ///find layer by metadata id 
               var features=_.values(leafletLayer._layers);
-              debugger;
-
               _.map(features,function(feature){
                 try{
-                  if(l.layers_opacity){
-                    feature.setOpacity(l.layers_opacity[[fl.id]] || l.opacity);
-                  }
-
-                  if (l.layers_visible && l.layers_visible[fl.id]){
+                  feature.setOpacity(featureLayer.opacity);
+                  if (featureLayer.visible){
                     feature.show();
                   }else{
                     feature.hide();
                   }
-
                 }catch(error){
                   console.log('error');
                 }

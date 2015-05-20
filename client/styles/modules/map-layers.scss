@@ -82,12 +82,16 @@
     color: $black;
     font-weight: bold;
   }
+
+
   li{
-    padding: 3px;
-    
+    margin-left: -15px;
+    margin-bottom: 20px;
+
     .ui-slider-pip {
-      top: 30px; 
+      top: 28px; 
     }
+
     .ui-slider-pip .ui-slider-label {
       top: -18px; 
     }
@@ -96,22 +100,40 @@
       font-size: 1em;
       color: $blue;
       clear: right;
-
-
     }
     .updown{
       float: left;  
       margin-right: 5px;
-   }
+    }
 
     .slider-holder{
-
       position: relative;
       display: block;
       width:200px;
       margin-left: 25px;
     }
+    
+    .feature-checkbox{
+      float:left;
+      margin-top:-5px;
+    }
+    .toggler{
+      
+      .toggler-title{
+        float: left;
+      }
+      
+      .toggler-btn{
+        width: 20px;
+        float: left;
+        margin-left: 10px;
+      }
 
+      .clear-fix{
+        clear: both;
+      }
+    }
+    
 
   }  
 
