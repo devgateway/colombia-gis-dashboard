@@ -18,7 +18,7 @@ module.exports  = React.createClass({
           var l = node.name + " - " +parseInt(node.value);
           data.push({label: l , value:parseInt(parseInt(node.value)/totalValue*100)});
         });
-        return (<div><PieChart data={data} width={320} height={240} radius={70} innerRadius={0} /></div>);
+        return (<div><PieChart data={data} width={310} height={220} radius={60} innerRadius={0} /></div>);
     } else {
         return (<div>No data!</div>);
     }
