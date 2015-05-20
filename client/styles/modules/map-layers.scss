@@ -76,91 +76,105 @@
   font-size: 0.9em;
   padding-right: 0.4em;
 }
+
 .layer-control {
   h3 {
-  @extend .filter-label;
+    @extend .filter-label;
   }
-  ul{
-    padding-left:0;
-  li{
-    padding: 3px;
-    margin-left: -15px;
-    display:block;
+  .ui-slider-pip {
+    top: 30px;
+  }
 
-    margin-bottom: 20px;
+  .ui-slider-pip .ui-slider-label {
+    top: -18px;
+  }
 
-    .ui-slider-pip {
-      top: 30px;
+  .title{
+    font-size: 1em;
+    color: $grey;
+    line-height:150%;
+  }
+
+  .slider-holder{
+    position: relative;
+    display: block;
+    width:200px;
+    margin-left: 25px;
+  }
+
+  .feature-checkbox{
+    float:left;
+    margin-top:-5px;
+  }
+
+  .updown{
+    float: left;
+    margin-right: 5px;
+    width:35px;
+  }
+  
+  .toggler{
+    .toggler-title{
+      float: left;
+    }
+    .toggler-btn{
+      width: 20px;
+      float: left;
+
+    }
+    .updown{
+      float: left;
+      margin-right: 5px;
+      width:35px;
+    }
+    .clear-fix{
+      clear: both;
+    }
+  }
+
+
+  .ui-state-default,
+  .ui-widget-content .ui-state-default,
+  .ui-widget-header .ui-state-default{
+    background: $blue;
+    @include transitionAll;
+    outline:none;
+    &:hover{ background: $green;}
+  }
+  .ui-slider-horizontal{
+    .ui-slider-handle{
+      margin-top:0.15em;
+    }
+  }
+  .ui-slider-horizontal{
+    height:1em;
+  }
+  .ui-slider-label {
+    color: $blue;
+  }
+
+  .fa.fa-arrow-down {
+    margin-left:$gutter/2;
+  }
+  .fa.fa-arrow-down,
+  .fa.fa-arrow-up{
+    color: $blue;
+    &:hover{ color: $green}
+  }
+
+  ul {
+    padding-left:5;
+
+    li{
+      display:block;
+      margin-bottom: 20px;
+
     }
 
-    .ui-slider-pip .ui-slider-label {
-      top: -18px;
-    }
-    .title{
-      font-size: 1em;
-      color: $grey;
-      line-height:150%;
-    }
-    .slider-holder{
-      position: relative;
-      display: block;
-      width:200px;
-      margin-left: 25px;
-    }
-    
-    .feature-checkbox{
-      float:left;
-      margin-top:-5px;
-    }
-    .toggler{
-      
-      .toggler-title{
-        float: left;
-      }
-      
-      .toggler-btn{
-        width: 20px;
-        float: left;
-        margin-left: 10px;
-      }
 
-.updown{
-  float: left;
-  margin-right: 5px;
-  width:35px;
-}
-      .clear-fix{
-        clear: both;
-      }
-    }
-    
-
-.fa.fa-arrow-down{
-  margin-left:$gutter/2;
-}
-.fa.fa-arrow-down,
-.fa.fa-arrow-up{
-  color: $blue;
-  &:hover{ color: $green}
-}
-
-// new slider controls
-.ui-state-default,
-.ui-widget-content .ui-state-default,
-.ui-widget-header .ui-state-default{
-  background: $blue;
-  @include transitionAll;
-  outline:none;
-  &:hover{ background: $green;}
-}
-.ui-slider-horizontal{
-  .ui-slider-handle{
-    margin-top:0.15em;
   }
 }
-.ui-slider-horizontal{
-  height:1em;
-}
-.ui-slider-label {
-  color: $blue;
-}
+
+
+
+
