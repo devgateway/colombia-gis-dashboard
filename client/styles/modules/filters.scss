@@ -286,3 +286,7 @@ input[type=checkbox].glyphicon {
 .item-label{
   cursor: pointer;
 }
+.label-selected{
+  font-weight:bold;
+  color: $grey;
+}
