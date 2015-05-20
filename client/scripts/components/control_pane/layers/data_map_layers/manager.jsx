@@ -59,7 +59,7 @@ module.exports  = React.createClass({
 		return (  
 		<div className="inline">
 			<div className="">
-				<RadioButton name="dataLayer" label="Financing" selected={dataLayer=='funding'? true : false} onClick={this.enableFinancingSelector}/>
+				<RadioButton name="dataLayer" label="layers.funding" selected={dataLayer=='funding'? true : false} onClick={this.enableFinancingSelector}/>
 				<div className={finSelectorClass}>
 					<ul>
 						<li>
@@ -70,7 +70,7 @@ module.exports  = React.createClass({
 				</div>
 			</div>	
 			<div className="">
-				<RadioButton name="dataLayer" label="Indicators" selected={dataLayer=='indicator'? true : false} onClick={this.enableIndicatorSelector}/>
+				<RadioButton name="dataLayer" label="layers.indicators" selected={dataLayer=='indicator'? true : false} onClick={this.enableIndicatorSelector}/>
 				<div className={indSelectorClass}>
 					<ul>
 						<li>

@@ -7,6 +7,14 @@
 
 	"filters": {
 		"title":"Filters",
+		"locations":"Locations",
+		"targetPopulation":"Target Population",
+		"activityClassification":"Activity Classification",
+		"developmentObjectives":"Development Objectives",
+		"subActivityStatus":"SubActivity Status",
+		"subImplementer":"Sub Implementer",
+		"ppp":"PPP",
+		"date":"Date",
 		"selectAll":"select all",
 		"deselectAll":"deselect all",
 		"searchFilters":"Search filters",
@@ -17,6 +25,17 @@
 	},
 
 	"layers": {
+		"title":"Map content",
+		"mapLayers":"Map Layers",
+		"findExtLayers":"Find External Layers",
+		"funding":"Funding",
+		"indicators":"Indicators",
+		"featureService":"Feature Service",
+		"mapService":"Map Service",
+		"imageService":"Image Service",
+		"arcgisLegend":"Use input search for finding Arcgis Online Layers and add them to your Map",
+		"add":"ADD",
+		"loadMoreResults":"CLICK TO ADD MORE RESULTS",
 		"search":"Search Layers",
 		"byDepartment":"Departments",
 		"byMunicipality":"Municipalities"

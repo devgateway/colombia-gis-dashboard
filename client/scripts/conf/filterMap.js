@@ -11,7 +11,7 @@ var capitalizeLocation = function (label){
 var filters = [
         {
           index: 1,
-          label: 'Locations',
+          label: 'filters.locations',
           advanced: false,
           showTree: true,
           subLevels:[
@@ -36,14 +36,14 @@ var filters = [
         }, 
         {
           index: 2,
-          label: 'Target Population',
+          label: 'filters.targetPopulation',
           advanced: false,
           param: 'tp',
           apiEndPoint: window.DATA_PATH + '/targetPopulation.json'
         },
         {
           index: 3,
-          label: 'Development Objectives',
+          label: 'filters.developmentObjectives',
           advanced: false,
           param: 'do',
           apiEndPoint: window.DATA_PATH + '/doList.json'
@@ -64,7 +64,7 @@ var filters = [
         },
         {
           index: 6,
-          label: 'Sub Implementers',
+          label: 'filters.subImplementer',
           advanced: false,
           showTree: true,
           subLevels:[
@@ -87,7 +87,7 @@ var filters = [
         }, 
         {
           index: 7,
-          label: 'Activity Classification',
+          label: 'filters.activityClassification',
           advanced: false,
           subLevels:[
             {
@@ -109,7 +109,7 @@ var filters = [
         },
         {
           index: 8,
-          label: 'PPP',
+          label: 'filters.ppp',
           advanced: false,
           param: 'pp',
           dataObjectList: [{"id": "on", "name": "With PPP"}, {"id": "off", "name": "Without PPP"}]

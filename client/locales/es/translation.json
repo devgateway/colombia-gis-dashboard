@@ -7,6 +7,14 @@
 
 	"filters": {
 		"title":"Filtros",
+		"locations":"Localidades",
+		"targetPopulation":"Población meta",
+		"activityClassification":"Tipo de Actividad",
+		"developmentObjectives":"Objetivos de Desarrollo",
+		"subActivityStatus":"Estado de la SubActividad",
+		"subImplementer":"Sub Implementador",
+		"ppp":"Asociación Publico Privada",
+		"date":"Fecha",
 		"selectAll":"seleccionar todos",
 		"deselectAll":"deseleccionar todos",
 		"searchFilters":"Buscar filtros",
@@ -17,6 +25,17 @@
 	},
 
 	"layers": {
+		"title":"Contenidos del mapa",
+		"mapLayers":"Capas del mapa",
+		"findExtLayers":"Buscar Capas Externas",
+		"funding":"Financiamiento",
+		"indicators":"Indicadores",
+		"featureService":"Servicio de entidades",
+		"mapService":"Servicio de mapas",
+		"imageService":"Servicio de Imágenes",
+		"arcgisLegend":"Utilice la búsqueda para encontrar capas de ArcGIS Online y añadirlos a su Mapa",
+		"add":"ADD",
+		"loadMoreResults":"CLICK TO ADD MORE RESULTS",
 		"search":"Buscar en AGOL",
 		"byDepartment":"Por Departamento",
 		"byMunicipality":"Por Municipalidad"
@@ -29,7 +48,7 @@
 			"topo":"Topográfico",
 			"natGeo":"National Geographic",
 			"darkGray":"Gris Oscuro",
-			"image":"Imagenes",
+			"image":"Imágenes",
 			"streets":"Calles"
 		}
 
