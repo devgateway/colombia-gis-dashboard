@@ -19,7 +19,7 @@ var AddButton= React.createClass({
 			return (<div className="btn btn-xs btn-default">added</div>)
 		}else{
 			return (<button disabled={this.props.disabled}  className={this.props.disabled?"btn btn-xs btn-default":"btn btn-apply"}
-			 onClick={this.handleAdd}>ADD</button>)
+			 onClick={this.handleAdd}><Message message="layers.add"/></button>)
 		}
 	}
 });
@@ -28,7 +28,7 @@ var AddButton= React.createClass({
 var ResultRecord=React.createClass({
 
 	_handleAdd:function(){
-		
+
 		this.props.onAddLayer({'id':this.props.id,'url':this.props.url,'type':this.props.type,title:this.props.title})
 	},
 
@@ -42,17 +42,17 @@ var ResultRecord=React.createClass({
 						</div>
 
 					<div className="layer-info">
-					<div className="title" data-toggle="Loing is required">{this.props.title} {this.props.loginRequired?<i className="text-warning small">Loing is required</i>:''}
+					<div className="title" data-toggle="Loging is required">{this.props.title} {this.props.loginRequired?<i className="text-warning small">Loing is required</i>:''}
 				</div>
-				
+
 				<div className="details">{this.props.snippet}</div>
 				<div className="details small">{this.props.type}  - {this.props.access}</div>
 					<div className="add">
 
-						<AddButton className="btn btn-apply"  
-							onAddLayer={this._handleAdd}  
-							loading={this.props.loading}	
-							error={this.props.error} 
+						<AddButton className="btn btn-apply"
+							onAddLayer={this._handleAdd}
+							loading={this.props.loading}
+							error={this.props.error}
 							loaded={this.props.loaded}
 							disabled={((this.props.loginRequired && !this.props.token)|| this.props.loaded)?true:false}/>
 					</div>
@@ -77,7 +77,7 @@ module.exports=React.createClass({
 
 			<ul className="esri-result-list">
 			{
-				this.props.search.results.map(function(record){ 
+				this.props.search.results.map(function(record){
 					return( <ResultRecord  onAddLayer={this.props.onAddLayer}  token={this.props.token}   {...record}/>
 				)}.bind(this))
 			}
@@ -85,12 +85,12 @@ module.exports=React.createClass({
 			{(this.props.search.nextStart>-1)?(
 				<li>
 					<div className="layer-info text-rigth">
-						<button className="btn btn-info" onClick={this.props.onNextPage}>Click to load more Results</button>
+						<button className="btn btn-apply" onClick={this.props.onNextPage}><Message message="layers.loadMoreResults"/></button>
 					</div>
 				</li>):""
 		}
 
-		</ul>	
+		</ul>
 		</div>
 		);
 	}

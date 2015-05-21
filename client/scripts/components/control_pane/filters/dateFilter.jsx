@@ -41,7 +41,7 @@ var DateFilter = React.createClass({
         return(
             <div className="filter-group-panel selected">
                 <div className="filter-group-panel-header">
-                    <span className="filter-label" role="label">Dates</span>                                                                
+                    <span className="filter-label" role="label"><Message message='filters.date'/></span>                                                                
                 </div>
                 <div className="input-group date">
                     <span className="filter-label" role="label">Start date</span>

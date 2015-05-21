@@ -5,7 +5,6 @@ var React = require('react');
 var Router = require('react-router');
 var Reflux = require('reflux');
 var Link = Router.Link;
-var FilterStore=require('../../../stores/filterStore.js')
 var FilterMap=require('../../../conf/filterMap.js')
 var FilterItemList = require('./filterItemList.jsx');
 var KeywordSearch = require('./keywordSearch.jsx');
@@ -20,40 +19,43 @@ var FilterGroup = React.createClass({
         this.forceUpdate();
     },
 
+    _getChildren: function(parent, childFilterDefinition) {
+        return this.props.subLevelsItems[childFilterDefinition.param].filter(function(it){return it[childFilterDefinition.parentParamField]==parent.id});
+    },
+    
     _filterByKeyword: function (keyword) {
         var items;
         if (keyword) {
-            // filter the collection
             var pattern = new RegExp(keyword, 'i');
-            this.props.filterDefinition.subLevels.map(function(filterDefinition){ 
-                FilterStore.getAll(filterDefinition.param).map(function (item) {
+            var levels = this.props.filterDefinition.subLevels;
+            for (var i = levels.length; i > 0; i--) {;// iterate array backwards
+                var filterDefinition = levels[i-1];
+                this.props.subLevelsItems[filterDefinition.param].map(function (item) {
                     if (!pattern.test(item.name)){
-                        if (filterDefinition.parentParam){
-                            if (FilterStore.getAll(filterDefinition.parentParam).filter(
-                                function(i){return i.id==item[filterDefinition.parentParamField]})[0].hide){
-                                    item.hide= true;
-                                }
-                        } else {
-                            item.hide = true;
-                        }
-                    } else {
-                        if (filterDefinition.parentParam){
-                            FilterStore.getAll(filterDefinition.parentParam).filter(
-                                function(i){return i.id==item[filterDefinition.parentParamField]}
-                            )[0].hide = false;
-                        }
+                        item.hide = true;
                         if (filterDefinition.childParam){
-                            FilterStore.getChildren(item, FilterMap.getFilterDefinitionByParam(filterDefinition.childParam))
-                                .map(function(i){i.hide = false;});
+                            this._getChildren(item, FilterMap.getFilterDefinitionByParam(filterDefinition.childParam))
+                                .map(function(i){
+                                    if (i.hide == false){
+                                        item.hide = false;
+                                    }
+                                });
+                        } 
+                    } else {
+                        if (filterDefinition.childParam){
+                            this._getChildren(item, FilterMap.getFilterDefinitionByParam(filterDefinition.childParam))
+                                .map(function(i){
+                                    i.hide = false;
+                                });
                         }
                         item.hide = false;
                     }
                 });
-            });                    
+            }                        
         } else {
             // display the original collection
             this.props.filterDefinition.subLevels.map(function(filterDefinition){ 
-                FilterStore.getAll(filterDefinition.param).map(function (item) {
+                this.props.subLevelsItems[filterDefinition.param].map(function (item) {
                     item.hide = false;
                 });
             });
@@ -75,14 +77,15 @@ var FilterGroup = React.createClass({
         //console.log("filters->filter-group-tree: render - " + this.props.filterDefinition.label);
         var parentFilterDefinition = this.props.filterDefinition.subLevels[0];
         var childFilterDefinition = this.props.filterDefinition.subLevels[1];
-        var parentLevelItems = FilterStore.getAll(parentFilterDefinition.param) || [];  
-        var childLevelItems = FilterStore.getAll(childFilterDefinition.param) || [];  
+        var parentLevelItems = this.props.subLevelsItems[parentFilterDefinition.param] || [];  
+        var childLevelItems = this.props.subLevelsItems[childFilterDefinition.param] || [];  
+        var childLevelItemsSelected = this.props.subLevelsItems[childFilterDefinition.param].filter(function (data) {return (data.selected);});
         var self = this;
         return(
             <div className="filter-group-panel selected">
                 <div className="filter-group-panel-header">
-                    <span className="filter-label" role="label">{this.props.filterDefinition.label}</span>
-                    <SelectionCounter selected={FilterStore.getAllSelected(childFilterDefinition.param).length} total={childLevelItems.length} onCounterClicked={this._onCounterClicked}/>
+                    <span className="filter-label" role="label">{<Message message={this.props.filterDefinition.label}/>}</span>
+                    <SelectionCounter selected={childLevelItemsSelected.length} total={childLevelItems.length} onCounterClicked={this._onCounterClicked}/>
                     <AllNoneSelector filterType={parentFilterDefinition.param} onAllNoneClicked={self.props.onAllNoneClicked}/>                                         
                 </div>                
                 <KeywordSearch onSearch={this._filterByKeyword}/> 

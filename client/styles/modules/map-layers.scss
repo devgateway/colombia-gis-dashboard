@@ -31,7 +31,7 @@
 .title {
   color: $black;
   font-size: 1.1em;
-  line-height: 100%;
+  line-height: 120%;
   margin-bottom: $gutter/2;
   white-space: no-wrap;
   overflow: hidden;
@@ -50,8 +50,8 @@
   width:116%;
   color:$black;
   margin-bottom:7px;
-&.small{
-  font-size:0.95em;
+  &.small{
+    font-size:0.95em;
   }
 }
 .add{
@@ -76,53 +76,105 @@
   font-size: 0.9em;
   padding-right: 0.4em;
 }
+
 .layer-control {
   h3 {
+    @extend .filter-label;
+  }
+  .ui-slider-pip {
+    top: 30px;
+  }
+
+  .ui-slider-pip .ui-slider-label {
+    top: -18px;
+  }
+
+  .title{
     font-size: 1em;
-    color: $black;
-  }
-  li{
-    margin:5px;
-    height:50px;
+    color: $grey;
+    line-height:150%;
   }
 
-  .horizontal-slider {
-    width: 150px;
-    height: 10px;
-    margin-left:20px
-  }
-
-
-  .bar {
+  .slider-holder{
     position: relative;
-    background: #ddd;
+    display: block;
+    width:200px;
+    margin-left: 25px;
   }
 
-  .bar.bar-1 {
-    background: #f00;
+  .feature-checkbox{
+    float:left;
+    margin-top:-5px;
   }
 
-  .bar.bar-2 {
-    background: #0f0;
+  .updown{
+    float: left;
+    margin-right: 5px;
+    width:35px;
+  }
+  
+  .toggler{
+    .toggler-title{
+      float: left;
+    }
+    .toggler-btn{
+      width: 20px;
+      float: left;
+
+    }
+    .updown{
+      float: left;
+      margin-right: 5px;
+      width:35px;
+    }
+    .clear-fix{
+      clear: both;
+    }
   }
 
-  .horizontal-slider .bar {
-    top: 5px;
-    height: 10px;
+
+  .ui-state-default,
+  .ui-widget-content .ui-state-default,
+  .ui-widget-header .ui-state-default{
+    background: $blue;
+    @include transitionAll;
+    outline:none;
+    &:hover{ background: $green;}
+  }
+  .ui-slider-horizontal{
+    .ui-slider-handle{
+      margin-top:0.15em;
+    }
+  }
+  .ui-slider-horizontal{
+    height:1em;
+  }
+  .ui-slider-label {
+    color: $blue;
   }
 
-  .horizontal-slider .handle {
-    top: 1px;
-    width: 10px;
-    height: 20px;
-    line-height: 10px;
+  .fa.fa-arrow-down {
+    margin-left:$gutter/2;
+  }
+  .fa.fa-arrow-down,
+  .fa.fa-arrow-up{
+    color: $blue;
+    &:hover{ color: $green}
   }
 
-  .handle  {
-    border:1px solid green;
-  }
+  ul {
+    padding-left:5;
 
+    li{
+      display:block;
+      margin-bottom: 20px;
+
+    }
+
+
+  }
 }
+
 
 
 

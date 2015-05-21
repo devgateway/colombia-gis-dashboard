@@ -169,7 +169,7 @@ input[type=checkbox].glyphicon {
 
 .filter-col-parent{
   @extend .filter-col;
-  width:510px;
+  width:545px;
   @include textBold;
   color:lighten($grey,20%);
   line-height:2.2em;
@@ -187,7 +187,8 @@ input[type=checkbox].glyphicon {
    margin-left: $gutter/2.5;
 }
 .parent-toggle{
-  position:absolute;
+  cursor: pointer;
+  position: absolute;
   right: $gutter*1.1;
   font-style: italic;
   font-size:0.8em;
@@ -281,4 +282,11 @@ input[type=checkbox].glyphicon {
   padding:4px;
   @include noOutline;
   }
+}
+.item-label{
+  cursor: pointer;
+}
+.label-selected{
+  font-weight:bold;
+  color: $grey;
 }

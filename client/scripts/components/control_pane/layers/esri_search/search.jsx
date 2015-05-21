@@ -52,15 +52,15 @@ var SearchInput=React.createClass({
 
 							<li>
 								<CustomCheckbox selected={this.state.feature} onChange={this.checkOption} value="feature"/>
-								Feature Service
+								<Message message="layers.featureService"/>
 							</li>
 							<li>
 								<CustomCheckbox selected={this.state.map} onChange={this.checkOption} value="map"/>
-								Map Service
+								<Message message="layers.mapService"/>
 							</li>
 							<li>
 								<CustomCheckbox selected={this.state.image} onChange={this.checkOption} value="image"/>
-								Image Service
+								<Message message="layers.imageService"/>
 							</li>
 						</ul>			
 					</div>
@@ -75,7 +75,7 @@ var NoResutsMessage=React.createClass(
 {
 	render:function(){
 		return <div className="bs-callout bs-callout-info" id="callout-help-text-accessibility">
-		<p>Use input search for finding Arcgis Online Layers and add them to your <code>Map</code></p>
+		<p><Message message="layers.arcgisLegend"/></p>
 		</div>
 	}
 }

@@ -2,7 +2,6 @@
 
 var React = require('react');
 var FilterItem = require('./filterItem.jsx');
-var FilterStore=require('../../../stores/filterStore.js')
 var FilterMap = require('../../../conf/filterMap.js');
 
 var FilterItemList = React.createClass({
@@ -11,10 +10,10 @@ var FilterItemList = React.createClass({
         return {collapsed: this.props.collapsed? true : false};
     },
 
-    _getChildrenSelection: function(parent) {
+    _getChildrenSelectionLabel: function(parent) {
         if (this.props.filterDefinition.childParam){
             var childFilterDefinition = FilterMap.getFilterDefinitionByParam(this.props.filterDefinition.childParam);
-            return FilterStore.getChildrenSelected(parent, childFilterDefinition).length+"/"+FilterStore.getChildren(parent, childFilterDefinition).length;
+            return this._getChildrenSelected(parent, childFilterDefinition).length+"/"+this._getChildren(parent, childFilterDefinition).length;
         } else {
             return null;
         }
@@ -28,6 +27,18 @@ var FilterItemList = React.createClass({
         }
     },
 
+    _getChildren: function(parent, childFilterDefinition) {
+        return this.props.childrenItems.filter(function(it){return it[childFilterDefinition.parentParamField]==parent.id});
+    },
+    
+    _getChildrenSelected: function(parent, childFilterDefinition) {
+        return this.props.childrenItems.filter(function(it){return it[childFilterDefinition.parentParamField]==parent.id  && it.selected});
+    },
+    
+    componentDidMount: function(){
+        $('.item-label').tooltip({container: 'body'});
+    },
+    
     render: function() {
         var showOnlySelected = this.props.showOnlySelected;
         var items = this.props.items;
@@ -35,17 +46,21 @@ var FilterItemList = React.createClass({
         var self = this;
         var parent = "";
         var listClass = "filter-list";
+        if (filterDefinition.labelFunction){
+            var labelFunction = new Function('return ' + filterDefinition.labelFunction)();
+        } 
         if (this.props.parentSelectable){
             listClass += " tabbed";
             var _parent = this.props.parent;
-            var childSelectedCount = FilterStore.getChildrenSelected(_parent, filterDefinition).length+"/"+FilterStore.getChildren(_parent, filterDefinition).length;
-            if ((!_parent.hide && !(showOnlySelected && (!_parent.selected))) || (!_parent.hide && FilterStore.getChildrenSelected(_parent, filterDefinition).length>0)){
+            var itemsSelected = this.props.items.filter(function (data) {return (data.selected);});
+            var childSelectedCount = itemsSelected.length + "/" + this.props.items.length;
+            if ((!_parent.hide && !(showOnlySelected && (!_parent.selected))) || (!_parent.hide && itemsSelected.length>0)){
                 parent = <div className="filter-parent">
                             <FilterItem
                             onItemChanged={self.props.onItemChanged}
                             id={this.props.parent.id}
-                            name={this.props.parent.name}
-                            selected={this.props.parent.selected}
+                            name={labelFunction? labelFunction(this.props.parent.name) : this.props.parent.name}
+                            selected={this.props.parent.selected || false}
                             filterType={filterDefinition.parentParam}
                             childSelectedCount={childSelectedCount}
                             onExpandCollapse={self._expandCollapse}
@@ -60,20 +75,23 @@ var FilterItemList = React.createClass({
         if (this.state.collapsed){
             listClass  += " hide";
         }
+        if (this.props.hide==true){
+            return null;
+        }
         return(
             <div>
                 {parent}
                 <ul className={listClass}>
                     {
                         items.map(function(item){
-                            var childSelectedCount = self._getChildrenSelection(item);
+                            var childSelectedCount = self._getChildrenSelectionLabel(item);
                             if (!item.hide && !(showOnlySelected && (!item.selected))){
                                 return <li key={item.id}>
                                     <FilterItem
                                         onItemChanged={self.props.onItemChanged}
                                         id={item.id}
-                                        name={item.name}
-                                        selected={item.selected}
+                                        name={labelFunction? labelFunction(item.name) : item.name}
+                                        selected={item.selected || false}
                                         filterType={filterDefinition.param}
                                         childSelectedCount={childSelectedCount}/>
                                 </li>;

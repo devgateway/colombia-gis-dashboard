@@ -16,15 +16,14 @@ var SelectionCounter = React.createClass({
     },
 
     render: function() {
-        var divStyle = {display: 'inline'};
         return(
               <div className="filter-count">
                   <span>[</span>
-                  <span title="Show All" data-placement="top">
+                  <span title="Show Only Selected" data-placement="top">
                     <a href="#" onClick={this._showSelected}>{this.props.selected}</a>
                   </span>
                   <span>/</span>
-                  <span title="Show Only Selected" data-placement="top">
+                  <span title="Show All" data-placement="top">
                     <a href="#" onClick={this._showAll}>{this.props.total}</a>
                   </span>
                   <span>]</span>                  

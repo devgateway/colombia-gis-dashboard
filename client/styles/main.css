@@ -191,6 +191,7 @@ h2 {
     cursor: pointer; }
 
 .slider_content {
+  display: none;
   width: 705px;
   height: 88%;
   overflow: hidden;
@@ -365,7 +366,7 @@ ul.tabbed {
   overflow: hidden;
   margin-top: 0.83333em; }
   .filter-type-wrapper ul.filter-type-label {
-    padding-left: 0; }
+    padding-left: 15px; }
     .filter-type-wrapper ul.filter-type-label li {
       float: left;
       padding-left: 0;
@@ -377,11 +378,12 @@ ul.tabbed {
         border-right: 1px solid #ababab;
         padding-right: 1em;
         margin-right: 1em; }
-      .filter-type-wrapper ul.filter-type-label li a {
+      .filter-type-wrapper ul.filter-type-label li span {
         color: #454545;
         font-size: 0.9em;
-        line-height: 10%; }
-        .filter-type-wrapper ul.filter-type-label li a:hover, .filter-type-wrapper ul.filter-type-label li a.active {
+        line-height: 10%;
+        cursor: pointer; }
+        .filter-type-wrapper ul.filter-type-label li span:hover, .filter-type-wrapper ul.filter-type-label li span.active {
           color: #4d749f; }
       .filter-type-wrapper ul.filter-type-label li .fa {
         margin-right: 0.5em;
@@ -568,9 +570,15 @@ ul.basemap-list {
   position: absolute;
   top: 90px;
   font-size: 40px;
-  z-index: 0; }
+  z-index: 0;
+  cursor: pointer;
+  -webkit-transition: all 600ms ease;
+  -moz-transition: all 600ms ease;
+  -o-transition: all 600ms ease;
+  transition: all 600ms ease; }
   .m-scooch-controls:hover {
-    text-decoration: none; }
+    text-decoration: none;
+    color: #98ca68; }
   .m-scooch-controls a {
     outline: none;
     text-decoration: none; }
@@ -586,6 +594,9 @@ ul.basemap-list {
 .scooch-next {
   float: right;
   z-index: 300; }
+
+.scooch-disabled {
+  display: none; }
 
 button.layer-search {
   padding: 5px;
@@ -778,7 +789,7 @@ input[type=checkbox].glyphicon {
   text-overflow: ellipsis; }
 
 .filter-col-parent {
-  width: 510px;
+  width: 545px;
   font-weight: bold;
   color: #787878;
   line-height: 2.2em;
@@ -794,6 +805,7 @@ input[type=checkbox].glyphicon {
   margin-left: 0.4em; }
 
 .parent-toggle {
+  cursor: pointer;
   position: absolute;
   right: 1.1em;
   font-style: italic;
@@ -872,6 +884,9 @@ input[type=checkbox].glyphicon {
   font-size: 1em;
   padding: 4px;
   outline: none; }
+
+.item-label {
+  cursor: pointer; }
 
 nav.tab-navigation,
 nav.tabs {
@@ -1047,7 +1062,7 @@ button.search-button {
   overflow: hidden; }
 
 .tab-content {
-  min-height: 280px;
+  min-height: 600px;
   height: auto;
   overflow: hidden;
   width: 99%;
@@ -1130,9 +1145,28 @@ ul.tabs {
   font-size: 0.9em;
   padding-right: 0.4em; }
 
-.layerList h3 {
-  font-size: 1em;
-  color: #000000; }
+.layer-control h3 {
+  font-size: 1.4em;
+  color: #000000;
+  font-weight: bold; }
+.layer-control li {
+  padding: 3px; }
+  .layer-control li .ui-slider-pip {
+    top: 30px; }
+  .layer-control li .ui-slider-pip .ui-slider-label {
+    top: -18px; }
+  .layer-control li .title {
+    font-size: 1em;
+    color: #4d749f;
+    clear: right; }
+  .layer-control li .updown {
+    float: left;
+    margin-right: 5px; }
+  .layer-control li .slider-holder {
+    position: relative;
+    display: block;
+    width: 200px;
+    margin-left: 25px; }
 
 .arcgis-sig-in {
   position: absolute;

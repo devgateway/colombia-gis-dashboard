@@ -8,11 +8,23 @@ var CustomCheckbox = require('../../commons/customCheckbox.jsx');
 var FilterItem = React.createClass({
  
     _onItemChanged: function(value, selected) {  
-       this.props.onItemChanged(this.props.filterType, value, selected);
+        selected = !this.state.selected; 
+        this.setState({selected: selected});
+        this.props.onItemChanged(this.props.filterType, value, selected);
     },
  
-    componentDidMount: function(){
-        //$(this.getDOMNode()).find(' span').tooltip({container: 'body'});
+    _onLabelClicked: function(e) { 
+        var selected = !this.state.selected; 
+        this.setState({selected: selected});
+        this.props.onItemChanged(this.props.filterType, $(e.currentTarget).data('id'), selected);
+    },
+ 
+    getInitialState: function() {  
+       return {selected: this.props.selected};
+    },
+ 
+    componentWillReceiveProps: function(newProps) {  
+       this.setState({selected: newProps.selected});
     },
 
     render: function() {
@@ -33,19 +45,27 @@ var FilterItem = React.createClass({
                                     ({this.props.childSelectedCount})
                                 </div>;
         }
-        if (this.props.selected){
-            label = <span title={this.props.name} data-placement="top" className="item-label label-selected">
-                        {this.props.name}
+        if (this.state.selected){
+            label = <span title={this.props.name} 
+                        onClick={this._onLabelClicked} 
+                        data-id={this.props.id} 
+                        data-placement="top" 
+                        className="item-label label-selected">
+                            {this.props.name}
                     </span>;
         } else {
-            label = <span title={this.props.name} data-placement="top" className="item-label">
+            label = <span title={this.props.name}
+                        onClick={this._onLabelClicked} 
+                        data-id={this.props.id} 
+                        data-placement="top" 
+                        className="item-label">
                         {this.props.name}
                     </span>;
         }
         return(
         <div className={className}>
             <CustomCheckbox 
-                    selected={this.props.selected}
+                    selected={this.state.selected}
                     onChange={this._onItemChanged}
                     value={this.props.id}/>
             {label} 

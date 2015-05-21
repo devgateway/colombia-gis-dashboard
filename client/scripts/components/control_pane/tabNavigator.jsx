@@ -7,7 +7,9 @@ var TabPane = require('react-bootstrap/lib/TabPane');
 
 var Basemaps=require('../map/baseMap.jsx')
 var TabLayerNavigator=require('./layers/tabLayerNavigator.jsx');
-var FilterSelector=require('./filters/filterSelector.jsx')
+
+
+var Filter=require('./filters/filter.jsx');
 
 module.exports  = React.createClass({
 
@@ -20,16 +22,17 @@ module.exports  = React.createClass({
     return (
       <div className="fixed" id="map-panel" >
         <Basemaps/>
-      <TabbedArea className="tabs main-tabs" role="tablist" defaultActiveKey={1}>
-        <TabPane className="" eventKey={1} tab="Map Content">
-               <TabLayerNavigator  {...this.props}/>
+        <TabbedArea className="tabs main-tabs" role="tablist" defaultActiveKey={1}>
 
-        </TabPane>
-        <TabPane className="" eventKey={2} tab="Filters">
-            <FilterSelector/>
-        </TabPane>
+          <TabPane className="" eventKey={1} tab={<Message message='layers.title'/>}>
+            <TabLayerNavigator/>
+          </TabPane>
 
-      </TabbedArea>
+          <TabPane className="" eventKey={2} tab={<Message message='filters.title'/>}>
+              <Filter/>
+          </TabPane>
+
+        </TabbedArea>
       </div>
       );
   }

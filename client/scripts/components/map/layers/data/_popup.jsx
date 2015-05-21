@@ -2,8 +2,6 @@
 
 var React = require('react');
 var Reflux = require('reflux');
-var TabbedArea = require('react-bootstrap/lib/TabbedArea');
-var TabPane = require('react-bootstrap/lib/TabPane');
 var InfoWindowStore=require('../../../../stores/infoWindowStore.js');
 var MyChart=require('./_charts.js');
 

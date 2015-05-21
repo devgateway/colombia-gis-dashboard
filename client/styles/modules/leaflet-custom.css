@@ -161,3 +161,9 @@ background-position: -62px -21px;
 .popup-nav-wrapper .nav-tabs > li.active a:focus{
 border:1px solid transparent;
 }
+
+
+
+.leaflet-tile-pane, .leaflet-objects-pane,.leaflet-shadow-pane ,.leaflet-overlay-pane,.leaflet-marker-pane{
+  z-index: inherit !important;
+}

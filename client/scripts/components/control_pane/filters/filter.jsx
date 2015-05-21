@@ -38,33 +38,74 @@ var Filter  = React.createClass({
         FilterActions.changeAllFilterItemState(filterType, selected);  
     },    
     
-    componentDidMount: function(){
-        $('.item-label').tooltip({container: 'body'});
+    _showAdvancedMode: function() {
+        this.setState({advancedMode: "true"}); 
+    },    
+    
+    _showBasicMode: function() {
+        this.setState({advancedMode: "false"}); 
+    },    
+    
+    getInitialState: function() {
+      this.state = this.state || {};
+      return this.state;
     },
 
     render: function() {
-      var filters = this.props.type=="basic"? FilterMap.basicFilters : FilterMap.advancedFilters;
+      var filters = FilterMap.filters;
+      var idx = 1;
       var self = this;
+        if (this.state.pendingLoad>0){
+          return null; //it doesn't render until all filters lists are loaded
+        }
         return(
           <div className="activity-nav">
+            <div className="filter-type-wrapper">
+              <ul className="filter-type-label">
+                <li>
+                  <span  className={self.state.advancedMode=="true"? "" : "active"} onClick={this._showBasicMode}>Basic Filters</span>
+                </li>
+                <li>
+                  <span className={self.state.advancedMode=="true"? "active" : ""} onClick={this._showAdvancedMode}>Advanced Filters</span>
+                </li>
+              </ul>
+            </div>
             <TabbedArea className="activities" defaultActiveKey={1}>
               {
                 filters.map(function(filterDefinition){
                   if (!filterDefinition.subLevels){
-                    var group = <FilterGroup filterDefinition={filterDefinition} onItemChanged={self._onItemChanged} onAllNoneClicked={self._onAllNoneClicked}/>
+                    var group = <FilterGroup 
+                                  allItems={FilterStore.getAll(filterDefinition.param)}
+                                  filterDefinition={filterDefinition} 
+                                  onItemChanged={self._onItemChanged} 
+                                  onAllNoneClicked={self._onAllNoneClicked}/>
                   } else {
+                    var levels = {};
+                    filterDefinition.subLevels.map(function(lvl){
+                      levels[lvl.param] = FilterStore.getAll(lvl.param);
+                    });
                     if (filterDefinition.showTree){
-                      var group = <FilterGroupTree filterDefinition={filterDefinition} onItemChanged={self._onItemChanged} onAllNoneClicked={self._onAllNoneClicked}/>
+                      var group = <FilterGroupTree 
+                                  subLevelsItems={levels}
+                                  filterDefinition={filterDefinition} 
+                                  onItemChanged={self._onItemChanged} 
+                                  onAllNoneClicked={self._onAllNoneClicked}/>
                     } else {
-                      var group = <FilterGroupWithSubLevels filterDefinition={filterDefinition} onItemChanged={self._onItemChanged} onAllNoneClicked={self._onAllNoneClicked}/>
+                      var group = <FilterGroupWithSubLevels 
+                                  subLevelsItems={levels}
+                                  filterDefinition={filterDefinition} 
+                                  onItemChanged={self._onItemChanged} 
+                                  onAllNoneClicked={self._onAllNoneClicked}/>
                     }                    
                   }
-                  return <TabPane eventKey={parseInt(filterDefinition.index)} tab={filterDefinition.label}>
-                    {group}
-                  </TabPane>                  
+                  if (!filterDefinition.advanced || (filterDefinition.advanced && self.state.advancedMode=="true")){
+                    return <TabPane eventKey={idx++} tab={<Message message={filterDefinition.label}/>}>
+                      {group}
+                    </TabPane> 
+                  }                 
                 })
               } 
-              <TabPane tab="Date">
+              <TabPane tab={<Message message="filters.date"/>}>
                   <FilterDate onValueChanged={self._onValueChanged}/>
               </TabPane>               
             </TabbedArea>
