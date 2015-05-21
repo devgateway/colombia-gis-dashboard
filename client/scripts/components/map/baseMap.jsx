@@ -36,12 +36,12 @@ module.exports = React.createClass({
             Views
           </div>
           <ul className="basemap-list">
-            <li><BaseMapItem label="Gray" value="Gray"/></li>
-            <li><BaseMapItem label="Topographic" value="Topographic"/></li>
-            <li><BaseMapItem label="National Geographic" value="NationalGeographic"/></li>
-            <li><BaseMapItem label="Dark Gray" value="DarkGray"/></li>
-            <li><BaseMapItem label="Imagery" value="Imagery"/></li>
-            <li><BaseMapItem label="Streets" value="Streets"/></li>
+            <li><BaseMapItem label={<Message message='map.baseMaps.gray'/>} value="Gray"/></li>
+            <li><BaseMapItem label={<Message message='map.baseMaps.topo'/>} value="Topographic"/></li>
+            <li><BaseMapItem label={<Message message='map.baseMaps.natGeo'/>} value="NationalGeographic"/></li>
+            <li><BaseMapItem label={<Message message='map.baseMaps.darkGray'/>} value="DarkGray"/></li>
+            <li><BaseMapItem label={<Message message='map.baseMaps.image'/>} value="Imagery"/></li>
+            <li><BaseMapItem label={<Message message='map.baseMaps.streets'/>} value="Streets"/></li>
           </ul>
         </div>
       );

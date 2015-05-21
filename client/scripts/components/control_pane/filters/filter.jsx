@@ -99,13 +99,13 @@ var Filter  = React.createClass({
                     }                    
                   }
                   if (!filterDefinition.advanced || (filterDefinition.advanced && self.state.advancedMode=="true")){
-                    return <TabPane eventKey={idx++} tab={filterDefinition.label}>
+                    return <TabPane eventKey={idx++} tab={<Message message={filterDefinition.label}/>}>
                       {group}
                     </TabPane> 
                   }                 
                 })
               } 
-              <TabPane tab="Date">
+              <TabPane tab={<Message message="filters.date"/>}>
                   <FilterDate onValueChanged={self._onValueChanged}/>
               </TabPane>               
             </TabbedArea>
