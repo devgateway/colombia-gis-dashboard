@@ -14,7 +14,7 @@ module.exports  = React.createClass({
       <div className="filter-type-wrapper">
         <TabbedArea className="filter-type-label" defaultActiveKey={1}>
           <TabPane className="" eventKey={1} tab="Basic Filters">
-                 <Filter type="basic"/>
+              <Filter type="basic"/>
           </TabPane>
           <TabPane className="" eventKey={2} tab="Advanced Filters">
               <Filter type="advanced"/>
