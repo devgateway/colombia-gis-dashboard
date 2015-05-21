@@ -51,7 +51,7 @@ var FilterGroup = React.createClass({
         return(
             <div className="filter-group-panel selected">
                 <div className="filter-group-panel-header">
-                    <span className="filter-label" role="label">{this.props.filterDefinition.label}</span>
+                    <span className="filter-label" role="label">{<Message message={this.props.filterDefinition.label}/>}</span>
                     <SelectionCounter selected={FilterStore.getAllSelected(filterDefinition.param).length} total={items.length} onCounterClicked={this._onCounterClicked}/>
                     <AllNoneSelector filterType={filterDefinition.param} onAllNoneClicked={self.props.onAllNoneClicked}/>                                                
                 </div>                

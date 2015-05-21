@@ -45,12 +45,12 @@ module.exports  = React.createClass({
 		return (
 			<div className="activity-nav">
 			<TabbedArea ref="tabbedArea" className="activities" defaultActiveKey={1} onSelect={this._handleSelect}>
-					<TabPane   key={1} eventKey={1} tab="Map Layers" >
+					<TabPane   key={1} eventKey={1} tab={<Message message="layers.mapLayers"/>} >
 					<DataLayersManager/>
 					<LayerControl/>
 					</TabPane>
 
-					<TabPane key={2} eventKey={2} tab="Find External Layers">
+					<TabPane key={2} eventKey={2} tab={<Message message="layers.findExtLayers"/>}>
 					<EsriSearch 
 					onAddLayer={this.onAddLayer}
 					onSearch={this.onSearch} 

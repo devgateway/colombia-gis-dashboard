@@ -3,25 +3,55 @@
 		"title": "This area can be translated as a written legend of what is being actualized on the map",
 		"credits" : "Copy Rigths AidData",
 		"description": "Map description -"
-		},
+	},
 
-		"layers": {
-			"search":"Search Layers",
-			"byDepartment":"Departments",
-			"byMunicipality":"Municipalities"
-		},
+	"filters": {
+		"title":"Filters",
+		"locations":"Locations",
+		"targetPopulation":"Target Population",
+		"activityClassification":"Activity Classification",
+		"developmentObjectives":"Development Objectives",
+		"subActivityStatus":"SubActivity Status",
+		"subImplementer":"Sub Implementer",
+		"ppp":"PPP",
+		"date":"Date",
+		"selectAll":"select all",
+		"deselectAll":"deselect all",
+		"searchFilters":"Search filters",
+		"reset":"Reset",
+		"apply":"Apply",
+		"showAll":"Show all",
+		"showOnlySelected":"Show only selected"
+	},
 
-		"map": {
-			"baseMaps":{
-				"title":"Base Maps:",
-				"gray":"Gray",
-				"topo":"Topographic",
-				"natGeo":"National Geographic",
-				"darkGray":"Dark Gray",
-				"image":"Imagery",
-				"streets":"Streets"
-			}
+	"layers": {
+		"title":"Map content",
+		"mapLayers":"Map Layers",
+		"findExtLayers":"Find External Layers",
+		"funding":"Funding",
+		"indicators":"Indicators",
+		"featureService":"Feature Service",
+		"mapService":"Map Service",
+		"imageService":"Image Service",
+		"arcgisLegend":"Use input search for finding Arcgis Online Layers and add them to your Map",
+		"add":"ADD",
+		"loadMoreResults":"CLICK TO ADD MORE RESULTS",
+		"search":"Search Layers",
+		"byDepartment":"Departments",
+		"byMunicipality":"Municipalities"
+	},
 
-
+	"map": {
+		"baseMaps":{
+			"title":"Base Maps:",
+			"gray":"Gray",
+			"topo":"Topographic",
+			"natGeo":"National Geographic",
+			"darkGray":"Dark Gray",
+			"image":"Imagery",
+			"streets":"Streets"
 		}
+
+
+	}
 }
