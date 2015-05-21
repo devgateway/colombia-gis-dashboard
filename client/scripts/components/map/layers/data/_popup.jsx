@@ -26,8 +26,7 @@ module.exports  = React.createClass({
   render: function() {
     debugger;
     console.log('popup>render id:' + this.props.id +" tab "+this.state.tabId);
-    /*var self = this;
-
+    var self = this;
     var chartData = [];
     if(self.state.infoWindow){
       self.state.infoWindow.map(function(node, index) {
@@ -41,30 +40,21 @@ module.exports  = React.createClass({
       });
     } 
 
-    var chartId = 0;
-    if(self.state.infoWindowId){
-      chartId = self.state.infoWindowId;
-    }
-    var values = chartData[chartId];
-    <MyChart data={values} />
-    */
-    var content=(  <div className="popup-content"> Default</div>)
+    
+    
+    var content=(  <div className="popup-content"><MyChart data={chartData[0]}/></div>)
  
+    if (this.state.tabId==0){
+      content=(  <div className="popup-content"><MyChart data={chartData[0]} /></div>)
+    }
     if (this.state.tabId==1){
-      content=(  <div className="popup-content"> TAB 0</div>)
+      content=(  <div className="popup-content"><MyChart data={chartData[1]} /></div>)
     }
     if (this.state.tabId==2){
-      content=(  <div className="popup-content"> TAB 1</div>)
+      content=(  <div className="popup-content"><MyChart data={chartData[2]} /></div>)
     }
-
-
     if (this.state.tabId==3){
-      content=(  <div className="popup-content"> TAB 3</div>)
-    }
-
-
-    if (this.state.tabId==3){
-      content=(  <div className="popup-content"> TAB 4</div>)
+      content=(  <div className="popup-content">Nada!</div>)
     }
     return (
 

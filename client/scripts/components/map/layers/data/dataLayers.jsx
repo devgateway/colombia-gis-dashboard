@@ -73,44 +73,27 @@ module.exports = React.createClass({
     });
   },
 
-  fixReactIdsFromPopup: function(popup) {
-    var el = popup._container;
-    // replace all the `data-reactid`s so react doesn't get confused.
-    var allEls = el.querySelectorAll('*');
-    Array.prototype.forEach.call(allEls, function(el) {
-      var reactId = el.dataset.reactid;
-      var rnd = Math.random() * 1000000;
-      if (reactId !== undefined) {  // leaflet's containers, etc.
-        delete el.dataset.reactid;
-
-        el.dataset.reactid = rnd;
-      }
-    });
-  },
-
 
 
   _bindPopup:function(feature, layer){
     layer.bindPopup('');
     layer.on('popupopen', function(e) {
-      var popupHolder=this.getDOMNode();
-      //document.body.appendChild(popupHolder);
-      //
-      
+      var popupHolder=this.getDOMNode(); 
       var _onChange=function(){
+        popupHolder.firstChild.style.display="";
          e.popup.setContent(popupHolder.innerHTML);
+        popupHolder.firstChild.style.display="none";
            this.fixReactIds(e.popup);
+
          //  this.fixReactEvents(e.popup);
       }.bind(this)
 
       React.render(React.createElement(Popup, _.assign(feature.properties,{onChange:_onChange}), this.state.data), popupHolder);
-      //this.fixReactIdsFromDiv(popupHolder);
       e.popup.setContent(popupHolder.innerHTML);
+      popupHolder.firstChild.style.display="none";
+
       this.fixReactIds(e.popup);
       this.fixReactEvents(e.popup);
-      //this.fixReactIdsFromDiv(popupHolder);
-      //this.fixReactIdsFromPopup(e.popup);
-      //document.body.removeChild(popupHolder);
    }.bind(this));  
   },
 
@@ -134,12 +117,10 @@ module.exports = React.createClass({
    * It's awful and it works. Though it may be pretty mouse-event-focused.
    */
   fixReactEvents: function(popup) {
-    debugger;
     var el = popup._contentNode;
 
     reactEventNames.forEach(function(eventName) {
       el.addEventListener(eventName, function(e) {
-        debugger;
         var popupEl = e.target,
             reactId = e.target.dataset.originalreactid,
             reactTarget = document.querySelector('[data-reactid="' + reactId + '"]'),

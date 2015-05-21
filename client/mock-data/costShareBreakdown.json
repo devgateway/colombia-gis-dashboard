@@ -2,7 +2,7 @@
    "key": "costShareBreakdown",
    "value":[
         {"id": "91", "value": [
-            {"id": "1","name": "Usaid","value": "35"}, 
+            {"id": "1","name": "chart1","value": "35"}, 
             {"id": "2","name": "Goverment","value": "12"},
             {"id": "3","name": "ONGs","value": "22"},
             {"id": "4","name": "IATI","value": "7"}
@@ -53,7 +53,28 @@
   "key": "objectivesInfoWindow",
   "value":[
         {"id": "91", "value": [
-            {"id": "1","name": "Usaid","value": "15"}, 
+            {"id": "1","name": "chart2","value": "15"}, 
+            {"id": "2","name": "Goverment","value": "22"},
+            {"id": "3","name": "ONGs","value": "22"},
+            {"id": "4","name": "IATI","value": "12"}
+        ]},
+        {"id": "86", "value": [
+            {"id": "1","name": "Usaid","value": "44"}, 
+            {"id": "2","name": "Goverment","value": "27"},
+            {"id": "3","name": "ONGs","value": "33"}
+        ]},
+        {"id": "92", "value": [
+            {"id": "1","name": "Usaid","value": "44"}, 
+            {"id": "2","name": "Goverment","value": "33"},
+            {"id": "3","name": "ONGs","value": "7"},
+            {"id": "4","name": "IATI","value": "2"}
+        ]}
+  ]},
+  {"id": "3",
+  "key": "objectivesInfoWindow",
+  "value":[
+        {"id": "91", "value": [
+            {"id": "1","name": "chart3","value": "15"}, 
             {"id": "2","name": "Goverment","value": "22"},
             {"id": "3","name": "ONGs","value": "22"},
             {"id": "4","name": "IATI","value": "12"}
