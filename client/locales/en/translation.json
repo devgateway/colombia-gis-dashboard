@@ -37,6 +37,7 @@
 		"add":"ADD",
 		"loadMoreResults":"CLICK TO ADD MORE RESULTS",
 		"search":"Search Layers",
+		"noResults":"There where no results available",
 		"byDepartment":"Departments",
 		"byMunicipality":"Municipalities"
 	},
