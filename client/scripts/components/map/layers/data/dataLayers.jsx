@@ -176,7 +176,7 @@ module.exports = React.createClass({
 
 
   _getInfoWindowData: function () {
-      var info = InfoWindowActions.getInfoFromAPI(InfoWindowMap.getCostShareBreakDown()) || [];
+      var info = InfoWindowActions.getInfoFromAPI(InfoWindowMap.getInfoWindowData()) || [];
       return info;
   },
 

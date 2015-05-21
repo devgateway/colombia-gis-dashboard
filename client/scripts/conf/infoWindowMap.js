@@ -1,34 +1,20 @@
 'use strict';
 
-var costShareBreakDown = [
+var infoWindowEndpoint = [
         {
           key: 'costShareBreakdown',
           label: 'Cost Share Breakdown',
-          apiEndPoint: '/mock-data/costShareBreakdown.json'
+          apiEndPoint: '/mock-data/infoWindowData.json'
         }
     ];
 
-var developmentObjectives = [
-        {
-          key: 'developmentObjectives',
-          label: 'Development Objectives',
-          apiEndPoint: '/mock-data/developmentObjectives.json'
-        }
-    ];
-
-var getCostShareBreakDown = function (param){
+var getInfoWindowData = function (param){
     console.log("conf->infoWindowMap: getCostShareBreakDown");
-    return this.costShareBreakDown[0];
+    return this.infoWindowEndpoint[0];
 };
 
-var getDevelopmentObjectives = function (param){
-    console.log("conf->infoWindowMap: getDevelopmentObjectives");
-    return this.developmentObjectives[0];
-}; 
 
 module.exports = {
-  costShareBreakDown: costShareBreakDown,
-  developmentObjectives: developmentObjectives,
-  getCostShareBreakDown: getCostShareBreakDown,
-  getDevelopmentObjectives: getDevelopmentObjectives
+  infoWindowEndpoint: infoWindowEndpoint,
+  getInfoWindowData: getInfoWindowData
 };
