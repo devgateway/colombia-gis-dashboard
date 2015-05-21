@@ -74,12 +74,28 @@ var Filter  = React.createClass({
               {
                 filters.map(function(filterDefinition){
                   if (!filterDefinition.subLevels){
-                    var group = <FilterGroup filterDefinition={filterDefinition} onItemChanged={self._onItemChanged} onAllNoneClicked={self._onAllNoneClicked}/>
+                    var group = <FilterGroup 
+                                  allItems={FilterStore.getAll(filterDefinition.param)}
+                                  filterDefinition={filterDefinition} 
+                                  onItemChanged={self._onItemChanged} 
+                                  onAllNoneClicked={self._onAllNoneClicked}/>
                   } else {
+                    var levels = {};
+                    filterDefinition.subLevels.map(function(lvl){
+                      levels[lvl.param] = FilterStore.getAll(lvl.param);
+                    });
                     if (filterDefinition.showTree){
-                      var group = <FilterGroupTree filterDefinition={filterDefinition} onItemChanged={self._onItemChanged} onAllNoneClicked={self._onAllNoneClicked}/>
+                      var group = <FilterGroupTree 
+                                  subLevelsItems={levels}
+                                  filterDefinition={filterDefinition} 
+                                  onItemChanged={self._onItemChanged} 
+                                  onAllNoneClicked={self._onAllNoneClicked}/>
                     } else {
-                      var group = <FilterGroupWithSubLevels filterDefinition={filterDefinition} onItemChanged={self._onItemChanged} onAllNoneClicked={self._onAllNoneClicked}/>
+                      var group = <FilterGroupWithSubLevels 
+                                  subLevelsItems={levels}
+                                  filterDefinition={filterDefinition} 
+                                  onItemChanged={self._onItemChanged} 
+                                  onAllNoneClicked={self._onAllNoneClicked}/>
                     }                    
                   }
                   if (!filterDefinition.advanced || (filterDefinition.advanced && self.state.advancedMode=="true")){
