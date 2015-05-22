@@ -28,6 +28,7 @@ module.exports = Reflux.createStore({
 	listenables: ArcgisLayersActions,
 
 	onAddLayerToMap: function(layer) {
+    console.log('stores->arcgisLayerStore>onAddLayerToMap');
 		if (!_.findWhere(this.state.layers, {id: layer.id})) {
 			
 			var options={'opacity': 1,'visible':true}; //default values for all layers 
@@ -65,7 +66,7 @@ module.exports = Reflux.createStore({
 		var theLayer = _.findWhere(this.state.layers, {'id': id});
 		var isFeature=theLayer.type=='Feature Service';
 
-		if (property == 'moveDown' && isTile) {
+		if (property == 'moveDown' && !isFeature) {
 			var currentZindex = theLayer.zIndex;
 			if (currentZindex > 0) {
 				var newZindex = currentZindex - 1;

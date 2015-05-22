@@ -74,7 +74,12 @@ module.exports=React.createClass({
 			<div>
 			{(this.props.error)?<div> <p className='label label label-danger'>{this.props.error.message}</p>
 			<hr class="h-divider"></hr></div>:null}
-
+			{(this.props.search.nextStart==-1)?(
+				<div>
+					<Message message="layers.noResults"/>
+				</div>
+				):""
+			}
 			<ul className="esri-result-list">
 			{
 				this.props.search.results.map(function(record){
@@ -88,9 +93,10 @@ module.exports=React.createClass({
 						<button className="btn btn-apply" onClick={this.props.onNextPage}><Message message="layers.loadMoreResults"/></button>
 					</div>
 				</li>):""
-		}
+			}
 
-		</ul>
+			</ul>
+			
 		</div>
 		);
 	}
