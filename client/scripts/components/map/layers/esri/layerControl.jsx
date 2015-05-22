@@ -92,7 +92,6 @@ var Layer=React.createClass({
   mixins:[Mixins],
 
   componentDidUpdate :function(prevProps,prevState){
-    debugger;
     if (prevProps.opacity!=this.props.opacity){
      var opacity=this.props.opacity*100;
      $(this.getDOMNode()).find('.slider').slider('value',opacity);
@@ -101,7 +100,6 @@ var Layer=React.createClass({
 
  componentDidMount:function(){
   var opacity=this.props.opacity;
-  debugger;
   $(this.getDOMNode()).find('.slider')
   .slider({
     change:function(event,source){
@@ -227,6 +225,7 @@ module.exports  = React.createClass({
   },
 
   render: function() {
+    console.log("Layer Control > Render .." );
     var tiles=_.sortBy(_.filter(this.state.layers,{type:'Map Service'}),'zIndex').reverse();
     var features=_.sortBy(_.filter(this.state.layers,{type:'Feature Service'}),'zIndex').reverse();
     return (
