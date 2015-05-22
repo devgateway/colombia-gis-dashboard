@@ -25,6 +25,8 @@
 	},
 
 	"layers": {
+		"showLegend":"Mostrar Leyendas",
+		"hideLegend":"Ocultar Leyendas",
 		"title":"Contenidos del mapa",
 		"mapLayers":"Capas del mapa",
 		"findExtLayers":"Buscar Capas Externas",

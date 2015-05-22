@@ -17,6 +17,7 @@
  var DataLayer=require('./layers/data/dataLayers.jsx');
 
  var AGOLbtnLogin=require('../esri/AGOLBtnLogin.jsx');
+ var LegendControl = require('./layers/esri/legendControl.jsx');
 
  var control=L.control.layers({}, {});
 
@@ -62,6 +63,8 @@ render: function() {
      
      <LeafletMap ref="leafletMapComponent" baseMap={baseMap} bounds={bounds} onMapMove={this.updateCurrentBounds}/>
      <AGOLbtnLogin/>
+     <LegendControl/>
+      
      <DataLayer getMap={this.getMap}/>
      <EsriLayers getMap={this.getMap}/>
      {children} 

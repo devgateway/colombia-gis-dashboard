@@ -258,6 +258,7 @@ module.exports  = React.createClass({
       </li>
       {
         tiles.map(function(l){
+          debugger;
          return (
           <li> <Layer 
           onMoveUp={this._handleMoveUp}
@@ -273,6 +274,7 @@ module.exports  = React.createClass({
 
        }.bind(this))
       }
+      
       </ul>);
 }});
 
