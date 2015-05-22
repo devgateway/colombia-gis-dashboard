@@ -3,60 +3,15 @@
 var React = require('react/addons');
 
 var Reflux = require('reflux');
-var ArcgisLayerStore = require('../../../../stores/arcgisLayerStore.js');
-var ArcgisLayerActions = require('../../../../actions/arcgisLayersActions.js')
+var ArcgisLayerStore = require('../../../stores/arcgisLayerStore.js');
+var ArcgisLayerActions = require('../../../actions/arcgisLayersActions.js')
 var _=require('lodash')
 
+var Toggler=require('../../commons/toggler.jsx').Toggler;
+var TogglerContent=require('../../commons/toggler.jsx').TogglerContent;
+var If=require('../../commons/if.jsx')
 
-var TogglerContent=React.createClass({
-
-
-  _getVisible:function(when){
-    return this.props.visibleWhen==when;
-  },
-
-  render:function(){
-    var children = React.Children.map(this.props.children, function(child) {
-      return child.props.toggler ? React.addons.cloneWithProps(child,{'onClick':this.props.onClick}) :  React.addons.cloneWithProps(child,{}); //if toggler add click event
-    }, this);
-
-    return ((this.props.stage==this.props.visibleWhen) || (this.props.visibleWhen=='always'))?<div>{children}</div>:null
-  }
-});
-
-
-var Toggler=React.createClass({
-
-  getInitialState:function(){
-    return {'expanded':false}
-  },
-
-  _toggle:function(){
-   this.setState({'expanded':(!this.state.expanded)});
-   this.forceUpdate();
- },
-
-
- render:function(){
-   var children = React.Children.map(this.props.children, function(child) {
-    return child ? React.addons.cloneWithProps(child, {'stage':(this.state.expanded?'expanded':'collapsed'), 'onClick':this._toggle}) : null;
-  }, this);
-
-   return (<div className="toggler" >{children}</div>)
- }
-
-});
-
-
-var If=React.createClass({
-  render:function(){
-   if (this.props.condition){
-    return <span>{this.props.children}</span>
-  }else{
-    return null;
-  }
-}
-});
+var DataLayerControl=require('./_dataLayerControl.jsx');
 
 var Mixins={
 
@@ -64,6 +19,7 @@ var Mixins={
     this.setState(_.assign(this.state,{'opacity':value}));
     this.props.onChangeOpacity(this.props.id, (value / 100),this.props.idx);
   },
+
 
   _handleChageVisibility: function() {
     var newValue=!this.state.checked;
@@ -126,21 +82,21 @@ render: function() {
   return (
     <div>
     <div className='updown'>
-      <If condition={this.props.onMoveUp}>
-        <i className="fa fa-arrow-up" onClick={this._up}></i>
-      </If>
-      <If condition={this.props.onMoveDown}>
-        <i onClick={this._down} className="fa fa-arrow-down"></i>
-      </If>
+    <If condition={this.props.onMoveUp}>
+    <i className="fa fa-arrow-up" onClick={this._up}></i>
+    </If>
+    <If condition={this.props.onMoveDown}>
+    <i onClick={this._down} className="fa fa-arrow-down"></i>
+    </If>
     </div>
     <div className="title">
     <If condition={this.props.onChangeVisibility}>
-      <input type="checkbox" checked={this.state.checked} onChange={this._handleChageVisibility}/> 
+    <input type="checkbox" checked={this.state.checked} onChange={this._handleChageVisibility}/> 
     </If>
     {this.props.title}
     </div>  
     <div className='slider-holder'>
-        <div className='slider'/>
+    <div className='slider'/>
     </div>
     </div>
     );   
@@ -230,13 +186,20 @@ module.exports  = React.createClass({
     var tiles=_.sortBy(_.filter(this.state.layers,{type:'Map Service'}),'zIndex').reverse();
     var features=_.sortBy(_.filter(this.state.layers,{type:'Feature Service'}),'zIndex').reverse();
     return (
-      <ul className="layer-control">
+      
+
+    <ul className="layer-control">
+        <li>
+      <h3>Data Layers</h3>
+      </li>
+      <DataLayerControl/>
+
+
+      <If condition={features.length > 0} >
       <li>
       <h3>Overlays</h3>
       </li>
-      <li>
-      <div className="title">Data Layers (define options here )</div>
-      </li>
+      </If>
       {
         features.map(function(l){
          return (<li>
@@ -253,9 +216,12 @@ module.exports  = React.createClass({
           title={l.title} /></li>)
        }.bind(this))
       }
+      <If condition={tiles.length > 0} >
+
       <li>
       <h3>Tiles</h3>
       </li>
+      </If>
       {
         tiles.map(function(l){
          return (
