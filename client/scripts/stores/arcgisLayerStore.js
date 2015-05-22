@@ -27,6 +27,7 @@ module.exports = Reflux.createStore({
 	listenables: ArcgisLayersActions,
 
 	onAddLayerToMap: function(layer) {
+    console.log('stores->arcgisLayerStore>onAddLayerToMap');
 		if (!_.findWhere(this.state.layers, {id: layer.id})) {
 			
 			var options={'opacity': 1,'visible':true}; //default values for all layers 
