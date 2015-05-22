@@ -2,32 +2,63 @@
 
 /*http://facebook.github.io/react/docs/component-specs.html*/
 var React = require('react');
+var _ = require('lodash');
 
-var CustomCheckbox = React.createClass({
- 
-    getInitialState: function() {
-        return {selected: this.props.selected? true : false, updated: false};
+var RadioGroup=React.createClass({
+
+    _handleItemClick:function(name){
+        
+
+        _.map(this._children,function(child){
+                debugger;
+                if (child.props.name==name){
+                    child.props.checked=true;
+                    child.props._onClick();
+                } else{
+                    child.props.checked=false;
+                }   
+        })
+
+        this.forceUpdate();
     },
 
-    _onClick: function() { 
-        $('[name='+this.props.name+']').removeClass('selected'); //modify and diselect siblings radio  
-        this.setState({'selected': true});
-        if (this.props.onClick){
-            this.props.onClick(this.props.value, true);                
-        } 
-        this.setState({'updated': !this.state.updated}); //used to force react to update DOM, since it could be modified by another component
+    componentWillMount: function () {
+        this._children = React.Children.map(this.props.children, function(child) {
+                return  React.addons.cloneWithProps(child,{'_onClick':child.props.onClick,'onClick':this._handleItemClick}) //if toggler add click event
+        },this);  
     },
- 
+
+    render:function(){
+        
+        
+        return <div>{this._children}</div>
+    }
+});
+
+
+
+var Radio = React.createClass({
+
+    componentWillReceiveProps: function (nextProps) {
+            debugger;          
+    },
+
+    _onClick: function() {
+        this.props.onClick(this.props.name);
+    },
+
     render: function() {
-        var classes = this.props.selected? "selectable-radio selected" : "selectable-radio ";
-        var updatedClass = this.state.updated? " y" : " n"
-        return(
-                <div>
-                    <span updated={this.state.updated} className={classes+updatedClass} name={this.props.name} onClick={this._onClick}/>
-                    <Message message={this.props.label}/>
-                </div>                        
+        var classes = this.props.checked ? "selectable-radio selected" : "selectable-radio ";
+        return (
+        <div className={this.props.className}>
+            <span  className={classes}  onClick={this._onClick}>
+               {( this.props.checked)?<i className="fa fa-check"></i>:null} 
+            </span>
+            
+            <Message message={this.props.label}/>
+        </div>     
         );
     }
 });
 
-module.exports = CustomCheckbox;
+module.exports = {Radio:Radio,RadioGroup:RadioGroup};
