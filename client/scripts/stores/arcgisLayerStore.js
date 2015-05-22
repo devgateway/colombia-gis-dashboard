@@ -28,18 +28,14 @@ module.exports = Reflux.createStore({
 
 	onAddLayerToMap: function(layer) {
 		if (!_.findWhere(this.state.layers, {id: layer.id})) {
-			
 			var options={'opacity': 1,'visible':true}; //default values for all layers 
-
 			if (layer.type=='Feature Service'){
 				setVisibility(layer.layer.layers);
 				setOpaciy(layer.layer.layers);	
 			}else{
 				_.assign(options,{'zIndex': this.nextZindex()});
 			}
-
 			_.assign(layer, options);
-			
 			this.state.layers.push(layer);
 			this.trigger(this.state);
 		}
@@ -58,7 +54,6 @@ module.exports = Reflux.createStore({
 	},
 
 	onChangeLayerValue: function(property, id, value, idx) {
-		debugger;
 		console.log(arguments);
 		var theLayer = _.findWhere(this.state.layers, {'id': id});
 		var isFeature=theLayer.type=='Feature Service';
@@ -73,7 +68,7 @@ module.exports = Reflux.createStore({
 				theLayer.zIndex = newZindex; //the layer gets z-index-1
 				replaceWith.zIndex = currentZindex; //the one that was in tha position takes  theLayer's z-index
 			}
-		} else if (property == 'moveUp' && isTile) {
+		} else if (property == 'moveUp' && !isFeature) {
 			var currentZindex = theLayer.zIndex;
 			if (currentZindex < this.state.layers.length) {
 				var newZindex = currentZindex + 1;
@@ -84,21 +79,20 @@ module.exports = Reflux.createStore({
 				replaceWith.zIndex = currentZindex; //the one that was in tha position takes  theLayer's z-index
 			}
 		} else {
-			
-				if(!idx){
-					theLayer[property] = value;
-				}
 
-				if (isFeature){ //this is feature layer
-					if (idx){
-						_.find(theLayer.layer.layers,{id:parseInt(idx)})[property]=value;	
-					}else{
-						theLayer.layer.layers.map(function(l){
-							l[property]=value
-						})
-					}
+			if(!idx){
+				theLayer[property] = value;
+			}
+			if (isFeature){ //this is feature layer
+				if (idx){
+					_.find(theLayer.layer.layers,{id:parseInt(idx)})[property]=value;	
+				}else{
+					theLayer.layer.layers.map(function(l){
+						l[property]=value
+					})
 				}
 			}
+		}
 			this.trigger(this.state)
 		},
 
@@ -118,7 +112,6 @@ module.exports = Reflux.createStore({
 		},
 
 		getInitialState: function() {
-
 			if (!this.state) {
 				this.state = storedState || {
 					layers: [],
@@ -128,8 +121,4 @@ module.exports = Reflux.createStore({
 			return this.state;
 		},
 
-
-
-
-
-	});
+});
