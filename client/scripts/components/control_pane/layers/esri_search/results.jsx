@@ -19,7 +19,7 @@ var AddButton= React.createClass({
 			return (<div className="btn btn-xs btn-default">added</div>)
 		}else{
 			return (<button disabled={this.props.disabled}  className={this.props.disabled?"btn btn-xs btn-default":"btn btn-apply"}
-			 onClick={this.handleAdd}>ADD</button>)
+			 onClick={this.handleAdd}><Message message="layers.add"/></button>)
 		}
 	}
 });
@@ -42,7 +42,7 @@ var ResultRecord=React.createClass({
 						</div>
 
 					<div className="layer-info">
-					<div className="title" data-toggle="Loing is required">{this.props.title} {this.props.loginRequired?<i className="text-warning small">Loing is required</i>:''}
+					<div className="title" data-toggle="Loging is required">{this.props.title} {this.props.loginRequired?<i className="text-warning small">Loing is required</i>:''}
 				</div>
 
 				<div className="details">{this.props.snippet}</div>
@@ -85,7 +85,7 @@ module.exports=React.createClass({
 			{(this.props.search.nextStart>-1)?(
 				<li>
 					<div className="layer-info text-rigth">
-						<button className="btn btn-apply" onClick={this.props.onNextPage}>Click to load more Results</button>
+						<button className="btn btn-apply" onClick={this.props.onNextPage}><Message message="layers.loadMoreResults"/></button>
 					</div>
 				</li>):""
 		}

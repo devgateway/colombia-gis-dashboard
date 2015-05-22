@@ -3,10 +3,7 @@ var React = require('react');
 var Router = require('react-router');
 var Reflux = require('reflux');
 var Link = Router.Link;
-var FilterStore=require('../../../stores/filterStore.js')
-
 var FilterItemList = require('./filterItemList.jsx');
-
 var KeywordSearch = require('./keywordSearch.jsx');
 var FilterSubLevel = require('./filterSubLevel.jsx');
 
@@ -22,7 +19,7 @@ var FilterGroup = React.createClass({
             // filter the collection
             var pattern = new RegExp(keyword, 'i');
             this.props.filterDefinition.subLevels.map(function(filterDefinition){
-                FilterStore.getAll(filterDefinition.param).map(function (item) {
+                this.props.subLevelsItems[filterDefinition.param].map(function (item) {
                 if (!pattern.test(item.name)){
                     item.hide = true;
                 }
@@ -31,7 +28,7 @@ var FilterGroup = React.createClass({
         } else {
             // display the original collection
             this.props.filterDefinition.subLevels.map(function(filterDefinition){
-                FilterStore.getAll(filterDefinition.param).map(function (item) {
+                this.props.subLevelsItems[filterDefinition.param].map(function (item) {
                     item.hide = false;
                 });
             });
@@ -66,12 +63,16 @@ var FilterGroup = React.createClass({
                     <div className="m-scooch-inner">
                         {
                             this.props.filterDefinition.subLevels.map(function(filterDefinition, index){
-                                var items = FilterStore.getAll(filterDefinition.param) || [];
+                                var items = self.props.subLevelsItems[filterDefinition.param] || [];
+                                var parentItems = self.props.subLevelsItems[filterDefinition.parentParam] || [];
+                                var childrenItems = self.props.subLevelsItems[filterDefinition.childParam] || [];
                                 return  <div className="m-item">
                                             <FilterSubLevel
                                                 onAllNoneClicked={self.props.onAllNoneClicked}
                                                 onItemChanged={self.props.onItemChanged}
                                                 items={items}
+                                                parentItems={parentItems}
+                                                childrenItems={childrenItems}
                                                 filterDefinition={filterDefinition}
                                                 position={index+1} />
                                         </div>;

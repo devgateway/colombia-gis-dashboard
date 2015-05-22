@@ -4,8 +4,9 @@ var React = require('react');
 var Reflux = require('reflux');
 var TabbedArea = require('react-bootstrap/lib/TabbedArea');
 var TabPane = require('react-bootstrap/lib/TabPane');
+var DataLayersManager=require('./data_map_layers/manager.jsx');
 
-var LayerControl=require('../../map/layers/layerControl.jsx');
+var LayerControl=require('../../map/layers/esri/layerControl.jsx');
 
 var EsriSearch = require('./esri_search/search.jsx');
 var EsriLoginStore=require('../../../stores/arcgisLoginStore.js');
@@ -44,11 +45,12 @@ module.exports  = React.createClass({
 		return (
 			<div className="activity-nav">
 			<TabbedArea ref="tabbedArea" className="activities" defaultActiveKey={1} onSelect={this._handleSelect}>
-					<TabPane   key={1} eventKey={1} tab="Map Layers" >
+					<TabPane   key={1} eventKey={1} tab={<Message message="layers.mapLayers"/>} >
+					<DataLayersManager/>
 					<LayerControl/>
 					</TabPane>
 
-					<TabPane key={2} eventKey={2} tab="Find External Layers">
+					<TabPane key={2} eventKey={2} tab={<Message message="layers.findExtLayers"/>}>
 					<EsriSearch 
 					onAddLayer={this.onAddLayer}
 					onSearch={this.onSearch} 
