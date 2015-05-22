@@ -2,7 +2,7 @@
 
 
 	.selectable-radio{
-		  border-radius: 50% !important;
+		  border-radius: 0% !important;
 		  background-clip:none;
 
 		font-size: 1.5em !important; 
@@ -15,7 +15,9 @@
 		margin-top: 1px;
 		width:13px;
 		height:13px;
-		
+		.selected{
+			
+		}
 		.fa{
 			font-size:0.7em;
 			margin-left: 2px;
