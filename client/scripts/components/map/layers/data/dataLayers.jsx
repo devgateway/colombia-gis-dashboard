@@ -79,12 +79,14 @@ module.exports = React.createClass({
     layer.bindPopup('');
     layer.on('popupopen', function(e) {
       var popupHolder=this.getDOMNode(); 
+      debugger;
       var _onChange=function(){
         popupHolder.firstChild.style.display="";
         e.popup.setContent(popupHolder.innerHTML);
+        //popupHolder.firstChild.style.display="none";
         this.fixReactIds(e.popup);
-      }.bind(this);
 
+      }.bind(this)
       React.render(React.createElement(Popup, _.assign(feature.properties,{onChange:_onChange}), this.state.data), popupHolder);
       e.popup.setContent(popupHolder.innerHTML);
       popupHolder.firstChild.style.display="none";

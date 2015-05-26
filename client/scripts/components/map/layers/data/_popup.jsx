@@ -54,19 +54,22 @@ module.exports  = React.createClass({
         });
       });
     } 
-    var content=(  <div className="popup-content"><h4>{titleArray[0]}</h4><MyChart data={chartData[0]} /></div>)
+    var content=(  <div className="popup-content"><h4>Cost Share Breakdown</h4> <iframe className="iframe-content" src="./#/chart1" ></iframe> </div>)
  
     if (this.state.tabId==0){
-      content=(  <div className="popup-content"><h4>{titleArray[0]}</h4><MyChart data={chartData[0]} /></div>)
+      content=(  <div className="popup-content"><h4>{titleArray[0]}</h4><iframe className="iframe-content" src="./#/chart1" ></iframe> </div>)
     }
     if (this.state.tabId==1){
-      content=(  <div className="popup-content"><h4>{titleArray[1]}</h4><MyChart data={chartData[1]} /></div>)
+      content=(  <div className="popup-content"><h4>{titleArray[1]}</h4><iframe className="iframe-content" src="./#/chart1" ></iframe> </div>)
     }
     if (this.state.tabId==2){
-      content=(  <div className="popup-content"><h4>{titleArray[2]}</h4><MyChart data={chartData[2]} /></div>)
+      content=(  <div className="popup-content"><h4>{titleArray[2]}</h4><iframe className="iframe-content" src="./#/chart1" ></iframe> </div>)
     }
     if (this.state.tabId==3){
-      content=(  <div className="popup-content"><h4>{titleArray[3]}</h4><MyActivities data={chartData[3]} /></div>)
+      content=(  <div className="popup-content"><h4>{titleArray[3]}</h4><iframe className="iframe-content" src="./#/chart1" ></iframe> </div>)
+    }    
+    if (this.state.tabId==4){
+      content=(  <div className="popup-content"><h4>{titleArray[4]}</h4><MyActivities data={chartData[4]} /></div>)
     }
     return (
       <div className="leaflet-popup-content-wrapper">
@@ -97,6 +100,11 @@ module.exports  = React.createClass({
                 <li className="" role="tab" >
                   <a href="#" onClick={this.handleClick.bind(this, 3)}>
                     <span className="popup-icon export" ></span>
+                  </a>
+                </li>
+                <li className="" role="tab" >
+                  <a href="#" onClick={this.handleClick.bind(this, 4)}>
+                    <span className="popup-icon subactivitiesList" ></span>
                   </a>
                 </li>
                 </ul>

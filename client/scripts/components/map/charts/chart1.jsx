@@ -16,19 +16,12 @@ module.exports  = React.createClass({
     console.log('charts3>_renderChart');
     var chartdata = [];
     var chartdata2 = [
-                ['Firefox',   45.0],
-                ['IE',       26.8],
-                {
-                    name: 'Chrome',
-                    y: 12.8,
-                    sliced: true,
-                    selected: true
-                },
-                ['Safari',    8.5],
-                ['Opera',     6.2],
-                ['Others',   0.7]
+                ['OECD',   45.0],
+                ['IATI',       26.8],
+                ['USAID',    8.5],
+                ['Others',   22.7]
             ];
-
+    debugger;
     if(this.props.data){
         var totalValue = 0;
         this.props.data.map(function(node, index) {
@@ -83,6 +76,6 @@ module.exports  = React.createClass({
 
   render: function() {
       console.log('charts3>render');
-      return (<div id="container" ></div>);
+      return (<div className="chart-container" id="container" ></div>);
     }
 });

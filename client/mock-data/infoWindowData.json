@@ -73,6 +73,28 @@
         ]}
   ]},
   {"id": "3",
+  "key": "objectivesInfoWindow",
+  "title": "Others activities",
+  "value":[
+        {"id": "91", "value": [
+            {"id": "1","name": "chart2","value": "15"}, 
+            {"id": "2","name": "Goverment","value": "22"},
+            {"id": "3","name": "ONGs","value": "22"},
+            {"id": "4","name": "IATI","value": "12"}
+        ]},
+        {"id": "86", "value": [
+            {"id": "1","name": "Usaid","value": "44"}, 
+            {"id": "2","name": "Goverment","value": "27"},
+            {"id": "3","name": "ONGs","value": "33"}
+        ]},
+        {"id": "92", "value": [
+            {"id": "1","name": "Usaid","value": "44"}, 
+            {"id": "2","name": "Goverment","value": "33"},
+            {"id": "3","name": "ONGs","value": "7"},
+            {"id": "4","name": "IATI","value": "2"}
+        ]}
+  ]},
+  {"id": "4",
   "key": "subActivities",  
   "title": "Sub Activities",
   "value":[
@@ -89,7 +111,7 @@
             {"id": "2","name": "Non PPP","value": "22"}
         ]}
   ]},
-  {"id": "4",
+  {"id": "5",
   "key": "cluster",  
   "title": "Sub Activities in Cluster",
   "value":[
