@@ -25,3 +25,6 @@
 			float: left;
 		}
 	}
+	.leaflet-popup-pane {
+		z-index: 10000;
+	}
