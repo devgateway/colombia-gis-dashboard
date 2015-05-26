@@ -70,10 +70,18 @@ module.exports=React.createClass({
 
 	render: function() {
 		console.log("layers->search->resultList: Render EsriServiceList");
+		var errorMessage = "";
+		if(this.props.error){
+			errorMessage = this.props.error.message;
+			this.props.error.message="";
+
+		} 
 		return(
 			<div>
-			{(this.props.error)?<div> <p className='label label label-danger'>{this.props.error.message}</p>
-			<hr class="h-divider"></hr></div>:null}
+			{
+				(errorMessage && errorMessage!="")?<div> <p className='label label label-danger'>{errorMessage}</p>
+				<hr class="h-divider"></hr></div>:""
+			}
 			{(this.props.search.nextStart==-1)?(
 				<div>
 					<Message message="layers.noResults"/>
