@@ -196,7 +196,6 @@ function writeLog(message){
    layers.map(function(l) {
 
     if(l.type=='Feature Service'){
-      debugger;
       _.map(l.layer.layers,function(featureLayer){
        var index=featureLayer.id.toString();
               var leafletLayer = this.state.leafletLayers[l.id+'-'+index]; ///find layer by metadata id 

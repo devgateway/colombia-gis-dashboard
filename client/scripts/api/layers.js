@@ -29,8 +29,18 @@ module.exports = {
             data: JSON.stringify({"filters": filters? filters : []}),
             crossOrigin: true
         }).fail(logFailure);
+    },
+
+    loadDepartments:function(){
+      
+        return request({
+            url: 'json-data/departmentsGeoOptimized.json',
+            type: 'json',
+            method: 'post',
+            contentType: "application/json",
+            data: JSON.stringify({"filters": filters? filters : []}),
+            crossOrigin: true
+        }).fail(logFailure);  
     }
-
-
 
 };

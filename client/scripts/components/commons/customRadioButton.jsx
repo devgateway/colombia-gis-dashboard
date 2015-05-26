@@ -10,7 +10,7 @@ var RadioGroup=React.createClass({
         
 
         _.map(this._children,function(child){
-                debugger;
+              
                 if (child.props.name==name){
                     child.props.checked=true;
                     child.props._onClick();
@@ -29,8 +29,6 @@ var RadioGroup=React.createClass({
     },
 
     render:function(){
-        
-        
         return <div>{this._children}</div>
     }
 });
@@ -40,7 +38,7 @@ var RadioGroup=React.createClass({
 var Radio = React.createClass({
 
     componentWillReceiveProps: function (nextProps) {
-            debugger;          
+                
     },
 
     _onClick: function() {

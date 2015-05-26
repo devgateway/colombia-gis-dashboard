@@ -9,7 +9,19 @@ var loadIndicatorsByMuncipalities= Reflux.createAction({ asyncResult: true });
 
 var triggerFilterApply = Reflux.createAction();
 
+var get=function(actionName){
+	var newAction=new Object();
+	newAction[actionName]=Reflux.createAction()
+	newAction['trigger']=function(){
+		debugger;
+		newAction[actionName].bind(arguments)();
+	}
+	return newAction;
+}
+
 module.exports = {
+
+	loadFundingByType:Reflux.createAction(),
 	triggerFilterApply: triggerFilterApply,
 	loadActivitiesByDepartments: loadActivitiesByDepartments,
 	loadActivitiesByMuncipalities:loadActivitiesByMuncipalities,

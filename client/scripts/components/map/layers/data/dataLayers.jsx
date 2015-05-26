@@ -3,7 +3,7 @@
  var Reflux = require('reflux');
  var _=require('lodash');
  var NumberedDivIcon=require('./_numberedDivIcon.js');
- var DataLayerStore=require('../../../../stores/dataLayerStore.js');
+ var DataLayerStore=require('../../../../stores/activitiesDataLayerStore.js');
  var Popup=require('./_popup.jsx')
  
  module.exports = React.createClass({

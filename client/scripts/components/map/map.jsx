@@ -11,14 +11,14 @@
  var MapStore = require('../../stores/mapStore.js');
  var MapActions = require('../../actions/mapActions.js');
  var LeafletMap = require('./_mapLeaflet.jsx');
- 
-
  var EsriLayers=require('./layers/esri/esriLayers.jsx');
+
  var DataLayer=require('./layers/data/dataLayers.jsx');
+ var FundingLayer=require('./layers/data/fundingTypeLayer.jsx');
 
  var AGOLbtnLogin=require('../esri/AGOLBtnLogin.jsx');
 
- var control=L.control.layers({}, {});
+var control=L.control.layers({}, {});
 
  module.exports = React.createClass({
 
@@ -63,6 +63,7 @@ render: function() {
      <LeafletMap ref="leafletMapComponent" baseMap={baseMap} bounds={bounds} onMapMove={this.updateCurrentBounds}/>
      <AGOLbtnLogin/>
      <DataLayer getMap={this.getMap}/>
+     <FundingLayer getMap={this.getMap}/>
      <EsriLayers getMap={this.getMap}/>
      {children} 
      </div>

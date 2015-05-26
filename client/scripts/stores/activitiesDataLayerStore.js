@@ -9,6 +9,7 @@ var API = require('../api/layers.js');
 module.exports = Reflux.createStore({
 
   listenables: LayersAction,
+
   onLoadActivitiesByDepartments: function() {
     this.update({
       'dataLevel': 'departament',
@@ -37,19 +38,6 @@ module.exports = Reflux.createStore({
     })
   },
 
-  onLoadIndicatorsByDepartments: function() {
-    this.update({
-      'dataLevel': 'departament',
-      'dataLayer': 'indicator'
-    });
-  },
-
-  onLoadIndicatorsByMuncipalities: function() {
-    this.update({
-      'dataLevel': 'municipality',
-      'dataLayer': 'indicator'
-    });
-  },
 
   onLoadActivitiesByDepartmentsCompleted: function(data) {
     this.update({
@@ -62,6 +50,9 @@ module.exports = Reflux.createStore({
       features: Util.toGeoJson(data)
     });
   },
+
+
+
 
   onTriggerFilterApply: function(data) {
     this.update({
@@ -81,6 +72,8 @@ module.exports = Reflux.createStore({
       this.trigger(this.state);
     }
   },
+
+
 
   getInitialState: function() {
     this.state = this.state || {

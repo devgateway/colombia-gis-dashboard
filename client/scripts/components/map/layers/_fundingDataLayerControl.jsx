@@ -6,7 +6,7 @@ var Reflux = require('reflux');
 var Toggler=require('../../commons/toggler.jsx').Toggler;
 var TogglerContent=require('../../commons/toggler.jsx').TogglerContent;
 var If=require('../../commons/if.jsx')
-var FundingLayerControl=require('./_fundingLayerControl.jsx')
+var LayerControl = require('./_fundingLayer.jsx')
 
 module.exports = React.createClass({
 
@@ -24,10 +24,10 @@ module.exports = React.createClass({
               </TogglerContent>
               <TogglerContent visibleWhen="always">
                 <div className="title">
-                    <input type="checkbox"/> Funding Disribution</div> 
+                    <input type="checkbox"/> Funding By Type</div> 
               </TogglerContent>
               <TogglerContent visibleWhen="expanded">
-                <FundingLayerControl/>
+                <LayerControl/>
               </TogglerContent>
             </Toggler>
           </li>
