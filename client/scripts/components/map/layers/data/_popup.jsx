@@ -3,7 +3,7 @@
 var React = require('react');
 var Reflux = require('reflux');
 var InfoWindowStore=require('../../../../stores/infoWindowStore.js');
-var MyChart=require('./_charts.js');
+var MyChart=require('./_charts3.js');
 
 
 var MyActivities = React.createClass({
@@ -54,17 +54,16 @@ module.exports  = React.createClass({
         });
       });
     } 
-    debugger;
-    var content=(  <div className="popup-content"><h4>{titleArray[0]}</h4><MyChart data={chartData[0]}/></div>)
+    var content=(  <div className="popup-content"><h4>{titleArray[0]}</h4><MyChart data={chartData[0]} /></div>)
  
     if (this.state.tabId==0){
       content=(  <div className="popup-content"><h4>{titleArray[0]}</h4><MyChart data={chartData[0]} /></div>)
     }
     if (this.state.tabId==1){
-      content=(  <div className="popup-content"><h4>{titleArray[1]}</h4><MyChart data={chartData[1]}/></div>)
+      content=(  <div className="popup-content"><h4>{titleArray[1]}</h4><MyChart data={chartData[1]} /></div>)
     }
     if (this.state.tabId==2){
-      content=(  <div className="popup-content"><h4>{titleArray[2]}</h4><MyChart data={chartData[2]}/></div>)
+      content=(  <div className="popup-content"><h4>{titleArray[2]}</h4><MyChart data={chartData[2]} /></div>)
     }
     if (this.state.tabId==3){
       content=(  <div className="popup-content"><h4>{titleArray[3]}</h4><MyActivities data={chartData[3]} /></div>)
