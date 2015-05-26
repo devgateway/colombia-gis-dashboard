@@ -1,10 +1,14 @@
 .show-legends-button{
   background: $white;
   border: 1px solid #ccc;
-  padding: $gutter/2 $gutter*3;
+  padding: $gutter $gutter*3;
   @include textUppercase;
+  @include transitionAll;
   outline:none;
   width:250px;
+  &:hover{
+    background:#bad5e2;
+  }
 }
 
 .legends-container{
@@ -18,7 +22,7 @@
   width: 250px;
   background-color: $white;
   position: absolute;
-  bottom: 30px;
+  bottom: 42px;
   padding:6px 6px 4px 6px ;
   border:1px solid #cccccc;
 }
@@ -30,7 +34,6 @@
   padding:$gutter $gutter 0 $gutter;
   margin-bottom:4px;
   @include border-radius(2px);
-
     span{
       padding-left: $gutter/2;
       font-weight:600;
