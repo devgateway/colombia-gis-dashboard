@@ -36,6 +36,17 @@ module.exports = {
         }).fail(logFailure);
     },
 
+    findLegends: function (url) {
+        debugger;
+        var legendUrl = this.getTargetURL(url + "/legend?&f=json");
+        return request({
+            url: legendUrl,
+            type: 'json',
+            method: 'get',
+            crossOrigin: true
+        }).fail(logFailure);
+    },
+
     self:function(token){
         /*Token is mandatory for this end point */   
         var url = this.getTargetURL(window.ESRI_SELF_URL+'?');   

@@ -21,10 +21,13 @@
 		"reset":"Reiniciar",
 		"apply":"Aplicar",
 		"showAll":"Mostrar todos",
-		"showOnlySelected":"Mostrar solo los seleccionados"
+		"showOnlySelected":"Mostrar solo los seleccionados",
+		"noResults":"No se encontraron resultados disponibles"
 	},
 
 	"layers": {
+		"showLegend":"Mostrar Leyendas",
+		"hideLegend":"Ocultar Leyendas",
 		"title":"Contenidos del mapa",
 		"mapLayers":"Capas del mapa",
 		"findExtLayers":"Buscar Capas Externas",

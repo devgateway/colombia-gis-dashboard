@@ -3,6 +3,7 @@
 var assign = require('object-assign');
 var Reflux = require('reflux');
 var ArcgisLayersActions = require('../actions/arcgisLayersActions.js');
+var LegendActions = require('../actions/legendActions.js');
 var Util = require('../api/util.js');
 var API = require('../api/esri.js');
 var _ = require('lodash');
@@ -42,6 +43,7 @@ module.exports = Reflux.createStore({
 			_.assign(layer, options);
 			
 			this.state.layers.push(layer);
+			LegendActions.getLegends(layer);
 			this.trigger(this.state);
 		}
 	},
