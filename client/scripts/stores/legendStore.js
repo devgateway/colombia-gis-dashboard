@@ -28,8 +28,9 @@ module.exports=Reflux.createStore({
     onGetLegendsCompleted: function(legends, layer){
         var legendObject = {"legends": legends.layers[0].legend};
         _.assign(legendObject,{'layerName': layer.title});
-        this.state.legends.push(legendObject);
-        debugger;
+        if(legendObject.legends){
+          this.state.legends.push(legendObject);
+        }
         this.trigger(this.state);
     },
 
