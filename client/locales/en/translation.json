@@ -21,10 +21,13 @@
 		"reset":"Reset",
 		"apply":"Apply",
 		"showAll":"Show all",
-		"showOnlySelected":"Show only selected"
+		"showOnlySelected":"Show only selected",
+		"noResults":"There where no results available"
 	},
 
 	"layers": {
+		"showLegend":"Show Legends",
+		"hideLegend":"Hide Legends",
 		"title":"Map content",
 		"mapLayers":"Map Layers",
 		"findExtLayers":"Find External Layers",

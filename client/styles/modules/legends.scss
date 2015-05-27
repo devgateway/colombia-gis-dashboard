@@ -1,3 +1,4 @@
+
 .show-legends-button{
   background: $white;
   border: 1px solid #ccc;
@@ -45,5 +46,40 @@
   background: $white;
   ul{
    padding-left: $gutter/2;
+  }
+}
+
+.legends-container{
+  position: absolute;
+  top: 90px;
+  right: 63px;
+  z-index: 150;
+}
+  
+.show-legends-button{
+  float: right;
+}
+
+.legend-group-title{
+  cursor: pointer;
+  padding: 8px;
+  background-color: rgba(152, 174, 198, 1);
+  span {
+    padding-left: 5px;
+    font-weight: 600;
+    color: #454545;
+  }
+}
+
+.legends-content{
+  width: 250px;
+  background-color: rgba(200, 200, 200, 0.8);
+}
+
+.legends-list{
+  padding-top: 10px;
+  padding-bottom: 10px;
+  ul {
+    list-style-type: none;
   }
 }
