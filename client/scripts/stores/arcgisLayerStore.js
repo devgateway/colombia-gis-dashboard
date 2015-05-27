@@ -41,7 +41,7 @@ module.exports = Reflux.createStore({
 			}
 
 			_.assign(layer, options);
-			
+			debugger;
 			this.state.layers.push(layer);
 			LegendActions.getLegends(layer);
 			this.trigger(this.state);
