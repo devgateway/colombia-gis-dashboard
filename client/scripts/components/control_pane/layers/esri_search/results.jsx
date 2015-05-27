@@ -33,7 +33,7 @@ var ResultRecord=React.createClass({
 	},
 
 	componentDidMount: function(){
-        $('.title').tooltip({container: 'body'});
+        $.(this.getDOMNode()).find('.title').tooltip({container: 'body'});
     },
 
 	render: function() {
