@@ -2,7 +2,6 @@
 
 var React = require('react');
 var Reflux = require('reflux');
-var InfoWindowStore=require('../../../../stores/infoWindowStore.js');
 var MyChart=require('./_charts3.js');
 
 
@@ -22,8 +21,10 @@ var MyActivities = React.createClass({
 });
 
 module.exports  = React.createClass({
-  mixins: [Reflux.connect(InfoWindowStore)],
-
+  componentWillMount:function(){
+    console.log('popup>componentWillMount');
+    this.setState({tabId: 0});
+  },
 
   componentDidUpdate: function(props,newState) {  
     this.props.onChange();
@@ -39,35 +40,8 @@ module.exports  = React.createClass({
 
   render: function() {
     console.log('popup>render id:' + this.props.id +" tab "+this.state.tabId);
-    var self = this;
-    var chartData = [];
-    var titleArray = [];
-    if(self.state.infoWindow){
-      self.state.infoWindow.map(function(node, index) {
-        titleArray.push(node.title)
-        node.value.map(function(innerNode, index) {
-          if(innerNode.id==self.props.id){
-            chartData.push(innerNode.value);
-          } else {
-            chartData.push();
-          }
-        });
-      });
-    } 
-    var content=(  <div className="popup-content"><h4>Cost Share Breakdown</h4> <iframe className="iframe-content" src="./#/chart1" ></iframe> </div>)
- 
-    if (this.state.tabId==0){
-      content=(  <div className="popup-content"><h4>{titleArray[0]}</h4><iframe className="iframe-content" src="./#/chart1" ></iframe> </div>)
-    }
-    if (this.state.tabId==1){
-      content=(  <div className="popup-content"><h4>{titleArray[1]}</h4><iframe className="iframe-content" src="./#/chart1" ></iframe> </div>)
-    }
-    if (this.state.tabId==2){
-      content=(  <div className="popup-content"><h4>{titleArray[2]}</h4><iframe className="iframe-content" src="./#/chart1" ></iframe> </div>)
-    }
-    if (this.state.tabId==3){
-      content=(  <div className="popup-content"><h4>{titleArray[3]}</h4><iframe className="iframe-content" src="./#/chart1" ></iframe> </div>)
-    }    
+    var url = "./#/chart1?id="+this.props.id+"&tab="+this.state.tabId;
+    var content=(  <div className="popup-content"><iframe className="iframe-content" src={url} ></iframe> </div>);
     if (this.state.tabId==4){
       content=(  <div className="popup-content"><h4>{titleArray[4]}</h4><MyActivities data={chartData[4]} /></div>)
     }

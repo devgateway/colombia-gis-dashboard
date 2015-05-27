@@ -9,8 +9,7 @@ var RouteHandler = require('react-router').RouteHandler;
 module.exports  = React.createClass({
 
   render: function() {
-      console.log('charts3>render');
-      debugger;
+      console.log('infoWindow>render');
       return (<div className="map-panel-header">
           <RouteHandler {...this.props}/>
         </div>);
