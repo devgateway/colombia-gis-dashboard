@@ -32,6 +32,10 @@ var ResultRecord=React.createClass({
 		this.props.onAddLayer({'id':this.props.id,'url':this.props.url,'type':this.props.type,title:this.props.title})
 	},
 
+	componentDidMount: function(){
+        $.(this.getDOMNode()).find('.title').tooltip({container: 'body'});
+    },
+
 	render: function() {
 		console.log("layers->search->resultList: Render EsriService");
 		return(
@@ -42,7 +46,7 @@ var ResultRecord=React.createClass({
 						</div>
 
 					<div className="layer-info">
-					<div className="title" data-toggle="Loging is required">{this.props.title} {this.props.loginRequired?<i className="text-warning small">Loing is required</i>:''}
+					<div className="title" data-toggle="Loging is required" title={this.props.title}>{this.props.title} {this.props.loginRequired?<i className="text-warning small">Loing is required</i>:''}
 				</div>
 
 				<div className="details">{this.props.snippet}</div>
