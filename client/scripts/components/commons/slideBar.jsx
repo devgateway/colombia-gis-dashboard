@@ -21,19 +21,32 @@ module.exports  = React.createClass({
       open: false
     };
   },
+
+  componentDidMount:function(){
+    $(this.getDOMNode()).find('.panel-toggle').tooltip();
+  },
   
   toggle: function() {
     $(this.getDOMNode()).find(".slider_content").toggle( "slide" );
-    this.setState({
-      open: true
-    });
+    if(this.state.open){
+      $(this.getDOMNode()).find('.panel-toggle').tooltip({content: "Menu"});
+      this.setState({
+        open: false
+      });
+    } else {
+      $(this.getDOMNode()).find('.panel-toggle').tooltip({content: "Hide Menu"});
+      this.setState({
+        open: true
+      });
+    }
+
   },
   
   render: function() {
     var content = this.state.open? this.props.children : "";
     return (
       <div id="sidebar-wrapper">
-        <div className="panel-toggle">
+        <div className="panel-toggle" title="Menu">
           <i className="fa fa-bars" onClick={this.toggle}></i>
         </div>
         
