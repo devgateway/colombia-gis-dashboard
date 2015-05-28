@@ -2,8 +2,6 @@
 
 var React = require('react');
 var Reflux = require('reflux');
-var MyChart=require('./_charts3.js');
-
 
 var MyActivities = React.createClass({
   render: function() {
@@ -58,27 +56,27 @@ module.exports  = React.createClass({
                 <ul className="tabs nav nav-tabs" role="tablist" >
                 <li className="active" role="tab" >
                   <a href="#" onClick={this.handleClick.bind(this, 0)}>
-                    <span className="popup-icon chart" ></span>
+                    <span className="popup-icon chart" title="Cost Share Breakdown"></span>
                   </a>
                 </li>
                 <li className="" role="tab" >
                   <a href="#" onClick={this.handleClick.bind(this, 1)}>
-                    <span className="popup-icon funding-dev-obj" ></span>
+                    <span className="popup-icon funding-dev-obj" title="Development Objectives"></span>
                   </a>
                 </li>
                 <li className="" role="tab" >
                   <a href="#" onClick={this.handleClick.bind(this, 2)}>
-                    <span className="popup-icon subactivities" ></span>
+                    <span className="popup-icon subactivities" title="Activity Classication"></span>
                   </a>
                 </li>
                 <li className="" role="tab" >
                   <a href="#" onClick={this.handleClick.bind(this, 3)}>
-                    <span className="popup-icon export" ></span>
+                    <span className="popup-icon export" title="Public Private Partnership"></span>
                   </a>
                 </li>
                 <li className="" role="tab" >
                   <a href="#" onClick={this.handleClick.bind(this, 4)}>
-                    <span className="popup-icon subactivitiesList" ></span>
+                    <span className="popup-icon subactivitiesList" title="Sub Activities"></span>
                   </a>
                 </li>
                 </ul>

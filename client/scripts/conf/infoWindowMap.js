@@ -9,7 +9,7 @@ var infoWindowEndpoint = [
     ];
 
 var getInfoWindowData = function (param){
-    console.log("conf->infoWindowMap: getCostShareBreakDown");
+    console.log("conf->infoWindowMap: getInfoWindowData");
     return this.infoWindowEndpoint[0];
 };
 

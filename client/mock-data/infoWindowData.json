@@ -3,36 +3,36 @@
    "title": "Cost Share Breakdown",
    "value":[
         {"id": "91", "value": [
-            {"id": "1","name": "chart1","value": "35"}, 
+            {"id": "1","name": "Chart1","value": "35"}, 
             {"id": "2","name": "Goverment","value": "12"},
             {"id": "3","name": "ONGs","value": "22"},
             {"id": "4","name": "IATI","value": "7"}
         ]},
         {"id": "95", "value": [
-            {"id": "1","name": "Usaid","value": "44"}, 
+            {"id": "1","name": "Chart1","value": "44"}, 
             {"id": "2","name": "Goverment","value": "27"},
             {"id": "3","name": "ONGs","value": "33"}
         ]},
         {"id": "19", "value": [
-            {"id": "1","name": "Usaid","value": "44"}, 
+            {"id": "1","name": "Chart1","value": "44"}, 
             {"id": "2","name": "Goverment","value": "33"},
             {"id": "3","name": "ONGs","value": "7"},
             {"id": "4","name": "IATI","value": "2"}
         ]},
         {"id": "18", "value": [
-            {"id": "1","name": "Usaid","value": "44"}, 
+            {"id": "1","name": "Chart1","value": "44"}, 
             {"id": "2","name": "Goverment","value": "33"},
             {"id": "3","name": "ONGs","value": "26"},
             {"id": "4","name": "IATI","value": "48"}
         ]},
         {"id": "86", "value": [
-            {"id": "1","name": "Usaid","value": "12"}, 
+            {"id": "1","name": "Chart1","value": "12"}, 
             {"id": "2","name": "Goverment","value": "33"},
             {"id": "3","name": "ONGs","value": "33"},
             {"id": "4","name": "IATI","value": "2"}
         ]},
         {"id": "52", "value": [
-            {"id": "1","name": "Usaid","value": "22"}, 
+            {"id": "1","name": "Chart1","value": "22"}, 
             {"id": "2","name": "Goverment","value": "33"},
             {"id": "3","name": "ONGs","value": "17"},
             {"id": "4","name": "IATI","value": "12"}
@@ -55,65 +55,77 @@
   "title": "Development Objectives",
   "value":[
         {"id": "91", "value": [
-            {"id": "1","name": "chart2","value": "15"}, 
-            {"id": "2","name": "Goverment","value": "22"},
-            {"id": "3","name": "ONGs","value": "22"},
-            {"id": "4","name": "IATI","value": "12"}
+            {"id": "1","name": "Chart2","value": "15"}, 
+            {"id": "2","name": "Government presence","value": "22"},
+            {"id": "3","name": "Impact of conflict","value": "22"},
+            {"id": "4","name": "PPP","value": "12"}
+        ]},
+        {"id": "18", "value": [
+            {"id": "1","name": "Chart2","value": "15"}, 
+            {"id": "2","name": "Government presence","value": "22"},
+            {"id": "3","name": "Impact of conflict","value": "22"},
+            {"id": "4","name": "PPP","value": "12"}
         ]},
         {"id": "86", "value": [
-            {"id": "1","name": "Usaid","value": "44"}, 
-            {"id": "2","name": "Goverment","value": "27"},
-            {"id": "3","name": "ONGs","value": "33"}
+            {"id": "1","name": "Chart2","value": "44"}, 
+            {"id": "2","name": "Government presence","value": "27"},
+            {"id": "3","name": "Impact of conflict","value": "33"}
         ]},
         {"id": "92", "value": [
-            {"id": "1","name": "Usaid","value": "44"}, 
-            {"id": "2","name": "Goverment","value": "33"},
-            {"id": "3","name": "ONGs","value": "7"},
-            {"id": "4","name": "IATI","value": "2"}
+            {"id": "1","name": "Chart2","value": "44"}, 
+            {"id": "2","name": "Government presence","value": "33"},
+            {"id": "3","name": "Impact of conflict","value": "7"},
+            {"id": "4","name": "PPP","value": "2"}
         ]}
   ]},
   {"id": "3",
-  "key": "objectivesInfoWindow",
-  "title": "Others activities",
+  "key": "activityClassication",
+  "title": "Activity Classication",
   "value":[
         {"id": "91", "value": [
-            {"id": "1","name": "chart2","value": "15"}, 
-            {"id": "2","name": "Goverment","value": "22"},
-            {"id": "3","name": "ONGs","value": "22"},
-            {"id": "4","name": "IATI","value": "12"}
+            {"id": "1","name": "Chart3","value": "15"}, 
+            {"id": "2","name": "Afrocolombian","value": "22"},
+            {"id": "3","name": "Defenders","value": "22"},
+            {"id": "4","name": "LGTBI","value": "12"}
+        ]},
+        {"id": "18", "value": [
+            {"id": "1","name": "Chart3","value": "15"}, 
+            {"id": "2","name": "Afrocolombian","value": "22"},
+            {"id": "3","name": "Defenders","value": "22"},
+            {"id": "4","name": "LGTBI","value": "12"}
         ]},
         {"id": "86", "value": [
-            {"id": "1","name": "Usaid","value": "44"}, 
-            {"id": "2","name": "Goverment","value": "27"},
-            {"id": "3","name": "ONGs","value": "33"}
+            {"id": "1","name": "Chart3","value": "44"}, 
+            {"id": "2","name": "Afrocolombian","value": "27"},
+            {"id": "3","name": "Defenders","value": "33"}
         ]},
         {"id": "92", "value": [
-            {"id": "1","name": "Usaid","value": "44"}, 
-            {"id": "2","name": "Goverment","value": "33"},
-            {"id": "3","name": "ONGs","value": "7"},
-            {"id": "4","name": "IATI","value": "2"}
+            {"id": "1","name": "Chart3","value": "44"}, 
+            {"id": "2","name": "Afrocolombian","value": "33"},
+            {"id": "3","name": "Defenders","value": "7"},
+            {"id": "4","name": "LGTBI","value": "2"}
         ]}
   ]},
   {"id": "4",
-  "key": "subActivities",  
-  "title": "Sub Activities",
+  "key": "ppp",  
+  "title": "Public Private Partnership",
   "value":[
         {"id": "91", "value": [
-            {"id": "1","name": "PPP","value": "15"}, 
-            {"id": "2","name": "Non PPP","value": "22"}
+            {"id": "1","name": "With PPP","value": "15"}, 
+            {"id": "2","name": "Without PPP","value": "22"}
         ]},
         {"id": "86", "value": [
-            {"id": "1","name": "PPP","value": "15"}, 
-            {"id": "2","name": "Non PPP","value": "22"}
+            {"id": "1","name": "With PPP","value": "15"}, 
+            {"id": "2","name": "Without PPP","value": "22"}
         ]},
         {"id": "92", "value": [
-            {"id": "1","name": "PPP","value": "15"}, 
-            {"id": "2","name": "Non PPP","value": "22"}
+            {"id": "1","name": "With PPP","value": "15"}, 
+            {"id": "2","name": "Without PPP","value": "22"}
         ]}
   ]},
   {"id": "5",
-  "key": "cluster",  
-  "title": "Sub Activities in Cluster",
+  "key": "subActivities",  
+  "title": "Sub Activities",
   "value":[
         {"id": "91", "value": [
             {"id": "1","name": "subactivity 1","link": "http://www.google.com"}, 

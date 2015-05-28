@@ -55,7 +55,8 @@ module.exports  = React.createClass({
         });
       });
     } 
-    if(infoData.length>0 && infoData[vars["tab"]].length>0){
+    if(infoData.length>0 && infoData.length>vars["tab"] && infoData[vars["tab"]].length>0){
+        $(this.getDOMNode()).find('.chart-not-found').get(0).style.display="none"; 
         var chartdata = [];
         var totalValue = 0;
         infoData[vars["tab"]].map(function(node, index) {
@@ -108,26 +109,28 @@ module.exports  = React.createClass({
             series: [{data: chartdata}]
         },
         // using 
-                                         
         function(chart) { // on complete
-            
             var xpos = '20%';
             var ypos = '23%';
             var circleradius = 0;
-        
         // Render the circle
         chart.renderer.circle(xpos, ypos, circleradius).attr({
             fill: '#ddd',
         }).add();
-
-        
-        });
+      });
+    } else {
+      $(this.getDOMNode()).find('.chart-not-found').get(0).style.display="";  
     }
   },
 
 
   render: function() {
       console.log('chart1>render');
-      return (<div className="chart-container" id="container" ></div>);
+      return (
+        <div className="chart">
+          <div className="chart-not-found">There where no results available</div>
+          <div className="chart-container" id="container" ></div>
+        </div>
+      );
     }
 });
