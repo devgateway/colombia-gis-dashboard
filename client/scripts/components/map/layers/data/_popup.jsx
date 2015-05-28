@@ -2,9 +2,6 @@
 
 var React = require('react');
 var Reflux = require('reflux');
-var InfoWindowStore=require('../../../../stores/infoWindowStore.js');
-var MyChart=require('./_charts.js');
-
 
 var MyActivities = React.createClass({
   render: function() {
@@ -22,8 +19,10 @@ var MyActivities = React.createClass({
 });
 
 module.exports  = React.createClass({
-  mixins: [Reflux.connect(InfoWindowStore)],
-
+  componentWillMount:function(){
+    console.log('popup>componentWillMount');
+    this.setState({tabId: 0});
+  },
 
   componentDidUpdate: function(props,newState) {  
     this.props.onChange();
@@ -39,35 +38,10 @@ module.exports  = React.createClass({
 
   render: function() {
     console.log('popup>render id:' + this.props.id +" tab "+this.state.tabId);
-    var self = this;
-    var chartData = [];
-    var titleArray = [];
-    if(self.state.infoWindow){
-      self.state.infoWindow.map(function(node, index) {
-        titleArray.push(node.title)
-        node.value.map(function(innerNode, index) {
-          if(innerNode.id==self.props.id){
-            chartData.push(innerNode.value);
-          } else {
-            chartData.push();
-          }
-        });
-      });
-    } 
-    debugger;
-    var content=(  <div className="popup-content"><h4>{titleArray[0]}</h4><MyChart data={chartData[0]}/></div>)
- 
-    if (this.state.tabId==0){
-      content=(  <div className="popup-content"><h4>{titleArray[0]}</h4><MyChart data={chartData[0]} /></div>)
-    }
-    if (this.state.tabId==1){
-      content=(  <div className="popup-content"><h4>{titleArray[1]}</h4><MyChart data={chartData[1]}/></div>)
-    }
-    if (this.state.tabId==2){
-      content=(  <div className="popup-content"><h4>{titleArray[2]}</h4><MyChart data={chartData[2]}/></div>)
-    }
-    if (this.state.tabId==3){
-      content=(  <div className="popup-content"><h4>{titleArray[3]}</h4><MyActivities data={chartData[3]} /></div>)
+    var url = "./#/chart1?id="+this.props.id+"&tab="+this.state.tabId;
+    var content=(  <div className="popup-content"><iframe className="iframe-content" src={url} ></iframe> </div>);
+    if (this.state.tabId==4){
+      content=(  <div className="popup-content"><h4>{titleArray[4]}</h4><MyActivities data={chartData[4]} /></div>)
     }
     return (
       <div className="leaflet-popup-content-wrapper">
@@ -82,22 +56,27 @@ module.exports  = React.createClass({
                 <ul className="tabs nav nav-tabs" role="tablist" >
                 <li className="active" role="tab" >
                   <a href="#" onClick={this.handleClick.bind(this, 0)}>
-                    <span className="popup-icon chart" ></span>
+                    <span className="popup-icon chart" title="Cost Share Breakdown"></span>
                   </a>
                 </li>
                 <li className="" role="tab" >
                   <a href="#" onClick={this.handleClick.bind(this, 1)}>
-                    <span className="popup-icon funding-dev-obj" ></span>
+                    <span className="popup-icon funding-dev-obj" title="Development Objectives"></span>
                   </a>
                 </li>
                 <li className="" role="tab" >
                   <a href="#" onClick={this.handleClick.bind(this, 2)}>
-                    <span className="popup-icon subactivities" ></span>
+                    <span className="popup-icon subactivities" title="Activity Classication"></span>
                   </a>
                 </li>
                 <li className="" role="tab" >
                   <a href="#" onClick={this.handleClick.bind(this, 3)}>
-                    <span className="popup-icon export" ></span>
+                    <span className="popup-icon export" title="Public Private Partnership"></span>
+                  </a>
+                </li>
+                <li className="" role="tab" >
+                  <a href="#" onClick={this.handleClick.bind(this, 4)}>
+                    <span className="popup-icon subactivitiesList" title="Sub Activities"></span>
                   </a>
                 </li>
                 </ul>

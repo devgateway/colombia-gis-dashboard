@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "dependencies": {
     "form-serialize": "^0.4.1",
+    "highcharts-browserify": "^0.1.4-4.0.4",
     "keymirror": "~0.1.0",
     "node-jsx": "~0.12.4",
     "object-assign": "^1.0.0",
