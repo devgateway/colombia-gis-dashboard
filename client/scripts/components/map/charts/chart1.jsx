@@ -69,19 +69,41 @@ module.exports  = React.createClass({
         });
 
         var chart = new HighCharts.Chart({
+            colors: ['#058DC7', '#50B432', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4'],
             chart: {
-                renderTo: 'container',
-                type: 'pie'
+              marginTop: 20,
+              width: 380,
+              height: 240,
+              plotBorderWidth: null,
+              renderTo: 'container',
+              type: 'pie',
             },
             title: {
-                text: titleArray[vars["tab"]]
+              align: "left",
+              text: titleArray[vars["tab"]],
+              style: { 
+                "color": "#333333", 
+                "fontSize": "14px" 
+              }
             },
             plotOptions: {
-                pie: {
-                    borderColor: '#000000',
-                    innerSize: '0.1%',
-                    animation: false 
-                }
+              pie: {
+                  innerSize: '0.1%',
+                  animation: false,
+                  dataLabels: {
+                      enabled: false
+                  },
+                  showInLegend: true
+              }
+            },
+            legend: {
+              enabled: true,
+              layout: 'vertical',
+              align: 'right',
+              verticalAlign: 'middle',
+              labelFormatter: function() {
+                return this.name + ' ' + this.y + '%';
+              }
             },
             series: [{data: chartdata}]
         },
@@ -89,8 +111,8 @@ module.exports  = React.createClass({
                                          
         function(chart) { // on complete
             
-            var xpos = '50%';
-            var ypos = '53%';
+            var xpos = '20%';
+            var ypos = '23%';
             var circleradius = 0;
         
         // Render the circle
