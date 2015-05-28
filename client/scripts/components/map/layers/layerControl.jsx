@@ -1,7 +1,5 @@
 'use strict';
-
 var React = require('react/addons');
-
 var Reflux = require('reflux');
 var ArcgisLayerStore = require('../../../stores/arcgisLayerStore.js');
 var ArcgisLayerActions = require('../../../actions/arcgisLayersActions.js')
@@ -11,102 +9,18 @@ var TogglerContent=require('../../commons/toggler.jsx').TogglerContent;
 var If=require('../../commons/if.jsx');
 var ActivitiesLayerControl=require('./_activitiesDataLayerControl.jsx');
 var FundingLayerControl=require('./_fundingDataLayerControl.jsx');
-
-var Mixins={
-
-  _handleOpacityChanged: function(value) {
-    this.setState(_.assign(this.state,{'opacity':value}));
-    this.props.onChangeOpacity(this.props.id, (value / 100),this.props.idx);
-  },
-
-
-  _handleChageVisibility: function() {
-    var newValue=!this.state.checked;
-    this.setState({'checked':newValue})
-    this.props.onChangeVisibility(this.props.id,newValue,this.props.idx);
-  },
-
-  _up: function() {
-    this.props.onMoveUp(this.props.id);
-  },
-
-  _down: function() {
-    this.props.onMoveDown(this.props.id);
-  },
-
-  getInitialState: function() {
-    return {
-      'opacity':this.props.opacity,
-      'checked': this.props.visible
-    };
-  },
-}
-
-var Layer=React.createClass({
-  mixins:[Mixins],
-  componentDidUpdate :function(prevProps,prevState){
-
-    if (prevProps.opacity!=this.props.opacity){
-     var opacity=this.props.opacity*100;
-     $(this.getDOMNode()).find('.slider').slider('value',opacity);
-   }
- },
-
- componentDidMount:function(){
-  var opacity=this.props.opacity;
-  $(this.getDOMNode()).find('.slider')
-  .slider({
-    change:function(event,source){
-      if (event.originalEvent) {
-        this._handleOpacityChanged(source.value);
-      }
-    }.bind(this),
-    max: 100,
-    value:(opacity*100) 
-  })
-  .slider("pips", {
-    rest: false
-  });
-},
-
-componentWillReceiveProps :function(nextProps){
-  this.setState({checked:nextProps.visible});
-},
-
-render: function() {
-  console.log("Layer Control > Layer : Rendering now .. checked ==" + this.state.checked )
-  return (
-  <div>
-    <div className='updown'>
-      <If condition={this.props.onMoveUp}>
-        <i className="fa fa-arrow-up" onClick={this._up}></i>
-      </If>
-      <If condition={this.props.onMoveDown}>
-        <i onClick={this._down} className="fa fa-arrow-down"></i>
-      </If>
-    </div>
-    <div className="title">
-      <If condition={this.props.onChangeVisibility}>
-        <input type="checkbox" checked={this.state.checked} onChange={this._handleChageVisibility}/> 
-      </If>
-      {this.props.title}
-    </div>  
-    <div className='slider-holder'>
-      <div className='slider'/>
-    </div>
-  </div>
-    );   
-}
-});
+var Layer=require('./_layer.jsx');
 
 var FeatureLayer=React.createClass({
+
   render:function(){
     var onChangeOpacity=this.props.onChangeOpacity;
     var onChangeVisibility=this.props.onChangeVisibility;
     var id=this.props.id;
     var defaultVisibility=this.props.visible;
+
     return (
-    <div>
+      <div>
       <Toggler ref='toggler'>
         <TogglerContent visibleWhen="collapsed">
           <div toggler={true} className="toggler-btn"><i className="fa fa-plus-square-o"></i></div>
@@ -123,7 +37,7 @@ var FeatureLayer=React.createClass({
           onChangeVisibility={this.props.onChangeVisibility} 
           onChangeOpacity={onChangeOpacity}
           title={this.props.title} 
-          id={this.props.id} />
+          id={this.props.id}/>
         </TogglerContent>
 
         <TogglerContent visibleWhen="expanded">

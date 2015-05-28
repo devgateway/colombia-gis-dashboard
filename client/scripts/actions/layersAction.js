@@ -21,6 +21,7 @@ var get=function(actionName){
 
 module.exports = {
 
+	changeLayerValue:Reflux.createAction(),
 	loadFundingByType:Reflux.createAction(),
 	triggerFilterApply: triggerFilterApply,
 	loadActivitiesByDepartments: loadActivitiesByDepartments,
