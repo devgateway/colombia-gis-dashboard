@@ -223,7 +223,6 @@ module.exports  = React.createClass({
       </If>
       {
         tiles.map(function(l){
-          debugger;
          return (
           <li> <Layer 
           onMoveUp={this._handleMoveUp}

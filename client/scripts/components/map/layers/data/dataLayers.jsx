@@ -5,9 +5,6 @@ var _=require('lodash');
 var NumberedDivIcon=require('./_numberedDivIcon.js');
 var DataLayerStore=require('../../../../stores/dataLayerStore.js');
 var Popup=require('./_popup.jsx');
-var InfoWindowMap = require('../../../../conf/infoWindowMap.js');
-var InfoWindowActions=require('../../../../actions/infoWindowActions.js');
-var InfoWindowStore=require('../../../../stores/infoWindowStore.js');
 var EventConstants = require('react/lib/EventConstants');
 
 var reactEventNames = Object.keys(EventConstants.topLevelTypes)
@@ -25,12 +22,6 @@ var reactEventNames = Object.keys(EventConstants.topLevelTypes)
 module.exports = React.createClass({
 
   mixins: [  Reflux.connect(DataLayerStore, 'dataLayers')],
-
-  componentWillMount:function(){
-    console.log('popup>componentWillMount');
-    var data = this._getInfoWindowData(); 
-    this.setState({data: data});
-  },
 
   componentDidMount: function() {
     if (this.props.features){
@@ -85,9 +76,7 @@ module.exports = React.createClass({
         //popupHolder.firstChild.style.display="none";
         this.fixReactIds(e.popup);
 
-         //  this.fixReactEvents(e.popup);
       }.bind(this)
-
       React.render(React.createElement(Popup, _.assign(feature.properties,{onChange:_onChange}), this.state.data), popupHolder);
       e.popup.setContent(popupHolder.innerHTML);
       popupHolder.firstChild.style.display="none";
@@ -172,12 +161,6 @@ module.exports = React.createClass({
   _pointToLayer:function(feature, latlng){
     var marker = new L.Marker(latlng, {icon: NumberedDivIcon({number: feature.properties.activities})});
     return marker;
-  },
-
-
-  _getInfoWindowData: function () {
-      var info = InfoWindowActions.getInfoFromAPI(InfoWindowMap.getInfoWindowData()) || [];
-      return info;
   },
 
 
