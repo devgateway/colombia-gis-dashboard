@@ -69,20 +69,12 @@ module.exports=Reflux.createStore({
       var legendArray = [];
       if (legends.drawingInfo.renderer.type == 'uniqueValue'){
         legends.drawingInfo.renderer.uniqueValueInfos.map(function(valueInfo){
-          if (valueInfo.symbol.type == "esriPMS"){
-            legendArray.push({"label": valueInfo.label, "contentType": valueInfo.symbol.contentType, "imageData": valueInfo.symbol.imageData});
-          } else if (valueInfo.symbol.type == "esriSFS"){
-            legendArray.push({"label": valueInfo.label, "color": valueInfo.symbol.color, "borderColor": valueInfo.symbol.outline.color});              
-          }
+          legendArray.push({"label": valueInfo.label, "symbol": valueInfo.symbol});          
         });
         return legendArray;            
       } else {
         var rdrr = legends.drawingInfo.renderer;
-        if (rdrr.symbol.type == "esriPMS"){
-          legendArray.push({"label": rdrr.label, "contentType": rdrr.symbol.contentType, "imageData": rdrr.symbol.imageData});
-        } else if (rdrr.symbol.type == "esriSFS"){
-          legendArray.push({"label": rdrr.label, "color": rdrr.symbol.color, "borderColor": rdrr.symbol.outline.color});              
-        }  
+        legendArray.push({"label": rdrr.label, "symbol": rdrr.symbol});
         return legendArray;            
       }
     },
