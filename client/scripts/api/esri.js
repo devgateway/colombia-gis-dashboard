@@ -37,8 +37,9 @@ module.exports = {
     },
 
     findLegends: function (url) {
+        var legendUrl = this.getTargetURL(url);
         return request({
-            url: url,
+            url: legendUrl,
             type: 'json',
             method: 'get',
             crossOrigin: true
