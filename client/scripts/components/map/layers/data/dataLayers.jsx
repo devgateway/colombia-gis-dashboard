@@ -50,40 +50,25 @@ module.exports = React.createClass({
     
   },
 
-  fixReactIdsFromDiv: function(popupHolder) {
-    // replace all the `data-reactid`s so react doesn't get confused.
-    var allEls = popupHolder.querySelectorAll('*');
-    Array.prototype.forEach.call(allEls, function(el) {
-      var reactId = el.dataset.reactid;
-      var rnd = Math.random() * 1000000;
-      if (reactId !== undefined) {  // leaflet's containers, etc.
-        delete el.dataset.reactid;
-
-        el.dataset.reactid = rnd;
-      }
-    });
-  },
-
 
 
   _bindPopup:function(feature, layer){
     layer.bindPopup('');
     layer.on('popupopen', function(e) {
+      layer._popup.options.autoPanPaddingTopLeft=new L.Point(0, 50);
       var popupHolder=this.getDOMNode(); 
       var _onChange=function(){
         popupHolder.firstChild.style.display="";
         e.popup.setContent(popupHolder.innerHTML);
         //popupHolder.firstChild.style.display="none";
-        this.fixReactIds(e.popup);
-
+        this.fixReactIds(e.popup);        
       }.bind(this)
       React.render(React.createElement(Popup, _.assign(feature.properties,{onChange:_onChange}), this.state.data), popupHolder);
       e.popup.setContent(popupHolder.innerHTML);
       popupHolder.firstChild.style.display="none";
-
       this.fixReactIds(e.popup);
       this.fixReactEvents(e.popup);
-   }.bind(this));  
+   }.bind(this));
   },
 
 

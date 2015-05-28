@@ -24,7 +24,8 @@ module.exports  = React.createClass({
     this.setState({tabId: 0});
   },
 
-  componentDidUpdate: function(props,newState) {  
+  componentDidUpdate: function(props,newState) { 
+    console.log('popup>componentDidUpdate'); 
     this.props.onChange();
   },
 
