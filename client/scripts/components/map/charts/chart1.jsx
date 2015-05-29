@@ -70,7 +70,7 @@ module.exports  = React.createClass({
         });
 
         var chart = new HighCharts.Chart({
-            colors: ['#058DC7', '#50B432', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4'],
+            colors: ['#FFC614', '#3897D3', '#18577A', '#97CB68', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#50B432', '#FF9655', '#FFF263', '#6AF9C4'],
             chart: {
               marginTop: 20,
               width: 380,
@@ -83,13 +83,14 @@ module.exports  = React.createClass({
               align: "left",
               text: titleArray[vars["tab"]],
               style: { 
-                "color": "#333333", 
+                "color": "#4278AA", 
                 "fontSize": "14px" 
               }
             },
             plotOptions: {
               pie: {
-                  innerSize: '0.1%',
+                  innerSize: "70%",
+                  name: 'Quantity',
                   animation: false,
                   dataLabels: {
                       enabled: false
