@@ -7,10 +7,13 @@
 
 	"filters": {
 		"title":"Filters",
+		"basicFilters":"Basic Filters",
+		"advancedFilters":"Advanced Filters",
 		"locations":"Locations",
 		"targetPopulation":"Target Population",
 		"activityClassification":"Activity Classification",
 		"developmentObjectives":"Development Objectives",
+		"crops":"Crops",
 		"subActivityStatus":"SubActivity Status",
 		"subImplementer":"Sub Implementer",
 		"ppp":"PPP",
@@ -22,7 +25,17 @@
 		"apply":"Apply",
 		"showAll":"Show all",
 		"showOnlySelected":"Show only selected",
-		"noResults":"There where no results available"
+		"noResults":"There where no results available",
+		"expand":"Expand",
+		"collapse":"Collapse",
+		"subActivityStatusActions":{
+			"active":"Active",
+			"canceled":"Canceled",
+			"closing":"Closing",
+			"finished":"Finished",
+			"inProcess":"In Approval Process",
+			"suspended":"Suspended"
+		}
 	},
 
 	"layers": {
@@ -30,8 +43,10 @@
 		"hideLegend":"Hide Legends",
 		"title":"Map content",
 		"mapLayers":"Map Layers",
+		"dataLayers":"Data Layers",
 		"findExtLayers":"Find External Layers",
 		"funding":"Funding",
+		"fundingDistribution":"Funding Distribution",
 		"indicators":"Indicators",
 		"featureService":"Feature Service",
 		"mapService":"Map Service",
@@ -47,6 +62,7 @@
 
 	"map": {
 		"baseMaps":{
+			"views":"Views",
 			"title":"Base Maps:",
 			"gray":"Gray",
 			"topo":"Topographic",

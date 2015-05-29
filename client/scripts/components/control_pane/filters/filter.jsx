@@ -63,10 +63,10 @@ var Filter  = React.createClass({
             <div className="filter-type-wrapper">
               <ul className="filter-type-label">
                 <li>
-                  <span  className={self.state.advancedMode=="true"? "" : "active"} onClick={this._showBasicMode}>Basic Filters</span>
+                  <span  className={self.state.advancedMode=="true"? "" : "active"} onClick={this._showBasicMode}><Message message='filters.basicFilters'/></span>
                 </li>
                 <li>
-                  <span className={self.state.advancedMode=="true"? "active" : ""} onClick={this._showAdvancedMode}>Advanced Filters</span>
+                  <span className={self.state.advancedMode=="true"? "active" : ""} onClick={this._showAdvancedMode}><Message message='filters.advancedFilters'/></span>
                 </li>
               </ul>
             </div>

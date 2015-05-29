@@ -50,14 +50,14 @@ var filters = [
         },
         {
           index: 4,
-          label: 'Crops',
+          label: 'filters.crops',
           advanced: true,
           param: 'cr',
           apiEndPoint: window.DATA_PATH + '/cropsList.json'
         },
         {
           index: 5,
-          label: 'SubActivity Status',
+          label: 'filters.subActivityStatus',
           advanced: false,
           param: 'st',
           apiEndPoint: window.DATA_PATH + '/subActivityStatus.json'

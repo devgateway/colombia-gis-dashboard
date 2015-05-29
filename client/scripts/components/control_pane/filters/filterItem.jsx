@@ -36,7 +36,7 @@ var FilterItem = React.createClass({
         if (this.props.onExpandCollapse){
             className = "filter-col-parent";
             collapseDiv = <div className="parent-toggle" onClick={this.props.onExpandCollapse}>
-                            <span>{this.props.collapsed? "expand" : "collapse"}</span>
+                            <span>{this.props.collapsed? <Message message='filters.expand'/> : <Message message='filters.collapse'/>}</span>
                             <span className={this.props.collapsed? "collapse-icon fa fa-plus" : "collapse-icon fa fa-minus"}></span>
                         </div>;
         }
@@ -59,7 +59,7 @@ var FilterItem = React.createClass({
                         data-id={this.props.id} 
                         data-placement="top" 
                         className="item-label">
-                        {this.props.name}
+                        {this.props.msgLabel? <Message message={this.props.msgLabel}/> : this.props.name}
                     </span>;
         }
         return(

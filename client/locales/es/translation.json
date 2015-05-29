@@ -7,10 +7,13 @@
 
 	"filters": {
 		"title":"Filtros",
+		"basicFilters":"Filtros Básicos",
+		"advancedFilters":"Filtros Avanzados",
 		"locations":"Localidades",
 		"targetPopulation":"Población meta",
 		"activityClassification":"Tipo de Actividad",
 		"developmentObjectives":"Objetivos de Desarrollo",
+		"crops":"Cultivos",
 		"subActivityStatus":"Estado de la SubActividad",
 		"subImplementer":"Sub Implementador",
 		"ppp":"Asociación Publico Privada",
@@ -22,7 +25,17 @@
 		"apply":"Aplicar",
 		"showAll":"Mostrar todos",
 		"showOnlySelected":"Mostrar solo los seleccionados",
-		"noResults":"No se encontraron resultados disponibles"
+		"noResults":"No se encontraron resultados disponibles",
+		"expand":"Expandir",
+		"collapse":"Retraer",
+		"subActivityStatusActions":{
+			"active":"Activo",
+			"canceled":"Canceladp",
+			"closing":"En Cierre",
+			"finished":"Cerrado",
+			"inProcess":"En proceso de aprobación",
+			"suspended":"Suspendido"
+		}
 	},
 
 	"layers": {
@@ -30,8 +43,10 @@
 		"hideLegend":"Ocultar Leyendas",
 		"title":"Contenidos del mapa",
 		"mapLayers":"Capas del mapa",
+		"dataLayers":"Capas de datos",
 		"findExtLayers":"Buscar Capas Externas",
-		"funding":"Financiamiento",
+		"funding":"Financiamiento",		
+		"fundingDistribution":"Distribución del financiamiento",
 		"indicators":"Indicadores",
 		"featureService":"Servicio de entidades",
 		"mapService":"Servicio de mapas",
@@ -47,6 +62,7 @@
 
 	"map": {
 		"baseMaps":{
+			"views":"Fondo",
 			"title":"Mapa Base:",
 			"gray":"Gris",
 			"topo":"Topográfico",
