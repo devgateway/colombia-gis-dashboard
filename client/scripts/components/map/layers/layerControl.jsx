@@ -35,6 +35,10 @@ var Mixins={
     this.props.onMoveDown(this.props.id);
   },
 
+  _delete: function() {
+    this.props.onDelete(this.props.id);
+  },
+
   getInitialState: function() {
     return {
       'opacity':this.props.opacity,
@@ -85,6 +89,9 @@ render: function() {
     </If>
     <If condition={this.props.onMoveDown}>
     <i onClick={this._down} className="fa fa-arrow-down"></i>
+    </If>
+    <If condition={this.props.onDelete}>
+    <i className="fa fa-times" onClick={this._delete}></i>
     </If>
     </div>
     <div className="title">
@@ -180,6 +187,11 @@ module.exports  = React.createClass({
 
   },
 
+  _onDelete: function(id) {
+    ArcgisLayerActions.changeLayerValue('delete', id); //TODO:property mame should be in a globar variable 
+
+  },
+
   render: function() {
     console.log("Layer Control > Render .." );
     var tiles=_.sortBy(_.filter(this.state.layers,{type:'Map Service'}),'zIndex').reverse();
@@ -229,6 +241,7 @@ module.exports  = React.createClass({
           onMoveDown={this._handleMoveDown}
           onChangeOpacity={this._handleChangeOpacity}
           onChangeVisibility={this._changevisibility}
+          onDelete={this._onDelete}
           id={l.id}
           type={l.type}
           zIndex={l.zIndex} 

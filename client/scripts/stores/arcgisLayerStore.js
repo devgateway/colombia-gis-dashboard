@@ -61,12 +61,15 @@ module.exports = Reflux.createStore({
 	},
 
 	onChangeLayerValue: function(property, id, value, idx) {
-		debugger;
 		console.log(arguments);
 		var theLayer = _.findWhere(this.state.layers, {'id': id});
 		var isFeature=theLayer.type=='Feature Service';
 
-		if (property == 'moveDown' && !isFeature) {
+		if (property == 'delete') {
+			var index = _.indexOf(_.pluck(this.state.layers, 'id'), theLayer.id);;
+			this.state.layers.splice(index, 1);
+			this.trigger(this.state);
+		} else if (property == 'moveDown' && !isFeature) {
 			var currentZindex = theLayer.zIndex;
 			if (currentZindex > 0) {
 				var newZindex = currentZindex - 1;
