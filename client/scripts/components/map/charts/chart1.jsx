@@ -5,9 +5,26 @@ var Reflux = require('reflux');
 var InfoWindowMap = require('../../../conf/infoWindowMap.js');
 var InfoWindowActions=require('../../../actions/infoWindowActions.js');
 var InfoWindowStore=require('../../../stores/infoWindowStore.js');
+var If=require('../../commons/if.jsx')
 var HighCharts = require('highcharts-browserify');
 
-
+var MyActivities = React.createClass({
+  render: function() {
+    var items = [];
+    if(this.props.data){
+      items = this.props.data;
+    }
+    return (
+        <ul>
+        {
+          items.map(function(node, index) {
+            return <li><a href={node.link} target='_blank'>{node.name}</a></li>          
+          })
+        }
+        </ul>
+    );
+  }
+});
 
 module.exports  = React.createClass({
   mixins: [Reflux.connect(InfoWindowStore)],
@@ -32,31 +49,51 @@ module.exports  = React.createClass({
     this._renderChart();
   },
 
-  _renderChart: function() {
-    console.log('chart1>_renderChart');
-    var params = this.props.path.slice(this.props.path.indexOf('?') + 1).split('&');
+  _getVarsFromPath: function() {
     var vars = [];
+    var params = this.props.path.slice(this.props.path.indexOf('?') + 1).split('&');
     for (var i = 0; i < params.length; i++) {
         var param = params[i].split('=');
         vars[param[0]] = param[1];
     }
+    return vars;
+  },
 
-    var infoData = [];
+  _getTitles: function() {
     var titleArray = [];
     if(this.state.infoWindow){
       this.state.infoWindow.map(function(node, index) {
-        titleArray.push(node.title)
+        titleArray.push(node.title);
+      });
+    }
+    return titleArray;
+  },
+
+  _getData: function(tabId) {
+    var infoData = [];
+    if(this.state.infoWindow){
+      this.state.infoWindow.map(function(node, index) {
         node.value.map(function(innerNode, index) {
-          if(innerNode.id==vars["id"]){
+          if(innerNode.id==tabId){
             infoData.push(innerNode.value);
           } else {
             infoData.push();
           }
         });
       });
-    } 
+    }
+    return infoData;
+  },
+
+  _renderChart: function() {
+    console.log('chart1>_renderChart');
+    var vars = this._getVarsFromPath();
+    var titleArray = this._getTitles();
+    var infoData = this._getData(vars["id"]);
+
     if(infoData.length>0 && infoData.length>vars["tab"] && infoData[vars["tab"]].length>0){
-        $(this.getDOMNode()).find('.chart-not-found').get(0).style.display="none"; 
+      $(this.getDOMNode()).find('.chart-not-found').get(0).style.display="none"; 
+      if(vars["tab"]!=4 ){
         var chartdata = [];
         var totalValue = 0;
         infoData[vars["tab"]].map(function(node, index) {
@@ -102,23 +139,27 @@ module.exports  = React.createClass({
               enabled: true,
               layout: 'vertical',
               align: 'right',
+              itemStyle: {
+                  color: '#4F4F4F'
+              },
               verticalAlign: 'middle',
               labelFormatter: function() {
                 return this.name + ' ' + this.y + '%';
               }
             },
             series: [{data: chartdata}]
-        },
-        // using 
-        function(chart) { // on complete
-            var xpos = '20%';
-            var ypos = '23%';
-            var circleradius = 0;
-        // Render the circle
-        chart.renderer.circle(xpos, ypos, circleradius).attr({
-            fill: '#ddd',
-        }).add();
-      });
+          },
+          // using 
+          function(chart) { // on complete
+              var xpos = '20%';
+              var ypos = '23%';
+              var circleradius = 0;
+          // Render the circle
+          chart.renderer.circle(xpos, ypos, circleradius).attr({
+              fill: '#ddd',
+          }).add();
+        });
+      }
     } else {
       $(this.getDOMNode()).find('.chart-not-found').get(0).style.display="";  
     }
@@ -127,10 +168,20 @@ module.exports  = React.createClass({
 
   render: function() {
       console.log('chart1>render');
+      var vars = this._getVarsFromPath();
+      var titleArray = this._getTitles();
+      var infoData = this._getData(vars["id"]);
       return (
         <div className="chart">
           <div className="chart-not-found">There where no results available</div>
-          <div className="chart-container" id="container" ></div>
+          <div className="chart-container" id="container"></div>
+          <If condition={vars["tab"]==4} >
+            <div className="activities-content">
+              <div className="sub-activities-title">{titleArray[vars["tab"]]}</div>
+              <MyActivities data={infoData[4]} />
+            </div>
+          </If>
+
         </div>
       );
     }
