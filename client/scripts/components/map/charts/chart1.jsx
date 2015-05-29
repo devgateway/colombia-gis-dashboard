@@ -173,7 +173,6 @@ module.exports  = React.createClass({
       var infoData = this._getData(vars["id"]);
       return (
         <div className="chart">
-          <div className="chart-not-found">There where no results available</div>
           <div className="chart-container" id="container"></div>
           <If condition={vars["tab"]==4} >
             <div className="activities-content">
@@ -181,7 +180,7 @@ module.exports  = React.createClass({
               <MyActivities data={infoData[4]} />
             </div>
           </If>
-
+          <div className="chart-not-found">There where no results available</div>
         </div>
       );
     }
