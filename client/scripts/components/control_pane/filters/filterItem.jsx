@@ -59,7 +59,7 @@ var FilterItem = React.createClass({
                         data-id={this.props.id} 
                         data-placement="top" 
                         className="item-label">
-                        {this.props.msgLabel? <Message message={this.props.msgLabel}/> : this.props.name}
+                        {this.props.name}
                     </span>;
         }
         return(
