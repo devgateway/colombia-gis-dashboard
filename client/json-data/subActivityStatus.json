@@ -1,6 +1,1 @@
-[{"id":"E1","name":"Active","msgLabel":"filters.subActivityStatusActions.active"},
-{"id":"E5","name":"Canceled","msgLabel":"canceled"},
-{"id":"E3","name":"Closing","msgLabel":"closing"},
-{"id":"E2","name":"Finished","msgLabel":"finished"},
-{"id":"E6","name":"In Approval Process","msgLabel":"inProcess"},
-{"id":"E4","name":"Suspended","msgLabel":"suspended"}]
+[{"id":"E1","name":"Active"},{"id":"E5","name":"Canceled"},{"id":"E3","name":"Closing"},{"id":"E2","name":"Finished"},{"id":"E6","name":"In Approval Process"},{"id":"E4","name":"Suspended"}]
