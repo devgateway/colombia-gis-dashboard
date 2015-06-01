@@ -68,10 +68,13 @@ module.exports=Reflux.createStore({
 
     onGetBaseMapLegends: function() {
       console.log('stores->legendStore>OnGetBaseMapLegends'); 
-      debugger;
+      var legendId = 0;
       var legendItem = {};
       var legendGroup = {};
-      var layerLegends = {'id': 0, 'layerTitle': "Funding", "legendGroups": []};
+      var layerLegends = _.find(this.state.layersLegends, {'id': legendId});
+      if (!layerLegends){
+        layerLegends = {'id': legendId, 'layerTitle': "Funding", "legendGroups": []};
+      }
 
       _.assign(legendItem, {
         contentType: "image/png",
