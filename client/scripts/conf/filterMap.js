@@ -70,9 +70,9 @@ var filters = [
             },
             {
               level: 2,
-              parentParam: 'si2',
+              parentParam: 'sit',
               label: 'Sub Implementers',
-              param: 'si',
+              param: 'si1',
               parentParamField: 'idType',
               apiEndPoint: window.DATA_PATH + '/subImplementers.json'
             }
@@ -85,16 +85,16 @@ var filters = [
           subLevels:[
             {
               level: 1,
-              childParam: 'ac1',
+              childParam: 'a2',
               label: 'Activity Classification Type',
-              param: 'ac',
+              param: 'a1',
               apiEndPoint: window.DATA_PATH + '/clasificationType.json'
             },
             {
               level: 2,
-              parentParam: 'ac2',
+              parentParam: 'a1',
               label: 'Activity Classification Sub-Type 1',
-              param: 'ac1',
+              param: 'a2',
               parentParamField: 'idTipo',
               apiEndPoint: window.DATA_PATH + '/clasificationSubType.json'
             }

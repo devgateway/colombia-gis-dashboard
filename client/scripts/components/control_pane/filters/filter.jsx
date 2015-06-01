@@ -15,7 +15,6 @@ var FilterActions = require('../../../actions/filterActions.js');
 var FilterStore=require('../../../stores/filterStore.js');
 var LanStore=require('../../../stores/lanStore.js');
 
-
 var Filter  = React.createClass({
     mixins: [Reflux.connect(FilterStore), Reflux.connect(LanStore, 'lan')],
 

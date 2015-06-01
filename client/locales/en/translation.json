@@ -31,7 +31,11 @@
 		"expand":"Expand",
 		"collapse":"Collapse",
 		"startDate":"Start Date",
-		"endDate":"End Date"
+		"endDate":"End Date",
+		"noResults":"There where no results available",
+		"contractType":"Contract Type",
+		"environmentalManagementPlans":"Environmental Management Plans",
+		"rapidImpact":"Rapid Impact"
 	},
 
 	"layers": {

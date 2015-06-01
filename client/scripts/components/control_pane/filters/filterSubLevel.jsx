@@ -2,16 +2,14 @@
 
 /*http://facebook.github.io/react/docs/component-specs.html*/
 var React = require('react');
-var Router = require('react-router');
 var Reflux = require('reflux');
-var Link = Router.Link;
 var AllNoneSelector = require('./allNoneSelector.jsx');
 var FilterItemList = require('./filterItemList.jsx');
 var SelectionCounter = require('./selectionCounter.jsx');
 
 var showOnlySelected = false;
-var FilterItem = React.createClass({
-    
+var FilterSubLevel = React.createClass({
+        
     _onCounterClicked: function(selected) {     
         this.showOnlySelected = selected;
         this.forceUpdate();
@@ -86,4 +84,4 @@ var FilterItem = React.createClass({
     }
 });
 
-module.exports = FilterItem;
+module.exports = FilterSubLevel;
