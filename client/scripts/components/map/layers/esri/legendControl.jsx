@@ -77,16 +77,16 @@ var LegendSymbol=React.createClass({
     var path = this._getSymbolPath(symbol);
     return (
       <svg overflow="hidden" width="30" height="30">
-        <path 
-          fill={fill} 
-          stroke={stroke} 
+        <path
+          fill={fill}
+          stroke={stroke}
           strokeWidth={strokeWidth}
           strokeDasharray={strokeDasharray}
           d={path}
           transform="matrix(1.00000000,0.00000000,0.00000000,1.00000000,15.00000000,15.00000000)">
         </path>
       </svg>
-    );          
+    );
   }
 
 });
@@ -105,7 +105,7 @@ var LayerLegends=React.createClass({
   render:function(){
    return (<div>
             <div className="legend-group-title" onClick={this._toggleVisibility}>
-              <i className={this.state.expanded? "fa fa-minus-square-o" : "fa fa-plus-square-o"}/>
+              <i className={this.state.expanded? "fa fa-sort-asc" : "fa fa-sort-desc"}/>
               <span>{this.props.layerTitle}</span>
             </div>
             <If condition={this.state.expanded}>
@@ -138,7 +138,7 @@ var LayerLegends=React.createClass({
                             })
                           }
                           </ul>
-                        </div>                        
+                        </div>
                       </li>
                     );
                   })
@@ -166,7 +166,7 @@ var LegendControl  = React.createClass({
     render: function() {
       var legendContent = "";
       var buttonLabel = this.state.shown? <Message message="layers.hideLegend"/> : <Message message="layers.showLegend"/>
-      if (this.state.layersLegends.length>0){        
+      if (this.state.layersLegends.length>0){
         return (<div className="legends-container">
                 <button className="show-legends-button" onClick={this._toggleVisibility}>{buttonLabel}</button>
                 <If condition={this.state.shown}>
@@ -176,12 +176,12 @@ var LegendControl  = React.createClass({
                         return (<LayerLegends legendGroups={layerLegends.legendGroups} layerTitle={layerLegends.layerTitle}/>);
                       })
                     }
-                  </div>  
+                  </div>
                 </If>
-              </div>    
+              </div>
         );
       }
-      return null;       
+      return null;
     }
 });
 
