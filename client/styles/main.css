@@ -18,8 +18,7 @@ a {
     outline: none; }
 
 .fa {
-  display: inline-block; 
-}
+  display: inline-block; }
 
 i.fa.fa-bars {
   color: #ffffff; }
@@ -1188,7 +1187,7 @@ ul.tabs {
 .layer-control .updown {
   float: left;
   margin-right: 5px;
-  width: 35px; }
+  width: 45px; }
 .layer-control .toggler .toggler-title {
   float: left; }
 .layer-control .toggler .toggler-btn {
@@ -1219,11 +1218,14 @@ ul.tabs {
   height: 1em; }
 .layer-control .ui-slider-label {
   color: #4d749f; }
+.layer-control .fa.fa-times,
 .layer-control .fa.fa-arrow-down {
   margin-left: 0.5em; }
+.layer-control .fa.fa-times,
 .layer-control .fa.fa-arrow-down,
 .layer-control .fa.fa-arrow-up {
   color: #4d749f; }
+  .layer-control .fa.fa-times:hover,
   .layer-control .fa.fa-arrow-down:hover,
   .layer-control .fa.fa-arrow-up:hover {
     color: #98ca68; }
@@ -1337,44 +1339,93 @@ ul.tabs {
   -o-transition: all 100ms ease;
   transition: all 100ms ease;
   outline: none;
-  width: 250px; }
+  width: 250px;
+  position: absolute;
+  bottom: 0;
+  color: #383838;
+  font-size: 13px;
+  font-weight: bold; }
   .show-legends-button:hover {
     background: #bad5e2; }
 
 .legends-container {
+  width: 250px;
+  background-color: #ffffff;
   position: absolute;
-  bottom: 20px;
-  right: 70px;
-  z-index: 150; }
+  bottom: 24px;
+  right: 86px;
+  padding: 0;
+  border: 1px solid #cccccc; }
 
 .legends-content {
   width: 250px;
   background-color: #ffffff;
   position: absolute;
   bottom: 42px;
+  left: 0;
   padding: 6px 6px 4px 6px;
   border: 1px solid #cccccc; }
 
 .legend-group-title {
   cursor: pointer;
   color: #ffffff;
-  background: #bad5e2;
-  padding: 1em 1em 0 1em;
+  background: #b9d4e1;
+  padding: 0.66667em 0.5em;
   margin-bottom: 4px;
   -webkit-border-radius: 2px;
   border-radius: 2px;
   background-clip: padding-box;
   /* stops bg color from leaking outside the border: */ }
+  .legend-group-title .fa {
+    color: #ffffff; }
   .legend-group-title span {
     padding-left: 0.5em;
     font-weight: 600;
     color: #3c5b7d; }
 
 .legends-list {
-  background: #ffffff; }
+  background: #ffffff;
+  padding-top: 10px;
+  padding-bottom: 10px; }
   .legends-list ul {
-    padding-left: 0.5em; }
+    padding-left: 0.5em;
+    list-style-type: none; }
+    .legends-list ul li {
+      color: #000000; }
+      .legends-list ul li img {
+        margin-right: 5px; }
 
 /*add here all styles used during development later they will be replaced by the final ones */
+.selectable-radio {
+  border-radius: 0% !important;
+  background-clip: none;
+  font-size: 1.5em !important;
+  width: 5px;
+  height: 5px;
+  border: 1px solid #cccccc;
+  background: #ffffff;
+  float: left;
+  margin-right: 0.2em;
+  margin-top: 1px;
+  width: 13px;
+  height: 13px; }
+  .selectable-radio .fa {
+    font-size: 0.7em;
+    margin-left: 2px;
+    margin-top: -2px;
+    float: left; }
+
+.leaflet-popup-pane {
+  z-index: 10000; }
+
+.iframe-content {
+  border: 0px;
+  width: 100%;
+  height: 98%; }
+
+.chart-container {
+  border: 0px;
+  width: 95%;
+  height: 95%; }
 
 /*# sourceMappingURL=main.css.map */

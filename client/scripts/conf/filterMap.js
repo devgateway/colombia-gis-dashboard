@@ -50,34 +50,27 @@ var filters = [
         },
         {
           index: 4,
-          label: 'filters.crops',
-          advanced: true,
-          param: 'cr',
-          apiEndPoint: window.DATA_PATH + '/cropsList.json'
-        },
-        {
-          index: 5,
-          label: 'filters.subActivityStatus',
+          label: 'SubActivity Status',
           advanced: false,
           param: 'st',
           apiEndPoint: window.DATA_PATH + '/subActivityStatus.json'
         },
         {
-          index: 6,
+          index: 5,
           label: 'filters.subImplementer',
           advanced: false,
           showTree: true,
           subLevels:[
             {
               level: 1,
-              childParam: 'si',
+              childParam: 'si1',
               label: 'Sub Implementers Type',
               param: 'sit',
               apiEndPoint: window.DATA_PATH + '/subImplementersType.json'
             },
             {
               level: 2,
-              parentParam: 'sit',
+              parentParam: 'si2',
               label: 'Sub Implementers',
               param: 'si',
               parentParamField: 'idType',
@@ -86,7 +79,7 @@ var filters = [
           ]
         }, 
         {
-          index: 7,
+          index: 6,
           label: 'filters.activityClassification',
           advanced: false,
           subLevels:[
@@ -99,7 +92,7 @@ var filters = [
             },
             {
               level: 2,
-              parentParam: 'ac',
+              parentParam: 'ac2',
               label: 'Activity Classification Sub-Type 1',
               param: 'ac1',
               parentParamField: 'idTipo',
@@ -108,11 +101,46 @@ var filters = [
           ]
         },
         {
-          index: 8,
+          index: 7,
           label: 'filters.ppp',
           advanced: false,
           param: 'pp',
           dataObjectList: [{"id": "on", "name": "With PPP"}, {"id": "off", "name": "Without PPP"}]
+        },
+        {
+          index: 8,
+          label: 'Crops',
+          advanced: true,
+          param: 'cr',
+          apiEndPoint: window.DATA_PATH + '/cropsList.json'
+        },
+        {
+          index: 9,
+          label: 'filters.contractType',
+          advanced: true,
+          param: 'ct',
+          apiEndPoint: window.DATA_PATH + '/contractTypes.json'
+        },
+        {
+          index: 10,
+          label: 'filters.environmentalManagementPlans',
+          advanced: true,
+          param: 'te',
+          apiEndPoint: window.DATA_PATH + '/typesEnviromentalPlans.json'
+        },
+        {
+          index: 11,
+          label: 'AOR/COR',
+          advanced: true,
+          param: 'ar',
+          apiEndPoint: window.DATA_PATH + '/aor-corNames.json'
+        },
+        {
+          index: 12,
+          label: 'filters.rapidImpact',
+          advanced: true,
+          param: 'ri',
+          dataObjectList: [{"id": "on", "name": "Yes"}, {"id": "off", "name": "No"}]
         }
       ];
      
