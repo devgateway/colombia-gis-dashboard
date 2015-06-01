@@ -32,6 +32,10 @@ var ResultRecord=React.createClass({
 		this.props.onAddLayer({'id':this.props.id,'url':this.props.url,'type':this.props.type,title:this.props.title})
 	},
 
+	componentDidMount: function(){
+        $(this.getDOMNode()).find('.title').tooltip({container: 'body'});
+    },
+
 	render: function() {
 		console.log("layers->search->resultList: Render EsriService");
 		return(
@@ -42,7 +46,7 @@ var ResultRecord=React.createClass({
 						</div>
 
 					<div className="layer-info">
-					<div className="title" data-toggle="Loging is required">{this.props.title} {this.props.loginRequired?<i className="text-warning small">Loing is required</i>:''}
+					<div className="title" data-toggle="Loging is required" title={this.props.title}>{this.props.title} {this.props.loginRequired?<i className="text-warning small">Loing is required</i>:''}
 				</div>
 
 				<div className="details">{this.props.snippet}</div>
@@ -70,11 +74,24 @@ module.exports=React.createClass({
 
 	render: function() {
 		console.log("layers->search->resultList: Render EsriServiceList");
+		var errorMessage = "";
+		if(this.props.error){
+			errorMessage = this.props.error.message;
+			this.props.error.message="";
+
+		} 
 		return(
 			<div>
-			{(this.props.error)?<div> <p className='label label label-danger'>{this.props.error.message}</p>
-			<hr class="h-divider"></hr></div>:null}
-
+			{
+				(errorMessage && errorMessage!="")?<div> <p className='label label label-danger'>{errorMessage}</p>
+				<hr class="h-divider"></hr></div>:""
+			}
+			{(this.props.search.nextStart==-1)?(
+				<div>
+					<Message message="layers.noResults"/>
+				</div>
+				):""
+			}
 			<ul className="esri-result-list">
 			{
 				this.props.search.results.map(function(record){
@@ -88,9 +105,10 @@ module.exports=React.createClass({
 						<button className="btn btn-apply" onClick={this.props.onNextPage}><Message message="layers.loadMoreResults"/></button>
 					</div>
 				</li>):""
-		}
+			}
 
-		</ul>
+			</ul>
+			
 		</div>
 		);
 	}

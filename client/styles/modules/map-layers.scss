@@ -111,7 +111,7 @@
   .updown{
     float: left;
     margin-right: 5px;
-    width:35px;
+    width:45px;
   }
   
   .toggler{
@@ -154,10 +154,12 @@
   .ui-slider-label {
     color: $blue;
   }
-
+  
+  .fa.fa-times,
   .fa.fa-arrow-down {
     margin-left:$gutter/2;
   }
+  .fa.fa-times,
   .fa.fa-arrow-down,
   .fa.fa-arrow-up{
     color: $blue;

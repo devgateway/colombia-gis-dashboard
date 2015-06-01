@@ -21,6 +21,7 @@ var currentLabels;
 module.exports = React.createClass({
 
   componentDidMount: function() {
+    console.log('map->_mapLeaflet>componentDidMount');
     var containerNode = this.getDOMNode();
     var mapOptions = {zoomControl: false};
     this.map = L.map(containerNode, mapOptions);
@@ -45,7 +46,7 @@ module.exports = React.createClass({
 
   componentWillReceiveProps: function(nextProps) {
     if (nextProps.baseMap){
-      console.log('map->_mapLeaflet Change Map '+nextProps.baseMap);
+      console.log('map->_mapLeaflet>componentWillReceiveProps Change Map '+nextProps.baseMap);
       this.setBaseMap(nextProps.baseMap);
     }
     if (nextProps.arcGisLayers){
@@ -54,6 +55,7 @@ module.exports = React.createClass({
   },
 
   addFeatureLayer:function(fLayer){
+    console.log('map->_mapLeaflet>addFeatureLayer');
     var url=fLayer[0].url;
     var feature = new L.esri.FeatureLayer(url+"/0", {
      style: function () {
@@ -74,6 +76,7 @@ module.exports = React.createClass({
   },
 
   setBaseMap:function(basemap) {
+    console.log('map->_mapLeaflet>setBaseMap');
     if (currentBaseMap) {
       this.map.removeLayer(currentBaseMap);
     }
@@ -89,10 +92,10 @@ module.exports = React.createClass({
       currentLabels = L.esri.basemapLayer(basemap + 'Labels');
       this.map.addLayer(currentLabels);
     }
- 
   },
 
   render: function() {
+    console.log('map->_mapLeaflet>render');
     return <div className="map react-leaflet-map"></div>
   }
 

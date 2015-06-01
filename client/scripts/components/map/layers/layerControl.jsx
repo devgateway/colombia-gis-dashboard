@@ -91,6 +91,12 @@ module.exports  = React.createClass({
 
   },
 
+_onDelete: function(id) {
+    ArcgisLayerActions.changeLayerValue('delete', id); //TODO:property mame should be in a globar variable 
+
+  },
+
+
   render: function() {
     var tiles=_.sortBy(_.filter(this.state.layers,{type:'Map Service'}),'zIndex').reverse();
     var features=_.sortBy(_.filter(this.state.layers,{type:'Feature Service'}),'zIndex').reverse();
@@ -128,7 +134,8 @@ module.exports  = React.createClass({
       {
         tiles.map(function(l){
          return (
-          <li> <Layer 
+          <li> <Layer
+         onDelete={this._onDelete} 
           onMoveUp={this._handleMoveUp}
           onMoveDown={this._handleMoveDown}
           onChangeOpacity={this._handleChangeOpacity}
