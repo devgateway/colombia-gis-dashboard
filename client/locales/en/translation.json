@@ -2,7 +2,9 @@
 	"app": {
 		"title": "This area can be translated as a written legend of what is being actualized on the map",
 		"credits" : "Copy Rigths AidData",
-		"description": "Map description -"
+		"description": "Map description -",
+		"menu":"Menu",
+		"hideMenu":"Hide Menu"
 	},
 
 	"filters": {

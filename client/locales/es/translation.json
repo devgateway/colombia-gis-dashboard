@@ -2,7 +2,9 @@
 	"app": {
 		"title": " Esta area puede ser usada para un titulo largo",
 		"credits" : "Todos los derecho ..  AidData",
-		"description": "MAPA:"
+		"description": "MAPA:",
+		"menu":"Menú",
+		"hideMenu":"Esconder Menú"
 	},
 
 	"filters": {
