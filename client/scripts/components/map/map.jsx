@@ -13,12 +13,12 @@
  var LeafletMap = require('./_mapLeaflet.jsx');
  var EsriLayers=require('./layers/esri/esriLayers.jsx');
 
- var DataLayer=require('./layers/data/dataLayers.jsx');
+ var PointsLayer=require('./layers/data/pointsLayer.jsx');
+
  var FundingLayer=require('./layers/data/fundingTypeLayer.jsx');
 
  var AGOLbtnLogin=require('../esri/AGOLBtnLogin.jsx');
 
-var control=L.control.layers({}, {});
 
  module.exports = React.createClass({
 
@@ -32,23 +32,11 @@ var control=L.control.layers({}, {});
     return this.refs.leafletMapComponent.getLeafletMap();
   },
 
-  getControl:function(){
-    return control;
-  },
-  
-  _onAddLayer:function(layer){
-   this.props.onAddLayer(layer)
- },
 
+ componentWillMount :function(){
+ },    
 
- componentDidMount:function(){
-  control.addTo(this.getMap());
-},
-
-componentWillMount :function(){
-},    
-
-render: function() {
+ render: function() {
    // pass a function down to children through props to access the leaflet map
    var children = React.Children.map(this.props.children, function(child) {
     return child ? React.addons.cloneWithProps(child, {getMap: this.getMap}) : null;
@@ -61,11 +49,10 @@ render: function() {
      <div>
      
      <LeafletMap ref="leafletMapComponent" baseMap={baseMap} bounds={bounds} onMapMove={this.updateCurrentBounds}/>
-     <AGOLbtnLogin/>
-     <DataLayer getMap={this.getMap}/>
-     <FundingLayer getMap={this.getMap}/>
-     <EsriLayers getMap={this.getMap}/>
-     {children} 
+      <AGOLbtnLogin/>
+      <PointsLayer getMap={this.getMap}/>
+      <EsriLayers getMap={this.getMap}/>
+        {children} 
      </div>
      )
  }

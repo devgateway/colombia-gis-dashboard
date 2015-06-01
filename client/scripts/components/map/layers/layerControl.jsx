@@ -99,8 +99,7 @@ module.exports  = React.createClass({
       </li>
         
         <ActivitiesLayerControl/>
-        <FundingLayerControl/>
-
+       
         <If condition={features.length > 0} >
           <li>
             <h3>Overlays</h3>

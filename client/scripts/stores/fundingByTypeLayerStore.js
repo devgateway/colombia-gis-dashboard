@@ -5,7 +5,7 @@ var Reflux = require('reflux');
 var LayersAction = require('../actions/layersAction.js');
 var Util = require('../api/util.js');
 var API = require('../api/layers.js');
-var departmentsGeoJson = require('./_departmentsGeo.js');
+var departmentsGeoJson = require('./data/_departmentsGeo.js');
 
 var _ = require('lodash');
 var replacer = require('../api/replace-diacritics.js')
@@ -71,7 +71,7 @@ var defaultBreaks = {
 
 module.exports = Reflux.createStore({
 
-	listenables: LayersAction,
+	//listenables: LayersAction,
 
 	onChangeLayerValue: function(property, value) {
 		debugger;
@@ -174,27 +174,5 @@ byDepartment: function() {
 		});
 	},
 
-	getInitialState: function() {
-		this.state = this.state || {
-			isLoaded: false,
-			visible: false,
-			opacity: 1,
-			level: "departament",
-			zIndex: 100,
-			geoData: {},
-			breaks: defaultBreaks,
-			defaultStyle: defaultStyle
-		};
-		return this.state;
-	},
-
-
-	update: function(assignable, options) {
-		options = options || {};
-		this.state = assign(this.state, assignable);
-		if (!options.silent) {
-			this.trigger(this.state);
-		}
-	},
 
 });
