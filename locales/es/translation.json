@@ -2,15 +2,20 @@
 	"app": {
 		"title": " Esta area puede ser usada para un titulo largo",
 		"credits" : "Todos los derecho ..  AidData",
-		"description": "MAPA:"
+		"description": "MAPA:",
+		"menu":"Menú",
+		"hideMenu":"Esconder Menú"
 	},
 
 	"filters": {
 		"title":"Filtros",
+		"basicFilters":"Filtros Básicos",
+		"advancedFilters":"Filtros Avanzados",
 		"locations":"Localidades",
 		"targetPopulation":"Población meta",
 		"activityClassification":"Tipo de Actividad",
 		"developmentObjectives":"Objetivos de Desarrollo",
+		"crops":"Cultivos",
 		"subActivityStatus":"Estado de la SubActividad",
 		"subImplementer":"Sub Implementador",
 		"ppp":"Asociación Publico Privada",
@@ -21,7 +26,15 @@
 		"reset":"Reiniciar",
 		"apply":"Aplicar",
 		"showAll":"Mostrar todos",
-		"showOnlySelected":"Mostrar solo los seleccionados"
+		"showOnlySelected":"Mostrar solo los seleccionados",
+		"noResults":"No se encontraron resultados disponibles",
+		"expand":"Expandir",
+		"collapse":"Retraer",		
+		"startDate":"Fecha de Inicio",
+		"endDate":"Fecha de Fin",
+		"contractType":"Tipo de Contrato",
+		"environmentalManagementPlans":"Planes de Gestión Ambiental",
+		"rapidImpact":"Impacto Rapido"
 	},
 
 	"layers": {
@@ -29,8 +42,10 @@
 		"hideLegend":"Ocultar Leyendas",
 		"title":"Contenidos del mapa",
 		"mapLayers":"Capas del mapa",
+		"dataLayers":"Capas de datos",
 		"findExtLayers":"Buscar Capas Externas",
-		"funding":"Financiamiento",
+		"funding":"Financiamiento",		
+		"fundingDistribution":"Distribución del financiamiento",
 		"indicators":"Indicadores",
 		"featureService":"Servicio de entidades",
 		"mapService":"Servicio de mapas",
@@ -46,6 +61,7 @@
 
 	"map": {
 		"baseMaps":{
+			"views":"Fondo",
 			"title":"Mapa Base:",
 			"gray":"Gris",
 			"topo":"Topográfico",
