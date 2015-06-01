@@ -1,8 +1,6 @@
 /*http://facebook.github.io/react/docs/component-specs.html*/
 var React = require('react');
-var Router = require('react-router');
 var Reflux = require('reflux');
-var Link = Router.Link;
 var FilterItemList = require('./filterItemList.jsx');
 var KeywordSearch = require('./keywordSearch.jsx');
 var FilterSubLevel = require('./filterSubLevel.jsx');

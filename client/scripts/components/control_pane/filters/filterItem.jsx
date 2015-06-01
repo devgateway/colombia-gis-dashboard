@@ -1,7 +1,5 @@
 
 'use strict';
-
-/*http://facebook.github.io/react/docs/component-specs.html*/
 var React = require('react');
 var CustomCheckbox = require('../../commons/customCheckbox.jsx');
 
