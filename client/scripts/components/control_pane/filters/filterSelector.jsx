@@ -8,7 +8,7 @@ var TabPane = require('react-bootstrap/lib/TabPane');
 var Filter=require('./filter.jsx')
 
 module.exports  = React.createClass({
-
+   
   render: function() {
     return (
       <div className="filter-type-wrapper">

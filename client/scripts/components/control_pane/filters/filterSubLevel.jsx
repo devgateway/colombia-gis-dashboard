@@ -11,7 +11,7 @@ var SelectionCounter = require('./selectionCounter.jsx');
 
 var showOnlySelected = false;
 var FilterItem = React.createClass({
-    
+        
     _onCounterClicked: function(selected) {     
         this.showOnlySelected = selected;
         this.forceUpdate();

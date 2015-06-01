@@ -10,7 +10,7 @@ var SelectionCounter = require('./selectionCounter.jsx');
 
 var showOnlySelected = false;
 var FilterGroup = React.createClass({
- 
+    
     _onCounterClicked: function(selected) {     
         this.showOnlySelected = selected;
         this.forceUpdate();

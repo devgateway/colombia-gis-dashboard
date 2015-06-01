@@ -13,7 +13,7 @@ var SelectionCounter = require('./selectionCounter.jsx');
 
 var showOnlySelected = false;
 var FilterGroup = React.createClass({
- 
+    
     _onCounterClicked: function(selected) {     
         this.showOnlySelected = selected;
         this.forceUpdate();
@@ -25,6 +25,7 @@ var FilterGroup = React.createClass({
     
     _filterByKeyword: function (keyword) {
         var items;
+        var self = this;
         if (keyword) {
             var pattern = new RegExp(keyword, 'i');
             var levels = this.props.filterDefinition.subLevels;
@@ -34,7 +35,7 @@ var FilterGroup = React.createClass({
                     if (!pattern.test(item.name)){
                         item.hide = true;
                         if (filterDefinition.childParam){
-                            this._getChildren(item, FilterMap.getFilterDefinitionByParam(filterDefinition.childParam))
+                            self._getChildren(item, FilterMap.getFilterDefinitionByParam(filterDefinition.childParam))
                                 .map(function(i){
                                     if (i.hide == false){
                                         item.hide = false;
@@ -43,7 +44,7 @@ var FilterGroup = React.createClass({
                         } 
                     } else {
                         if (filterDefinition.childParam){
-                            this._getChildren(item, FilterMap.getFilterDefinitionByParam(filterDefinition.childParam))
+                            self._getChildren(item, FilterMap.getFilterDefinitionByParam(filterDefinition.childParam))
                                 .map(function(i){
                                     i.hide = false;
                                 });
@@ -55,7 +56,7 @@ var FilterGroup = React.createClass({
         } else {
             // display the original collection
             this.props.filterDefinition.subLevels.map(function(filterDefinition){ 
-                this.props.subLevelsItems[filterDefinition.param].map(function (item) {
+                self.props.subLevelsItems[filterDefinition.param].map(function (item) {
                     item.hide = false;
                 });
             });

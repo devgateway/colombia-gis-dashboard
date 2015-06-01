@@ -14,7 +14,6 @@ var TabPane = require('react-bootstrap/lib/TabPane');
 var FilterActions = require('../../../actions/filterActions.js');
 var FilterStore=require('../../../stores/filterStore.js');
 
-
 var Filter  = React.createClass({
     mixins: [Reflux.connect(FilterStore)],
 

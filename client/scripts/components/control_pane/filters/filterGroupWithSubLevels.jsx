@@ -8,18 +8,19 @@ var KeywordSearch = require('./keywordSearch.jsx');
 var FilterSubLevel = require('./filterSubLevel.jsx');
 
 var FilterGroup = React.createClass({
-
+    
     getInitialState: function() {
         return {pageLimit: 'left'};
     },
 
     _filterByKeyword: function (keyword) {
         var items;
+        var self = this;
         if (keyword) {
             // filter the collection
             var pattern = new RegExp(keyword, 'i');
             this.props.filterDefinition.subLevels.map(function(filterDefinition){
-                this.props.subLevelsItems[filterDefinition.param].map(function (item) {
+                self.props.subLevelsItems[filterDefinition.param].map(function (item) {
                 if (!pattern.test(item.name)){
                     item.hide = true;
                 }
@@ -28,7 +29,7 @@ var FilterGroup = React.createClass({
         } else {
             // display the original collection
             this.props.filterDefinition.subLevels.map(function(filterDefinition){
-                this.props.subLevelsItems[filterDefinition.param].map(function (item) {
+                self.props.subLevelsItems[filterDefinition.param].map(function (item) {
                     item.hide = false;
                 });
             });

@@ -5,7 +5,7 @@ var FilterItem = require('./filterItem.jsx');
 var FilterMap = require('../../../conf/filterMap.js');
 
 var FilterItemList = React.createClass({
-
+    
     getInitialState: function() {
         return {collapsed: this.props.collapsed? true : false};
     },
