@@ -7,8 +7,10 @@ var _=require('lodash')
 var Toggler=require('../../commons/toggler.jsx').Toggler;
 var TogglerContent=require('../../commons/toggler.jsx').TogglerContent;
 var If=require('../../commons/if.jsx');
-var ActivitiesLayerControl=require('./_activitiesDataLayerControl.jsx');
-var FundingLayerControl=require('./_fundingDataLayerControl.jsx');
+
+var PointsLayerControl=require('./_pointsLayerControl.jsx');
+var ShapesLayer=require('./_shapesLayerControl.jsx');
+
 var Layer=require('./_layer.jsx');
 
 var FeatureLayer=React.createClass({
@@ -98,8 +100,9 @@ module.exports  = React.createClass({
         <h3>Data Layers</h3>
       </li>
         
-        <ActivitiesLayerControl/>
-        <FundingLayerControl/>
+        <PointsLayerControl/>
+        <div className="clearFix" />
+        <ShapesLayer/>
 
         <If condition={features.length > 0} >
           <li>

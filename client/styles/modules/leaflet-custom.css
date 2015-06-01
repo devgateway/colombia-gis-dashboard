@@ -165,5 +165,5 @@ border:1px solid transparent;
 
 
 .leaflet-tile-pane, .leaflet-objects-pane,.leaflet-shadow-pane ,.leaflet-overlay-pane,.leaflet-marker-pane{
-  z-index: inherit !important;
+ /* z-index: inherit !important;*/ /* Commented since it was causing troubles with markers*/
 }
