@@ -13,10 +13,11 @@ var TabPane = require('react-bootstrap/lib/TabPane');
 
 var FilterActions = require('../../../actions/filterActions.js');
 var FilterStore=require('../../../stores/filterStore.js');
+var LanStore=require('../../../stores/lanStore.js');
 
 
 var Filter  = React.createClass({
-    mixins: [Reflux.connect(FilterStore)],
+    mixins: [Reflux.connect(FilterStore), Reflux.connect(LanStore, 'lan')],
 
     _onItemChanged: function(filterType, id, value) {     
         FilterActions.changeFilterItemState(filterType, id, value);

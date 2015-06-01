@@ -29,12 +29,12 @@
 		"expand":"Expandir",
 		"collapse":"Retraer",
 		"subActivityStatusActions":{
-			"active":"Activo",
-			"canceled":"Canceladp",
-			"closing":"En Cierre",
-			"finished":"Cerrado",
-			"inProcess":"En proceso de aprobación",
-			"suspended":"Suspendido"
+			"E1":"Activo",
+			"E5":"Cancelado",
+			"E3":"En Cierre",
+			"E2":"Cerrado",
+			"E6":"En proceso de aprobación",
+			"E4":"Suspendido"
 		}
 	},
 

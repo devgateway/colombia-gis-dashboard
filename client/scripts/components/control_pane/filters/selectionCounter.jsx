@@ -19,11 +19,11 @@ var SelectionCounter = React.createClass({
         return(
               <div className="filter-count">
                   <span>[</span>
-                  <span title="Show Only Selected" data-placement="top">
+                  <span title={i18n.t("filters.showOnlySelected")} data-placement="top">
                     <a href="#" onClick={this._showSelected}>{this.props.selected}</a>
                   </span>
                   <span>/</span>
-                  <span title="Show All" data-placement="top">
+                  <span title={i18n.t("filters.showAll")} data-placement="top">
                     <a href="#" onClick={this._showAll}>{this.props.total}</a>
                   </span>
                   <span>]</span>                  

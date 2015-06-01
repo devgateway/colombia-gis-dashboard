@@ -6,7 +6,6 @@ var React = require('react');
 var CustomCheckbox = require('../../commons/customCheckbox.jsx');
 
 var FilterItem = React.createClass({
- 
     _onItemChanged: function(value, selected) {  
         selected = !this.state.selected; 
         this.setState({selected: selected});
