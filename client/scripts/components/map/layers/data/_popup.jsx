@@ -3,20 +3,7 @@
 var React = require('react');
 var Reflux = require('reflux');
 
-var MyActivities = React.createClass({
-  render: function() {
-    var items = this.props.data;
-    return (
-        <ul>
-        {
-          items.map(function(node, index) {
-            return <li><a href={node.link} target='_blank'>{node.name}</a></li>          
-          })
-        }
-        </ul>
-    );
-  }
-});
+
 
 module.exports  = React.createClass({
   componentWillMount:function(){
@@ -41,9 +28,6 @@ module.exports  = React.createClass({
     console.log('popup>render id:' + this.props.id +" tab "+this.state.tabId);
     var url = "./#/chart1?id="+this.props.id+"&tab="+this.state.tabId;
     var content=(  <div className="popup-content"><iframe className="iframe-content" src={url} ></iframe> </div>);
-    if (this.state.tabId==4){
-      content=(  <div className="popup-content"><h4>{titleArray[4]}</h4><MyActivities data={chartData[4]} /></div>)
-    }
     return (
       <div className="leaflet-popup-content-wrapper">
         <div className="leaflet-popup-content">

@@ -21,7 +21,7 @@ var KeywordSearch = React.createClass({
                   <button type="submit" className="search-button" onClick={this.handleCLick}>
           					<i className="fa fa-search"></i>
           				</button>
-                      <input className="keyword-search" placeholder="Search filters" name="keyword-search" type="text" onKeyUp={this._onKeyUp} />
+                      <input className="keyword-search" placeholder={i18n.t("filters.searchFilters")} name="keyword-search" type="text" onKeyUp={this._onKeyUp} />
                   </div>
               </div>
             );

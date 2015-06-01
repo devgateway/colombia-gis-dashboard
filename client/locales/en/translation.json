@@ -2,15 +2,20 @@
 	"app": {
 		"title": "This area can be translated as a written legend of what is being actualized on the map",
 		"credits" : "Copy Rigths AidData",
-		"description": "Map description -"
+		"description": "Map description -",
+		"menu":"Menu",
+		"hideMenu":"Hide Menu"
 	},
 
 	"filters": {
 		"title":"Filters",
+		"basicFilters":"Basic Filters",
+		"advancedFilters":"Advanced Filters",
 		"locations":"Locations",
 		"targetPopulation":"Target Population",
 		"activityClassification":"Activity Classification",
 		"developmentObjectives":"Development Objectives",
+		"crops":"Crops",
 		"subActivityStatus":"SubActivity Status",
 		"subImplementer":"Sub Implementer",
 		"ppp":"PPP",
@@ -23,9 +28,10 @@
 		"showAll":"Show all",
 		"showOnlySelected":"Show only selected",
 		"noResults":"There where no results available",
-		"contractType":"Contract Type",
-		"environmentalManagementPlans":"Environmental Management Plans",
-		"rapidImpact":"Rapid Impact"
+		"expand":"Expand",
+		"collapse":"Collapse",
+		"startDate":"Start Date",
+		"endDate":"End Date"
 	},
 
 	"layers": {
@@ -33,8 +39,10 @@
 		"hideLegend":"Hide Legends",
 		"title":"Map content",
 		"mapLayers":"Map Layers",
+		"dataLayers":"Data Layers",
 		"findExtLayers":"Find External Layers",
 		"funding":"Funding",
+		"fundingDistribution":"Funding Distribution",
 		"indicators":"Indicators",
 		"featureService":"Feature Service",
 		"mapService":"Map Service",
@@ -50,6 +58,7 @@
 
 	"map": {
 		"baseMaps":{
+			"views":"Views",
 			"title":"Base Maps:",
 			"gray":"Gray",
 			"topo":"Topographic",

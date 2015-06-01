@@ -1,10 +1,11 @@
 
 'use strict';
+
+/*http://facebook.github.io/react/docs/component-specs.html*/
 var React = require('react');
 var CustomCheckbox = require('../../commons/customCheckbox.jsx');
 
 var FilterItem = React.createClass({
-    
     _onItemChanged: function(value, selected) {  
         selected = !this.state.selected; 
         this.setState({selected: selected});
@@ -34,7 +35,7 @@ var FilterItem = React.createClass({
         if (this.props.onExpandCollapse){
             className = "filter-col-parent";
             collapseDiv = <div className="parent-toggle" onClick={this.props.onExpandCollapse}>
-                            <span>{this.props.collapsed? "expand" : "collapse"}</span>
+                            <span>{this.props.collapsed? <Message message='filters.expand'/> : <Message message='filters.collapse'/>}</span>
                             <span className={this.props.collapsed? "collapse-icon fa fa-plus" : "collapse-icon fa fa-minus"}></span>
                         </div>;
         }

@@ -13,9 +13,10 @@ var TabPane = require('react-bootstrap/lib/TabPane');
 
 var FilterActions = require('../../../actions/filterActions.js');
 var FilterStore=require('../../../stores/filterStore.js');
+var LanStore=require('../../../stores/lanStore.js');
 
 var Filter  = React.createClass({
-    mixins: [Reflux.connect(FilterStore)],
+    mixins: [Reflux.connect(FilterStore), Reflux.connect(LanStore, 'lan')],
 
     _onItemChanged: function(filterType, id, value) {     
         FilterActions.changeFilterItemState(filterType, id, value);
@@ -62,10 +63,10 @@ var Filter  = React.createClass({
             <div className="filter-type-wrapper">
               <ul className="filter-type-label">
                 <li>
-                  <span  className={self.state.advancedMode=="true"? "" : "active"} onClick={this._showBasicMode}>Basic Filters</span>
+                  <span  className={self.state.advancedMode=="true"? "" : "active"} onClick={this._showBasicMode}><Message message='filters.basicFilters'/></span>
                 </li>
                 <li>
-                  <span className={self.state.advancedMode=="true"? "active" : ""} onClick={this._showAdvancedMode}>Advanced Filters</span>
+                  <span className={self.state.advancedMode=="true"? "active" : ""} onClick={this._showAdvancedMode}><Message message='filters.advancedFilters'/></span>
                 </li>
               </ul>
             </div>

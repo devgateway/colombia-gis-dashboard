@@ -24,7 +24,7 @@ module.exports = React.createClass({
               </TogglerContent>
               <TogglerContent visibleWhen="always">
                 <div className="title">
-                    <input type="checkbox"/> Funding Disribution</div> 
+                    <input type="checkbox"/> <Message message='layers.fundingDistribution'/></div> 
               </TogglerContent>
               <TogglerContent visibleWhen="expanded">
                 <FundingLayerControl/>
