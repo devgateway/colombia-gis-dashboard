@@ -1,8 +1,17 @@
 module.exports = {
 
 	componentWillUpdate: function(props, newState) {
+		debugger;
 		options = {};
+
+
+
 		if (!this.layer) {
+			this.layer = this._createLayer(newState.geoData, options);
+		}
+
+		if (this.state.geoData != newState.geoData) {
+			this.props.getMap().removeLayer(this.layer);
 			this.layer = this._createLayer(newState.geoData, options);
 		}
 
@@ -25,13 +34,13 @@ module.exports = {
 		console.log('map->layers>: Add Layer to Map');
 
 		var layer = L.geoJson(features, {
-		
+
 			onEachFeature: this._onEachFeature,
-		
+
 			pointToLayer: this._pointToLayer,
-		
+
 			filter: this._filter,
-		
+
 			style: this._style
 		});
 

@@ -6,23 +6,30 @@ module.exports = {
 
 	/*Listen  set property event comming from the layer control  */
 	onChangeLayerValue: function(id, property, value) {
-		debugger;
+
+		var prevLevel = this.state.level;
+		var newLevel = this.state.level;
+
 		if (id === this._getLayerId()) {
 			var assignable = new Object();
 			assignable[property] = value;
 
 			if (property == 'level') { //if level is changed or if layer is turned on we should load the data  
+				newLevel = value;
+				
 				this.update(assignable, {
 					'silent': true
 				}); //update level on current state
-				this._load(value); //load the new level, do  not trigger the state since it will be triggered by the load method  
+
+				this._load(prevLevel, value, false); //load the new level, do  not trigger the state since it will be triggered by the load method  
+
 			} else if (property == 'visible') {
 				if (value == true && !this.state.geoData) {
 					this.update(assignable, {
 						'silent': true
 					}); //update level on current state
 
-					this._load(null, true);
+					this._load(prevLevel, newLevel, true);
 				} else {
 					this.update(assignable);
 				}
@@ -48,10 +55,8 @@ module.exports = {
 	},
 
 
-	_load: function(newLevel, force) {
-		newLevel = newLevel || this.state.level
-
-		if ((newLevel != this.state.level) || (force === true)) {
+	_load: function(prevLevel, newLevel, force) {
+		if ((newLevel != prevLevel) || (force === true)) {
 			this._loadGeoData(newLevel);
 		} else {
 			console.log('nothing to change here');

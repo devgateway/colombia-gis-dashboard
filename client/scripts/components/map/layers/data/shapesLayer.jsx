@@ -49,7 +49,7 @@
   },*/
 
    _onEachFeature: function(feature, layer) {
-     debugger;
+    
    },
 
    _filter: function(feature, layer) {
