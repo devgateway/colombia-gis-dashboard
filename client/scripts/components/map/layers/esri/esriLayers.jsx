@@ -187,10 +187,19 @@ function writeLog(message){
   },
 
   componentWillUpdate: function(nextProps, nextState) {
-    if (nextState.layers.length > this.state.layers.length) {
-      this._loadLayers(nextState.layers);
+    debugger;
+    var self = this;
+    self.state.layers.map(function(l){
+      var layerToCheck = _.findWhere(nextState.layers, {id: l.id});
+      if(!layerToCheck){
+        var layerToRemove = self.state.leafletLayers[l.id];
+        self._getMap().removeLayer(layerToRemove)
+      }
+    });
+    if (nextState.layers.length > self.state.layers.length) {
+      self._loadLayers(nextState.layers);
     } else {
-      this._updateLayers(nextState.layers)
+      self._updateLayers(nextState.layers)
     }
   },
 
