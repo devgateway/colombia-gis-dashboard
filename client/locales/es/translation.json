@@ -27,15 +27,9 @@
 		"showOnlySelected":"Mostrar solo los seleccionados",
 		"noResults":"No se encontraron resultados disponibles",
 		"expand":"Expandir",
-		"collapse":"Retraer",
-		"subActivityStatusActions":{
-			"E1":"Activo",
-			"E5":"Cancelado",
-			"E3":"En Cierre",
-			"E2":"Cerrado",
-			"E6":"En proceso de aprobación",
-			"E4":"Suspendido"
-		}
+		"collapse":"Retraer",		
+		"startDate":"Fecha de Inicio",
+		"endDate":"Fecha de Fin"
 	},
 
 	"layers": {

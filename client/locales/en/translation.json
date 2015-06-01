@@ -28,14 +28,8 @@
 		"noResults":"There where no results available",
 		"expand":"Expand",
 		"collapse":"Collapse",
-		"subActivityStatusActions":{
-			"E1":"Active",
-			"E5":"Canceled",
-			"E3":"Closing",
-			"E2":"Finished",
-			"E6":"In Approval Process",
-			"E4":"Suspended"
-		}
+		"startDate":"Start Date",
+		"endDate":"End Date"
 	},
 
 	"layers": {
