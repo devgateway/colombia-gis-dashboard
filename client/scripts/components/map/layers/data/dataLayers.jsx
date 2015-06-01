@@ -6,6 +6,8 @@ var NumberedDivIcon=require('./_numberedDivIcon.js');
 var DataLayerStore=require('../../../../stores/dataLayerStore.js');
 var Popup=require('./_popup.jsx');
 var EventConstants = require('react/lib/EventConstants');
+ var LegendActions = require('../../../../actions/legendActions.js');
+
 
 var reactEventNames = Object.keys(EventConstants.topLevelTypes)
   .filter(function(eventName) {
@@ -47,6 +49,7 @@ module.exports = React.createClass({
     });
 
     this.layer.addTo(this.props.getMap());
+    LegendActions.getBaseMapLegends();
     
   },
 

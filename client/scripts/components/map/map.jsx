@@ -42,7 +42,8 @@
  },
 
 
- componentDidMount:function(){
+componentDidMount:function(){
+  console.log('map->map>componentDidMount'); 
   control.addTo(this.getMap());
 },
 

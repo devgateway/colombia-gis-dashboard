@@ -5,14 +5,15 @@ var Reflux = require('reflux');
 var MapActions=require('../../actions/mapActions.js')
 var MapStore=require('../../stores/mapStore.js');
 
+
 var BaseMapItem= React.createClass({
 
-   handleClick: function(event) {
-     MapActions.changeBaseMap(this.state.value);
+  handleClick: function(event) {
+    MapActions.changeBaseMap(this.state.value);
   },
 
-   getInitialState: function() {
-      return {value:this.props.value, label:this.props.label};
+  getInitialState: function() {
+    return {value:this.props.value, label:this.props.label};
   },
   
   render: function() {
