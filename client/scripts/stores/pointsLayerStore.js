@@ -89,7 +89,9 @@ module.exports = Reflux.createStore({
 
   _getGeoData: function(func) {
     func().then(function(results) { //call api function and process results 
+      //tranform plain data to GeoJson
       this._setGeoData(Util.toGeoJson(results)); //process and set changes to state  
+    
     }.bind(this)).fail(function(e) {
       console.log('Error while loading data ...', e);
     });

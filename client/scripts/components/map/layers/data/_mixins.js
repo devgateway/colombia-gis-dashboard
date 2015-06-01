@@ -1,10 +1,7 @@
 module.exports = {
 
 	componentWillUpdate: function(props, newState) {
-		debugger;
 		options = {};
-
-
 
 		if (!this.layer) {
 			this.layer = this._createLayer(newState.geoData, options);
@@ -16,8 +13,6 @@ module.exports = {
 		}
 
 		this.layer.setOpacity(newState.opacity);
-
-		//this.layer.setZIndex(newState.zIndex);
 
 		if (newState.visible == false) {
 			if (this.props.getMap().hasLayer(this.layer)) {

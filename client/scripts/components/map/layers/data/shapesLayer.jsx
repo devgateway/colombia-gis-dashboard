@@ -34,20 +34,7 @@
      }
    },
 
-   /*
-   _onEachFeature:function(feature,layer){
-
-      layer.on('mouseover', function(evt) {
-       var layer = evt.target;
-       layer.setStyle(this.getStyle(feature).over);
-     }.bind(this));
-
-      layer.on('mouseout', function(evt) {
-       var layer = evt.target;
-       layer.setStyle(this.getStyle(feature));
-     }.bind(this));
-  },*/
-
+ 
    _onEachFeature: function(feature, layer) {
     
    },

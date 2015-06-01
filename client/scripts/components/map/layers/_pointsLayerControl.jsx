@@ -47,7 +47,13 @@ module.exports = React.createClass({
         <div toggler={true} className="toggler-btn"><i className="fa fa-minus-square-o"></i></div>
       </TogglerContent>
       <TogglerContent visibleWhen="always">
-        <Layer id="points" title="Total Projects"  opacity={this.state.opacity} onChangeOpacity={this._onChangeOpacity} onChangeVisibility={this._changevisibility} visible={this.state.visible}/>
+        
+        <Layer id="points" title="Total Projects"  
+          opacity={this.state.opacity} 
+          onChangeOpacity={this._onChangeOpacity} 
+          onChangeVisibility={this._changevisibility} 
+          visible={this.state.visible}/>
+      
       </TogglerContent>
       <TogglerContent visibleWhen="expanded">
         <ul>
