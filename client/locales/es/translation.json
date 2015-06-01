@@ -31,7 +31,10 @@
 		"expand":"Expandir",
 		"collapse":"Retraer",		
 		"startDate":"Fecha de Inicio",
-		"endDate":"Fecha de Fin"
+		"endDate":"Fecha de Fin",
+		"contractType":"Tipo de Contrato",
+		"environmentalManagementPlans":"Planes de Gestión Ambiental",
+		"rapidImpact":"Impacto Rapido"
 	},
 
 	"layers": {
