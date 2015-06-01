@@ -22,7 +22,10 @@
 		"apply":"Aplicar",
 		"showAll":"Mostrar todos",
 		"showOnlySelected":"Mostrar solo los seleccionados",
-		"noResults":"No se encontraron resultados disponibles"
+		"noResults":"No se encontraron resultados disponibles",
+		"contractType":"Tipo de Contrato",
+		"environmentalManagementPlans":"Planes de Gestión Ambiental",
+		"rapidImpact":"Impacto Rapido"
 	},
 
 	"layers": {

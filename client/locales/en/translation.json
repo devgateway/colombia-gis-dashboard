@@ -22,7 +22,10 @@
 		"apply":"Apply",
 		"showAll":"Show all",
 		"showOnlySelected":"Show only selected",
-		"noResults":"There where no results available"
+		"noResults":"There where no results available",
+		"contractType":"Contract Type",
+		"environmentalManagementPlans":"Environmental Management Plans",
+		"rapidImpact":"Rapid Impact"
 	},
 
 	"layers": {
