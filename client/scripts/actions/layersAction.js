@@ -7,6 +7,9 @@ var loadActivitiesByMuncipalities= Reflux.createAction({ asyncResult: true });
 var loadIndicatorsByDepartments = Reflux.createAction({ asyncResult: true });
 var loadIndicatorsByMuncipalities= Reflux.createAction({ asyncResult: true });
 
+var loadMuncipalitiesFromAPI = Reflux.createAction({ asyncResult: true });
+var loadMuncipalities= Reflux.createAction({ asyncResult: true });
+
 var triggerFilterApply = Reflux.createAction();
 
 var get=function(actionName){
@@ -20,6 +23,9 @@ var get=function(actionName){
 }
 
 module.exports = {
+
+	loadMuncipalitiesFromAPI: loadMuncipalitiesFromAPI,
+	loadMuncipalities: loadMuncipalities,
 
 	changeLayerValue:Reflux.createAction(),
 	loadFundingByType:Reflux.createAction(),
