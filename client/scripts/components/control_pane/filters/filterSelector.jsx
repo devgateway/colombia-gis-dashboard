@@ -13,10 +13,10 @@ module.exports  = React.createClass({
     return (
       <div className="filter-type-wrapper">
         <TabbedArea className="filter-type-label" defaultActiveKey={1}>
-          <TabPane className="" eventKey={1} tab="Basic Filters">
+          <TabPane className="" eventKey={1} tab={<Message message='filters.basicFilters'/>}>
               <Filter type="basic"/>
           </TabPane>
-          <TabPane className="" eventKey={2} tab="Advanced Filters">
+          <TabPane className="" eventKey={2} tab={<Message message='filters.advancedFilters'/>}>
               <Filter type="advanced"/>
           </TabPane>
         </TabbedArea>

@@ -44,12 +44,12 @@ var DateFilter = React.createClass({
                     <span className="filter-label" role="label"><Message message='filters.date'/></span>                                                                
                 </div>
                 <div className="input-group date">
-                    <span className="filter-label" role="label">Start date</span>
+                    <span className="filter-label" role="label"><Message message='filters.startDate'/></span>
                     <input type="text" className="start-date" onChange={this._changeStartDate}/>
                     <i className="fa fa-trash" onClick={this._clearStartDate}></i>
                 </div>
                 <div className="input-group date">
-                    <span className="filter-label" role="label">End date</span>
+                    <span className="filter-label" role="label"><Message message='filters.endDate'/></span>
                     <input type="text" className="end-date" onChange={this._changeEndDate}/>
                     <i className="fa fa-trash" onClick={this._clearEndDate}></i>
                 </div>

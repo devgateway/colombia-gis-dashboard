@@ -34,7 +34,7 @@ module.exports = React.createClass({
         <div className="map-panel-header">
           <div className="basemap-label">
             <i className="fa fa-globe" aria-hidden="true"></i>
-            Views
+            <Message message='map.baseMaps.views'/>
           </div>
           <ul className="basemap-list">
             <li><BaseMapItem label={<Message message='map.baseMaps.gray'/>} value="Gray"/></li>
