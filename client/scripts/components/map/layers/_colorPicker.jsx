@@ -13,8 +13,10 @@ module.exports = React.createClass({
 	    var self=this;
 	    $(this.getDOMNode()).colorpicker({
 	        'color':self.props.color,
-	    }).on('changeColor',function(){
-	    	self.props.onChangeColor?self.props.onChangeColor():null});
+	    })
+	    .on('changeColor',function(evt){
+	    	self.props.onChangeColor? self.props.onChangeColor(evt.color.toHex(),self.props.level):null;
+	    });
 	     
 	},
 
