@@ -1,3 +1,5 @@
+var LegendActions = require('../../../../actions/legendActions.js');
+
 module.exports = {
 
 	componentWillUpdate: function(props, newState) {
@@ -5,6 +7,7 @@ module.exports = {
 
 		if (!this.layer) {
 			this.layer = this._createLayer(newState.geoData, options);
+			LegendActions.getBaseMapLegends();
 		}
 
 		if (this.state.geoData != newState.geoData) {
@@ -12,7 +15,8 @@ module.exports = {
 			this.layer = this._createLayer(newState.geoData, options);
 		}
 
-		this.layer.setOpacity(newState.opacity);
+		this.layer.setOpacity(newState.opacity,1);
+
 
 		if (newState.visible == false) {
 			if (this.props.getMap().hasLayer(this.layer)) {
@@ -22,7 +26,7 @@ module.exports = {
 		} else if (!this.props.getMap().hasLayer(this.layer)) {
 			this.layer.addTo(this.props.getMap());
 		}
-
+			this.layer.bringToFront();
 	},
 
 	_createLayer: function(features) {

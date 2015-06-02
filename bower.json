@@ -16,7 +16,8 @@
     "font-awesome": "~4.3.0",
     "esri-leaflet-renderers": "https://github.com/Esri/esri-leaflet-renderers.git#~0.0.1-beta.3",
     "malihu-custom-scrollbar-plugin": "~3.0.8",
-    "jquery-ui-slider-pips": "~1.9.2"
+    "jquery-ui-slider-pips": "~1.9.2",
+    "mjolnic-bootstrap-colorpicker": "~2.1.2"
   },
   "devDependencies": {}
 }
