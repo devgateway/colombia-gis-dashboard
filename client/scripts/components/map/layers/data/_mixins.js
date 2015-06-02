@@ -1,27 +1,41 @@
+var LegendActions = require('../../../../actions/legendActions.js');
 
 module.exports = {
 
-	componentDidUpdate: function() {
+	componentDidUpdate: function(prev, prevState) {
+		debugger;
 		options = {};
-		if (!this.layer) {
-			this.layer = this._createLayer(this.state.geoData, options);
-		} else {
-			this.props.getMap().removeLayer(this.layer);
-			this.layer = this._createLayer(this.state.geoData, options);
+		var newState=this.state;
+
+		if (!this.layer && newState.geoData) {
+			this.layer = this._createLayer(newState.geoData, options);
+			LegendActions.getBaseMapLegends();
 		}
-
-		this.layer.setOpacity(this.state.opacity,1);
-
-
-		if (this.state.visible == false) {
-			if (this.props.getMap().hasLayer(this.layer)) {
-				this.props.getMap().removeLayer(this.layer)
+			/*I can change values only if the layer was created in */
+		if (this.layer) {
+			if (newState.geoData != prevState.geoData) {
+				this.props.getMap().removeLayer(this.layer);
+				this.layer = this._createLayer(newState.geoData, options);
 			}
 
-		} else if (!this.props.getMap().hasLayer(this.layer)) {
-			this.layer.addTo(this.props.getMap());
+
+			if (newState.breaks != prevState.breaks) {
+				this.layer.eachLayer(function(l) {
+					l.setStyle(this.getStyle(l.feature));
+				}.bind(this));
+			}
+
+			this.layer.setOpacity(newState.opacity, 1);
+			if (newState.visible == false) {
+				if (this.props.getMap().hasLayer(this.layer)) {
+					this.props.getMap().removeLayer(this.layer)
+				}
+
+			} else if (!this.props.getMap().hasLayer(this.layer)) {
+				this.layer.addTo(this.props.getMap());
+			}
 		}
-		this.layer.bringToFront();
+		//this.layer.bringToFront();
 	},
 
 	_createLayer: function(features) {

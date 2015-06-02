@@ -36,8 +36,8 @@ module.exports = React.createClass({
   	LayerActions.changeLayerValue('shapes','level','municipality'); //TODO:property mame should be in a globar variable 
   },
 
-  _changeColor:function(){
-    LayerActions.changeLayerValue('shapes','level','municipality'); //TODO:property mame should be in a globar variable 
+  _changeColor:function(value,level){
+    LayerActions.changeLayerValue('shapes','color',value,level); //TODO:property mame should be in a globar variable 
   },
 
   render: function() {
@@ -47,7 +47,6 @@ module.exports = React.createClass({
     console.log('...................... Layer State ......................')
 
     var level=this.state.level;
-
     return (
     <li>
       <Toggler ref='toggler'>
@@ -59,11 +58,8 @@ module.exports = React.createClass({
         </TogglerContent>
         <TogglerContent visibleWhen="always">
 
-          <Layer id="shapes" title="Funding by Type"  
-          opacity={this.state.opacity} onChangeOpacity={this._onChangeOpacity} 
-          onChangeVisibility={this._changevisibility} visible={this.state.visible}/>
-
-          
+          <Layer id="shapes" title="Funding by Type"   opacity={this.state.opacity} 
+                onChangeOpacity={this._onChangeOpacity} onChangeVisibility={this._changevisibility} visible={this.state.visible}/>
 
         </TogglerContent>
         <TogglerContent visibleWhen="expanded">
@@ -92,10 +88,11 @@ module.exports = React.createClass({
           </ul>  
           <li>
             {
-              _.map(this.state.breaks,function(br){
-                  return (<div>
-                           <ColorPicker onChangeColor={this._changeColor} label={br.value} color={br.style.color}/>
-                         </div>)
+
+              _.map(_.keys(this.state.breaks),function(key){
+                  var br=this.state.breaks[key];
+
+                  return (<div><ColorPicker  level={key} onChangeColor={this._changeColor} label={br.value +'%'} color={br.style.color}/></div>)
               }.bind(this))
 
             }
