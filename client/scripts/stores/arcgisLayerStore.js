@@ -69,6 +69,7 @@ module.exports = Reflux.createStore({
 			var index = _.indexOf(_.pluck(this.state.layers, 'id'), theLayer.id);;
 			this.state.layers.splice(index, 1);
 			LegendActions.removeLegend(theLayer.id);
+			ArcgisLayersActions.restoreLayerButton(theLayer.id);
 			this.trigger(this.state);
 		} else if (property == 'moveDown' && !isFeature) {
 			var currentZindex = theLayer.zIndex;
