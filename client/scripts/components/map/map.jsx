@@ -7,17 +7,18 @@
  * components and connecting some pieces for the real leaflet
  */
  var React = require('react/addons');
- var Reflux = require('reflux');
- var MapStore = require('../../stores/mapStore.js');
- var MapActions = require('../../actions/mapActions.js');
- var LeafletMap = require('./_mapLeaflet.jsx');
- var EsriLayers=require('./layers/esri/esriLayers.jsx');
+var Reflux = require('reflux');
+var MapStore = require('../../stores/mapStore.js');
+var MapActions = require('../../actions/mapActions.js');
+var LeafletMap = require('./_mapLeaflet.jsx');
+var EsriLayers=require('./layers/esri/esriLayers.jsx');
 
- var PointsLayer=require('./layers/data/pointsLayer.jsx');
+var PointsLayer=require('./layers/data/pointsLayer.jsx');
 
- var ShapesLayer=require('./layers/data/shapesLayer.jsx');
+var ShapesLayer=require('./layers/data/shapesLayer.jsx');
 
- var AGOLbtnLogin=require('../esri/AGOLBtnLogin.jsx');
+var AGOLbtnLogin=require('../esri/AGOLBtnLogin.jsx');
+var LegendControl = require('./layers/esri/legendControl.jsx');
 
 
  module.exports = React.createClass({
@@ -50,6 +51,7 @@
      
      <LeafletMap ref="leafletMapComponent" baseMap={baseMap} bounds={bounds} onMapMove={this.updateCurrentBounds}/>
       <AGOLbtnLogin/>
+      <LegendControl/>
       <PointsLayer getMap={this.getMap}/>
       <ShapesLayer getMap={this.getMap}/>
       <EsriLayers getMap={this.getMap}/>

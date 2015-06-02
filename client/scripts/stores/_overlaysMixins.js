@@ -1,4 +1,6 @@
+var assign = require('object-assign');
 var LayersAction = require('../actions/layersAction.js');
+var _ = require('lodash');
 
 module.exports = {
 
@@ -80,13 +82,21 @@ module.exports = {
 		}); //trigger geodata changes;
 	},
 
+	update: function(assignable, options) {
+	    options = options || {};
+	    this.state = assign(this.state, assignable);
+	    if (!options.silent) {
+	      this.trigger(this.state);
+	    }
+	},
+
 	onTriggerFilterApply: function(data) {
 		this.update({
 			filters: data
 		}, {
 			silent: true
 		}); ///silent is tru since the change will be triggered by the load method
-		_.load(null, true); //force re-load;
+		this._load(null, this.state.level, true); //force re-load;
 	},
 
 }
