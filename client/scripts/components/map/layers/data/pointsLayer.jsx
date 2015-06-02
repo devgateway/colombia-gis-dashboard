@@ -129,7 +129,7 @@
 
 
    render: function() {
-     return null;
+     return (<div></div>);
    }
 
  });
