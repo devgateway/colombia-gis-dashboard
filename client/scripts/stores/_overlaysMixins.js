@@ -7,7 +7,8 @@ module.exports = {
 	listenables: LayersAction,
 
 	/*Listen  set property event comming from the layer control  */
-	onChangeLayerValue: function(id, property, value) {
+	onChangeLayerValue: function(id, property, value, subProperty) {
+		
 		var prevLevel = this.state.level;
 		var newLevel = this.state.level;
 
@@ -17,7 +18,7 @@ module.exports = {
 
 			if (property == 'level') { //if level is changed or if layer is turned on we should load the data  
 				newLevel = value;
-				
+
 				this.update(assignable, {
 					'silent': true
 				}); //update level on current state
@@ -34,8 +35,10 @@ module.exports = {
 				} else {
 					this.update(assignable);
 				}
-
-
+			} else if (property == 'color') {
+				var breaks=_.clone(this.state.breaks);
+				breaks[subProperty].style.color = value;
+				this.update({'breaks':breaks});
 			} else {
 				this.update(assignable); //other case trigger the new state
 			};
@@ -83,11 +86,11 @@ module.exports = {
 	},
 
 	update: function(assignable, options) {
-	    options = options || {};
-	    this.state = assign(this.state, assignable);
-	    if (!options.silent) {
-	      this.trigger(this.state);
-	    }
+		options = options || {};
+		this.state = assign(this.state, assignable);
+		if (!options.silent) {
+			this.trigger(this.state);
+		}
 	},
 
 	onTriggerFilterApply: function(data) {
