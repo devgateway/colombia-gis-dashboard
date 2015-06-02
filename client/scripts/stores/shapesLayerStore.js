@@ -117,7 +117,6 @@ module.exports = Reflux.createStore({
 						_.assign(feature.properties, _.omit(_.clone(d), "name")); //set feature values  
 					}
 				});
-
 				this._setGeoData(geoData);
 
 			}.bind(this)).fail(function() {
@@ -148,7 +147,6 @@ module.exports = Reflux.createStore({
 			}.bind(this)).fail(function() {
 			console.log('Error loading data ...');
 		});
-	},
-
+	}
 
 });

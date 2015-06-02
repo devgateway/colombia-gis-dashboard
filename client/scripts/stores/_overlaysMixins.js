@@ -75,7 +75,7 @@ module.exports = {
 		}
 	},
 
-	_setGeoData: function(data) {
+	_setGeoData: function(data) {	
 		this.update({
 			geoData: data,
 			isLoaded: true
