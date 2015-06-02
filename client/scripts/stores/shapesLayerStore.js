@@ -13,6 +13,8 @@ var DataLayerMixins = require('./_overlaysMixins.js')
 
 var departmentsGeoJson = require('./data/_departmentsGeo.js');
 
+var municipalitiesGeoJson = require('./data/_municipalitiesGeo.js');
+
 
 var defaultStyle = {
 	"color": "#FFFFFF",
@@ -104,15 +106,15 @@ module.exports = Reflux.createStore({
 	},
 
 	_loadByMuncipalities: function() {
-		var geoData = _.clone(departmentsGeoJson);
-		API.getActivitiesByDepartment(this.state.filters).then(
+		var geoData = _.clone(municipalitiesGeoJson);
+		API.getActivitiesByMuncipalities(this.state.filters).then(
 			function(data) {
 				_.map(data, function(d) {
 					var feature = _.find(geoData.features, function(e) {
-						if (e.properties.ID == d.id /*replacer.replaceDiacritics(e.properties.NAME_1).toUpperCase()==d.name*/ ) {
+						if (e.properties.ID_2 == d.id /*replacer.replaceDiacritics(e.properties.NAME_1).toUpperCase()==d.name*/ ) {
 							console.log('Found!');
 						}
-						return e.properties.ID == d.id; //replacer.replaceDiacritics(e.properties.NAME_1).toUpperCase()==d.name
+						return e.properties.ID_2 == d.id; //replacer.replaceDiacritics(e.properties.NAME_1).toUpperCase()==d.name
 					});
 
 					if (feature) {
