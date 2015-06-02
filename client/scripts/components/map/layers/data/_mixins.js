@@ -12,7 +12,8 @@ module.exports = {
 			this.layer = this._createLayer(newState.geoData, options);
 		}
 
-		this.layer.setOpacity(newState.opacity);
+		this.layer.setOpacity(newState.opacity,1);
+
 
 		if (newState.visible == false) {
 			if (this.props.getMap().hasLayer(this.layer)) {

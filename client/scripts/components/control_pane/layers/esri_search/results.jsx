@@ -77,7 +77,7 @@ module.exports=React.createClass({
 		var errorMessage = "";
 		if(this.props.error){
 			errorMessage = this.props.error.message;
-			this.props.error.message="";
+			this.props.error.message=""; //TODO Never set a property value inside the componet 
 
 		} 
 		return(

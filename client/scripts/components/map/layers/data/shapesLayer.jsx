@@ -22,9 +22,11 @@
      }));
      var currentValue = feature.properties.fundingUS
      var percentage = parseInt((100 / (maxValue / currentValue)));
+     
      var breakData = _.find(_.values(this.state.breaks), function(t) {
-       return ((t.min <= percentage) && (percentage <= t.max));
+       return (percentage <= t.value);
      });
+
      if (breakData) {
        console.log(parseInt(maxValue) + ' ::: ' + parseInt(currentValue) + ':::' + parseInt(percentage) + '%' + ':::' + parseInt(breakData.max) + ':::' + breakData.style.color);
        return breakData.style;

@@ -14,51 +14,6 @@ var ImageServerClass = L.esri.imageMapLayer;
 var API = require('../../../../api/esri.js');
 var _ = require('lodash');
 
-//Adding some leaflet hooks
-L.Path.prototype.setOpacity=function(value){
-  if(this._path){
-   this._path.setAttribute('stroke-opacity', value)
-   this._path.setAttribute('fill-opacity', value);
- }
-}
-
-L.Path.prototype.hide=function(value){
-  this._path.style.display='none';
-}
-L.Path.prototype.show=function(value){
-  this._path.style.display='block';
-}
-
-
-L.Marker.prototype.hide=function(){
-  this._icon.style.display='none'
-}
-
-L.Marker.prototype.show=function(){
-  this._icon.style.display='block'
-}
-
-
-L.FeatureGroup.prototype.setOpacity=function(value){
-  _.map(this._layers,function(l){
-    l.setOpacity(value)
-  })
-}
-
-L.FeatureGroup.prototype.show=function(value){
-  _.map(this._layers,function(l){
-    l.show()
-  })
-}
-
-L.FeatureGroup.prototype.hide=function(value){
-  _.map(this._layers,function(l){
-    l.hide()
-  })
-}
-
-//
-
 function writeLog(message){
   console.log('Map>esriLayers: '+message)
 }

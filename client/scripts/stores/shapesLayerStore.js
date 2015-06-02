@@ -27,8 +27,8 @@ var over = {
 
 var defaultBreaks = {
 	'Level0': {
-		'min': 0,
-		'max': 20,
+		
+		'value': 20,
 		'style': _.assign(_.clone(defaultStyle), {
 			'color': '#FFAAAA',
 			'over': _.assign(_.clone(over), {
@@ -39,8 +39,7 @@ var defaultBreaks = {
 	},
 
 	'Level1': {
-		'min': 21, //min <= X , max
-		'max': 40,
+		'value': 40,
 		'style': _.assign(_.clone(defaultStyle), {
 			'color': '#D46A6A',
 			'over': _.assign(_.clone(over), {
@@ -50,8 +49,7 @@ var defaultBreaks = {
 	},
 
 	'Level2': {
-		'min': 41,
-		'max': 60,
+		'value': 60,
 		'style': _.assign(_.clone(defaultStyle), {
 			'color': '#AA3939',
 			'over': _.assign(_.clone(over), {
@@ -61,8 +59,7 @@ var defaultBreaks = {
 	},
 
 	'Level3': {
-		'min': 61,
-		'max': 80,
+		'value': 80,
 		'style': _.assign(_.clone(defaultStyle), {
 			'color': '#801515',
 			'over': _.assign(_.clone(over), {
@@ -72,8 +69,7 @@ var defaultBreaks = {
 	},
 
 	'Level4': {
-		'min': 81,
-		'max': 101,
+		'value': 100,
 		'style': _.assign(_.clone(defaultStyle), {
 			'color': '#550000',
 			"over": _.assign(_.clone(over), {
