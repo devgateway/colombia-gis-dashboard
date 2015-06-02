@@ -8,7 +8,6 @@ module.exports = {
 
 	/*Listen  set property event comming from the layer control  */
 	onChangeLayerValue: function(id, property, value) {
-
 		var prevLevel = this.state.level;
 		var newLevel = this.state.level;
 
@@ -67,7 +66,6 @@ module.exports = {
 
 	/*Load GIS data by level*/
 	_loadGeoData: function(newLevel) {
-
 		if (newLevel == 'departament') {
 			this._loadByDepartments(); //load data 
 		} else if (newLevel == 'municipality') {
