@@ -6,6 +6,19 @@
  var Store = require('../../../../stores/pointsLayerStore.js');
  var Popup = require('./_popup.jsx')
  var Mixins = require('./_mixins.js');
+ var EventConstants = require('react/lib/EventConstants');
+
+ var reactEventNames = Object.keys(EventConstants.topLevelTypes)
+  .filter(function(eventName) {
+    var isTop = (eventName.slice(0, 3) === 'top');
+    if (!isTop) { console.warn('React event name didn\'t start with "top"', eventName); }
+    return isTop;
+  })
+  .map(function(topName) {  // convert eg. `topBlur` => `blur`
+    return topName.slice(3).toLowerCase();
+    // var lowerFirstLetter = topName.slice(3, 4).toLowerCase();  // first letter after top
+    // return lowerFirstLetter + topName.slice(4);
+  });
 
  module.exports = React.createClass({
 
