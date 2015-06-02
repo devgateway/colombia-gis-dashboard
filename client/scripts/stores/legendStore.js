@@ -90,6 +90,14 @@ module.exports=Reflux.createStore({
       }      
     },
 
+    onRemoveLegend: function(legendId) {
+      var layerLegends = _.find(this.state.layersLegends, {'id': legendId});
+      if (layerLegends){
+        this.state.layersLegends.pop(layerLegends);
+        this.trigger(this.state);
+      }
+    },
+
     _parseLegendsFromDrawInfo: function(legends) {
       var legendArray = [];
       if (legends.drawingInfo.renderer.type == 'uniqueValue'){
