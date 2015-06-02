@@ -16,12 +16,13 @@ var _ = require('lodash');
 
 //Adding some leaflet hooks
 L.Path.prototype.setOpacity=function(value){
- this._path.setAttribute('stroke-opacity', value)
- this._path.setAttribute('fill-opacity', value);
+  if(this._path){
+   this._path.setAttribute('stroke-opacity', value)
+   this._path.setAttribute('fill-opacity', value);
+ }
 }
 
 L.Path.prototype.hide=function(value){
-
   this._path.style.display='none';
 }
 L.Path.prototype.show=function(value){
@@ -32,6 +33,7 @@ L.Path.prototype.show=function(value){
 L.Marker.prototype.hide=function(){
   this._icon.style.display='none'
 }
+
 L.Marker.prototype.show=function(){
   this._icon.style.display='block'
 }

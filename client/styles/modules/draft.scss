@@ -1,44 +1,50 @@
 /*add here all styles used during development later they will be replaced by the final ones */
 
 
-	.selectable-radio{
-		  border-radius: 0% !important;
-		  background-clip:none;
+.selectable-radio{
+	border-radius: 0% !important;
+	background-clip:none;
 
-		font-size: 1.5em !important; 
-		width: 5px;
-		height: 5px;
-		border: 1px solid #cccccc;
-		background: #ffffff;
+	font-size: 1.5em !important; 
+	width: 5px;
+	height: 5px;
+	border: 1px solid #cccccc;
+	background: #ffffff;
+	float: left;
+	margin-right: 0.2em;
+	margin-top: 1px;
+	width:13px;
+	height:13px;
+	.selected{
+		
+	}
+	.fa{
+		font-size:0.7em;
+		margin-left: 2px;
+		margin-top: -2px;
 		float: left;
-		margin-right: 0.2em;
-		margin-top: 1px;
-		width:13px;
-		height:13px;
-		.selected{
-			
-		}
-		.fa{
-			font-size:0.7em;
-			margin-left: 2px;
-			margin-top: -2px;
-			float: left;
-		}
 	}
-	.leaflet-popup-pane {
-		z-index: 10000;
-	}
-	.iframe-content {
-		border: 0px;
-		width:100%;
-		height:98%;
-	}
-	.chart-container {
-		border: 0px;
-		width:95%;
-		height:95%;
-	}
-	.sub-activities-title{
-		color:#4278AA;
-		font-size:14px
-	}
+}
+
+
+.horizontal{
+	float: left;
+	margin-right:10px;
+}
+.leaflet-popup-pane {
+	z-index: 10000;
+}
+.iframe-content {
+	border: 0px;
+	width:100%;
+	height:98%;
+}
+.chart-container {
+	border: 0px;
+	width:95%;
+	height:95%;
+}
+.sub-activities-title{
+	color:#4278AA;
+	font-size:14px
+}
