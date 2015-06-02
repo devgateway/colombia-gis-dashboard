@@ -76,6 +76,7 @@ function writeLog(message){
 
 
   _onStatusChange: function(status) {
+    console.log('map->esriLayers>_onStatusChange'); 
     var layers = status.layers.slice(0); //make a new array 
 
     this.setState(_.assign(_.assign({}, this.state), {
@@ -124,6 +125,7 @@ function writeLog(message){
   },
 
   _loadLayers: function(layers) {
+    console.log('map->esriLayers>_loadLayers');   
     var newLayers = _.filter(layers,{created:undefined});
     newLayers.map(function(l) {
       if (l.type === "Feature Service") {
@@ -160,6 +162,7 @@ function writeLog(message){
   },
 
   _createFeatureService: function(layer) {
+    console.log('map->esriLayers>_createFeatureService'); 
 
     var featureLayers = [];
     var baseURL = layer.url;
@@ -186,14 +189,24 @@ function writeLog(message){
   },
 
   componentWillUpdate: function(nextProps, nextState) {
-    if (nextState.layers.length > this.state.layers.length) {
-      this._loadLayers(nextState.layers);
+    debugger;
+    var self = this;
+    self.state.layers.map(function(l){
+      var layerToCheck = _.findWhere(nextState.layers, {id: l.id});
+      if(!layerToCheck){
+        var layerToRemove = self.state.leafletLayers[l.id];
+        self._getMap().removeLayer(layerToRemove)
+      }
+    });
+    if (nextState.layers.length > self.state.layers.length) {
+      self._loadLayers(nextState.layers);
     } else {
-      this._updateLayers(nextState.layers)
+      self._updateLayers(nextState.layers)
     }
   },
 
-  _updateLayers: function(layers) {        
+  _updateLayers: function(layers) { 
+    console.log('map->esriLayers>_updateLayers');       
 
    layers.map(function(l) {
 
@@ -228,7 +241,7 @@ function writeLog(message){
     }
         //set leaflet layers properties from metadata values 
         leafletLayer.setOpacity(l.opacity);
-        leafletLayer.setZIndex(l.zIndex * 3000);
+        leafletLayer.setZIndex(l.zIndex + 1 * 3000);
         leafletLayer._update();
       if (l.visible) { //check if metadata is visible 
         this._addLayer(leafletLayer);

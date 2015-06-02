@@ -3,6 +3,7 @@
 var assign = require('object-assign');
 var Reflux = require('reflux');
 var ArcgisLayersActions = require('../actions/arcgisLayersActions.js');
+var LegendActions = require('../actions/legendActions.js');
 var Util = require('../api/util.js');
 var API = require('../api/esri.js');
 var _ = require('lodash');
@@ -27,16 +28,22 @@ module.exports = Reflux.createStore({
 	listenables: ArcgisLayersActions,
 
 	onAddLayerToMap: function(layer) {
+    console.log('stores->arcgisLayerStore>onAddLayerToMap');
 		if (!_.findWhere(this.state.layers, {id: layer.id})) {
+			
 			var options={'opacity': 1,'visible':true}; //default values for all layers 
+
 			if (layer.type=='Feature Service'){
 				setVisibility(layer.layer.layers);
 				setOpaciy(layer.layer.layers);	
 			}else{
 				_.assign(options,{'zIndex': this.nextZindex()});
 			}
+
 			_.assign(layer, options);
+			debugger;
 			this.state.layers.push(layer);
+			LegendActions.getLegends(layer);
 			this.trigger(this.state);
 		}
 	},
@@ -58,7 +65,11 @@ module.exports = Reflux.createStore({
 		var theLayer = _.findWhere(this.state.layers, {'id': id});
 		var isFeature=theLayer.type=='Feature Service';
 
-		if (property == 'moveDown' && !isFeature) {
+		if (property == 'delete') {
+			var index = _.indexOf(_.pluck(this.state.layers, 'id'), theLayer.id);;
+			this.state.layers.splice(index, 1);
+			this.trigger(this.state);
+		} else if (property == 'moveDown' && !isFeature) {
 			var currentZindex = theLayer.zIndex;
 			if (currentZindex > 0) {
 				var newZindex = currentZindex - 1;
@@ -79,20 +90,21 @@ module.exports = Reflux.createStore({
 				replaceWith.zIndex = currentZindex; //the one that was in tha position takes  theLayer's z-index
 			}
 		} else {
+			
+				if(!idx){
+					theLayer[property] = value;
+				}
 
-			if(!idx){
-				theLayer[property] = value;
-			}
-			if (isFeature){ //this is feature layer
-				if (idx){
-					_.find(theLayer.layer.layers,{id:parseInt(idx)})[property]=value;	
-				}else{
-					theLayer.layer.layers.map(function(l){
-						l[property]=value
-					})
+				if (isFeature){ //this is feature layer
+					if (idx){
+						_.find(theLayer.layer.layers,{id:parseInt(idx)})[property]=value;	
+					}else{
+						theLayer.layer.layers.map(function(l){
+							l[property]=value
+						})
+					}
 				}
 			}
-		}
 			this.trigger(this.state)
 		},
 
@@ -112,6 +124,7 @@ module.exports = Reflux.createStore({
 		},
 
 		getInitialState: function() {
+
 			if (!this.state) {
 				this.state = storedState || {
 					layers: [],
@@ -121,4 +134,8 @@ module.exports = Reflux.createStore({
 			return this.state;
 		},
 
-});
+
+
+
+
+	});

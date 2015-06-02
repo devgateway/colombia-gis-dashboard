@@ -5,10 +5,11 @@ var Router = require('react-router'), Route = Router.Route,  DefaultRoute = Rout
 var RouteHandler = require('react-router').RouteHandler;
 var Redirect = require('react-router').Redirect;
 var Map = require('./components/mapDashboard.jsx');
+var Chart = require('./components/map/charts/chart1.jsx');
 var AGOLConfirm= require('./components/esri/AGOLConfirm.jsx');
 var APP=require('./components/app.jsx'); // basic page without layout
 var MapLayout=require('./components/mapLayout.jsx');
-
+var InfowindowPopup=require('./components/map/infowindowPopup.jsx');
 var routes = (
 		<Route name="app" path="/" handler={APP}>
 			
@@ -17,6 +18,9 @@ var routes = (
 			</Route>
 
 			<Route name="arcLogin" path="/arcLogin*" handler={AGOLConfirm} />
+			<Route name="infowindow" path="/infowindow" handler={InfowindowPopup} >
+				<Route name="chart1" path="/chart1" handler={Chart} />
+			</Route>
 			<Redirect from="/" to="map"/>
 		</Route>
 	);
