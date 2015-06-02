@@ -144,7 +144,6 @@ function writeLog(message){
   },
 
   componentWillUpdate: function(nextProps, nextState) {
-    debugger;
     var self = this;
     self.state.layers.map(function(l){
       var layerToCheck = _.findWhere(nextState.layers, {id: l.id});

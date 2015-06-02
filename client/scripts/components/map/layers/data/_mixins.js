@@ -1,3 +1,5 @@
+var LegendActions = require('../../../../actions/legendActions.js');
+
 module.exports = {
 
 	componentWillUpdate: function(props, newState) {
@@ -5,6 +7,7 @@ module.exports = {
 
 		if (!this.layer) {
 			this.layer = this._createLayer(newState.geoData, options);
+			LegendActions.getBaseMapLegends();
 		}
 
 		if (this.state.geoData != newState.geoData) {

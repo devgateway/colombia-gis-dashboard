@@ -33,7 +33,7 @@ var FeatureLayer=React.createClass({
         </TogglerContent>
 
         <TogglerContent visibleWhen="always">
-          <Layer    onRemove={this.props.onRemove}
+          <Layer onRemove={this.props.onRemove}
           opacity={this.props.opacity}
           visible={this.props.visible}  
           onChangeVisibility={this.props.onChangeVisibility} 
@@ -91,7 +91,7 @@ module.exports  = React.createClass({
 
   },
 
-_onDelete: function(id) {
+  _onDelete: function(id) {
     ArcgisLayerActions.changeLayerValue('delete', id); //TODO:property mame should be in a globar variable 
 
   },
@@ -135,7 +135,7 @@ _onDelete: function(id) {
         tiles.map(function(l){
          return (
           <li> <Layer
-         onDelete={this._onDelete} 
+          onDelete={this._onDelete} 
           onMoveUp={this._handleMoveUp}
           onMoveDown={this._handleMoveDown}
           onChangeOpacity={this._handleChangeOpacity}
