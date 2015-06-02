@@ -79,7 +79,7 @@ module.exports = Reflux.createStore({
 				theLayer.zIndex = newZindex; //the layer gets z-index-1
 				replaceWith.zIndex = currentZindex; //the one that was in tha position takes  theLayer's z-index
 			}
-		} else if (property == 'moveUp' && isTile) {
+		} else if (property == 'moveUp' && !isFeature) {
 			var currentZindex = theLayer.zIndex;
 			if (currentZindex < this.state.layers.length) {
 				var newZindex = currentZindex + 1;

@@ -13,8 +13,10 @@ var actions=require('../actions/startUpActions.js');
 module.exports = React.createClass({
 
 	componentDidMount:function(){
-		actions.loadActivitiesByDepartments();
-		actions.getAllListsFromAPI(); //TODO:Improve Perfomance 
+			/*run actions needed to initialize this layout */
+		actions.activityLayerInit();
+
+		actions.getAllListsFromAPI(); 
 	},
 
 
