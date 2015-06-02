@@ -23,7 +23,7 @@ module.exports = {
 		} else if (!this.props.getMap().hasLayer(this.layer)) {
 			this.layer.addTo(this.props.getMap());
 		}
-
+			this.layer.bringToFront();
 	},
 
 	_createLayer: function(features) {
