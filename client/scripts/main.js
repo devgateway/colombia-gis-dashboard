@@ -19,7 +19,7 @@ var router = require('./router.jsx');
 var _ = require('lodash');
 
 var options = {
-	lng: 'en',
+	lng: 'es',
 	resGetPath: './locales/__lng__/__ns__.json',
 	setJqueryExt: false,
 	preload: ['es', 'en']
