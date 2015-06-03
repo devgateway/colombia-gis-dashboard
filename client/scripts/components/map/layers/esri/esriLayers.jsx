@@ -145,18 +145,36 @@ function writeLog(message){
 
   componentWillUpdate: function(nextProps, nextState) {
     var self = this;
-    self.state.layers.map(function(l){
-      var layerToCheck = _.findWhere(nextState.layers, {id: l.id});
-      if(!layerToCheck){
-        var layerToRemove = self.state.leafletLayers[l.id];
-        self._getMap().removeLayer(layerToRemove)
-      }
-    });
+    self._deleteMissingLayers(nextState);
     if (nextState.layers.length > self.state.layers.length) {
       self._loadLayers(nextState.layers);
     } else {
       self._updateLayers(nextState.layers)
     }
+  },
+
+  _deleteMissingLayers: function(nextState) { 
+    console.log('map->esriLayers>_deleteMissingLayers');
+    debugger;
+    var self = this;
+    self.state.layers.map(function(l){
+      var layerToCheck = _.findWhere(nextState.layers, {id: l.id});
+      if(!layerToCheck){
+        if(l.type=='Feature Service'){
+          _.map(_.keys(self.state.leafletLayers), function(k){
+            console.log('k:' + k); 
+            console.log('l.id:' + l.id);       
+            if(k.indexOf(l.id)>=0) {
+              var innerLayerToRemove = self.state.leafletLayers[k];
+              self._getMap().removeLayer(innerLayerToRemove);
+            }
+          })
+        } else {
+          var layerToRemove = self.state.leafletLayers[l.id];
+          self._getMap().removeLayer(layerToRemove);
+        }
+      }
+    });
   },
 
   _updateLayers: function(layers) { 
