@@ -7,6 +7,7 @@ var Util = require('../api/util.js');
 var API = require('../api/layers.js');
 var CommonsMixins = require('./_mixins.js')
 var DataLayerMixins = require('./_overlaysMixins.js')
+var LegendActions = require('../actions/legendActions.js');
 
 
 var defaultStyle = {
@@ -18,31 +19,36 @@ var defaultStyle = {
 
 var defaultBreaks = {
   'Level0': {
-    'value': 20,
+    'min': 0,
+    'max': 20,
     'style': _.assign(_.clone(defaultStyle), {
       'color': '#FFAAAA'
     }),
   },
   'Level1': {
-    'value': 40,
+    'min': 21, //min <= X , max
+    'max': 40,
     'style': _.assign(_.clone(defaultStyle), {
       'color': '#D46A6A'
     }),
   },
   'Level2': {
-    'value': 60,
+    'min': 41,
+    'max': 60,
     'style': _.assign(_.clone(defaultStyle), {
       'color': '#AA3939'
     })
   },
   'Level3': {
-    'value': 80,
+    'min': 61,
+    'max': 80,
     'style': _.assign(_.clone(defaultStyle), {
       'color': '#801515'
     })
   },
   'Level4': {
-    'value': 100,
+    'min': 81,
+    'max': 101,
     'style': _.assign(_.clone(defaultStyle), {
       'color': '#550000'
     })
@@ -86,7 +92,7 @@ module.exports = Reflux.createStore({
     func(this.state.filters).then(function(results) { //call api function and process results 
       //tranform plain data to GeoJson
       this._setGeoData(Util.toGeoJson(results)); //process and set changes to state  
-    
+      LegendActions.getBaseMapLegends(); 
     }.bind(this)).fail(function(e) {
       console.log('Error while loading data ...', e);
     });
