@@ -21,7 +21,7 @@
        var maxValue = _.max(_.collect(this.state.geoData.features, function(e) {
          return e.properties.fundingUS
        }));
-       var currentValue = feature.properties.fundingUS
+       var currentValue = feature.properties.fundingUS || 0;
        var percentage = parseInt((100 / (maxValue / currentValue)));
 
        var breakData = _.find(_.values(this.state.breaks), function(t) {
@@ -32,8 +32,8 @@
          console.log(parseInt(maxValue) + ' ::: ' + parseInt(currentValue) + ':::' + parseInt(percentage) + '%' + ':::' + parseInt(breakData.max) + ':::' + breakData.style.color);
          return breakData.style;
        } else {
-         console.log('Errro ... ' + percentage);
-         this.state.defaultStyle;
+            console.log('Errro ... ' + percentage);
+         return this.state.defaultStyle;
        }
      }else{
       console.log('Error: Set style was called without geodata')
