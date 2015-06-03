@@ -79,6 +79,18 @@ module.exports = Reflux.createStore({
 
   },
 
+  _enableLoading: function() {
+    console.log('_enableLoading');
+    this.state = assign(this.state, {loading:true});
+    this.trigger(this.state);
+  },
+
+  _disableLoading: function() {
+    console.log('_disableLoading');
+    this.state = assign(this.state, {loading:false});
+    this.trigger(this.state);
+  },
+
   /*Load GIS data by department */
   _loadByDepartments: function() {
     this._getGeoData(API.getActivitiesByDepartment); //just delegate the call to the next function passing the target method

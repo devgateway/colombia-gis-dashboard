@@ -7,6 +7,7 @@ var search=Reflux.createAction({ asyncResult: true });
 var loadLayer=Reflux.createAction();
 var loadLayerCompleted=Reflux.createAction();
 var loadLayerFailed=Reflux.createAction();
+var restoreLayerButton=Reflux.createAction();
 loadLayer.preEmit = function(options) {
 
 	API.getService(options.url)
@@ -32,6 +33,7 @@ module.exports = {
 	search:search,
 	loadLayerCompleted:loadLayerCompleted,
 	loadLayerFailed:loadLayerFailed,
+	restoreLayerButton:restoreLayerButton,
 	addLayerToMap:Reflux.createAction(),
 	layerAdded:Reflux.createAction(),
 	serviceCreated:Reflux.createAction(),

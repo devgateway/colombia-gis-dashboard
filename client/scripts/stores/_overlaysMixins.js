@@ -61,6 +61,7 @@ module.exports = {
 
 	_load: function(prevLevel, newLevel, force) {
 		if ((newLevel != prevLevel) || (force === true)) {
+			this._enableLoading();
 			this._loadGeoData(newLevel);
 		} else {
 			console.log('nothing to change here');
@@ -69,7 +70,6 @@ module.exports = {
 
 	/*Load GIS data by level*/
 	_loadGeoData: function(newLevel) {
-
 		if (newLevel == 'departament') {
 			this._loadByDepartments(); //load data 
 		} else if (newLevel == 'municipality') {
@@ -82,6 +82,7 @@ module.exports = {
 			geoData: data,
 			isLoaded: true
 		}); //trigger geodata changes;
+		this._disableLoading();
 	},
 
 	update: function(assignable, options) {

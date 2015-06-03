@@ -33,7 +33,8 @@ var FeatureLayer=React.createClass({
         </TogglerContent>
 
         <TogglerContent visibleWhen="always">
-          <Layer onRemove={this.props.onRemove}
+          <Layer onDelete={this.props.onDelete} 
+          onRemove={this.props.onRemove}
           opacity={this.props.opacity}
           visible={this.props.visible}  
           onChangeVisibility={this.props.onChangeVisibility} 
@@ -120,7 +121,7 @@ module.exports  = React.createClass({
       return (
           <li>
          
-                 <FeatureLayer  onChangeOpacity={this._handleChangeOpacity} onChangeVisibility={this._changevisibility}
+                 <FeatureLayer onDelete={this._onDelete} onChangeOpacity={this._handleChangeOpacity} onChangeVisibility={this._changevisibility}
                           id={l.id} type={l.type} zIndex={l.zIndex}  visible={l.visible}  layer={l.layer}  opacity={l.opacity} title={l.title} />
           </li>
         )
