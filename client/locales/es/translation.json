@@ -54,7 +54,7 @@
 		"add":"ADD",
 		"loadMoreResults":"CLICK TO ADD MORE RESULTS",
 		"search":"Buscar en AGOL",
-		"noResults":"No se encontraron resultados disponibles",
+		"noResults":"No hay resultados que coincidan con su búsqueda",
 		"byDepartment":"Por Departamento",
 		"byMunicipality":"Por Municipalidad"
 	},

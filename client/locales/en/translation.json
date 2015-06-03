@@ -55,7 +55,7 @@
 		"add":"ADD",
 		"loadMoreResults":"CLICK TO ADD MORE RESULTS",
 		"search":"Search Layers",
-		"noResults":"There where no results available",
+		"noResults":"There are no results that match your search",
 		"byDepartment":"Departments",
 		"byMunicipality":"Municipalities"
 	},

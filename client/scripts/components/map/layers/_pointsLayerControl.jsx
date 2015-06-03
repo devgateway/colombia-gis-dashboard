@@ -37,8 +37,6 @@ module.exports = React.createClass({
 
 
  render: function() {
-  
-  debugger;
   var level=this.state.level;
 
   return (

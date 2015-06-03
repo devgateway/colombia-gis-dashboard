@@ -3,13 +3,12 @@ var LegendActions = require('../../../../actions/legendActions.js');
 module.exports = {
 
 	componentDidUpdate: function(prev, prevState) {
-		debugger;
 		options = {};
 		var newState=this.state;
 
 		if (!this.layer && newState.geoData) {
 			this.layer = this._createLayer(newState.geoData, options);
-			LegendActions.getBaseMapLegends();
+			LegendActions.getDataLayersLegends();
 		}
 			/*I can change values only if the layer was created in */
 		if (this.layer) {

@@ -79,18 +79,6 @@ module.exports = Reflux.createStore({
 
   },
 
-  _enableLoading: function() {
-    console.log('_enableLoading');
-    this.state = assign(this.state, {loading:true});
-    this.trigger(this.state);
-  },
-
-  _disableLoading: function() {
-    console.log('_disableLoading');
-    this.state = assign(this.state, {loading:false});
-    this.trigger(this.state);
-  },
-
   /*Load GIS data by department */
   _loadByDepartments: function() {
     this._getGeoData(API.getActivitiesByDepartment); //just delegate the call to the next function passing the target method
@@ -104,11 +92,11 @@ module.exports = Reflux.createStore({
     func(this.state.filters).then(function(results) { //call api function and process results 
       //tranform plain data to GeoJson
       this._setGeoData(Util.toGeoJson(results)); //process and set changes to state  
-      LegendActions.getBaseMapLegends(); 
+      //LegendActions.getBaseMapLegends();
     }.bind(this)).fail(function(e) {
       console.log('Error while loading data ...', e);
     });
-  },
+  }
 
 
 });
