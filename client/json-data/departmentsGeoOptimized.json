@@ -1,15 +1,15 @@
-module.exports = {
-    'type': 'FeatureCollection',
-    'features': [{
-        'type': 'Feature',
-        'properties': {
-            'ID_1': 1,
-            'ID': 91,
-            'NAME_1': 'Amazonas',
+{
+    "type": "FeatureCollection",
+    "features": [{
+        "type": "Feature",
+        "properties": {
+            "ID_1": 1,
+            "ID": 91,
+            "NAME_1": "Amazonas"
         },
-        'geometry': {
-            'type': 'Polygon',
-            'coordinates': [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
             [
             [-69.43138122558582, -1.078474044799805],
             [-69.41006469726562, -1.131675958633309],
@@ -410,21 +410,21 @@ module.exports = {
             ]
         }
     }, {
-        'type': 'Feature',
-        'properties': {
+        "type": "Feature",
+        "properties": {
 
 
 
-            'ID_1': 2,
-            'ID': 5,
-            'NAME_1': 'Antioquia',
+            "ID_1": 2,
+            "ID": 5,
+            "NAME_1": "Antioquia"
 
 
 
         },
-        'geometry': {
-            'type': 'Polygon',
-            'coordinates': [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
             [
             [-76.4231948852539, 8.858331680297965],
             [-76.39910125732416, 8.833399772644157],
@@ -710,22 +710,22 @@ module.exports = {
             ]
         }
     }, {
-        'type': 'Feature',
-        'properties': {
+        "type": "Feature",
+        "properties": {
 
 
 
-            'ID_1': 3,
-            'ID': 81,
-            'NAME_1': 'Arauca',
+            "ID_1": 3,
+            "ID": 81,
+            "NAME_1": "Arauca",
 
 
-            'TYPE_1': 'Intendencia',
-            'ENGTYPE_1': 'Intendancy'
+            "TYPE_1": "Intendencia",
+            "ENGTYPE_1": "Intendancy"
         },
-        'geometry': {
-            'type': 'Polygon',
-            'coordinates': [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
             [
             [-69.43656921386719, 6.115118026733512],
             [-69.44244384765614, 6.065793037414608],
@@ -854,21 +854,21 @@ module.exports = {
             ]
         }
     }, {
-        'type': 'Feature',
-        'properties': {
+        "type": "Feature",
+        "properties": {
 
 
 
-            'ID_1': 4,
-            'ID': 8,
-            'NAME_1': 'Atlántico',
+            "ID_1": 4,
+            "ID": 8,
+            "NAME_1": "Atlántico"
 
 
 
         },
-        'geometry': {
-            'type': 'Polygon',
-            'coordinates': [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
             [
             [-74.5158004760741, 10.922301292419434],
             [-74.50949859619135, 10.870300292968807],
@@ -928,21 +928,21 @@ module.exports = {
             ]
         }
     }, {
-        'type': 'Feature',
-        'properties': {
+        "type": "Feature",
+        "properties": {
 
 
 
-            'ID_1': 5,
-            'ID': 13,
-            'NAME_1': 'Bolívar',
+            "ID_1": 5,
+            "ID": 13,
+            "NAME_1": "Bolívar"
 
 
 
         },
-        'geometry': {
-            'type': 'MultiPolygon',
-            'coordinates': [
+        "geometry": {
+            "type": "MultiPolygon",
+            "coordinates": [
             [
             [
             [-75.57485961914051, 10.381250381469727],
@@ -1156,21 +1156,21 @@ module.exports = {
             ]
         }
     }, {
-        'type': 'Feature',
-        'properties': {
+        "type": "Feature",
+        "properties": {
 
 
 
-            'ID_1': 6,
-            'ID': 15,
-            'NAME_1': 'Boyacá',
+            "ID_1": 6,
+            "ID": 15,
+            "NAME_1": "Boyacá"
 
 
 
         },
-        'geometry': {
-            'type': 'Polygon',
-            'coordinates': [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
             [
             [-72.03215789794922, 7.022006988525504],
             [-71.98308563232422, 7.010278224945068],
@@ -1399,21 +1399,21 @@ module.exports = {
             ]
         }
     }, {
-        'type': 'Feature',
-        'properties': {
+        "type": "Feature",
+        "properties": {
 
 
 
-            'ID_1': 7,
-            'ID': 17,
-            'NAME_1': 'Caldas',
+            "ID_1": 7,
+            "ID": 17,
+            "NAME_1": "Caldas"
 
 
 
         },
-        'geometry': {
-            'type': 'Polygon',
-            'coordinates': [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
             [
             [-74.67659759521473, 5.758399009704817],
             [-74.6852035522461, 5.71750020980835],
@@ -1521,22 +1521,22 @@ module.exports = {
             ]
         }
     }, {
-        'type': 'Feature',
-        'properties': {
+        "type": "Feature",
+        "properties": {
 
 
 
-            'ID_1': 8,
-            'ID': 18,
-            'NAME_1': 'Caquetá',
+            "ID_1": 8,
+            "ID": 18,
+            "NAME_1": "Caquetá",
 
 
-            'TYPE_1': 'Intendencia',
-            'ENGTYPE_1': 'Intendancy'
+            "TYPE_1": "Intendencia",
+            "ENGTYPE_1": "Intendancy"
         },
-        'geometry': {
-            'type': 'Polygon',
-            'coordinates': [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
             [
             [-73.66020202636719, 1.610900998115653],
             [-73.65039825439447, 1.512101054191589],
@@ -1830,22 +1830,22 @@ module.exports = {
             ]
         }
     }, {
-        'type': 'Feature',
-        'properties': {
+        "type": "Feature",
+        "properties": {
 
 
 
-            'ID_1': 9,
-            'ID': 85,
-            'NAME_1': 'Casanare',
+            "ID_1": 9,
+            "ID": 85,
+            "NAME_1": "Casanare",
 
 
-            'TYPE_1': 'Intendencia',
-            'ENGTYPE_1': 'Intendancy'
+            "TYPE_1": "Intendencia",
+            "ENGTYPE_1": "Intendancy"
         },
-        'geometry': {
-            'type': 'Polygon',
-            'coordinates': [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
             [
             [-69.84786987304688, 6.004880905151481],
             [-69.87539672851557, 5.967100143432731],
@@ -2014,21 +2014,21 @@ module.exports = {
             ]
         }
     }, {
-        'type': 'Feature',
-        'properties': {
+        "type": "Feature",
+        "properties": {
 
 
 
-            'ID_1': 10,
-            'ID': 19,
-            'NAME_1': 'Cauca',
+            "ID_1": 10,
+            "ID": 19,
+            "NAME_1": "Cauca"
 
 
 
         },
-        'geometry': {
-            'type': 'Polygon',
-            'coordinates': [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
             [
             [-76.09714508056635, 3.208590984344482],
             [-76.100601196289, 3.092300891876334],
@@ -2214,22 +2214,22 @@ module.exports = {
             ]
         }
     }, {
-        'type': 'Feature',
-        'properties': {
+        "type": "Feature",
+        "properties": {
 
 
 
-            'ID_1': 11,
-            'ID': 20,
-            'NAME_1': 'Cesar',
+            "ID_1": 11,
+            "ID": 20,
+            "NAME_1": "Cesar",
 
-            'VARNAME_1': 'El Cesar',
+            "VARNAME_1": "El Cesar"
 
 
         },
-        'geometry': {
-            'type': 'Polygon',
-            'coordinates': [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
             [
             [-72.88662719726557, 10.38289833068859],
             [-72.90001678466797, 10.361231803894043],
@@ -2404,21 +2404,21 @@ module.exports = {
             ]
         }
     }, {
-        'type': 'Feature',
-        'properties': {
+        "type": "Feature",
+        "properties": {
 
 
 
-            'ID_1': 12,
-            'ID': 27,
-            'NAME_1': 'Chocó',
+            "ID_1": 12,
+            "ID": 27,
+            "NAME_1": "Chocó"
 
 
 
         },
-        'geometry': {
-            'type': 'Polygon',
-            'coordinates': [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
             [
             [-76.99669647216786, 8.254305839538858],
             [-76.99286651611322, 8.219183921814135],
@@ -2701,21 +2701,21 @@ module.exports = {
             ]
         }
     }, {
-        'type': 'Feature',
-        'properties': {
+        "type": "Feature",
+        "properties": {
 
 
 
-            'ID_1': 13,
-            'ID': 23,
-            'NAME_1': 'Córdoba',
+            "ID_1": 13,
+            "ID": 23,
+            "NAME_1": "Córdoba"
 
 
 
         },
-        'geometry': {
-            'type': 'Polygon',
-            'coordinates': [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
             [
             [-75.71308135986328, 9.413749694824162],
             [-75.69319915771479, 9.3774995803833],
@@ -2848,21 +2848,21 @@ module.exports = {
             ]
         }
     }, {
-        'type': 'Feature',
-        'properties': {
+        "type": "Feature",
+        "properties": {
 
 
 
-            'ID_1': 14,
-            'ID': 25,
-            'NAME_1': 'Cundinamarca',
+            "ID_1": 14,
+            "ID": 25,
+            "NAME_1": "Cundinamarca"
 
 
 
         },
-        'geometry': {
-            'type': 'Polygon',
-            'coordinates': [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
             [
             [-73.07810211181635, 4.714300155639876],
             [-73.0723037719726, 4.666399002075309],
@@ -3029,22 +3029,22 @@ module.exports = {
             ]
         }
     }, {
-        'type': 'Feature',
-        'properties': {
+        "type": "Feature",
+        "properties": {
 
 
 
-            'ID_1': 15,
-            'ID': 94,
-            'NAME_1': 'Guainía',
+            "ID_1": 15,
+            "ID": 94,
+            "NAME_1": "Guainía",
 
-            'VARNAME_1': 'Guania',
+            "VARNAME_1": "Guania"
             
             
         },
-        'geometry': {
-            'type': 'Polygon',
-            'coordinates': [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
             [
             [-69.85511016845703, 1.667019963264693],
             [-69.92369842529297, 1.692301034927482],
@@ -3324,22 +3324,22 @@ module.exports = {
             ]
         }
     }, {
-        'type': 'Feature',
-        'properties': {
+        "type": "Feature",
+        "properties": {
 
 
 
-            'ID_1': 16,
-            'ID': 95,
-            'NAME_1': 'Guaviare',
+            "ID_1": 16,
+            "ID": 95,
+            "NAME_1": "Guaviare"
 
 
             
             
         },
-        'geometry': {
-            'type': 'Polygon',
-            'coordinates': [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
             [
             [-71.09519958496094, 2.845499992370549],
             [-71.05770111083984, 2.826800107955933],
@@ -3582,21 +3582,21 @@ module.exports = {
             ]
         }
     }, {
-        'type': 'Feature',
-        'properties': {
+        "type": "Feature",
+        "properties": {
 
 
 
-            'ID_1': 17,
-            'ID': 41,
-            'NAME_1': 'Huila',
+            "ID_1": 17,
+            "ID": 41,
+            "NAME_1": "Huila"
 
 
 
         },
-        'geometry': {
-            'type': 'Polygon',
-            'coordinates': [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
             [
             [-74.92060089111322, 2.944099903106803],
             [-74.9447021484375, 2.903201103210677],
@@ -3739,22 +3739,22 @@ module.exports = {
             ]
         }
     }, {
-        'type': 'Feature',
-        'properties': {
+        "type": "Feature",
+        "properties": {
 
 
 
-            'ID_1': 18,
-            'ID': 44,
-            'NAME_1': 'La Guajira',
+            "ID_1": 18,
+            "ID": 44,
+            "NAME_1": "La Guajira",
 
-            'VARNAME_1': 'Guajira|Goagira|La Goajira',
+            "VARNAME_1": "Guajira|Goagira|La Goajira"
 
 
         },
-        'geometry': {
-            'type': 'Polygon',
-            'coordinates': [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
             [
             [-71.65763854980457, 12.435417175292969],
             [-71.7151412963866, 12.410695075988713],
@@ -3914,22 +3914,22 @@ module.exports = {
             ]
         }
     }, {
-        'type': 'Feature',
-        'properties': {
+        "type": "Feature",
+        "properties": {
 
 
 
-            'ID_1': 19,
-            'ID': 47,
-            'NAME_1': 'Magdalena',
+            "ID_1": 19,
+            "ID": 47,
+            "NAME_1": "Magdalena",
 
-            'VARNAME_1': 'La Magdalena',
+            "VARNAME_1": "La Magdalena"
 
 
         },
-        'geometry': {
-            'type': 'Polygon',
-            'coordinates': [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
             [
             [-73.61389923095697, 11.2124986648559],
             [-73.62190246582026, 11.183099746704102],
@@ -4095,21 +4095,21 @@ module.exports = {
             ]
         }
     }, {
-        'type': 'Feature',
-        'properties': {
+        "type": "Feature",
+        "properties": {
 
 
 
-            'ID_1': 20,
-            'ID': 50,
-            'NAME_1': 'Meta',
+            "ID_1": 20,
+            "ID": 50,
+            "NAME_1": "Meta"
 
 
 
         },
-        'geometry': {
-            'type': 'Polygon',
-            'coordinates': [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
             [
             [-71.09519958496094, 2.845499992370549],
             [-71.12280273437494, 2.837500095367432],
@@ -4324,21 +4324,21 @@ module.exports = {
             ]
         }
     }, {
-        'type': 'Feature',
-        'properties': {
+        "type": "Feature",
+        "properties": {
 
 
 
-            'ID_1': 21,
-            'ID': 52,
-            'NAME_1': 'Nariño',
+            "ID_1": 21,
+            "ID": 52,
+            "NAME_1": "Nariño"
 
 
 
         },
-        'geometry': {
-            'type': 'Polygon',
-            'coordinates': [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
             [
             [-78.02388000488276, 2.649861097335815],
             [-77.96980285644526, 2.550200939178751],
@@ -4504,22 +4504,22 @@ module.exports = {
             ]
         }
     }, {
-        'type': 'Feature',
-        'properties': {
+        "type": "Feature",
+        "properties": {
 
 
 
-            'ID_1': 22,
-            'ID': 54,
-            'NAME_1': 'Norte de Santander',
+            "ID_1": 22,
+            "ID": 54,
+            "NAME_1": "Norte de Santander",
 
-            'VARNAME_1': 'Santander del Norte',
+            "VARNAME_1": "Santander del Norte"
 
 
         },
-        'geometry': {
-            'type': 'Polygon',
-            'coordinates': [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
             [
             [-72.03215789794922, 7.022006988525504],
             [-72.07094573974604, 7.014701843261662],
@@ -4680,22 +4680,22 @@ module.exports = {
             ]
         }
     }, {
-        'type': 'Feature',
-        'properties': {
+        "type": "Feature",
+        "properties": {
 
 
 
-            'ID_1': 23,
-            'ID': 86,
-            'NAME_1': 'Putumayo',
+            "ID_1": 23,
+            "ID": 86,
+            "NAME_1": "Putumayo",
 
 
-            'TYPE_1': 'Intendencia',
-            'ENGTYPE_1': 'Intendancy'
+            "TYPE_1": "Intendencia",
+            "ENGTYPE_1": "Intendancy"
         },
-        'geometry': {
-            'type': 'Polygon',
-            'coordinates': [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
             [
             [-76.10350036621094, 1.046399950981254],
             [-76.08910369873047, 1.037701010704154],
@@ -4894,21 +4894,21 @@ module.exports = {
             ]
         }
     }, {
-        'type': 'Feature',
-        'properties': {
+        "type": "Feature",
+        "properties": {
 
 
 
-            'ID_1': 24,
-            'ID': 63,
-            'NAME_1': 'Quindío',
+            "ID_1": 24,
+            "ID": 63,
+            "NAME_1": "Quindío"
 
 
 
         },
-        'geometry': {
-            'type': 'Polygon',
-            'coordinates': [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
             [
             [-75.41960906982422, 4.702723979950008],
             [-75.40869903564447, 4.679000854492188],
@@ -4945,21 +4945,21 @@ module.exports = {
             ]
         }
     }, {
-        'type': 'Feature',
-        'properties': {
+        "type": "Feature",
+        "properties": {
 
 
 
-            'ID_1': 25,
-            'ID': 66,
-            'NAME_1': 'Risaralda',
+            "ID_1": 25,
+            "ID": 66,
+            "NAME_1": "Risaralda"
 
 
 
         },
-        'geometry': {
-            'type': 'Polygon',
-            'coordinates': [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
             [
             [-75.88650512695307, 5.475137233734188],
             [-75.88870239257807, 5.429599761962834],
@@ -5035,22 +5035,22 @@ module.exports = {
             ]
         }
     }, {
-        'type': 'Feature',
-        'properties': {
+        "type": "Feature",
+        "properties": {
 
 
 
-            'ID_1': 26,
-            'ID': 88,
-            'NAME_1': 'San Andrés y Providencia',
+            "ID_1": 26,
+            "ID": 88,
+            "NAME_1": "San Andrés y Providencia",
 
-            'VARNAME_1': 'Saint Andrew and Providence',
+            "VARNAME_1": "Saint Andrew and Providence"
 
 
         },
-        'geometry': {
-            'type': 'MultiPolygon',
-            'coordinates': [
+        "geometry": {
+            "type": "MultiPolygon",
+            "coordinates": [
             [
             [
             [-81.70347595214844, 12.595138549804744],
@@ -5074,21 +5074,21 @@ module.exports = {
             ]
         }
     }, {
-        'type': 'Feature',
-        'properties': {
+        "type": "Feature",
+        "properties": {
 
 
 
-            'ID_1': 27,
-            'ID': 68,
-            'NAME_1': 'Santander',
+            "ID_1": 27,
+            "ID": 68,
+            "NAME_1": "Santander"
 
 
 
         },
-        'geometry': {
-            'type': 'Polygon',
-            'coordinates': [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
             [
             [-73.65280151367182, 7.708798885345573],
             [-73.61009979248036, 7.684401035308952],
@@ -5255,21 +5255,21 @@ module.exports = {
             ]
         }
     }, {
-        'type': 'Feature',
-        'properties': {
+        "type": "Feature",
+        "properties": {
 
 
 
-            'ID_1': 28,
-            'ID': 70,
-            'NAME_1': 'Sucre',
+            "ID_1": 28,
+            "ID": 70,
+            "NAME_1": "Sucre"
 
 
 
         },
-        'geometry': {
-            'type': 'Polygon',
-            'coordinates': [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
             [
             [-75.52069854736328, 10.07800197601324],
             [-75.52590179443354, 10.041000366211165],
@@ -5396,21 +5396,21 @@ module.exports = {
             ]
         }
     }, {
-        'type': 'Feature',
-        'properties': {
+        "type": "Feature",
+        "properties": {
 
 
 
-            'ID_1': 29,
-            'ID': 73,
-            'NAME_1': 'Tolima',
+            "ID_1": 29,
+            "ID": 73,
+            "NAME_1": "Tolima"
 
 
 
         },
-        'geometry': {
-            'type': 'Polygon',
-            'coordinates': [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
             [
             [-74.76570129394531, 5.272997856140137],
             [-74.7593002319336, 5.257400035858154],
@@ -5548,22 +5548,22 @@ module.exports = {
             ]
         }
     }, {
-        'type': 'Feature',
-        'properties': {
+        "type": "Feature",
+        "properties": {
 
 
 
-            'ID_1': 30,
-            'ID': 76,
-            'NAME_1': 'Valle del Cauca',
+            "ID_1": 30,
+            "ID": 76,
+            "NAME_1": "Valle del Cauca",
 
-            'VARNAME_1': 'Valle',
+            "VARNAME_1": "Valle"
 
 
         },
-        'geometry': {
-            'type': 'MultiPolygon',
-            'coordinates': [
+        "geometry": {
+            "type": "MultiPolygon",
+            "coordinates": [
             [
             [
             [-77.17819213867188, 3.811527967453117],
@@ -5748,22 +5748,22 @@ module.exports = {
             ]
         }
     }, {
-        'type': 'Feature',
-        'properties': {
+        "type": "Feature",
+        "properties": {
 
 
 
-            'ID_1': 31,
-            'ID': 97,
-            'NAME_1': 'Vaupés',
+            "ID_1": 31,
+            "ID": 97,
+            "NAME_1": "Vaupés"
 
 
             
             
         },
-        'geometry': {
-            'type': 'Polygon',
-            'coordinates': [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
             [
             [-69.85511016845703, 1.667019963264693],
             [-69.854736328125, 1.453590989112911],
@@ -6046,22 +6046,22 @@ module.exports = {
             ]
         }
     }, {
-        'type': 'Feature',
-        'properties': {
+        "type": "Feature",
+        "properties": {
 
 
 
-            'ID_1': 32,
-            'ID': 99,
-            'NAME_1': 'Vichada',
+            "ID_1": 32,
+            "ID": 99,
+            "NAME_1": "Vichada"
 
 
             
             
         },
-        'geometry': {
-            'type': 'Polygon',
-            'coordinates': [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
             [
             [-67.69867706298828, 4.004826068878401],
             [-67.73220062255854, 3.96530103683466],
