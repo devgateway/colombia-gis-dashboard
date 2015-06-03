@@ -164,7 +164,7 @@ function writeLog(message){
           _.map(_.keys(self.state.leafletLayers), function(k){
             console.log('k:' + k); 
             console.log('l.id:' + l.id);       
-            if(k.indexOf(l.id)>0) {
+            if(k.indexOf(l.id)>=0) {
               var innerLayerToRemove = self.state.leafletLayers[k];
               self._getMap().removeLayer(innerLayerToRemove);
             }
