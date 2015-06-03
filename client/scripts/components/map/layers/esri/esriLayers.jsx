@@ -14,49 +14,6 @@ var ImageServerClass = L.esri.imageMapLayer;
 var API = require('../../../../api/esri.js');
 var _ = require('lodash');
 
-//Adding some leaflet hooks
-L.Path.prototype.setOpacity=function(value){
- this._path.setAttribute('stroke-opacity', value)
- this._path.setAttribute('fill-opacity', value);
-}
-
-L.Path.prototype.hide=function(value){
-
-  this._path.style.display='none';
-}
-L.Path.prototype.show=function(value){
-  this._path.style.display='block';
-}
-
-
-L.Marker.prototype.hide=function(){
-  this._icon.style.display='none'
-}
-L.Marker.prototype.show=function(){
-  this._icon.style.display='block'
-}
-
-
-L.FeatureGroup.prototype.setOpacity=function(value){
-  _.map(this._layers,function(l){
-    l.setOpacity(value)
-  })
-}
-
-L.FeatureGroup.prototype.show=function(value){
-  _.map(this._layers,function(l){
-    l.show()
-  })
-}
-
-L.FeatureGroup.prototype.hide=function(value){
-  _.map(this._layers,function(l){
-    l.hide()
-  })
-}
-
-//
-
 function writeLog(message){
   console.log('Map>esriLayers: '+message)
 }
@@ -187,20 +144,37 @@ function writeLog(message){
   },
 
   componentWillUpdate: function(nextProps, nextState) {
-    debugger;
     var self = this;
-    self.state.layers.map(function(l){
-      var layerToCheck = _.findWhere(nextState.layers, {id: l.id});
-      if(!layerToCheck){
-        var layerToRemove = self.state.leafletLayers[l.id];
-        self._getMap().removeLayer(layerToRemove)
-      }
-    });
+    self._deleteMissingLayers(nextState);
     if (nextState.layers.length > self.state.layers.length) {
       self._loadLayers(nextState.layers);
     } else {
       self._updateLayers(nextState.layers)
     }
+  },
+
+  _deleteMissingLayers: function(nextState) { 
+    console.log('map->esriLayers>_deleteMissingLayers');
+    debugger;
+    var self = this;
+    self.state.layers.map(function(l){
+      var layerToCheck = _.findWhere(nextState.layers, {id: l.id});
+      if(!layerToCheck){
+        if(l.type=='Feature Service'){
+          _.map(_.keys(self.state.leafletLayers), function(k){
+            console.log('k:' + k); 
+            console.log('l.id:' + l.id);       
+            if(k.indexOf(l.id)>=0) {
+              var innerLayerToRemove = self.state.leafletLayers[k];
+              self._getMap().removeLayer(innerLayerToRemove);
+            }
+          })
+        } else {
+          var layerToRemove = self.state.leafletLayers[l.id];
+          self._getMap().removeLayer(layerToRemove);
+        }
+      }
+    });
   },
 
   _updateLayers: function(layers) { 

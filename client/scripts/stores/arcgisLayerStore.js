@@ -29,6 +29,7 @@ module.exports = Reflux.createStore({
 
 	onAddLayerToMap: function(layer) {
     console.log('stores->arcgisLayerStore>onAddLayerToMap');
+    debugger;
 		if (!_.findWhere(this.state.layers, {id: layer.id})) {
 			
 			var options={'opacity': 1,'visible':true}; //default values for all layers 
@@ -41,7 +42,6 @@ module.exports = Reflux.createStore({
 			}
 
 			_.assign(layer, options);
-			debugger;
 			this.state.layers.push(layer);
 			LegendActions.getLegends(layer);
 			this.trigger(this.state);
@@ -68,7 +68,8 @@ module.exports = Reflux.createStore({
 		if (property == 'delete') {
 			var index = _.indexOf(_.pluck(this.state.layers, 'id'), theLayer.id);;
 			this.state.layers.splice(index, 1);
-			this.trigger(this.state);
+			LegendActions.removeLegend(theLayer.id);
+			ArcgisLayersActions.restoreLayerButton(theLayer.id);
 		} else if (property == 'moveDown' && !isFeature) {
 			var currentZindex = theLayer.zIndex;
 			if (currentZindex > 0) {
@@ -79,7 +80,7 @@ module.exports = Reflux.createStore({
 				theLayer.zIndex = newZindex; //the layer gets z-index-1
 				replaceWith.zIndex = currentZindex; //the one that was in tha position takes  theLayer's z-index
 			}
-		} else if (property == 'moveUp' && isTile) {
+		} else if (property == 'moveUp' && !isFeature) {
 			var currentZindex = theLayer.zIndex;
 			if (currentZindex < this.state.layers.length) {
 				var newZindex = currentZindex + 1;

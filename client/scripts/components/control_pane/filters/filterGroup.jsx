@@ -1,8 +1,5 @@
-/*http://facebook.github.io/react/docs/component-specs.html*/
 var React = require('react');
-var Router = require('react-router');
 var Reflux = require('reflux');
-var Link = Router.Link;
 var FilterItemList = require('./filterItemList.jsx');
 var KeywordSearch = require('./keywordSearch.jsx');
 var AllNoneSelector = require('./allNoneSelector.jsx');
@@ -10,7 +7,7 @@ var SelectionCounter = require('./selectionCounter.jsx');
 
 var showOnlySelected = false;
 var FilterGroup = React.createClass({
- 
+    
     _onCounterClicked: function(selected) {     
         this.showOnlySelected = selected;
         this.forceUpdate();

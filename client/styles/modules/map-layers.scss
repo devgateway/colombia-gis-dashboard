@@ -83,6 +83,7 @@
   }
   .ui-slider-pip {
     top: 30px;
+    display:none;
   }
 
   .ui-slider-pip .ui-slider-label {
@@ -114,6 +115,7 @@
   }
   
   .toggler{
+     clear:left;
     .toggler-title{
       float: left;
     }

@@ -7,19 +7,19 @@
  * components and connecting some pieces for the real leaflet
  */
  var React = require('react/addons');
- var Reflux = require('reflux');
- var MapStore = require('../../stores/mapStore.js');
- var MapActions = require('../../actions/mapActions.js');
- var LeafletMap = require('./_mapLeaflet.jsx');
- 
+var Reflux = require('reflux');
+var MapStore = require('../../stores/mapStore.js');
+var MapActions = require('../../actions/mapActions.js');
+var LeafletMap = require('./_mapLeaflet.jsx');
+var EsriLayers=require('./layers/esri/esriLayers.jsx');
+var If=require('../commons/if.jsx');
+var PointsLayer=require('./layers/data/pointsLayer.jsx');
+var Loading = require('../commons/loading.jsx')
+var ShapesLayer=require('./layers/data/shapesLayer.jsx');
 
- var EsriLayers=require('./layers/esri/esriLayers.jsx');
- var DataLayer=require('./layers/data/dataLayers.jsx');
+var AGOLbtnLogin=require('../esri/AGOLBtnLogin.jsx');
+var LegendControl = require('./layers/esri/legendControl.jsx');
 
- var AGOLbtnLogin=require('../esri/AGOLBtnLogin.jsx');
- var LegendControl = require('./layers/esri/legendControl.jsx');
-
- var control=L.control.layers({}, {});
 
  module.exports = React.createClass({
 
@@ -33,23 +33,11 @@
     return this.refs.leafletMapComponent.getLeafletMap();
   },
 
-  getControl:function(){
-    return control;
-  },
-  
-  _onAddLayer:function(layer){
-   this.props.onAddLayer(layer)
- },
 
+ componentWillMount :function(){
+ },    
 
- componentDidMount:function(){
-  control.addTo(this.getMap());
-},
-
-componentWillMount :function(){
-},    
-
-render: function() {
+ render: function() {
    // pass a function down to children through props to access the leaflet map
    var children = React.Children.map(this.props.children, function(child) {
     return child ? React.addons.cloneWithProps(child, {getMap: this.getMap}) : null;
@@ -62,12 +50,15 @@ render: function() {
      <div>
      
      <LeafletMap ref="leafletMapComponent" baseMap={baseMap} bounds={bounds} onMapMove={this.updateCurrentBounds}/>
-     <AGOLbtnLogin/>
-     <LegendControl/>
-      
-     <DataLayer getMap={this.getMap}/>
-     <EsriLayers getMap={this.getMap}/>
-     {children} 
+      <AGOLbtnLogin/>
+      <LegendControl/>
+      <PointsLayer getMap={this.getMap}/>
+      <ShapesLayer getMap={this.getMap}/>
+      <If condition={this.state.mapStatus.loading} >
+        <Loading/>
+      </If>
+      <EsriLayers getMap={this.getMap}/>
+        {children} 
      </div>
      )
  }

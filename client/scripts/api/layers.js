@@ -29,8 +29,21 @@ module.exports = {
             data: JSON.stringify({"filters": filters? filters : []}),
             crossOrigin: true
         }).fail(logFailure);
+    },
+
+    loadDepartmentsShapes:function(){
+      
+        return request({
+            url: 'json-data/departmentsGeoOptimized.json',
+            type: 'json'
+        }).fail(logFailure);  
+    },
+
+    loadMunicipalitiesShapes:function(){
+      
+        return request({
+            url: 'json-data/municipalitiesOptimized.json',
+            type: 'json'
+        }).fail(logFailure);  
     }
-
-
-
 };

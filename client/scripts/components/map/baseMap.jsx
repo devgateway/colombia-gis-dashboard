@@ -5,14 +5,15 @@ var Reflux = require('reflux');
 var MapActions=require('../../actions/mapActions.js')
 var MapStore=require('../../stores/mapStore.js');
 
+
 var BaseMapItem= React.createClass({
 
-   handleClick: function(event) {
-     MapActions.changeBaseMap(this.state.value);
+  handleClick: function(event) {
+    MapActions.changeBaseMap(this.state.value);
   },
 
-   getInitialState: function() {
-      return {value:this.props.value, label:this.props.label};
+  getInitialState: function() {
+    return {value:this.props.value, label:this.props.label};
   },
   
   render: function() {
@@ -33,7 +34,7 @@ module.exports = React.createClass({
         <div className="map-panel-header">
           <div className="basemap-label">
             <i className="fa fa-globe" aria-hidden="true"></i>
-            Views
+            <Message message='map.baseMaps.views'/>
           </div>
           <ul className="basemap-list">
             <li><BaseMapItem label={<Message message='map.baseMaps.gray'/>} value="Gray"/></li>
