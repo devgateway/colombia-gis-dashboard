@@ -838,7 +838,7 @@ input[type=checkbox].glyphicon {
   z-index: 10000 !important; }
 
 .input-group {
-  width: 300px; }
+  width: 330px; }
   .input-group.date {
     margin-top: 2em;
     margin-bottom: 1.5em; }
@@ -1169,7 +1169,8 @@ ul.tabs {
   padding-right: 0.4em; }
 
 .layer-control .ui-slider-pip {
-  top: 30px; }
+  top: 30px;
+  display: none; }
 .layer-control .ui-slider-pip .ui-slider-label {
   top: -18px; }
 .layer-control .title {
@@ -1188,17 +1189,19 @@ ul.tabs {
   float: left;
   margin-right: 5px;
   width: 45px; }
-.layer-control .toggler .toggler-title {
-  float: left; }
-.layer-control .toggler .toggler-btn {
-  width: 20px;
-  float: left; }
-.layer-control .toggler .updown {
-  float: left;
-  margin-right: 5px;
-  width: 35px; }
-.layer-control .toggler .clear-fix {
-  clear: both; }
+.layer-control .toggler {
+  clear: left; }
+  .layer-control .toggler .toggler-title {
+    float: left; }
+  .layer-control .toggler .toggler-btn {
+    width: 20px;
+    float: left; }
+  .layer-control .toggler .updown {
+    float: left;
+    margin-right: 5px;
+    width: 35px; }
+  .layer-control .toggler .clear-fix {
+    clear: both; }
 .layer-control .ui-state-default,
 .layer-control .ui-widget-content .ui-state-default,
 .layer-control .ui-widget-header .ui-state-default {
@@ -1354,8 +1357,7 @@ ul.tabs {
   position: absolute;
   bottom: 24px;
   right: 86px;
-  padding: 0;
-  border: 1px solid #cccccc; }
+  padding: 0; }
 
 .legends-content {
   width: 250px;
@@ -1415,6 +1417,10 @@ ul.tabs {
     margin-top: -2px;
     float: left; }
 
+.horizontal {
+  float: left;
+  margin-right: 10px; }
+
 .leaflet-popup-pane {
   z-index: 10000; }
 
@@ -1427,5 +1433,21 @@ ul.tabs {
   border: 0px;
   width: 95%;
   height: 95%; }
+
+.sub-activities-title {
+  color: #4278AA;
+  font-size: 14px; }
+
+.colorpicker-element {
+  width: 50px;
+  height: 50px;
+  float: left;
+  border: 0px; }
+
+.loading-container {
+  position: absolute;
+  bottom: 50%;
+  right: 45%;
+  border: 0px solid; }
 
 /*# sourceMappingURL=main.css.map */
