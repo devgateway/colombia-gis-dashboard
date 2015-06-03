@@ -65,6 +65,18 @@ module.exports = React.createClass({
             </CustomRadioGroup>
           </li>
           
+           <li>
+            {
+
+              _.map(_.keys(this.state.breaks),function(key){
+                  var br=this.state.breaks[key];
+
+                  return (<div><ColorPicker  level={key} onChangeColor={this._changeColor} label={br.value +'%'} color={br.style.color}/></div>)
+              }.bind(this))
+
+            }
+          </li>
+          
         </ul>                    
       </TogglerContent>
     </Toggler>
