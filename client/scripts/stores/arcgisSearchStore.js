@@ -74,6 +74,7 @@ module.exports = Reflux.createStore({
 		
 		writeLog('Layer is loading  setting loading=true');
 		flagToTrue(findById(this.state.search.results,options.id),'loaded');
+		_.assign(this.state,{'error':null});
 		this.trigger(this.state);
 		 
 		ArcgisLayersActions.addLayerToMap(ObjectBuilder.buildLayerInfo(layer,options)); //tell to layer sotre to add it to his list 
