@@ -1389,7 +1389,8 @@ ul.tabs {
   .legend-group-title .fa {
     color: #ffffff;
     font-size: 14px;
-    position: absolute; }
+    position: absolute;
+    left: 9px; }
     .legend-group-title .fa.fa-sort-asc {
       top: 14px; }
     .legend-group-title .fa.fa-sort-desc {
