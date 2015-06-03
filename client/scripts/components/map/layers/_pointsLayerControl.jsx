@@ -10,6 +10,9 @@ var CustomRadio = require('../../commons/customRadioButton.jsx').Radio;
 var CustomRadioGroup = require('../../commons/customRadioButton.jsx').RadioGroup;
 var Layer = require('./_layer.jsx');
 
+var _ = require('lodash');
+var ColorPicker=require('./_colorPicker.jsx');
+
 var Store = require('../../../stores/pointsLayerStore.js');
 
 module.exports = React.createClass({
@@ -34,7 +37,8 @@ module.exports = React.createClass({
 
 
  render: function() {
-
+  
+  debugger;
   var level=this.state.level;
 
   return (
@@ -63,6 +67,21 @@ module.exports = React.createClass({
               <CustomRadio  className="horizontal" name="departament" checked={(level=='departament')? true : false}     onClick={this._showByDepartment} label="layers.byDepartment"/>
               <CustomRadio  className="horizontal" name="municipality" checked={(level=='municipality')? true : false}  onClick={this._showByMunicipality} label="layers.byMunicipality"/>    
             </CustomRadioGroup>
+          </li>
+          
+           <li>
+            {
+
+              _.map(_.keys(this.state.breaks),function(key){
+                  var br=this.state.breaks[key];
+                return (
+                      <div>
+                          <ColorPicker level={key} onChangeColor={this._changeColor} label={br.value +'%'} color={br.style.color}/>
+                      </div>)
+             
+              }.bind(this))
+
+            }
           </li>
           
         </ul>                    
