@@ -1384,13 +1384,21 @@ ul.tabs {
   -webkit-border-radius: 2px;
   border-radius: 2px;
   background-clip: padding-box;
-  /* stops bg color from leaking outside the border: */ }
+  /* stops bg color from leaking outside the border: */
+  position: relative; }
   .legend-group-title .fa {
-    color: #ffffff; }
+    color: #ffffff;
+    font-size: 14px;
+    position: absolute; }
+    .legend-group-title .fa.fa-sort-asc {
+      top: 14px; }
+    .legend-group-title .fa.fa-sort-desc {
+      top: 9px; }
   .legend-group-title span {
     padding-left: 0.5em;
     font-weight: 600;
-    color: #3c5b7d; }
+    color: #3c5b7d;
+    margin-left: 13px; }
 
 .legends-list {
   background: #ffffff;

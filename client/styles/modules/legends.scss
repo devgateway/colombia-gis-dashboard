@@ -40,9 +40,6 @@
   ul{
   list-style:none;
   padding-left:0;
-    li{
-
-      }
   }
   h2{
     color: $grey;
@@ -57,14 +54,19 @@
   padding:$gutter/1.5 $gutter/2;
   margin-bottom:4px;
   @include border-radius(2px);
+  position:relative;
   .fa{
     color: $white;
+    font-size:14px;
+    position:absolute;
+  &.fa-sort-asc{top:14px}
+  &.fa-sort-desc{top:9px;}
   }
-
   span{
       padding-left: $gutter/2;
       font-weight:600;
       color: darken($blue, 10%);
+      margin-left:13px;
   }
 }
 
