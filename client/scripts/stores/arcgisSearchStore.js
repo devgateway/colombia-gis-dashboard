@@ -55,6 +55,11 @@ module.exports = Reflux.createStore({
 
 		}.bind(this));
 	},
+
+	onRestoreLayerButton:function(id){	
+		flagToFalse(findById(this.state.search.results,id),'loaded');	
+		this.trigger(this.state);
+	},
 	
 	
 	loadLayerFailed:function(error,code,options){
