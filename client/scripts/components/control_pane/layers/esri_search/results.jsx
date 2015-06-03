@@ -77,8 +77,6 @@ module.exports=React.createClass({
 		var errorMessage = "";
 		if(this.props.error){
 			errorMessage = this.props.error.message;
-			this.props.error.message=""; //TODO Never set a property value inside the componet 
-
 		} 
 		return(
 			<div>
@@ -86,7 +84,7 @@ module.exports=React.createClass({
 				(errorMessage && errorMessage!="")?<div> <p className='label label label-danger'>{errorMessage}</p>
 				<hr class="h-divider"></hr></div>:""
 			}
-			{(this.props.search.nextStart==-1)?(
+			{(this.props.search.total==0)?(
 				<div>
 					<Message message="layers.noResults"/>
 				</div>
