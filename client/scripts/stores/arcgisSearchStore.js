@@ -46,6 +46,7 @@ module.exports = Reflux.createStore({
 	},
 
 	onSearch:function(options){
+		_.assign(this.state,{'error':null}); //Remove previous errors
 		API.findLayers(options).then(function(data){
 			ArcgisLayersActions.search.completed(data,options);
 		}).fail(function(){
@@ -63,8 +64,7 @@ module.exports = Reflux.createStore({
 	
 	
 	loadLayerFailed:function(error,code,options){
-		
-		this.state.error={'message':error,'code':code}
+		_.assign(this.state,{'error':{'message':error,'code':code}});
 		flagToTrue(findById(this.state.search.results,options.id),'error');	
 		this.trigger(this.state);
 		writeLog('Error '+error);
