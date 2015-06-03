@@ -1368,6 +1368,12 @@ ul.tabs {
   padding: 6px 6px 4px 6px;
   border: 1px solid #cccccc; }
 
+.legend-group ul {
+  list-style: none;
+  padding-left: 0; }
+.legend-group h2 {
+  color: #454545; }
+
 .legend-group-title {
   cursor: pointer;
   color: #ffffff;

@@ -36,6 +36,18 @@
   border:1px solid #cccccc;
 }
 
+.legend-group{
+  ul{
+  list-style:none;
+  padding-left:0;
+    li{
+
+      }
+  }
+  h2{
+    color: $grey;
+  }
+}
 
 .legend-group-title{
   cursor:pointer;
