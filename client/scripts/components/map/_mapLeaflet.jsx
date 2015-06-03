@@ -2,15 +2,19 @@
  * Leaflet raw map component used by ./map.jsx (use that if you want a map)
  */
 
- 'use strict';
+'use strict';
 
- var React = require('react/addons');
- var Reflux = require('reflux');
-  // L.map -> (bounds -> ()) -> (event -> ())
-  function getSimpleBounds(map, boundsChangeHandler) {
-    return function(/* leafletEvent */) {  // don't need anything from the event
+var React = require('react/addons');
+var PureRenderMixin = require('react/addons').addons.PureRenderMixin;
+var Reflux = require('reflux');
+// L.map -> (bounds -> ()) -> (event -> ())
+function getSimpleBounds(map, boundsChangeHandler) {
+  return function( /* leafletEvent */ ) { // don't need anything from the event
     var Lbounds = map.getBounds(),
-    simpleBounds = [[Lbounds.getNorth(), Lbounds.getEast()],[Lbounds.getSouth(), Lbounds.getWest()]];
+      simpleBounds = [
+        [Lbounds.getNorth(), Lbounds.getEast()],
+        [Lbounds.getSouth(), Lbounds.getWest()]
+      ];
     boundsChangeHandler(simpleBounds);
   };
 }
@@ -20,54 +24,63 @@ var currentLabels;
 
 module.exports = React.createClass({
 
+  mixins: [PureRenderMixin],
+
   componentDidMount: function() {
     console.log('map->_mapLeaflet>componentDidMount');
     var containerNode = this.getDOMNode();
-    var mapOptions = {zoomControl: false};
+    var mapOptions = {
+      zoomControl: false
+    };
     this.map = L.map(containerNode, mapOptions);
-    this.map.addControl( L.control.zoom({position: 'topright'}) )
+    this.map.addControl(L.control.zoom({
+      position: 'topright'
+    }))
     containerNode.style.position = 'absolute';
-      // send map events back to handlers in ./map.jsx
-      if (this.props.onMapMove) {
-        // `moveend` seems to cover all types of moves including zooms 
-        this.map.on('moveend', getSimpleBounds(this.map, this.props.onMapMove));
-      }
-      // leaflet requires a view of the map to show
-      if (this.props.bounds) {
-       this.map.fitBounds(this.props.bounds);
-     } else {
-       this.map.fitWorld();
-     }
+    // send map events back to handlers in ./map.jsx
+    if (this.props.onMapMove) {
+      // `moveend` seems to cover all types of moves including zooms 
+      this.map.on('moveend', getSimpleBounds(this.map, this.props.onMapMove));
+    }
+    // leaflet requires a view of the map to show
+    if (this.props.bounds) {
+      this.map.fitBounds(this.props.bounds);
+    } else {
+      this.map.fitWorld();
+    }
 
-     if (this.props.baseMap) {
+    if (this.props.baseMap) {
       this.setBaseMap(this.props.baseMap);
     }
   },
 
   componentWillReceiveProps: function(nextProps) {
-    if (nextProps.baseMap){
-      console.log('map->_mapLeaflet>componentWillReceiveProps Change Map '+nextProps.baseMap);
+    if (nextProps.baseMap && nextProps.basemap!=this.props.basemap) {
+      console.log('map->_mapLeaflet>componentWillReceiveProps Change Map ' + nextProps.baseMap);
       this.setBaseMap(nextProps.baseMap);
     }
-    if (nextProps.arcGisLayers){
+    if (nextProps.arcGisLayers) {
       this.addFeatureLayer(nextProps.arcGisLayers);
     }
   },
 
-  addFeatureLayer:function(fLayer){
+  addFeatureLayer: function(fLayer) {
     console.log('map->_mapLeaflet>addFeatureLayer');
-    var url=fLayer[0].url;
-    var feature = new L.esri.FeatureLayer(url+"/0", {
-     style: function () {
-      return { color: "#70ca49", weight: 2 };
-    }
-  }).addTo(this.map);
+    var url = fLayer[0].url;
+    var feature = new L.esri.FeatureLayer(url + "/0", {
+      style: function() {
+        return {
+          color: "#70ca49",
+          weight: 2
+        };
+      }
+    }).addTo(this.map);
   },
 
   componentWillUnmount: function() {
-    this.map.off();  // remove all event listeners
-    this.map.remove();  // clean up the rest of the map stuff
-    delete this.map;  // clear our ref so the map can be garbage collected
+    this.map.off(); // remove all event listeners
+    this.map.remove(); // clean up the rest of the map stuff
+    delete this.map; // clear our ref so the map can be garbage collected
   },
 
   // () -> `L.map` instance or `undefined` if the component has not mounted yet
@@ -75,18 +88,18 @@ module.exports = React.createClass({
     return this.map;
   },
 
-  setBaseMap:function(basemap) {
+  setBaseMap: function(basemap) {
     console.log('map->_mapLeaflet>setBaseMap');
     if (currentBaseMap) {
       this.map.removeLayer(currentBaseMap);
     }
-    
+
     if (currentLabels) {
       this.map.removeLayer(currentLabels);
     }
 
     currentBaseMap = L.esri.basemapLayer(basemap);
-    
+
     this.map.addLayer(currentBaseMap);
     if (basemap === 'ShadedRelief' || basemap === 'Oceans' || basemap === 'Gray' || basemap === 'DarkGray' || basemap === 'Imagery' || basemap === 'Terrain') {
       currentLabels = L.esri.basemapLayer(basemap + 'Labels');
@@ -96,7 +109,7 @@ module.exports = React.createClass({
 
   render: function() {
     console.log('map->_mapLeaflet>render');
-    return <div className="map react-leaflet-map"></div>
+    return <div className = "map react-leaflet-map" > < /div>
   }
 
 });
