@@ -12,7 +12,7 @@ var MapStore = require('../../stores/mapStore.js');
 var MapActions = require('../../actions/mapActions.js');
 var LeafletMap = require('./_mapLeaflet.jsx');
 var EsriLayers=require('./layers/esri/esriLayers.jsx');
-
+var If=require('../commons/if.jsx');
 var PointsLayer=require('./layers/data/pointsLayer.jsx');
 var Loading = require('../commons/loading.jsx')
 var ShapesLayer=require('./layers/data/shapesLayer.jsx');
@@ -51,10 +51,12 @@ var LegendControl = require('./layers/esri/legendControl.jsx');
      
      <LeafletMap ref="leafletMapComponent" baseMap={baseMap} bounds={bounds} onMapMove={this.updateCurrentBounds}/>
       <AGOLbtnLogin/>
-      <Loading/>
       <LegendControl/>
       <PointsLayer getMap={this.getMap}/>
       <ShapesLayer getMap={this.getMap}/>
+      <If condition={this.state.mapStatus.loading} >
+        <Loading/>
+      </If>
       <EsriLayers getMap={this.getMap}/>
         {children} 
      </div>

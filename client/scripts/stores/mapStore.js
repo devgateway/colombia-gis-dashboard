@@ -3,16 +3,22 @@
 var assign = require('object-assign');
 var Reflux = require('reflux');
 var MapActions = require('../actions/mapActions.js');
+var LoadingActions = require('../actions/loadingActions.js');
 
 
 module.exports = Reflux.createStore({
 
 
-  listenables: MapActions,
+  listenables: [MapActions, LoadingActions],
 
   getCurrentBaseMap: function() {
     return this.state.baseMap;
   }, 
+
+  onUpdateLoading: function() {
+    debugger;
+    this.update({ loading: !this.state.loading });
+  },
 
   onChangeBounds: function(newBounds) {
     this.update({ bounds: newBounds });
@@ -38,7 +44,8 @@ module.exports = Reflux.createStore({
     return (this.state = {
       baseMap : 'Gray',
       bounds: [ [7, -62],
-                [0, -83] ]
+                [0, -83] ],
+      loading: false          
     });
   }
 

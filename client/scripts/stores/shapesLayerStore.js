@@ -11,9 +11,9 @@ var assign = require('object-assign');
 var CommonsMixins = require('./_mixins.js')
 var DataLayerMixins = require('./_overlaysMixins.js')
 
-var departmentsGeoJson = require('./data/_departmentsGeo.js');
+//var departmentsGeoJson = require('./data/_departmentsGeo.js');
 
-var municipalitiesGeoJson = require('./data/_municipalitiesGeo.js');
+//var municipalitiesGeoJson = require('./data/_municipalitiesGeo.js');
 
 
 var defaultStyle = {
@@ -102,22 +102,25 @@ module.exports = Reflux.createStore({
 	},
 
 	_loadByMuncipalities: function() {
-		var geoData = _.clone(municipalitiesGeoJson);
+		//var geoData = _.clone(municipalitiesGeoJson);
+		var self = this;
 		API.getActivitiesByMuncipalities(this.state.filters).then(
 			function(data) {
-				_.map(data, function(d) {
-					var feature = _.find(geoData.features, function(e) {
-						if (e.properties.ID_2 == d.id /*replacer.replaceDiacritics(e.properties.NAME_1).toUpperCase()==d.name*/ ) {
-							console.log('Found!');
-						}
-						return e.properties.ID_2 == d.id; //replacer.replaceDiacritics(e.properties.NAME_1).toUpperCase()==d.name
+				API.loadMunicipalitiesShapes().then(
+					function(geoData) {
+						_.map(data, function(d) {
+							var feature = _.find(geoData.features, function(e) {
+								if (e.properties.ID_2 == d.id /*replacer.replaceDiacritics(e.properties.NAME_1).toUpperCase()==d.name*/ ) {
+									console.log('Found!');
+								}
+								return e.properties.ID_2 == d.id; //replacer.replaceDiacritics(e.properties.NAME_1).toUpperCase()==d.name
+							});
+							if (feature) {
+								_.assign(feature.properties, _.omit(_.clone(d), "name")); //set feature values  
+							}
+						});
+						self._setGeoData(geoData);
 					});
-
-					if (feature) {
-						_.assign(feature.properties, _.omit(_.clone(d), "name")); //set feature values  
-					}
-				});
-				this._setGeoData(geoData);
 
 			}.bind(this)).fail(function() {
 			console.log('Error loading data ...');
@@ -126,27 +129,40 @@ module.exports = Reflux.createStore({
 
 
 	_loadByDepartments: function() {
-		var geoData = _.clone(departmentsGeoJson);
+		//var geoData = _.clone(departmentsGeoJson);
+		var self = this;
 		API.getActivitiesByDepartment(this.state.filters).then(
 			function(data) {
-				_.map(data, function(d) {
-					var feature = _.find(geoData.features, function(e) {
-						if (e.properties.ID == d.id /*replacer.replaceDiacritics(e.properties.NAME_1).toUpperCase()==d.name*/ ) {
-							console.log('Found!');
+				API.loadDepartmentsShapes().then(
+					function(geoData) {
+						_.map(data, function(d) {
+						var feature = _.find(geoData.features, function(e) {
+							if (e.properties.ID == d.id /*replacer.replaceDiacritics(e.properties.NAME_1).toUpperCase()==d.name*/ ) {
+								console.log('Found!');
+							}
+							return e.properties.ID == d.id; //replacer.replaceDiacritics(e.properties.NAME_1).toUpperCase()==d.name
+						});
+						if (feature) {
+							_.assign(feature.properties, _.omit(_.clone(d), "name")); //set feature values 
 						}
-						return e.properties.ID == d.id; //replacer.replaceDiacritics(e.properties.NAME_1).toUpperCase()==d.name
 					});
-
-					if (feature) {
-						_.assign(feature.properties, _.omit(_.clone(d), "name")); //set feature values 
-					}
+					self._setGeoData(geoData);
 				});
-
-				this._setGeoData(geoData);
-
 			}.bind(this)).fail(function() {
 			console.log('Error loading data ...');
 		});
+	},
+
+	_enableLoading: function() {
+		console.log('_enableLoading');
+		this.state = assign(this.state, {loading:true});
+		this.trigger(this.state);
+	},
+
+	_disableLoading: function() {
+		console.log('_disableLoading');
+		this.state = assign(this.state, {loading:false});
+		this.trigger(this.state);
 	}
 
 });

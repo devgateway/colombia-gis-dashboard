@@ -31,15 +31,19 @@ module.exports = {
         }).fail(logFailure);
     },
 
-    loadDepartments:function(){
+    loadDepartmentsShapes:function(){
       
         return request({
             url: 'json-data/departmentsGeoOptimized.json',
-            type: 'json',
-            method: 'post',
-            contentType: "application/json",
-            data: JSON.stringify({"filters": filters? filters : []}),
-            crossOrigin: true
+            type: 'json'
+        }).fail(logFailure);  
+    },
+
+    loadMunicipalitiesShapes:function(){
+      
+        return request({
+            url: 'json-data/municipalitiesOptimized.json',
+            type: 'json'
         }).fail(logFailure);  
     }
 };

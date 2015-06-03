@@ -1,5 +1,6 @@
 var assign = require('object-assign');
 var LayersAction = require('../actions/layersAction.js');
+var LoadingAction = require('../actions/loadingActions.js');
 var _ = require('lodash');
 
 module.exports = {
@@ -61,7 +62,7 @@ module.exports = {
 
 	_load: function(prevLevel, newLevel, force) {
 		if ((newLevel != prevLevel) || (force === true)) {
-			this._enableLoading();
+			LoadingAction.updateLoading();
 			this._loadGeoData(newLevel);
 		} else {
 			console.log('nothing to change here');
@@ -82,7 +83,7 @@ module.exports = {
 			geoData: data,
 			isLoaded: true
 		}); //trigger geodata changes;
-		this._disableLoading();
+		LoadingAction.updateLoading();			
 	},
 
 	update: function(assignable, options) {
