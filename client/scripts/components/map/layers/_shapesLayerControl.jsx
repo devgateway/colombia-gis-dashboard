@@ -29,11 +29,11 @@ module.exports = React.createClass({
   },
 
   _showByDepartment:function(){
-  	LayerActions.changeLayerValue('shapes','level','departament'); //TODO:property mame should be in a globar variable 
+    LayerActions.changeLayerValue('shapes','level','departament'); //TODO:property mame should be in a globar variable 
   },
 
   _showByMunicipality:function(){
-  	LayerActions.changeLayerValue('shapes','level','municipality'); //TODO:property mame should be in a globar variable 
+    LayerActions.changeLayerValue('shapes','level','municipality'); //TODO:property mame should be in a globar variable 
   },
 
   _changeColor:function(value,level){
