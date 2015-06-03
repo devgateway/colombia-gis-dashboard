@@ -41,28 +41,5 @@ module.exports = {
             data: JSON.stringify({"filters": filters? filters : []}),
             crossOrigin: true
         }).fail(logFailure);  
-    },
-
-    loadMunicipalities:function(){
-      
-        return request({
-            url: 'json-data/municipalitiesOptimized.json',
-            type: 'json'
-        }).fail(logFailure);  
-    },
-
-    loadMunicipalitiesFromAPI:function(){
-        return request({
-            url: "http://test.monitor.net.co/GisService.svc/Filters/MunicipalitiesList/Json", 
-            type: 'json', 
-            method: 'get', 
-            crossOrigin: true
-          }).fail(logFailure);
-        /*
-        return request({
-            url: 'json-data/municipalitiesList.json',
-            type: 'json'
-        }).fail(logFailure); */
     }
-
 };
