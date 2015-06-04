@@ -10,6 +10,14 @@ var capitalizeLocation = function (label){
 
 var filters = [
         {
+          index: 0,
+          extraFilter: true,
+          label: 'filters.fundingTypes',
+          advanced: false,
+          param: 'ft',
+          apiEndPoint: window.DATA_PATH + '/fundingTypes.json'
+        },
+        {
           index: 1,
           label: 'filters.locations',
           advanced: false,
