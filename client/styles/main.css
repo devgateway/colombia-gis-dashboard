@@ -503,7 +503,7 @@ ul.basemap-list {
   overflow: hidden;
   padding-bottom: 1em;
   padding-top: 0.5em;
-  padding-right: 0.6em;
+  padding-right: 2.8em;
   float: right; }
 
 .btn, .btn-apply, button.layer-search {
@@ -1085,7 +1085,7 @@ button.search-button {
   overflow: hidden; }
 
 .tab-content {
-  min-height: 600px;
+  min-height: 330px;
   height: auto;
   overflow: hidden;
   width: 99%;
