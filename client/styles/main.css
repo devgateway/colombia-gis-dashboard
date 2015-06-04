@@ -419,7 +419,7 @@ ul.activities {
     margin-right: 0.5em;
     margin-bottom: 1.2em; }
     ul.activities li a {
-      color: #454545;
+      color: #8d8d8d;
       line-height: 80%;
       padding: 0;
       border-radius: 0;
@@ -429,9 +429,9 @@ ul.activities {
       -moz-transition: all 100ms ease;
       -o-transition: all 100ms ease;
       transition: all 100ms ease;
-      background: #f2f2f2;
+      background: #ebebeb;
       padding: 0.3em 0.7em;
-      border: 1px solid #dedede; }
+      border: 1px solid #c5c5c5; }
       ul.activities li a:hover {
         color: #4d749f; }
       ul.activities li a.active, ul.activities li a:focus {
