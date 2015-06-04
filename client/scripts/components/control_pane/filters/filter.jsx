@@ -98,7 +98,7 @@ var Filter  = React.createClass({
                                   onAllNoneClicked={self._onAllNoneClicked}/>
                     }                    
                   }
-                  if (!filterDefinition.advanced || (filterDefinition.advanced && self.state.advancedMode=="true")){
+                  if (!filterDefinition.extraFilter && (!filterDefinition.advanced || (filterDefinition.advanced && self.state.advancedMode=="true"))){
                     return <TabPane eventKey={idx++} tab={<Message message={filterDefinition.label}/>}>
                       {group}
                     </TabPane> 
