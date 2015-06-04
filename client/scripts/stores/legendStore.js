@@ -135,6 +135,16 @@ module.exports=Reflux.createStore({
       return [r,g,b];
     },
 
+    onChangeColorFundingByType: function(hexColor, level) {
+      var layerLegend = _.find(this.state.layersLegends, {'id': 1});
+      if(layerLegend){
+        layerLegend.legendGroups[0].legends[level].symbol.color[0] = hexColor.r;
+        layerLegend.legendGroups[0].legends[level].symbol.color[1] = hexColor.g;
+        layerLegend.legendGroups[0].legends[level].symbol.color[2] = hexColor.b;
+        this.trigger(this.state);
+      }
+    },
+
     onRemoveLegend: function(legendId) {
       var layerLegends = _.find(this.state.layersLegends, {'id': legendId});
       if (layerLegends){
