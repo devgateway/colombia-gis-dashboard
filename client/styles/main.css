@@ -341,7 +341,8 @@ ul.tabbed {
   color: #98ca68; }
 
 .bs-callout-danger {
-  border-left-color: #d9534f; }
+  border-left-color: #d9534f;
+  color: #d9534f; }
 
 .bs-callout-danger h4 {
   color: #d9534f; }
@@ -357,6 +358,21 @@ ul.tabbed {
 
 .bs-callout-info h4 {
   color: #5bc0de; }
+
+.filter-no-results {
+  color: #d9534f;
+  padding: 0 10px 15px 10px;
+  margin: 10px 0;
+  background: #f8f8f8;
+  border: 1px solid #dedede;
+  border-left: 3px solid #d9534f; }
+
+.filter-no-results h4 {
+  margin-top: 0;
+  margin-bottom: 5px; }
+
+.filter-no-results p:last-child {
+  margin-bottom: 0; }
 
 .activity-nav {
   clear: both;
@@ -403,7 +419,7 @@ ul.activities {
     margin-right: 0.5em;
     margin-bottom: 1.2em; }
     ul.activities li a {
-      color: #454545;
+      color: #8d8d8d;
       line-height: 80%;
       padding: 0;
       border-radius: 0;
@@ -413,9 +429,9 @@ ul.activities {
       -moz-transition: all 100ms ease;
       -o-transition: all 100ms ease;
       transition: all 100ms ease;
-      background: #f2f2f2;
+      background: #ebebeb;
       padding: 0.3em 0.7em;
-      border: 1px solid #dedede; }
+      border: 1px solid #c5c5c5; }
       ul.activities li a:hover {
         color: #4d749f; }
       ul.activities li a.active, ul.activities li a:focus {
@@ -503,7 +519,7 @@ ul.basemap-list {
   overflow: hidden;
   padding-bottom: 1em;
   padding-top: 0.5em;
-  padding-right: 0.6em;
+  padding-right: 2.8em;
   float: right; }
 
 .btn, .btn-apply, button.layer-search {
@@ -729,7 +745,7 @@ button.layer-search {
   padding: 0.1em 0 0.7em 0; }
 
 .filter-list-container-carousel {
-  height: 170px;
+  height: 210px;
   overflow-x: hidden;
   font-size: 0.7em; }
 
@@ -829,9 +845,12 @@ input[type=checkbox].glyphicon {
   right: 1.1em;
   font-style: italic;
   font-size: 0.8em;
-  line-height: 2.9em; }
+  line-height: 2.9em;
+  width: 95%; }
   .parent-toggle:hover {
     color: #98ca68; }
+  .parent-toggle .toggle-label {
+    float: right; }
 
 .hasDatepicker {
   position: relative;
@@ -1085,7 +1104,7 @@ button.search-button {
   overflow: hidden; }
 
 .tab-content {
-  min-height: 600px;
+  min-height: 330px;
   height: auto;
   overflow: hidden;
   width: 99%;

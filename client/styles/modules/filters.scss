@@ -81,7 +81,7 @@
 
 .filter-list-container-carousel {
   @extend .filter-list-container;
-  height: 170px;
+  height: 210px;
   overflow-x: hidden;
   font-size: 0.7em;
 }
@@ -193,10 +193,15 @@ input[type=checkbox].glyphicon {
   font-style: italic;
   font-size:0.8em;
   line-height:2.9em;
+  width:95%;
   &:hover{
   color:$green;
   }
+.toggle-label{
+  float:right;
+  }
 }
+
 
 .hasDatepicker {
     position: relative;

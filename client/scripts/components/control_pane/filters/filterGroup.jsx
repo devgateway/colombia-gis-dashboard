@@ -7,8 +7,8 @@ var SelectionCounter = require('./selectionCounter.jsx');
 
 var showOnlySelected = false;
 var FilterGroup = React.createClass({
-    
-    _onCounterClicked: function(selected) {     
+
+    _onCounterClicked: function(selected) {
         this.showOnlySelected = selected;
         this.forceUpdate();
     },
@@ -53,7 +53,7 @@ var FilterGroup = React.createClass({
     render: function() {
         //console.log("filters->filter-group: render - " + this.props.filterDefinition.label);
         var filterDefinition = this.props.filterDefinition;
-        var items = this.props.allItems || [];  
+        var items = this.props.allItems || [];
         var itemsSelected = this.props.allItems.filter(function (data) {return (data.selected);});
         var self = this;
         return(
@@ -61,22 +61,22 @@ var FilterGroup = React.createClass({
                 <div className="filter-group-panel-header">
                     <span className="filter-label" role="label">{<Message message={this.props.filterDefinition.label}/>}</span>
                     <SelectionCounter selected={itemsSelected.length} total={items.length} onCounterClicked={this._onCounterClicked}/>
-                    <AllNoneSelector filterType={filterDefinition.param} onAllNoneClicked={self.props.onAllNoneClicked}/>                                                
-                </div>                
-                <KeywordSearch onSearch={this._filterByKeyword}/> 
-                <div className="filter-no-results"> 
+                    <AllNoneSelector filterType={filterDefinition.param} onAllNoneClicked={self.props.onAllNoneClicked}/>
+                </div>
+                <KeywordSearch onSearch={this._filterByKeyword}/>
+                <div className="filter-no-results">
                     <br/>{<Message message="filters.noResults"/>}
                 </div>
-                <div className="filter-list-container">                   
-                    <FilterItemList 
+                <div className="filter-list-container">
+                    <FilterItemList
                         onItemChanged={this.props.onItemChanged}
-                        items={items} 
-                        filterDefinition={this.props.filterDefinition} 
-                        showOnlySelected={this.showOnlySelected}/>                
+                        items={items}
+                        filterDefinition={this.props.filterDefinition}
+                        showOnlySelected={this.showOnlySelected}/>
                 </div>
             </div>
-            );  
-        
+            );
+
     }
 });
 
