@@ -845,9 +845,12 @@ input[type=checkbox].glyphicon {
   right: 1.1em;
   font-style: italic;
   font-size: 0.8em;
-  line-height: 2.9em; }
+  line-height: 2.9em;
+  width: 95%; }
   .parent-toggle:hover {
     color: #98ca68; }
+  .parent-toggle .toggle-label {
+    float: right; }
 
 .hasDatepicker {
   position: relative;
