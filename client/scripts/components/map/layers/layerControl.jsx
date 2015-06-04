@@ -105,7 +105,7 @@ module.exports  = React.createClass({
     return (
     <ul className="layer-control">
       <li>
-        <h3>Data Layers</h3>
+        <h3><Message message='layers.dataLayers'/></h3>
       </li>
         
         <PointsLayerControl/>
