@@ -359,6 +359,22 @@ ul.tabbed {
 .bs-callout-info h4 {
   color: #5bc0de; }
 
+.filter-no-results {
+  border-left-color: #d9534f;
+  color: #d9534f;
+  padding: 10px;
+  margin: 10px 0;
+  background: #f8f8f8;
+  border: 1px solid #dedede;
+  border-left-width: 2px; }
+
+.filter-no-results h4 {
+  margin-top: 0;
+  margin-bottom: 5px; }
+
+.filter-no-results p:last-child {
+  margin-bottom: 0; }
+
 .activity-nav {
   clear: both;
   overflow: hidden; }
