@@ -7,6 +7,7 @@ var _=require('lodash')
 var Toggler=require('../../commons/toggler.jsx').Toggler;
 var TogglerContent=require('../../commons/toggler.jsx').TogglerContent;
 var If=require('../../commons/if.jsx');
+var LanStore=require('../../../stores/lanStore.js');
 
 var PointsLayerControl=require('./_pointsLayerControl.jsx');
 var ShapesLayer=require('./_shapesLayerControl.jsx');
@@ -63,7 +64,7 @@ var FeatureLayer=React.createClass({
 });
 
 module.exports  = React.createClass({
-  mixins: [Reflux.listenTo(ArcgisLayerStore,"_onStatusChange")],
+  mixins: [Reflux.listenTo(ArcgisLayerStore,"_onStatusChange"), Reflux.connect(LanStore, 'lan')],
 
   _onStatusChange: function(status) {
     this.setState(status); //create a new array in order to isolate the state

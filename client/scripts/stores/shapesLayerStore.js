@@ -151,18 +151,6 @@ module.exports = Reflux.createStore({
 			}.bind(this)).fail(function() {
 			console.log('Error loading data ...');
 		});
-	},
-
-	_enableLoading: function() {
-		console.log('_enableLoading');
-		this.state = assign(this.state, {loading:true});
-		this.trigger(this.state);
-	},
-
-	_disableLoading: function() {
-		console.log('_disableLoading');
-		this.state = assign(this.state, {loading:false});
-		this.trigger(this.state);
 	}
 
 });

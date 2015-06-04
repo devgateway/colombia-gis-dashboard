@@ -16,7 +16,6 @@ module.exports = Reflux.createStore({
   }, 
 
   onUpdateLoading: function() {
-    debugger;
     this.update({ loading: !this.state.loading });
   },
 

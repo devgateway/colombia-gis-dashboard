@@ -46,6 +46,8 @@
 		"findExtLayers":"Buscar Capas Externas",
 		"funding":"Financiamiento",		
 		"fundingDistribution":"Distribución del financiamiento",
+		"fundingByType":"Financiamiento por tipo",
+		"totalProjects":"Projectos Totales",
 		"indicators":"Indicadores",
 		"featureService":"Servicio de entidades",
 		"mapService":"Servicio de mapas",
@@ -54,7 +56,7 @@
 		"add":"ADD",
 		"loadMoreResults":"CLICK TO ADD MORE RESULTS",
 		"search":"Buscar en AGOL",
-		"noResults":"No se encontraron resultados disponibles",
+		"noResults":"No hay resultados que coincidan con su búsqueda",
 		"byDepartment":"Por Departamento",
 		"byMunicipality":"Por Municipalidad"
 	},

@@ -68,7 +68,7 @@ module.exports = React.createClass({
         </TogglerContent>
         <TogglerContent visibleWhen="always">
 
-          <Layer id="shapes" title="Funding by Type"   opacity={this.state.opacity} 
+          <Layer id="shapes" title={i18n.t("layers.fundingByType")}  opacity={this.state.opacity} 
                 onChangeOpacity={this._onChangeOpacity} onChangeVisibility={this._changevisibility} visible={this.state.visible}/>
 
         </TogglerContent>

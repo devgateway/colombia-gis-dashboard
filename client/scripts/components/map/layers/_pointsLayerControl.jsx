@@ -37,8 +37,6 @@ module.exports = React.createClass({
 
 
  render: function() {
-  
-  debugger;
   var level=this.state.level;
 
   return (
@@ -52,7 +50,7 @@ module.exports = React.createClass({
       </TogglerContent>
       <TogglerContent visibleWhen="always">
         
-        <Layer id="points" title="Total Projects"  
+        <Layer id="points" title={i18n.t("layers.totalProjects")}
           opacity={this.state.opacity} 
           onChangeOpacity={this._onChangeOpacity} 
           onChangeVisibility={this._changevisibility} 
