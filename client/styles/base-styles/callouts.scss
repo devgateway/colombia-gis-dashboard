@@ -57,13 +57,12 @@
 }
 
 .filter-no-results{
-  border-left-color: #d9534f;
   color:#d9534f;
-  padding: 10px;
+  padding: 0 10px 15px 10px;
   margin: 10px 0;
   background: lighten($grey,70%);
   border:1px solid lighten($grey,60%);
-  border-left-width:2px;
+  border-left:3px solid #d9534f;
 }
 
 .filter-no-results h4 {

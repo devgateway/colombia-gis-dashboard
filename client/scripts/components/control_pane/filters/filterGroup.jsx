@@ -64,7 +64,7 @@ var FilterGroup = React.createClass({
                     <AllNoneSelector filterType={filterDefinition.param} onAllNoneClicked={self.props.onAllNoneClicked}/>
                 </div>
                 <KeywordSearch onSearch={this._filterByKeyword}/>
-                <div className="bs-callout bs-callout-danger"> 
+                <div className="filter-no-results">
                     <br/>{<Message message="filters.noResults"/>}
                 </div>
                 <div className="filter-list-container">
