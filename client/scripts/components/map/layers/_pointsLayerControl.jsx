@@ -60,7 +60,7 @@ module.exports = React.createClass({
       <TogglerContent visibleWhen="expanded">
         <ul>
           <li>
-            <h3>Level</h3>
+            <h3><Message message='layers.level'/></h3>
             <CustomRadioGroup>
               <CustomRadio  className="horizontal" name="departament" checked={(level=='departament')? true : false}     onClick={this._showByDepartment} label="layers.byDepartment"/>
               <CustomRadio  className="horizontal" name="municipality" checked={(level=='municipality')? true : false}  onClick={this._showByMunicipality} label="layers.byMunicipality"/>    
