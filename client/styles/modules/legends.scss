@@ -28,6 +28,8 @@
 
 .legends-content{
   width: 250px;
+  max-height:400px;
+  overflow-y: auto;
   background-color: $white;
   position: absolute;
   bottom: 42px;
@@ -79,7 +81,8 @@
    padding-left: $gutter/2;
    list-style-type: none;
   li{
-    color: $black;
+    color: $grey;
+    font-size:11px;
         img{ margin-right:5px;}
     }
   }

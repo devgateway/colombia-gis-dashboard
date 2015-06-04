@@ -1361,6 +1361,8 @@ ul.tabs {
 
 .legends-content {
   width: 250px;
+  max-height: 400px;
+  overflow-y: auto;
   background-color: #ffffff;
   position: absolute;
   bottom: 42px;
@@ -1409,7 +1411,8 @@ ul.tabs {
     padding-left: 0.5em;
     list-style-type: none; }
     .legends-list ul li {
-      color: #000000; }
+      color: #454545;
+      font-size: 11px; }
       .legends-list ul li img {
         margin-right: 5px; }
 
