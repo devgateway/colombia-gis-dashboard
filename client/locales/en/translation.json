@@ -47,6 +47,8 @@
 		"findExtLayers":"Find External Layers",
 		"funding":"Funding",
 		"fundingDistribution":"Funding Distribution",
+		"fundingByType":"Funding By Type",
+		"totalProjects":"Total Projects",
 		"indicators":"Indicators",
 		"featureService":"Feature Service",
 		"mapService":"Map Service",

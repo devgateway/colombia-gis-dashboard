@@ -101,7 +101,7 @@ module.exports=Reflux.createStore({
       if (!layerLegends){
         
         var legendGroup = {};
-        layerLegends = {'id': legendId, 'layerTitle': "Tipo de Financiamiento", "legendGroups": []};
+        layerLegends = {'id': legendId, 'layerTitle': "Financiamiento por tipo", "legendGroups": []};
 
         var legendItems = [];
         var labelsAndColors = [["20", "FFAAAA"], ["40", "D46A6A"], ["60", "AA3939"], ["80", "801515"], ["100", "550000"]];
@@ -119,7 +119,7 @@ module.exports=Reflux.createStore({
           legendItems.push(legendItem);
         }
 
-        _.assign(legendGroup, {"layerName": "Funding type"});
+        _.assign(legendGroup, {"layerName": "Colores"});
         _.assign(legendGroup, {"legends": legendItems});
         layerLegends.legendGroups.push(legendGroup);
         this.state.layersLegends.push(layerLegends);

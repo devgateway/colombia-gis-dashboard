@@ -46,6 +46,8 @@
 		"findExtLayers":"Buscar Capas Externas",
 		"funding":"Financiamiento",		
 		"fundingDistribution":"Distribución del financiamiento",
+		"fundingByType":"Financiamiento por tipo",
+		"totalProjects":"Projectos Totales",
 		"indicators":"Indicadores",
 		"featureService":"Servicio de entidades",
 		"mapService":"Servicio de mapas",
