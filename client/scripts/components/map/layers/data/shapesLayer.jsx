@@ -15,7 +15,6 @@
 
 
    mixins: [Mixins, Reflux.connect(Store)],
-  
 
    _filter: function(feature, layer) {
      return true;
@@ -73,8 +72,6 @@
        //this.fixReactEvents(e.popup);
      }.bind(this));
    },
-
-   
 
 
    render: function() {
