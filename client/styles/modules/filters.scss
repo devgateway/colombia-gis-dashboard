@@ -4,7 +4,7 @@
 }
 .filter-group-panel {
   opacity: 0.4;
-  padding: 0 $gutter $gutter $gutter;
+  padding: $gutter $gutter $gutter $gutter;
   height: 300px;
   overflow:visible;
   //selected active filter panel
@@ -19,7 +19,6 @@
 .filter-group-panel-header {
   margin-bottom: $gutter/2;
 }
-
 .panel-count {
   color: $white;
   background: $bgblue;
@@ -71,6 +70,16 @@
 
 }
 // filter list
+
+.filter-list-container-carousel{
+  .filter-col{width:97%;}
+  .filter-col-parent{
+    float:none;
+    height:auto;
+    line-height:100%;
+    margin-left:5px;}
+}
+
 .filter-list-container {
   margin-top: $gutter;
   max-height: 240px;
@@ -89,6 +98,7 @@ ul.filter-list {
   @include listUnstyled;
   display:block;
   margin-top: $gutter;
+  margin-left:5px;
   overflow: hidden;
 
   li {
