@@ -44,9 +44,13 @@
 		"title":"Map content",
 		"mapLayers":"Map Layers",
 		"dataLayers":"Data Layers",
+		"level":"Level",
 		"findExtLayers":"Find External Layers",
 		"funding":"Funding",
 		"fundingDistribution":"Funding Distribution",
+		"fundingByType":"Funding By Type",
+		"fundingType":"Funding Type",
+		"totalProjects":"Total Projects",
 		"indicators":"Indicators",
 		"featureService":"Feature Service",
 		"mapService":"Map Service",
@@ -55,7 +59,7 @@
 		"add":"ADD",
 		"loadMoreResults":"CLICK TO ADD MORE RESULTS",
 		"search":"Search Layers",
-		"noResults":"There where no results available",
+		"noResults":"There are no results that match your search",
 		"byDepartment":"Departments",
 		"byMunicipality":"Municipalities"
 	},
@@ -70,8 +74,10 @@
 			"darkGray":"Dark Gray",
 			"image":"Imagery",
 			"streets":"Streets"
+		},
+		"popup":{
+			"totalActivities":"Total Activities",
+			"funding":"Funding"
 		}
-
-
 	}
 }

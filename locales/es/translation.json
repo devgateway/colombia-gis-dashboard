@@ -43,9 +43,13 @@
 		"title":"Contenidos del mapa",
 		"mapLayers":"Capas del mapa",
 		"dataLayers":"Capas de datos",
+		"level":"Nivel",
 		"findExtLayers":"Buscar Capas Externas",
 		"funding":"Financiamiento",		
 		"fundingDistribution":"Distribución del financiamiento",
+		"fundingByType":"Financiamiento por tipo",
+		"fundingType":"Tipo de Financiamiento",
+		"totalProjects":"Projectos Totales",
 		"indicators":"Indicadores",
 		"featureService":"Servicio de entidades",
 		"mapService":"Servicio de mapas",
@@ -54,7 +58,7 @@
 		"add":"ADD",
 		"loadMoreResults":"CLICK TO ADD MORE RESULTS",
 		"search":"Buscar en AGOL",
-		"noResults":"No se encontraron resultados disponibles",
+		"noResults":"No hay resultados que coincidan con su búsqueda",
 		"byDepartment":"Por Departamento",
 		"byMunicipality":"Por Municipalidad"
 	},
@@ -69,7 +73,10 @@
 			"darkGray":"Gris Oscuro",
 			"image":"Imágenes",
 			"streets":"Calles"
+		},
+		"popup":{
+			"totalActivities":"Actividades Totales",
+			"funding":"Financiamiento"
 		}
-
 	}
 }
