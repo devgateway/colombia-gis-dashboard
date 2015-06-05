@@ -37,8 +37,17 @@ module.exports = {
 					this.update(assignable);
 				}
 			} else if (property == 'color') {
+				console.log('change color');
+					console.log(value);
 				var breaks=_.clone(this.state.breaks);
-				breaks[subProperty].style.color = value;
+				breaks.breaks[subProperty].style.color = value;
+				this.update({'breaks':breaks});
+			}
+			 else if (property == 'radius') {
+			 	
+			 	console.log('change Radius!');
+				var breaks=_.clone(this.state.breaks);
+				breaks.breaks[subProperty].style.radius = value;
 				this.update({'breaks':breaks});
 			} else {
 				this.update(assignable); //other case trigger the new state

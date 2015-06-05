@@ -1,16 +1,18 @@
 var LegendActions = require('../../../../actions/legendActions.js');
+var _ = require('lodash');
 
 module.exports = {
 
 	componentDidUpdate: function(prev, prevState) {
+		
 		options = {};
-		var newState=this.state;
+		var newState = this.state;
 
 		if (!this.layer && newState.geoData) {
 			this.layer = this._createLayer(newState.geoData, options);
 			LegendActions.getDataLayersLegends();
 		}
-			/*I can change values only if the layer was created in */
+		/*I can change values only if the layer was created in */
 		if (this.layer) {
 			if (newState.geoData != prevState.geoData) {
 				this.props.getMap().removeLayer(this.layer);
@@ -19,9 +21,8 @@ module.exports = {
 
 
 			if (newState.breaks != prevState.breaks) {
-				this.layer.eachLayer(function(l) {
-					l.setStyle(this.getStyle(l.feature));
-				}.bind(this));
+				
+				this._setStyles();
 			}
 
 			this.layer.setOpacity(newState.opacity, 1);
@@ -54,6 +55,28 @@ module.exports = {
 		//layer.bringToFront();
 		return layer;
 	},
+
+
+/*. The range of the break is greater than or equal to the minimum value and less than the maximum value.*/
+
+	_getStyle: function(value) {
+
+		if (this.state.geoData) {
+
+			var breakData = _.find(_.values(this.state.breaks.breaks), function(t) {
+				return (value >=  t.min && value < t.max)
+			});
+
+			if (breakData) {
+				return breakData.style;
+			}
+		}
+		console.log('Warning default style returned ...');
+
+		return this.state.defaultStyle;
+
+	},
+
 
 
 }

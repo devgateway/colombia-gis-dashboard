@@ -40,7 +40,9 @@ module.exports  = React.createClass({
   toggle: function() {
     $(this.getDOMNode()).find(".slider_content").toggle( "slide" );
     if(this.state.open){
-      $(this.getDOMNode()).find('.panel-toggle').tooltip({content: i18n.t("app.menu")});
+      $(this.getDOMNode()).find('.panel-toggle').tooltip({
+        delay:10,
+        content: i18n.t("app.menu")});
       this.setState({
         open: false
       });
