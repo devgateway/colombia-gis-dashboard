@@ -13,11 +13,12 @@ var CustomRadio = require('../../commons/customRadioButton.jsx').Radio;
 var CustomRadioGroup = require('../../commons/customRadioButton.jsx').RadioGroup;
 var Layer = require('./_layer.jsx');
 var _=require('lodash')
-var ColorPicker=require('./_colorPicker.jsx');
 var CustomCheckbox = require('../../commons/customCheckbox.jsx');
 
 var Store = require('../../../stores/shapesLayerStore.js');
+var Breaker=require('./_breaker.jsx');
 var FilterStore = require('../../../stores/filterStore.js');
+
 
 module.exports = React.createClass({
 
@@ -100,19 +101,25 @@ module.exports = React.createClass({
               }
            
             </li>
-          </ul>  
+          
           <li>
+                  <div className="clearFix"/>
+              <h3>Styles Breaks</h3>
+               <div><b>Property <i> {this.state.breaks.field}</i></b></div>
             {
 
-              _.map(_.keys(this.state.breaks),function(key){
-                  var br=this.state.breaks[key];
-
-                  return (<div><ColorPicker  level={key} onChangeColor={this._changeColor} label={br.value +'%'} color={br.style.color}/></div>)
+              _.map(_.keys(this.state.breaks.breaks),function(key){
+                  var br=this.state.breaks.breaks[key];
+                return (
+                      <Breaker  level={key} label={br.min+'-'+br.max} color={br.style.color} onChangeColor={this._changeColor} />
+                      )
               }.bind(this))
 
             }
-          </li>
 
+          </li>
+        
+</ul>  
         </TogglerContent>
       </Toggler>
     </li>);

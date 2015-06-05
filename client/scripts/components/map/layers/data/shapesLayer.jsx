@@ -15,30 +15,36 @@
 
 
    mixins: [Mixins, Reflux.connect(Store)],
+   _onEachFeature: function(feature, layer) {
+   },
 
-   getStyle: function(feature) {
+   _filter: function(feature, layer) {
+     return true;
+   },
+
+   _setStyles: function() {
+     this.layer.eachLayer(function(l) {
+       l.setStyle(this._style(l.feature));
+     }.bind(this));
+   },
+
+
+   _style: function(feature) {
 
      if (this.state.geoData) {
        var maxValue = _.max(_.collect(this.state.geoData.features, function(e) {
-         return e.properties.fundingUS
+          console.log(e);
+         return e.properties.fundingUS;
        }));
+
        var currentValue = feature.properties.fundingUS || 0;
        var percentage = parseInt((100 / (maxValue / currentValue)));
+       var style = this._getStyle(percentage);
+       var rgbColor = style.color.r + "," + style.color.g + "," + style.color.b + "," + style.color.a;
 
-       var breakData = _.find(_.values(this.state.breaks), function(t) {
-         return (percentage <= t.value);
-       });
-
-       if (breakData) {
-         console.log(parseInt(maxValue) + ' ::: ' + parseInt(currentValue) + ':::' + parseInt(percentage) + '%' + ':::' + parseInt(breakData.max) + ':::' + breakData.style.color);
-         return breakData.style;
-       } else {
-            console.log('Errro ... ' + percentage);
-         return this.state.defaultStyle;
-       }
-     }else{
-      console.log('Error: Set style was called without geodata')
-      return {};
+       return {
+         color: 'rgba(' + rgbColor + ')'
+       };
      }
    },
 
