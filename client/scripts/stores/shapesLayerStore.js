@@ -15,72 +15,96 @@ var DataLayerMixins = require('./_overlaysMixins.js')
 
 //var municipalitiesGeoJson = require('./data/_municipalitiesGeo.js');
 
-
 var defaultStyle = {
-	"color": "#FFFFFF",
+	"color": {
+		r: 255,
+		g: 255,
+		b: 255,
+		a: 0
+	},
 	"weight": 1,
 	"opacity": 1,
 	'fillOpacity': 0.9
 };
-var over = {
-	"color": "#FFFFFF",
-	"weight": 1
-};
+
+
+/*. The range of the break is greater than or equal to the minimum value and less than the maximum value.*/
 
 var defaultBreaks = {
-	'Level0': {
-		
-		'value': 20,
-		'style': _.assign(_.clone(defaultStyle), {
-			'color': '#FFAAAA',
-			'over': _.assign(_.clone(over), {
-				'color': '#8A4A4A'
-			})
-		}),
+	'field': 'fundingUS',
+	breaks: {
+		'Level0': {
+			'min': 0,
+			'max': 20,
+			'style': _.assign(_.clone(defaultStyle), {
+				color: {
+					r: 255,
+					g: 200,
+					b: 170,
+					a: 0.8
+				}
 
-	},
+			}),
+		},
+		'Level1': {
+			'min': 20,
+			'max': 40,
+			'style': _.assign(_.clone(defaultStyle), {
+				color: {
+					r: 212,
+					g: 143,
+					b: 106,
+					a: 0.8
+				}
 
-	'Level1': {
-		'value': 40,
-		'style': _.assign(_.clone(defaultStyle), {
-			'color': '#D46A6A',
-			'over': _.assign(_.clone(over), {
-				'color': '#8A4A4A'
-			})
-		}),
-	},
+			}),
+		},
 
-	'Level2': {
-		'value': 60,
-		'style': _.assign(_.clone(defaultStyle), {
-			'color': '#AA3939',
-			'over': _.assign(_.clone(over), {
-				'color': '#8A4A4A'
-			})
-		})
-	},
+		'Level2': {
+			'min': 40,
+			'max': 60,
 
-	'Level3': {
-		'value': 80,
-		'style': _.assign(_.clone(defaultStyle), {
-			'color': '#801515',
-			'over': _.assign(_.clone(over), {
-				'color': '#8A4A4A'
-			})
-		})
-	},
+			'style': _.assign(_.clone(defaultStyle), {
+				color: {
+					r: 253,
+					g: 154,
+					b: 0,
+					a: 0.8
+				}
 
-	'Level4': {
-		'value': 100,
-		'style': _.assign(_.clone(defaultStyle), {
-			'color': '#550000',
-			"over": _.assign(_.clone(over), {
-				'color': '#8A4A4A'
 			})
-		})
+		},
+
+		'Level3': {
+			'min': 60,
+			'max': 80,
+
+			'style': _.assign(_.clone(defaultStyle), {
+				color: {
+					r: 170,
+					g: 57,
+					b: 0,
+					a: 0.8
+				}
+
+			})
+		},
+
+		'Level4': {
+			'min': 80,
+			'max': 101,
+			'style': _.assign(_.clone(defaultStyle), {
+				color: {
+					r: 128,
+					g: 58,
+					b: 21,
+					a: 0.8
+				}
+
+			})
+		}
 	}
 }
-
 module.exports = Reflux.createStore({
 
 

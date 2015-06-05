@@ -15,8 +15,7 @@
 
 
    mixins: [Mixins, Reflux.connect(Store)],
-   _onEachFeature: function(feature, layer) {
-   },
+  
 
    _filter: function(feature, layer) {
      return true;
@@ -43,7 +42,8 @@
        var rgbColor = style.color.r + "," + style.color.g + "," + style.color.b + "," + style.color.a;
 
        return {
-         color: 'rgba(' + rgbColor + ')'
+         color: 'rgba(' + rgbColor + ')',
+         weight:style.weight
        };
      }
    },
@@ -74,13 +74,7 @@
      }.bind(this));
    },
 
-   _filter: function(feature, layer) {
-     return true;
-   },
-
-   _style: function(feature) {
-     return this.getStyle(feature);
-   },
+   
 
 
    render: function() {
