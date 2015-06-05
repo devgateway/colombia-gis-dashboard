@@ -15,8 +15,7 @@
 
 
    mixins: [Mixins, Reflux.connect(Store)],
-   _onEachFeature: function(feature, layer) {
-   },
+   
 
    _filter: function(feature, layer) {
      return true;
@@ -74,14 +73,7 @@
      }.bind(this));
    },
 
-   _filter: function(feature, layer) {
-     return true;
-   },
-
-   _style: function(feature) {
-     return this.getStyle(feature);
-   },
-
+   
 
    render: function() {
      return (<div></div>);
