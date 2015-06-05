@@ -106,7 +106,7 @@ var Filter  = React.createClass({
                 })
               } 
               <TabPane tab={<Message message="filters.date"/>}>
-                  <FilterDate onValueChanged={self._onValueChanged}/>
+                  <FilterDate onValueChanged={self._onValueChanged} resetDates={self.state.resetDates}/>
               </TabPane>               
             </TabbedArea>
             <FilterActionButton onClickReset={this._onClickReset} onClickApply={this._onClickApply}/>

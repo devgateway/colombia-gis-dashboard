@@ -13,6 +13,8 @@ var changeAllFilterItemState = Reflux.createAction();
 
 var triggerFilterApply = Reflux.createAction();
 var triggerFilterReset = Reflux.createAction();
+var resetDates = Reflux.createAction();
+
 
 module.exports = {
   getListFromAPI: getListFromAPI,
@@ -21,6 +23,7 @@ module.exports = {
   changeFilterItemState: changeFilterItemState,
   changeAllFilterItemState: changeAllFilterItemState,
   triggerFilterApply: triggerFilterApply,
-  triggerFilterReset: triggerFilterReset
+  triggerFilterReset: triggerFilterReset,
+  resetDates:resetDates
 };
 

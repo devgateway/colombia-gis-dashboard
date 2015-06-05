@@ -44,7 +44,6 @@
 
 
    _onEachFeature: function(feature, layer) {
-      debugger;
       this._bindPopup(feature, layer);
    },
 
