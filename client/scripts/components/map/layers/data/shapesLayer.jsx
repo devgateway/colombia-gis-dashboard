@@ -4,7 +4,7 @@
  var _ = require('lodash');
  var NumberedDivIcon = require('./_numberedDivIcon.js');
  var Store = require('../../../../stores/shapesLayerStore.js');
- var Popup = require('./_popup.jsx')
+ var Popup = require('./_popupFundingByType.jsx')
 
  var _ = require('lodash');
 
