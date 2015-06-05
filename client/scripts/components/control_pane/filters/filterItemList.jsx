@@ -36,7 +36,7 @@ var FilterItemList = React.createClass({
     },
     
     componentDidMount: function(){
-        $('.item-label').tooltip({container: 'body'});
+        $('.item-label').tooltip({container: 'body', hide: 0});
     },
     
     render: function() {

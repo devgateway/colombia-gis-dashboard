@@ -15,7 +15,6 @@ var FilterGroup = React.createClass({
 
     _filterByKeyword: function (keyword) {
         var items;
-        debugger;
         if (keyword) {
             // filter the collection
             var self = this;
