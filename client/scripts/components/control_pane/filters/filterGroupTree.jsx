@@ -25,6 +25,7 @@ var FilterGroup = React.createClass({
         var self = this;
         if (keyword) {
             var pattern = new RegExp(keyword, 'i');
+            var flag = true; 
             var levels = this.props.filterDefinition.subLevels;
             for (var i = levels.length; i > 0; i--) {;// iterate array backwards
                 var filterDefinition = levels[i-1];
@@ -36,7 +37,10 @@ var FilterGroup = React.createClass({
                                 .map(function(i){
                                     if (i.hide == false){
                                         item.hide = false;
+                                        flag = false;
+                                        $(self.getDOMNode()).find('.filter-no-results').get(0).style.display="none";
                                     }
+
                                 });
                         } 
                     } else {
@@ -47,14 +51,21 @@ var FilterGroup = React.createClass({
                                 });
                         }
                         item.hide = false;
+                        flag = false;
+                        $(self.getDOMNode()).find('.filter-no-results').get(0).style.display="none";
                     }
                 });
+            }
+
+            if(flag){
+                $(self.getDOMNode()).find('.filter-no-results').get(0).style.display="";
             }                        
         } else {
             // display the original collection
             this.props.filterDefinition.subLevels.map(function(filterDefinition){ 
                 self.props.subLevelsItems[filterDefinition.param].map(function (item) {
                     item.hide = false;
+                    $(self.getDOMNode()).find('.filter-no-results').get(0).style.display="none"
                 });
             });
         }
@@ -69,6 +80,9 @@ var FilterGroup = React.createClass({
 
     componentDidMount: function(){
         $(this.getDOMNode()).find('.filter-list-container').mCustomScrollbar({theme:"inset-dark"});
+        if($(this.getDOMNode()).find('.filter-no-results')){
+            $(this.getDOMNode()).find('.filter-no-results').get(0).style.display="none";
+        }
     },
 
     render: function() {
@@ -87,6 +101,9 @@ var FilterGroup = React.createClass({
                     <AllNoneSelector filterType={parentFilterDefinition.param} onAllNoneClicked={self.props.onAllNoneClicked}/>                                         
                 </div>                
                 <KeywordSearch onSearch={this._filterByKeyword}/> 
+                <div className="filter-no-results">
+                    <br/>{<Message message="filters.noResults"/>}
+                </div>
                 <div className="filter-list-container">                   
                 {    
                     parentLevelItems.map(function (parent){

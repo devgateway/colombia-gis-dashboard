@@ -98,7 +98,7 @@ var Filter  = React.createClass({
                                   onAllNoneClicked={self._onAllNoneClicked}/>
                     }                    
                   }
-                  if (!filterDefinition.advanced || (filterDefinition.advanced && self.state.advancedMode=="true")){
+                  if (!filterDefinition.extraFilter && (!filterDefinition.advanced || (filterDefinition.advanced && self.state.advancedMode=="true"))){
                     return <TabPane eventKey={idx++} tab={<Message message={filterDefinition.label}/>}>
                       {group}
                     </TabPane> 
@@ -106,7 +106,7 @@ var Filter  = React.createClass({
                 })
               } 
               <TabPane tab={<Message message="filters.date"/>}>
-                  <FilterDate onValueChanged={self._onValueChanged}/>
+                  <FilterDate onValueChanged={self._onValueChanged} resetDates={self.state.resetDates}/>
               </TabPane>               
             </TabbedArea>
             <FilterActionButton onClickReset={this._onClickReset} onClickApply={this._onClickApply}/>

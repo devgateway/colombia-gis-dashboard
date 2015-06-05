@@ -2,7 +2,7 @@
   overflow: hidden;
   padding-bottom: $gutter;
   padding-top: $gutter/2;
-  padding-right: 0.6em;
+  padding-right: 2.8em;
   @include floatRight;
 }
 .btn {
@@ -51,8 +51,8 @@
 }
 .m-center:not(.m-fluid)>.m-scooch-inner>* {
   background: $white;
-  width: 460px;
-  margin-left: -105px;
+  width: 570px;
+  margin-left: -25px;
   .filter-label {
     font-size: 0.9em;
     color: $grey;
@@ -85,7 +85,7 @@
     text-decoration: none;
   }
   &.right{ right:-15px}
-  &.left{ left:-2px}
+  &.left{ left:-8px}
 }
 .scooch-prev {
   float: left;

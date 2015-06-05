@@ -1,6 +1,6 @@
 
 'use strict';
-
+var _ = require('lodash');
 var assign = require('object-assign');
 var Reflux = require('reflux');
 var FilterActions = require('../actions/filterActions.js');
@@ -154,17 +154,25 @@ module.exports=Reflux.createStore({
                 filtersSelected.push({param: filter.param, values: selectedIds});
             }  
         });
-        if (this.state['sd'] && this.state['sd']!=""){
-            filtersSelected.push({param: 'sd', value: this.state['sd']});
-        }
-        if (this.state['ed'] && this.state['ed']!=""){
-            filtersSelected.push({param: 'ed', value: this.state['ed']});
+        if(!reset){
+            if (this.state['sd'] && this.state['sd']!=""){
+                filtersSelected.push({param: 'sd', value: this.state['sd']});
+            }
+            if (this.state['ed'] && this.state['ed']!=""){
+                filtersSelected.push({param: 'ed', value: this.state['ed']});
+            }
+        } else {
+            _.assign(this.state,{'resetDates':true});
         }
         this.state.filtersSelected = filtersSelected;
         LayerActions.triggerFilterApply(this.state.filtersSelected);
         //alert("Filters Applied: "+ JSON.stringify(this.state.filtersSelected));
         this.output();
     },
+
+    onResetDates: function() {
+        this.update({ resetDates: !this.state.resetDates });
+      },
 
     onTriggerFilterReset:function(){        
         this.onTriggerFilterApply(true);
@@ -194,8 +202,18 @@ module.exports=Reflux.createStore({
         return this.state;
     },
 
+    update: function(assignable, options) {
+        options = options || {};
+        this.state = _.assign(this.state, assignable);
+        if (!options.silent) {
+            this.trigger(this.state);
+        }
+    },
+
     getInitialState: function() {
-       return this.serialize();
+        return (this.state = {
+          resetDates: false          
+        });
     }
 
 });

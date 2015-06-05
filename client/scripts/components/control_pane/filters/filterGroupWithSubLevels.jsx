@@ -17,26 +17,38 @@ var FilterGroup = React.createClass({
         if (keyword) {
             // filter the collection
             var pattern = new RegExp(keyword, 'i');
+            var flag = true;
             this.props.filterDefinition.subLevels.map(function(filterDefinition){
                 self.props.subLevelsItems[filterDefinition.param].map(function (item) {
                 if (!pattern.test(item.name)){
                     item.hide = true;
+                } else {
+                    item.hide = false;
+                    flag = false;
+                    $(self.getDOMNode()).find('.filter-no-results').get(0).style.display="none";
                 }
                 });
             });
+            if(flag){
+                $(self.getDOMNode()).find('.filter-no-results').get(0).style.display="";
+            }
         } else {
             // display the original collection
-            this.props.filterDefinition.subLevels.map(function(filterDefinition){
+            self.props.filterDefinition.subLevels.map(function(filterDefinition){
                 self.props.subLevelsItems[filterDefinition.param].map(function (item) {
                     item.hide = false;
                 });
             });
+            $(self.getDOMNode()).find('.filter-no-results').get(0).style.display="none";
         }
         this.forceUpdate();
     },
 
     componentDidMount: function(){
         $('.m-scooch').scooch();
+        if($(this.getDOMNode()).find('.filter-no-results')){
+            $(this.getDOMNode()).find('.filter-no-results').get(0).style.display="none";
+        }
     },
    
     _movePrev: function(){
@@ -58,6 +70,9 @@ var FilterGroup = React.createClass({
         return(
             <div className="filter-group-panel selected">
                 <KeywordSearch onSearch={this._filterByKeyword}/>
+                <div className="filter-no-results">
+                    <br/>{<Message message="filters.noResults"/>}
+                </div>
                 <div className="m-scooch m-center m-scaled m-fade-out">
                     <div className="m-scooch-inner">
                         {

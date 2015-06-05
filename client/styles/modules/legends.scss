@@ -24,11 +24,12 @@
   bottom: 24px;
   right:86px;
   padding:0;
-  border:1px solid #cccccc;
 }
 
 .legends-content{
   width: 250px;
+  max-height:400px;
+  overflow-y: auto;
   background-color: $white;
   position: absolute;
   bottom: 42px;
@@ -37,6 +38,16 @@
   border:1px solid #cccccc;
 }
 
+.legend-group{
+  ul{
+  list-style:none;
+  padding-left:0;
+  }
+  h2{
+    color: $grey;
+    font-size:1.2rem;
+  }
+}
 
 .legend-group-title{
   cursor:pointer;
@@ -45,14 +56,20 @@
   padding:$gutter/1.5 $gutter/2;
   margin-bottom:4px;
   @include border-radius(2px);
+  position:relative;
   .fa{
     color: $white;
+    font-size:14px;
+    position:absolute;
+    left:9px;
+  &.fa-sort-asc{top:14px}
+  &.fa-sort-desc{top:9px;}
   }
-
   span{
       padding-left: $gutter/2;
       font-weight:600;
       color: darken($blue, 10%);
+      margin-left:13px;
   }
 }
 
@@ -64,7 +81,8 @@
    padding-left: $gutter/2;
    list-style-type: none;
   li{
-    color: $black;
+    color: $grey;
+    font-size:11px;
         img{ margin-right:5px;}
     }
   }

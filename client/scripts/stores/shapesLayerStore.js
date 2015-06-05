@@ -17,93 +17,67 @@ var DataLayerMixins = require('./_overlaysMixins.js')
 
 
 var defaultStyle = {
-	"color": {
-		r: 255,
-		g: 255,
-		b: 255,
-		a: 0
-	},
+	"color": "#FFFFFF",
 	"weight": 1,
 	"opacity": 1,
 	'fillOpacity': 0.9
 };
-
-
-/*. The range of the break is greater than or equal to the minimum value and less than the maximum value.*/
+var over = {
+	"color": "#FFFFFF",
+	"weight": 1
+};
 
 var defaultBreaks = {
-	'field': 'fundingUS',
-	breaks: {
-		'Level0': {
-			'min': 0,
-			'max': 20,
-			'style': _.assign(_.clone(defaultStyle), {
-				color: {
-					r: 255,
-					g: 200,
-					b: 170,
-					a: 0.8
-				}
-
-			}),
-		},
-		'Level1': {
-			'min': 20,
-			'max': 40,
-			'style': _.assign(_.clone(defaultStyle), {
-				color: {
-					r: 212,
-					g: 143,
-					b: 106,
-					a: 0.8
-				}
-
-			}),
-		},
-
-		'Level2': {
-			'min': 40,
-			'max': 60,
-
-			'style': _.assign(_.clone(defaultStyle), {
-				color: {
-					r: 253,
-					g: 154,
-					b: 0,
-					a: 0.8
-				}
-
+	'Level0': {
+		
+		'value': 20,
+		'style': _.assign(_.clone(defaultStyle), {
+			'color': '#FFAAAA',
+			'over': _.assign(_.clone(over), {
+				'color': '#8A4A4A'
 			})
-		},
+		}),
 
-		'Level3': {
-			'min': 60,
-			'max': 80,
+	},
 
-			'style': _.assign(_.clone(defaultStyle), {
-				color: {
-					r: 170,
-					g: 57,
-					b: 0,
-					a: 0.8
-				}
-
+	'Level1': {
+		'value': 40,
+		'style': _.assign(_.clone(defaultStyle), {
+			'color': '#D46A6A',
+			'over': _.assign(_.clone(over), {
+				'color': '#8A4A4A'
 			})
-		},
+		}),
+	},
 
-		'Level4': {
-			'min': 80,
-			'max': 101,
-			'style': _.assign(_.clone(defaultStyle), {
-				color: {
-					r: 128,
-					g: 58,
-					b: 21,
-					a: 0.8
-				}
-
+	'Level2': {
+		'value': 60,
+		'style': _.assign(_.clone(defaultStyle), {
+			'color': '#AA3939',
+			'over': _.assign(_.clone(over), {
+				'color': '#8A4A4A'
 			})
-		}
+		})
+	},
+
+	'Level3': {
+		'value': 80,
+		'style': _.assign(_.clone(defaultStyle), {
+			'color': '#801515',
+			'over': _.assign(_.clone(over), {
+				'color': '#8A4A4A'
+			})
+		})
+	},
+
+	'Level4': {
+		'value': 100,
+		'style': _.assign(_.clone(defaultStyle), {
+			'color': '#550000',
+			"over": _.assign(_.clone(over), {
+				'color': '#8A4A4A'
+			})
+		})
 	}
 }
 
@@ -162,37 +136,21 @@ module.exports = Reflux.createStore({
 				API.loadDepartmentsShapes().then(
 					function(geoData) {
 						_.map(data, function(d) {
-							var feature = _.find(geoData.features, function(e) {
-								if (e.properties.ID == d.id /*replacer.replaceDiacritics(e.properties.NAME_1).toUpperCase()==d.name*/ ) {
-									console.log('Found!');
-								}
-								return e.properties.ID == d.id; //replacer.replaceDiacritics(e.properties.NAME_1).toUpperCase()==d.name
-							});
-							if (feature) {
-								_.assign(feature.properties, _.omit(_.clone(d), "name")); //set feature values 
+						var feature = _.find(geoData.features, function(e) {
+							if (e.properties.ID == d.id /*replacer.replaceDiacritics(e.properties.NAME_1).toUpperCase()==d.name*/ ) {
+								console.log('Found!');
 							}
+							return e.properties.ID == d.id; //replacer.replaceDiacritics(e.properties.NAME_1).toUpperCase()==d.name
 						});
-						self._setGeoData(geoData);
+						if (feature) {
+							_.assign(feature.properties, _.omit(_.clone(d), "name")); //set feature values 
+						}
 					});
+					self._setGeoData(geoData);
+				});
 			}.bind(this)).fail(function() {
 			console.log('Error loading data ...');
 		});
-	},
-
-	_enableLoading: function() {
-		console.log('_enableLoading');
-		this.state = assign(this.state, {
-			loading: true
-		});
-		this.trigger(this.state);
-	},
-
-	_disableLoading: function() {
-		console.log('_disableLoading');
-		this.state = assign(this.state, {
-			loading: false
-		});
-		this.trigger(this.state);
 	}
 
 });

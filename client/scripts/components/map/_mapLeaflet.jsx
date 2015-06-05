@@ -55,7 +55,7 @@ module.exports = React.createClass({
   },
 
   componentWillReceiveProps: function(nextProps) {
-    if (nextProps.baseMap && nextProps.basemap!=this.props.basemap) {
+    if (nextProps.baseMap && nextProps.baseMap!=this.props.basemap) {
       console.log('map->_mapLeaflet>componentWillReceiveProps Change Map ' + nextProps.baseMap);
       this.setBaseMap(nextProps.baseMap);
     }
