@@ -73,7 +73,10 @@
 			"darkGray":"Gris Oscuro",
 			"image":"Imágenes",
 			"streets":"Calles"
+		},
+		"popup":{
+			"totalActivities":"Actividades Totales",
+			"funding":"Financiamiento"
 		}
-
 	}
 }
