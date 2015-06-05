@@ -11,47 +11,82 @@ var LegendActions = require('../actions/legendActions.js');
 
 
 var defaultStyle = {
-  "color": "#FFFFFF",
+  'color': {
+    r: 253,
+    g: 154,
+    b: 0,
+    a: 0.8
+  },
   "weight": 1,
   "opacity": 1,
   'fillOpacity': 0.9
 };
 
 var defaultBreaks = {
-  'Level0': {
-    'min': 0,
-    'max': 20,
-    'style': _.assign(_.clone(defaultStyle), {
-      'color': '#FFAAAA'
-    }),
-  },
-  'Level1': {
-    'min': 21, //min <= X , max
-    'max': 40,
-    'style': _.assign(_.clone(defaultStyle), {
-      'color': '#D46A6A'
-    }),
-  },
-  'Level2': {
-    'min': 41,
-    'max': 60,
-    'style': _.assign(_.clone(defaultStyle), {
-      'color': '#AA3939'
-    })
-  },
-  'Level3': {
-    'min': 61,
-    'max': 80,
-    'style': _.assign(_.clone(defaultStyle), {
-      'color': '#801515'
-    })
-  },
-  'Level4': {
-    'min': 81,
-    'max': 101,
-    'style': _.assign(_.clone(defaultStyle), {
-      'color': '#550000'
-    })
+  'field': 'activities',
+  breaks: {
+    'Level0': {
+      'min': 0,
+      'max': 20,
+      'style': _.assign(_.clone(defaultStyle), {
+      'radius': 20
+      }),
+    },
+    'Level1': {
+      'min': 20,
+      'max': 35,
+      'style': _.assign(_.clone(defaultStyle), {
+        'radius': 30,
+      }),
+    },
+    'Level2': {
+      'min': 35,
+      'max': 45,
+      'style': _.assign(_.clone(defaultStyle), {
+
+        'radius': 35,
+      })
+    },
+    'Level3': {
+      'min': 45,
+      'max': 55,
+      'style': _.assign(_.clone(defaultStyle), {
+
+        'radius': 40,
+      })
+    },
+    'Level4': {
+      'min': 55,
+      'max': 75,
+      'style': _.assign(_.clone(defaultStyle), {
+
+        'radius': 45,
+      })
+    },
+    'Level5': {
+      'min': 75,
+      'max': 125,
+      'style': _.assign(_.clone(defaultStyle), {
+
+        'radius': 50,
+      })
+    },
+    'Level6': {
+      'min': 125,
+      'max': 175,
+      'style': _.assign(_.clone(defaultStyle), {
+
+        'radius': 40,
+      })
+    },
+    'Level7': {
+      'min': 175,
+      'max': 999,
+      'style': _.assign(_.clone(defaultStyle), {
+
+        'radius': 50,
+      })
+    }
   }
 };
 
@@ -64,7 +99,7 @@ module.exports = Reflux.createStore({
   },
 
   onActivityLayerInit: function() {
-    this._load(null,this.state.level, true); //initialize data 
+    this._load(null, this.state.level, true); //initialize data 
   },
 
 
@@ -81,13 +116,17 @@ module.exports = Reflux.createStore({
 
   _enableLoading: function() {
     console.log('_enableLoading');
-    this.state = assign(this.state, {loading:true});
+    this.state = assign(this.state, {
+      loading: true
+    });
     this.trigger(this.state);
   },
 
   _disableLoading: function() {
     console.log('_disableLoading');
-    this.state = assign(this.state, {loading:false});
+    this.state = assign(this.state, {
+      loading: false
+    });
     this.trigger(this.state);
   },
 
@@ -104,7 +143,7 @@ module.exports = Reflux.createStore({
     func(this.state.filters).then(function(results) { //call api function and process results 
       //tranform plain data to GeoJson
       this._setGeoData(Util.toGeoJson(results)); //process and set changes to state  
-      LegendActions.getBaseMapLegends(); 
+      LegendActions.getBaseMapLegends();
     }.bind(this)).fail(function(e) {
       console.log('Error while loading data ...', e);
     });

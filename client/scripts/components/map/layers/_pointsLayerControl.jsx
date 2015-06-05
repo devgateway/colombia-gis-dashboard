@@ -11,15 +11,17 @@ var CustomRadioGroup = require('../../commons/customRadioButton.jsx').RadioGroup
 var Layer = require('./_layer.jsx');
 
 var _ = require('lodash');
-var ColorPicker=require('./_colorPicker.jsx');
+var Breaker=require('./_breaker.jsx');
 
 var Store = require('../../../stores/pointsLayerStore.js');
+
+
 
 module.exports = React.createClass({
 
  mixins: [Reflux.connect(Store)], 
   
-  _changevisibility: function(id, value) {
+ _changevisibility: function(id, value) {
     LayerActions.changeLayerValue(id,'visible',value); //TODO:property mame should be in a globar variable 
   },
   
@@ -31,14 +33,23 @@ module.exports = React.createClass({
     LayerActions.changeLayerValue('points','level','departament'); //TODO:property mame should be in a globar variable 
   },
 
- _showByMunicipality:function(){
+  _showByMunicipality:function(){
     LayerActions.changeLayerValue('points','level','municipality'); //TODO:property mame should be in a globar variable 
- },
+  },
 
+  _changeColor:function(value,level){
+
+    LayerActions.changeLayerValue('points','color',value,level); //TODO:property mame should be in a globar variable 
+  },
+
+  _changeRadius:function(value,level){
+  
+    LayerActions.changeLayerValue('points','radius',value,level); //TODO:property mame should be in a globar variable 
+  },
 
  render: function() {
   
-  debugger;
+
   var level=this.state.level;
 
   return (
@@ -70,18 +81,21 @@ module.exports = React.createClass({
           </li>
           
            <li>
+            <div className="clearFix"/>
+              <h3>Styles Breaks</h3>
+               <div><b>Property <i> {this.state.breaks.field}</i></b></div>
             {
 
-              _.map(_.keys(this.state.breaks),function(key){
-                  var br=this.state.breaks[key];
+              _.map(_.keys(this.state.breaks.breaks),function(key){
+                  var br=this.state.breaks.breaks[key];
                 return (
-                      <div>
-                          <ColorPicker level={key} onChangeColor={this._changeColor} label={br.value +'%'} color={br.style.color}/>
-                      </div>)
-             
+                      <Breaker  level={key} label={br.min+'-'+br.max} radius={br.style.radius} color={br.style.color} onChangeColor={this._changeColor} 
+                      onChageRadius={this._changeRadius}/>
+                      )
               }.bind(this))
 
             }
+
           </li>
           
         </ul>                    

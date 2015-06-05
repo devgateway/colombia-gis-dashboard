@@ -38,7 +38,7 @@ module.exports=Reflux.createStore({
     },
 
     onGetLegendsCompleted: function(legends, layer){
-        debugger;
+        
         if (layer.type=='Feature Service'){
           var added = true;
           var layerLegends = _.find(this.state.layersLegends, {'id': layer.id});

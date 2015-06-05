@@ -155,7 +155,7 @@ function writeLog(message){
 
   _deleteMissingLayers: function(nextState) { 
     console.log('map->esriLayers>_deleteMissingLayers');
-    debugger;
+   
     var self = this;
     self.state.layers.map(function(l){
       var layerToCheck = _.findWhere(nextState.layers, {id: l.id});
