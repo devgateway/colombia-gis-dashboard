@@ -130,7 +130,7 @@ module.exports=Reflux.createStore({
         this.output();
     },
 
-    onTriggerFilterApply:function(reset){
+    onTriggerFilterApply:function(reset, shapesTrigger){
         var self = this;
         var filters = FilterMap.getFilterFlatList();
         var filtersSelected = [];
@@ -165,7 +165,7 @@ module.exports=Reflux.createStore({
             _.assign(this.state,{'resetDates':true});
         }
         this.state.filtersSelected = filtersSelected;
-        LayerActions.triggerFilterApply(this.state.filtersSelected);
+        LayerActions.triggerFilterApply(this.state.filtersSelected, shapesTrigger);
         //alert("Filters Applied: "+ JSON.stringify(this.state.filtersSelected));
         this.output();
     },
