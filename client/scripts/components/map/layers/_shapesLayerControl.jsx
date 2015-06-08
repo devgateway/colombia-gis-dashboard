@@ -46,7 +46,7 @@ module.exports = React.createClass({
 
   _onFundingChanged: function(value, selected) {  
     FilterActions.changeFilterItemState("ft", value, selected);
-    FilterActions.triggerFilterApply();
+    FilterActions.triggerFilterApply(false, true);
   },
 
   render: function() {

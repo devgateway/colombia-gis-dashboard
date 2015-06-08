@@ -72,6 +72,7 @@ module.exports = {
 	_load: function(prevLevel, newLevel, force) {
 		if ((newLevel != prevLevel) || (force === true)) {
 			LoadingAction.updateLoading();
+			debugger;
 			this._loadGeoData(newLevel);
 		} else {
 			console.log('nothing to change here');
@@ -93,6 +94,7 @@ module.exports = {
 			isLoaded: true
 		}); //trigger geodata changes;
 		LoadingAction.updateLoading();			
+		debugger;
 	},
 
 	update: function(assignable, options) {
@@ -103,13 +105,17 @@ module.exports = {
 		}
 	},
 
-	onTriggerFilterApply: function(data) {
-		this.update({
-			filters: data
-		}, {
-			silent: true
-		}); ///silent is tru since the change will be triggered by the load method
-		this._load(null, this.state.level, true); //force re-load;
+	onTriggerFilterApply: function(data, shapesTrigger) {
+		if (shapesTrigger && this._getLayerId()!="shapes") {
+			return;
+		} else {	
+			this.update({
+				filters: data
+			}, {
+				silent: true
+			}); ///silent is tru since the change will be triggered by the load method
+			this._load(null, this.state.level, true); //force re-load;
+		}
 	},
 
 }
