@@ -114,6 +114,10 @@ module.exports = Reflux.createStore({
 		return 'shapes';
 	},
 
+	_getDefaultBreaks: function() {
+		return defaultBreaks;
+	},
+
 	getInitialState: function() {
 		return this.state = this.storedState || _.assign(_.clone(this._getDefState()), {
 			level: "departament",
