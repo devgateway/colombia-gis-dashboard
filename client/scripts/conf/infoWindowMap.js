@@ -4,7 +4,7 @@ var infoWindowEndpoint = [
         {
           key: 'costShareBreakdown',
           label: 'Cost Share Breakdown',
-          apiEndPoint: '/mock-data/infoWindowData.json'
+          apiEndPoint: 'http://test.monitor.net.co/GisService.svc/Filters/Clusters/Json'
         }
     ];
 

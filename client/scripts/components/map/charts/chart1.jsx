@@ -36,7 +36,8 @@ module.exports  = React.createClass({
   },
 
   _getInfoWindowData: function () {
-      var data = InfoWindowActions.getInfoFromAPI(InfoWindowMap.getInfoWindowData()) || [];
+      var filters = {filters:[{param:"st",values:["E1"]}]};
+      var data = InfoWindowActions.getInfoFromAPI(InfoWindowMap.getInfoWindowData(), filters) || [];
       return data;
   },
 

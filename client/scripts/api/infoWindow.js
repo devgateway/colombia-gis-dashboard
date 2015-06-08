@@ -8,12 +8,14 @@ function logFailure(err, message) {
 
 module.exports = {
 
-    getInfoFromAPI: function(endPoint) {
+    getInfoFromAPI: function(endPoint, filters) {
       console.log("scripts->api->infoWindow: getInfoFromAPI");
       return reqwest({
         url: endPoint.apiEndPoint, 
         type: 'json', 
-        method: 'get', 
+        method: 'post', 
+        contentType: "application/json",
+        data: JSON.stringify({"filters": filters? filters : []}),
         crossOrigin: true
       }).fail(logFailure);
     },
