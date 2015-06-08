@@ -1,4 +1,12 @@
 'use strict';
 var Reflux = require('reflux');
-module.exports =Reflux.createActions(['updateLoading']);
+
+var hideLoading  = Reflux.createAction();
+var showLoading = Reflux.createAction();
+
+module.exports = {
+	hideLoading : hideLoading,
+	showLoading : showLoading
+};
+
 

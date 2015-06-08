@@ -71,8 +71,7 @@ module.exports = {
 
 	_load: function(prevLevel, newLevel, force) {
 		if ((newLevel != prevLevel) || (force === true)) {
-			LoadingAction.updateLoading();
-			debugger;
+			LoadingAction.showLoading();
 			this._loadGeoData(newLevel);
 		} else {
 			console.log('nothing to change here');
@@ -93,8 +92,7 @@ module.exports = {
 			geoData: data,
 			isLoaded: true
 		}); //trigger geodata changes;
-		LoadingAction.updateLoading();			
-		debugger;
+		LoadingAction.hideLoading();			
 	},
 
 	update: function(assignable, options) {
