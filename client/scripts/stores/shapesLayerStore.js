@@ -11,6 +11,7 @@ var assign = require('object-assign');
 var CommonsMixins = require('./_mixins.js')
 var DataLayerMixins = require('./_overlaysMixins.js')
 
+
 //var departmentsGeoJson = require('./data/_departmentsGeo.js');
 
 //var municipalitiesGeoJson = require('./data/_municipalitiesGeo.js');
@@ -119,7 +120,8 @@ module.exports = Reflux.createStore({
 	},
 
 	getInitialState: function() {
-		return this.state = this.storedState || _.assign(_.clone(this._getDefState()), {
+		debugger;
+		return this.state = this.storedState || _.assign(_.clone(this._getDefState(defaultBreaks)), {
 			level: "departament",
 			visible: false,
 			breaks: defaultBreaks, //defaul styles breaks

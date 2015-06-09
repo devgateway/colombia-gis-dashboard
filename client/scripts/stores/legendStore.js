@@ -6,7 +6,7 @@ var Reflux = require('reflux');
 var LegendActions = require('../actions/legendActions.js');
 var API = require('../api/esri.js');
 var _ = require('lodash');
-var ShapesLayerStore = require('./shapesLayerStore.js');
+//var ShapesLayerStore = require('./shapesLayerStore.js');
 
 module.exports=Reflux.createStore({
 
@@ -67,10 +67,10 @@ module.exports=Reflux.createStore({
         this.trigger(this.state);
     },
 
-    onGetDataLayersLegends: function() {
-      console.log('stores->legendStore>onGetDataLayersLegends'); 
+    _addLegends: function(defaultBreaks) {
+      console.log('stores->legendStore>_addLegends'); 
       this._addTotalProjectsLegend(0);
-      this._addFundingByTypeLegend(1);
+      this._addFundingByTypeLegend(1, defaultBreaks);
       
       this.trigger(this.state);      
     },
@@ -97,14 +97,14 @@ module.exports=Reflux.createStore({
 
     },
 
-    _addFundingByTypeLegend: function(legendId) {
+    _addFundingByTypeLegend: function(legendId, defaultBreaks) {
       var layerLegends = _.find(this.state.layersLegends, {'id': legendId});
-      if (!layerLegends){
+      if (!layerLegends && defaultBreaks){
         var legendGroup = {};
         layerLegends = {'id': legendId, 'layerTitle': "Financiamiento por tipo", 'visible': false, "legendGroups": []};
         var legendItems = [];
 
-        var breaks = ShapesLayerStore._getDefaultBreaks().breaks;
+        var breaks = defaultBreaks.breaks;//ShapesLayerStore._getDefaultBreaks().breaks;
         var breaksKeys = Object.keys(breaks);
         for(var i=0; i<breaksKeys.length; i++){
           var level = breaksKeys[i];

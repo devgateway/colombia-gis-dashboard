@@ -1,4 +1,3 @@
-var LegendActions = require('../../../../actions/legendActions.js');
 var _ = require('lodash');
 
 module.exports = {
@@ -10,7 +9,6 @@ module.exports = {
 
 		if (!this.layer && newState.geoData) {
 			this.layer = this._createLayer(newState.geoData, options);
-			LegendActions.getDataLayersLegends();
 		}
 		/*I can change values only if the layer was created in */
 		if (this.layer) {

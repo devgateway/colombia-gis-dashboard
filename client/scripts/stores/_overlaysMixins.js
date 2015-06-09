@@ -1,8 +1,8 @@
 var assign = require('object-assign');
 var LayersAction = require('../actions/layersAction.js');
 var LoadingAction = require('../actions/loadingActions.js');
-var _ = require('lodash');
 var LegendStore = require('./legendStore.js');
+var _ = require('lodash');
 
 module.exports = {
 
@@ -58,7 +58,8 @@ module.exports = {
 	},
 
 
-	_getDefState: function() {
+	_getDefState: function(defaultBreaks) {
+		LegendStore._addLegends(defaultBreaks);
 		return {
 			level: "departament",
 			visible: true,
