@@ -31,7 +31,7 @@
 
      if (this.state.geoData) {
        var maxValue = _.max(_.collect(this.state.geoData.features, function(e) {
-          console.log(e);
+          //console.log(e);
          return e.properties.fundingUS;
        }));
 

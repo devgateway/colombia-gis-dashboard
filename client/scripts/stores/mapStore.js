@@ -15,9 +15,12 @@ module.exports = Reflux.createStore({
     return this.state.baseMap;
   }, 
 
-  onUpdateLoading: function() {
-    
-    this.update({ loading: !this.state.loading });
+  onShowLoading: function() {    
+    this.update({ loading: true });
+  },
+
+  onHideLoading: function() {    
+    this.update({ loading: false });
   },
 
   onChangeBounds: function(newBounds) {

@@ -6,6 +6,7 @@ var Reflux = require('reflux');
 var LegendActions = require('../actions/legendActions.js');
 var API = require('../api/esri.js');
 var _ = require('lodash');
+var ShapesLayerStore = require('./shapesLayerStore.js');
 
 module.exports=Reflux.createStore({
 
@@ -99,22 +100,23 @@ module.exports=Reflux.createStore({
     _addFundingByTypeLegend: function(legendId) {
       var layerLegends = _.find(this.state.layersLegends, {'id': legendId});
       if (!layerLegends){
-        
         var legendGroup = {};
         layerLegends = {'id': legendId, 'layerTitle': "Financiamiento por tipo", "legendGroups": []};
-
         var legendItems = [];
-        var labelsAndColors = [["20", "FFAAAA"], ["40", "D46A6A"], ["60", "AA3939"], ["80", "801515"], ["100", "550000"]];
-        for (var i=0; i<labelsAndColors.length;i++){
-          var labelStr = " " + labelsAndColors[i][0] + "%";
-          var hexColor = labelsAndColors[i][1];
+
+        var breaks = ShapesLayerStore._getDefaultBreaks().breaks;
+        var breaksKeys = Object.keys(breaks);
+        for(var i=0; i<breaksKeys.length; i++){
+          var level = breaksKeys[i];
+          var labelStr = " " + breaks[level]["min"] + " - "+ breaks[level]["max"] ;
+          var rgbColor = [breaks[level]["style"]["color"]["r"], breaks[level]["style"]["color"]["g"], breaks[level]["style"]["color"]["b"]];
           var legendItem = {};
           _.assign(legendItem, {
             height: 10,
             label: labelStr,
             url: "",
             width: 10,
-            symbol:{color:this._hexToRgb(hexColor), width:10, type:"esriSMS", style:"esriSMSSquare"}
+            symbol:{color:rgbColor, width:10, type:"esriSMS", style:"esriSMSSquare"}
           });
           legendItems.push(legendItem);
         }
