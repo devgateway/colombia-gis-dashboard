@@ -100,6 +100,10 @@ module.exports = Reflux.createStore({
     return 'points';
   },
 
+  _getDefaultBreaks: function() {
+    return defaultBreaks;
+  },
+
   onActivityLayerInit: function() {
     this._load(null,this.state.level, true); //initialize data 
   },

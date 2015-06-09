@@ -120,15 +120,12 @@ module.exports = Reflux.createStore({
 	},
 
 	getInitialState: function() {
-		debugger;
-		return this.state = this.storedState || _.assign(_.clone(this._getDefState(defaultBreaks)), {
+		return this.state = this.storedState || _.assign(_.clone(this._getDefState()), {
 			level: "departament",
 			visible: false,
 			breaks: defaultBreaks, //defaul styles breaks
 			defaultStyle: defaultStyle //Default symbol styles
 		});
-
-
 	},
 
 	_loadByMuncipalities: function() {

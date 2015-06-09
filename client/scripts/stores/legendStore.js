@@ -6,14 +6,36 @@ var Reflux = require('reflux');
 var LegendActions = require('../actions/legendActions.js');
 var API = require('../api/esri.js');
 var _ = require('lodash');
-//var ShapesLayerStore = require('./shapesLayerStore.js');
+var ShapesLayerStore = require('./shapesLayerStore.js');
+var PointsLayerStore = require('./pointsLayerStore.js');
+var ArcgisLayerStore = require('./arcgisLayerStore.js');
 
 module.exports=Reflux.createStore({
 
     listenables: LegendActions,
     // Initial setup
     init: function() {
-       this.state = {layersLegends: []};         
+       this.state = {layersLegends: []}; 
+
+       this.listenTo(ShapesLayerStore, this._handleDataLayersUpdate);   
+       this.listenTo(PointsLayerStore, this._handleDataLayersUpdate); 
+       this.listenTo(ArcgisLayerStore, this._handleArcgisLayersUpdate); 
+
+       this._addLegends();
+
+    },
+
+    _handleDataLayersUpdate: function(data) {
+      if(data.latestChange && data.latestChange.property == "visible"){ 
+        this._setLegendVisibility(data.breaks.field, data.visible);
+      } else if(data.latestChange && data.latestChange.property == "color"){ 
+        var level = data.latestChange.subProperty;
+        this._setLegendColor(data.breaks.field, data.breaks.breaks[level].style.color, level.split("Level")[1])
+      }
+
+    },
+
+    _handleArcgisLayersUpdate: function(data) {
     },
 
     onGetLegends: function(layer) {
@@ -67,44 +89,64 @@ module.exports=Reflux.createStore({
         this.trigger(this.state);
     },
 
-    _addLegends: function(defaultBreaks) {
+    _addLegends: function() {
       console.log('stores->legendStore>_addLegends'); 
-      this._addTotalProjectsLegend(0);
-      this._addFundingByTypeLegend(1, defaultBreaks);
+      this._addTotalProjectsLegend("activities");
+      this._addFundingByTypeLegend("fundingUS");
       
       this.trigger(this.state);      
     },
 
     _addTotalProjectsLegend: function(legendId) {
-      var legendItem = {};
-      var legendGroup = {};
       var layerLegends = _.find(this.state.layersLegends, {'id': legendId});
       if (!layerLegends){
+        var legendGroup = {};
         layerLegends = {'id': legendId, 'layerTitle': "Proyectos Totales", 'visible': true, "legendGroups": []};
-        _.assign(legendItem, {
-          contentType: "image/png",
-          height: 20,
-          imageData: "iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAMAAADW3miqAAAAFXRFWHRDcmVhdGlvbiBUaW1lAAffBgEPOwGNqO18AAAAB3RJTUUH3wYBDzsa0szH4AAAAAlwSFlzAAALEgAACxIB0t1+/AAAASNQTFRF7uTZ797L7+DP7+Xa7+bd7+jh8NW28NW38Na48Na58Ne68NrB8NzF8N3I8N7J8de68di78di88di98dm98dm+8tGz8tG08tS38tm98tm+886w89G09M+x9cOh9cSh9cuq9rqT97eO97eP97iR97qS97uT97uU97yV972Y976Z97+a+LVV+LaN+LeP+LiQ+LmS+LqT+L2Y+MB8+MB9+MCc+MKg+a06+a46+bNM+bNN+bVV+biQ+b11+b2Y+b51+b52+b6Z+cCc+cKf+cKg+cSj+cWk+cyh+qsw+seP+seQ+sip+smq+sqr+sqs+sut+suu+s2x+s6y+s+0+tC1+tG3+tK4+tO6+9S7+9W9+9a/+9fA+9fB+9jC+9jD+9nD/NfA////9BigdAAAAh9JREFUOMuNlH1XolAQxi+VgMouamaomZmuuZStttfXrBRD1iUDZV21ReX7f4odQFHEznH+gnt+Z2bOzPMMMrbj+CsTJMkgQxy7ntHm84Qht4Lx7YF8LsSNrSECXimKDoQj0WgkHKApCh6O3BCkoWiWu0jxN8Xidz4V41gaMGYbgm4pP5fOZctYqFQEXM7m0pwfqOAGYiBN6CxfwqKsqMOhqsgiLuXPoaidC9n90KHEfVtUtMlMn8/12URTxPJ1IkTbfQHkg1qhxB1+06Z6/+W2Vrt96evTkdy5SwSgos+CoJj/7B4Pxh+9hrSKRm/5Z9C5PvdbBZFxAsW4fPtt/K8lbcXzx1huX3G0mQqZidh0SdSWz5Irfi5H4o80a6ZCBnTE5bAy7Uk70ZsqOMdBVwZCUO0iK2p6Yxdq6KPXbBLqIfSFJAOpsjzpS5749ff30yVLkgSChYR5rMxaXqg1e8d8GJaDYCORG0HVm16oqatC4RR2Ay2R0WJlOK95odpC7WbiADhQ1QtVHeigcgc1Tnw+gr4zAmeY9V2mbg4zZg3zoLV8uuCHpSaW1gv2OVJxUQ+mVPJrqdiie7RE5/RV7y3Hg07REZ1bvq1mtdpsgXw1kG9yI1/jyDLC48oIi4VthHZx2wheS73Lrx5LOeb8Zpqz2xXw0x5zOjaPpfhCJlPgL5N7bG71tToY8fhpmN17MA47PR5s7xGz/4jVOXQ//wdC1BK7JpbuewAAAABJRU5ErkJggg==",
-          label: "Cantidad de Proyectos",
-          url: "",
-          width: 20});
-
+        var breaks = PointsLayerStore._getDefaultBreaks().breaks;
+        var breaksKeys = Object.keys(breaks);
+        var legendItems = [];
+        for(var i=0; i<breaksKeys.length; i++){
+          var legendItem = {};
+          var level = breaksKeys[i];
+          var labelStr = " " + breaks[level]["min"] + " - "+ breaks[level]["max"] ;
+          var hexColor = this._rgbToHex(breaks[level]["style"]["color"]["r"], breaks[level]["style"]["color"]["g"], breaks[level]["style"]["color"]["b"]);
+          _.assign(legendItem, {
+            contentType: "image/png",
+            height: 20,
+            imageData: "iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAMAAADW3miqAAAAeFBMVEUAAAD/6dn3zZb/6tj/6tr62a//4sH/8eL/7Nv40Zn60Zn/7Nr/7Nz827X/7dz727T/7t3/793+797/5MT/8N7/8N//8d//8eD/8uH/8+L/8+P/9OP/9OT/9Ob/9un/9+v/+Oz/+O3/+vD//vf///n///v///7///8Zv8AlAAAAE3RSTlMALz1IYGxsbHiRkZGRqanC2tryzgePygAAAWRJREFUOMuNlF1XwjAQRC+W+gFYJQ7QYhotaOf//0MfCtJKQfYpJ7knO2d3dnE/vj5TLdWp+Rpcczp+J/UitSNQO0CG2BFqJGkVymob47Yqw1KSdkMoSVqXMeMQ81gGSakP1ZI2kUHEjaT6BCWtQvXYvWXT6eG/1zKsur/o9IRqAlAcpRYAkyp0urBbaVlNOoT8CZ7ye3sBTEpJrY2dpM0jYPcU2QZeN1Ky8bcUImDnfd25DcQgtcZJKoFiyMCzF0ApJWNpGQFzFgbiUjJ7KWRQjEELmAdpz0eXbYTh3l2+hiRVwF9FAPkDUEmJWtpC5rtzaOYM3qUaSRGmY+lwBlHSbdAx3exaumvCfRTeXC4BvyW4qZjulF9vy8UGv7g4Nbgdt8rLwCrjpmNouj/2ncEsf+tcPj/Z1ztp/d8g2Ela/zdStw3n75jPr425vestjPcLC+O21XOGjS4x2/a+OazD/eD6B2nTV9tIQvaeAAAAAElFTkSuQmCC",
+            imageColor: hexColor,
+            label: labelStr,
+            url: "",
+            width: 20});
+          legendItems.push(legendItem);
+        }
         _.assign(legendGroup, {"layerName": "Funding type"});
-        _.assign(legendGroup, {"legends": [legendItem]});
+        _.assign(legendGroup, {"legends": legendItems});
         layerLegends.legendGroups.push(legendGroup);
         this.state.layersLegends.push(layerLegends);
       }
 
     },
 
-    _addFundingByTypeLegend: function(legendId, defaultBreaks) {
+    _rgbToHex: function(r, g, b){
+      return "#"+this._toHex(r)+this._toHex(g)+this._toHex(b);
+    },
+
+    _toHex: function (n) {
+       n = parseInt(n,10);
+       if (isNaN(n)) return "00";
+       n = Math.max(0,Math.min(n,255));
+       return "0123456789ABCDEF".charAt((n-n%16)/16) + "0123456789ABCDEF".charAt(n%16);
+    },
+
+    _addFundingByTypeLegend: function(legendId) {
       var layerLegends = _.find(this.state.layersLegends, {'id': legendId});
-      if (!layerLegends && defaultBreaks){
+      if (!layerLegends){
         var legendGroup = {};
         layerLegends = {'id': legendId, 'layerTitle': "Financiamiento por tipo", 'visible': false, "legendGroups": []};
         var legendItems = [];
 
-        var breaks = defaultBreaks.breaks;//ShapesLayerStore._getDefaultBreaks().breaks;
+        var breaks = ShapesLayerStore._getDefaultBreaks().breaks;
         var breaksKeys = Object.keys(breaks);
         for(var i=0; i<breaksKeys.length; i++){
           var level = breaksKeys[i];
@@ -129,20 +171,17 @@ module.exports=Reflux.createStore({
 
     },
 
-    _hexToRgb: function(hex) {
-      var bigint = parseInt(hex, 16);
-      var r = (bigint >> 16) & 255;
-      var g = (bigint >> 8) & 255;
-      var b = bigint & 255;    
-      return [r,g,b];
-    },
-
-    onChangeColorFundingByType: function(hexColor, level) {
-      var layerLegend = _.find(this.state.layersLegends, {'id': 1});
+    _setLegendColor: function(legendId, rgbColor, level) {
+      var layerLegend = _.find(this.state.layersLegends, {'id': legendId});
       if(layerLegend){
-        layerLegend.legendGroups[0].legends[level].symbol.color[0] = hexColor.r;
-        layerLegend.legendGroups[0].legends[level].symbol.color[1] = hexColor.g;
-        layerLegend.legendGroups[0].legends[level].symbol.color[2] = hexColor.b;
+        var legend = layerLegend.legendGroups[0].legends[level];
+        if(legend.contentType=="image/png") {
+          legend.imageColor = this._rgbToHex(rgbColor.r, rgbColor.g, rgbColor.b);
+        } else {
+          legend.symbol.color[0] = rgbColor.r;
+          legend.symbol.color[1] = rgbColor.g;
+          legend.symbol.color[2] = rgbColor.b;
+        }
         this.trigger(this.state);
       }
     },
@@ -155,14 +194,7 @@ module.exports=Reflux.createStore({
       }
     },
 
-    _setLegendVisibility: function(id, value) {
-      debugger;
-      var legendId = id;
-      if(id=="points"){
-        legendId = 0;
-      } else if (id=="shapes"){
-        legendId = 1;
-      }
+    _setLegendVisibility: function(legendId, value) {
       var layerLegend = _.find(this.state.layersLegends, {'id': legendId});
       if (layerLegend){
         layerLegend.visible = value;

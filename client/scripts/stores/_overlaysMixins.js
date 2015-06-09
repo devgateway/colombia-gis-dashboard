@@ -1,7 +1,6 @@
 var assign = require('object-assign');
 var LayersAction = require('../actions/layersAction.js');
 var LoadingAction = require('../actions/loadingActions.js');
-var LegendStore = require('./legendStore.js');
 var _ = require('lodash');
 
 module.exports = {
@@ -13,6 +12,10 @@ module.exports = {
 		
 		var prevLevel = this.state.level;
 		var newLevel = this.state.level;
+		var latestChange  = new Object();
+		latestChange['latestChange'] = {'id':id, 'property':property, 'value':value, 'subProperty':subProperty};
+		this.update(latestChange, {'silent': true});
+
 
 		if (id === this._getLayerId()) {
 			var assignable = new Object();
@@ -37,7 +40,6 @@ module.exports = {
 				} else {
 					this.update(assignable);
 				}
-				LegendStore._setLegendVisibility(id, value);
 			} else if (property == 'color') {
 				console.log('change color');
 					console.log(value);
@@ -58,8 +60,7 @@ module.exports = {
 	},
 
 
-	_getDefState: function(defaultBreaks) {
-		LegendStore._addLegends(defaultBreaks);
+	_getDefState: function() {
 		return {
 			level: "departament",
 			visible: true,
