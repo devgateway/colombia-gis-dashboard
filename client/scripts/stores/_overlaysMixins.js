@@ -2,6 +2,7 @@ var assign = require('object-assign');
 var LayersAction = require('../actions/layersAction.js');
 var LoadingAction = require('../actions/loadingActions.js');
 var _ = require('lodash');
+var LegendStore = require('./legendStore.js');
 
 module.exports = {
 
@@ -36,6 +37,7 @@ module.exports = {
 				} else {
 					this.update(assignable);
 				}
+				LegendStore._setLegendVisibility(id, value);
 			} else if (property == 'color') {
 				console.log('change color');
 					console.log(value);

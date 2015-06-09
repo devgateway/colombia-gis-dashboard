@@ -79,7 +79,7 @@ module.exports=Reflux.createStore({
       var legendGroup = {};
       var layerLegends = _.find(this.state.layersLegends, {'id': legendId});
       if (!layerLegends){
-        layerLegends = {'id': legendId, 'layerTitle': "Proyectos Totales", "legendGroups": []};
+        layerLegends = {'id': legendId, 'layerTitle': "Proyectos Totales", 'visible': true, "legendGroups": []};
         _.assign(legendItem, {
           contentType: "image/png",
           height: 20,
@@ -101,7 +101,7 @@ module.exports=Reflux.createStore({
       if (!layerLegends){
         
         var legendGroup = {};
-        layerLegends = {'id': legendId, 'layerTitle': "Financiamiento por tipo", "legendGroups": []};
+        layerLegends = {'id': legendId, 'layerTitle': "Financiamiento por tipo", 'visible': false, "legendGroups": []};
 
         var legendItems = [];
         var labelsAndColors = [["20", "FFAAAA"], ["40", "D46A6A"], ["60", "AA3939"], ["80", "801515"], ["100", "550000"]];
@@ -146,11 +146,26 @@ module.exports=Reflux.createStore({
     },
 
     onRemoveLegend: function(legendId) {
-      var layerLegends = _.find(this.state.layersLegends, {'id': legendId});
-      if (layerLegends){
-        this.state.layersLegends.pop(layerLegends);
+      var layerLegend = _.find(this.state.layersLegends, {'id': legendId});
+      if (layerLegend){
+        this.state.layersLegends.pop(layerLegend);
         this.trigger(this.state);
       }
+    },
+
+    _setLegendVisibility: function(id, value) {
+      debugger;
+      var legendId = id;
+      if(id=="points"){
+        legendId = 0;
+      } else if (id=="shapes"){
+        legendId = 1;
+      }
+      var layerLegend = _.find(this.state.layersLegends, {'id': legendId});
+      if (layerLegend){
+        layerLegend.visible = value;
+      }
+      this.trigger(this.state);
     },
 
     _parseLegendsFromDrawInfo: function(legends) {
