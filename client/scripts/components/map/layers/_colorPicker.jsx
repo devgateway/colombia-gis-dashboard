@@ -5,7 +5,6 @@
  'use strict';
  var React = require('react/addons');
  var Reflux = require('reflux');
- var LegendActions = require('../../../actions/legendActions.js');
 
 
 module.exports = React.createClass({
@@ -18,10 +17,8 @@ module.exports = React.createClass({
 	    $(this.getDOMNode()).colorpicker({
 	        'color':'rgba('+rgbColor+')',
 	    })
-	    .on('changeColor',function(evt){
-	    	
+	    .on('changeColor',function(evt){	    	
 	    	self.props.onChangeColor? self.props.onChangeColor(evt.color.toRGB(),self.props.level):null;
-	    	LegendActions.changeColorFundingByType(evt.color.toRGB(), self.props.level.split("Level")[1]);
 	    });
 	     
 	},
