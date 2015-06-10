@@ -25,7 +25,7 @@ var FilterGroup = React.createClass({
         var self = this;
         if (keyword) {
             var pattern = new RegExp(keyword, 'i');
-            var flag = true; 
+            var noResults = true;
             var levels = this.props.filterDefinition.subLevels;
             for (var i = levels.length; i > 0; i--) {;// iterate array backwards
                 var filterDefinition = levels[i-1];
@@ -37,8 +37,7 @@ var FilterGroup = React.createClass({
                                 .map(function(i){
                                     if (i.hide == false){
                                         item.hide = false;
-                                        flag = false;
-                                        $(self.getDOMNode()).find('.filter-no-results').get(0).style.display="none";
+                                        noResults = false;
                                     }
 
                                 });
@@ -48,26 +47,23 @@ var FilterGroup = React.createClass({
                             self._getChildren(item, FilterMap.getFilterDefinitionByParam(filterDefinition.childParam))
                                 .map(function(i){
                                     i.hide = false;
+                                    noResults = false;
                                 });
                         }
                         item.hide = false;
-                        flag = false;
-                        $(self.getDOMNode()).find('.filter-no-results').get(0).style.display="none";
+                        noResults = false;
                     }
                 });
             }
-
-            if(flag){
-                $(self.getDOMNode()).find('.filter-no-results').get(0).style.display="";
-            }                        
+            self.setState({"noResults": noResults});
         } else {
             // display the original collection
             this.props.filterDefinition.subLevels.map(function(filterDefinition){ 
                 self.props.subLevelsItems[filterDefinition.param].map(function (item) {
                     item.hide = false;
-                    $(self.getDOMNode()).find('.filter-no-results').get(0).style.display="none"
                 });
             });
+            self.setState({"noResults": false});                
         }
         this.forceUpdate();
     },
@@ -80,9 +76,11 @@ var FilterGroup = React.createClass({
 
     componentDidMount: function(){
         $(this.getDOMNode()).find('.filter-list-container').mCustomScrollbar({theme:"inset-dark"});
-        if($(this.getDOMNode()).find('.filter-no-results')){
-            $(this.getDOMNode()).find('.filter-no-results').get(0).style.display="none";
-        }
+    },
+
+    getInitialState: function() {
+        this.state = this.state || {"noResults": false};
+        return this.state;
     },
 
     render: function() {
@@ -93,6 +91,13 @@ var FilterGroup = React.createClass({
         var childLevelItems = this.props.subLevelsItems[childFilterDefinition.param] || [];  
         var childLevelItemsSelected = this.props.subLevelsItems[childFilterDefinition.param].filter(function (data) {return (data.selected);});
         var self = this;
+        var noResults = "";
+        if (this.state.noResults){
+            var noResults = 
+                <div className="filter-no-results">
+                    <br/>{<Message message="filters.noResults"/>}
+                </div>;
+        }
         return(
             <div className="filter-group-panel selected">
                 <div className="filter-group-panel-header">
@@ -101,9 +106,7 @@ var FilterGroup = React.createClass({
                     <AllNoneSelector filterType={parentFilterDefinition.param} onAllNoneClicked={self.props.onAllNoneClicked}/>                                         
                 </div>                
                 <KeywordSearch onSearch={this._filterByKeyword}/> 
-                <div className="filter-no-results">
-                    <br/>{<Message message="filters.noResults"/>}
-                </div>
+                {noResults}
                 <div className="filter-list-container">                   
                 {    
                     parentLevelItems.map(function (parent){
