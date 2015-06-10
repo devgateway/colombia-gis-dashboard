@@ -2,7 +2,6 @@
 
 var React = require('react');
 var Reflux = require('reflux');
-var InfoWindowMap = require('../../../conf/infoWindowMap.js');
 var InfoWindowActions=require('../../../actions/infoWindowActions.js');
 var InfoWindowStore=require('../../../stores/infoWindowStore.js');
 var If=require('../../commons/if.jsx')
@@ -37,7 +36,7 @@ module.exports  = React.createClass({
 
   _getInfoWindowData: function () {
       var filters = {filters:[{param:"st",values:["E1"]}]};
-      var data = InfoWindowActions.getInfoFromAPI(InfoWindowMap.getInfoWindowData(), filters) || [];
+      var data = InfoWindowActions.getInfoFromAPI(filters) || [];
       return data;
   },
 

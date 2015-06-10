@@ -8,10 +8,10 @@ function logFailure(err, message) {
 
 module.exports = {
 
-    getInfoFromAPI: function(endPoint, filters) {
+    getInfoFromAPI: function(filters) {
       console.log("scripts->api->infoWindow: getInfoFromAPI");
       return reqwest({
-        url: endPoint.apiEndPoint, 
+        url: 'http://test.monitor.net.co/GisService.svc/Filters/Clusters/Json', 
         type: 'json', 
         method: 'post', 
         contentType: "application/json",
