@@ -89,6 +89,10 @@ module.exports=Reflux.createStore({
         this.trigger(this.state);
     },
 
+    onIsShown: function(value){
+      this.update({ shown: value });
+    },
+
     _addLegends: function() {
       console.log('stores->legendStore>_addLegends'); 
       this._addTotalProjectsLegend("activities");
@@ -218,6 +222,14 @@ module.exports=Reflux.createStore({
 
     getInitialState: function() {
        return this.state;
+    },
+
+    update: function(assignable, options) {
+      options = options || {};
+      this.state = assign(this.state, assignable);
+      if (!options.silent) {
+        this.trigger(this.state);
+      }
     }
 
 });

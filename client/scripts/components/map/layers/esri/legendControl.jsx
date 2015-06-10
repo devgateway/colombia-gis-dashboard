@@ -2,6 +2,7 @@
 var React = require('react');
 var Reflux = require('reflux');
 var LegendStore=require('../../../../stores/legendStore.js');
+var LegendActions=require('../../../../actions/legendActions.js');
 
 var If=React.createClass({
   render:function(){
@@ -165,7 +166,7 @@ var LegendControl  = React.createClass({
     },
 
     _toggleVisibility: function(){
-      this.setState({'shown': !this.state.shown});
+      LegendActions.isShown(!this.state.shown);
     },
 
     render: function() {
