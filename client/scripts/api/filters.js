@@ -7,19 +7,5 @@ function logFailure(err, message) {
 }
 
 module.exports = {
-
-  	getListFromAPI: function(filter) {
-      /*var dfd = $.Deferred();
-      $.ajax(filter.apiEndPoint, {})
-        .done(function(data) { dfd.resolve({data: data, filter: filter}); })
-        .fail(function(data) { dfd.error(data); });
-      return dfd.promise(); 
-      */
-      return reqwest({
-        url: filter.apiEndPoint, 
-        type: 'json', 
-        method: 'get', 
-        crossOrigin: true
-      }).fail(logFailure);
-    },
+  
 };
