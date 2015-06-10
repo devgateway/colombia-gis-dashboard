@@ -37,6 +37,7 @@ var FilterGroup = React.createClass({
                                 .map(function(i){
                                     if (i.hide == false){
                                         item.hide = false;
+                                        item.expand = true;
                                         noResults = false;
                                     }
 
@@ -61,6 +62,7 @@ var FilterGroup = React.createClass({
             this.props.filterDefinition.subLevels.map(function(filterDefinition){ 
                 self.props.subLevelsItems[filterDefinition.param].map(function (item) {
                     item.hide = false;
+                    item.expand = false;
                 });
             });
             self.setState({"noResults": false});                
@@ -111,11 +113,12 @@ var FilterGroup = React.createClass({
                 {    
                     parentLevelItems.map(function (parent){
                         var list = self._filterByParent(childLevelItems, parent, childFilterDefinition.parentParamField);
+                        debugger;
                         return (<FilterItemList 
                                     onItemChanged={self.props.onItemChanged} 
                                     parent={parent} 
                                     parentSelectable="true" 
-                                    collapsed="true"
+                                    collapsed={parent.expand? false : true}
                                     items={list} 
                                     filterDefinition={childFilterDefinition} 
                                     parentFilterDefinition={parentFilterDefinition} 
