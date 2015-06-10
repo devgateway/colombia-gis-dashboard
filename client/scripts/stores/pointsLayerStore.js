@@ -7,8 +7,6 @@ var Util = require('../api/util.js');
 var API = require('../api/layers.js');
 var CommonsMixins = require('./_mixins.js')
 var DataLayerMixins = require('./_overlaysMixins.js')
-var LegendActions = require('../actions/legendActions.js');
-
 
 
 var defaultStyle = {
@@ -133,7 +131,6 @@ module.exports = Reflux.createStore({
     func(this.state.filters).then(function(results) { //call api function and process results 
       //tranform plain data to GeoJson
       this._setGeoData(Util.toGeoJson(results)); //process and set changes to state  
-      //LegendActions.getBaseMapLegends();
     }.bind(this)).fail(function(e) {
       console.log('Error while loading data ...', e);
     });

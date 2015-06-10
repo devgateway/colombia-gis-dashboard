@@ -7,7 +7,6 @@
  var Popup = require('./_popup.jsx')
  var Mixins = require('./_mixins.js');
  var EventConstants = require('react/lib/EventConstants');
- var LegendActions = require('../../../../actions/legendActions.js');
 
  var reactEventNames = Object.keys(EventConstants.topLevelTypes)
    .filter(function(eventName) {
