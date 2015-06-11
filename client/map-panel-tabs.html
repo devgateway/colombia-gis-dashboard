@@ -1,0 +1,71 @@
+<!doctype html>
+<!--[if IE 8 ]>
+<html class="no-js ie8 lt-ie9" lang="ro" dir="ltr" xmlns:svg="http://www.w3.org/2000/svg"
+      xmlns:xlink="http://www.w3.org/1999/xlink"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<!--<![endif]-->
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+<meta charset="UTF-8">
+<title>Map Panel Tabs and Search Box</title>
+<!-- temporary map embed element-->
+<link rel="stylesheet" href="/bower_components/leaflet/dist/leaflet.css"/>
+<!--font awesome-->
+<link rel="stylesheet" href="styles/font-awesome.min.css">
+<!--normalize css -->
+<link rel="stylesheet" href="/bower_components/normalize.css/normalize.css"/>
+<!--bootstrap css-->
+<link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css" />
+<!--custom css - sass compiled-->
+<link rel="stylesheet" type="text/css" href="styles/main.css"/>
+</head>
+<body>
+<div id="map-panel">
+	<!--start: top map panel container-->
+
+
+
+	<!--start: tabs-->
+	 <nav class="tab-navigation" data-reactid=".0.1.1.$=1$content:0.1.1.0">
+    <ul class="nav nav-tabs" data-reactid=".0.1.1.$=1$content:0.1.1.0.0">
+      <li class="tab" data-reactid=".0.1.1.$=1$content:0.1.1.0.0.$=1$=010=20:$0">
+        <a data-reactid=".0.1.1.$=1$content:0.1.1.0.0.$=1$=010=20:$0.0" href="#">Monitor Data</a>
+      </li>
+
+      <li class="tab active" data-reactid=".0.1.1.$=1$content:0.1.1.0.0.$=1$=011=20:$1">
+        <a data-reactid=".0.1.1.$=1$content:0.1.1.0.0.$=1$=011=20:$1.0" href="#">Layers</a>
+      </li>
+
+      <li class="tab" data-reactid=".0.1.1.$=1$content:0.1.1.0.0.$=1$=012=20:$2">
+        <a data-reactid=".0.1.1.$=1$content:0.1.1.0.0.$=1$=012=20:$2.0" href="#">Filters</a>
+      </li>
+      <li class="tab" data-reactid=".0.1.1.$=1$content:0.1.1.0.0.$=1$=012=20:$2">
+        <a data-reactid=".0.1.1.$=1$content:0.1.1.0.0.$=1$=012=20:$2.0" href="#">Projects</a>
+      </li>
+    </ul>
+  </nav>
+	<!--end: tabs  -->
+
+
+
+
+	<!--start: search box-->
+	<div class="text-search-wrapper">
+		<div class="search-box">
+			<span class="search-button">
+			<button type="submit"><i class="fa fa-search"></i></button>
+			</span>
+			<input class="keyword-search" name="keyword-search" placeholder="Enter Text Search" type="text">
+		</div>
+	</div>
+	<!--end: search box-->
+
+
+
+</div>
+<!--map panel container ends-->
+</body>
+</html>
