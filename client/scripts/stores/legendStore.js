@@ -77,30 +77,21 @@ module.exports=Reflux.createStore({
     onGetLegendsCompleted: function(legends, layer){
       var layerLegends = _.find(this.state.layersLegends, {'id': layer.id});
       if (!layerLegends){  
+        var layerLegends = {'id': layer.id, 'layerTitle': layer.title, 'visible' : true, "legendGroups": []};
         if (layer.type=='Feature Service'){
-          var added = true;
-          var layerLegends = _.find(this.state.layersLegends, {'id': layer.id});
-          if (!layerLegends){
-            added = false;
-            layerLegends = {'id': layer.id, 'layerTitle': layer.title, 'visible' : true, "legendGroups": []};
-          }
           var legendGroup = {};
           _.assign(legendGroup, {"layerName": legends.name});
           _.assign(legendGroup, {"legends": API.parseLegendsFromDrawInfo(legends)}); 
           layerLegends.legendGroups.push(legendGroup);
-          if (!added){
-            this.state.layersLegends.push(layerLegends);
-          }
         } else {
-          var layerLegends = {'id': layer.id, 'layerTitle': layer.title, 'visible' : true, "legendGroups": []};
           legends.layers.map(function(layer){
             var legendGroup = {};
             _.assign(legendGroup, {"layerName": layer.layerName});     
             _.assign(legendGroup, {"legends": layer.legend});
             layerLegends.legendGroups.push(legendGroup);                 
           });
-          this.state.layersLegends.push(layerLegends);
         }
+        this.state.layersLegends.push(layerLegends);
         this.trigger(this.state);
       }
     },
