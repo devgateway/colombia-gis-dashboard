@@ -102,18 +102,18 @@ module.exports=Reflux.createStore({
 
     _addInitialLegends: function() {
       console.log('stores->legendStore>_addInitialLegends'); 
-      this._addTotalProjectsLegend("activities");
-      this._addFundingByTypeLegend("fundingUS");
+      this._addTotalProjectsLegend();
+      this._addFundingByTypeLegend();
       
       this.trigger(this.state);      
     },
 
-    _addTotalProjectsLegend: function(legendId) {
-      var layerLegends = _.find(this.state.layersLegends, {'id': legendId});
+    _addTotalProjectsLegend: function() {
+      var points = PointsLayerStore._getDefaultBreaks();
+      var layerLegends = _.find(this.state.layersLegends, {'id': points.field});
       if (!layerLegends){
-        var legendGroup = {};
-        layerLegends = {'id': legendId, 'layerTitle': "SubActividades Totales", 'visible': true, "legendGroups": []};
-        var breaks = PointsLayerStore._getDefaultBreaks().breaks;
+        layerLegends = {'id': points.field, 'layerTitle': "SubActividades Totales", 'visible': true, "legendGroups": []};
+        var breaks = points.breaks;
         var breaksKeys = Object.keys(breaks);
         var legendItems = [];
         for(var i=0; i<breaksKeys.length; i++){
@@ -131,6 +131,7 @@ module.exports=Reflux.createStore({
             width: 20});
           legendItems.push(legendItem);
         }
+        var legendGroup = {};
         _.assign(legendGroup, {"layerName": "Funding type"});
         _.assign(legendGroup, {"legends": legendItems});
         layerLegends.legendGroups.push(legendGroup);
@@ -150,15 +151,14 @@ module.exports=Reflux.createStore({
        return "0123456789ABCDEF".charAt((n-n%16)/16) + "0123456789ABCDEF".charAt(n%16);
     },
 
-    _addFundingByTypeLegend: function(legendId) {
-      var layerLegends = _.find(this.state.layersLegends, {'id': legendId});
+    _addFundingByTypeLegend: function() {
+      var shapes = ShapesLayerStore._getDefaultBreaks();
+      var layerLegends = _.find(this.state.layersLegends, {'id': shapes.field});
       if (!layerLegends){
-        var legendGroup = {};
-        layerLegends = {'id': legendId, 'layerTitle': "Financiamiento por tipo", 'visible': false, "legendGroups": []};
-        var legendItems = [];
-
-        var breaks = ShapesLayerStore._getDefaultBreaks().breaks;
+        layerLegends = {'id': shapes.field, 'layerTitle': "Financiamiento por tipo", 'visible': false, "legendGroups": []};
+        var breaks = shapes.breaks;
         var breaksKeys = Object.keys(breaks);
+        var legendItems = [];
         for(var i=0; i<breaksKeys.length; i++){
           var level = breaksKeys[i];
           var labelStr = " " + breaks[level]["min"] + " - "+ breaks[level]["max"] ;
@@ -173,7 +173,7 @@ module.exports=Reflux.createStore({
           });
           legendItems.push(legendItem);
         }
-
+        var legendGroup = {};
         _.assign(legendGroup, {"layerName": "Colores"});
         _.assign(legendGroup, {"legends": legendItems});
         layerLegends.legendGroups.push(legendGroup);
@@ -198,9 +198,9 @@ module.exports=Reflux.createStore({
     },
 
     _removeLegend: function(legendId) {
-      var layerLegend = _.find(this.state.layersLegends, {'id': legendId});
-      if (layerLegend){
-        this.state.layersLegends.pop(layerLegend);
+      var index = _.indexOf(_.pluck(this.state.layersLegends, 'id'), legendId);;
+      if (index>=0){
+        this.state.layersLegends.splice(index, 1);
         this.trigger(this.state);
       }
     },
