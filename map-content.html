@@ -1,0 +1,85 @@
+<!--html structure of individual layer tab with controls-->
+<div className="data-layer-wrapper">
+<!--tab title-->
+<div className="layer-control-toggle" onClick={this._toggleVisibility}>
+  <i className={this.state.expanded? "fa fa-sort-asc" : "fa fa-sort-desc"}/>
+  <h3>Data Layer Title</h3> <!--data layer title-->
+</div>
+
+<!--start: tab content when tab is expanded-->
+<div className="layer-control-panel">
+  <ul className="layer-control">
+  <li>
+      <div className="toggler">
+        <div className="toggler-button">
+          <i className="fa fa-plus-square-o"></i>
+        </div><!-- end: toggler button -->
+
+        <span className="selectable"></div><!--applying the same checkbox as the ones in the filters-->
+        <span className="control-title">Total Projects</span><!--currently div class title-->
+        <div className="slider-holder">slider control goes here</div>
+        <!-- level and style controls -->
+        <ul className="controls-items">
+
+        <li>
+          <h3>Level</h3>
+          <ul className="level-options">
+            <li><span className="selectable"></div> <span>Departments</span></li>
+            <li><span className="selectable"></div> <span>Municipalities</span></li>
+          </ul>
+        </li>
+
+        <li>
+          <h3>Styles</h3>
+          <div> color picker goes here</div>
+        </li>
+        </ul>
+      </div>
+      <!--end: toggler-->
+  </li>
+
+  <li>
+    <div className="toggler">
+      <div className="toggler-button">
+      <i className="fa fa-plus-square-o"></i>
+      </div><!--end: toggler button-->
+
+      <span className="selectable"></div><!--applying the same checkbox as the ones in the filters-->
+      <span className="control-title">Funding by Type</span><!--currently div class title-->
+      <div className="slider-holder">slider control goes here</div>
+      <ul className="controls-items">
+        <li>
+          <h3>Level</h3>
+          <ul className="level-options">
+            <li><span className="selectable"></div> <span>Departments</span></li>
+            <li><span className="selectable"></div> <span>Municipalities</span></li>
+          </ul>
+        </li>
+        <li>
+          <h3>Funding Type</h3>
+          <ul className="funding-options">
+            <li><span className="selectable"></div> <span>Cooperación Internacional</span></li>
+            <li><span className="selectable"></div> <span>Comunidad - Beneficiarios</span></li>
+            <li><span className="selectable"></div> <span>Otra</span></li>
+            <li><span className="selectable"></div> <span>Sector Privado</span></li>
+            <li><span className="selectable"></div> <span>Sector Público</span></li>
+          </ul>
+        </li>
+
+        <li>
+          <h3>Styles</h3>
+          <div> color picker goes here</div>
+        </li>
+
+      </ul>
+
+    </div>  <!--end: toggler-->
+  </li>
+
+
+  </ul>
+
+</div>
+<!--end: tab content when tab is expanded-->
+</div>
+<!-- end: data layer wrapper container the list of data layers and data layer controls-->
