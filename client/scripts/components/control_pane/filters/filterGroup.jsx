@@ -19,34 +19,33 @@ var FilterGroup = React.createClass({
             // filter the collection
             var self = this;
             var pattern = new RegExp(keyword, 'i');
-            var flag = true;
+            var noResults = true;
             this.props.allItems.map(function (item) {
                 if (!pattern.test(item.name)){
                     item.hide = true;
                 } else {
                     item.hide = false;
-                    flag = false;
-                    $(self.getDOMNode()).find('.filter-no-results').get(0).style.display="none";
+                    noResults = false;
                 }
             });
-            if(flag){
-                $(this.getDOMNode()).find('.filter-no-results').get(0).style.display="";
-            }
+            self.setState({"noResults": noResults});             
         } else {
             // display the original collection
             this.props.allItems.map(function (item) {
                 item.hide = false;
             });
-            $(this.getDOMNode()).find('.filter-no-results').get(0).style.display="none";
+            self.setState({"noResults": false});
         }
         this.forceUpdate();
     },
 
     componentDidMount: function(){
         $(this.getDOMNode()).find('.filter-list-container').mCustomScrollbar({theme:"inset-dark"});
-        if($(this.getDOMNode()).find('.filter-no-results')){
-            $(this.getDOMNode()).find('.filter-no-results').get(0).style.display="none";
-        }
+    },
+
+    getInitialState: function() {
+        this.state = this.state || {"noResults": false};
+        return this.state;
     },
 
     render: function() {
@@ -55,6 +54,13 @@ var FilterGroup = React.createClass({
         var items = this.props.allItems || [];
         var itemsSelected = this.props.allItems.filter(function (data) {return (data.selected);});
         var self = this;
+        var noResults = "";
+        if (this.state.noResults){
+            var noResults = 
+                <div className="filter-no-results">
+                    <br/>{<Message message="filters.noResults"/>}
+                </div>;
+        }
         return(
             <div className="filter-group-panel selected">
                 <div className="filter-group-panel-header">
@@ -63,9 +69,7 @@ var FilterGroup = React.createClass({
                     <AllNoneSelector filterType={filterDefinition.param} onAllNoneClicked={self.props.onAllNoneClicked}/>
                 </div>
                 <KeywordSearch onSearch={this._filterByKeyword}/>
-                <div className="filter-no-results">
-                    <br/>{<Message message="filters.noResults"/>}
-                </div>
+                {noResults}
                 <div className="filter-list-container">
                     <FilterItemList
                         onItemChanged={this.props.onItemChanged}

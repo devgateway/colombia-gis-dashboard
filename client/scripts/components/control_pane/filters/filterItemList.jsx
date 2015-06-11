@@ -39,6 +39,12 @@ var FilterItemList = React.createClass({
         $('.item-label').tooltip({container: 'body', hide: 0});
     },
     
+    componentWillReceiveProps: function(nextProps) {
+      this.setState({
+        collapsed: nextProps.collapsed
+      });
+    },
+    
     render: function() {
         var showOnlySelected = this.props.showOnlySelected;
         var items = this.props.items;
