@@ -11,6 +11,7 @@ var assign = require('object-assign');
 var CommonsMixins = require('./_mixins.js')
 var DataLayerMixins = require('./_overlaysMixins.js')
 
+
 //var departmentsGeoJson = require('./data/_departmentsGeo.js');
 
 //var municipalitiesGeoJson = require('./data/_municipalitiesGeo.js');
@@ -125,8 +126,6 @@ module.exports = Reflux.createStore({
 			breaks: defaultBreaks, //defaul styles breaks
 			defaultStyle: defaultStyle //Default symbol styles
 		});
-
-
 	},
 
 	_loadByMuncipalities: function() {

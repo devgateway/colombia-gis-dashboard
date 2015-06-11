@@ -85,37 +85,41 @@ module.exports = {
 
 
     createLefleatLayer:function(lClass,options, url){
-
         var uri = url || this.getService().metadata.url;
-
         _.assign( options,{useCors: true,cacheLayers:false})
-
         if(window.ESIR_USE_PROXY){
             _.assign(options,{proxy:window.ESRI_PROXY_URL})
         }
-
         var token=Storage.get('token');
         if (token){
             _.assign(options,{'token':token});
         }
-
         var layer = lClass(uri,options);
-
         layer.on('map->layers->esriLayers: authenticationrequired', function (e) {
-
            // console.log('map->layers->esriLayers: authenticationrequired');
         });
-
         layer.on('requestsuccess', function () {
            // console.log('map->layers->esriLayers: requestsuccess');
         });
-
         layer.on('requestend', function () {
             //console.log('map->layers->esriLayers: requestend');
         });
-
         return layer;
+    },
 
-    }
+
+    parseLegendsFromDrawInfo: function(legends) {
+      var legendArray = [];
+      if (legends.drawingInfo.renderer.type == 'uniqueValue'){
+        legends.drawingInfo.renderer.uniqueValueInfos.map(function(valueInfo){
+          legendArray.push({"label": valueInfo.label, "symbol": valueInfo.symbol});          
+        });
+        return legendArray;            
+      } else {
+        var rdrr = legends.drawingInfo.renderer;
+        legendArray.push({"label": rdrr.label, "symbol": rdrr.symbol});
+        return legendArray;            
+      }
+    },
 
 };

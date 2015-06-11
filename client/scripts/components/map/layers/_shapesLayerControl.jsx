@@ -18,8 +18,6 @@ var CustomCheckbox = require('../../commons/customCheckbox.jsx');
 var Store = require('../../../stores/shapesLayerStore.js');
 var Breaker=require('./_breaker.jsx');
 var FilterStore = require('../../../stores/filterStore.js');
-var LegendActions = require('../../../actions/legendActions.js');
-
 
 
 module.exports = React.createClass({
@@ -44,7 +42,6 @@ module.exports = React.createClass({
 
   _changeColor:function(value,level){
     LayerActions.changeLayerValue('shapes','color',value,level); 
-    LegendActions.changeColorFundingByType(value, level.split("Level")[1]);
   },
 
   _onFundingChanged: function(value, selected) {  

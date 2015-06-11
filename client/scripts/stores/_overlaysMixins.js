@@ -12,6 +12,10 @@ module.exports = {
 		
 		var prevLevel = this.state.level;
 		var newLevel = this.state.level;
+		var latestChange  = new Object();
+		latestChange['latestChange'] = {'id':id, 'property':property, 'value':value, 'subProperty':subProperty};
+		this.update(latestChange, {'silent': true});
+
 
 		if (id === this._getLayerId()) {
 			var assignable = new Object();
