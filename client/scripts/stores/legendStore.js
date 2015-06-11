@@ -86,7 +86,7 @@ module.exports=Reflux.createStore({
           }
           var legendGroup = {};
           _.assign(legendGroup, {"layerName": legends.name});
-          _.assign(legendGroup, {"legends": this._parseLegendsFromDrawInfo(legends)}); 
+          _.assign(legendGroup, {"legends": API.parseLegendsFromDrawInfo(legends)}); 
           layerLegends.legendGroups.push(legendGroup);
           if (!added){
             this.state.layersLegends.push(layerLegends);
@@ -220,20 +220,6 @@ module.exports=Reflux.createStore({
         layerLegend.visible = value;
       }
       this.trigger(this.state);
-    },
-
-    _parseLegendsFromDrawInfo: function(legends) {
-      var legendArray = [];
-      if (legends.drawingInfo.renderer.type == 'uniqueValue'){
-        legends.drawingInfo.renderer.uniqueValueInfos.map(function(valueInfo){
-          legendArray.push({"label": valueInfo.label, "symbol": valueInfo.symbol});          
-        });
-        return legendArray;            
-      } else {
-        var rdrr = legends.drawingInfo.renderer;
-        legendArray.push({"label": rdrr.label, "symbol": rdrr.symbol});
-        return legendArray;            
-      }
     },
 
     getInitialState: function() {
