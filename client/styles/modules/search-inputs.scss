@@ -1,0 +1,86 @@
+//start: text search box
+.text-search-wrapper {
+  @include clearfix;
+  @include transitionAll;
+  input[type=text] {
+    border:1px solid #fff;;
+    outline: none;
+    width: 93%;
+  }
+}
+.search-box {
+  background: $white;
+  border: 1px solid lighten( $grey, 50% );
+  @include transitionAll;
+  &:hover {
+    border: 1px solid lighten( $blue, 35% );
+  }
+}
+
+button{
+  &.search-button{
+    background: $white;
+    border: 1px solid $white;
+    -webkit-appearance:none;
+    @include noOutline;
+  }
+
+}
+// end: text search box
+
+
+// layer search
+.layer-search-wrapper{
+  @include clearfix;
+  margin-bottom:$gutter;
+}
+
+.layer-search-options{
+   padding-top:0.7em;
+   padding-bottom:$gutter/2;
+   ul{
+     @include listUnstyled;
+     @include clearfix;
+
+     li{
+       float:left;
+       margin-right: $gutter*2;
+       position:relative;
+     }
+   }
+}
+
+.layer-type-option{}
+.selectable{
+  width:10px;
+  height:10px;
+  border:1px solid #cccccc;
+  background: $white;
+  float:left;
+  margin-right: $gutter/2;
+  margin-top:3px;
+  &:hover{
+    background: lighten($yellow,30%);
+  }
+  &.selected{
+    background: $yellow;
+  }
+}
+
+.selectable-radio{
+  @extend .selectable;
+  @include border-radius(50%);
+  width:12px;
+  height:12px;
+}
+
+.layer-label{
+  float: left;
+  line-height:100%;
+}
+
+.disabled {
+    z-index: 1000;
+    opacity: 0.6;
+    pointer-events: none;
+}

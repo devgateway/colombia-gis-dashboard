@@ -1,0 +1,22 @@
+//activity overview section
+.overview-pane {
+  padding-right: $gutter*10;
+}
+.overview-label {
+  @extend .map-panel-label;
+  color: $blue;
+}
+.stat-container {
+  margin: $gutter 0;
+}
+ul.overview-stats {
+  @include listUnstyled;
+  li {
+    color: $blue;
+    line-height: $base-line-height*1.6;
+  }
+}
+.stat {
+  color: $grey;
+  font-size: 17px;
+}

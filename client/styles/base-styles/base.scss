@@ -1,0 +1,170 @@
+//variables
+$black: #000000;
+$bgBlack:#242a2d;
+$grey:#454545;
+$green: #98ca68;
+$blue: #4d749f;
+$bgblue:#74a4d6;
+$white: #ffffff;
+$yellow: #e9ba00;
+$gutter: 1em;
+$base-font-family: 'Open Sans', sans-serif;
+$base-line-height: 110%;
+
+//mixins
+@mixin bgLayout{background-color: rgba(0,0,0,0.7);}
+@mixin topbottomContainer{padding-left:$gutter*3;width:100%;} //inner container widths in header and footer
+@mixin floatLeft{ float:left;}
+@mixin floatRight{ float:right;}
+@mixin clearfix{ clear:both;}
+@mixin textMedium{font-size:1.5rem}
+@mixin textLarge{font-size:1.8rem}
+@mixin textBold{font-weight:bold}
+@mixin textUppercase{text-transform: uppercase}
+@mixin textCenter{text-align:center}
+@mixin opacityHigh{opacity: 0.8}
+@mixin listUnstyled{ padding-left:0; list-style:none}
+@mixin noOutline{ outline:none;}
+
+// opacity transition
+@mixin transitionOpacity {
+  -webkit-transition: opacity 400ms ease;
+  -moz-transition: opacity 400ms ease;
+  -o-transition: opacity 400ms ease;
+  transition: opacity 400ms ease;
+}
+// color transition
+@mixin transitionColor {
+  -webkit-transition: color 600ms ease;
+  -moz-transition: color 600ms ease;
+  -o-transition: color 600ms ease;
+  transition: color 600ms ease;
+}
+// transition for all
+@mixin transitionAll {
+  -webkit-transition: all 100ms ease;
+  -moz-transition: all 100ms ease;
+  -o-transition: all 100ms ease;
+  transition: all 100ms ease;
+}
+
+@mixin transitionSliderOn{
+  -webkit-transition: width 1s ease; /* For Safari 3.1 to 6.0 */
+  -moz-transition: width 1s ease;
+  -o-transition: width 1s ease;
+  transition: width 1s;
+    width: 700px;
+}
+
+@mixin transitionSliderOff{
+  -webkit-transition: width 1s ease; /* For Safari 3.1 to 6.0 */
+  -moz-transition: width 1s ease;
+  -o-transition: width 1s ease;
+  transition: width 1s ease;
+  width: 0px;
+}
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  border-radius: $radius;
+  background-clip: padding-box;  /* stops bg color from leaking outside the border: */
+}
+
+@mixin button {
+  display: inline-block;
+  width: auto;
+  height: auto;
+  cursor: pointer;
+  padding: 4px 55px;
+  margin: 10px 0 10px 10px;
+  @include textCenter;
+  @include textUppercase;
+  @include transitionAll;
+}
+
+html{
+  font-family:$base-font-family;
+}
+
+body{
+  color:$grey;
+  font-family:$base-font-family;
+  overflow-x: hidden!important;
+  font-size: 13px;
+  font-size: 1.2rem;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100%;
+}
+
+a{
+  text-decoration:none;
+  &:hover{text-decoration:none;}
+  &:focus{ @include noOutline;}
+}
+
+
+// icons
+.fa{
+  display:inline-block;
+}
+
+i.fa.fa-bars{
+  color: $white;
+  &:before{font-size:2.5rem;}
+  &:hover{
+    color: $yellow;
+  }
+}
+
+i.fa.fa-globe{
+  color:saturate(darken($blue, 16), 20);
+  margin-right: $gutter/2;
+  @include textLarge;
+}
+
+i.fa.fa-search{
+  color: lighten($blue,20%);
+  font-size:16px;
+  margin-top:2px;
+  &:hover{color: darken($blue, 10%);
+  }
+}
+
+.glyphicon.glyphicon-chevron-right{
+  margin-right:5px;
+}
+
+// states
+.collapsed{
+  display:none;
+}
+
+.collapse-icon{
+  cursor: pointer;
+  padding: 11px 0 11px 0;
+  font-size:0.9em;
+  margin-left: $gutter;
+  &:hover{
+    color: $green;
+  }
+}
+
+.clickeable{
+  cursor: pointer;
+}
+
+.inline{
+  display: inline-flex;
+}
+
+.bs-callout-info{
+  border-left-color:#f00;
+}
+.bs-callout{
+  @include border-radius(0);
+  padding: $gutter;
+  margin: 20px 0;
+  border: 1px solid #eeeeee;
+  border-left-width: 5px;
+  background: rbga(255,255,255,0.6);
+}

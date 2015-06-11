@@ -1,0 +1,62 @@
+.language-btn {
+  float: right;
+  position: relative;
+  border-left: 1px solid saturate(lighten( $blue, 35), 65);
+  margin-left: $gutter*1.1;
+  .dropdown-menu {
+    background-color: rgba(0, 0, 0, 1);
+    border: none;
+    min-width: 100px;
+    margin: 4px 0 0 0;
+    @include border-radius(0);
+    li {
+      background: none;
+      &:hover {
+        padding: 0;
+      }
+      a {
+        color: saturate(lighten( $blue, 35), 65);
+        padding: $gutter/2 0 0 $gutter*1.2;
+        @include noOutline;
+        font-size:0.9em;
+        &:hover {
+          background: none;
+          color: $white;
+        }
+      }
+    }
+  }
+  .btn-input {
+    display: block;
+  }
+  .btn-input .btn.form-control {
+    text-align: left;
+  }
+  .btn-input .btn.form-control span:first-child {
+    left: 10px;
+    overflow: hidden;
+    position: absolute;
+    right: 25px;
+  }
+  .btn-input .btn.form-control .caret {
+    margin-top: -1px;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+  }
+  .btn-language-select {
+    background: none;
+    color: saturate(lighten( $blue, 35), 65);
+    @include transitionColor;
+    font-size: 1em;
+    padding: 0;
+    margin-left: $gutter;
+    @include noOutline;
+    &:hover {
+      color: $white;
+    }
+    &:focus{
+    @include noOutline;
+}
+  }
+}
