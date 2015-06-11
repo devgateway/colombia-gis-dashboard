@@ -8,7 +8,7 @@ var FilterSubLevel = require('./filterSubLevel.jsx');
 var FilterGroup = React.createClass({
     
     getInitialState: function() {
-        return {pageLimit: 'left'};
+        return {"pageLimit": 'left', "noResults": false};
     },
 
     _filterByKeyword: function (keyword) {
@@ -17,21 +17,18 @@ var FilterGroup = React.createClass({
         if (keyword) {
             // filter the collection
             var pattern = new RegExp(keyword, 'i');
-            var flag = true;
+            var noResults = true;
             this.props.filterDefinition.subLevels.map(function(filterDefinition){
                 self.props.subLevelsItems[filterDefinition.param].map(function (item) {
-                if (!pattern.test(item.name)){
-                    item.hide = true;
-                } else {
-                    item.hide = false;
-                    flag = false;
-                    $(self.getDOMNode()).find('.filter-no-results').get(0).style.display="none";
-                }
+                    if (!pattern.test(item.name)){
+                        item.hide = true;
+                    } else {
+                        item.hide = false;
+                        noResults = false;
+                    }
                 });
             });
-            if(flag){
-                $(self.getDOMNode()).find('.filter-no-results').get(0).style.display="";
-            }
+            self.setState({"noResults": noResults});
         } else {
             // display the original collection
             self.props.filterDefinition.subLevels.map(function(filterDefinition){
@@ -39,16 +36,13 @@ var FilterGroup = React.createClass({
                     item.hide = false;
                 });
             });
-            $(self.getDOMNode()).find('.filter-no-results').get(0).style.display="none";
+            self.setState({"noResults": false});
         }
         this.forceUpdate();
     },
 
     componentDidMount: function(){
         $('.m-scooch').scooch();
-        if($(this.getDOMNode()).find('.filter-no-results')){
-            $(this.getDOMNode()).find('.filter-no-results').get(0).style.display="none";
-        }
     },
    
     _movePrev: function(){
@@ -67,12 +61,17 @@ var FilterGroup = React.createClass({
         var self = this;
         var prevClass = this.state.pageLimit=='left'? "scooch-prev scooch-disabled" : "scooch-prev";
         var nextClass = this.state.pageLimit=='right'? "scooch-next scooch-disabled" : "scooch-next";
+        var noResults = "";
+        if (this.state.noResults){
+            var noResults = 
+                <div className="filter-no-results">
+                    <br/>{<Message message="filters.noResults"/>}
+                </div>;
+        }
         return(
             <div className="filter-group-panel selected">
                 <KeywordSearch onSearch={this._filterByKeyword}/>
-                <div className="filter-no-results">
-                    <br/>{<Message message="filters.noResults"/>}
-                </div>
+                {noResults}
                 <div className="m-scooch m-center m-scaled m-fade-out">
                     <div className="m-scooch-inner">
                         {
