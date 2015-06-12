@@ -4,7 +4,7 @@
  var _ = require('lodash');
  var NumberedDivIcon = require('./_numberedDivIcon.js');
  var Store = require('../../../../stores/pointsLayerStore.js');
- var Popup = require('./_popup.jsx')
+ var Popup = require('./_popup2.jsx')
  var Mixins = require('./_mixins.js');
  var EventConstants = require('react/lib/EventConstants');
 
