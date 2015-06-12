@@ -1,3 +1,9 @@
+var DepartamentsStore=require('../stores/filters/departamentsStore.js')
+var MunicipalitiesStore=require('../stores/filters/municipalitiesStore.js')
+var TargetPopulationStore=require('../stores/filters/targetPopulationStore.js')
+
+
+
 var filters = [
 
   {
@@ -5,20 +11,21 @@ var filters = [
     label: 'filters.locations',
     modes: ['basic,advanced'],
     type: 'tree',
+    
     subLevels: [{
       level: 1,
       childParam: 'mu',
       label: 'Departaments',
       param: 'de',
-      apiEndPoint: window.DATA_PATH + '/departmentList.json'
+      store: DepartamentsStore
     }, {
       level: 2,
       parentParam: 'de',
       label: 'Municipalities',
       param: 'mu',
       parentParamField: 'idDepto',
-      apiEndPoint: window.DATA_PATH + '/municipalitiesList.json'
-    }]
+      store:MunicipalitiesStore
+      }]
   },
 
   {
@@ -27,7 +34,8 @@ var filters = [
     label: 'filters.targetPopulation',
     modes: ['basic','advanced'],
     param: 'tp',
-    apiEndPoint: window.DATA_PATH + '/targetPopulation.json'
+    store:TargetPopulationStore
+    
   },
 
   {
@@ -40,14 +48,14 @@ var filters = [
       childParam: 'a2',
       label: 'Activity Classification Type',
       param: 'a1',
-      apiEndPoint: window.DATA_PATH + '/clasificationType.json'
+      source: window.DATA_PATH + '/clasificationType.json'
     }, {
       level: 2,
       parentParam: 'a1',
       label: 'Activity Classification Sub-Type 1',
       param: 'a2',
       parentParamField: 'idTipo',
-      apiEndPoint: window.DATA_PATH + '/clasificationSubType.json'
+      source: window.DATA_PATH + '/clasificationSubType.json'
     }]
   }, {
     index: 4,

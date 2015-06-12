@@ -2,19 +2,15 @@
 var React = require('react');
 var Reflux = require('reflux');
 
-
-var TabbedArea = require('react-bootstrap/lib/TabbedArea');
-var TabPane = require('react-bootstrap/lib/TabPane');
-
 var FilterMap = require('../../conf/filterMap2.js');
 
-
 var LanStore=require('../../stores/lanStore.js');
-var FilterGroup=require('./filterGroup.jsx');
+
+var Filter=require('./filter.jsx');
 
 var _=require('lodash');
 
-var Filter  = React.createClass({
+module.exports = React.createClass({
   mixins: [Reflux.connect(LanStore, 'lan')],
 
   _turnAdvancedOn: function() {
@@ -41,6 +37,7 @@ var Filter  = React.createClass({
       mode: 'basic'
     };
   },
+
   render: function() {
     var filters = FilterMap.filters;
       return(
@@ -57,14 +54,8 @@ var Filter  = React.createClass({
           </div>
   
             {
-              filters.map(function(filterDefinition){
-                return <FilterGroup 
-                {...filterDefinition} 
-                mode={this.state.mode} 
-                onActivate={this._onActivateFilter} 
-              
-                active={filterDefinition.index==this.state.activeIndex}/>
-              
+              filters.map(function(def){
+                return <Filter  {...def}  mode={this.state.mode}  onActivate={this._onActivateFilter}  active={def.index==this.state.activeIndex}/>
               }.bind(this))
             }          
           
@@ -75,4 +66,3 @@ var Filter  = React.createClass({
 
 });
 
-module.exports = Filter;
