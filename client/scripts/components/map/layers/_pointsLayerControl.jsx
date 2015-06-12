@@ -56,10 +56,10 @@ module.exports = React.createClass({
   <li>
     <Toggler ref='toggler'>
       <TogglerContent visibleWhen="collapsed">
-        <div toggler={true} className="toggler-btn"><i className="fa fa-plus-square-o"></i></div>
+        <div toggler={true} className="toggler-button"><i className="fa fa-plus-square-o"></i></div>
       </TogglerContent>
       <TogglerContent visibleWhen="expanded">
-        <div toggler={true} className="toggler-btn"><i className="fa fa-minus-square-o"></i></div>
+        <div toggler={true} className="toggler-button"><i className="fa fa-minus-square-o"></i></div>
       </TogglerContent>
       <TogglerContent visibleWhen="always">
         
@@ -71,21 +71,22 @@ module.exports = React.createClass({
       
       </TogglerContent>
       <TogglerContent visibleWhen="expanded">
-        <ul>
+        <ul className="controls-items">
           <li>
-            <h3>Level</h3>
+            <h3><Message message='layers.level'/></h3>
             <CustomRadioGroup>
-              <CustomRadio  className="horizontal" name="departament" checked={(level=='departament')? true : false}     onClick={this._showByDepartment} label="layers.byDepartment"/>
-              <CustomRadio  className="horizontal" name="municipality" checked={(level=='municipality')? true : false}  onClick={this._showByMunicipality} label="layers.byMunicipality"/>    
+              <CustomRadio className="horizontal" name="departament" checked={(level=='departament')? true : false} 
+                onClick={this._showByDepartment} label="layers.byDepartment"/>
+              <CustomRadio className="horizontal" name="municipality" checked={(level=='municipality')? true : false} 
+                onClick={this._showByMunicipality} label="layers.byMunicipality"/>    
             </CustomRadioGroup>
-          </li>
-          
-           <li>
-            <div className="clearFix"/>
-              <h3>Styles Breaks</h3>
-               <div><b>Property <i> {this.state.breaks.field}</i></b></div>
+          </li>          
+          <li>
+            <h3>Styles Breaks</h3>
+            <div>
+              <b>Property<i>{this.state.breaks.field}</i></b>
+            </div>
             {
-
               _.map(_.keys(this.state.breaks.breaks),function(key){
                   var br=this.state.breaks.breaks[key];
                 return (
@@ -93,9 +94,7 @@ module.exports = React.createClass({
                       onChageRadius={this._changeRadius}/>
                       )
               }.bind(this))
-
             }
-
           </li>
           
         </ul>                    

@@ -4,6 +4,7 @@ var Reflux = require('reflux');
 var _=require('lodash');
 
 var If=require('../../commons/if.jsx');
+var Checkbox=require('../../commons/customCheckbox.jsx');
 
 
 module.exports=React.createClass({
@@ -70,26 +71,26 @@ render: function() {
   console.log("Layer Control > Layer : Rendering now .. checked ==" + this.state.checked )
   return (
     <div>
-    <div className='updown'>
-    <If condition={this.props.onMoveUp}>
-    <i className="fa fa-arrow-up" onClick={this._up}></i>
-    </If>
-    <If condition={this.props.onMoveDown}>
-    <i onClick={this._down} className="fa fa-arrow-down"></i>
-    </If>
-    <If condition={this.props.onDelete}>
-    <i className="fa fa-times" onClick={this._delete}></i>
-    </If>
-    </div>
-    <div className="title">
-    <If condition={this.props.onChangeVisibility}>
-    <input type="checkbox" checked={this.state.checked} onChange={this._handleChageVisibility}/> 
-    </If>
-    {this.props.title}
-    </div>  
-    <div className='slider-holder'>
-    <div className='slider'/>
-    </div>
+      <div className='updown'>
+        <If condition={this.props.onMoveUp}>
+          <i className="fa fa-arrow-up" onClick={this._up}></i>
+        </If>
+        <If condition={this.props.onMoveDown}>
+          <i onClick={this._down} className="fa fa-arrow-down"></i>
+        </If>
+        <If condition={this.props.onDelete}>
+          <i className="fa fa-times" onClick={this._delete}></i>
+        </If>
+      </div>
+      <div className="title">
+        <If condition={this.props.onChangeVisibility}>
+          <Checkbox selected={this.state.checked} onChange={this._handleChageVisibility}/> 
+        </If>
+        <span className="control-title">{this.props.title}</span>
+      </div>  
+      <div className='slider-holder'>
+        <div className='slider'/>
+      </div>
     </div>
     );   
 }

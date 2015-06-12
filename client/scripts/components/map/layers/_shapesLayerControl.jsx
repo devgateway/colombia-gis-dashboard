@@ -62,64 +62,65 @@ module.exports = React.createClass({
     <li>
       <Toggler ref='toggler'>
         <TogglerContent visibleWhen="collapsed">
-          <div toggler={true} className="toggler-btn"><i className="fa fa-plus-square-o"></i></div>
+          <div toggler={true} className="toggler-button"><i className="fa fa-plus-square-o"></i></div>
         </TogglerContent>
         <TogglerContent visibleWhen="expanded">
-          <div toggler={true} className="toggler-btn"><i className="fa fa-minus-square-o"></i></div>
+          <div toggler={true} className="toggler-button"><i className="fa fa-minus-square-o"></i></div>
         </TogglerContent>
         <TogglerContent visibleWhen="always">
 
-          <Layer id="shapes" title={i18n.t("layers.fundingByType")}  opacity={this.state.opacity} 
-                onChangeOpacity={this._onChangeOpacity} onChangeVisibility={this._changevisibility} visible={this.state.visible}/>
+          <Layer id="shapes" title={i18n.t("layers.fundingByType")}  
+          opacity={this.state.opacity} 
+          onChangeOpacity={this._onChangeOpacity} 
+          onChangeVisibility={this._changevisibility} 
+          visible={this.state.visible}/>
 
         </TogglerContent>
         <TogglerContent visibleWhen="expanded">
-          <ul>
+          <ul className="controls-items">
             <li>
               <h3><Message message='layers.level'/></h3>
               <CustomRadioGroup>
                 <CustomRadio  className="inline" name="departament" checked={(level=='departament')? true : false}    
-                onClick={this._showByDepartment} label="layers.byDepartment"/>
+                  onClick={this._showByDepartment} label="layers.byDepartment"/>
                 <CustomRadio  className="inline" name="municipality" checked={(level=='municipality')? true : false}  
-                onClick={this._showByMunicipality} label="layers.byMunicipality"/>    
+                  onClick={this._showByMunicipality} label="layers.byMunicipality"/>    
               </CustomRadioGroup>
             </li>
             <li>
               <h3>Funding Type</h3>
+              <ul className="funding-options">
               {
                 fundingTypes.map(function(fundingType){
                   return(
-                    <div>
+                    <li>
                       <CustomCheckbox 
                               selected={fundingType.selected}
                               onChange={self._onFundingChanged}
                               value={fundingType.id}/>
                       <span>{fundingType.name}</span>
-                    </div>
+                    </li>
                   );
                 })
               }
-           
-            </li>
-          
-          <li>
-                  <div className="clearFix"/>
+              </ul>
+            </li>          
+            <li>
               <h3>Styles Breaks</h3>
-               <div><b>Property <i> {this.state.breaks.field}</i></b></div>
-            {
-
-              _.map(_.keys(this.state.breaks.breaks),function(key){
-                  var br=this.state.breaks.breaks[key];
-                return (
-                      <Breaker  level={key} label={br.min+'-'+br.max} color={br.style.color} onChangeColor={this._changeColor} />
-                      )
-              }.bind(this))
-
-            }
-
-          </li>
-        
-</ul>  
+                <div>
+                  <b>Property<i>{this.state.breaks.field}</i></b>
+                </div>
+                {
+                  _.map(_.keys(this.state.breaks.breaks),function(key){
+                    var br=this.state.breaks.breaks[key];
+                    return (
+                          <Breaker level={key} label={br.min+'-'+br.max} color={br.style.color} 
+                            onChangeColor={this._changeColor} />
+                          )
+                  }.bind(this))
+                }
+            </li>       
+          </ul>  
         </TogglerContent>
       </Toggler>
     </li>);
