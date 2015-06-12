@@ -16,7 +16,7 @@ module.exports = React.createClass({
 
       /*Item selection*/
 
-      _addSelected:function(options){
+      _addSelected:function(id,options){
         options=options || {};
         
         var selection=this.state.selected.slice(0); //clone current state 
@@ -26,7 +26,7 @@ module.exports = React.createClass({
         }
       },
 
-      _removeSelected:function(options){
+      _removeSelected:function(id,options){
         options=options || {};
         var selection=this.state.selected.slice(0);
         _.remove(selection,function(item){return item==id})
