@@ -5,6 +5,9 @@ var PureRenderMixin = require('react/addons').addons.PureRenderMixin;
 var Item=require('./item.jsx');
 var _=require('lodash');
 
+var SelectAllNone=require('./selectAllNone.jsx');
+var KeywodSearch=require('./keywordSearch.jsx');
+
 module.exports = React.createClass({
 
   // mixins: [PureRenderMixin],
@@ -120,20 +123,18 @@ module.exports = React.createClass({
     this._triggerSelectionChange([]);
   },
   render: function() {
-
-    var children = React.Children.map(this.props.children, function(child) {
-      
-      return child ? React.addons.cloneWithProps(child, {
-        onSearch:this._onSearch,
-        onSearchEnterKey:this._onSearchEnterKey,
-        onSelectAll:this._onSelectAll,
-        onSelectNone:this._onSelectNone
-
-      }) : null;
-    }, this);
     return ( 
+
+      <div className="filter-group-panel selected">
+      <div className="filter-group-panel-header">
+        <span className="filter-label" role="label">
+        <Message message={this.props.label}/></span>
+        <span>  {this.state.selected.length} / {this.state.items.length}</span>
+      </div>
+      <div className="filter-list-container">
+        <SelectAllNone onSelectAll={this._onSelectAll}  onSelectNone={this._onSelectNone}/>
+        <KeywodSearch onSearch={this._onSearch} onSearchEnterKey={this._onSearchEnterKey} />
       <div> 
-      {children}
       <ul>
       {
 
@@ -143,12 +144,13 @@ module.exports = React.createClass({
           }else{
             return null
           }
-
-
-        },this) 
+      },this) 
       }
       </ul>
       </div>
+      </div>
+      </div>
+
       );
   }
 
