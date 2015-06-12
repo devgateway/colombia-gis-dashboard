@@ -3,6 +3,30 @@ var React = require('react');
 var Reflux = require('reflux');
 var KeywodSearch=require('./keywordSearch.jsx');
 var SingleList=require('./singleList.jsx');
+var Message=require('./../commons/message.jsx');
+
+var SelectAllNone=React.createClass({
+    _onAllSelected:function(){
+        this.props.onSelectAll();
+    },
+    
+    _nonNoneSelected:function(){
+      this.props.onSelectNone();
+    },
+
+    render: function() {
+        return(
+              <div className="filter-selectors">
+                  <span><a href="#" onClick={this._onAllSelected}>
+                    <Message message="filters.selectAll"/>
+                  </a></span> / <span><a href="#" onClick={this._nonNoneSelected}>
+                    <Message message="filters.deselectAll"/>
+                  </a></span>
+              </div>
+            );
+    }
+})
+
 module.exports = React.createClass({
 
  _activate:function(){
@@ -19,8 +43,10 @@ module.exports = React.createClass({
   if (this.props.type == 'list') {
     content=  (
       <SingleList {...this.props} onChange={this._onChangeSelection}>
+        <SelectAllNone/>
         <KeywodSearch/>
-      </SingleList> )
+      </SingleList> 
+      )
   }
   else if (this.props.type == 'tree') {
     content=  (<div>Tree</div>)

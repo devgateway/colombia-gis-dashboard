@@ -5,7 +5,7 @@ var CustomCheckbox = require('../commons/customCheckbox.jsx');
 module.exports = React.createClass({
 
   _onItemChange:function(selected){
-
+    debugger;
     if (this.props.onItemChange){
       this.props.onItemChange(this.props.id,selected); //21,true|false
     }
