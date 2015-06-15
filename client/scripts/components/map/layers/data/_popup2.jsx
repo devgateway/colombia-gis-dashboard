@@ -12,31 +12,43 @@ module.exports  = React.createClass({
   mixins: [Reflux.connect(InfoWindowStore)],
 
   componentWillMount:function(){
-    console.log('popup>componentWillMount');
-    var data = this._getInfoWindowData(); 
-    this.setState({data: data, tabId: 0});
+    console.log('popup2>componentWillMount');
+    this._getInfoWindowData(this.props.id, this.props.level); 
   },
 
-  _getInfoWindowData: function () {
-      var filters = {filters:[{param:"st",values:["E1"]}]};
-      var data = InfoWindowActions.getInfoFromAPI(filters) || [];
-      return data;
+  _getInfoWindowData: function (id, level) {
+    var param = level? level.substring(0,2) : "de";
+    var infoWindow = [{"param":param,"values":[id]}];
+    var filters = {};
+    var data = InfoWindowActions.getInfoFromAPI(infoWindow, filters) || [];
+    return data;
   },
 
   componentDidMount: function() {
-    console.log('chart1>componentDidMount');
+    console.log('popup2>componentDidMount');
     this._renderChart();
   },
 
+  componentWillUpdate: function(props,newState) { 
+    console.log('popup2>componentWillUpdate'); 
+    var previousId = 0;
+    if(newState.infoWindowFilter){
+      newState.infoWindowFilter.map(function(node){node.values.map(function(innerNode){previousId = innerNode})});
+    }
+    if(previousId!=props.id){
+      this._getInfoWindowData(props.id, props.level); 
+    }
+  },
+
   componentDidUpdate: function(props,newState) { 
-    console.log('popup>componentDidUpdate'); 
+    console.log('popup2>componentDidUpdate'); 
     this.props.onChange();
     this._renderChart();
   },
 
 
   handleClick:function(tabId){
-    console.log('popup>click');
+    console.log('popup2>click');
     this.setState({'tabId':tabId});
     this.forceUpdate();
     
@@ -63,18 +75,19 @@ module.exports  = React.createClass({
   },
 
   _renderChart: function() {
-    console.log('chart1>_renderChart');
+    console.log('popup2>_renderChart');
     var titleArray = this._getTitles();
     var infoData = this._getData();
+    var tabId = this.state.tabId ? this.state.tabId : 0;
 
-    if(infoData.length>0 && infoData.length>this.state.tabId && infoData[this.state.tabId].length>0){
-      if(this.state.tabId!=4 ){
+    if(infoData.length>0 && infoData.length>tabId && infoData[tabId].length>0){
+      if(tabId!=4 ){
         var chartdata = [];
         var totalValue = 0;
-        infoData[this.state.tabId].map(function(node, index) {
+        infoData[tabId].map(function(node, index) {
             totalValue += parseInt(node.value);
         });
-        infoData[this.state.tabId].map(function(node, index) {
+        infoData[tabId].map(function(node, index) {
           var chartnode = [];
           chartnode.push(node.name);
           chartnode.push(parseInt(parseInt(node.value)/totalValue*100));
@@ -85,7 +98,7 @@ module.exports  = React.createClass({
             colors: ['#FFC614', '#3897D3', '#18577A', '#97CB68', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#50B432', '#FF9655', '#FFF263', '#6AF9C4'],
             chart: {
               marginTop: 20,
-              width: 380,
+              width: 420,
               height: 240,
               plotBorderWidth: null,
               renderTo: 'container',
@@ -93,7 +106,7 @@ module.exports  = React.createClass({
             },
             title: {
               align: "left",
-              text: titleArray[this.state.tabId],
+              text: titleArray[tabId],
               style: { 
                 "color": "#4278AA", 
                 "fontSize": "14px" 
@@ -102,7 +115,7 @@ module.exports  = React.createClass({
             plotOptions: {
               pie: {
                   innerSize: "70%",
-                  name: 'Quantity',
+                  name: 'Cantidad total',
                   animation: false,
                   dataLabels: {
                       enabled: false
@@ -131,18 +144,16 @@ module.exports  = React.createClass({
               var ypos = '23%';
               var circleradius = 0;
           // Render the circle
-          chart.renderer.circle(xpos, ypos, circleradius).attr({
+          /*chart.renderer.circle(xpos, ypos, circleradius).attr({
               fill: '#ddd',
-          }).add();
+          }).add();*/
         });
       }
     }
   },
 
   render: function() {
-    console.log('popup>render id:' + this.props.id +" tab "+this.state.tabId);
-    var url = "./#/chart1?id="+this.props.id+"&tab="+this.state.tabId;
-    var content=(  <div className="popup-content"><iframe className="iframe-content" src={url} ></iframe> </div>);
+    console.log('popup2>render id:' + this.props.id +" tab "+this.state.tabId);
     return (
       <div className="leaflet-popup-content-wrapper">
         <div className="leaflet-popup-content">
@@ -182,7 +193,9 @@ module.exports  = React.createClass({
                 </ul>
               </nav>
             </div>
-            <div className="panel-body" ><div className="chart-container" id="container"></div></div>
+            <div className="panel-body">
+              <div className="chart-container" id="container"></div>
+            </div>
           </div>
         </div>
       </div>

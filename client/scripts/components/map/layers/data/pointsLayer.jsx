@@ -72,8 +72,9 @@
              this.fixReactIds(e.popup);
            }.bind(this)
            React.render(React.createElement(Popup, _.assign(feature.properties, {
-             onChange: _onChange
-           }), this.state.data), popupHolder);
+             onChange: _onChange,
+             level: this.state.level
+           })), popupHolder);
            e.popup.setContent(popupHolder.innerHTML);
            popupHolder.firstChild.style.display = "none";
            this.fixReactIds(e.popup);
