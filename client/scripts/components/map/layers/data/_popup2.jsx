@@ -6,6 +6,7 @@ var HighCharts = require('highcharts-browserify');
 var InfoWindowActions=require('../../../../actions/infoWindowActions.js');
 var InfoWindowStore=require('../../../../stores/infoWindowStore.js');
 var If=require('../../../commons/if.jsx');
+var Loading = require('../../../commons/loading.jsx')
 
 
 module.exports  = React.createClass({
@@ -13,13 +14,12 @@ module.exports  = React.createClass({
 
   componentWillMount:function(){
     console.log('popup2>componentWillMount');
-    this._getInfoWindowData(this.props.id, this.props.level); 
+    this._getInfoWindowData(this.props.id, this.props.level, this.props.filters); 
   },
 
-  _getInfoWindowData: function (id, level) {
+  _getInfoWindowData: function (id, level, filters) {
     var param = level? level.substring(0,2) : "de";
     var infoWindow = [{"param":param,"values":[id]}];
-    var filters = {};
     var data = InfoWindowActions.getInfoFromAPI(infoWindow, filters) || [];
     return data;
   },
@@ -35,8 +35,8 @@ module.exports  = React.createClass({
     if(newState.infoWindowFilter){
       newState.infoWindowFilter.map(function(node){node.values.map(function(innerNode){previousId = innerNode})});
     }
-    if(previousId!=props.id){
-      this._getInfoWindowData(props.id, props.level); 
+    if(previousId!=props.id || props.filters!=this.props.filters){
+      this._getInfoWindowData(props.id, props.level, props.filters); 
     }
   },
 
@@ -137,23 +137,19 @@ module.exports  = React.createClass({
               }
             },
             series: [{data: chartdata}]
-          },
-          // using 
-          function(chart) { // on complete
-              var xpos = '20%';
-              var ypos = '23%';
-              var circleradius = 0;
-          // Render the circle
-          /*chart.renderer.circle(xpos, ypos, circleradius).attr({
-              fill: '#ddd',
-          }).add();*/
-        });
+          });
+        debugger;
       }
+
     }
   },
 
   render: function() {
     console.log('popup2>render id:' + this.props.id +" tab "+this.state.tabId);
+    var showLoading=true;
+    if(this.state.infoWindow){
+      showLoading=false;
+    }
     return (
       <div className="leaflet-popup-content-wrapper">
         <div className="leaflet-popup-content">
@@ -195,6 +191,9 @@ module.exports  = React.createClass({
             </div>
             <div className="panel-body">
               <div className="chart-container" id="container"></div>
+              <If condition={showLoading} >
+                <Loading container="popup-loading-container"/>
+              </If>
             </div>
           </div>
         </div>

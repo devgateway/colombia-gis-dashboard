@@ -55,7 +55,7 @@ var LegendControl = require('./layers/esri/legendControl.jsx');
       <PointsLayer getMap={this.getMap}/>
       <ShapesLayer getMap={this.getMap}/>
       <If condition={this.state.mapStatus.loading} >
-        <Loading/>
+        <Loading container="loading-container"/>
       </If>
       <EsriLayers getMap={this.getMap}/>
         {children} 

@@ -73,7 +73,8 @@
            }.bind(this)
            React.render(React.createElement(Popup, _.assign(feature.properties, {
              onChange: _onChange,
-             level: this.state.level
+             level: this.state.level,
+             filters: this.state.filters
            })), popupHolder);
            e.popup.setContent(popupHolder.innerHTML);
            popupHolder.firstChild.style.display = "none";
