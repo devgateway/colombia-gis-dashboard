@@ -22,12 +22,14 @@ module.exports = {
 	},
 
 	_loadItems: function(url) {
-		Util.get(url).then(function(data) {
-			this.update({items: this._capitalize(data)});
-			
+		if(!this._loaded){
+			this._loaded==true;
+			Util.get(url).then(function(data) {
+				this.update({items: this._capitalize(data),loaded:true});
 			}.bind(this)).fail(function() {
-			console.log('Failed to load data ');
-		});
+				console.log('Failed to load data ');
+			});
+		}
 	},
 
 	update: function(assignable, options) {

@@ -30,7 +30,8 @@ var SelectAllNone=React.createClass({
 
 module.exports = React.createClass({
 
- _activate:function(){
+ _activate:function(event){
+
    this.props.onActivate(this.props.index);
  },
 
@@ -64,9 +65,9 @@ module.exports = React.createClass({
   var visible = this.props.modes.indexOf(this.props.mode) > -1; //set visiblity based on parents mode.
   if (visible){
     return(
-      <div onClick={this._activate} className="filter-group-panel selected" >
+      <div className="filter-group-panel selected" >
             <div className="filter-group-panel selected">
-            <div className="filter-group-panel-header">
+            <div className="filter-group-panel-header"  onClick={this._activate}>
               <span className="filter-label" role="label"><Message message={this.props.label}/></span>
             </div>
             <div className="filter-list-container">

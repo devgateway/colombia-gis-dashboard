@@ -9,19 +9,9 @@ module.exports = Reflux.createStore({
 	mixins: [Mixins],
 
 	load:function(){
-		this._loadItems(window.DATA_PATH + '/departmentList.json');
-	},
-
-	getInitialState: function() {
-
-		this.state= {
-			label: '',
-			modes: [],
-			param: '',
-			dataSource: '',
-			items: [],
-			selection: []
-		}
+	
+			this._loadItems(window.DATA_PATH + '/departmentList.json');
+		
 	},
 
 })

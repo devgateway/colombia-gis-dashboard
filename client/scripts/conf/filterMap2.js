@@ -11,14 +11,14 @@ var filters = [
     label: 'filters.locations',
     modes: ['basic','advanced'],
     type: 'tree',
-    child: {
+    nested: {
       label: 'Departaments',
       param: 'de',
       store: DepartamentsStore,
-      child: {
+      nested: {
         label: 'Municipalities',
         param: 'mu',
-        parentParamField: 'idDepto',
+        parentField: 'idDepto',
         store:MunicipalitiesStore
       }
     }
