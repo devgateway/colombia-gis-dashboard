@@ -3,6 +3,7 @@ var React = require('react');
 var Reflux = require('reflux');
 var KeywodSearch=require('./keywordSearch.jsx');
 var SingleList=require('./singleList.jsx');
+var TreeList=require('./treeList.jsx');
 var Message=require('./../commons/message.jsx');
 
 var SelectAllNone=React.createClass({
@@ -49,7 +50,12 @@ module.exports = React.createClass({
       )
   }
   else if (this.props.type == 'tree') {
-    content=  (<div>Tree</div>)
+    debugger;
+    content=  (
+      <TreeList {...this.props} onChange={this._onChangeSelection}>
+        <SelectAllNone/>
+        <KeywodSearch/>
+      </TreeList>)
   }
   else if (this.props.type == 'carrousel') {
     content= <div>Carrousel </div>

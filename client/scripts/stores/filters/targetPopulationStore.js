@@ -9,7 +9,6 @@ module.exports = Reflux.createStore({
 	mixins: [Mixins],
 
 	load:function(){
-		  debugger;
 		this._loadItems(window.DATA_PATH + '/targetPopulation.json');
 	},
 

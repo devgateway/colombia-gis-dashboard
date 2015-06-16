@@ -23,7 +23,6 @@ module.exports = {
 
 	_loadItems: function(url) {
 		Util.get(url).then(function(data) {
-				debugger;
 			this.update({items: this._capitalize(data)});
 			
 			}.bind(this)).fail(function() {
@@ -32,7 +31,6 @@ module.exports = {
 	},
 
 	update: function(assignable, options) {
-		debugger;
 		options = options || {};
 		this.state = _.assign(this.state || {}, assignable);
 		

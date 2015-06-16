@@ -9,33 +9,27 @@ var filters = [
   {
     index: 1,
     label: 'filters.locations',
-    modes: ['basic,advanced'],
+    modes: ['basic','advanced'],
     type: 'tree',
-    
-    subLevels: [{
-      level: 1,
-      childParam: 'mu',
+    child: {
       label: 'Departaments',
       param: 'de',
-      store: DepartamentsStore
-    }, {
-      level: 2,
-      parentParam: 'de',
-      label: 'Municipalities',
-      param: 'mu',
-      parentParamField: 'idDepto',
-      store:MunicipalitiesStore
-      }]
+      store: DepartamentsStore,
+      child: {
+        label: 'Municipalities',
+        param: 'mu',
+        parentParamField: 'idDepto',
+        store:MunicipalitiesStore
+      }
+    }
   },
-
   {
     index: 2,
     type: 'list',
     label: 'filters.targetPopulation',
-    modes: ['basic','advanced'],
+    modes: ['advanced'],
     param: 'tp',
-    store:TargetPopulationStore
-    
+    store:TargetPopulationStore   
   },
 
   {

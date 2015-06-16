@@ -1,9 +1,12 @@
 
 var React = require('react');
 var CustomCheckbox = require('../commons/customCheckbox.jsx');
+var PureRenderMixin = require('react/addons').addons.PureRenderMixin;
 
 module.exports = React.createClass({
 
+  mixins: [PureRenderMixin],
+  
   _onItemChange:function(selected){
     debugger;
     if (this.props.onItemChange){
