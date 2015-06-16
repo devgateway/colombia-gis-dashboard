@@ -7,7 +7,7 @@ var _=require('lodash');
 
 var TreeView =  React.createClass({
 
-  mixins: [PureRenderMixin],
+  //mixins: [PureRenderMixin],
 
   onStatusChange: function(status) {
     console.log('TreeView -> onStatusChange');
@@ -113,6 +113,7 @@ var TreeView =  React.createClass({
             return (
               <ul>
                 <Item {...item} onItemChange={self._onItemChange} />
+                .
                 <div>
                   <TreeView {...self.props.child} parentItem={item}/>
                 </div>
@@ -129,7 +130,7 @@ var TreeView =  React.createClass({
 module.exports = React.createClass({
 
   mixins: [PureRenderMixin],
-  
+
   _onItemChange: function(id, selected) {
     
   },
