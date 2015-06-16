@@ -5,6 +5,7 @@ var PureRenderMixin = require('react/addons').addons.PureRenderMixin;
 var Item=require('./item.jsx');
 var _=require('lodash');
 var If=require('../commons/if.jsx');
+
 var TreeView =  React.createClass({
 
 
@@ -51,6 +52,9 @@ var TreeView =  React.createClass({
   render: function() {
    var items = (this.props.parentIdValue)? this._filterItems(this.state.items,this.props.parentField,this.props.parentIdValue):this.state.items;
    console.log(this.props.label +' - '+ this.state.expanded)
+   
+
+
    return ( 
 
     <ul>
@@ -58,13 +62,18 @@ var TreeView =  React.createClass({
       items.map(function(item) {
         return (
           <ul>
-          item  <Item {...item}/>
+            
+            <Item {...item}/>
+              
                 <If condition={this.props.nested}>
-                    <div onClick={this._toggle}>+ -</div>
+                    <div onClick={this._toggle}> <a>+</a></div>
+                 
                   <If  condition={this.state.expanded===true}>
-                    Tree <TreeView {...this.props.nested} parentIdValue={item.id}/>
+              
+                     <TreeView  key={item.id} {...this.props.nested} parentIdValue={item.id}/>
                   </If>
-                </If>
+                
+              </If>
               
               
           </ul>
@@ -115,7 +124,7 @@ module.exports = React.createClass({
    <div> 
    {children}
    <span className="filter-label" role="label">{<Message message={this.props.label}/>}</span>
-   <TreeView {...this.props.nested}/>
+   <TreeView   {...this.props.nested}/>
    </div>
    );
 }
