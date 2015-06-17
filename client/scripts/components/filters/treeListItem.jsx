@@ -3,12 +3,13 @@ var React = require('react');
 var CustomCheckbox = require('../commons/customCheckbox.jsx');
 var PureRenderMixin = require('react/addons').addons.PureRenderMixin;
 var _=require('lodash');
+var If=require('../commons/if.jsx');
+
 module.exports = React.createClass({
 
   mixins: [PureRenderMixin],
   
   _onItemChange:function(selected){
-    debugger;
     if (this.props.onItemChange){
       this.props.onItemChange(this.props.id,selected); //21,true|false
     }
@@ -39,13 +40,15 @@ module.exports = React.createClass({
     var itemClassNames=(this.state.selected===true)?'item-label label-selected':'item-label';
     return(  
       <li>
-      <div onClick={this._handleClick} className="filter-col">
-      <CustomCheckbox selected={this.state.selected} value={this.props.id} onChange={this._onItemChange}/>
-      <span className={itemClassNames}> {this.props.name}</span>
-      </div>
-          <div onClick={this._toggle}>{(this.state.expanded)?<span>-</span>:<span>+</span>}  </div>
-        {(this.state.expanded)?this.props.children:null}
-       </li>
-       )
+        <div onClick={this._handleClick} className="filter-col">
+        <CustomCheckbox selected={this.state.selected} value={this.props.id} onChange={this._onItemChange}/>
+        <span className={itemClassNames}> {this.props.name}</span>
+        </div>
+        <If condition={this.props.showToggler}>
+          <div onClick={this._toggle}>{(this.state.expanded)?<span>-</span>:<span>+</span>}</div>
+          {(this.state.expanded)?this.props.children:null}  
+        </If>
+      </li>
+    )
   }
 });
