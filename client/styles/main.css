@@ -1197,7 +1197,10 @@ ul.tabs {
 .layer-control .title {
   font-size: 1em;
   color: #454545;
-  line-height: 150%; }
+  line-height: 150%;
+  float: left;
+  margin-top: -21px;
+  margin-left: 30px; }
 .layer-control .slider-holder {
   position: relative;
   display: block;
@@ -1476,7 +1479,8 @@ ul.tabs {
   background-clip: padding-box;
   /* stops bg color from leaking outside the border: */
   background: #d7e0e4;
-  padding: 5px 10px; }
+  padding: 5px 10px;
+  overflow: hidden; }
   .toggler-button:hover {
     background: #d4dee2; }
 
