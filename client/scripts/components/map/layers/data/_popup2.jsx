@@ -15,13 +15,15 @@ var MyActivities = React.createClass({
       items = this.props.data;
     }
     return (
-        <ul>
+        <div className="subactivities-list">
+        <Message message='map.popup.totalSubActivities'/>: {items.length}
+        <ul> 
         {
           items.map(function(node, index) {
             return <li>{node.name}</li>          
           })
         }
-        </ul>
+        </ul></div>
     );
   }
 });
@@ -216,8 +218,8 @@ module.exports  = React.createClass({
               <If condition={showLoading} >
                 <Loading container="popup-loading-container"/>
               </If>
-              <If condition={tabId==4} >
-                <div className="activities-content">
+              <If condition={tabId==4 && !showLoading} >
+                <div className="subactivities-container">
                   <div className="sub-activities-title">{titleArray[tabId]}</div>
                   <MyActivities data={infoData[4]} />
                 </div>
