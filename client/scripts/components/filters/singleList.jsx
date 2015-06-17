@@ -14,12 +14,14 @@ module.exports = React.createClass({
   },
 
   _addSelected: function(list, id) {
+     this.actions.add(id);
     options = options || {};
     list.push(id);
 
   },
 
   _removeSelected: function(list, id) {
+    this.actions.remove(id);
     options = options || {};
     _.remove(list, function(item) {
       return item == id
@@ -40,9 +42,7 @@ module.exports = React.createClass({
 
   _triggerSelectionChange: function(newSelection) {
 
-    this.setState(_.assign(this.state, {
-      'selected': newSelection
-    }));
+    this.setState(_.assign(this.state, {'selected': newSelection}));
   },
 
 
@@ -78,7 +78,9 @@ module.exports = React.createClass({
   /*Life Cycle */
   componentDidMount: function() {
     this.unsubscribe = this.props.store.listen(this.onStatusChange);
-    this.props.store.load() //this should be an event ...
+    debugger;
+    this.actions=this.props.actions;
+    this.actions.load() //call load event
   },
 
   componentWillUnmount: function() {
@@ -117,6 +119,7 @@ module.exports = React.createClass({
   },
 
   _onSelectNone: function() {
+    this.actions.clean();
     this._triggerSelectionChange([]);
   },
   render: function() {
