@@ -5,11 +5,8 @@ var KeywodSearch=require('./keywordSearch.jsx');
 var SingleList=require('./singleList.jsx');
 var TreeList=require('./treeList.jsx');
 var Message=require('./../commons/message.jsx');
-var PureRenderMixin = require('react/addons').addons.PureRenderMixin;
 
 var SelectAllNone=React.createClass({
-    mixins: [PureRenderMixin],
-    
     _onAllSelected:function(){
         this.props.onSelectAll();
     },
@@ -33,7 +30,8 @@ var SelectAllNone=React.createClass({
 
 module.exports = React.createClass({
 
- _activate:function(){
+ _activate:function(event){
+
    this.props.onActivate(this.props.index);
  },
 
@@ -43,8 +41,7 @@ module.exports = React.createClass({
 
  render: function() {
   var content;
-  console.log('Filter.jsx -> render');
-    
+
   if (this.props.type == 'list') {
     content=  (
       <SingleList {...this.props} onChange={this._onChangeSelection}>
@@ -70,12 +67,12 @@ module.exports = React.createClass({
     return(
       <div className="filter-group-panel selected" >
             <div className="filter-group-panel selected">
-            <div onClick={this._activate} className="filter-group-panel-header">
+            <div className="filter-group-panel-header"  onClick={this._activate}>
               <span className="filter-label" role="label"><Message message={this.props.label}/></span>
             </div>
             <div className="filter-list-container">
                {content} 
-            </div>
+           </div>
          </div>
       </div>);
       

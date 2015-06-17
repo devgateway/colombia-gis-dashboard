@@ -4,54 +4,21 @@ var React = require('react');
 var PureRenderMixin = require('react/addons').addons.PureRenderMixin;
 var Item=require('./item.jsx');
 var _=require('lodash');
+var If=require('../commons/if.jsx');
 
 var TreeView =  React.createClass({
 
-  //mixins: [PureRenderMixin],
 
   onStatusChange: function(status) {
-    console.log('TreeView -> onStatusChange');
-    this.setState(_.clone(status)); //make a copy of the state would make sense 
-  },
+     this.setState(_.clone(status)); //make a copy of the state would make sense 
+   },
 
-  _addSelected: function(list, id) {
-    options = options || {};
-    list.push(id);
-
-  },
-
-  _removeSelected: function(list, id) {
-    options = options || {};
-    _.remove(list, function(item) {
-      return item == id
-    })
-
-
-  },
-
-  _onItemChange: function(id, selected) {
-    console.log('TreeView -> _onItemChange');
-    var list = this.state.selected.slice(0); //clone values;
-    if (selected) {
-      this._addSelected(list, id);
-    } else {
-      this._removeSelected(list, id);
-    }
-    //this._triggerSelectionChange(list);
-  },
-
-  _triggerSelectionChange: function(newSelection) {
-
-    this.setState(_.assign(this.state, {
-      'selected': newSelection
-    }));
-  },
-  
-  /*Life Cycle */
-  componentDidMount: function() {
+   componentDidMount: function() {
     if (this.props.store){
       this.unsubscribe = this.props.store.listen(this.onStatusChange);
+      this.props.store.load();
     }
+
   },
 
   componentWillUnmount: function() {
@@ -62,6 +29,7 @@ var TreeView =  React.createClass({
 
   getInitialState: function() {
     return {
+      expanded:false,
       items: [],
       selected: [],
       filter: '',
@@ -69,122 +37,96 @@ var TreeView =  React.createClass({
   },
 
 
-  _isVisible: function(item) {
-    console.log(this.state.filter)
-    if (this.state.filter.length > 1) {
-      var pattern = new RegExp(this.state.filter, 'i');
-      return pattern.test(item.name)
-    } else {
-      return true;
-    }
+  _filterItems:function(items,field,value){
+    return _.filter(items,
+      function(item){
+        return item[field]==value;
+      })
   },
-
-
-  /*Select all None*/
-  _onSelectAll: function() {
-    console.log('TreeView -> _onSelectAll');
-    var selection = this.state.selected.slice(0);
-
-    this.state.items.map(function(item) {
-      this._addSelected(selection, item.id)
-
-    }, this);
-    this._triggerSelectionChange(selection);
-  },
-
-  _onSelectNone: function() {
-    this._triggerSelectionChange([]);
-  },
-
-  _filterItemsByParent: function(parent) {
-    var self = this;
-    return this.state.items.filter(function(it){return it[self.props.parentParamField]==parent.id});
+  
+  _toggle:function(){
+    debugger;
+    this.setState(_.assign(this.state,{expanded:!this.state.expanded}));
   },
 
   render: function() {
-    var self = this;
-    console.log('TreeView -> Render');
-    var items = this.props.parentItem? this._filterItemsByParent(this.props.parentItem) : this.state.items;
-    return ( 
-      <div> 
-        <ul>
-        {
-          items.map(function(item) {
-            return (
-              <ul>
-                <Item {...item} onItemChange={self._onItemChange} />
-                .
-                <div>
-                  <TreeView {...self.props.child} parentItem={item}/>
-                </div>
-              </ul>
-              )            
-          })
-        }
-        </ul>
-      </div>
-      );
-  }
+   var items = (this.props.parentIdValue)? this._filterItems(this.state.items,this.props.parentField,this.props.parentIdValue):this.state.items;
+   console.log(this.props.label +' - '+ this.state.expanded)
+   
+
+
+   return ( 
+
+    <ul>
+    {
+      items.map(function(item) {
+        return (
+          <ul>
+            
+            <Item {...item}/>
+              
+                <If condition={this.props.nested}>
+                    <div onClick={this._toggle}> <a>+</a></div>
+                 
+                  <If  condition={this.state.expanded===true}>
+              
+                     <TreeView  key={item.id} {...this.props.nested} parentIdValue={item.id}/>
+                  </If>
+                
+              </If>
+              
+              
+          </ul>
+          )            
+      }.bind(this))
+    }
+    </ul>
+    );
+ }
 });
+
+/*end tree view*/
 
 module.exports = React.createClass({
 
   mixins: [PureRenderMixin],
-
+  
   _onItemChange: function(id, selected) {
-    
-  },
-  
-  _onSearch: function(keyword) {
+   console.log('TreeList -> _onItemChange');
 
-  },
+ },
+
+ _onSearch: function(keyword) {
+   console.log('TreeList -> _onSearch');
+
+ },
 
 
-  _onSearchEnterKey: function() {
-     
-  },
+ _onSearchEnterKey: function() {
+   console.log('TreeList -> _onSearchEnterKey');
 
-  /*Select all None*/
-  _onSelectAll: function() {
+ },
+
+ _onSelectAll: function() {
    console.log('TreeList -> _onSelectAll');
-     
-  },
+ },
 
-  _onSelectNone: function() {
-  
-  },
 
-  componentDidMount: function() {
-    this._loadStoreData(this.props.child);    
-  },
+ render: function() {
 
-  _loadStoreData: function(child) {
-    child.store.load() //this should be an event ...
-    if (child.child){
-      this._loadStoreData(child.child);
-    }
-  },
+  console.log('TreeList -> Render');
+  var children = React.Children.map(this.props.children, function(child) {
 
-  render: function() {
+    return child ? React.addons.cloneWithProps(child, { 
+      onSearch:this._onSearch, onSearchEnterKey:this._onSearchEnterKey, onSelectAll:this._onSelectAll, onSelectNone:this._onSelectNone}) : null;}, this);
 
-    console.log('TreeList -> Render');
-    var children = React.Children.map(this.props.children, function(child) {
-      
-      return child ? React.addons.cloneWithProps(child, {
-        onSearch:this._onSearch,
-        onSearchEnterKey:this._onSearchEnterKey,
-        onSelectAll:this._onSelectAll,
-        onSelectNone:this._onSelectNone
-
-      }) : null;
-    }, this);
-    return ( 
-      <div> 
-        {children}
-        <span className="filter-label" role="label">{<Message message={this.props.label}/>}</span>
-        <TreeView {...this.props.child}/>
-      </div>
-      );
-  }
+  return ( 
+   <div> 
+   {children}
+   <span className="filter-label" role="label">{<Message message={this.props.label}/>}</span>
+   <TreeView   {...this.props.nested}/>
+   </div>
+   );
+}
 
 });

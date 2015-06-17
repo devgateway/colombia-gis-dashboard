@@ -12,6 +12,10 @@ module.exports = Reflux.createStore({
 		this._loadItems(window.DATA_PATH + '/municipalitiesList.json');
 	},
 
+	getState:function(){
+		return this.state;
+	},
+
 	getInitialState: function() {
 
 		this.state= {
