@@ -1226,7 +1226,11 @@ ul.tabs {
 .layer-control .ui-state-default,
 .layer-control .ui-widget-content .ui-state-default,
 .layer-control .ui-widget-header .ui-state-default {
-  background: #4d749f;
+  background: #e9ba00;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  background-clip: padding-box;
+  /* stops bg color from leaking outside the border: */
   -webkit-transition: all 100ms ease;
   -moz-transition: all 100ms ease;
   -o-transition: all 100ms ease;
@@ -1237,9 +1241,27 @@ ul.tabs {
   .layer-control .ui-widget-header .ui-state-default:hover {
     background: #98ca68; }
 .layer-control .ui-slider-horizontal .ui-slider-handle {
-  margin-top: 0.15em; }
+  margin-top: 0.05em; }
 .layer-control .ui-slider-horizontal {
-  height: 1em; }
+  height: 0.8em;
+  background: #ededed;
+  /* Old browsers */
+  /* IE9 SVG, needs conditional override of 'filter' to 'none' */
+  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2VkZWRlZCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmZmZmZmYiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+  background: -moz-linear-gradient(left, #ededed 0%, white 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, right top, color-stop(0%, #ededed), color-stop(100%, white));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(left, #ededed 0%, white 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(left, #ededed 0%, white 100%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(left, #ededed 0%, white 100%);
+  /* IE10+ */
+  background: linear-gradient(to right, #ededed 0%, white 100%);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ededed', endColorstr='#ffffff',GradientType=1 );
+  /* IE6-8 */ }
 .layer-control .ui-slider-label {
   color: #4d749f; }
 .layer-control .fa.fa-times,
@@ -1437,6 +1459,30 @@ ul.tabs {
       .legends-list ul li img {
         margin-right: 5px; }
 
+.toggler {
+  background: #d7e0e4; }
+
+.layer-control-toggle h3 {
+  font-weight: bold;
+  color: #4d749f;
+  font-size: 13px; }
+
+.control-items {
+  background: #800; }
+
+.toggler-button {
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  background-clip: padding-box;
+  /* stops bg color from leaking outside the border: */
+  background: #d7e0e4;
+  padding: 5px 10px; }
+  .toggler-button:hover {
+    background: #d4dee2; }
+
+.layer-control-panel ul {
+  padding-left: 0; }
+
 /*add here all styles used during development later they will be replaced by the final ones */
 .selectable-radio {
   border-radius: 0% !important;
@@ -1478,11 +1524,37 @@ ul.tabs {
   color: #4278AA;
   font-size: 14px; }
 
-.colorpicker-element {
-  width: 50px;
-  height: 50px;
+.fundingByType-title {
+  color: #4278AA;
+  font-size: 14px; }
+
+.clearFix {
+  clear: both; }
+
+.breaksOptions input {
+  width: 20px;
+  font-size: 10px;
+  margin-top: 4px; }
+.breaksOptions .label {
   float: left;
-  border: 0px; }
+  width: 50px;
+  margin-top: 7px; }
+.breaksOptions .colorpicker-element {
+  width: 25px;
+  height: 25px;
+  float: left;
+  margin: 3px;
+  border: 1px; }
+.breaksOptions .input-group-addon {
+  padding: 2px 2px;
+  font-size: 12px;
+  font-weight: normal;
+  line-height: 1;
+  color: #555;
+  text-align: center;
+  background-color: #eee;
+  border: 1px solid #ccc;
+  border-radius: 4px; }
 
 .loading-container {
   position: absolute;
