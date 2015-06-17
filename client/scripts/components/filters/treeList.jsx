@@ -2,7 +2,7 @@
 
 var React = require('react');
 var PureRenderMixin = require('react/addons').addons.PureRenderMixin;
-var Item=require('./item.jsx');
+var Item=require('./treeListItem.jsx');
 var _=require('lodash');
 var If=require('../commons/if.jsx');
 
@@ -57,27 +57,20 @@ var TreeView =  React.createClass({
 
    return ( 
 
-    <ul>
+    <ul>{this.props.label}
     {
       items.map(function(item) {
+        
         return (
           <ul>
-            
-            <Item {...item}/>
-              
-                <If condition={this.props.nested}>
-                    <div onClick={this._toggle}> <a>+</a></div>
-                 
-                  <If  condition={this.state.expanded===true}>
-              
-                     <TreeView  key={item.id} {...this.props.nested} parentIdValue={item.id}/>
-                  </If>
-                
-              </If>
-              
-              
-          </ul>
-          )            
+          {this.props.nested!=undefined}
+            <Item {...item} showToggler={this.props.nested!=undefined}> 
+
+             {(this.props.nested)? <TreeView {...this.props.nested} parentIdValue={item.id} />:null}
+               
+
+              </Item>
+          </ul>)            
       }.bind(this))
     }
     </ul>
