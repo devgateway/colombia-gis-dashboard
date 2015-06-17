@@ -4,10 +4,11 @@ var assign = require('object-assign');
 var Reflux = require('reflux');
 var _ = require('lodash');
 var Mixins=require('./mixins.js');
+var actions=require('../../actions/filterListActions.js').Municipalities;
+
 module.exports = Reflux.createStore({
-
+	listenables: actions,
 	mixins: [Mixins],
-
 	load:function(){
 		this._loadItems(window.DATA_PATH + '/municipalitiesList.json');
 	},
@@ -16,16 +17,6 @@ module.exports = Reflux.createStore({
 		return this.state;
 	},
 
-	getInitialState: function() {
-
-		this.state= {
-			label: '',
-			modes: [],
-			param: '',
-			dataSource: '',
-			items: [],
-			selection: []
-		}
-	},
+	
 
 })

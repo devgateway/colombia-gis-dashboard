@@ -4,24 +4,19 @@ var assign = require('object-assign');
 var Reflux = require('reflux');
 var _ = require('lodash');
 var Mixins=require('./mixins.js');
-module.exports = Reflux.createStore({
+var actions=require('../../actions/filterListActions.js').TargetPopulation;
 
+module.exports = Reflux.createStore({
+	
+	listenables: actions,
+	
 	mixins: [Mixins],
 
-	load:function(){
+	onLoad:function(){
+		console.log('load');
 		this._loadItems(window.DATA_PATH + '/targetPopulation.json');
 	},
 
-	getInitialState: function() {
 
-		this.state= {
-			label: '',
-			modes: [],
-			param: '',
-			dataSource: '',
-			items: [],
-			selection: []
-		}
-	},
 
 })

@@ -1,35 +1,35 @@
-var DepartamentsStore=require('../stores/filters/departamentsStore.js')
-var MunicipalitiesStore=require('../stores/filters/municipalitiesStore.js')
-var TargetPopulationStore=require('../stores/filters/targetPopulationStore.js')
+var DepartamentsStore = require('../stores/filters/departamentsStore.js')
+var MunicipalitiesStore = require('../stores/filters/municipalitiesStore.js')
+var TargetPopulationStore = require('../stores/filters/targetPopulationStore.js')
 
-
-
+var Actions = require('../actions/filterListActions.js');
 var filters = [
-
-  {
+ {
     index: 1,
     label: 'filters.locations',
-    modes: ['basic','advanced'],
+    modes: ['basic', 'advanced'],
     type: 'tree',
     nested: {
       label: 'Departaments',
       param: 'de',
       store: DepartamentsStore,
+      actions: Actions.Departaments,
       nested: {
         label: 'Municipalities',
         param: 'mu',
         parentField: 'idDepto',
-        store:MunicipalitiesStore
+        store: MunicipalitiesStore,
+        actions: Actions.Municipalities
       }
     }
-  },
-  {
+  }, {
     index: 2,
     type: 'list',
     label: 'filters.targetPopulation',
     modes: ['advanced'],
     param: 'tp',
-    store:TargetPopulationStore   
+    store: TargetPopulationStore,
+    actions: Actions.TargetPopulation
   },
 
   {
@@ -68,5 +68,5 @@ var filters = [
 ];
 
 module.exports = {
-  filters: filters  
+  filters: filters
 };

@@ -32,14 +32,43 @@ module.exports = {
 		}
 	},
 
+
+	onAdd:function(id){
+		var list=this.state.selected;
+		if (!list){
+			this.state.selected=[id];		
+		}else{
+			console.log('push id');
+			this.state.selected.push(id)		
+		}
+		console.log(this.state.selected.sort(function(a, b){return a-b}));
+	},
+	
+	onRemove:function(id){
+		_.remove(this.state.selected,function(value){
+			return value===id;
+		} );
+		console.log(this.state.selected.sort(function(a, b){return a-b}));
+	},
+
+	clean:function(){
+		this.state.selected=[];
+		console.log(this.state.selected.sort(function(a, b){return a-b}));
+	},
+
 	update: function(assignable, options) {
 		options = options || {};
 		this.state = _.assign(this.state || {}, assignable);
-		
 		if (!options.silent) {
 			this.trigger(this.state);
 		}
 	},
+
+
+
+	getInitialState: function() {
+		return (this.state = {selected:[]});
+	}
 
 	
 }
