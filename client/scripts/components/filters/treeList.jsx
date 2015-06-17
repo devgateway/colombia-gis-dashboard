@@ -9,16 +9,43 @@ var If=require('../commons/if.jsx');
 var TreeView =  React.createClass({
 
 
-  onStatusChange: function(status) {
+  |onStatusChange: function(status) {
      this.setState(_.clone(status)); //make a copy of the state would make sense 
    },
 
-   componentDidMount: function() {
+  _addSelected: function(list, id) {
+    options = options || {};
+    list.push(id);
+  },
+
+  _removeSelected: function(list, id) {
+    options = options || {};
+    _.remove(list, function(item) {
+      return item == id
+    })
+  },
+
+  _onItemChange: function(id, selected) {
+    var list = this.state.selected.slice(0); //clone values;
+    if (selected) {
+      this._addSelected(list, id);
+    } else {
+      this._removeSelected(list, id);
+    }
+    this._triggerSelectionChange(list);
+  },
+
+  _triggerSelectionChange: function(newSelection) {
+    this.setState(_.assign(this.state, {
+      'selected': newSelection
+    }));
+  },
+
+  componentDidMount: function() {
     if (this.props.store){
       this.unsubscribe = this.props.store.listen(this.onStatusChange);
       this.props.store.load();
     }
-
   },
 
   componentWillUnmount: function() {
@@ -36,7 +63,6 @@ var TreeView =  React.createClass({
     };
   },
 
-
   _filterItems:function(items,field,value){
     return _.filter(items,
       function(item){
@@ -50,26 +76,18 @@ var TreeView =  React.createClass({
   },
 
   render: function() {
-   var items = (this.props.parentIdValue)? this._filterItems(this.state.items,this.props.parentField,this.props.parentIdValue):this.state.items;
-   console.log(this.props.label +' - '+ this.state.expanded)
-   
-
-
-   return ( 
-
+    var items = (this.props.parentIdValue)? this._filterItems(this.state.items,this.props.parentField,this.props.parentIdValue):this.state.items;
+    console.log(this.props.label +' - '+ this.state.expanded)
+    
+    return ( 
     <ul>{this.props.label}
     {
-      items.map(function(item) {
-        
+      items.map(function(item) {        
         return (
           <ul>
-          {this.props.nested!=undefined}
             <Item {...item} showToggler={this.props.nested!=undefined}> 
-
              {(this.props.nested)? <TreeView {...this.props.nested} parentIdValue={item.id} />:null}
-               
-
-              </Item>
+            </Item>
           </ul>)            
       }.bind(this))
     }
