@@ -86,7 +86,9 @@ render: function() {
         <If condition={this.props.onChangeVisibility}>
           <Checkbox selected={this.state.checked} onChange={this._handleChageVisibility}/> 
         </If>
-        <span className="control-title">{this.props.title}</span>
+        <If condition={this.props.title}>
+          <span className="control-title">{this.props.title}</span>
+        </If>
       </div>  
       <div className='slider-holder'>
         <div className='slider'/>

@@ -62,15 +62,14 @@ module.exports = React.createClass({
         <div toggler={true} className="toggler-button"><i className="fa fa-minus-square-o"></i></div>
       </TogglerContent>
       <TogglerContent visibleWhen="always">
-        
-        <Layer id="points" title={i18n.t("layers.subActivitiesLevel")}  
+        <div><span className="control-title">{i18n.t("layers.subActivitiesLevel")}</span></div>        
+      </TogglerContent>
+      <TogglerContent visibleWhen="expanded">
+        <Layer id="points"  
           opacity={this.state.opacity} 
           onChangeOpacity={this._onChangeOpacity} 
           onChangeVisibility={this._changevisibility} 
           visible={this.state.visible}/>
-      
-      </TogglerContent>
-      <TogglerContent visibleWhen="expanded">
         <ul className="controls-items">
           <li>
             <h3><Message message='layers.level'/></h3>
