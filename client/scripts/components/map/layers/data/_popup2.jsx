@@ -8,6 +8,23 @@ var InfoWindowStore=require('../../../../stores/infoWindowStore.js');
 var If=require('../../../commons/if.jsx');
 var Loading = require('../../../commons/loading.jsx')
 
+var MyActivities = React.createClass({
+  render: function() {
+    var items = [];
+    if(this.props.data){
+      items = this.props.data;
+    }
+    return (
+        <ul>
+        {
+          items.map(function(node, index) {
+            return <li>{node.name}</li>          
+          })
+        }
+        </ul>
+    );
+  }
+});
 
 module.exports  = React.createClass({
   mixins: [Reflux.connect(InfoWindowStore)],
@@ -138,7 +155,6 @@ module.exports  = React.createClass({
             },
             series: [{data: chartdata}]
           });
-        debugger;
       }
 
     }
@@ -146,6 +162,12 @@ module.exports  = React.createClass({
 
   render: function() {
     console.log('popup2>render id:' + this.props.id +" tab "+this.state.tabId);
+    var tabId = this.state.tabId ? this.state.tabId : 0;
+    var titleArray = this._getTitles();
+    var infoData=[];
+    if(tabId==4){
+      infoData = this._getData(tabId);
+    }
     var showLoading=true;
     if(this.state.infoWindow){
       showLoading=false;
@@ -193,6 +215,12 @@ module.exports  = React.createClass({
               <div className="chart-container" id="container"></div>
               <If condition={showLoading} >
                 <Loading container="popup-loading-container"/>
+              </If>
+              <If condition={tabId==4} >
+                <div className="activities-content">
+                  <div className="sub-activities-title">{titleArray[tabId]}</div>
+                  <MyActivities data={infoData[4]} />
+                </div>
               </If>
             </div>
           </div>
