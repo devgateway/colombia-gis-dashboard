@@ -63,7 +63,7 @@
        _bindPopup: function(feature, layer) {
          layer.bindPopup('');
          layer.on('popupopen', function(e) {
-           layer._popup.options.autoPanPaddingTopLeft = new L.Point(0, 50);
+           layer._popup.options.autoPanPaddingTopLeft = new L.Point(0, 83);
            var popupHolder = this.getDOMNode();
            var _onChange = function() {
              popupHolder.firstChild.style.display = "";

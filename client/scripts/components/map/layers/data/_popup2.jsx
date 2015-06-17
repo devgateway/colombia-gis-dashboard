@@ -65,6 +65,13 @@ module.exports  = React.createClass({
     this._renderChart();
   },
 
+  setAttributeDisplay: function(classId, attr, display){
+    $(classId).map(function(node, index) {
+        if(index.getAttribute(attr)){
+          index.style.display=display;
+        }
+      })
+  },
 
   handleClick:function(tabId){
     console.log('popup2>click');
@@ -160,6 +167,7 @@ module.exports  = React.createClass({
       }
 
     }
+    this.setAttributeDisplay(".popup-nav-wrapper", "data-originalreactid", "inline");
   },
 
   render: function() {

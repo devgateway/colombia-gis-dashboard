@@ -50,6 +50,9 @@
   background: #ffffff;
   margin: -10px auto 0;
 }
+.popup-nav-wrapper {
+  display: none;
+}
 .popup-nav-wrapper .panel {
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
