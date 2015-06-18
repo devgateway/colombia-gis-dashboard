@@ -50,6 +50,10 @@
     width:330px;
     float:left;
     }
+    &.color-selection{
+    width:300px;
+    float:left;
+    }
   }
 }
 
@@ -57,10 +61,10 @@
 .breaksOptions {
   width:22px;
   float:left;
-
+  margin-top:-4px;
 
 	input{ display:none;
-	}
+  }
 
 	.label{
 		display:none;

@@ -80,10 +80,9 @@ module.exports = React.createClass({
                 onClick={this._showByMunicipality} label="layers.byMunicipality"/>
             </CustomRadioGroup>
           </li>
-          <li>
+          <li className="color-selection">
             <h3>Color Selection</h3>
             <div>
-              <b>Property<i>{this.state.breaks.field}</i></b>
             </div>
             {
               _.map(_.keys(this.state.breaks.breaks),function(key){
