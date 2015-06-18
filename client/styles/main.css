@@ -1510,24 +1510,26 @@ ul.tabs {
       width: 330px;
       float: left; }
 
-.breaksOptions input {
-  display: none; }
-.breaksOptions .label {
-  display: none; }
-.breaksOptions .colorpicker-element {
-  width: 20px;
-  height: 20px;
-  float: left;
-  margin: 3px; }
-.breaksOptions .input-group-addon {
-  padding: 0;
-  font-size: 12px;
-  font-weight: normal;
-  line-height: 1;
-  color: #555;
-  text-align: center;
-  border: 1px solid transparent;
+.breaksOptions {
+  width: 22px;
   float: left; }
+  .breaksOptions input {
+    display: none; }
+  .breaksOptions .label {
+    display: none; }
+  .breaksOptions .colorpicker-element {
+    width: 20px;
+    height: 20px;
+    float: left; }
+  .breaksOptions .input-group-addon {
+    padding: 0;
+    font-size: 12px;
+    font-weight: normal;
+    line-height: 1;
+    color: #555;
+    text-align: center;
+    border: 1px solid transparent;
+    float: left; }
 
 /*add here all styles used during development later they will be replaced by the final ones */
 .selectable-radio {

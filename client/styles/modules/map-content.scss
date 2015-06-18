@@ -55,6 +55,9 @@
 
 // layer color controls
 .breaksOptions {
+  width:22px;
+  float:left;
+
 
 	input{ display:none;
 	}
@@ -67,7 +70,6 @@
 		width: 20px;
 		height: 20px;
 		float: left;
-		margin: 3px;
 	}
 
 	.input-group-addon {
