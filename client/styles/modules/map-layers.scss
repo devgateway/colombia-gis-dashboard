@@ -84,6 +84,7 @@
     margin-right:10px;
     font-size:12px;
     margin-top:0;
+    color: $blue;
   }
   .ui-slider-pip {
     top: 30px;
@@ -103,9 +104,12 @@
   .slider-holder{
     position: relative;
     display: block;
-    width:160px;
+    width:245px;
     float: left;
-    margin-top: 5px;
+    .slider{
+     margin-left:95px;
+     margin-top: 3px;
+    }
   }
 
   .feature-checkbox{

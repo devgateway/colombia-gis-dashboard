@@ -56,7 +56,7 @@ module.exports=React.createClass({
       }
     }.bind(this),
     max: 100,
-    value:(opacity*100) 
+    value:(opacity*100)
   })
   .slider("pips", {
     rest: false
@@ -84,16 +84,19 @@ render: function() {
       </div>
       <div className="title">
         <If condition={this.props.onChangeVisibility}>
-          <Checkbox selected={this.state.checked} onChange={this._handleChageVisibility}/> 
+          <Checkbox selected={this.state.checked} onChange={this._handleChageVisibility}/>
         </If>
         <If condition={this.props.title}>
           <span className="control-title">{this.props.title}</span>
         </If>
-      </div>  
+      </div>
+    <div className="control-wrapper transparency">
       <div className='slider-holder'>
+        <h3>Transparency</h3>
         <div className='slider'/>
       </div>
+      </div>
     </div>
-    );   
+    );
 }
 });
