@@ -1510,6 +1510,25 @@ ul.tabs {
       width: 330px;
       float: left; }
 
+.breaksOptions input {
+  display: none; }
+.breaksOptions .label {
+  display: none; }
+.breaksOptions .colorpicker-element {
+  width: 20px;
+  height: 20px;
+  float: left;
+  margin: 3px; }
+.breaksOptions .input-group-addon {
+  padding: 0;
+  font-size: 12px;
+  font-weight: normal;
+  line-height: 1;
+  color: #555;
+  text-align: center;
+  border: 1px solid transparent;
+  float: left; }
+
 /*add here all styles used during development later they will be replaced by the final ones */
 .selectable-radio {
   border-radius: 0% !important;
@@ -1559,29 +1578,23 @@ ul.tabs {
   clear: both; }
 
 .breaksOptions input {
-  width: 20px;
-  font-size: 10px;
-  margin-top: 4px; }
+  display: none; }
 .breaksOptions .label {
-  float: left;
-  width: 50px;
-  margin-top: 7px; }
+  display: none; }
 .breaksOptions .colorpicker-element {
-  width: 25px;
-  height: 25px;
+  width: 20px;
+  height: 20px;
   float: left;
-  margin: 3px;
-  border: 1px; }
+  margin: 3px; }
 .breaksOptions .input-group-addon {
-  padding: 2px 2px;
+  padding: 0;
   font-size: 12px;
   font-weight: normal;
   line-height: 1;
   color: #555;
   text-align: center;
-  background-color: #eee;
-  border: 1px solid #ccc;
-  border-radius: 4px; }
+  border: 1px solid transparent;
+  float: left; }
 
 .loading-container {
   position: absolute;

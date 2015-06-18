@@ -5,7 +5,7 @@
 	border-radius: 0% !important;
 	background-clip:none;
 
-	font-size: 1.5em !important; 
+	font-size: 1.5em !important;
 	width: 5px;
 	height: 5px;
 	border: 1px solid #cccccc;
@@ -16,7 +16,7 @@
 	width:13px;
 	height:13px;
 	.selected{
-		
+
 	}
 	.fa{
 		font-size:0.7em;
@@ -59,43 +59,36 @@
 }
 .breaksOptions {
 
-	input{
-		width: 20px;
-		font-size:10px;
-		margin-top: 4px; 
+	input{ display:none;
 	}
 
 	.label{
-		float: left;
-		width: 50px;
-		margin-top:7px;
+		display:none;
 	}
 
 	.colorpicker-element{
-		width: 25px;
-		height: 25px;
+		width: 20px;
+		height: 20px;
 		float: left;
 		margin: 3px;
-		border:1px;
 	}
 
 	.input-group-addon {
-		padding: 2px 2px;
+		padding:0;
 		font-size: 12px;
 		font-weight: normal;
 		line-height: 1;
 		color: #555;
 		text-align: center;
-		background-color: #eee;
-		border: 1px solid #ccc;
-		border-radius: 4px;
+		border:1px solid transparent;
+		float:left;
 	}
-	
+
 }
 
 .loading-container {
 	position: absolute;
 	bottom: 50%;
 	right: 45%;
-	border: 0px solid 
+	border: 0px solid
 }

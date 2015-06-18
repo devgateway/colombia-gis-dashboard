@@ -81,7 +81,7 @@ module.exports = React.createClass({
             </CustomRadioGroup>
           </li>
           <li>
-            <h3>Styles Breaks</h3>
+            <h3>Color Selection</h3>
             <div>
               <b>Property<i>{this.state.breaks.field}</i></b>
             </div>
