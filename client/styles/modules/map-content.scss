@@ -1,5 +1,13 @@
 .toggler{
   background: #d7e0e4;
+  overflow:visible;
+  position:relative;
+  .selectable{
+  }
+  .control-title{
+    float:left;
+    margin-right:10px;
+  }
 }
 .layer-control-toggle{
   h3{
@@ -8,14 +16,12 @@
     font-size:13px;
   }
 }
-.control-items{
-  background:#800;
-}
+
 .toggler-button{
   @include border-radius(2px);
   background: #d7e0e4;
   padding:5px 10px;
-  overflow:hidden;
+  margin-top:3px;
   &:hover{
   background: darken(#d7e0e4,1%);
   }
@@ -23,5 +29,26 @@
 .layer-control-panel{
   ul{
     padding-left:0
+  }
+}
+
+.control-wrapper{
+  overflow:hidden;
+  &.transparency{
+  width:270px;
+  float:left;
+  }
+
+}
+
+.controls-items{
+  display:block;
+  li{
+    display:block;
+    float:left;
+    &.levels{
+    width:330px;
+    float:left;
+    }
   }
 }

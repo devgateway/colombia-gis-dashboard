@@ -1189,6 +1189,11 @@ ul.tabs {
   font-size: 0.9em;
   padding-right: 0.4em; }
 
+.layer-control h3 {
+  float: left;
+  margin-right: 10px;
+  font-size: 12px;
+  margin-top: 0; }
 .layer-control .ui-slider-pip {
   top: 30px;
   display: none; }
@@ -1197,15 +1202,13 @@ ul.tabs {
 .layer-control .title {
   font-size: 1em;
   color: #454545;
-  line-height: 150%;
-  float: left;
-  margin-top: -21px;
-  margin-left: 30px; }
+  line-height: 150%; }
 .layer-control .slider-holder {
   position: relative;
   display: block;
-  width: 200px;
-  margin-left: 25px; }
+  width: 160px;
+  float: left;
+  margin-top: 5px; }
 .layer-control .feature-checkbox {
   float: left;
   margin-top: -5px; }
@@ -1463,15 +1466,17 @@ ul.tabs {
         margin-right: 5px; }
 
 .toggler {
-  background: #d7e0e4; }
+  background: #d7e0e4;
+  overflow: visible;
+  position: relative; }
+  .toggler .control-title {
+    float: left;
+    margin-right: 10px; }
 
 .layer-control-toggle h3 {
   font-weight: bold;
   color: #4d749f;
   font-size: 13px; }
-
-.control-items {
-  background: #800; }
 
 .toggler-button {
   -webkit-border-radius: 2px;
@@ -1480,12 +1485,27 @@ ul.tabs {
   /* stops bg color from leaking outside the border: */
   background: #d7e0e4;
   padding: 5px 10px;
-  overflow: hidden; }
+  margin-top: 3px; }
   .toggler-button:hover {
     background: #d4dee2; }
 
 .layer-control-panel ul {
   padding-left: 0; }
+
+.control-wrapper {
+  overflow: hidden; }
+  .control-wrapper.transparency {
+    width: 270px;
+    float: left; }
+
+.controls-items {
+  display: block; }
+  .controls-items li {
+    display: block;
+    float: left; }
+    .controls-items li.levels {
+      width: 330px;
+      float: left; }
 
 /*add here all styles used during development later they will be replaced by the final ones */
 .selectable-radio {

@@ -19,36 +19,36 @@ var Store = require('../../../stores/pointsLayerStore.js');
 
 module.exports = React.createClass({
 
- mixins: [Reflux.connect(Store)], 
-  
+ mixins: [Reflux.connect(Store)],
+
  _changevisibility: function(id, value) {
-    LayerActions.changeLayerValue(id,'visible',value); //TODO:property mame should be in a globar variable 
+    LayerActions.changeLayerValue(id,'visible',value); //TODO:property mame should be in a globar variable
   },
-  
+
   _onChangeOpacity:function(id,value){
-    LayerActions.changeLayerValue(id,'opacity',value); //TODO:property mame should be in a globar variable 
+    LayerActions.changeLayerValue(id,'opacity',value); //TODO:property mame should be in a globar variable
   },
 
   _showByDepartment:function(){
-    LayerActions.changeLayerValue('points','level','departament'); //TODO:property mame should be in a globar variable 
+    LayerActions.changeLayerValue('points','level','departament'); //TODO:property mame should be in a globar variable
   },
 
   _showByMunicipality:function(){
-    LayerActions.changeLayerValue('points','level','municipality'); //TODO:property mame should be in a globar variable 
+    LayerActions.changeLayerValue('points','level','municipality'); //TODO:property mame should be in a globar variable
   },
 
   _changeColor:function(value,level){
 
-    LayerActions.changeLayerValue('points','color',value,level); //TODO:property mame should be in a globar variable 
+    LayerActions.changeLayerValue('points','color',value,level); //TODO:property mame should be in a globar variable
   },
 
   _changeRadius:function(value,level){
-  
-    LayerActions.changeLayerValue('points','radius',value,level); //TODO:property mame should be in a globar variable 
+
+    LayerActions.changeLayerValue('points','radius',value,level); //TODO:property mame should be in a globar variable
   },
 
  render: function() {
-  
+
 
   var level=this.state.level;
 
@@ -62,24 +62,24 @@ module.exports = React.createClass({
         <div toggler={true} className="toggler-button"><i className="fa fa-minus-square-o"></i></div>
       </TogglerContent>
       <TogglerContent visibleWhen="always">
-        <div><span className="control-title">{i18n.t("layers.subActivitiesLevel")}</span></div>        
+        <div><span className="control-title">{i18n.t("layers.subActivitiesLevel")}</span></div>
       </TogglerContent>
       <TogglerContent visibleWhen="expanded">
-        <Layer id="points"  
-          opacity={this.state.opacity} 
-          onChangeOpacity={this._onChangeOpacity} 
-          onChangeVisibility={this._changevisibility} 
+        <Layer id="points"
+          opacity={this.state.opacity}
+          onChangeOpacity={this._onChangeOpacity}
+          onChangeVisibility={this._changevisibility}
           visible={this.state.visible}/>
         <ul className="controls-items">
-          <li>
+          <li className="levels">
             <h3><Message message='layers.level'/></h3>
             <CustomRadioGroup>
-              <CustomRadio className="horizontal" name="departament" checked={(level=='departament')? true : false} 
+              <CustomRadio className="horizontal" name="departament" checked={(level=='departament')? true : false}
                 onClick={this._showByDepartment} label="layers.byDepartment"/>
-              <CustomRadio className="horizontal" name="municipality" checked={(level=='municipality')? true : false} 
-                onClick={this._showByMunicipality} label="layers.byMunicipality"/>    
+              <CustomRadio className="horizontal" name="municipality" checked={(level=='municipality')? true : false}
+                onClick={this._showByMunicipality} label="layers.byMunicipality"/>
             </CustomRadioGroup>
-          </li>          
+          </li>
           <li>
             <h3>Styles Breaks</h3>
             <div>
@@ -89,17 +89,17 @@ module.exports = React.createClass({
               _.map(_.keys(this.state.breaks.breaks),function(key){
                   var br=this.state.breaks.breaks[key];
                 return (
-                      <Breaker  level={key} label={br.min+'-'+br.max} radius={br.style.radius} color={br.style.color} onChangeColor={this._changeColor} 
+                      <Breaker  level={key} label={br.min+'-'+br.max} radius={br.style.radius} color={br.style.color} onChangeColor={this._changeColor}
                       onChageRadius={this._changeRadius}/>
                       )
               }.bind(this))
             }
           </li>
-          
-        </ul>                    
+
+        </ul>
       </TogglerContent>
     </Toggler>
   </li>);
-  
+
 }
 });
