@@ -59,30 +59,40 @@ var TreeView =  React.createClass({
       })
   },
 
+  _isVisible: function(item) {
+    if (this.props.parentVisible){
+      return true;
+    }
+    if (this.props.filter && this.props.filter.length > 1) {
+      var pattern = new RegExp(this.props.filter, 'i');
+      return pattern.test(item.name)
+    } else {
+      return true;
+    }
+  },
+
   _toggle:function(){
     this.setState(_.assign(this.state,{expanded:!this.state.expanded}));
   },
 
-  _onSelectAll: function() {
+  changeFullSelection: function(selected) {
     var selection = [];
-    this._getItemsFiltered().map(function(item) {
-      this._addSelected(selection, item.id)
-    }, this);
+    if (selected){
+      this._getItemsFiltered().map(function(item) {
+        this._addSelected(selection, item.id)
+      }, this);
+    }
     this._triggerSelectionChange(selection);
   },
 
-  _onSelectNone: function() {
-    this._triggerSelectionChange([]);
-  },
-
   componentWillReceiveProps: function(nextProps){
-    if (nextProps.selectAll!=undefined && nextProps.selectAll!=this.props.selectAll){
-      if (nextProps.selectAll){
-        this._onSelectAll();
-      } else {
-        this._onSelectNone();
+    if (nextProps.selectAll!=undefined){
+      if (nextProps.selectAll.timestamp && nextProps.selectAll.timestamp!=this.props.selectAll.timestamp){
+        this.changeFullSelection(nextProps.selectAll.value);
+      } else if (nextProps.selectAll.value!=this.props.selectAll.value){
+        this.changeFullSelection(nextProps.selectAll.value);
       }
-    }
+    }     
   },
   
   componentDidMount: function() {
@@ -111,18 +121,22 @@ var TreeView =  React.createClass({
     var items = this._getItemsFiltered();
     if (!this.props.collapsed){
       return ( 
-      <ul>{this.props.label}
+      <div>
       {
-        items.map(function(item) {    
+        items.map(function(item) {   
           return (
-            <ul>
-              <Item {...item} onItemChange={this._onItemChange} showToggler={this.props.nested!=undefined} selected={this.state.selected.indexOf(item.id)> -1}> 
-                {(this.props.nested)? <TreeView {...this.props.nested} parentIdValue={item.id}/>:null}
+            <div>
+              <Item {...item} 
+                onItemChange={this._onItemChange} 
+                showToggler={this.props.nested!=undefined} 
+                selected={this.state.selected.indexOf(item.id)> -1}
+                visible={this._isVisible(item)}> 
+                {(this.props.nested)? <TreeView {...this.props.nested} parentVisible={this._isVisible(item)} filter={this.props.filter} parentIdValue={item.id}/>:null}
               </Item>
-            </ul>)            
+            </div>)            
         }.bind(this))
       }
-      </ul>
+      </div>
       );
     } else {
       return null;
@@ -141,27 +155,37 @@ module.exports = React.createClass({
   },
 
   _onSearch: function(keyword) {
-    console.log('TreeList -> _onSearch');
-  },
 
+    if (keyword.length > 0) {
+      this.setState(_.assign(this.state, {
+        'filter': keyword
+      }));
+      this.forceUpdate();
+    } else if (this.state.filter.length > 0) {
+      this.setState(_.assign(this.state, {
+        'filter': ''
+      }));
+      this.forceUpdate();
+    }
+  },
 
   _onSearchEnterKey: function() {
     console.log('TreeList -> _onSearchEnterKey');
   },
 
   _onSelectAll: function() {
-    this.setState(_.assign(this.state,{selectAll: true}));
+    this.setState(_.assign(this.state,{selectAll: {value: true, timestamp: Date.now()}}));
     this.forceUpdate();
   },
 
   _onSelectNone: function() {
-    this.setState(_.assign(this.state,{selectAll: false}));
+    this.setState(_.assign(this.state,{selectAll: {value: false, timestamp: Date.now()}}));
     this.forceUpdate();
   },
 
   getInitialState: function() {
     return {
-      selectAll: false
+      selectAll: {value: false, timestamp: Date.now()}
     };
   },
 
@@ -177,9 +201,9 @@ module.exports = React.createClass({
 
     return ( 
       <div> 
-        {children}
         <span className="filter-label" role="label">{<Message message={this.props.label}/>}</span>
-        <TreeView {...this.props.nested} selectAll={this.state.selectAll}/>
+        {children}
+        <TreeView {...this.props.nested} selectAll={this.state.selectAll} filter={this.state.filter}/>
       </div>
       );
   }

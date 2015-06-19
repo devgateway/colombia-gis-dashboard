@@ -96,18 +96,7 @@ module.exports = React.createClass({
   },
 
 
-  _isVisible: function(item) {
-    console.log(this.state.filter)
-    if (this.state.filter.length > 1) {
-      var pattern = new RegExp(this.state.filter, 'i');
-      return pattern.test(item.name)
-    } else {
-      return true;
-    }
-  },
-
-
-  /*Select all None*/
+   /*Select all None*/
   _onSelectAll: function() {
     var selection = this.state.selected.slice(0);
 
