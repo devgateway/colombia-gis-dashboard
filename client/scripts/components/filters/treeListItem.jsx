@@ -54,24 +54,42 @@ module.exports = React.createClass({
       React.addons.cloneWithProps(child, { 
         onSelectionChange: this._updateSelectionCount,
         onItemsLoaded: this._updateTotalCount,
-        selectAll: this.state.selected,
+        selectAll: {value: this.state.selected},
         collapsed: !this.state.expanded
       }) 
       : null;
     }, this);
-    debugger;    
+    debugger; 
+    var className = ""
+    if (!this.props.visible){
+      className = "hidden"
+    }  
+    var childrenCounter = "";
+    var childrenToggler = "";
+    var itemClassName = "filter-col";
+    if (children){
+      itemClassName = "filter-col-parent";
+      childrenCounter = <div className="children-count"> ({this.state.childrenSelected} / {this.state.childrenTotal}) </div>;
+      childrenToggler =
+              <div className="parent-toggle" onClick={this._toggle}>
+                  <span className={this.state.expanded? "collapse-icon fa fa-minus" : "collapse-icon fa fa-plus"}></span>
+                  <span className="toggle-label">{this.state.expanded? <Message message='filters.collapse'/> : <Message message='filters.expand'/>}</span>
+              </div>;
+    }
     return(  
-      <li>
-        <div className="filter-col">
-          <CustomCheckbox selected={this.state.selected} value={this.props.id} onChange={this._handleClick}/>
-          <span onClick={this._handleClick} className={itemClassNames}> {this.props.name}</span>
+      <div className={className}>
+        <div className="filter-parent">
+          <div className={itemClassName}>
+            <CustomCheckbox selected={this.state.selected} value={this.props.id} onChange={this._handleClick}/>
+            <span onClick={this._handleClick} className={itemClassNames}> {this.props.name}</span>
+            {childrenCounter}
+            {childrenToggler}
+          </div>
         </div>
         <If condition={children}>
-          <div> ({this.state.childrenSelected} / {this.state.childrenTotal}) </div>
-          <div onClick={this._toggle}>{(this.state.expanded)?<span>-</span>:<span>+</span>}</div>
           {children}  
         </If>
-      </li>
+      </div>
     )
   }
 });
