@@ -1469,6 +1469,10 @@ ul.tabs {
         margin-right: 5px; }
 
 .toggler {
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  background-clip: padding-box;
+  /* stops bg color from leaking outside the border: */
   background: #d7e0e4;
   overflow: visible;
   position: relative; }
@@ -1482,10 +1486,6 @@ ul.tabs {
   font-size: 13px; }
 
 .toggler-button {
-  -webkit-border-radius: 2px;
-  border-radius: 2px;
-  background-clip: padding-box;
-  /* stops bg color from leaking outside the border: */
   background: #d7e0e4;
   padding: 5px 10px;
   margin-top: 3px; }
