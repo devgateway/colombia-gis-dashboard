@@ -5,8 +5,10 @@ var KeywodSearch=require('./keywordSearch.jsx');
 var SingleList=require('./singleList.jsx');
 var TreeList=require('./treeList.jsx');
 var Message=require('./../commons/message.jsx');
+var TabPane = require('react-bootstrap/lib/TabPane');
 
 var SelectAllNone=React.createClass({
+
     _onAllSelected:function(){
         this.props.onSelectAll();
     },
@@ -31,12 +33,10 @@ var SelectAllNone=React.createClass({
 module.exports = React.createClass({
 
  _activate:function(event){
-
    this.props.onActivate(this.props.index);
  },
 
  _onChangeSelection:function(){
-
  },
 
  render: function() {
@@ -51,7 +51,6 @@ module.exports = React.createClass({
       )
   }
   else if (this.props.type == 'tree') {
-    debugger;
     content=  (
       <TreeList {...this.props} onChange={this._onChangeSelection}>
         <SelectAllNone/>
@@ -62,19 +61,22 @@ module.exports = React.createClass({
     content= <div>Carrousel </div>
   }
 
-  var visible = this.props.modes.indexOf(this.props.mode) > -1; //set visiblity based on parents mode.
+  var visible = this.props.active; //set visiblity based on parents mode.
   if (visible){
     return(
-      <div className="filter-group-panel selected" >
-            <div className="filter-group-panel selected">
-            <div className="filter-group-panel-header"  onClick={this._activate}>
-              <span className="filter-label" role="label"><Message message={this.props.label}/></span>
+        <TabPane tab={this.props.label}>
+            <div className="filter-group-panel selected" >
+              <div className="filter-group-panel selected">
+              <div className="filter-group-panel-header"  onClick={this._activate}>
+               <span className="filter-label" role="label"><Message message={this.props.label}/></span>
+              </div>
+              <div className="filter-list-container">
+                 {content} 
+              </div>
             </div>
-            <div className="filter-list-container">
-               {content} 
-           </div>
-         </div>
-      </div>);
+          </div>
+      </TabPane>
+      );
       
   }else{
       return null; 

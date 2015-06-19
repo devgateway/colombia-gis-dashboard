@@ -8,4 +8,5 @@ module.exports = {
 	TargetPopulation: Reflux.createActions(names),
 	Departaments: Reflux.createActions(names),
 	Municipalities: Reflux.createActions(names),
+	applyFilters: Reflux.createAction()
 };

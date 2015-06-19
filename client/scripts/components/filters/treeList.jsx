@@ -150,12 +150,12 @@ module.exports = React.createClass({
   },
 
   _onSelectAll: function() {
-    this.setState(_.assign(this.state,{selectAll: true}));
+    this.setState(_.assign(this.state,{selectAll: true,date:new Date()}));
     this.forceUpdate();
   },
 
   _onSelectNone: function() {
-    this.setState(_.assign(this.state,{selectAll: false}));
+    this.setState(_.assign(this.state,{selectAll: false,date:new Date()}));
     this.forceUpdate();
   },
 
@@ -179,7 +179,7 @@ module.exports = React.createClass({
       <div> 
         {children}
         <span className="filter-label" role="label">{<Message message={this.props.label}/>}</span>
-        <TreeView {...this.props.nested} selectAll={this.state.selectAll}/>
+        <TreeView {...this.props.nested} selectAll={this.state.selectAll} date={this.state.date}/>
       </div>
       );
   }

@@ -61,9 +61,8 @@ module.exports = React.createClass({
 
 
   _onSearchEnterKey: function() {
-    debugger;
-    var selection = this.state.selected.slice(0);
 
+    var selection = this.state.selected.slice(0);
     this.state.items.map(function(item) {
       if (this._isVisible(item)) {
         this._addSelected(selection, item.id)
@@ -78,7 +77,6 @@ module.exports = React.createClass({
   /*Life Cycle */
   componentDidMount: function() {
     this.unsubscribe = this.props.store.listen(this.onStatusChange);
-    debugger;
     this.actions=this.props.actions;
     this.actions.load() //call load event
   },
@@ -97,7 +95,6 @@ module.exports = React.createClass({
 
 
   _isVisible: function(item) {
-    console.log(this.state.filter)
     if (this.state.filter.length > 1) {
       var pattern = new RegExp(this.state.filter, 'i');
       return pattern.test(item.name)
@@ -122,6 +119,7 @@ module.exports = React.createClass({
     this.actions.clean();
     this._triggerSelectionChange([]);
   },
+  
   render: function() {
 
     var children = React.Children.map(this.props.children, function(child) {

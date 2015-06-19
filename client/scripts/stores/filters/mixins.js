@@ -6,7 +6,6 @@ var Util = require('../../api/util.js')
 
 module.exports = {
 
-	
 	_capitalize: function(items) {
 		return _.map(items, function(i) {
 			i.label = this._capitalizeStr(i.name)
@@ -32,7 +31,6 @@ module.exports = {
 		}
 	},
 
-
 	onAdd:function(id){
 		var list=this.state.selected;
 		if (!list){
@@ -41,19 +39,19 @@ module.exports = {
 			console.log('push id');
 			this.state.selected.push(id)		
 		}
-		console.log(this.state.selected.sort(function(a, b){return a-b}));
+		this.trigger(this.state.selected);
 	},
 	
 	onRemove:function(id){
 		_.remove(this.state.selected,function(value){
 			return value===id;
 		} );
-		console.log(this.state.selected.sort(function(a, b){return a-b}));
+		this.trigger(this.state.selected);
 	},
 
 	clean:function(){
 		this.state.selected=[];
-		console.log(this.state.selected.sort(function(a, b){return a-b}));
+		this.trigger(this.state.selected);
 	},
 
 	update: function(assignable, options) {
@@ -64,11 +62,8 @@ module.exports = {
 		}
 	},
 
-
-
 	getInitialState: function() {
 		return (this.state = {selected:[]});
 	}
 
-	
 }
