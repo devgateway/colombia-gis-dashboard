@@ -22,12 +22,12 @@ var FilterStore = require('../../../stores/filterStore.js');
 
 module.exports = React.createClass({
 
- mixins: [Reflux.connect(FilterStore), Reflux.connect(Store)], 
- 
+ mixins: [Reflux.connect(FilterStore), Reflux.connect(Store)],
+
  _changevisibility: function(id, value) {
-    LayerActions.changeLayerValue(id,'visible',value); 
+    LayerActions.changeLayerValue(id,'visible',value);
   },
-  
+
   _onChangeOpacity:function(id,value){
     LayerActions.changeLayerValue(id,'opacity',value);
   },
@@ -41,10 +41,10 @@ module.exports = React.createClass({
   },
 
   _changeColor:function(value,level){
-    LayerActions.changeLayerValue('shapes','color',value,level); 
+    LayerActions.changeLayerValue('shapes','color',value,level);
   },
 
-  _onFundingChanged: function(value, selected) {  
+  _onFundingChanged: function(value, selected) {
     FilterActions.changeFilterItemState("ft", value, selected);
     FilterActions.triggerFilterApply(false, true);
   },
@@ -69,22 +69,22 @@ module.exports = React.createClass({
         </TogglerContent>
         <TogglerContent visibleWhen="always">
 
-          <Layer id="shapes" title={i18n.t("layers.fundingByType")}  
-          opacity={this.state.opacity} 
-          onChangeOpacity={this._onChangeOpacity} 
-          onChangeVisibility={this._changevisibility} 
+          <Layer id="shapes" title={i18n.t("layers.fundingByType")}
+          opacity={this.state.opacity}
+          onChangeOpacity={this._onChangeOpacity}
+          onChangeVisibility={this._changevisibility}
           visible={this.state.visible}/>
 
         </TogglerContent>
         <TogglerContent visibleWhen="expanded">
           <ul className="controls-items">
-            <li>
+            <li className="levels">
               <h3><Message message='layers.level'/></h3>
               <CustomRadioGroup>
-                <CustomRadio  className="inline" name="departament" checked={(level=='departament')? true : false}    
+                <CustomRadio  className="inline" name="departament" checked={(level=='departament')? true : false}
                   onClick={this._showByDepartment} label="layers.byDepartment"/>
-                <CustomRadio  className="inline" name="municipality" checked={(level=='municipality')? true : false}  
-                  onClick={this._showByMunicipality} label="layers.byMunicipality"/>    
+                <CustomRadio  className="inline" name="municipality" checked={(level=='municipality')? true : false}
+                  onClick={this._showByMunicipality} label="layers.byMunicipality"/>
               </CustomRadioGroup>
             </li>
             <li>
@@ -94,7 +94,7 @@ module.exports = React.createClass({
                 fundingTypes.map(function(fundingType){
                   return(
                     <li>
-                      <CustomCheckbox 
+                      <CustomCheckbox
                               selected={fundingType.selected}
                               onChange={self._onFundingChanged}
                               value={fundingType.id}/>
@@ -104,23 +104,21 @@ module.exports = React.createClass({
                 })
               }
               </ul>
-            </li>          
+            </li>
             <li>
-              <h3>Styles Breaks</h3>
-                <div>
-                  <b>Property<i>{this.state.breaks.field}</i></b>
-                </div>
+              <h3>Color Selections</h3>
+              
                 {
                   _.map(_.keys(this.state.breaks.breaks),function(key){
                     var br=this.state.breaks.breaks[key];
                     return (
-                          <Breaker level={key} label={br.min+'-'+br.max} color={br.style.color} 
+                          <Breaker level={key} label={br.min+'-'+br.max} color={br.style.color}
                             onChangeColor={this._changeColor} />
                           )
                   }.bind(this))
                 }
-            </li>       
-          </ul>  
+            </li>
+          </ul>
         </TogglerContent>
       </Toggler>
     </li>);

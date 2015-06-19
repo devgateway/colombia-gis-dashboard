@@ -60,48 +60,71 @@
 // layer color controls
 .breaksOptions {
   float:left;
-  margin-top:-4px;
-  width:97px;
+  margin-top:-18px;
+  margin-right:3px;
+  width:35px;
+  text-align:center;
 
 	input{
     width: 20px;
     height:16px;
     font-size: 11px;
-    margin-top: 3px;
-    margin-right:10px;
+    margin-top: -2px;
     outline:none;
     border:1px solid #eeeeee;
     color:#888888;
+    clear:both;
+    text-align:center;
   &:hover{
     border:1px solid $yellow;
     }
   }
 
 	.label{
-    float: left;
   	margin-top:2px;
-    padding:5px 0 0 0;
     color: $black;
     background: none;
-    text-align:right;
+    text-align:center;
+    clear:both;
+    padding:0;
 	}
 
-	.colorpicker-element{
-    width: 25px;
-  height: 25px;
-  float: left;
-  margin: 3px;
-  border: 1px;
+  .colorpicker-element{
+    width: 20px;
+    border: 1px;
 	}
 
 	.input-group-addon {
     padding: 0;
-  font-size: 12px;
-  font-weight: normal;
-  line-height: 1;
-  color: #555;
-  text-align: center;
-  border: 1px solid transparent;
-	}
+    font-size: 12px;
+    font-weight: normal;
+    line-height: 1;
+    color: #555;
+    text-align: center;
+    border: 1px solid transparent;
+    clear:both;
+    display:block;
+    margin: 0 auto;
 
+    .input-group-addon i{
+      width:22px;
+    }
+	}
+}
+
+// funding options
+ul.funding-options{
+  margin-left:0;
+  padding-left:0;
+  width:530px;
+  display:block;
+  overflow:hidden;
+  li{
+    float:left;
+    width:170px;  margin-bottom:0;
+
+  }
+  .selectable{
+    margin-right:5px;
+  }
 }
