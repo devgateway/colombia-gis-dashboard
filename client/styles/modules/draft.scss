@@ -57,34 +57,7 @@
 .clearFix{
 	@include clearfix;
 }
-.breaksOptions {
 
-	input{ display:none;
-	}
-
-	.label{
-		display:none;
-	}
-
-	.colorpicker-element{
-		width: 20px;
-		height: 20px;
-		float: left;
-		margin: 3px;
-	}
-
-	.input-group-addon {
-		padding:0;
-		font-size: 12px;
-		font-weight: normal;
-		line-height: 1;
-		color: #555;
-		text-align: center;
-		border:1px solid transparent;
-		float:left;
-	}
-
-}
 
 .loading-container {
 	position: absolute;
