@@ -60,7 +60,7 @@ var TreeView =  React.createClass({
   },
 
   _isVisible: function(item) {
-    if (this.props.parentVisible){
+    if (this.props.parentVisible || this.state.childVisible){
       return true;
     }
     if (this.props.filter && this.props.filter.length > 1) {
@@ -69,6 +69,11 @@ var TreeView =  React.createClass({
     } else {
       return true;
     }
+  },
+
+  _onChildVisible: function() {
+    this.setState(_.assign(this.state,{childVisible: true}));
+    this.forceUpdate();
   },
 
   _toggle:function(){
@@ -119,29 +124,42 @@ var TreeView =  React.createClass({
 
   render: function() {
     var items = this._getItemsFiltered();
-    if (!this.props.collapsed){
-      return ( 
-      <div>
+    var className = ""
+    if (this.props.collapsed){
+      className = "hidden"
+    }  
+    return ( 
+      <div className={className}>
       {
         items.map(function(item) {   
+          var visible = this._isVisible(item);
+          /*if (visible && this.props.parentVisible==false && this.props.onChildVisible){
+            console.log("entro aca!")
+            this.props.onChildVisible();
+          }*/
           return (
             <div>
               <Item {...item} 
                 onItemChange={this._onItemChange} 
                 showToggler={this.props.nested!=undefined} 
                 selected={this.state.selected.indexOf(item.id)> -1}
-                visible={this._isVisible(item)}> 
-                {(this.props.nested)? <TreeView {...this.props.nested} parentVisible={this._isVisible(item)} filter={this.props.filter} parentIdValue={item.id}/>:null}
+                visible={visible}
+                parentVisible={this.props.parentVisible}
+                onSetVisible={this._onChildVisible}> 
+                  {(this.props.nested)? 
+                    <TreeView {...this.props.nested} 
+                      onChildVisible={this._onChildVisible} 
+                      parentVisible={visible} 
+                      filter={this.props.filter} 
+                      parentIdValue={item.id}/>
+                  :null}
               </Item>
             </div>)            
         }.bind(this))
       }
       </div>
-      );
-    } else {
-      return null;
-    }
- }
+    );    
+  }
 });
 
 /*end tree view*/

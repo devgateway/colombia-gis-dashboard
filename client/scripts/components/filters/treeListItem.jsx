@@ -39,6 +39,13 @@ module.exports = React.createClass({
     };
   },
 
+  componentDidUpdate: function(){
+    if(this.props.visible && this.props.parentVisible==false){
+      console.log("ACA!! "+this.props.parentVisible)
+      this.props.onSetVisible();
+    };
+  },
+
   getInitialState: function() {
     return {
       selected: this.props.selected, 
