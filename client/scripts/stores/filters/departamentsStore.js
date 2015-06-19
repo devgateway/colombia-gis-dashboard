@@ -4,7 +4,6 @@ var assign = require('object-assign');
 var Reflux = require('reflux');
 var _ = require('lodash');
 var Mixins=require('./mixins.js');
-
 var actions=require('../../actions/filterListActions.js').Departaments;
 
 

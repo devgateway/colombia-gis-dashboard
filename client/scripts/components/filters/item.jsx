@@ -8,7 +8,6 @@ module.exports = React.createClass({
   mixins: [PureRenderMixin],
 
   _onItemChange:function(selected){
-    debugger;
     if (this.props.onItemChange){
       this.props.onItemChange(this.props.id,selected); //21,true|false
     }
