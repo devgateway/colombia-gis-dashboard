@@ -4,32 +4,13 @@ var React = require('react');
 var PureRenderMixin = require('react/addons').addons.PureRenderMixin;
 var Item=require('./item.jsx');
 var _=require('lodash');
+var CommonsMixin=require('./commonsMixins.jsx');
 
 module.exports = React.createClass({
 
-  // mixins: [PureRenderMixin],
+   mixins: [CommonsMixin,PureRenderMixin],
 
-  onStatusChange: function(status) {
-    this.setState(_.clone(status)); //make a copy of the state would make sense 
-  },
-
-  _addSelected: function(list, id) {
-     this.actions.add(id);
-    options = options || {};
-    list.push(id);
-
-  },
-
-  _removeSelected: function(list, id) {
-    this.actions.remove(id);
-    options = options || {};
-    _.remove(list, function(item) {
-      return item == id
-    })
-
-
-  },
-
+  
   _onItemChange: function(id, selected) {
     var list = this.state.selected.slice(0); //clone values;
     if (selected) {
@@ -72,18 +53,6 @@ module.exports = React.createClass({
     this._triggerSelectionChange(selection);
   },
 
-
-
-  /*Life Cycle */
-  componentDidMount: function() {
-    this.unsubscribe = this.props.store.listen(this.onStatusChange);
-    this.actions=this.props.actions;
-    this.actions.load() //call load event
-  },
-
-  componentWillUnmount: function() {
-    this.unsubscribe();
-  },
 
   getInitialState: function() {
     return {
