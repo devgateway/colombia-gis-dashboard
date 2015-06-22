@@ -40,8 +40,8 @@ module.exports = React.createClass({
   },
 
   componentDidUpdate: function(){
-    if(this.props.visible && this.props.parentVisible==false){
-      console.log("ACA!! "+this.props.parentVisible)
+    if(this.props.visible==true && this.props.parentVisible==false){
+      //console.log("ACA!! "+this.props.parentVisible)
       this.props.onSetVisible();
     };
   },

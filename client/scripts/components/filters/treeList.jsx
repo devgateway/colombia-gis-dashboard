@@ -65,7 +65,13 @@ var TreeView =  React.createClass({
     }
     if (this.props.filter && this.props.filter.length > 1) {
       var pattern = new RegExp(this.props.filter, 'i');
-      return pattern.test(item.name)
+      if (pattern.test(item.name)){
+        console.log("filter: "+this.props.filter+" -- itemName: "+item.name);
+        return true;
+      } else {
+        return false;
+      }
+      //return pattern.test(item.name)
     } else {
       return true;
     }
