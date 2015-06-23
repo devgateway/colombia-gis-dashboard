@@ -3,7 +3,7 @@
 var React = require('react/addons')
 var Reflux = require('reflux');
 
-
+var Store = require('../../../stores/shapesLayerStore.js');
 var LayerActions = require('../../../actions/layersAction.js');
 var FilterActions = require('../../../actions/filterActions.js');
 var Toggler = require('../../commons/toggler.jsx').Toggler;
@@ -12,19 +12,23 @@ var If = require('../../commons/if.jsx')
 var CustomRadio = require('../../commons/customRadioButton.jsx').Radio;
 var CustomRadioGroup = require('../../commons/customRadioButton.jsx').RadioGroup;
 var Layer = require('./_layer.jsx');
-var _=require('lodash')
+var _=require('lodash');
 var CustomCheckbox = require('../../commons/customCheckbox.jsx');
 
-var Store = require('../../../stores/shapesLayerStore.js');
 var Breaker=require('./_breaker.jsx');
 var FilterStore = require('../../../stores/filterStore.js');
 
+var color0 = [[255, 200, 170, 0.8], [212, 143, 106, 0.8], [253, 154, 0, 0.8], [170, 57, 0, 0.8], [128, 58, 21, 0.8]];
+var color1 = [[255, 51, 51, 0.8], [255, 153, 51, 0.8], [255, 255, 51, 0.8], [153, 255, 51, 0.8], [51, 255, 153, 0.8]];
+var color2 = [[51, 153, 255, 0.8], [102, 102, 255, 0.8], [178, 102, 255, 0.8], [255, 102, 255, 0.8], [255, 102, 178, 0.8]];
+var color3 = [[102, 255, 178, 0.8], [51, 255, 153, 0.8], [0, 255, 128, 0.8], [0, 204, 102, 0.8], [0, 153, 76, 0.8]];
+var color4 = [[255, 255, 102, 0.8], [255, 255, 51, 0.8], [255, 255, 0, 0.8], [204, 204, 0, 0.8], [153, 153, 0, 0.8]];
 
 module.exports = React.createClass({
 
  mixins: [Reflux.connect(FilterStore), Reflux.connect(Store)], 
  
- _changevisibility: function(id, value) {
+ _changeVisibility: function(id, value) {
     LayerActions.changeLayerValue(id,'visible',value); 
   },
   
@@ -44,9 +48,78 @@ module.exports = React.createClass({
     LayerActions.changeLayerValue('shapes','color',value,level); 
   },
 
+  _changeBreak:function(value,level){
+    LayerActions.changeLayerValue('shapes','break',value,level); 
+  },
+
+  _changeBreakStyle:function(value){
+    LayerActions.changeLayerValue('shapes','breakStyle',value); 
+  },
+
   _onFundingChanged: function(value, selected) {  
     FilterActions.changeFilterItemState("ft", value, selected);
     FilterActions.triggerFilterApply(false, true);
+  },
+
+  handleClickForBreaks:function(breakId){
+    console.log('popup>handleClickForBreaks = ' + breakId);
+    var self = this;
+    var breaks = [0, 20, 40, 60, 80, 100];
+    var breakStyle = "breakValues";
+    switch(breakId) {
+    case 1:
+        if(this.state.geoStats){
+          breaks = this.state.geoStats.getClassJenks(5);
+        }
+        break;
+    case 2:
+        if(this.state.geoStats){
+          breaks = this.state.geoStats.getClassArithmeticProgression(5);
+        }
+        break;
+    case 3:
+        if(this.state.geoStats){
+          breaks = this.state.geoStats.getClassGeometricProgression(5);
+        }
+        break;
+    default:
+        breakStyle = "percentage";
+        break;
+    } 
+
+    self._changeBreak([Math.round(breaks[0]), Math.round(breaks[1])], "Level0");
+    self._changeBreak([Math.round(breaks[1]), Math.round(breaks[2])], "Level1");
+    self._changeBreak([Math.round(breaks[2]), Math.round(breaks[3])], "Level2");
+    self._changeBreak([Math.round(breaks[3]), Math.round(breaks[4])], "Level3");
+    self._changeBreak([Math.round(breaks[4]), Math.round(breaks[5])], "Level4");
+    self._changeBreakStyle(breakStyle);
+  },
+
+
+  handleClickForColor:function(colorPattern){
+    console.log('popup>handleClickForColor = ' + colorPattern);
+    var self = this;
+    var color;
+    switch(colorPattern) {
+    case 1:
+        color = color1;
+        break;
+    case 2:
+        color = color2;
+        break;
+    case 3:
+        color = color3;
+        break;
+    case 4:
+        color = color4;
+        break;
+    default:
+        color = color0;
+        break;
+    } 
+    color.map(function(n, i){
+      self._changeColor({r: n[0], g: n[1], b: n[2], a: n[3]}, "Level"+i);
+    })
   },
 
   render: function() {
@@ -70,7 +143,7 @@ module.exports = React.createClass({
         <TogglerContent visibleWhen="always">
 
           <Layer id="shapes" title={i18n.t("layers.fundingByType")}  opacity={this.state.opacity} 
-                onChangeOpacity={this._onChangeOpacity} onChangeVisibility={this._changevisibility} visible={this.state.visible}/>
+                onChangeOpacity={this._onChangeOpacity} onChangeVisibility={this._changeVisibility} visible={this.state.visible}/>
 
         </TogglerContent>
         <TogglerContent visibleWhen="expanded">
@@ -103,9 +176,38 @@ module.exports = React.createClass({
             </li>
           
           <li>
-                  <div className="clearFix"/>
+              <div className="clearFix"/>
               <h3>Styles Breaks</h3>
-               <div><b>Property <i> {this.state.breaks.field}</i></b></div>
+              <div>
+                <div><b>Property <i> {this.state.breaks.field}</i></b></div>
+                 <div className="breaksTemplates">
+                  <div className="label label-info" onClick={this.handleClickForBreaks.bind(this, 0)}>Default</div> 
+                  <div className="label label-info" onClick={this.handleClickForBreaks.bind(this, 1)}>Jenks</div>
+                  <div className="label label-info" onClick={this.handleClickForBreaks.bind(this, 2)}>Arithmetic</div>
+                  <div className="label label-info" onClick={this.handleClickForBreaks.bind(this, 3)}>Geometric</div>
+                </div>
+                <div className="clearFix"/>
+                <div className="breaksTemplates">
+                  <div className="label label-warning">Default</div>
+                  <div className="colorpicker-element">
+                  <span className="input-group-addon" onClick={this.handleClickForColor.bind(this, 0)} ><i style={{backgroundColor:'#AA3900'}}></i></span></div>
+                  <div className="label label-warning">Contrast 1</div>
+                  <div className="colorpicker-element">
+                  <span className="input-group-addon" onClick={this.handleClickForColor.bind(this, 1)} ><i style={{backgroundColor:'#FF3333'}}></i></span></div>
+                  <div className="label label-warning">Contrast 2</div>
+                  <div className="colorpicker-element">
+                  <span className="input-group-addon" onClick={this.handleClickForColor.bind(this, 2)} ><i style={{backgroundColor:'#3399FF'}}></i></span></div>
+                  <div className="label label-warning">Gradient 1</div>
+                  <div className="colorpicker-element">
+                  <span className="input-group-addon" onClick={this.handleClickForColor.bind(this, 3)} ><i style={{backgroundColor:'#66FFB2'}}></i></span></div>
+                  <div className="label label-warning">Gradient 2</div>
+                  <div className="colorpicker-element">
+                  <span className="input-group-addon" onClick={this.handleClickForColor.bind(this, 4)} ><i style={{backgroundColor:'#FFFF66'}}></i></span></div>
+                </div>
+              </div>
+              <div className="clearFix"/>
+            </li>
+            <li>
             {
 
               _.map(_.keys(this.state.breaks.breaks),function(key){
@@ -116,7 +218,6 @@ module.exports = React.createClass({
               }.bind(this))
 
             }
-
           </li>
         
 </ul>  

@@ -67,6 +67,36 @@
 
 	.label{
 		float: left;
+		width: 110px;
+		margin-top:7px;
+	}
+
+	.colorpicker-element{
+		width: 25px;
+		height: 25px;
+		float: left;
+		margin: 3px;
+		border:1px;
+	}
+
+	.input-group-addon {
+		padding: 2px 2px;
+		font-size: 12px;
+		font-weight: normal;
+		line-height: 1;
+		color: #555;
+		text-align: center;
+		background-color: #eee;
+		border: 1px solid #ccc;
+		border-radius: 4px;
+	}
+	
+}
+
+.breaksTemplates {
+
+	.label{
+		float: left;
 		width: 50px;
 		margin-top:7px;
 	}

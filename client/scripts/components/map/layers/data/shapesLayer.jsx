@@ -27,25 +27,30 @@
    },
 
 
-   _style: function(feature) {
+  _style: function(feature) {
+    if (this.state.geoData) {
+      var featureValue;
+      if(this.state.breakStyle && this.state.breakStyle == "breakValues") {
+        featureValue = feature.properties.fundingUS?feature.properties.fundingUS:0;
 
-     if (this.state.geoData) {
-       var maxValue = _.max(_.collect(this.state.geoData.features, function(e) {
-          //console.log(e);
-         return e.properties.fundingUS;
-       }));
+      } else {
+        var maxValue = _.max(_.collect(this.state.geoData.features, function(e) {
+          return e.properties.fundingUS + 0.01; //Adding some decimal to fix the max value
+        }));
 
-       var currentValue = feature.properties.fundingUS || 0;
-       var percentage = parseInt((100 / (maxValue / currentValue)));
-       var style = this._getStyle(percentage);
-       var rgbColor = style.color.r + "," + style.color.g + "," + style.color.b + "," + style.color.a;
+        var currentValue = feature.properties.fundingUS || 0;
+        featureValue = parseInt((100 / (maxValue / currentValue)));
+        
+      }
+      var style = this._getStyle(featureValue);
+      var rgbColor = style.color.r + "," + style.color.g + "," + style.color.b + "," + style.color.a;
 
-       return {
-         color: 'rgba(' + rgbColor + ')',
-         weight:style.weight
-       };
-     }
-   },
+      return {
+        color: 'rgba(' + rgbColor + ')',
+        weight: style.weight
+      };
+    }
+  },
 
 
    _onEachFeature: function(feature, layer) {

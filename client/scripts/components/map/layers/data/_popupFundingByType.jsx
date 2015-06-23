@@ -2,7 +2,7 @@
 
 var React = require('react');
 var Reflux = require('reflux');
-
+var If=require('../../../commons/if.jsx');
 
 
 module.exports  = React.createClass({
@@ -26,19 +26,19 @@ module.exports  = React.createClass({
 
   render: function() {
     console.log('popup>render id:' + this.props.id +" tab "+this.state.tabId);
-    var url = "./#/chart1?id="+this.props.id+"&tab="+this.state.tabId;
-    var content=(  <div className="popup-content"><iframe className="iframe-content" src={url} ></iframe> </div>);
     return (
       <div className="leaflet-popup-content-wrapper">
         <div className="leaflet-popup-content">
           <div className="panel panel-default" >
             <div className="panel-heading popup-header" >
-              <h3 className="panel-title" >{this.props.NAME_1}</h3>
-              <span className="title-label"> - <Message message="map.popup.totalActivities"/></span>
+              <h3 className="panel-title" >{this.props.NAME_1} 
+              <If condition={this.props.NAME_2} >
+                - {this.props.NAME_2}
+              </If>
+              </h3>
             </div>            
             <div className="panel-body" >
-              <span className="fundingByType-title"><Message message="map.popup.funding"/>: {this.props.fundingUS.toFixed(2)}</span>
-              {content}
+              <span className="fundingByType-title"><Message message="map.popup.funding"/>: {this.props.fundingUS?this.props.fundingUS.toFixed(2):0}</span>
             </div>
           </div>
         </div>

@@ -42,13 +42,22 @@ module.exports = {
 				}
 			} else if (property == 'color') {
 				console.log('change color');
-					console.log(value);
+				console.log(value);
 				var breaks=_.clone(this.state.breaks);
 				breaks.breaks[subProperty].style.color = value;
 				this.update({'breaks':breaks});
-			}
-			 else if (property == 'radius') {
-			 	
+			} else if (property == 'break') {
+				console.log('change breaks');
+				console.log(value);
+				var breaks=_.clone(this.state.breaks);
+				breaks.breaks[subProperty].min = value[0];
+				breaks.breaks[subProperty].max = value[1];
+				this.update({'breaks':breaks}, {'silent': true});
+			} else if (property == 'breakStyle') {
+				console.log('change breakStyle');
+				console.log(value);
+				this.update({'breakStyle':value});
+			} else if (property == 'radius') {
 			 	console.log('change Radius!');
 				var breaks=_.clone(this.state.breaks);
 				breaks.breaks[subProperty].style.radius = value;
@@ -91,9 +100,10 @@ module.exports = {
 		}
 	},
 
-	_setGeoData: function(data) {	
+	_setGeoData: function(data, dataStats) {	
 		this.update({
 			geoData: data,
+			geoStats: dataStats,
 			isLoaded: true
 		}); //trigger geodata changes;
 		LoadingAction.hideLoading();			

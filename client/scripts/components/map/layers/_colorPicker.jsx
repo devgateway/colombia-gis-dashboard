@@ -10,8 +10,8 @@
 module.exports = React.createClass({
 
 	componentDidMount: function () {
-		 var self=this;
-		  var rgbColor = self.props.color.r + "," + self.props.color.g + "," + self.props.color.b + "," + self.props.color.a;
+		var self=this;
+		var rgbColor = self.props.color.r + "," + self.props.color.g + "," + self.props.color.b + "," + self.props.color.a;
    
 	   
 	    $(this.getDOMNode()).colorpicker({
@@ -23,11 +23,19 @@ module.exports = React.createClass({
 	     
 	},
 
+
+	componentDidUpdate: function () {
+		var self=this;
+		var rgbColor = self.props.color.r + "," + self.props.color.g + "," + self.props.color.b + "," + self.props.color.a;
+   		$(this.getDOMNode()).find(".box").map(function(index, node){node.style.cssText="background-color: rgba("+rgbColor+");"});
+	   
+	},
+
 	render:function(){
-				return (<div>
-    				
-    				<input type="text" style={{'display':'none'}} className="form-control"   value={this.props.color}/>
-    				<span className="input-group-addon"><i></i></span>
+		return (
+			<div>	
+				<input type="text" style={{'display':'none'}} className="form-control" value={this.props.color}/>
+				<span className="input-group-addon"><i className="box"></i></span>
 			</div>)
 	}
 })
