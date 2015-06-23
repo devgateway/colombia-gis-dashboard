@@ -2,9 +2,16 @@
 var React = require('react')
 var RouteHandler = require('react-router').RouteHandler;
 var LanSelector=require('./lanSelector.jsx');
+var SaveActions=require('../actions/saveActions.js');
 
 var AGOLProfile=require('./esri/AGOLProfile.jsx');
 module.exports = React.createClass({
+
+  handleClickForSave:function(){
+    console.log('Save Map');
+    SaveActions.saveMap();
+  },
+
   render: function() {
     return (
               <div className="navbar navbar-fixed-top map-header">
@@ -14,7 +21,8 @@ module.exports = React.createClass({
                     <h2> <Message message="app.title"/></h2>
                     <div className="header-nav">
                       <AGOLProfile/>
-                      <a href="#">Menu</a>
+                      <a href="#">Menu</a>&nbsp;&nbsp;
+                      <a href="#" onClick={this.handleClickForSave.bind(this)}>Save</a>
                       <LanSelector/>
                     </div>
 

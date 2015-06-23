@@ -62,7 +62,7 @@ module.exports = React.createClass({
   },
 
   handleClickForBreaks:function(breakId){
-    console.log('popup>handleClickForBreaks = ' + breakId);
+    console.log('_shapesLayerControl>handleClickForBreaks = ' + breakId);
     var self = this;
     var breaks = [0, 20, 40, 60, 80, 100];
     var breakStyle = "breakValues";
@@ -97,7 +97,7 @@ module.exports = React.createClass({
 
 
   handleClickForColor:function(colorPattern){
-    console.log('popup>handleClickForColor = ' + colorPattern);
+    console.log('_shapesLayerControl>handleClickForColor = ' + colorPattern);
     var self = this;
     var color;
     switch(colorPattern) {

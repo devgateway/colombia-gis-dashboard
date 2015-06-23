@@ -58,7 +58,13 @@
    },
 
    _bindPopup: function(feature, layer) {
+     if(feature.properties.ID==13){
+      debugger;
+     }
      layer.bindPopup('');
+     if(!layer._popup){
+      debugger;
+     }
      layer.on('popupopen', function(e) {
        layer._popup.options.autoPanPaddingTopLeft = new L.Point(0, 50);
        var popupHolder = this.getDOMNode();
