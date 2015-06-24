@@ -1473,12 +1473,12 @@ ul.tabs {
   border-radius: 4px;
   background-clip: padding-box;
   /* stops bg color from leaking outside the border: */
-  background: #d7e0e4;
-  overflow: visible;
+  overflow: hidden;
   position: relative; }
   .toggler .control-title {
     float: left;
-    margin-right: 10px; }
+    width: 70%;
+    margin-left: 70px; }
 
 .layer-control-toggle h3 {
   font-weight: bold;
@@ -1494,6 +1494,8 @@ ul.tabs {
 
 .layer-control-panel ul {
   padding-left: 0; }
+  .layer-control-panel ul li {
+    margin-bottom: 24px; }
 
 .control-wrapper {
   overflow: hidden; }
@@ -1619,7 +1621,7 @@ ul.funding-options {
 .loading-container {
   position: absolute;
   bottom: 50%;
-  right: 45%;
-  border: 0px solid; }
+  right: 43%;
+  z-index: 1002; }
 
 /*# sourceMappingURL=main.css.map */

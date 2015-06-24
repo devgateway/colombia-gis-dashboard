@@ -1,13 +1,14 @@
 .toggler{
   @include border-radius(4px);
-  background: #d7e0e4;
-  overflow:visible;
+  // background: #d7e0e4;
+  overflow:hidden;
   position:relative;
   .selectable{
   }
   .control-title{
     float:left;
-    margin-right:10px;
+    width: 70%;
+    margin-left: 70px;
   }
 }
 .layer-control-toggle{
@@ -28,7 +29,10 @@
 }
 .layer-control-panel{
   ul{
-    padding-left:0
+    padding-left:0;
+    li{
+      margin-bottom:24px;
+      }
   }
 }
 
