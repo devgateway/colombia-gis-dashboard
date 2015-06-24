@@ -1621,7 +1621,12 @@ ul.funding-options {
 .loading-container {
   position: absolute;
   bottom: 50%;
-  right: 43%;
+  right: 45%;
   z-index: 1002; }
+
+/* Extra Small Devices, Phones */
+@media only screen and (max-width: 480px) {
+  .loading-container {
+    right: 30%; } }
 
 /*# sourceMappingURL=main.css.map */
