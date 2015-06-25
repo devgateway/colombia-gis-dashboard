@@ -4,7 +4,7 @@
  var _ = require('lodash');
  var NumberedDivIcon = require('./_numberedDivIcon.js');
  var Store = require('../../../../stores/pointsLayerStore.js');
- var Popup = require('./_popup.jsx')
+ var Popup = require('./_popup2.jsx')
  var Mixins = require('./_mixins.js');
  var EventConstants = require('react/lib/EventConstants');
 
@@ -63,7 +63,7 @@
        _bindPopup: function(feature, layer) {
          layer.bindPopup('');
          layer.on('popupopen', function(e) {
-           layer._popup.options.autoPanPaddingTopLeft = new L.Point(0, 50);
+           layer._popup.options.autoPanPaddingTopLeft = new L.Point(0, 83);
            var popupHolder = this.getDOMNode();
            var _onChange = function() {
              popupHolder.firstChild.style.display = "";
@@ -72,8 +72,10 @@
              this.fixReactIds(e.popup);
            }.bind(this)
            React.render(React.createElement(Popup, _.assign(feature.properties, {
-             onChange: _onChange
-           }), this.state.data), popupHolder);
+             onChange: _onChange,
+             level: this.state.level,
+             filters: this.state.filters
+           })), popupHolder);
            e.popup.setContent(popupHolder.innerHTML);
            popupHolder.firstChild.style.display = "none";
            this.fixReactIds(e.popup);

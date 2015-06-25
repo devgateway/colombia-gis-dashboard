@@ -78,6 +78,7 @@
 		},
 		"popup":{
 			"totalActivities":"Total Activities",
+			"totalSubActivities":"Total SubActivities",
 			"funding":"Funding"
 		}
 	}

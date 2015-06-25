@@ -113,7 +113,6 @@ var FilterGroup = React.createClass({
                 {    
                     parentLevelItems.map(function (parent){
                         var list = self._filterByParent(childLevelItems, parent, childFilterDefinition.parentParamField);
-                        debugger;
                         return (<FilterItemList 
                                     onItemChanged={self.props.onItemChanged} 
                                     parent={parent} 
