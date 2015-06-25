@@ -5,37 +5,14 @@ var PureRenderMixin = require('react/addons').addons.PureRenderMixin;
 var Item=require('./treeListItem2.jsx');
 var _=require('lodash');
 var If=require('../commons/if.jsx');
+var KeywordSearch=require('./keywordSearch.jsx');
+var SelectAllNone=require('./allNoneSelector.jsx');
+var SelectionCounter = require('./selectionCounter.jsx');
 
 var TreeView =  React.createClass({
 
-  _getItemsFiltered: function() {
-    return (this.props.parentIdValue)? this._filterItems(this.state.items,this.props.parentField,this.props.parentIdValue):this.state.items;
-  },
-  
-  _addSelected: function(list, id) {
-    options = options || {};
-    list.push(id);
-  },
-
-  _removeSelected: function(list, id) {
-    options = options || {};
-    _.remove(list, function(item) {
-      return item == id
-    })
-  },
-
-  _onItemChange: function(level, id, selected) {
-    this.props.onItemChange(level, id, selected);
-  },
-
-  _triggerSelectionChange: function(newSelection) {
-    this.setState(_.assign(this.state, {
-      'selected': newSelection
-    }));
-
-    if (this.props.onSelectionChange){
-      this.props.onSelectionChange(this.state.selected);
-    }
+  _onItemChange: function(item, selected) {
+    this.props.onItemChange(item, selected);
   },
 
   _getNestedSelected: function(){
@@ -49,26 +26,6 @@ var TreeView =  React.createClass({
     this.forceUpdate();
   },
 
-  changeFullSelection: function(selected) {
-    var selection = [];
-    if (selected){
-      this._getItemsFiltered().map(function(item) {
-        this._addSelected(selection, item.id)
-      }, this);
-    }
-    this._triggerSelectionChange(selection);
-  },
-
-  componentWillReceiveProps: function(nextProps){
-    if (nextProps.selectAll!=undefined){
-      if (nextProps.selectAll.timestamp && nextProps.selectAll.timestamp!=this.props.selectAll.timestamp){
-        this.changeFullSelection(nextProps.selectAll.value);
-      } else if (nextProps.selectAll.value!=this.props.selectAll.value){
-        this.changeFullSelection(nextProps.selectAll.value);
-      }
-    }     
-  },
-  
   getInitialState: function() {
     return {
       expanded: this.props.expanded,
@@ -83,6 +40,7 @@ var TreeView =  React.createClass({
     return ( 
       <div>
         <Item {...this.props} 
+          showOnlySelected={this.props.showOnlySelected}
           onItemChange={this._onItemChange} 
           expanded={this.state.expanded} 
           onToggle={this._onToggle}
@@ -92,7 +50,7 @@ var TreeView =  React.createClass({
             <ul>
             {
               this.props.nested.map(function(item) {   
-                  return (<li><TreeView {...item} onItemChange={this.props.onItemChange} expanded={false}/></li>)            
+                  return (<li><TreeView {...item} showOnlySelected={this.props.showOnlySelected} onItemChange={this.props.onItemChange} expanded={false}/></li>)            
               }.bind(this))
             }
             </ul>
@@ -112,58 +70,37 @@ module.exports = React.createClass({
     this.setState(_.clone(status)); //make a copy of the state would make sense 
   },
 
-  _addSelected: function(list, id) {
-    options = options || {};
-    list.push(id);
-    this.actions.add(id);
-  },
-
-  _removeSelected: function(list, id) {
-    options = options || {};
-    _.remove(list, function(item) {
-      return item == id
-    })
-    this.actions.remove(id);
-  },
-
-  _onItemChange: function(level, id, selected) {
-    this.actions.updateItemSelection(level, id, selected);
+  _onItemChange: function(item, selected) {
+    this.actions.updateItemSelection(item, selected);
   },
 
   _onSearch: function(keyword) {
-
-    if (keyword.length > 0) {
-      this.setState(_.assign(this.state, {
-        'filter': keyword
-      }));
-      this.forceUpdate();
-    } else if (this.state.filter.length > 0) {
-      this.setState(_.assign(this.state, {
-        'filter': ''
-      }));
-      this.forceUpdate();
-    }
+    this.actions.filterByKeyword(keyword);
   },
 
   _onSearchEnterKey: function() {
-    console.log('TreeList -> _onSearchEnterKey');
+    this.actions.selectFilteredByKeyword(keyword)
   },
 
-  _onSelectAll: function() {
-    this.setState(_.assign(this.state,{selectAll: {value: true, timestamp: Date.now()}}));
+  _onCounterClicked: function(selected) {
+    this.setState(_.assign(this.state, {'showOnlySelected': selected}));
     this.forceUpdate();
+  },
+  
+  /*Select all None*/
+  _onSelectAll: function() {
+    this.actions.updateAllSelection(true);
   },
 
   _onSelectNone: function() {
-    this.setState(_.assign(this.state,{selectAll: {value: false, timestamp: Date.now()}}));
-    this.forceUpdate();
+    this.actions.updateAllSelection(false);
   },
-
+  
   componentDidMount: function() {
     if (this.props.store){
       this.unsubscribe = this.props.store.listen(this.onStatusChange);
       this.actions = this.props.actions;
-      this.actions.load()
+      this.actions.load();
     }
   },
 
@@ -180,20 +117,24 @@ module.exports = React.createClass({
   },
 
   render: function() {
+    console.log("render -> treeList")
     var items = this.state.itemsTree || [];
-    var className = ""
-    if (this.props.collapsed){
-      className = "hidden"
-    }  
+    var lowerLevelCounterTotal = this.state.municipalities? this.state.municipalities.length : 0;
+    var lowerLevelCounterSelected =  this.state.municipalities? _.filter(this.state.municipalities, function(it){return it.selected}).length : 0;
     return ( 
       <div> 
-        <span className="filter-label" role="label">{<Message message={this.props.label}/>}</span>
+        <div className="filter-group-panel-header">
+          <span className="filter-label" role="label">{<Message message={this.props.label}/>}</span>
+          <SelectionCounter selected={lowerLevelCounterSelected} total={lowerLevelCounterTotal} onCounterClicked={this._onCounterClicked}/>
+          <SelectAllNone onSelectAll={this._onSelectAll} onSelectNone={this._onSelectNone}/>
+        </div>
+        <KeywordSearch onSearch={this._onSearch} onSearchEnterKey={this._onSearchEnterKey}/>
         <div className="filter-list-container">
         {
           items.map(function(item) {   
             return (
               <div className="">
-                <TreeView {...item} onItemChange={this._onItemChange} expanded={false}/>
+                <TreeView {...item} showOnlySelected={this.state.showOnlySelected} onItemChange={this._onItemChange} expanded={false}/>
               </div>)            
           }.bind(this))
         }

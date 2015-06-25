@@ -2,7 +2,7 @@
 
 var Reflux = require('reflux');
 
-var names=["add","remove","load","clean","updateItemSelection"];
+var names=["add","remove","load","clean","updateItemSelection","updateAllSelection","filterByKeyword","selectFilteredByKeyword"];
 
 module.exports = {
 	Locations: Reflux.createActions(names),

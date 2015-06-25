@@ -15,16 +15,13 @@ module.exports = Reflux.createStore({
 	},
 
 	_loadMunicipalities: function(url) {
-		//if(!this._loaded){
-			//this._loaded==true;
-			Util.get(window.DATA_PATH + '/municipalitiesList.json').then(function(data) {
-				_.forEach(data, function(item){_.assign(item, {'level': 'municipalities'});});//assign level to each item
-				this.update({'municipalities': this._capitalize(data)}, {silent:true});
-				this._loadDepartments();
-			}.bind(this)).fail(function() {
-				console.log('Failed to load data ');
-			});
-		//}
+		Util.get(window.DATA_PATH + '/municipalitiesList.json').then(function(data) {
+			_.forEach(data, function(item){_.assign(item, {'level': 'municipalities'});});//assign level to each item
+			this.update({'municipalities': this._capitalize(data)}, {silent:true});
+			this._loadDepartments();
+		}.bind(this)).fail(function() {
+			console.log('Failed to load data ');
+		});
 	},
 
 	_loadDepartments: function(url) {
@@ -47,11 +44,72 @@ module.exports = Reflux.createStore({
 		this.update({'itemsTree': itemsTree});				
 	},	
 
-	updateItemSelection: function(level, id, selected){
-		_.assign(_.find(this.state[level], function(e){return e.id == id}), {'selected': selected});
+	_updateChildSelection: function(item, selected){
+		_.assign(_.find(this.state[item.level], function(e){return e.id == item.id}), {'selected': selected});
+		if (item.nested){
+			_.forEach(item.nested, function(it){
+				this._updateChildSelection(it, selected);
+			}.bind(this));
+		}			
+	},	
+
+	_itemMatchs: function(item, keyword) {
+	    if (keyword.length > 1) {
+	      var pattern = new RegExp(keyword, 'i');
+	      return pattern.test(item.name)
+	    } else {
+	      return true;
+	    }
+	},
+
+	_filterItemAndChildren: function(item, keyword){
+		var itemMatchs = this._itemMatchs(item, keyword);
+		var ret = false;
+		if (itemMatchs){
+			_.assign(item, {'hide': false});
+			this._makeChildrenVisible(item);
+			ret = true;
+		} else {
+			_.assign(item, {'hide': true});
+			_.forEach(item.nested, function(it){
+				if (this._filterItemAndChildren(it, keyword)){
+					_.assign(item, {'hide': false});
+					ret = true;
+				}		
+			}.bind(this));
+		}			
+		return ret;	
+	},
+	
+	_makeChildrenVisible: function(item){
+		_.forEach(item.nested, function(it){
+			_.assign(it, {'hide': false});
+			this._makeChildrenVisible(it);	
+		}.bind(this));
+	},
+	
+	updateItemSelection: function(item, selected){
+		this._updateChildSelection(item, selected);
 		this._createItemsTree();			
 	},	
-	
+
+	updateAllSelection: function(selected){
+		_.forEach(this.state.departments, function(item){
+			_.assign(item, {'selected': selected});
+		});
+		_.forEach(this.state.municipalities, function(item){
+			_.assign(item, {'selected': selected});
+		});
+		this._createItemsTree();			
+	},	
+
+	filterByKeyword: function(keyword){
+		_.forEach(this.state.itemsTree, function(itemTree){
+			this._filterItemAndChildren(itemTree, keyword);		
+		}.bind(this));
+		this.update({'itemsTree': _.clone(this.state.itemsTree)});	
+	},
+
 	getState: function(){
 		return this.state;
 	}	

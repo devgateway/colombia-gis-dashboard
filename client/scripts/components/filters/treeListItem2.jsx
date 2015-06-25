@@ -11,7 +11,7 @@ module.exports = React.createClass({
   
   _onItemChange:function(selected){
     if (this.props.onItemChange){
-      this.props.onItemChange(this.props.level, this.props.id, selected); 
+      this.props.onItemChange(this.props, selected); 
     }
     this.setState({'selected':selected})
   },
@@ -69,17 +69,22 @@ module.exports = React.createClass({
                   <span className="toggle-label">{this.props.expanded? <Message message='filters.collapse'/> : <Message message='filters.expand'/>}</span>
               </div>;
     }
-    return(  
-      <div className={className}>
-        <div className="filter-parent">
-          <div className={itemClassName}>
-            <CustomCheckbox selected={this.state.selected} value={this.props.id} onChange={this._handleClick}/>
-            <span onClick={this._handleClick} className={itemClassNames}> {this.props.name}</span>
-            {childrenCounter}
-            {childrenToggler}
+    if (!this.props.hide && 
+       (!this.props.showOnlySelected || (this.props.showOnlySelected && (this.props.selected || this.props.childrenSelected > 0)))){
+      return(  
+        <div className={className}>
+          <div className="filter-parent">
+            <div className={itemClassName}>
+              <CustomCheckbox selected={this.state.selected} value={this.props.id} onChange={this._handleClick}/>
+              <span onClick={this._handleClick} className={itemClassNames}> {this.props.name}</span>
+              {childrenCounter}
+              {childrenToggler}
+            </div>
           </div>
         </div>
-      </div>
-    )
+      )
+    } else {
+      return null;
+    }
   }
 }); 
