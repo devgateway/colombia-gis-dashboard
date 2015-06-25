@@ -19,10 +19,10 @@ module.exports = React.createClass({
   },
 
   componentWillReceiveProps :function(nextProps){
-        if(nextProps.selected!=undefined){
-            this.setState({'selected':nextProps.selected})
-        };
-    },
+    if(nextProps.selected!=undefined){
+        this.setState({'selected':nextProps.selected})
+    };
+  },
 
   getInitialState: function() {
     return {selected: this.props.selected};
@@ -31,10 +31,10 @@ module.exports = React.createClass({
   render: function() {
     var itemClassNames=(this.state.selected===true)?'item-label label-selected':'item-label';
     return(  
-      <div onClick={this._handleClick} className="filter-col">
-      <CustomCheckbox selected={this.state.selected} value={this.props.id} onChange={this._onItemChange}/>
-      <span className={itemClassNames}> {this.props.name}</span>
+      <div className="filter-col">
+        <CustomCheckbox selected={this.state.selected} value={this.props.id} onChange={this._handleClick}/>
+        <span onClick={this._handleClick} className={itemClassNames}> {this.props.name}</span>
       </div>
-      )
+    )
   }
 });

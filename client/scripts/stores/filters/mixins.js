@@ -39,19 +39,21 @@ module.exports = {
 			console.log('push id');
 			this.state.selected.push(id)		
 		}
-		this.trigger(this.state.selected);
+		this.trigger(this.state.selected, true);
 	},
 	
 	onRemove:function(id){
 		_.remove(this.state.selected,function(value){
 			return value===id;
 		} );
-		this.trigger(this.state.selected);
+		this.trigger(this.state.selected, true);
 	},
 
 	clean:function(){
-		this.state.selected=[];
-		this.trigger(this.state.selected);
+		if (this.state){
+			this.state.selected=[];
+			this.trigger(this.state.selected, true);
+		}
 	},
 
 	update: function(assignable, options) {
@@ -63,7 +65,7 @@ module.exports = {
 	},
 
 	getInitialState: function() {
-		return (this.state = {selected:[]});
+		return ({selected:[]});
 	}
 
 }

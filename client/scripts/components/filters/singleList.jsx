@@ -5,6 +5,9 @@ var PureRenderMixin = require('react/addons').addons.PureRenderMixin;
 var Item=require('./item.jsx');
 var _=require('lodash');
 var CommonsMixin=require('./commonsMixins.jsx');
+var KeywordSearch=require('./keywordSearch.jsx');
+var SelectAllNone=require('./allNoneSelector.jsx');
+var SelectionCounter = require('./selectionCounter.jsx');
 
 module.exports = React.createClass({
 
@@ -22,13 +25,11 @@ module.exports = React.createClass({
   },
 
   _triggerSelectionChange: function(newSelection) {
-
     this.setState(_.assign(this.state, {'selected': newSelection}));
+    this.forceUpdate();
   },
 
-
   _onSearch: function(keyword) {
-
     if (keyword.length > 0) {
       this.setState(_.assign(this.state, {
         'filter': keyword
@@ -38,11 +39,10 @@ module.exports = React.createClass({
         'filter': ''
       }));
     }
+    this.forceUpdate();
   },
 
-
   _onSearchEnterKey: function() {
-
     var selection = this.state.selected.slice(0);
     this.state.items.map(function(item) {
       if (this._isVisible(item)) {
@@ -53,17 +53,10 @@ module.exports = React.createClass({
     this._triggerSelectionChange(selection);
   },
 
-
-  getInitialState: function() {
-    return {
-      items: [],
-      selected: [],
-      filter: '',
-    };
-  },
-
-
   _isVisible: function(item) {
+    if (this.state.showOnlySelected && this.state.selected.indexOf(item.id)==-1) {
+      return false;
+    }
     if (this.state.filter.length > 1) {
       var pattern = new RegExp(this.state.filter, 'i');
       return pattern.test(item.name)
@@ -72,14 +65,16 @@ module.exports = React.createClass({
     }
   },
 
-
+  _onCounterClicked: function(selected) {
+    this.setState(_.assign(this.state, {'showOnlySelected': selected}));
+    this.forceUpdate();
+  },
+    
   /*Select all None*/
   _onSelectAll: function() {
-    var selection = this.state.selected.slice(0);
-
+    var selection = [];
     this.state.items.map(function(item) {
       this._addSelected(selection, item.id)
-
     }, this);
     this._triggerSelectionChange(selection);
   },
@@ -89,35 +84,42 @@ module.exports = React.createClass({
     this._triggerSelectionChange([]);
   },
   
+  componentDidMount: function(){
+    $(this.getDOMNode()).find('.filter-list-container').mCustomScrollbar({theme:"inset-dark"});    
+  },
+
+  getInitialState: function() {
+    return {
+      showOnlySelected: false,
+      items: [],
+      selected: [],
+      filter: '',
+    };
+  },
+
   render: function() {
-
-    var children = React.Children.map(this.props.children, function(child) {
-      
-      return child ? React.addons.cloneWithProps(child, {
-        onSearch:this._onSearch,
-        onSearchEnterKey:this._onSearchEnterKey,
-        onSelectAll:this._onSelectAll,
-        onSelectNone:this._onSelectNone
-
-      }) : null;
-    }, this);
+    //console.log("render SingleList");
     return ( 
       <div> 
-      {children}
-      <ul>
-      {
-
-        this.state.items.map(function(item) {
-          if (this._isVisible(item)){
-            return (<Item {...item} onItemChange={this._onItemChange} selected={this.state.selected.indexOf(item.id)> -1}/>)
-          }else{
-            return null
+        <div className="filter-group-panel-header">
+          <span className="filter-label" role="label">{<Message message={this.props.label}/>}</span>
+          <SelectionCounter selected={this.state.selected.length} total={this.state.items.length} onCounterClicked={this._onCounterClicked}/>
+          <SelectAllNone onSelectAll={this._onSelectAll} onSelectNone={this._onSelectNone}/>
+        </div>
+        <KeywordSearch onSearch={this._onSearch} onSearchEnterKey={this._onSearchEnterKey}/>
+        <div className="filter-list-container">
+          <ul className="filter-list">
+          {
+            this.state.items.map(function(item) {
+              if (this._isVisible(item)){
+                return (<li><Item {...item} onItemChange={this._onItemChange} selected={this.state.selected.indexOf(item.id)> -1}/></li>)
+              }else{
+                return null
+              }
+            },this) 
           }
-
-
-        },this) 
-      }
-      </ul>
+          </ul>
+        </div>
       </div>
       );
   }

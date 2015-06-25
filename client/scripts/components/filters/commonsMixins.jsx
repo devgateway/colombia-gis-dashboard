@@ -4,7 +4,9 @@ module.exports = {
 
 
 	onStatusChange: function(status) {
+		console.log("onStatusChange -> state.selected: "+status.selected);
 		this.setState(_.clone(status)); //make a copy of the state would make sense 
+		this.forceUpdate();
 	},
 
 	_addSelected: function(list, id) {
@@ -29,11 +31,8 @@ module.exports = {
 		this.actions.load() //call load event
 	},
 
-
-  componentWillUnmount: function() {
-    this.unsubscribe();
-  },
-
-
+ 	componentWillUnmount: function() {
+    	this.unsubscribe();
+  	}
 
 }
