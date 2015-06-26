@@ -94,7 +94,6 @@ module.exports = React.createClass({
               }.bind(this))
             }
           </li>
-
         </ul>
       </TogglerContent>
     </Toggler>

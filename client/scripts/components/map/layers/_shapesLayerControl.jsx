@@ -62,21 +62,21 @@ module.exports = React.createClass({
     <li>
       <Toggler ref='toggler'>
         <TogglerContent visibleWhen="collapsed">
-          <div toggler={true} className="toggler-button"><i className="fa fa-plus-square-o"></i></div>
+          <div toggler={true} className="toggler-button"><i className="fa fa-chevron-down"></i></div>
         </TogglerContent>
         <TogglerContent visibleWhen="expanded">
-          <div toggler={true} className="toggler-button"><i className="fa fa-minus-square-o"></i></div>
+          <div toggler={true} className="toggler-button"><i className="fa fa-chevron-up"></i></div>
         </TogglerContent>
         <TogglerContent visibleWhen="always">
+          <div><span className="control-title">{i18n.t("layers.fundingByType")}</span></div>
+        </TogglerContent>
+        <TogglerContent visibleWhen="expanded">
 
-          <Layer id="shapes" title={i18n.t("layers.fundingByType")}
+          <Layer id="shapes"
           opacity={this.state.opacity}
           onChangeOpacity={this._onChangeOpacity}
           onChangeVisibility={this._changevisibility}
           visible={this.state.visible}/>
-
-        </TogglerContent>
-        <TogglerContent visibleWhen="expanded">
           <ul className="controls-items">
             <li className="levels">
               <h3><Message message='layers.level'/></h3>
@@ -122,6 +122,5 @@ module.exports = React.createClass({
         </TogglerContent>
       </Toggler>
     </li>);
-
 }
 });
