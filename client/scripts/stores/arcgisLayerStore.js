@@ -7,6 +7,8 @@ var Util = require('../api/util.js');
 var API = require('../api/esri.js');
 var _ = require('lodash');
 
+var CommonsMixins = require('./_mixins.js')
+
 var storedState;//= require('./layer_samples.js');
 
 function setVisibility(layers){
@@ -25,6 +27,7 @@ function setOpaciy(layers){
 module.exports = Reflux.createStore({
 
 	listenables: ArcgisLayersActions,
+    mixins: [CommonsMixins],
 
 	onAddLayerToMap: function(layer) {
     console.log('stores->arcgisLayerStore>onAddLayerToMap');
@@ -113,14 +116,6 @@ module.exports = Reflux.createStore({
 			}
 		}
 		this.trigger(this.state)
-	},
-
-	update: function(assignable, options) {
-		options = options || {};
-		this.state = _.assign(this.state, assignable);
-		if (!options.silent) {
-			this.trigger(this.state);
-		}
 	},
 
 	nextZindex: function() {

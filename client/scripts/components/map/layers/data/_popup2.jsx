@@ -16,11 +16,11 @@ var MyActivities = React.createClass({
     }
     return (
         <div className="subactivities-list">
-        <Message message='map.popup.totalSubActivities'/>: {items.length}
+        <Message message='map.popup.programList'/>: {items.length}
         <ul> 
         {
           items.map(function(node, index) {
-            return <li>{node.name}</li>          
+            return <li>{node.name} - ({node.value})</li>          
           })
         }
         </ul></div>

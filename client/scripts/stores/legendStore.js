@@ -70,11 +70,11 @@ module.exports=Reflux.createStore({
       }
     },
 
-    onGetLegends: function(layer) {
+    onGetLegends: function(layer) { //Should not be used anymore
       this._getLegends(layer);
     },
 
-    onGetLegendsCompleted: function(legends, layer){
+    onGetLegendsCompleted: function(legends, layer){ //Should not be used anymore
       var layerLegends = _.find(this.state.layersLegends, {'id': layer.id});
       if (layer.type=='Feature Service'){
           var added = true;

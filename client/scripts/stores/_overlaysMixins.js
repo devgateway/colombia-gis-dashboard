@@ -105,15 +105,16 @@ module.exports = {
 			geoData: data,
 			geoStats: dataStats,
 			isLoaded: true
-		}); //trigger geodata changes;
-		LoadingAction.hideLoading();			
+		}); 
+		LoadingAction.hideLoading();
+		this._updateSavedData();			
 	},
 
-	update: function(assignable, options) {
-		options = options || {};
-		this.state = assign(this.state, assignable);
-		if (!options.silent) {
-			this.trigger(this.state);
+	_updateSavedData: function() {
+		if(this.state && this.state.isRestorePending){
+			var assignable = this.state.dataToRestore;
+			assignable['isRestorePending'] = false;
+			this.update(assignable);
 		}
 	},
 

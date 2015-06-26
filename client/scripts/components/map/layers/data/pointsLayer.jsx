@@ -48,13 +48,15 @@
 
        _setStyles: function() {
          this.layer.eachLayer(function(l) {
-           var style = this._getStyle(l.feature.properties.activities);
-           var rgbColor = style.color.r + "," + style.color.g + "," + style.color.b + "," + style.color.a;
-           $(l._icon).css('width', style.radius);
-           $(l._icon).css('height', style.radius);
-           $(l._icon).find('.number').css('line-height', style.radius + 'px')
-           l._icon.style.backgroundColor = 'rgba(' + rgbColor + ')';
-           l._icon.style.boxShadow = 'rgba(' + rgbColor + ') 0px 0px 4px 3px, rgba(' + rgbColor + ') 0px 0px 0px 4px, rgba(' + rgbColor + ') 0px 0px 0px 8px';
+            if(l._icon){
+             var style = this._getStyle(l.feature.properties.activities);
+             var rgbColor = style.color.r + "," + style.color.g + "," + style.color.b + "," + style.color.a;
+             $(l._icon).css('width', style.radius);
+             $(l._icon).css('height', style.radius);
+             $(l._icon).find('.number').css('line-height', style.radius + 'px')
+             l._icon.style.backgroundColor = 'rgba(' + rgbColor + ')';
+             l._icon.style.boxShadow = 'rgba(' + rgbColor + ') 0px 0px 4px 3px, rgba(' + rgbColor + ') 0px 0px 0px 4px, rgba(' + rgbColor + ') 0px 0px 0px 8px';
+           }
          }.bind(this));
        },
 

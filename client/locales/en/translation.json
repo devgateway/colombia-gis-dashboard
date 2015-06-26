@@ -79,6 +79,7 @@
 		"popup":{
 			"totalActivities":"Total Activities",
 			"totalSubActivities":"Total SubActivities",
+			"programList":"Program List",
 			"funding":"Funding"
 		}
 	}

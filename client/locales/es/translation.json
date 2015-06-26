@@ -78,6 +78,7 @@
 		"popup":{
 			"totalActivities":"Actividades Totales",
 			"totalSubActivities":"SubActividades Totales",
+			"programList":"Lista de Programas",
 			"funding":"Financiamiento"
 		}
 	}

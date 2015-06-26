@@ -120,12 +120,20 @@ module.exports = Reflux.createStore({
 		return defaultBreaks;
 	},
 
+	onRestoreData: function(data, type) {
+	    if(this._getLayerId()==type){
+		   this.update({dataToRestore: data, isRestorePending: true})
+		   this._load(null, data.level, true); //restore data 
+		}
+	},
+
 	getInitialState: function() {
 		return this.state = this.storedState || _.assign(_.clone(this._getDefState()), {
 			level: "departament",
 			visible: false,
 			breaks: defaultBreaks, //defaul styles breaks
-			defaultStyle: defaultStyle //Default symbol styles
+			defaultStyle: defaultStyle, //Default symbol styles
+			saveItems: ["breaks", "defaultStyle", "level", "opacity", "visible"]
 		});
 	},
 
