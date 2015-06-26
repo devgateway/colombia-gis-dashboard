@@ -112,7 +112,7 @@ module.exports = React.createClass({
 
   getInitialState: function() {
     return {
-      selectAll: {value: false, timestamp: Date.now()}
+      itemsTree: []
     };
   },
 

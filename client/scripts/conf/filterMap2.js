@@ -24,20 +24,7 @@ var filters = [
     modes: ['basic', 'advanced'],
     type: 'tree',
     store: LocationStore,
-    actions: Actions.Locations,
-    nested: {
-      label: 'Departaments',
-      param: 'de',
-      //store: DepartamentsStore,
-      //actions: Actions.Departaments,
-      nested: {
-        label: 'Municipalities',
-        param: 'mu',
-        parentField: 'idDepto',
-        //store: MunicipalitiesStore,
-        //actions: Actions.Municipalities
-      }
-    }
+    actions: Actions.Locations
   }, {
     index: 2,
     type: 'list',

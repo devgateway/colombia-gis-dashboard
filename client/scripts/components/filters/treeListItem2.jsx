@@ -20,29 +20,9 @@ module.exports = React.createClass({
     this._onItemChange(!this.state.selected);
   },
 
-  _updateSelectionCount:function(items){
-    this.setState({'childrenSelected': items.length});
-  },
-
-  _updateTotalCount:function(items){
-    this.setState({'childrenTotal': items.length});
-  },
-  
-  _toggle:function(){
-    this.setState(_.assign(this.state,{expanded:!this.state.expanded}))
-    this.forceUpdate();
-  },
-
   componentWillReceiveProps :function(nextProps){
     if(nextProps.selected!=undefined){
       this.setState({'selected':nextProps.selected})
-    };
-  },
-
-  componentDidUpdate: function(){
-    if(this.props.visible==true && this.props.parentVisible==false){
-      //console.log("ACA!! "+this.props.parentVisible)
-      this.props.onSetVisible();
     };
   },
 
