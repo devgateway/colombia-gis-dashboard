@@ -98,7 +98,9 @@
   .title{
     font-size: 1em;
     color: $grey;
-    line-height:150%;
+    width:40px;
+    margin-top:-22px;
+    margin-left:32px;
   }
 
   .slider-holder{
@@ -131,7 +133,6 @@
     .toggler-btn{
       width: 20px;
       float: left;
-
     }
     .updown{
       float: left;
@@ -140,6 +141,9 @@
     }
     .clear-fix{
       clear: both;
+    }
+    .fa{
+      color: $blue;
     }
   }
 

@@ -1203,7 +1203,9 @@ ul.tabs {
 .layer-control .title {
   font-size: 1em;
   color: #454545;
-  line-height: 150%; }
+  width: 40px;
+  margin-top: -22px;
+  margin-left: 32px; }
 .layer-control .slider-holder {
   position: relative;
   display: block;
@@ -1232,6 +1234,8 @@ ul.tabs {
     width: 35px; }
   .layer-control .toggler .clear-fix {
     clear: both; }
+  .layer-control .toggler .fa {
+    color: #4d749f; }
 .layer-control .ui-state-default,
 .layer-control .ui-widget-content .ui-state-default,
 .layer-control .ui-widget-header .ui-state-default {
@@ -1478,7 +1482,7 @@ ul.tabs {
   .toggler .control-title {
     float: left;
     width: 70%;
-    margin-left: 70px; }
+    margin: -22px auto 20px 50px; }
 
 .layer-control-toggle h3 {
   font-weight: bold;

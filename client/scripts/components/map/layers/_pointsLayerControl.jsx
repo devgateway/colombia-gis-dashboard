@@ -56,10 +56,10 @@ module.exports = React.createClass({
   <li>
     <Toggler ref='toggler'>
       <TogglerContent visibleWhen="collapsed">
-        <div toggler={true} className="toggler-button"><i className="fa fa-plus-square-o"></i></div>
+        <div toggler={true} className="toggler-button"><i className="fa fa-chevron-down"></i></div>
       </TogglerContent>
       <TogglerContent visibleWhen="expanded">
-        <div toggler={true} className="toggler-button"><i className="fa fa-minus-square-o"></i></div>
+        <div toggler={true} className="toggler-button"><i className="fa fa-chevron-up"></i></div>
       </TogglerContent>
       <TogglerContent visibleWhen="always">
         <div><span className="control-title">{i18n.t("layers.subActivitiesLevel")}</span></div>
