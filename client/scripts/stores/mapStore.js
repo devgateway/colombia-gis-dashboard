@@ -5,11 +5,13 @@ var Reflux = require('reflux');
 var MapActions = require('../actions/mapActions.js');
 var LoadingActions = require('../actions/loadingActions.js');
 
+var CommonsMixins = require('./_mixins.js')
 
 module.exports = Reflux.createStore({
 
 
   listenables: [MapActions, LoadingActions],
+  mixins: [CommonsMixins],
 
   getCurrentBaseMap: function() {
     return this.state.baseMap;
@@ -35,20 +37,13 @@ module.exports = Reflux.createStore({
     this.update({baseMap:newBaseMap});
   },
 
-  update: function(assignable, options) {
-    options = options || {};
-    this.state = assign(this.state, assignable);
-    if (!options.silent) {
-      this.trigger(this.state);
-    }
-  },
-
   getInitialState: function() {
     return (this.state = {
       baseMap : 'Gray',
       bounds: [ [7, -62],
                 [0, -83] ],
-      loading: false          
+      loading: false,
+      saveItems:['baseMap', 'bounds']          
     });
   }
 

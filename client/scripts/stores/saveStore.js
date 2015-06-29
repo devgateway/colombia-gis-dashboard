@@ -8,11 +8,13 @@ var FilterActions = require('../actions/filterActions.js');
 var ArcgisLayersActions = require('../actions/arcgisLayersActions.js');
 var LanStore = require('./lanStore.js');
 var FilterStore = require('./filterStore.js');
+var MapStore = require('./mapStore.js');
 var ShapesLayerStore = require('./shapesLayerStore.js');
 var PointsLayerStore = require('./pointsLayerStore.js');
 var ArcgisLayerStore = require('./arcgisLayerStore.js');
 
 var lanState;
+var mapState;
 var filterState;
 var shapesState;
 var pointsState;
@@ -28,12 +30,15 @@ module.exports = Reflux.createStore({
     this.listenTo(FilterStore, this._handleFilterDataUpdate); 
     this.listenTo(ShapesLayerStore, this._handleShapesDataUpdate); 
     this.listenTo(PointsLayerStore, this._handlePointsDataUpdate); 
-    this.listenTo(ArcgisLayerStore, this._handleArcgisDataUpdate); 
+    this.listenTo(ArcgisLayerStore, this._handleArcgisDataUpdate);
+    this.listenTo(MapStore, this._handleMapDataUpdate);
+
   },
 
   onSaveMap:function(){
    console.log('stores->saveStore->onSaveMap');
    //Fix for esriLayers
+   var mapData = this._getDataFromState(mapState);
    var lanData = this._getDataFromState(lanState);
    var filterData = _.clone(filterState.filtersSelected, true); //Filter Store is changed in another branch, this should be updated
    var shapesData = this._getDataFromState(shapesState);
@@ -41,6 +46,7 @@ module.exports = Reflux.createStore({
    var arcgisData = this._getDataFromState(arcgisState);
 
    this.update({
+        'mapState': mapData,
         'lanState': lanData,
         'filterData': filterData,
         'shapesState': shapesData,
@@ -69,6 +75,7 @@ module.exports = Reflux.createStore({
    console.log('stores->saveStore->onRestoreMap');
     if(this.state){
       LanStore.setCurrentState(this.state.lanState);
+      MapStore.setCurrentState(this.state.mapState);
       if(this.state.filterData){
         this.state.filterData.map(function(l){l.values.map(function(m){
           FilterActions.changeFilterItemState(l.param, m, true);
@@ -95,6 +102,10 @@ module.exports = Reflux.createStore({
     if (!options.silent) {
       this.trigger(this.state);
     }
+  },
+
+  _handleMapDataUpdate: function(data) {
+    mapState = data;
   },
 
   _handleFilterDataUpdate: function(data) {
