@@ -106,9 +106,9 @@ module.exports = Reflux.createStore({
     this._load(null, this.state.level, true); //initialize data 
   },
 
-  onRestoreData: function(data, type) {
+  onRestoreData: function(data, type, dataFilters) {
     if(this._getLayerId()==type){
-      this.update({dataToRestore: data, isRestorePending: true})
+      this.update({dataToRestore: data, isRestorePending: true, filters: dataFilters})
       this._load(null, data.level, true); //restore data 
     }
   },

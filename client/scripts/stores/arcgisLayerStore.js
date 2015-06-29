@@ -34,7 +34,7 @@ module.exports = Reflux.createStore({
     
 		if (!_.findWhere(this.state.layers, {id: layer.id})) {
 			
-			var options={'opacity': 1,'visible':true}; //default values for all layers 
+			var options={'opacity': 1,'visible':true, 'created':null}; //default values for all layers 
 
 			if (layer.type=='Feature Service'){
 				setVisibility(layer.layer.layers);
@@ -118,6 +118,10 @@ module.exports = Reflux.createStore({
 		this.trigger(this.state)
 	},
 
+	onRestoreData: function(data) {
+		this.update(data);
+	},
+
 	nextZindex: function() {
 		if (!this.lastZindex) {
 			this.lastZindex = 0
@@ -129,6 +133,7 @@ module.exports = Reflux.createStore({
 		if (!this.state) {
 			this.state = storedState || {
 				layers: [],
+				saveItems: ["layers"]
 			};
 		}
 		return this.state;

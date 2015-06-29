@@ -4,12 +4,16 @@ var assign = require('object-assign');
 var Reflux = require('reflux');
 var SaveActions = require('../actions/saveActions.js');
 var LayersActions = require('../actions/layersAction.js');
+var FilterActions = require('../actions/filterActions.js');
+var ArcgisLayersActions = require('../actions/arcgisLayersActions.js');
 var LanStore = require('./lanStore.js');
+var FilterStore = require('./filterStore.js');
 var ShapesLayerStore = require('./shapesLayerStore.js');
 var PointsLayerStore = require('./pointsLayerStore.js');
 var ArcgisLayerStore = require('./arcgisLayerStore.js');
 
 var lanState;
+var filterState;
 var shapesState;
 var pointsState;
 var arcgisState;
@@ -21,6 +25,7 @@ module.exports = Reflux.createStore({
   init: function() {
     this.state = {}; 
     this.listenTo(LanStore, this._handleLanDataUpdate);
+    this.listenTo(FilterStore, this._handleFilterDataUpdate); 
     this.listenTo(ShapesLayerStore, this._handleShapesDataUpdate); 
     this.listenTo(PointsLayerStore, this._handlePointsDataUpdate); 
     this.listenTo(ArcgisLayerStore, this._handleArcgisDataUpdate); 
@@ -30,12 +35,14 @@ module.exports = Reflux.createStore({
    console.log('stores->saveStore->onSaveMap');
    //Fix for esriLayers
    var lanData = this._getDataFromState(lanState);
+   var filterData = _.clone(filterState.filtersSelected, true); //Filter Store is changed in another branch, this should be updated
    var shapesData = this._getDataFromState(shapesState);
    var pointsData = this._getDataFromState(pointsState);
    var arcgisData = this._getDataFromState(arcgisState);
 
    this.update({
         'lanState': lanData,
+        'filterData': filterData,
         'shapesState': shapesData,
         'pointsState': pointsData,
         'arcgisState': arcgisData
@@ -62,13 +69,23 @@ module.exports = Reflux.createStore({
    console.log('stores->saveStore->onRestoreMap');
     if(this.state){
       LanStore.setCurrentState(this.state.lanState);
+      if(this.state.filterData){
+        this.state.filterData.map(function(l){l.values.map(function(m){
+          FilterActions.changeFilterItemState(l.param, m, true);
+        })});
+          
+      }
       if(this.state.shapesState){
         LayersActions.restoreData(_.clone(this.state.shapesState, true), 'shapes');
       }
       if(this.state.pointsState){
-        LayersActions.restoreData(_.clone(this.state.pointsState, true), 'points');
+        LayersActions.restoreData(_.clone(this.state.pointsState, true), 'points', this.state.filterData);
       }
-      ArcgisLayerStore.setCurrentState(this.state.arcgisState);
+      if(this.state.arcgisState){
+        this.state.arcgisState.layers.map(function(l){
+          ArcgisLayersActions.loadLayer(l);
+        })
+      }
     }
   },
 
@@ -78,6 +95,10 @@ module.exports = Reflux.createStore({
     if (!options.silent) {
       this.trigger(this.state);
     }
+  },
+
+  _handleFilterDataUpdate: function(data) {
+    filterState = data;
   },
 
   _handleLanDataUpdate: function(data) {

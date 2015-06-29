@@ -26,7 +26,7 @@ module.exports = Reflux.createStore({
   },
 
   getInitialState: function() {
-    return (this.state = {"lan":"es", "saveItems":["lan"]});
+    return (this.state = {'lan':'es', 'saveItems':['lan']});
   }
 
 });

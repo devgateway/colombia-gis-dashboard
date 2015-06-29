@@ -7,10 +7,13 @@ var FilterActions = require('../actions/filterActions.js');
 var LayerActions = require('../actions/layersAction.js');
 var FilterMap = require('../conf/filterMap.js');
 var API = require('../api/filters.js');
+var CommonsMixins = require('./_mixins.js')
 
 module.exports=Reflux.createStore({
 
     listenables: FilterActions,
+    mixins: [CommonsMixins],
+
     // Initial setup
     init: function() {
         this.state = {pendingLoad: 0};
@@ -172,7 +175,7 @@ module.exports=Reflux.createStore({
 
     onResetDates: function() {
         this.update({ resetDates: !this.state.resetDates });
-      },
+    },
 
     onTriggerFilterReset:function(){        
         this.onTriggerFilterApply(true);
@@ -202,17 +205,9 @@ module.exports=Reflux.createStore({
         return this.state;
     },
 
-    update: function(assignable, options) {
-        options = options || {};
-        this.state = _.assign(this.state, assignable);
-        if (!options.silent) {
-            this.trigger(this.state);
-        }
-    },
-
     getInitialState: function() {
         return (this.state = {
-          resetDates: false          
+          resetDates: false        
         });
     }
 
