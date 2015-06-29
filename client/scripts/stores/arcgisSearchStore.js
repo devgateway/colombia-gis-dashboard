@@ -12,12 +12,16 @@ var storedState;
 
 
 function flagToTrue(obj,flag){
-	obj[flag]=true;
-	return obj
+	if(obj){
+		obj[flag]=true;
+		return obj
+	}
 }
 function flagToFalse(obj,flag){
-	obj[flag]=false;
-	return obj
+	if(obj){
+		obj[flag]=false;
+		return obj
+	}
 }
 
 function findById(source,id){
