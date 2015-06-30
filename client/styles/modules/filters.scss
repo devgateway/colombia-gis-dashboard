@@ -305,3 +305,12 @@ input[type=checkbox].glyphicon {
   font-weight:bold;
   color: $grey;
 }
+
+//advanced filters- new set up
+.filters-more{
+  color: $blue;
+  font-style: italic;
+  &:hover{
+    color: $grey;
+  }
+}
