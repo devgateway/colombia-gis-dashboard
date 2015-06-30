@@ -6,6 +6,7 @@ var ArcgisLayersActions = require('../actions/arcgisLayersActions.js');
 var Util = require('../api/util.js');
 var API = require('../api/esri.js');
 var _ = require('lodash');
+var LoadingAction = require('../actions/loadingActions.js');
 
 var CommonsMixins = require('./_mixins.js')
 
@@ -30,8 +31,8 @@ module.exports = Reflux.createStore({
     mixins: [CommonsMixins],
 
 	onAddLayerToMap: function(layer) {
-    console.log('stores->arcgisLayerStore>onAddLayerToMap');
-    
+    	console.log('stores->arcgisLayerStore>onAddLayerToMap');
+    	LoadingAction.showLoading();
 		if (!_.findWhere(this.state.layers, {id: layer.id})) {
 			
 			var options={'opacity': 1,'visible':true, 'created':null}; //default values for all layers 
@@ -62,6 +63,7 @@ module.exports = Reflux.createStore({
 		var layer = _.findWhere(this.state.layers, {id: id});
 		_.assign(layer, {'added':true});
 		this.trigger(this.state);
+		LoadingAction.hideLoading();
 	},
 
 	onChangeLayerValue: function(property, id, value, idx) {
