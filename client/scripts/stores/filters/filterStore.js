@@ -4,7 +4,7 @@ var assign = require('object-assign');
 var Reflux = require('reflux');
 var _ = require('lodash');
 var Mixins=require('./mixins.js');
-var actions=require('../../actions/filterListActions.js');
+var actions=require('../../actions/filterActions.js');
 var StoreDispatcher = require('./storeDispatcher.js');
 var DateStore=require('./dateStore.js');
 
@@ -38,8 +38,8 @@ module.exports = Reflux.createStore({
 		this.listenTo(StoreDispatcher.ClassificationType, this._collectFilters(['a1','a2','a3','a4','a5'], true));
 		this.listenTo(StoreDispatcher.AorCor, this._collectFilters('ar'));
 
-		this.listenTo(StoreDispatcher.ContractType, this._collectFilters('cr'));
-		this.listenTo(StoreDispatcher.Crops, this._collectFilters('ct'));
+		this.listenTo(StoreDispatcher.ContractType, this._collectFilters('ct'));
+		this.listenTo(StoreDispatcher.Crops, this._collectFilters('cr'));
 		this.listenTo(DateStore, this._collectFilters(['sd','ed']));
 
 		this.listenTo(StoreDispatcher.DevelopmentObjectives, this._collectFilters('do'));

@@ -11,7 +11,7 @@ var Filter=require('./filter.jsx');
 var _=require('lodash');
 var Message=require('.../../../commons/message.jsx');
 
-var actions=require('../../actions/filterListActions.js');
+var actions=require('../../actions/filterActions.js');
 var Store=require('../../stores/filters/filterStore.js');
 
 module.exports = React.createClass({
@@ -97,9 +97,10 @@ module.exports = React.createClass({
           </div>
         </div>
       </div>
-      
-      <div className="btn btn-sm btn-success" onClick={this._applyFilter}>Apply Filters</div>
-      <div className="btn btn-sm btn-success" onClick={this._resetFilter}>Reset All Filters</div>
+      <div className="button-pane">
+        <button type="button" className="btn btn-apply" role="button" onClick={this._resetFilter}><Message message="filters.reset"/></button>
+        <button type="button" className="btn btn-apply space-left" role="button" onClick={this._applyFilter}><Message message="filters.apply"/></button>
+      </div>
     </div>
     );
   }

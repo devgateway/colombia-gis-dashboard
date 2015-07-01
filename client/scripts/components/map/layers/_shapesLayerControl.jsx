@@ -16,7 +16,7 @@ var _=require('lodash');
 var CustomCheckbox = require('../../commons/customCheckbox.jsx');
 
 var Breaker=require('./_breaker.jsx');
-var FilterStore = require('../../../stores/filterStore.js');
+//var FilterStore = require('../../../stores/filterStore.js');
 
 var color0 = [[255, 200, 170, 0.8], [212, 143, 106, 0.8], [253, 154, 0, 0.8], [170, 57, 0, 0.8], [128, 58, 21, 0.8]];
 var color1 = [[255, 51, 51, 0.8], [255, 153, 51, 0.8], [255, 255, 51, 0.8], [153, 255, 51, 0.8], [51, 255, 153, 0.8]];
@@ -26,7 +26,8 @@ var color4 = [[255, 255, 102, 0.8], [255, 255, 51, 0.8], [255, 255, 0, 0.8], [20
 
 module.exports = React.createClass({
 
- mixins: [Reflux.connect(FilterStore), Reflux.connect(Store)], 
+ //mixins: [Reflux.connect(FilterStore), Reflux.connect(Store)], 
+ mixins: [Reflux.connect(Store)], 
  
  _changeVisibility: function(id, value) {
     LayerActions.changeLayerValue(id,'visible',value); 
@@ -129,7 +130,7 @@ module.exports = React.createClass({
     console.log('...................... Layer State ......................')
 
     var level=this.state.level;
-    var fundingTypes = FilterStore.getAll("ft");
+    var fundingTypes = [];//FilterStore.getAll("ft");
     var self = this;
     return (
     <li>

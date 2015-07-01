@@ -7,7 +7,7 @@ var LayersActions = require('../actions/layersAction.js');
 var FilterActions = require('../actions/filterActions.js');
 var ArcgisLayersActions = require('../actions/arcgisLayersActions.js');
 var LanStore = require('./lanStore.js');
-var FilterStore = require('./filterStore.js');
+var FilterStore = require('./filters/filterStore.js');
 var MapStore = require('./mapStore.js');
 var ShapesLayerStore = require('./shapesLayerStore.js');
 var PointsLayerStore = require('./pointsLayerStore.js');
@@ -40,7 +40,7 @@ module.exports = Reflux.createStore({
    //Fix for esriLayers
    var mapData = this._getDataFromState(mapState);
    var lanData = this._getDataFromState(lanState);
-   var filterData = _.clone(filterState.filtersSelected, true); //Filter Store is changed in another branch, this should be updated
+   var filterData = {'filters': _.clone(filterState, true)};
    var shapesData = this._getDataFromState(shapesState);
    var pointsData = this._getDataFromState(pointsState);
    var arcgisData = this._getDataFromState(arcgisState);
@@ -77,10 +77,14 @@ module.exports = Reflux.createStore({
       LanStore.setCurrentState(this.state.lanState);
       MapStore.setCurrentState(this.state.mapState);
       if(this.state.filterData){
-        this.state.filterData.map(function(l){l.values.map(function(m){
-          FilterActions.changeFilterItemState(l.param, m, true);
-        })});
-          
+        for (var key in FilterActions) {
+          if (FilterActions.hasOwnProperty(key)) {
+            if (FilterActions[key].loadFromSaved){
+              FilterActions[key].loadFromSaved(this.state.filterData);
+            }
+          }
+        }
+        FilterActions.applyFilters();
       }
       if(this.state.shapesState){
         LayersActions.restoreData(_.clone(this.state.shapesState, true), 'shapes');

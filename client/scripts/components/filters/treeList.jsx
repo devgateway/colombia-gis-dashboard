@@ -48,7 +48,7 @@ var TreeView =  React.createClass({
           childrenTotal={this.props.nested? this.props.nested.length : 0}
           childrenSelected={this.props.nested? this._getNestedSelected().length : 0}/>
           {(this.props.nested && this.state.expanded)? 
-            <ul>
+            <ul className="filter-list tabbed">
             {
               this.props.nested.map(function(item) {   
                   return (<li><TreeView {...item} showOnlySelected={this.props.showOnlySelected} onItemChange={this.props.onItemChange} expanded={false}/></li>)            

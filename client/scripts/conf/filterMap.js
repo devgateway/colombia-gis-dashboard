@@ -1,7 +1,7 @@
 
 var DateStore = require('../stores/filters/dateStore.js');
 var StoreDispatcher = require('../stores/filters/storeDispatcher.js');
-var Actions = require('../actions/filterListActions.js');
+var Actions = require('../actions/filterActions.js');
 var filters = [
   {
     index: 1,
@@ -45,14 +45,14 @@ var filters = [
     store: StoreDispatcher.SubImplementers,
     actions: Actions.SubImplementers
   },
-  {
+  /*{
     index: 6,
     label: 'filters.activityClassification',
     modes: ['basic', 'advanced'],
     type: 'tree',
     store: StoreDispatcher.ClassificationType,
     actions: Actions.ClassificationType
-  },
+  },*/
   {
     index: 7,
     label: 'filters.ppp',

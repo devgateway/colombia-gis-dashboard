@@ -5,16 +5,20 @@ var Reflux = require('reflux');
 var _ = require('lodash');
 var Mixins = require('./mixins.js');
 var TreeMixins = require('./treeMixins.js');
-var Actions = require('../../actions/filterListActions.js');
+var Actions = require('../../actions/filterActions.js');
 
 
-function makeStore(actions, source) {
+function makeStore(actions, source, param) {
   return Reflux.createStore({
     listenables: actions,
     mixins: [Mixins],
     load: function() {
      this._loadItems(window.DATA_PATH + '/' + source);
     },
+    init: function(){
+      this.state = {};
+      _.assign(this.state, {'param': param});
+    }
   })
 };
 
@@ -89,13 +93,13 @@ module.exports = {
   Locations: makeTreeStore(Actions.Locations, locationTree, 'mu'),
   SubImplementers: makeTreeStore(Actions.SubImplementers, subImplementersTree, 'si'),
   ClassificationType: makeTreeStore(Actions.ClassificationType, classificationType, 'a5'),
-  ContractType: makeStore(Actions.ContractType, 'contractTypes.json'),
-  Crops: makeStore(Actions.Crops, 'cropsList.json'),
-  DevelopmentObjectives: makeStore(Actions.DevelopmentObjectives, 'doList.json'),
-  EnvironmentalManagementPlans: makeStore(Actions.EnvironmentalManagementPlans, 'typesEnviromentalPlans.json'),
-  PublicPrivatePartnership: makeStore(Actions.PublicPrivatePartnership, 'publicPrivatePartnership.json'),
-  RapidImpact: makeStore(Actions.RapidImpact, 'rapidImpact.json'),
-  SubActivityStatus: makeStore(Actions.SubActivityStatus, 'subActivityStatus.json'),
-  AorCor: makeStore(Actions.AorCor, 'aor-corNames.json'),
-  TargetPopulation: makeStore(Actions.TargetPopulation, 'targetPopulation.json')
+  AorCor: makeStore(Actions.AorCor, 'aor-corNames.json', 'ar'),
+  ContractType: makeStore(Actions.ContractType, 'contractTypes.json', 'ct'),
+  Crops: makeStore(Actions.Crops, 'cropsList.json', 'cr'),
+  DevelopmentObjectives: makeStore(Actions.DevelopmentObjectives, 'doList.json', 'do'),
+  EnvironmentalManagementPlans: makeStore(Actions.EnvironmentalManagementPlans, 'typesEnviromentalPlans.json', 'te'),
+  PublicPrivatePartnership: makeStore(Actions.PublicPrivatePartnership, 'publicPrivatePartnership.json', 'pp'),
+  RapidImpact: makeStore(Actions.RapidImpact, 'rapidImpact.json', 'ri'),
+  SubActivityStatus: makeStore(Actions.SubActivityStatus, 'subActivityStatus.json', 'st'),
+  TargetPopulation: makeStore(Actions.TargetPopulation, 'targetPopulation.json', 'tp')
 }
