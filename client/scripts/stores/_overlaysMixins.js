@@ -1,11 +1,16 @@
 var assign = require('object-assign');
 var LayersAction = require('../actions/layersAction.js');
 var LoadingAction = require('../actions/loadingActions.js');
+var FilterStore = require('./filters/filterStore.js');
 var _ = require('lodash');
 
 module.exports = {
 
 	listenables: LayersAction,
+
+	init: function() {		
+		this.listenTo(FilterStore, "_applyFilters");
+	},
 
 	/*Listen  set property event comming from the layer control  */
 	onChangeLayerValue: function(id, property, value, subProperty) {
@@ -131,4 +136,17 @@ module.exports = {
 		}
 	},
 
+	_applyFilters: function(data, shapesTrigger) {
+		console.log(data);
+		if (shapesTrigger && this._getLayerId()!="shapes") {
+			return;
+		} else {	
+			this.update({
+				filters: data
+			}, {
+				silent: true
+			}); ///silent is tru since the change will be triggered by the load method
+			this._load(null, this.state.level, true); //force re-load;
+		}
+	},
 }

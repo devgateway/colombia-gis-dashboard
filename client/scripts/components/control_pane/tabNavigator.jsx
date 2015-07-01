@@ -9,7 +9,7 @@ var Basemaps=require('../map/baseMap.jsx')
 var TabLayerNavigator=require('./layers/tabLayerNavigator.jsx');
 
 
-var Filter=require('./filters/filter.jsx');
+var Filter=require('./../filters/filtersManager.jsx');
 
 module.exports  = React.createClass({
 
