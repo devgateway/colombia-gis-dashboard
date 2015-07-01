@@ -103,19 +103,24 @@ module.exports = Reflux.createStore({
   },
 
   onActivityLayerInit: function() {
-    this._load(null,this.state.level, true); //initialize data 
+    this._load(null, this.state.level, true); //initialize data 
   },
 
-
+  onRestoreData: function(data, type, dataFilters) {
+    if(this._getLayerId()==type){
+      this.update({dataToRestore: data, isRestorePending: true, filters: dataFilters})
+      this._load(null, data.level, true); //restore data 
+    }
+  },
 
   getInitialState: function() {
     return this.state = this.storedState ||
       _.assign(_.clone(this._getDefState()) /*Get default values*/ , {
         level: "departament",
         breaks: defaultBreaks, //defaul styles breaks
-        defaultStyle: defaultStyle //Default symbol styles
+        defaultStyle: defaultStyle, //Default symbol styles
+        saveItems: ["breaks", "defaultStyle", "level", "opacity", "visible"]
       }) /*override default values*/ ;
-
   },
 
   /*Load GIS data by department */

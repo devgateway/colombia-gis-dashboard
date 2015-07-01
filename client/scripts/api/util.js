@@ -27,11 +27,15 @@ module.exports = {
 
 
 	request: function(url){
+		alert('Este metodo se usa ...');
 		return reqwest({ url: url+'?f=json', type: 'json', method: 'get',  crossOrigin: true} );
 
 	},
 
 
+  	get: function(url) {
+      	return reqwest({url: url, type: 'json',  method: 'get',  crossOrigin: true });
+    },
 
 
 };

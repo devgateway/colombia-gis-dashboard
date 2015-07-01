@@ -14,16 +14,25 @@ var MyActivities = React.createClass({
     if(this.props.data){
       items = this.props.data;
     }
+    var link;
+    if(this.props.externalFile){
+      this.props.externalFile.map(function(l){link=l.value})
+    }
     return (
+      <div>
         <div className="subactivities-list">
-        <Message message='map.popup.totalSubActivities'/>: {items.length}
+        <Message message='map.popup.programList'/>: {items.length}
         <ul> 
         {
           items.map(function(node, index) {
-            return <li>{node.name}</li>          
+            return <li>{node.name} - ({node.value})</li>          
           })
         }
         </ul></div>
+        <If condition={link}>
+          <div><a className="btn download-button" href={link} target='_blank'><Message message='map.popup.downloadFile'/></a></div>
+        </If>
+      </div>
     );
   }
 });
@@ -229,7 +238,7 @@ module.exports  = React.createClass({
               <If condition={tabId==4 && !showLoading} >
                 <div className="subactivities-container">
                   <div className="sub-activities-title">{titleArray[tabId]}</div>
-                  <MyActivities data={infoData[4]} />
+                  <MyActivities data={infoData[4]} externalFile={infoData[5]} />
                 </div>
               </If>
             </div>

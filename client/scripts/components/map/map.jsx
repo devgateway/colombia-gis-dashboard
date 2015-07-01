@@ -25,8 +25,8 @@ var LegendControl = require('./layers/esri/legendControl.jsx');
 
   mixins: [ Reflux.connect(MapStore, 'mapStatus')],
 
-  updateCurrentBounds: function(newMapViewBounds) {
-    MapActions.changeBounds.user(newMapViewBounds);
+  updateCurrentBounds: function(newMapViewBounds, newZoom) {
+    MapActions.changeBounds.user(newMapViewBounds, newZoom);
   },
 
   getMap: function() {
@@ -44,12 +44,13 @@ var LegendControl = require('./layers/esri/legendControl.jsx');
   }, this);
    var bounds = this.state.mapStatus.bounds;
    var baseMap= this.state.mapStatus.baseMap;
+   var zoom= this.state.mapStatus.zoom;
    console.log('Map>map: Render');
    return (
 
      <div>
      
-     <LeafletMap ref="leafletMapComponent" baseMap={baseMap} bounds={bounds} onMapMove={this.updateCurrentBounds}/>
+     <LeafletMap ref="leafletMapComponent" baseMap={baseMap} bounds={bounds} zoom={zoom} onMapMove={this.updateCurrentBounds}/>
       <AGOLbtnLogin/>
       <LegendControl/>
       <PointsLayer getMap={this.getMap}/>

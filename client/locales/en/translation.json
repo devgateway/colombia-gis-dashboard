@@ -23,8 +23,8 @@
 		"selectAll":"select all",
 		"deselectAll":"deselect all",
 		"searchFilters":"Search filters",
-		"reset":"Reset",
-		"apply":"Apply",
+		"reset":"Reset All",
+		"apply":"Apply All",
 		"showAll":"Show all",
 		"showOnlySelected":"Show only selected",
 		"noResults":"There where no results available",
@@ -79,6 +79,8 @@
 		"popup":{
 			"totalActivities":"Total Activities",
 			"totalSubActivities":"Total SubActivities",
+			"programList":"Program List",
+			"downloadFile":"Download file",
 			"funding":"Funding"
 		}
 	}

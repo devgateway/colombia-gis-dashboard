@@ -6,31 +6,23 @@ var React = require('react');
 var CustomCheckbox = React.createClass({
  
     getInitialState: function() {
-        return {selected: this.props.selected? true : false};
+        return {selected: this.props.selected};
     },
 
     _onClick: function() { 
-        if (!this.state.selected) {
-            $(this.getDOMNode()).addClass('selected');
-            this.setState({selected: true});
-            if (this.props.onChange){
-                this.props.onChange(this.props.value, true);                
-            }
-        } else {
-            $(this.getDOMNode()).removeClass('selected');
-            this.setState({selected: false});
-            if (this.props.onChange){
-                this.props.onChange(this.props.value, false);                
-            }
-        }
-    },
- 
-    componentWillMount: function(){
-              
+       this.setState({selected: !this.state.selected});
+        this.props.onChange({selected:this.state.selected});
     },
 
+    componentWillReceiveProps :function(nextProps){
+        if(nextProps.selected!=undefined){
+            this.setState({'selected':nextProps.selected})
+        };
+    },
+ 
+
     render: function() {
-        var classes = this.props.selected? "selectable selected" : "selectable";
+        var classes = this.state.selected===true? "selectable selected" : "selectable";
         return(
             <span className={classes} onClick={this._onClick}>
                 

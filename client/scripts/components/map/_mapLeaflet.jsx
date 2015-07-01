@@ -15,7 +15,7 @@ function getSimpleBounds(map, boundsChangeHandler) {
         [Lbounds.getNorth(), Lbounds.getEast()],
         [Lbounds.getSouth(), Lbounds.getWest()]
       ];
-    boundsChangeHandler(simpleBounds);
+    boundsChangeHandler(simpleBounds, map.getZoom());
   };
 }
 
@@ -52,12 +52,22 @@ module.exports = React.createClass({
     if (this.props.baseMap) {
       this.setBaseMap(this.props.baseMap);
     }
+
+    if (this.props.zoom) {
+      this.map.setZoom(this.props.zoom);
+    }
   },
 
   componentWillReceiveProps: function(nextProps) {
     if (nextProps.baseMap && nextProps.baseMap!=this.props.baseMap) {
       console.log('map->_mapLeaflet>componentWillReceiveProps Change Map ' + nextProps.baseMap);
       this.setBaseMap(nextProps.baseMap);
+    }
+    if (nextProps.bounds && nextProps.bounds[0][0]!=this.map.getBounds().getNorth() && nextProps.bounds[0][1]!=this.map.getBounds().getEast()) {
+      this.map.fitBounds(nextProps.bounds);
+    }
+    if (nextProps.zoom && nextProps.zoom!=this.map.getZoom()) {
+      this.map.setZoom(nextProps.zoom);
     }
     if (nextProps.arcGisLayers) {
       this.addFeatureLayer(nextProps.arcGisLayers);
