@@ -23,6 +23,19 @@ module.exports = Reflux.createStore({
 		_.assign(this.state, {'ed': ''});
 		this.update(_.clone(this.state));
 	},
+
+	onLoadFromSaved: function(data){
+		this.onClean();
+		_.forEach(data.filters, function(filter){
+			if (filter.param == 'sd'){
+				_.assign(this.state, {'sd': filter.values});
+			}
+			if (filter.param == 'ed'){
+				_.assign(this.state, {'ed': filter.values});
+			}
+		}.bind(this));	
+		this.update(_.clone(this.state));	
+	},
 	
 	init: function(){
 		this.state = {};
