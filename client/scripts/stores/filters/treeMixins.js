@@ -3,21 +3,62 @@
 var assign = require('object-assign');
 var Reflux = require('reflux');
 var _ = require('lodash');
-var Mixins=require('./mixins.js');
 var Util = require('../../api/util.js');
 
 module.exports = {
-	mixins: [Mixins],
-
-	load:function(){
+	
+	onLoad:function(){
 		this._loadDataList(this.state.levels);
 	},
 
+	onClean:function(){
+		this.onUpdateAllSelection(false);
+		this.trigger(this.state, true);
+	},
+
+	onUpdateItemSelection: function(item, selected){
+		this._updateChildSelection(item, selected);
+		this.trigger(this.state, true);
+		this._createItemsTree();			
+	},	
+
+	onUpdateAllSelection: function(selected){
+		for (var key in this.state) {
+			if (key != "itemsTree"){
+				_.forEach(this.state[key], function(item){
+					_.assign(item, {'selected': selected});
+				});
+			}
+		}
+		this._createItemsTree();			
+	},	
+
+	onFilterByKeyword: function(keyword){
+		_.forEach(this.state.itemsTree, function(itemTree){
+			this._filterItemAndChildren(itemTree, keyword);		
+		}.bind(this));
+		this.update({'itemsTree': _.clone(this.state.itemsTree)});	
+	},
+
+	_capitalize: function(items) {
+		return _.map(items, function(i) {
+			i.label = this._capitalizeStr(i.name)
+			return i;
+		}.bind(this));
+	},
+
+	_capitalizeStr: function(label) {
+		var str = label.toLowerCase();
+		return str[0].toUpperCase() + str.replace(/ ([a-z])/g, function(a, b) {
+			return ' ' + b.toUpperCase();
+		}).slice(1);
+	},	
+
 	_loadDataList: function(level) {
 		Util.get(window.DATA_PATH + level.sourcePath).then(function(data) {
-			_.forEach(data, function(item){_.assign(item, {'level': level.levelName});});//assign level to each item
+			_.forEach(data, function(item){_.assign(item, {'level': level.levelParam});});//assign level to each item
 			var stateList = {};
-			stateList[level.levelName] = this._capitalize(data);
+			stateList[level.levelParam] = this._capitalize(data);
 			this.update(stateList, {silent:true});
 			if (level.child){
 				this._loadDataList(level.child);
@@ -34,8 +75,7 @@ module.exports = {
 	},
 
 	_addTreeLevel: function(level){
-		debugger;
-		var tree = this._createParentChildrenList(this.state[level.levelName], this.state[level.child.levelName], level.child.parentIdField);
+		var tree = this._createParentChildrenList(this.state[level.levelParam], this.state[level.child.levelParam], level.child.parentIdField);
 		if (level.child.child){
 			_.assign(tree.nested, this._addTreeLevel(level.child));
 		}	
@@ -96,27 +136,12 @@ module.exports = {
 			this._makeChildrenVisible(it);	
 		}.bind(this));
 	},
-	
-	updateItemSelection: function(item, selected){
-		this._updateChildSelection(item, selected);
-		this._createItemsTree();			
-	},	
 
-	updateAllSelection: function(selected){
-		_.forEach(this.state.departments, function(item){
-			_.assign(item, {'selected': selected});
-		});
-		_.forEach(this.state.municipalities, function(item){
-			_.assign(item, {'selected': selected});
-		});
-		this._createItemsTree();			
-	},	
-
-	filterByKeyword: function(keyword){
-		_.forEach(this.state.itemsTree, function(itemTree){
-			this._filterItemAndChildren(itemTree, keyword);		
-		}.bind(this));
-		this.update({'itemsTree': _.clone(this.state.itemsTree)});	
+	update: function(assignable, options) {
+		options = options || {};
+		this.state = _.assign(this.state || {}, assignable);
+		if (!options.silent) {
+			this.trigger(this.state);
+		}
 	}
-
 }

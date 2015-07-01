@@ -17,14 +17,15 @@ var CustomCheckbox = require('../../commons/customCheckbox.jsx');
 
 var Store = require('../../../stores/shapesLayerStore.js');
 var Breaker=require('./_breaker.jsx');
-var FilterStore = require('../../../stores/filterStore.js');
+//var FilterStore = require('../../../stores/filterStore.js');
 var LegendActions = require('../../../actions/legendActions.js');
 
 
 
 module.exports = React.createClass({
 
- mixins: [Reflux.connect(FilterStore), Reflux.connect(Store)], 
+ //mixins: [Reflux.connect(FilterStore), Reflux.connect(Store)], 
+ mixins: [Reflux.connect(Store)], 
  
  _changevisibility: function(id, value) {
     LayerActions.changeLayerValue(id,'visible',value); 
@@ -59,7 +60,7 @@ module.exports = React.createClass({
     console.log('...................... Layer State ......................')
 
     var level=this.state.level;
-    var fundingTypes = FilterStore.getAll("ft");
+    var fundingTypes = [];//FilterStore.getAll("ft");
     var self = this;
     return (
     <li>

@@ -2,7 +2,7 @@
 var React = require('react');
 var Reflux = require('reflux');
 
-var FilterMap = require('../../conf/filterMap2.js');
+var FilterMap = require('../../conf/filterMap.js');
 
 var LanStore=require('../../stores/lanStore.js');
 
@@ -29,6 +29,7 @@ module.exports = React.createClass({
         }
       }
     }
+    actions.applyFilters();
   },
 
   _turnAdvancedOn: function() {
@@ -37,14 +38,13 @@ module.exports = React.createClass({
     });
   },
 
-  _turnBaicOn: function() {
+  _turnBasicOn: function() {
     this.setState({
       mode: 'basic'
     });
   },
 
   _onActivateFilter: function(index,evt) {
-    debugger;
     this.setState(_.assign({
       activeIndex: index
     }));
@@ -56,15 +56,15 @@ module.exports = React.createClass({
       mode: 'basic'
     };
   },
-//                             <Filter  {...def}  mode={this.state.mode}  onActivate={this._onActivateFilter}  active={def.index==this.state.activeIndex}/>
 
-render: function() {
+  render: function() {
   var filters = FilterMap.filters;
+  var idx = 1;
   return(
     <div className="activity-nav">
       <div className="filter-type-wrapper">
         <ul className="filter-type-label">
-          <li onClick={this._turnBaicOn}>
+          <li onClick={this._turnBasicOn}>
             <span  className={this.state.mode=="basic"? "" : "active"}><Message message='filters.basicFilters'/></span>
           </li>
           <li onClick={this._turnAdvancedOn}>
@@ -72,35 +72,37 @@ render: function() {
           </li>
         </ul>
       </div>
+
       <div className="tab-pane "> 
         <div className="activity-nav">
           <nav className="activities" >
             <ul className="activities nav nav-tabs">
-            {
-              _.filter(filters,function(it){return (it.modes.indexOf(this.state.mode) > -1)}.bind(this)).map(function(def){
-                return (
-                  <li onClick={this._onActivateFilter.bind(null,def.index)} className={(this.state.activeIndex==def.index)?'active':''}>
-                    <a href="#"><Message message={def.label}/></a>                    
-                  </li>
-                  )
-              }.bind(this))
-            }
+              {
+                _.filter(filters,function(it){return (it.modes.indexOf(this.state.mode) > -1)}.bind(this)).map(function(def){
+                  return (
+                    <li onClick={this._onActivateFilter.bind(null,def.index)} className={(this.state.activeIndex==def.index)?'active':''}>
+                      <a href="#"><Message message={def.label}/></a>                    
+                    </li>
+                    )
+                }.bind(this))
+              }
             </ul> 
           </nav>
           <div>
             {
-              _.filter(filters,function(it){return (it.modes.indexOf(this.state.mode) > -1)}.bind(this)).map(function(def){
-                return ( <Filter  {...def}     active={def.index==this.state.activeIndex}/>)
+              filters.map(function(def){
+                return ( <Filter {...def} active={def.index==this.state.activeIndex}/>)
               }.bind(this))
             }
           </div>
-          <div className="btn btn-sm btn-success" onClick={this._applyFilter}>Apply Filters</div>
-          <div className="btn btn-sm btn-success" onClick={this._resetFilter}>Reset All Filters</div>
         </div>
       </div>
+      
+      <div className="btn btn-sm btn-success" onClick={this._applyFilter}>Apply Filters</div>
+      <div className="btn btn-sm btn-success" onClick={this._resetFilter}>Reset All Filters</div>
     </div>
     );
-}
+  }
 
 });
 

@@ -6,6 +6,51 @@ var Util = require('../../api/util.js')
 
 module.exports = {
 
+	onClean:function(){
+		this.onUpdateAllSelection(false);
+	},
+
+	onUpdateItemSelection: function(item, selected){
+		_.assign(_.find(this.state.items, function(i){return i.id == item.id}), {'selected': selected});
+		this.update({'items': _.clone(this.state.items)});
+	},	
+
+	onUpdateAllSelection: function(selected){
+		_.forEach(this.state.items, function(item){
+			_.assign(item, {'selected': selected});
+		});
+		this.update({'items': _.clone(this.state.items)});		
+	},	
+
+	onFilterByKeyword: function(keyword){
+		_.forEach(this.state.items, function(item){
+			if (this._itemMatchs(item, keyword)){
+				_.assign(item, {'hide': false});
+			} else {
+				_.assign(item, {'hide': true});	
+			}
+		}.bind(this));
+		this.update({'items': _.clone(this.state.items)});	
+	},
+
+	onSelectFilteredByKeyword: function(keyword){
+		_.forEach(this.state.items, function(item){
+			if (this._itemMatchs(item, keyword)){
+				_.assign(item, {'selected': true});
+			} 
+		}.bind(this));
+		this.update({'items': _.clone(this.state.items)});
+	},
+
+	_itemMatchs: function(item, keyword) {
+	    if (keyword.length > 1) {
+	      var pattern = new RegExp(keyword, 'i');
+	      return pattern.test(item.name)
+	    } else {
+	      return true;
+	    }
+	},
+
 	_capitalize: function(items) {
 		return _.map(items, function(i) {
 			i.label = this._capitalizeStr(i.name)
@@ -21,41 +66,13 @@ module.exports = {
 	},
 
 	_loadItems: function(url) {
-		if(!this._loaded){
-			this._loaded==true;
-			Util.get(url).then(function(data) {
-				this.update({items: this._capitalize(data),loaded:true});
-			}.bind(this)).fail(function() {
-				console.log('Failed to load data ');
-			});
-		}
-	},
-
-	onAdd:function(id){
-		var list=this.state.selected;
-		if (!list){
-			this.state.selected=[id];		
-		}else{
-			console.log('push id');
-			this.state.selected.push(id)		
-		}
-		this.trigger(this.state.selected, true);
+		Util.get(url).then(function(data) {
+			this.update({items: this._capitalize(data),loaded:true});
+		}.bind(this)).fail(function() {
+			console.log('Failed to load data ');
+		});
 	},
 	
-	onRemove:function(id){
-		_.remove(this.state.selected,function(value){
-			return value===id;
-		} );
-		this.trigger(this.state.selected, true);
-	},
-
-	clean:function(){
-		if (this.state){
-			this.state.selected=[];
-			this.trigger(this.state.selected, true);
-		}
-	},
-
 	update: function(assignable, options) {
 		options = options || {};
 		this.state = _.assign(this.state || {}, assignable);
@@ -64,8 +81,7 @@ module.exports = {
 		}
 	},
 
-	getInitialState: function() {
-		return ({selected:[]});
+	init: function(){
+		this.state = {};
 	}
-
 }
