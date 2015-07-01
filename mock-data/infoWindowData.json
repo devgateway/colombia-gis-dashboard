@@ -1,150 +1,151 @@
-[ {"id": "1",
-   "key": "costShareBreakdown",
-   "title": "Cost Share Breakdown",
-   "value":[
-        {"id": "91", "value": [
-            {"id": "1","name": "Chart1","value": "35"}, 
-            {"id": "2","name": "Goverment","value": "12"},
-            {"id": "3","name": "ONGs","value": "22"},
-            {"id": "4","name": "IATI","value": "7"}
-        ]},
-        {"id": "95", "value": [
-            {"id": "1","name": "Chart1","value": "44"}, 
-            {"id": "2","name": "Goverment","value": "27"},
-            {"id": "3","name": "ONGs","value": "33"}
-        ]},
-        {"id": "19", "value": [
-            {"id": "1","name": "Chart1","value": "44"}, 
-            {"id": "2","name": "Goverment","value": "33"},
-            {"id": "3","name": "ONGs","value": "7"},
-            {"id": "4","name": "IATI","value": "2"}
-        ]},
-        {"id": "18", "value": [
-            {"id": "1","name": "Chart1","value": "44"}, 
-            {"id": "2","name": "Goverment","value": "33"},
-            {"id": "3","name": "ONGs","value": "26"},
-            {"id": "4","name": "IATI","value": "48"}
-        ]},
-        {"id": "86", "value": [
-            {"id": "1","name": "Chart1","value": "12"}, 
-            {"id": "2","name": "Goverment","value": "33"},
-            {"id": "3","name": "ONGs","value": "33"},
-            {"id": "4","name": "IATI","value": "2"}
-        ]},
-        {"id": "52", "value": [
-            {"id": "1","name": "Chart1","value": "22"}, 
-            {"id": "2","name": "Goverment","value": "33"},
-            {"id": "3","name": "ONGs","value": "17"},
-            {"id": "4","name": "IATI","value": "12"}
-        ]},
-        {"id": "97", "value": [
-            {"id": "1","name": "Usaid","value": "33"}, 
-            {"id": "2","name": "Goverment","value": "33"},
-            {"id": "3","name": "ONGs","value": "27"},
-            {"id": "4","name": "IATI","value": "22"}
-        ]},
-        {"id": "94", "value": [
-            {"id": "1","name": "Usaid","value": "11"}, 
-            {"id": "2","name": "Goverment","value": "22"},
-            {"id": "3","name": "ONGs","value": "22"},
-            {"id": "4","name": "IATI","value": "44"}
-        ]}
-  ]},
-  {"id": "2",
-  "key": "objectivesInfoWindow",
-  "title": "Development Objectives",
-  "value":[
-        {"id": "91", "value": [
-            {"id": "1","name": "Chart2","value": "15"}, 
-            {"id": "2","name": "Government presence","value": "22"},
-            {"id": "3","name": "Impact of conflict","value": "22"},
-            {"id": "4","name": "PPP","value": "12"}
-        ]},
-        {"id": "18", "value": [
-            {"id": "1","name": "Chart2","value": "15"}, 
-            {"id": "2","name": "Government presence","value": "22"},
-            {"id": "3","name": "Impact of conflict","value": "22"},
-            {"id": "4","name": "PPP","value": "12"}
-        ]},
-        {"id": "86", "value": [
-            {"id": "1","name": "Chart2","value": "44"}, 
-            {"id": "2","name": "Government presence","value": "27"},
-            {"id": "3","name": "Impact of conflict","value": "33"}
-        ]},
-        {"id": "92", "value": [
-            {"id": "1","name": "Chart2","value": "44"}, 
-            {"id": "2","name": "Government presence","value": "33"},
-            {"id": "3","name": "Impact of conflict","value": "7"},
-            {"id": "4","name": "PPP","value": "2"}
-        ]}
-  ]},
-  {"id": "3",
-  "key": "activityClassication",
-  "title": "Activity Classication",
-  "value":[
-        {"id": "91", "value": [
-            {"id": "1","name": "Chart3","value": "15"}, 
-            {"id": "2","name": "Afrocolombian","value": "22"},
-            {"id": "3","name": "Defenders","value": "22"},
-            {"id": "4","name": "LGTBI","value": "12"}
-        ]},
-        {"id": "18", "value": [
-            {"id": "1","name": "Chart3","value": "15"}, 
-            {"id": "2","name": "Afrocolombian","value": "22"},
-            {"id": "3","name": "Defenders","value": "22"},
-            {"id": "4","name": "LGTBI","value": "12"}
-        ]},
-        {"id": "86", "value": [
-            {"id": "1","name": "Chart3","value": "44"}, 
-            {"id": "2","name": "Afrocolombian","value": "27"},
-            {"id": "3","name": "Defenders","value": "33"}
-        ]},
-        {"id": "92", "value": [
-            {"id": "1","name": "Chart3","value": "44"}, 
-            {"id": "2","name": "Afrocolombian","value": "33"},
-            {"id": "3","name": "Defenders","value": "7"},
-            {"id": "4","name": "LGTBI","value": "2"}
-        ]}
-  ]},
-  {"id": "4",
-  "key": "ppp",  
-  "title": "Public Private Partnership",
-  "value":[
-        {"id": "91", "value": [
-            {"id": "1","name": "With PPP","value": "15"}, 
-            {"id": "2","name": "Without PPP","value": "22"}
-        ]},
-        {"id": "86", "value": [
-            {"id": "1","name": "With PPP","value": "15"}, 
-            {"id": "2","name": "Without PPP","value": "22"}
-        ]},
-        {"id": "92", "value": [
-            {"id": "1","name": "With PPP","value": "15"}, 
-            {"id": "2","name": "Without PPP","value": "22"}
-        ]}
-  ]},
-  {"id": "5",
-  "key": "subActivities",  
-  "title": "Sub Activities",
-  "value":[
-        {"id": "91", "value": [
-            {"id": "1","name": "subactivity 1","link": "http://www.google.com"}, 
-            {"id": "2","name": "subactivity 2"},
-            {"id": "3","name": "subactivity 3","link": "http://www.google.com"},
-            {"id": "4","name": "subactivity 4"}
-        ]},
-        {"id": "86", "value": [
-            {"id": "1","name": "subactivity 1","link": "http://www.google.com"}, 
-            {"id": "2","name": "subactivity 2"},
-            {"id": "3","name": "subactivity 3","link": "http://www.google.com"},
-            {"id": "4","name": "subactivity 4"}
-        ]},
-        {"id": "92", "value": [
-            {"id": "1","name": "subactivity 1","link": "http://www.google.com"}, 
-            {"id": "2","name": "subactivity 2"},
-            {"id": "3","name": "subactivity 3","link": "http://www.google.com"},
-            {"id": "4","name": "subactivity 4"}
-        ]}
-  ]}
+[
+
+    {
+        "id":"1",
+        "key":"costShareBreakdown",
+        "title":"Cost Share Breakdown",
+        "value":[
+            {
+                "id":"AC",
+                "name":"Cooperación Internacional",
+                "value":"226204.54330490257263712641288"
+            },
+            {
+                "id":"PR",
+                "name":"Sector Privado",
+                "value":"3768.7777777777777777777777778"
+            },
+            {
+                "id":"PU",
+                "name":"Sector Público",
+                "value":"861174.1111111111111111111111"
+            }
+        ]
+    },
+    {
+        "id":"2",
+        "key":"objectivesInfoWindow",
+        "title":"Development Objectives",
+        "value":[
+            {
+                "id":"DO2",
+                "name":"DO2 - Impact of conflict mitigated for targeted vulnerable populations.",
+                "value":"147492666.000000"
+            },
+            {
+                "id":"DO4",
+                "name":"DO4 - Colombian efforts to sustainably manage the country’s environmental resources reinforced",
+                "value":"21906252.000000"
+            },
+            {
+                "id":"FY14(DO1)",
+                "name":"FY14(DO1) - Effective presence of democratic institutions and process in targeted areas",
+                "value":"4640000.000000"
+            },
+            {
+                "id":"FY14(DO3)",
+                "name":"FY14(DO3) - Improved Conditions for Inclusive Rural Economic Growth",
+                "value":"207198.000000"
+            }
+        ]
+    },
+    {
+        "id":"3",
+        "key":"activityClassication",
+        "title":"Activity Classification",
+        "value":[
+            {
+                "id":"7",
+                "name":"Coordination and institutional development",
+                "value":"12"
+            },
+            {
+                "id":"8",
+                "name":"Diffusion and communication",
+                "value":"12"
+            },
+            {
+                "id":"10",
+                "name":"Monitoring, tracking and control",
+                "value":"12"
+            },
+            {
+                "id":"Not Defined",
+                "name":"Not Defined",
+                "value":"12"
+            },
+            {
+                "id":"12",
+                "name":"Policies",
+                "value":"35"
+            },
+            {
+                "id":"9",
+                "name":"Research, evaluation and \/ or studies",
+                "value":"31"
+            },
+            {
+                "id":"11",
+                "name":"Small Infrastructure",
+                "value":"12"
+            },
+            {
+                "id":"5",
+                "name":"Training (technical Unlike agricultural or livestock)",
+                "value":"12"
+            }
+        ]
+    },
+    {
+        "id":"4",
+        "key":"ppp",
+        "title":"Public Private Partnership",
+        "value":[
+            {
+                "id":"{ AlianzaPublicoPrivada = no }",
+                "name":"no",
+                "value":"4"
+            }
+        ]
+    },
+    {
+        "id":"5",
+        "key":"subActivities",
+        "title":"Sub Activities",
+        "value":[
+            {
+                "id":"FPN",
+                "name":"Biodiversity  - FONDO PATRIMONIO NATURAL",
+                "value":"1"
+            },
+            {
+                "id":"LRDP",
+                "name":"Land and Rural Development Program",
+                "value":"1"
+            },
+            {
+                "id":"APD",
+                "name":"Post-Emergency assistance to internally displaced persons (IDPs) - IOM",
+                "value":"1"
+            },
+            {
+                "id":"MOE-SCSA",
+                "name":"Strengthening civil society to engage in political processes (SCSA) OR Citizens Democracy for Peace 2014",
+                "value":"1"
+            }
+        ]
+    },
+    {
+        "id":"6",
+        "key":"Excel file",
+        "title":"view details",
+        "value":[
+            {
+                "id":"1",
+                "name":"Excel File Link",
+                "value":"http:\/\/test.monitor.net.co\/tempFiles\/01Jul20151222.xls"
+            }
+        ]
+    }
+
 ]
-    
