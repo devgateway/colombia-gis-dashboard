@@ -3,7 +3,7 @@ var React = require('react')
 var RouteHandler = require('react-router').RouteHandler;
 var LanSelector=require('./lanSelector.jsx');
 var SaveActions=require('../actions/saveActions.js');
-var SaveStore=require('../stores/saveStore.js'); 
+var SaveStore=require('../stores/saveStore.js');
 
 var AGOLProfile=require('./esri/AGOLProfile.jsx');
 module.exports = React.createClass({
