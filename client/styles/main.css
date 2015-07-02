@@ -1539,21 +1539,21 @@ ul.tabs {
   float: left;
   margin-top: -18px;
   margin-right: 0;
-  width: 35px;
+  width: 55px;
   text-align: center; }
   .breaksOptions input {
-    width: 33px;
+    width: 54px;
     height: 16px;
     font-size: 11px;
     margin: -2px auto 10px -4px;
     outline: none;
     color: #888888;
-    background: #e6edee;
+    background: #d2dadd;
     border: none;
     clear: both;
     text-align: center; }
     .breaksOptions input:hover {
-      border: 1px solid #e9ba00; }
+      background: #e6edee; }
   .breaksOptions .label {
     margin-top: 2px;
     color: #000000;
@@ -1573,7 +1573,7 @@ ul.tabs {
     display: block;
     margin: 0 auto 0 -2px; }
     .breaksOptions .input-group-addon i {
-      width: 34px; }
+      width: 54px; }
 
 ul.funding-options {
   margin-left: 0;

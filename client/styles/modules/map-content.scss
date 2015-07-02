@@ -71,22 +71,22 @@
   float:left;
   margin-top:-18px;
   margin-right:0;
-  width:35px;
+  width:55px;
   text-align:center;
 
 	input{
-    width: 33px;
+    width: 54px;
     height:16px;
     font-size: 11px;
     margin: -2px auto 10px -4px;
     outline:none;
     color:#888888;
-    background: #e6edee;
+    background: #d2dadd;
     border:none;
     clear:both;
     text-align:center;
   &:hover{
-    border:1px solid $yellow;
+    background:#e6edee;
     }
   }
 
@@ -114,7 +114,7 @@
     display:block;
     margin: 0 auto 0 -2px;
     i{
-      width:34px;
+      width:54px;
     }
 	}
 }
