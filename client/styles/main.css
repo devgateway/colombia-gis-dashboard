@@ -952,7 +952,8 @@ nav.tabs {
 .nav-tabs > li.active > a:focus {
   background: none;
   border: 1px solid transparent;
-  color: #4d749f; }
+  color: #4d749f;
+  font-weight: bold; }
 
 .main-tabs .nav-tabs li:first-child a:before {
   font-family: FontAwesome;
