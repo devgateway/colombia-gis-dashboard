@@ -52,6 +52,7 @@
     &.levels{
     width:330px;
     float:left;
+    line-height:15px;
     }
     &.color-selection{
     width:100%;
@@ -69,18 +70,19 @@
 .breaksOptions {
   float:left;
   margin-top:-18px;
-  margin-right:3px;
+  margin-right:0;
   width:35px;
   text-align:center;
 
 	input{
-    width: 20px;
+    width: 33px;
     height:16px;
     font-size: 11px;
-    margin-top: -2px;
+    margin: -2px auto 10px -4px;
     outline:none;
-    border:1px solid #eeeeee;
     color:#888888;
+    background: #e6edee;
+    border:none;
     clear:both;
     text-align:center;
   &:hover{
@@ -98,8 +100,7 @@
 	}
 
   .colorpicker-element{
-    width: 15px;
-	}
+	 }
 
 	.input-group-addon {
     padding: 0;
@@ -111,10 +112,9 @@
     border: none;
     clear:both;
     display:block;
-    margin: 0 auto;
-
-    .input-group-addon i{
-      width:22px;
+    margin: 0 auto 0 -2px;
+    i{
+      width:34px;
     }
 	}
 }
@@ -123,13 +123,13 @@
 ul.funding-options{
   margin-left:0;
   padding-left:0;
-  width:530px;
+  width:550px;
   display:block;
   overflow:hidden;
   li{
     float:left;
-    width:170px;  margin-bottom:0;
-
+    width:268px;
+    margin-bottom:0;
   }
   .selectable{
     margin-right:5px;

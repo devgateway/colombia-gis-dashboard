@@ -1212,7 +1212,8 @@ ul.tabs {
   color: #454545;
   width: 40px;
   margin-top: -22px;
-  margin-left: 32px; }
+  margin-left: 32px;
+  margin-bottom: 30px; }
 .layer-control .slider-holder {
   position: relative;
   display: block;
@@ -1241,7 +1242,8 @@ ul.tabs {
   .layer-control .toggler .clear-fix {
     clear: both; }
   .layer-control .toggler .fa {
-    color: #4d749f; }
+    color: #4d749f;
+    margin-left: -10px; }
 .layer-control .ui-state-default,
 .layer-control .ui-widget-content .ui-state-default,
 .layer-control .ui-widget-header .ui-state-default {
@@ -1483,8 +1485,11 @@ ul.tabs {
   border-radius: 4px;
   background-clip: padding-box;
   /* stops bg color from leaking outside the border: */
+  background: #d7e0e4;
   overflow: hidden;
-  position: relative; }
+  position: relative;
+  margin-bottom: 5px;
+  padding: 0 0 5px 15px; }
   .toggler .control-title {
     float: left;
     width: 70%;
@@ -1520,25 +1525,31 @@ ul.tabs {
     float: left; }
     .controls-items li.levels {
       width: 330px;
-      float: left; }
+      float: left;
+      line-height: 15px; }
     .controls-items li.color-selection {
       width: 100%;
       float: left; }
 
+.color-selection {
+  margin-top: 30px;
+  margin-bottom: 20px; }
+
 .breaksOptions {
   float: left;
   margin-top: -18px;
-  margin-right: 3px;
+  margin-right: 0;
   width: 35px;
   text-align: center; }
   .breaksOptions input {
-    width: 20px;
+    width: 33px;
     height: 16px;
     font-size: 11px;
-    margin-top: -2px;
+    margin: -2px auto 10px -4px;
     outline: none;
-    border: 1px solid #eeeeee;
     color: #888888;
+    background: #e6edee;
+    border: none;
     clear: both;
     text-align: center; }
     .breaksOptions input:hover {
@@ -1550,9 +1561,6 @@ ul.tabs {
     text-align: center;
     clear: both;
     padding: 0; }
-  .breaksOptions .colorpicker-element {
-    width: 20px;
-    border: 1px; }
   .breaksOptions .input-group-addon {
     padding: 0;
     font-size: 12px;
@@ -1560,22 +1568,22 @@ ul.tabs {
     line-height: 1;
     color: #555;
     text-align: center;
-    border: 1px solid transparent;
+    border: none;
     clear: both;
     display: block;
-    margin: 0 auto; }
-    .breaksOptions .input-group-addon .input-group-addon i {
-      width: 22px; }
+    margin: 0 auto 0 -2px; }
+    .breaksOptions .input-group-addon i {
+      width: 34px; }
 
 ul.funding-options {
   margin-left: 0;
   padding-left: 0;
-  width: 530px;
+  width: 550px;
   display: block;
   overflow: hidden; }
   ul.funding-options li {
     float: left;
-    width: 170px;
+    width: 268px;
     margin-bottom: 0; }
   ul.funding-options .selectable, ul.funding-options .selectable-radio {
     margin-right: 5px; }
