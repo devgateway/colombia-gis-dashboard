@@ -23,8 +23,11 @@ var TreeView =  React.createClass({
   },
 
   _onToggle:function(){
-    this.setState(_.assign(this.state,{expanded:!this.state.expanded}));
-    this.forceUpdate();
+    if (this.state.expanded){
+      this.setState(_.assign(this.state,{expanded: false}));  
+    } else {
+      this.props.itemExpanded(this.props.index);
+    }
   },
 
   getInitialState: function() {
@@ -36,10 +39,18 @@ var TreeView =  React.createClass({
     };
   },
   
+  componentWillReceiveProps: function(nextProps){
+    this.setState(_.assign(this.state,{expanded: nextProps.expanded}));
+    if (nextProps.expanded){
+      var parent = $(this.getDOMNode()).parent();
+      parent.animate({scrollTop: nextProps.index*39}, '500');
+    }
+  },
+
   render: function() {
     //console.log("render location -> "+this.props.name);
     return ( 
-      <div>
+      <div className="item-container">
         <Item {...this.props} 
           showOnlySelected={this.props.showOnlySelected}
           onItemChange={this._onItemChange} 
@@ -66,9 +77,13 @@ var TreeView =  React.createClass({
 module.exports = React.createClass({
 
   mixins: [CommonsMixins, PureRenderMixin],
+
+  _onItemExpanded: function(item) {
+    this.setState({'itemExpanded': item});
+  },
   
   componentDidUpdate: function() {
-    $(this.getDOMNode()).find('.filter-list-container').mCustomScrollbar({theme:"inset-dark"});
+    //$(this.getDOMNode()).find('.filter-list-container').mCustomScrollbar({theme:"inset-dark"});
   },
 
   getInitialState: function() {
@@ -78,7 +93,6 @@ module.exports = React.createClass({
   },
 
   render: function() {
-    console.log("render -> treeList")
     var items = this.state.itemsTree || [];
     var lowestLevel = this.state[this.state.lowestLevel];
     var lowerLevelCounterSelected =  0;
@@ -101,11 +115,19 @@ module.exports = React.createClass({
               <KeywordSearch onSearch={this._onSearch} onSearchEnterKey={this._onSearchEnterKey}/>
               <div className="filter-list-container">
               {
-                items.map(function(item) {   
+                items.map(function(item, index) { 
+                  var exp = this.state.itemExpanded==index? true : false;
+                  if (this.state.itemExpanded==index){
+                    console.log("itemExpanded -> "+this.state.itemExpanded);
+                  }                    
                   return (
-                    <div className="">
-                      <TreeView {...item} showOnlySelected={this.state.showOnlySelected} onItemChange={this._onItemChange} expanded={false}/>
-                    </div>)            
+                    <TreeView {...item} 
+                      index={index} 
+                      itemExpanded={this._onItemExpanded} 
+                      showOnlySelected={this.state.showOnlySelected} 
+                      onItemChange={this._onItemChange} 
+                      expanded={this.state.itemExpanded==index}/>
+                    )            
                 }.bind(this))
               }
               </div>
