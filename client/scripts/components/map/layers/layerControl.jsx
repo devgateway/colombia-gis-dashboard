@@ -26,37 +26,36 @@ var FeatureLayer=React.createClass({
       <div>
       <Toggler ref='toggler'>
         <TogglerContent visibleWhen="collapsed">
-          <div toggler={true} className="toggler-btn"><i className="fa fa-plus-square-o"></i></div>
+          <div toggler={true} className="toggler-btn"><i className="fa fa-chevron-down"></i></div>
         </TogglerContent>
 
         <TogglerContent visibleWhen="expanded">
-          <div toggler={true} className="toggler-btn"><i className="fa fa-minus-square-o"></i></div>
+          <div toggler={true} className="toggler-btn"><i className="fa fa-chevron-up"></i></div>
         </TogglerContent>
-
         <TogglerContent visibleWhen="always">
+          <div><span className="control-title">{this.props.title}</span></div>
+        </TogglerContent>
+      
+        <TogglerContent visibleWhen="expanded">
           <Layer onDelete={this.props.onDelete} 
           onRemove={this.props.onRemove}
           opacity={this.props.opacity}
           visible={this.props.visible}  
           onChangeVisibility={this.props.onChangeVisibility} 
           onChangeOpacity={onChangeOpacity}
-          title={this.props.title} 
           id={this.props.id}/>
-        </TogglerContent>
-
-        <TogglerContent visibleWhen="expanded">
           <div className="clear-fix"/>
           <ul>
             {
-            this.props.layer.layers.map(function(l){
-            return (<li><Layer  
-            opacity={l.opacity}
-            visible={l.visible}  
-            onChangeOpacity={onChangeOpacity} 
-            onChangeVisibility={onChangeVisibility} title={l.name} id={id}  idx={l.id.toString()}/></li>)
-          }.bind(this))
-        }
-      </ul>
+              this.props.layer.layers.map(function(l){
+              return (<li><Layer  
+              opacity={l.opacity}
+              visible={l.visible}  
+              onChangeOpacity={onChangeOpacity} 
+              onChangeVisibility={onChangeVisibility} title={l.name} id={id}  idx={l.id.toString()}/></li>)
+            }.bind(this))
+          }
+        </ul>
     </TogglerContent>
   </Toggler>
 </div>)
@@ -103,54 +102,103 @@ module.exports  = React.createClass({
     var tiles=_.sortBy(_.filter(this.state.layers,{type:'Map Service'}),'zIndex').reverse();
     var features=_.sortBy(_.filter(this.state.layers,{type:'Feature Service'}),'zIndex').reverse();
     return (
-    <ul className="layer-control">
-      <li>
+    <div>
+      <div className="layer-control-toggle">
         <h3><Message message='layers.dataLayers'/></h3>
-      </li>
-        
-        <PointsLayerControl/>
-        <div className="clearFix" />
-        <ShapesLayer/>
+      </div>
+      <div className="layer-control-panel">
+        <ul className="layer-control">
+          <li>
+            <PointsLayerControl/>
+          </li>
+          <li>
+            <ShapesLayer/>
+          </li>
+        </ul>
+      </div>
 
-        <If condition={features.length > 0} >
-          <li>
-            <h3>Overlays</h3>
-          </li>
-        </If>
-      {
-        features.map(function(l){
-      return (
-          <li>
-         
-                 <FeatureLayer onDelete={this._onDelete} onChangeOpacity={this._handleChangeOpacity} onChangeVisibility={this._changevisibility}
-                          id={l.id} type={l.type} zIndex={l.zIndex}  visible={l.visible}  layer={l.layer}  opacity={l.opacity} title={l.title} />
-          </li>
-        )
-       }.bind(this))
-      }
-      <If condition={tiles.length > 0} >
-      <li>
-        <h3>Tiles</h3>
-      </li>
+      <If condition={features.length > 0} >
+        <div className="layer-control-toggle">
+          <h3>Overlays</h3>
+        </div>
+        <div className="layer-control-panel">
+          <ul className="layer-control">        
+          {
+            features.map(function(l){
+            return (
+                <li>
+                  <Toggler ref='toggler'>
+                    <TogglerContent visibleWhen="collapsed">
+                      <div toggler={true} className="toggler-button"><i className="fa fa-chevron-down"></i></div>
+                    </TogglerContent>
+                    <TogglerContent visibleWhen="expanded">
+                      <div toggler={true} className="toggler-button"><i className="fa fa-chevron-up"></i></div>
+                    </TogglerContent>
+                    <TogglerContent visibleWhen="always">
+                      <div><span className="control-title">{l.title}</span></div>
+                    </TogglerContent>
+                    <TogglerContent visibleWhen="expanded">                            
+                      <FeatureLayer 
+                      onDelete={this._onDelete} 
+                      onChangeOpacity={this._handleChangeOpacity} 
+                      onChangeVisibility={this._changevisibility}
+                      id={l.id} type={l.type} 
+                      zIndex={l.zIndex}  
+                      visible={l.visible}  
+                      layer={l.layer}  
+                      opacity={l.opacity}/>
+                    </TogglerContent>
+                  </Toggler>  
+                </li>
+              )
+             }.bind(this))
+          }
+          </ul>
+        </div>
       </If>
-      {
-        tiles.map(function(l){
-         return (
-          <li> <Layer
-          onDelete={this._onDelete} 
-          onMoveUp={this._handleMoveUp}
-          onMoveDown={this._handleMoveDown}
-          onChangeOpacity={this._handleChangeOpacity}
-          onChangeVisibility={this._changevisibility}
-          id={l.id}
-          type={l.type}
-          zIndex={l.zIndex} 
-          visible={l.visible}
-          opacity={l.opacity}
-          title={l.title} /></li>)
-       }.bind(this))
-      }
-      </ul>);
+        
+      <If condition={tiles.length > 0} >
+        <div className="layer-control-toggle">
+          <h3>Tiles</h3>
+        </div>
+        <div className="layer-control-panel">
+          <ul className="layer-control">        
+          {
+            tiles.map(function(l){
+             return (
+              <li> 
+                <Toggler ref='toggler'>
+                  <TogglerContent visibleWhen="collapsed">
+                    <div toggler={true} className="toggler-button"><i className="fa fa-chevron-down"></i></div>
+                  </TogglerContent>
+                  <TogglerContent visibleWhen="expanded">
+                    <div toggler={true} className="toggler-button"><i className="fa fa-chevron-up"></i></div>
+                  </TogglerContent>
+                  <TogglerContent visibleWhen="always">
+                    <div><span className="control-title">{l.title}</span></div>
+                  </TogglerContent>
+                  <TogglerContent visibleWhen="expanded">        
+                    <Layer
+                    onDelete={this._onDelete} 
+                    onMoveUp={this._handleMoveUp}
+                    onMoveDown={this._handleMoveDown}
+                    onChangeOpacity={this._handleChangeOpacity}
+                    onChangeVisibility={this._changevisibility}
+                    id={l.id}
+                    type={l.type}
+                    zIndex={l.zIndex} 
+                    visible={l.visible}
+                    opacity={l.opacity}/>
+                  </TogglerContent>
+                </Toggler>
+              </li>)
+           }.bind(this))
+          }
+          </ul>
+        </div>
+      </If>
+    </div>
+  );
 }});
 
 

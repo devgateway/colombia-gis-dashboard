@@ -13,6 +13,7 @@ nav.tabs {
   background: none;
   border:1px solid transparent;
   color: $blue;
+  font-weight: bold;
 }
 .main-tabs .nav-tabs li:first-child a{
   &:before{

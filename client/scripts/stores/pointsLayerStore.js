@@ -33,57 +33,33 @@ var defaultBreaks = {
     },
     'Level1': {
       'min': 20,
-      'max': 35,
+      'max': 45,
       'style': _.assign(_.clone(defaultStyle), {
         'radius': 30,
       }),
     },
     'Level2': {
-      'min': 35,
-      'max': 45,
-      'style': _.assign(_.clone(defaultStyle), {
-
-        'radius': 35,
-      })
-    },
-    'Level3': {
       'min': 45,
-      'max': 55,
+      'max': 75,
       'style': _.assign(_.clone(defaultStyle), {
 
         'radius': 40,
       })
     },
-    'Level4': {
-      'min': 55,
-      'max': 75,
-      'style': _.assign(_.clone(defaultStyle), {
-
-        'radius': 45,
-      })
-    },
-    'Level5': {
+    'Level3': {
       'min': 75,
-      'max': 125,
+      'max': 175,
       'style': _.assign(_.clone(defaultStyle), {
 
         'radius': 50,
       })
     },
-    'Level6': {
-      'min': 125,
-      'max': 175,
-      'style': _.assign(_.clone(defaultStyle), {
-
-        'radius': 40,
-      })
-    },
-    'Level7': {
+    'Level4': {
       'min': 175,
       'max': 999,
       'style': _.assign(_.clone(defaultStyle), {
 
-        'radius': 50,
+        'radius': 55,
       })
     }
   }
