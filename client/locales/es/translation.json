@@ -23,8 +23,8 @@
 		"selectAll":"seleccionar todos",
 		"deselectAll":"deseleccionar todos",
 		"searchFilters":"Buscar filtros",
-		"reset":"Reiniciar",
-		"apply":"Aplicar",
+		"reset":"Reiniciar Todos",
+		"apply":"Aplicar Todos",
 		"showAll":"Mostrar todos",
 		"showOnlySelected":"Mostrar solo los seleccionados",
 		"noResults":"No se encontraron resultados disponibles",
@@ -77,6 +77,9 @@
 		},
 		"popup":{
 			"totalActivities":"Actividades Totales",
+			"totalSubActivities":"SubActividades Totales",
+			"programList":"Lista de Programas",
+			"downloadFile":"Descargar archivo",
 			"funding":"Financiamiento"
 		}
 	}

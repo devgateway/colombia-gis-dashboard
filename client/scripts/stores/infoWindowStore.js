@@ -14,18 +14,20 @@ module.exports=Reflux.createStore({
         var self = this; 
     },
 
-    onGetInfoFromAPI: function(infoDefinition) {
+    onGetInfoFromAPI: function(infoWindowFilter, filters) {
         console.log("stores->infoWindowStore: onGetInfoFromAPI");
-        API.getInfoFromAPI(infoDefinition).then(
+        this.update({'infoWindowFilter': infoWindowFilter});
+        this.update({'infoWindow': null});
+        API.getInfoFromAPI(infoWindowFilter, filters).then(
           function(data){
-            InfoWindowActions.getInfoFromAPI.completed(data, infoDefinition);
+            InfoWindowActions.getInfoFromAPI.completed(data, filters);
           }).fail(function(){
             console.log('infoWindowStore: Error loading data ...');
           });
     },
 
-    onGetInfoFromAPICompleted: function(data, infoDefinition){
-        this.state['infoWindow'] = data;
+    onGetInfoFromAPICompleted: function(data, filters){
+        this.update({'infoWindow': data});
         this.output();
     },
 
@@ -50,6 +52,14 @@ module.exports=Reflux.createStore({
 
     getInitialState: function() {
        return this.serialize();
+    },
+
+    update: function(assignable, options) {
+      options = options || {};
+      this.state = assign(this.state, assignable);
+      if (!options.silent) {
+        this.trigger(this.state);
+      }
     }
 
 });

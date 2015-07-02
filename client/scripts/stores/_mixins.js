@@ -1,6 +1,7 @@
 var _ = require('lodash');
 
 module.exports = {
+
    update: function(assignable, options) {
       options = options || {};
       this.state = _.assign(this.state, assignable);
@@ -9,5 +10,10 @@ module.exports = {
       }
    },
 
+   setCurrentState: function(savedState) {
+      if(savedState){
+         this.update(_.clone(savedState, true));
+      }
+   },
 
 }

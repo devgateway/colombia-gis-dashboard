@@ -1,10 +1,25 @@
 'use strict';
-var React = require('react')
+var React = require('react');
+var Reflux = require('reflux');
 var RouteHandler = require('react-router').RouteHandler;
 var LanSelector=require('./lanSelector.jsx');
+var SaveStore=require('../stores/saveStore.js');
+var SaveActions=require('../actions/saveActions.js');
+var SaveStore=require('../stores/saveStore.js');
 
 var AGOLProfile=require('./esri/AGOLProfile.jsx');
 module.exports = React.createClass({
+
+  handleClickForSave:function(){
+    console.log('Save Map');
+    SaveActions.saveMap();
+  },
+
+  handleClickForRestore:function(){
+    console.log('Save Map');
+    SaveActions.restoreMap();
+  },
+
   render: function() {
     return (
               <div className="navbar navbar-fixed-top map-header">
@@ -14,7 +29,9 @@ module.exports = React.createClass({
                     <h2> <Message message="app.title"/></h2>
                     <div className="header-nav">
                       <AGOLProfile/>
-                      <a href="#">Menu</a>
+                      <a href="#">Menu</a>&nbsp;&nbsp;
+                      <a href="#" onClick={this.handleClickForSave.bind(this)}>Save</a>&nbsp;&nbsp;
+                      <a href="#" onClick={this.handleClickForRestore.bind(this)}>Restore</a>
                       <LanSelector/>
                     </div>
 

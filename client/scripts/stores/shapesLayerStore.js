@@ -4,6 +4,7 @@ var Reflux = require('reflux');
 var LayersAction = require('../actions/layersAction.js');
 var Util = require('../api/util.js');
 var API = require('../api/layers.js');
+var GeoStats = require('../api/geostats.js');
 
 var _ = require('lodash');
 var assign = require('object-assign');
@@ -93,7 +94,7 @@ var defaultBreaks = {
 
 		'Level4': {
 			'min': 80,
-			'max': 101,
+			'max': 100,
 			'style': _.assign(_.clone(defaultStyle), {
 				color: {
 					r: 128,
@@ -119,12 +120,20 @@ module.exports = Reflux.createStore({
 		return defaultBreaks;
 	},
 
+	onRestoreData: function(data, type) {
+	    if(this._getLayerId()==type){
+		   this.update({dataToRestore: data, isRestorePending: true})
+		   this._load(null, data.level, true); //restore data 
+		}
+	},
+
 	getInitialState: function() {
 		return this.state = this.storedState || _.assign(_.clone(this._getDefState()), {
 			level: "departament",
 			visible: false,
 			breaks: defaultBreaks, //defaul styles breaks
-			defaultStyle: defaultStyle //Default symbol styles
+			defaultStyle: defaultStyle, //Default symbol styles
+			saveItems: ["breaks", "defaultStyle", "level", "opacity", "visible"]
 		});
 	},
 
@@ -135,7 +144,9 @@ module.exports = Reflux.createStore({
 			function(data) {
 				API.loadMunicipalitiesShapes().then(
 					function(geoData) {
+						var items = [];
 						_.map(data, function(d) {
+							items.push(d.fundingUS);
 							var feature = _.find(geoData.features, function(e) {
 								if (e.properties.ID_2 == d.id /*replacer.replaceDiacritics(e.properties.NAME_1).toUpperCase()==d.name*/ ) {
 									console.log('Found!');
@@ -146,7 +157,8 @@ module.exports = Reflux.createStore({
 								_.assign(feature.properties, _.omit(_.clone(d), "name")); //set feature values  
 							}
 						});
-						self._setGeoData(geoData);
+						var geoStats = new GeoStats(items);
+						self._setGeoData(geoData, geoStats);
 					});
 
 			}.bind(this)).fail(function() {
@@ -162,19 +174,22 @@ module.exports = Reflux.createStore({
 			function(data) {
 				API.loadDepartmentsShapes().then(
 					function(geoData) {
-						_.map(data, function(d) {
-						var feature = _.find(geoData.features, function(e) {
-							if (e.properties.ID == d.id /*replacer.replaceDiacritics(e.properties.NAME_1).toUpperCase()==d.name*/ ) {
-								console.log('Found!');
+						var items = [];
+						_.map(data, function(d) {							
+							items.push(d.fundingUS);
+							var feature = _.find(geoData.features, function(e) {
+								if (e.properties.ID == d.id /*replacer.replaceDiacritics(e.properties.NAME_1).toUpperCase()==d.name*/ ) {
+									console.log('Found!');
+								}
+								return e.properties.ID == d.id; //replacer.replaceDiacritics(e.properties.NAME_1).toUpperCase()==d.name
+							});
+							if (feature) {
+								_.assign(feature.properties, _.omit(_.clone(d), "name")); //set feature values 
 							}
-							return e.properties.ID == d.id; //replacer.replaceDiacritics(e.properties.NAME_1).toUpperCase()==d.name
 						});
-						if (feature) {
-							_.assign(feature.properties, _.omit(_.clone(d), "name")); //set feature values 
-						}
+						var geoStats = new GeoStats(items);
+						self._setGeoData(geoData, geoStats);
 					});
-					self._setGeoData(geoData);
-				});
 			}.bind(this)).fail(function() {
 			console.log('Error loading data ...');
 		});

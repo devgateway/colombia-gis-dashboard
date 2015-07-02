@@ -73,13 +73,7 @@ module.exports  = React.createClass({
     var infoData = [];
     if(this.state.infoWindow){
       this.state.infoWindow.map(function(node, index) {
-        node.value.map(function(innerNode, index) {
-          if(innerNode.id==tabId){
-            infoData.push(innerNode.value);
-          } else {
-            infoData.push();
-          }
-        });
+        infoData.push(node.value);
       });
     }
     return infoData;
@@ -89,7 +83,7 @@ module.exports  = React.createClass({
     console.log('chart1>_renderChart');
     var vars = this._getVarsFromPath();
     var titleArray = this._getTitles();
-    var infoData = this._getData(vars["id"]);
+    var infoData = this._getData();
 
     if(infoData.length>0 && infoData.length>vars["tab"] && infoData[vars["tab"]].length>0){
       $(this.getDOMNode()).find('.chart-not-found').get(0).style.display="none"; 
@@ -144,7 +138,8 @@ module.exports  = React.createClass({
               },
               verticalAlign: 'middle',
               labelFormatter: function() {
-                return this.name + ' ' + this.y + '%';
+                var name = this.name.length>21?this.name.substring(0,20):this.name;
+                return name + ' ' + this.y + '%';
               }
             },
             series: [{data: chartdata}]

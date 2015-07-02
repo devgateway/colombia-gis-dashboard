@@ -81,7 +81,11 @@ function writeLog(message){
 
   _loadLayers: function(layers) {
     console.log('map->esriLayers>_loadLayers');   
-    var newLayers = _.filter(layers,{created:undefined});
+    var newLayers = _.filter(layers,function(n) {
+      if(!n.created || n.created==null){
+        return n;
+      }
+    });
     newLayers.map(function(l) {
       if (l.type === "Feature Service") {
         this._createFeatureService(l);

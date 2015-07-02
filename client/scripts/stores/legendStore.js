@@ -70,19 +70,24 @@ module.exports=Reflux.createStore({
       }
     },
 
-    onGetLegends: function(layer) {
+    onGetLegends: function(layer) { //Should not be used anymore
       this._getLegends(layer);
     },
 
-    onGetLegendsCompleted: function(legends, layer){
+    onGetLegendsCompleted: function(legends, layer){ //Should not be used anymore
       var layerLegends = _.find(this.state.layersLegends, {'id': layer.id});
-      if (!layerLegends){  
-        var layerLegends = {'id': layer.id, 'layerTitle': layer.title, 'visible' : true, "legendGroups": []};
+      if (!layerLegends){
+        layerLegends = {'id': layer.id, 'layerTitle': layer.title, 'visible': true, "legendGroups": []};
+      
         if (layer.type=='Feature Service'){
           var legendGroup = {};
-          _.assign(legendGroup, {"layerName": legends.name});
-          _.assign(legendGroup, {"legends": API.parseLegendsFromDrawInfo(legends)}); 
-          layerLegends.legendGroups.push(legendGroup);
+          var subLayerLegend = _.find(layerLegends.legendGroups, {'layerName': legends.name});
+          if (!subLayerLegend){
+            _.assign(legendGroup, {"layerName": legends.name});
+            _.assign(legendGroup, {"legends": API.parseLegendsFromDrawInfo(legends)}); 
+            layerLegends.legendGroups.push(legendGroup);
+            this.state.layersLegends.push(layerLegends);
+          }
         } else {
           legends.layers.map(function(layer){
             var legendGroup = {};
@@ -90,10 +95,10 @@ module.exports=Reflux.createStore({
             _.assign(legendGroup, {"legends": layer.legend});
             layerLegends.legendGroups.push(legendGroup);                 
           });
+          this.state.layersLegends.push(layerLegends);
         }
-        this.state.layersLegends.push(layerLegends);
-        this.trigger(this.state);
-      }
+      } 
+      this.trigger(this.state);
     },
 
     onIsShown: function(value){

@@ -1,11 +1,16 @@
 var assign = require('object-assign');
 var LayersAction = require('../actions/layersAction.js');
 var LoadingAction = require('../actions/loadingActions.js');
+var FilterStore = require('./filters/filterStore.js');
 var _ = require('lodash');
 
 module.exports = {
 
 	listenables: LayersAction,
+
+	init: function() {		
+		this.listenTo(FilterStore, "_applyFilters");
+	},
 
 	/*Listen  set property event comming from the layer control  */
 	onChangeLayerValue: function(id, property, value, subProperty) {
@@ -42,13 +47,22 @@ module.exports = {
 				}
 			} else if (property == 'color') {
 				console.log('change color');
-					console.log(value);
+				console.log(value);
 				var breaks=_.clone(this.state.breaks);
 				breaks.breaks[subProperty].style.color = value;
 				this.update({'breaks':breaks});
-			}
-			 else if (property == 'radius') {
-			 	
+			} else if (property == 'break') {
+				console.log('change breaks');
+				console.log(value);
+				var breaks=_.clone(this.state.breaks);
+				breaks.breaks[subProperty].min = value[0];
+				breaks.breaks[subProperty].max = value[1];
+				this.update({'breaks':breaks}, {'silent': true});
+			} else if (property == 'breakStyle') {
+				console.log('change breakStyle');
+				console.log(value);
+				this.update({'breakStyle':value});
+			} else if (property == 'radius') {
 			 	console.log('change Radius!');
 				var breaks=_.clone(this.state.breaks);
 				breaks.breaks[subProperty].style.radius = value;
@@ -91,19 +105,21 @@ module.exports = {
 		}
 	},
 
-	_setGeoData: function(data) {	
+	_setGeoData: function(data, dataStats) {	
 		this.update({
 			geoData: data,
+			geoStats: dataStats,
 			isLoaded: true
-		}); //trigger geodata changes;
-		LoadingAction.hideLoading();			
+		}); 
+		LoadingAction.hideLoading();
+		this._updateSavedData();			
 	},
 
-	update: function(assignable, options) {
-		options = options || {};
-		this.state = assign(this.state, assignable);
-		if (!options.silent) {
-			this.trigger(this.state);
+	_updateSavedData: function() {
+		if(this.state && this.state.isRestorePending){
+			var assignable = this.state.dataToRestore;
+			assignable['isRestorePending'] = false;
+			this.update(assignable);
 		}
 	},
 
@@ -120,4 +136,17 @@ module.exports = {
 		}
 	},
 
+	_applyFilters: function(data, shapesTrigger) {
+		console.log(data);
+		if (shapesTrigger && this._getLayerId()!="shapes") {
+			return;
+		} else {	
+			this.update({
+				filters: data
+			}, {
+				silent: true
+			}); ///silent is tru since the change will be triggered by the load method
+			this._load(null, this.state.level, true); //force re-load;
+		}
+	},
 }
