@@ -107,7 +107,7 @@ module.exports = Reflux.createStore({
 
   onRestoreData: function(savedData) {
     if(savedData.pointsState){
-      if(!this.state.visible){
+      if(!this.state.visible && savedData.pointsState.visible){
         this.update({'visible':true}); //Hack for changing colors
       }
        this.update({dataToRestore: savedData.pointsState, isRestorePending: true, filters: savedData.filterData.filters});
