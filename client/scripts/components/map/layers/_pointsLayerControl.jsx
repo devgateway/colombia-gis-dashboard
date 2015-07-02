@@ -21,7 +21,7 @@ module.exports = React.createClass({
 
  mixins: [Reflux.connect(Store)], 
   
- _changevisibility: function(id, value) {
+  _changeVisibility: function(id, value) {
     LayerActions.changeLayerValue(id,'visible',value); //TODO:property mame should be in a globar variable 
   },
   
@@ -66,7 +66,7 @@ module.exports = React.createClass({
         <Layer id="points" title={i18n.t("layers.subActivitiesLevel")}  
           opacity={this.state.opacity} 
           onChangeOpacity={this._onChangeOpacity} 
-          onChangeVisibility={this._changevisibility} 
+          onChangeVisibility={this._changeVisibility} 
           visible={this.state.visible}/>
       
       </TogglerContent>

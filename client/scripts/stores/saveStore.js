@@ -60,13 +60,14 @@ module.exports = Reflux.createStore({
   _getDataFromState:function(stateVar){
     var dataToSave = {};
     if(stateVar && stateVar.saveItems){
-      dataToSave = {};
       stateVar.saveItems.map(function(l){
         var assignable = new Object(); 
         assignable[l] = _.clone(stateVar[l], true); 
         _.assign(dataToSave, assignable)
       });
-    } 
+    } else {
+      dataToSave = null;
+    }
     return dataToSave;
   },
 
@@ -89,7 +90,7 @@ module.exports = Reflux.createStore({
         LayersActions.restoreData(_.clone(this.state.shapesState, true), 'shapes');
       }
       if(this.state.pointsState){
-        LayerActions.changeLayerValue('points','visible',true); //Hack for changing colors
+        LayersActions.changeLayerValue('points','visible',true); //Hack for changing colors
         LayersActions.restoreData(_.clone(this.state.pointsState, true), 'points', this.state.filterData);
       }
       if(this.state.arcgisState){
