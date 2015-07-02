@@ -1,11 +1,15 @@
 'use strict';
-var React = require('react')
+var React = require('react');
+var Reflux = require('reflux');
 var RouteHandler = require('react-router').RouteHandler;
 var LanSelector=require('./lanSelector.jsx');
 var SaveActions=require('../actions/saveActions.js');
+var SaveStore=require('../stores/saveStore.js');
 
 var AGOLProfile=require('./esri/AGOLProfile.jsx');
 module.exports = React.createClass({
+
+  mixins: [Reflux.connect(SaveStore)],
 
   handleClickForSave:function(){
     console.log('Save Map');
