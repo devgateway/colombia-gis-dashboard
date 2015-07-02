@@ -2,7 +2,6 @@
 
 var React = require('react');
 var Reflux = require('reflux');
-var InfoWindowMap = require('../../../conf/infoWindowMap.js');
 var InfoWindowActions=require('../../../actions/infoWindowActions.js');
 var InfoWindowStore=require('../../../stores/infoWindowStore.js');
 var If=require('../../commons/if.jsx')
@@ -37,7 +36,7 @@ module.exports  = React.createClass({
 
   _getInfoWindowData: function () {
       var filters = {filters:[{param:"st",values:["E1"]}]};
-      var data = InfoWindowActions.getInfoFromAPI(InfoWindowMap.getInfoWindowData(), filters) || [];
+      var data = InfoWindowActions.getInfoFromAPI(filters) || [];
       return data;
   },
 
@@ -74,13 +73,7 @@ module.exports  = React.createClass({
     var infoData = [];
     if(this.state.infoWindow){
       this.state.infoWindow.map(function(node, index) {
-        node.value.map(function(innerNode, index) {
-          if(innerNode.id==tabId){
-            infoData.push(innerNode.value);
-          } else {
-            infoData.push();
-          }
-        });
+        infoData.push(node.value);
       });
     }
     return infoData;
@@ -90,7 +83,7 @@ module.exports  = React.createClass({
     console.log('chart1>_renderChart');
     var vars = this._getVarsFromPath();
     var titleArray = this._getTitles();
-    var infoData = this._getData(vars["id"]);
+    var infoData = this._getData();
 
     if(infoData.length>0 && infoData.length>vars["tab"] && infoData[vars["tab"]].length>0){
       $(this.getDOMNode()).find('.chart-not-found').get(0).style.display="none"; 
@@ -145,7 +138,8 @@ module.exports  = React.createClass({
               },
               verticalAlign: 'middle',
               labelFormatter: function() {
-                return this.name + ' ' + this.y + '%';
+                var name = this.name.length>21?this.name.substring(0,20):this.name;
+                return name + ' ' + this.y + '%';
               }
             },
             series: [{data: chartdata}]

@@ -4,10 +4,9 @@
  var _ = require('lodash');
  var NumberedDivIcon = require('./_numberedDivIcon.js');
  var Store = require('../../../../stores/pointsLayerStore.js');
- var Popup = require('./_popup.jsx')
+ var Popup = require('./_popup2.jsx')
  var Mixins = require('./_mixins.js');
  var EventConstants = require('react/lib/EventConstants');
- var LegendActions = require('../../../../actions/legendActions.js');
 
  var reactEventNames = Object.keys(EventConstants.topLevelTypes)
    .filter(function(eventName) {
@@ -49,13 +48,15 @@
 
        _setStyles: function() {
          this.layer.eachLayer(function(l) {
-           var style = this._getStyle(l.feature.properties.activities);
-           var rgbColor = style.color.r + "," + style.color.g + "," + style.color.b + "," + style.color.a;
-           $(l._icon).css('width', style.radius);
-           $(l._icon).css('height', style.radius);
-           $(l._icon).find('.number').css('line-height', style.radius + 'px')
-           l._icon.style.backgroundColor = 'rgba(' + rgbColor + ')';
-           l._icon.style.boxShadow = 'rgba(' + rgbColor + ') 0px 0px 4px 3px, rgba(' + rgbColor + ') 0px 0px 0px 4px, rgba(' + rgbColor + ') 0px 0px 0px 8px';
+            if(l._icon){
+             var style = this._getStyle(l.feature.properties.activities);
+             var rgbColor = style.color.r + "," + style.color.g + "," + style.color.b + "," + style.color.a;
+             $(l._icon).css('width', style.radius);
+             $(l._icon).css('height', style.radius);
+             $(l._icon).find('.number').css('line-height', style.radius + 'px')
+             l._icon.style.backgroundColor = 'rgba(' + rgbColor + ')';
+             l._icon.style.boxShadow = 'rgba(' + rgbColor + ') 0px 0px 4px 3px, rgba(' + rgbColor + ') 0px 0px 0px 4px, rgba(' + rgbColor + ') 0px 0px 0px 8px';
+           }
          }.bind(this));
        },
 
@@ -64,7 +65,7 @@
        _bindPopup: function(feature, layer) {
          layer.bindPopup('');
          layer.on('popupopen', function(e) {
-           layer._popup.options.autoPanPaddingTopLeft = new L.Point(0, 50);
+           layer._popup.options.autoPanPaddingTopLeft = new L.Point(0, 83);
            var popupHolder = this.getDOMNode();
            var _onChange = function() {
              popupHolder.firstChild.style.display = "";
@@ -73,8 +74,10 @@
              this.fixReactIds(e.popup);
            }.bind(this)
            React.render(React.createElement(Popup, _.assign(feature.properties, {
-             onChange: _onChange
-           }), this.state.data), popupHolder);
+             onChange: _onChange,
+             level: this.state.level,
+             filters: this.state.filters
+           })), popupHolder);
            e.popup.setContent(popupHolder.innerHTML);
            popupHolder.firstChild.style.display = "none";
            this.fixReactIds(e.popup);

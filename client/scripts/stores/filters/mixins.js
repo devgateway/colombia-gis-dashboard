@@ -10,6 +10,17 @@ module.exports = {
 		this.onUpdateAllSelection(false);
 	},
 
+	onLoadFromSaved: function(data){
+		this.onUpdateAllSelection(false);
+		_.forEach(data.filters, function(filter){
+			if (filter.param == this.state.param){
+				_.forEach(filter.values, function(value){
+					_.assign(_.find(this.state.items, function(i){return i.id == value}), {'selected': true});
+				}.bind(this))
+			}
+		}.bind(this));		
+	},
+
 	onUpdateItemSelection: function(item, selected){
 		_.assign(_.find(this.state.items, function(i){return i.id == item.id}), {'selected': selected});
 		this.update({'items': _.clone(this.state.items)});
@@ -79,9 +90,5 @@ module.exports = {
 		if (!options.silent) {
 			this.trigger(this.state);
 		}
-	},
-
-	init: function(){
-		this.state = {};
 	}
 }

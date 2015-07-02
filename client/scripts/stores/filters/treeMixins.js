@@ -11,9 +11,26 @@ module.exports = {
 		this._loadDataList(this.state.levels);
 	},
 
-	onClean:function(){
+	onLoadFromSaved: function(data){
 		this.onUpdateAllSelection(false);
-		this.trigger(this.state, true);
+		_.forEach(data.filters, function(filter){
+			this._setSavedValues(this.state.levels, filter.param, filter.values);			
+		}.bind(this));	
+		this._createItemsTree();	
+	},
+
+	_setSavedValues: function(level, param, values){
+		if (level.levelParam == param){
+			_.forEach(values, function(value){
+				_.assign(_.find(this.state[param], function(i){return i.id == value}), {'selected': true});
+			}.bind(this))
+		} else if (level.child){
+			this._setSavedValues(level.child, param, values);
+		}
+	},
+	
+	onClean: function(){
+		this.onUpdateAllSelection(false);
 	},
 
 	onUpdateItemSelection: function(item, selected){

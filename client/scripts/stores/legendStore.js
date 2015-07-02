@@ -7,55 +7,88 @@ var LegendActions = require('../actions/legendActions.js');
 var API = require('../api/esri.js');
 var _ = require('lodash');
 var ShapesLayerStore = require('./shapesLayerStore.js');
+var PointsLayerStore = require('./pointsLayerStore.js');
+var ArcgisLayerStore = require('./arcgisLayerStore.js');
 
 module.exports=Reflux.createStore({
 
     listenables: LegendActions,
     // Initial setup
     init: function() {
-       this.state = {layersLegends: []};         
+       this.state = {layersLegends: []}; 
+
+       this.listenTo(ShapesLayerStore, this._handleDataLayersUpdate);   
+       this.listenTo(PointsLayerStore, this._handleDataLayersUpdate); 
+       this.listenTo(ArcgisLayerStore, this._handleArcgisLayersUpdate); 
+
+       this._addInitialLegends();
+
     },
 
-    onGetLegends: function(layer) {
-      if (layer.type=='Feature Service'){
-        for (var i=0; i<layer.layer.layers.length;i++){
-          var url = layer.url + "/"+i+"?f=json"; 
+    _handleDataLayersUpdate: function(data) {
+      if(data.latestChange && data.latestChange.property == "visible"){ 
+        this._setLegendVisibility(data.breaks.field, data.visible);
+      } else if(data.latestChange && data.latestChange.property == "color"){ 
+        var level = data.latestChange.subProperty;
+        this._setLegendColor(data.breaks.field, data.breaks.breaks[level].style.color, level.split("Level")[1])
+      }
+
+    },
+
+    _handleArcgisLayersUpdate: function(data) {
+      if(data.latestChange && data.latestChange.property == "addLayer"){ 
+        this._addNewLegend(data.latestChange.value)
+      } else if(data.latestChange && data.latestChange.property == "deleteLayer"){
+        this._removeLegend(data.latestChange.value);
+      } else if(data.latestChange && data.latestChange.property == "visible"){ 
+        this._setLegendVisibility(data.latestChange.value.id, data.latestChange.value.visible);
+      }
+    },
+
+    _addNewLegend: function(layer) {
+      var layerLegends = _.find(this.state.layersLegends, {'id': layer.id});
+      if (!layerLegends){
+        if (layer.type=='Feature Service'){
+          for (var i=0; i<layer.layer.layers.length;i++){
+            var url = layer.url + "/"+i+"?f=json"; 
+            API.findLegends(url).then(
+            function(legends){
+              LegendActions.getLegends.completed(legends, layer);
+            }).fail(function(){
+              console.log('legendStore: Error loading data ...');
+            });
+          }          
+        } else {
+          var url = layer.url + "/legend?&f=json";
           API.findLegends(url).then(
           function(legends){
             LegendActions.getLegends.completed(legends, layer);
           }).fail(function(){
             console.log('legendStore: Error loading data ...');
           });
-        }          
-      } else {
-        var url = layer.url + "/legend?&f=json";
-        API.findLegends(url).then(
-        function(legends){
-          LegendActions.getLegends.completed(legends, layer);
-        }).fail(function(){
-          console.log('legendStore: Error loading data ...');
-        });
-      }        
+        }
+      }
     },
 
-    onGetLegendsCompleted: function(legends, layer){
-        
+    onGetLegends: function(layer) { //Should not be used anymore
+      this._getLegends(layer);
+    },
+
+    onGetLegendsCompleted: function(legends, layer){ //Should not be used anymore
+      var layerLegends = _.find(this.state.layersLegends, {'id': layer.id});
+      if (!layerLegends){
+        layerLegends = {'id': layer.id, 'layerTitle': layer.title, 'visible': true, "legendGroups": []};
+      
         if (layer.type=='Feature Service'){
-          var added = true;
-          var layerLegends = _.find(this.state.layersLegends, {'id': layer.id});
-          if (!layerLegends){
-            added = false;
-            layerLegends = {'id': layer.id, 'layerTitle': layer.title, "legendGroups": []};
-          }
           var legendGroup = {};
-          _.assign(legendGroup, {"layerName": legends.name});
-          _.assign(legendGroup, {"legends": this._parseLegendsFromDrawInfo(legends)}); 
-          layerLegends.legendGroups.push(legendGroup);
-          if (!added){
+          var subLayerLegend = _.find(layerLegends.legendGroups, {'layerName': legends.name});
+          if (!subLayerLegend){
+            _.assign(legendGroup, {"layerName": legends.name});
+            _.assign(legendGroup, {"legends": API.parseLegendsFromDrawInfo(legends)}); 
+            layerLegends.legendGroups.push(legendGroup);
             this.state.layersLegends.push(layerLegends);
           }
         } else {
-          var layerLegends = {'id': layer.id, 'layerTitle': layer.title, "legendGroups": []};
           legends.layers.map(function(layer){
             var legendGroup = {};
             _.assign(legendGroup, {"layerName": layer.layerName});     
@@ -64,48 +97,73 @@ module.exports=Reflux.createStore({
           });
           this.state.layersLegends.push(layerLegends);
         }
-        this.trigger(this.state);
+      } 
+      this.trigger(this.state);
     },
 
-    onGetDataLayersLegends: function() {
-      console.log('stores->legendStore>onGetDataLayersLegends'); 
-      this._addTotalProjectsLegend(0);
-      this._addFundingByTypeLegend(1);
+    onIsShown: function(value){
+      this.update({ shown: value });
+    },
+
+    _addInitialLegends: function() {
+      console.log('stores->legendStore>_addInitialLegends'); 
+      this._addTotalProjectsLegend();
+      this._addFundingByTypeLegend();
       
       this.trigger(this.state);      
     },
 
-    _addTotalProjectsLegend: function(legendId) {
-      var legendItem = {};
-      var legendGroup = {};
-      var layerLegends = _.find(this.state.layersLegends, {'id': legendId});
+    _addTotalProjectsLegend: function() {
+      var points = PointsLayerStore._getDefaultBreaks();
+      var layerLegends = _.find(this.state.layersLegends, {'id': points.field});
       if (!layerLegends){
-        layerLegends = {'id': legendId, 'layerTitle': "Proyectos Totales", "legendGroups": []};
-        _.assign(legendItem, {
-          contentType: "image/png",
-          height: 20,
-          imageData: "iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAMAAADW3miqAAAAFXRFWHRDcmVhdGlvbiBUaW1lAAffBgEPOwGNqO18AAAAB3RJTUUH3wYBDzsa0szH4AAAAAlwSFlzAAALEgAACxIB0t1+/AAAASNQTFRF7uTZ797L7+DP7+Xa7+bd7+jh8NW28NW38Na48Na58Ne68NrB8NzF8N3I8N7J8de68di78di88di98dm98dm+8tGz8tG08tS38tm98tm+886w89G09M+x9cOh9cSh9cuq9rqT97eO97eP97iR97qS97uT97uU97yV972Y976Z97+a+LVV+LaN+LeP+LiQ+LmS+LqT+L2Y+MB8+MB9+MCc+MKg+a06+a46+bNM+bNN+bVV+biQ+b11+b2Y+b51+b52+b6Z+cCc+cKf+cKg+cSj+cWk+cyh+qsw+seP+seQ+sip+smq+sqr+sqs+sut+suu+s2x+s6y+s+0+tC1+tG3+tK4+tO6+9S7+9W9+9a/+9fA+9fB+9jC+9jD+9nD/NfA////9BigdAAAAh9JREFUOMuNlH1XolAQxi+VgMouamaomZmuuZStttfXrBRD1iUDZV21ReX7f4odQFHEznH+gnt+Z2bOzPMMMrbj+CsTJMkgQxy7ntHm84Qht4Lx7YF8LsSNrSECXimKDoQj0WgkHKApCh6O3BCkoWiWu0jxN8Xidz4V41gaMGYbgm4pP5fOZctYqFQEXM7m0pwfqOAGYiBN6CxfwqKsqMOhqsgiLuXPoaidC9n90KHEfVtUtMlMn8/12URTxPJ1IkTbfQHkg1qhxB1+06Z6/+W2Vrt96evTkdy5SwSgos+CoJj/7B4Pxh+9hrSKRm/5Z9C5PvdbBZFxAsW4fPtt/K8lbcXzx1huX3G0mQqZidh0SdSWz5Irfi5H4o80a6ZCBnTE5bAy7Uk70ZsqOMdBVwZCUO0iK2p6Yxdq6KPXbBLqIfSFJAOpsjzpS5749ff30yVLkgSChYR5rMxaXqg1e8d8GJaDYCORG0HVm16oqatC4RR2Ay2R0WJlOK95odpC7WbiADhQ1QtVHeigcgc1Tnw+gr4zAmeY9V2mbg4zZg3zoLV8uuCHpSaW1gv2OVJxUQ+mVPJrqdiie7RE5/RV7y3Hg07REZ1bvq1mtdpsgXw1kG9yI1/jyDLC48oIi4VthHZx2wheS73Lrx5LOeb8Zpqz2xXw0x5zOjaPpfhCJlPgL5N7bG71tToY8fhpmN17MA47PR5s7xGz/4jVOXQ//wdC1BK7JpbuewAAAABJRU5ErkJggg==",
-          label: "Cantidad de Proyectos",
-          url: "",
-          width: 20});
-
+        layerLegends = {'id': points.field, 'layerTitle': "SubActividades Totales", 'visible': true, "legendGroups": []};
+        var breaks = points.breaks;
+        var breaksKeys = Object.keys(breaks);
+        var legendItems = [];
+        for(var i=0; i<breaksKeys.length; i++){
+          var legendItem = {};
+          var level = breaksKeys[i];
+          var labelStr = " " + breaks[level]["min"] + " - "+ breaks[level]["max"] ;
+          var hexColor = this._rgbToHex(breaks[level]["style"]["color"]["r"], breaks[level]["style"]["color"]["g"], breaks[level]["style"]["color"]["b"]);
+          _.assign(legendItem, {
+            contentType: "image/png",
+            height: 20,
+            imageData: "iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAMAAADW3miqAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyhpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMDE0IDc5LjE1Njc5NywgMjAxNC8wOC8yMC0wOTo1MzowMiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTQgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6N0RGRUE0QTUwMjk5MTFFNTg0RTVCM0EwMUE0NzUyREQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6N0RGRUE0QTYwMjk5MTFFNTg0RTVCM0EwMUE0NzUyREQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo3REZFQTRBMzAyOTkxMUU1ODRFNUIzQTAxQTQ3NTJERCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo3REZFQTRBNDAyOTkxMUU1ODRFNUIzQTAxQTQ3NTJERCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pp75SXYAAAC3UExURQAAAP/w3v/w3v/w3v/w3v/w3v/w3v/w3v/w3v/w3v/w3v/w3v/w3v/w3v/w3v/w3v/w3v/w3v/w3v/w3v/w3v/w3v/w3v/w3v/w3v/w3v/w3v/x4P/w3v/x4f/69f/8+P/69f/w3v/w3//26//37f/w3v/w3v/w3v/y4v/w3v/w3//x4P/w3v/w3//x3//x4P/x4f/y4//05v/27P/37P/37f/69f/79f/8+f/9+//+/v///v///+HvFC0AAAAsdFJOUwACBgcRHiIqLS4wPE1OXmVoao6Pmaiwx8vi5O3u7u/w9Pf39/f5+vz8/f7+Etve7wAAAYhJREFUOMuNlNd22zAQRIeSqUr1rihx5CLG8qV6YcH/f1ceZFlUSYh5wgHuwdkFdkbmouSw26yA1WZ3SFL7Rt+raPvJRS+v0T0U7wOu5b/FN1C4Bhh1aoWccoVaZwTwI7yCjnNg6Dk6y/GGwPvvFHQMYNq6IJLktKbg//qGwjmMy6ejklf3Sie8PIb35y8oXsPYlaRidwLApFuUJHcMP+MTtIdpWVK+7c/6zWql2uzP/HZeUnkKb8YYmSiAlqSnAT33qyC3x+BJUgv8yBiZLQwdKT/4aKTqbnwM8pIzhFdjlCzBk9SmcdVdg7YkD14SowOMHKno93Stnl+UnBEcjHbQkdSduTeQO+tK6sDOaAM1yZn0dav+xJFqsDFaQUEq0byDmpSkAqyMgJzkUb2DqnhSDjACJNWp3EEV6pLOUPZNVjVZdWf1TlYvnvl3n4nFFGwt5imILCZzbzHjf+KzWxb/dMs8zPZdcEw7ePHQwYtjdhasw8xUCfbxo3xappDlNnoUYlZJ9x/9BbJVjkkfQXN4AAAAAElFTkSuQmCC",
+            imageColor: hexColor,
+            label: labelStr,
+            url: "",
+            width: 20});
+          legendItems.push(legendItem);
+        }
+        var legendGroup = {};
         _.assign(legendGroup, {"layerName": "Funding type"});
-        _.assign(legendGroup, {"legends": [legendItem]});
+        _.assign(legendGroup, {"legends": legendItems});
         layerLegends.legendGroups.push(legendGroup);
         this.state.layersLegends.push(layerLegends);
       }
 
     },
 
-    _addFundingByTypeLegend: function(legendId) {
-      var layerLegends = _.find(this.state.layersLegends, {'id': legendId});
-      if (!layerLegends){
-        var legendGroup = {};
-        layerLegends = {'id': legendId, 'layerTitle': "Financiamiento por tipo", "legendGroups": []};
-        var legendItems = [];
+    _rgbToHex: function(r, g, b){
+      return "#"+this._toHex(r)+this._toHex(g)+this._toHex(b);
+    },
 
-        var breaks = ShapesLayerStore._getDefaultBreaks().breaks;
+    _toHex: function (n) {
+       n = parseInt(n,10);
+       if (isNaN(n)) return "00";
+       n = Math.max(0,Math.min(n,255));
+       return "0123456789ABCDEF".charAt((n-n%16)/16) + "0123456789ABCDEF".charAt(n%16);
+    },
+
+    _addFundingByTypeLegend: function() {
+      var shapes = ShapesLayerStore._getDefaultBreaks();
+      var layerLegends = _.find(this.state.layersLegends, {'id': shapes.field});
+      if (!layerLegends){
+        layerLegends = {'id': shapes.field, 'layerTitle': "Financiamiento por tipo", 'visible': false, "legendGroups": []};
+        var breaks = shapes.breaks;
         var breaksKeys = Object.keys(breaks);
+        var legendItems = [];
         for(var i=0; i<breaksKeys.length; i++){
           var level = breaksKeys[i];
           var labelStr = " " + breaks[level]["min"] + " - "+ breaks[level]["max"] ;
@@ -120,7 +178,7 @@ module.exports=Reflux.createStore({
           });
           legendItems.push(legendItem);
         }
-
+        var legendGroup = {};
         _.assign(legendGroup, {"layerName": "Colores"});
         _.assign(legendGroup, {"legends": legendItems});
         layerLegends.legendGroups.push(legendGroup);
@@ -129,48 +187,47 @@ module.exports=Reflux.createStore({
 
     },
 
-    _hexToRgb: function(hex) {
-      var bigint = parseInt(hex, 16);
-      var r = (bigint >> 16) & 255;
-      var g = (bigint >> 8) & 255;
-      var b = bigint & 255;    
-      return [r,g,b];
-    },
-
-    onChangeColorFundingByType: function(hexColor, level) {
-      var layerLegend = _.find(this.state.layersLegends, {'id': 1});
+    _setLegendColor: function(legendId, rgbColor, level) {
+      var layerLegend = _.find(this.state.layersLegends, {'id': legendId});
       if(layerLegend){
-        layerLegend.legendGroups[0].legends[level].symbol.color[0] = hexColor.r;
-        layerLegend.legendGroups[0].legends[level].symbol.color[1] = hexColor.g;
-        layerLegend.legendGroups[0].legends[level].symbol.color[2] = hexColor.b;
+        var legend = layerLegend.legendGroups[0].legends[level];
+        if(legend.contentType=="image/png") {
+          legend.imageColor = this._rgbToHex(rgbColor.r, rgbColor.g, rgbColor.b);
+        } else {
+          legend.symbol.color[0] = rgbColor.r;
+          legend.symbol.color[1] = rgbColor.g;
+          legend.symbol.color[2] = rgbColor.b;
+        }
         this.trigger(this.state);
       }
     },
 
-    onRemoveLegend: function(legendId) {
-      var layerLegends = _.find(this.state.layersLegends, {'id': legendId});
-      if (layerLegends){
-        this.state.layersLegends.pop(layerLegends);
+    _removeLegend: function(legendId) {
+      var index = _.indexOf(_.pluck(this.state.layersLegends, 'id'), legendId);;
+      if (index>=0){
+        this.state.layersLegends.splice(index, 1);
         this.trigger(this.state);
       }
     },
 
-    _parseLegendsFromDrawInfo: function(legends) {
-      var legendArray = [];
-      if (legends.drawingInfo.renderer.type == 'uniqueValue'){
-        legends.drawingInfo.renderer.uniqueValueInfos.map(function(valueInfo){
-          legendArray.push({"label": valueInfo.label, "symbol": valueInfo.symbol});          
-        });
-        return legendArray;            
-      } else {
-        var rdrr = legends.drawingInfo.renderer;
-        legendArray.push({"label": rdrr.label, "symbol": rdrr.symbol});
-        return legendArray;            
+    _setLegendVisibility: function(legendId, value) {
+      var layerLegend = _.find(this.state.layersLegends, {'id': legendId});
+      if (layerLegend){
+        layerLegend.visible = value;
       }
+      this.trigger(this.state);
     },
 
     getInitialState: function() {
        return this.state;
+    },
+
+    update: function(assignable, options) {
+      options = options || {};
+      this.state = assign(this.state, assignable);
+      if (!options.silent) {
+        this.trigger(this.state);
+      }
     }
 
 });

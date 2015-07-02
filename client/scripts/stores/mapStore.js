@@ -5,11 +5,15 @@ var Reflux = require('reflux');
 var MapActions = require('../actions/mapActions.js');
 var LoadingActions = require('../actions/loadingActions.js');
 
+var CommonsMixins = require('./_mixins.js');
+
+var defaultZoom = 6;
 
 module.exports = Reflux.createStore({
 
 
   listenables: [MapActions, LoadingActions],
+  mixins: [CommonsMixins],
 
   getCurrentBaseMap: function() {
     return this.state.baseMap;
@@ -23,24 +27,18 @@ module.exports = Reflux.createStore({
     this.update({ loading: false });
   },
 
-  onChangeBounds: function(newBounds) {
-    this.update({ bounds: newBounds });
+  onChangeBounds: function(newBounds, newZoom) {
+    var varZoom = newZoom?newZoom:defaultZoom;
+    this.update({ bounds: newBounds, zoom: varZoom});
   },
 
-  onChangeBoundsUser: function(newBounds) {
-    this.update({ bounds: newBounds }, { silent: true });
+  onChangeBoundsUser: function(newBounds, newZoom) {
+    var varZoom = newZoom?newZoom:defaultZoom;
+    this.update({ bounds: newBounds, zoom: varZoom}, { silent: true });
   },
 
   onChangeBaseMap:function(newBaseMap){
     this.update({baseMap:newBaseMap});
-  },
-
-  update: function(assignable, options) {
-    options = options || {};
-    this.state = assign(this.state, assignable);
-    if (!options.silent) {
-      this.trigger(this.state);
-    }
   },
 
   getInitialState: function() {
@@ -48,7 +46,9 @@ module.exports = Reflux.createStore({
       baseMap : 'Gray',
       bounds: [ [7, -62],
                 [0, -83] ],
-      loading: false          
+      zoom:defaultZoom,
+      loading: false,
+      saveItems:['baseMap', 'bounds', 'zoom']          
     });
   }
 

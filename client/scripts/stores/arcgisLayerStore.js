@@ -3,10 +3,12 @@
 var assign = require('object-assign');
 var Reflux = require('reflux');
 var ArcgisLayersActions = require('../actions/arcgisLayersActions.js');
-var LegendActions = require('../actions/legendActions.js');
 var Util = require('../api/util.js');
 var API = require('../api/esri.js');
 var _ = require('lodash');
+var LoadingAction = require('../actions/loadingActions.js');
+
+var CommonsMixins = require('./_mixins.js')
 
 var storedState;//= require('./layer_samples.js');
 
@@ -26,13 +28,14 @@ function setOpaciy(layers){
 module.exports = Reflux.createStore({
 
 	listenables: ArcgisLayersActions,
+    mixins: [CommonsMixins],
 
 	onAddLayerToMap: function(layer) {
-    console.log('stores->arcgisLayerStore>onAddLayerToMap');
-    
+    	console.log('stores->arcgisLayerStore>onAddLayerToMap');
+    	LoadingAction.showLoading();
 		if (!_.findWhere(this.state.layers, {id: layer.id})) {
 			
-			var options={'opacity': 1,'visible':true}; //default values for all layers 
+			var options={'opacity': 1,'visible':true, 'created':null}; //default values for all layers 
 
 			if (layer.type=='Feature Service'){
 				setVisibility(layer.layer.layers);
@@ -43,7 +46,9 @@ module.exports = Reflux.createStore({
 
 			_.assign(layer, options);
 			this.state.layers.push(layer);
-			LegendActions.getLegends(layer);
+			var latestChange  = new Object();
+			latestChange['latestChange'] = {'property':'addLayer', 'value':layer};
+			this.update(latestChange, {'silent': true});
 			this.trigger(this.state);
 		}
 	},
@@ -58,17 +63,20 @@ module.exports = Reflux.createStore({
 		var layer = _.findWhere(this.state.layers, {id: id});
 		_.assign(layer, {'added':true});
 		this.trigger(this.state);
+		LoadingAction.hideLoading();
 	},
 
 	onChangeLayerValue: function(property, id, value, idx) {
 		console.log(arguments);
 		var theLayer = _.findWhere(this.state.layers, {'id': id});
 		var isFeature=theLayer.type=='Feature Service';
+		var latestChange  = new Object();
 
 		if (property == 'delete') {
 			var index = _.indexOf(_.pluck(this.state.layers, 'id'), theLayer.id);;
 			this.state.layers.splice(index, 1);
-			LegendActions.removeLegend(theLayer.id);
+			latestChange['latestChange'] = {'property':'deleteLayer', 'value':theLayer.id};
+			this.update(latestChange, {'silent': true});
 			ArcgisLayersActions.restoreLayerButton(theLayer.id);
 		} else if (property == 'moveDown' && !isFeature) {
 			var currentZindex = theLayer.zIndex;
@@ -91,52 +99,46 @@ module.exports = Reflux.createStore({
 				replaceWith.zIndex = currentZindex; //the one that was in tha position takes  theLayer's z-index
 			}
 		} else {
-			
-				if(!idx){
-					theLayer[property] = value;
+			if(!idx){
+				theLayer[property] = value;
+				latestChange['latestChange'] = {'property':'visible', 'value':theLayer};
+				this.update(latestChange, {'silent': true});
+			}
+
+			if (isFeature){ //this is feature layer
+				if (idx){
+					_.find(theLayer.layer.layers,{id:parseInt(idx)})[property]=value;	
+					latestChange['latestChange'] = {'property':'visible', 'value':theLayer};
+					this.update(latestChange, {'silent': true});
+				}else{
+					theLayer.layer.layers.map(function(l){
+						l[property]=value
+					})
 				}
-
-				if (isFeature){ //this is feature layer
-					if (idx){
-						_.find(theLayer.layer.layers,{id:parseInt(idx)})[property]=value;	
-					}else{
-						theLayer.layer.layers.map(function(l){
-							l[property]=value
-						})
-					}
-				}
 			}
-			this.trigger(this.state)
-		},
+		}
+		this.trigger(this.state)
+	},
 
-		update: function(assignable, options) {
-			options = options || {};
-			this.state = _.assign(this.state, assignable);
-			if (!options.silent) {
-				this.trigger(this.state);
-			}
-		},
+	onRestoreData: function(data) {
+		this.update(data);
+	},
 
-		nextZindex: function() {
-			if (!this.lastZindex) {
-				this.lastZindex = 0
-			}
-			return this.lastZindex++;
-		},
+	nextZindex: function() {
+		if (!this.lastZindex) {
+			this.lastZindex = 0
+		}
+		return this.lastZindex++;
+	},
 
-		getInitialState: function() {
+	getInitialState: function() {
+		if (!this.state) {
+			this.state = storedState || {
+				layers: [],
+				saveItems: ["layers"]
+			};
+		}
+		return this.state;
+	},
 
-			if (!this.state) {
-				this.state = storedState || {
-					layers: [],
-
-				};
-			}
-			return this.state;
-		},
-
-
-
-
-
-	});
+});

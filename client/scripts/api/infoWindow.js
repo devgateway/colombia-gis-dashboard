@@ -8,14 +8,16 @@ function logFailure(err, message) {
 
 module.exports = {
 
-    getInfoFromAPI: function(endPoint, filters) {
+    getInfoFromAPI: function(infoWindowFilter, filters) {
       console.log("scripts->api->infoWindow: getInfoFromAPI");
       return reqwest({
-        url: endPoint.apiEndPoint, 
+        url: 'http://test.monitor.net.co/GisService.svc/Filters/Clusters/Json', 
+        //url: 'mock-data/infoWindowData.json',
         type: 'json', 
         method: 'post', 
+        //method: 'get', 
         contentType: "application/json",
-        data: JSON.stringify({"filters": filters? filters : []}),
+        data: JSON.stringify({"filtersInfoWin": infoWindowFilter? infoWindowFilter : [], "filters": filters? filters : []}),
         crossOrigin: true
       }).fail(logFailure);
     },
