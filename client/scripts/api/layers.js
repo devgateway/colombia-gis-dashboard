@@ -11,11 +11,11 @@ module.exports = {
 
     getActivitiesByDepartment: function (filters) {
         return request({
-            //url: 'mock-data/departmentsFunding.json',
-            url: 'http://test.monitor.net.co/GisService.svc/Filters/DepartmentsFunding/Json',
+            url: 'mock-data/departmentsFunding.json',
+            //url: 'http://test.monitor.net.co/GisService.svc/Filters/DepartmentsFunding/Json',
             type: 'json',
-            method: 'post',
-            //method: 'get',
+            //method: 'post',
+            method: 'get',
             contentType: "application/json",
             data: JSON.stringify({"filters": filters? filters : []}),
             crossOrigin: true
@@ -24,11 +24,11 @@ module.exports = {
 
     getActivitiesByMuncipalities: function (filters) {
         return request({
-            //url: 'mock-data/municipalitiesFunding.json',
-            url: 'http://test.monitor.net.co/GisService.svc/Filters/MunicipalitiesFunding/Json',
+            url: 'mock-data/municipalitiesFunding.json',
+            //url: 'http://test.monitor.net.co/GisService.svc/Filters/MunicipalitiesFunding/Json',
             type: 'json',
-            method: 'post',
-            //method: 'get',
+            //method: 'post',
+            method: 'get',
             contentType: "application/json",
             data: JSON.stringify({"filters": filters? filters : []}),
             crossOrigin: true

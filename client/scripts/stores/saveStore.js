@@ -88,9 +88,13 @@ module.exports = Reflux.createStore({
       }
       if(this.state.shapesState){
         LayersActions.restoreData(_.clone(this.state.shapesState, true), 'shapes');
+      } else {
+        LayersActions.changeLayerValue('shapes','visible',false);
       }
       if(this.state.pointsState){
-        LayersActions.changeLayerValue('points','visible',true); //Hack for changing colors
+        if(!this.state.pointsState.visible){
+          LayersActions.changeLayerValue('points','visible',true); //Hack for changing colors
+        }
         LayersActions.restoreData(_.clone(this.state.pointsState, true), 'points', this.state.filterData);
       }
       if(this.state.arcgisState){
