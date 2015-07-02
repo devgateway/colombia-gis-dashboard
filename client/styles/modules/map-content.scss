@@ -1,14 +1,15 @@
 .toggler{
   @include border-radius(4px);
-  // background: #d7e0e4;
+  background: #d7e0e4;
   overflow:hidden;
   position:relative;
-  .selectable{
-  }
+  margin-bottom:5px;
+  padding:0 0 5px 15px;
+
   .control-title{
     float:left;
     width: 70%;
-    margin: -22px auto 20px 50px;
+    margin: -22px auto 0 50px;
   }
 }
 .layer-control-toggle{
@@ -31,11 +32,10 @@
   ul{
     padding-left:0;
     li{
-      margin-bottom:24px;
+      margin-bottom:0;
       }
   }
 }
-
 .control-wrapper{
   overflow:hidden;
   &.transparency{
@@ -44,7 +44,6 @@
   }
 
 }
-
 .controls-items{
   display:block;
   li{
@@ -62,6 +61,11 @@
 }
 
 // layer color controls
+.color-selection{
+  margin-top:30px;
+  margin-bottom:20px;
+}
+
 .breaksOptions {
   float:left;
   margin-top:-18px;
@@ -94,8 +98,7 @@
 	}
 
   .colorpicker-element{
-    width: 20px;
-    border: 1px;
+    width: 15px;
 	}
 
 	.input-group-addon {
@@ -105,7 +108,7 @@
     line-height: 1;
     color: #555;
     text-align: center;
-    border: 1px solid transparent;
+    border: none;
     clear:both;
     display:block;
     margin: 0 auto;

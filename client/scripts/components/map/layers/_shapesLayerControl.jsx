@@ -105,9 +105,9 @@ module.exports = React.createClass({
               }
               </ul>
             </li>
-            <li>
+            <li className="color-selection">
               <h3>Color Selections</h3>
-              
+
                 {
                   _.map(_.keys(this.state.breaks.breaks),function(key){
                     var br=this.state.breaks.breaks[key];

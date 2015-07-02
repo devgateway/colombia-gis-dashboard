@@ -1237,8 +1237,7 @@ ul.tabs {
     float: left; }
   .layer-control .toggler .updown {
     float: left;
-    margin-right: 5px;
-    width: 35px; }
+    margin-right: 5px; }
   .layer-control .toggler .clear-fix {
     clear: both; }
   .layer-control .toggler .fa {
@@ -1489,7 +1488,7 @@ ul.tabs {
   .toggler .control-title {
     float: left;
     width: 70%;
-    margin: -22px auto 20px 50px; }
+    margin: -22px auto 0 50px; }
 
 .layer-control-toggle h3 {
   font-weight: bold;
@@ -1506,7 +1505,7 @@ ul.tabs {
 .layer-control-panel ul {
   padding-left: 0; }
   .layer-control-panel ul li {
-    margin-bottom: 24px; }
+    margin-bottom: 0; }
 
 .control-wrapper {
   overflow: hidden; }
