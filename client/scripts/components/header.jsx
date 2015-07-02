@@ -1,9 +1,11 @@
 'use strict';
-var React = require('react')
+var React = require('react');
+var Reflux = require('reflux');
 var RouteHandler = require('react-router').RouteHandler;
 var LanSelector=require('./lanSelector.jsx');
 var SaveStore=require('../stores/saveStore.js');
 var SaveActions=require('../actions/saveActions.js');
+var SaveStore=require('../stores/saveStore.js');
 
 var AGOLProfile=require('./esri/AGOLProfile.jsx');
 module.exports = React.createClass({
