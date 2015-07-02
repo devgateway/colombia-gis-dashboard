@@ -51,7 +51,7 @@ module.exports = React.createClass({
 
 
   var level=this.state.level;
-
+  var fundingTypes = [];//FilterStore.getAll("ft");
   return (
   <li>
     <Toggler ref='toggler'>
@@ -79,6 +79,24 @@ module.exports = React.createClass({
               <CustomRadio className="horizontal" name="municipality" checked={(level=='municipality')? true : false}
                 onClick={this._showByMunicipality} label="layers.byMunicipality"/>
             </CustomRadioGroup>
+          </li>
+          <li>
+            <h3>Funding Type</h3>
+            <ul className="funding-options">
+            {
+              fundingTypes.map(function(fundingType){
+                return(
+                  <li>
+                    <CustomCheckbox
+                            selected={fundingType.selected}
+                            onChange={self._onFundingChanged}
+                            value={fundingType.id}/>
+                    <span>{fundingType.name}</span>
+                  </li>
+                );
+              })
+            }
+            </ul>
           </li>
           <li className="color-selection">
             <h3>Color Selection</h3>
