@@ -76,7 +76,7 @@ module.exports = Reflux.createStore({
     if(this.state){
       LanStore.setCurrentState(this.state.lanState);
       MapStore.setCurrentState(this.state.mapState);
-      if(this.state.filterData){
+      if(this.state.filterData.filters){
         for (var key in FilterActions) {
           if (FilterActions.hasOwnProperty(key)) {
             if (FilterActions[key].loadFromSaved){
@@ -92,7 +92,7 @@ module.exports = Reflux.createStore({
         LayersActions.changeLayerValue('shapes','visible',false);
       }
       if(this.state.pointsState){
-        if(!this.state.pointsState.visible){
+        if(!pointsState.visible){
           LayersActions.changeLayerValue('points','visible',true); //Hack for changing colors
         }
         LayersActions.restoreData(_.clone(this.state.pointsState, true), 'points', this.state.filterData);
