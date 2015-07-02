@@ -58,7 +58,7 @@ module.exports = Reflux.createStore({
   },
 
   _getDataFromState:function(stateVar){
-    var dataToSave;
+    var dataToSave = {};
     if(stateVar && stateVar.saveItems){
       dataToSave = {};
       stateVar.saveItems.map(function(l){
