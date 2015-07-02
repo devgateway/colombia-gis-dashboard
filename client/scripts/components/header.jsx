@@ -9,8 +9,6 @@ var SaveStore=require('../stores/saveStore.js');
 var AGOLProfile=require('./esri/AGOLProfile.jsx');
 module.exports = React.createClass({
 
-  mixins: [Reflux.connect(SaveStore)],
-
   handleClickForSave:function(){
     console.log('Save Map');
     SaveActions.saveMap();
