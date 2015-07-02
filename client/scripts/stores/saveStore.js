@@ -95,7 +95,7 @@ module.exports = Reflux.createStore({
         if(!pointsState.visible){
           LayersActions.changeLayerValue('points','visible',true); //Hack for changing colors
         }
-        LayersActions.restoreData(_.clone(this.state.pointsState, true), 'points', this.state.filterData);
+        LayersActions.restoreData(_.clone(this.state.pointsState, true), 'points', this.state.filterData.filters);
       }
       if(this.state.arcgisState){
         this.state.arcgisState.layers.map(function(l){
