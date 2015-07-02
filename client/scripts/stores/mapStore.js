@@ -4,6 +4,7 @@ var assign = require('object-assign');
 var Reflux = require('reflux');
 var MapActions = require('../actions/mapActions.js');
 var LoadingActions = require('../actions/loadingActions.js');
+var RestoreActions = require('../actions/restoreActions.js');
 
 var CommonsMixins = require('./_mixins.js');
 
@@ -12,7 +13,7 @@ var defaultZoom = 6;
 module.exports = Reflux.createStore({
 
 
-  listenables: [MapActions, LoadingActions],
+  listenables: [MapActions, LoadingActions, RestoreActions],
   mixins: [CommonsMixins],
 
   getCurrentBaseMap: function() {
@@ -21,6 +22,10 @@ module.exports = Reflux.createStore({
 
   onShowLoading: function() {    
     this.update({ loading: true });
+  },
+
+  onRestoreData: function(savedData) {  
+    this.update(savedData.mapState);
   },
 
   onHideLoading: function() {    

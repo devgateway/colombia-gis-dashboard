@@ -1,7 +1,6 @@
 'use strict';
 
 var Reflux = require('reflux');
-var LayersAction = require('../actions/layersAction.js');
 var Util = require('../api/util.js');
 var API = require('../api/layers.js');
 var GeoStats = require('../api/geostats.js');
@@ -109,7 +108,6 @@ var defaultBreaks = {
 }
 module.exports = Reflux.createStore({
 
-
 	mixins: [CommonsMixins, DataLayerMixins],
 
 	_getLayerId: function() {
@@ -120,11 +118,13 @@ module.exports = Reflux.createStore({
 		return defaultBreaks;
 	},
 
-	onRestoreData: function(data, type) {
-	    if(this._getLayerId()==type){
-		   this.update({dataToRestore: data, isRestorePending: true})
-		   this._load(null, data.level, true); //restore data 
-		}
+	onRestoreData: function(savedData) {
+		if(savedData.shapesState){
+		   this.update({dataToRestore: savedData.shapesState, isRestorePending: true});
+		   this._load(null, savedData.shapesState.level, true); //restore data 
+	    } else {
+	       this.update({'visible':false});
+	    }
 	},
 
 	getInitialState: function() {
