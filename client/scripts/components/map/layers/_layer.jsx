@@ -4,6 +4,7 @@ var Reflux = require('reflux');
 var _=require('lodash');
 
 var If=require('../../commons/if.jsx');
+var Checkbox=require('../../commons/customCheckbox.jsx');
 
 
 module.exports=React.createClass({
@@ -55,7 +56,7 @@ module.exports=React.createClass({
       }
     }.bind(this),
     max: 100,
-    value:(opacity*100) 
+    value:(opacity*100)
   })
   .slider("pips", {
     rest: false
@@ -70,27 +71,32 @@ render: function() {
   console.log("Layer Control > Layer : Rendering now .. checked ==" + this.state.checked )
   return (
     <div>
-    <div className='updown'>
-    <If condition={this.props.onMoveUp}>
-    <i className="fa fa-arrow-up" onClick={this._up}></i>
-    </If>
-    <If condition={this.props.onMoveDown}>
-    <i onClick={this._down} className="fa fa-arrow-down"></i>
-    </If>
-    <If condition={this.props.onDelete}>
-    <i className="fa fa-times" onClick={this._delete}></i>
-    </If>
+      <div className='updown'>
+        <If condition={this.props.onMoveUp}>
+          <i className="fa fa-arrow-up" onClick={this._up}></i>
+        </If>
+        <If condition={this.props.onMoveDown}>
+          <i onClick={this._down} className="fa fa-arrow-down"></i>
+        </If>
+        <If condition={this.props.onDelete}>
+          <i className="fa fa-times" onClick={this._delete}></i>
+        </If>
+      </div>
+      <div className="title">
+        <If condition={this.props.onChangeVisibility}>
+          <Checkbox selected={this.state.checked} onChange={this._handleChageVisibility}/>
+        </If>
+        <If condition={this.props.title}>
+          <span className="control-title">{this.props.title}</span>
+        </If>
+      </div>
+    <div className="control-wrapper transparency">
+      <div className='slider-holder'>
+        <h3>Transparency</h3>
+        <div className='slider'/>
+      </div>
+      </div>
     </div>
-    <div className="title">
-    <If condition={this.props.onChangeVisibility}>
-    <input type="checkbox" checked={this.state.checked} onChange={this._handleChageVisibility}/> 
-    </If>
-    {this.props.title}
-    </div>  
-    <div className='slider-holder'>
-    <div className='slider'/>
-    </div>
-    </div>
-    );   
+    );
 }
 });

@@ -190,7 +190,7 @@ input[type=checkbox].glyphicon {
 
 .fa.fa-minus,
 .fa.fa-plus{
-  float:right;
+  @include floatRight;
 }
 
 .children-count{
@@ -208,7 +208,7 @@ input[type=checkbox].glyphicon {
   color:$green;
   }
 .toggle-label{
-  float:right;
+  @include floatRight;
   }
 }
 
@@ -304,4 +304,15 @@ input[type=checkbox].glyphicon {
 .label-selected{
   font-weight:bold;
   color: $grey;
+}
+
+//advanced filters- new set up
+.filters-more{
+  @include floatLeft;
+  color: $blue;
+  font-style: italic;
+
+  &:hover{
+    color: $grey;
+  }
 }
