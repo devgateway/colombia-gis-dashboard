@@ -6,11 +6,12 @@ var _ = require('lodash');
 var Mixins = require('./mixins.js');
 var TreeMixins = require('./treeMixins.js');
 var Actions = require('../../actions/filterActions.js');
+var RestoreActions = require('../../actions/restoreActions.js');
 
 
 function makeStore(actions, source, param) {
   return Reflux.createStore({
-    listenables: actions,
+    listenables: [actions, RestoreActions],
     mixins: [Mixins],
     load: function() {
      this._loadItems(window.DATA_PATH + '/' + source);
@@ -24,7 +25,7 @@ function makeStore(actions, source, param) {
 
 function makeTreeStore(actions, levels, lowestLevel) {
   return Reflux.createStore({
-    listenables: actions,
+    listenables: [actions, RestoreActions],
     mixins: [TreeMixins],
 
     init: function(){

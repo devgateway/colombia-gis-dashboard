@@ -4,11 +4,12 @@ var assign = require('object-assign');
 var Reflux = require('reflux');
 var _ = require('lodash');
 var actions=require('../../actions/filterActions.js').Dates;
+var RestoreActions = require('../../actions/restoreActions.js');
 var Mixins=require('./mixins.js');
 
 module.exports = Reflux.createStore({
 
-	listenables: actions,
+	listenables: [actions, RestoreActions],
 	mixins: [Mixins],
 
 	onUpdateItemValue:function(item, value){
@@ -16,6 +17,10 @@ module.exports = Reflux.createStore({
 		var itemValue = {};
 		itemValue[item] =  _.clone(this.state[item]);
 		this.update(itemValue);
+	},
+
+	onRestoreData: function(savedData) {
+		debugger;
 	},
 
 	onClean:function(){
