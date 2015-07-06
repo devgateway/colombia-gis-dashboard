@@ -32,7 +32,7 @@ var filters = [
     index: 4,
     type: 'list',
     modes: ['basic', 'advanced'],
-    label: 'SubActivity Status',
+    label: 'filters.subActivityStatus',
     param: 'st',
     store: StoreDispatcher.SubActivityStatus,
     actions: Actions.SubActivityStatus
@@ -72,7 +72,7 @@ var filters = [
   },
   {
     index: 9,
-    label: 'Crops',
+    label: 'filter.crops',
     type: 'list',
     modes: ['advanced'],
     param: 'cr',

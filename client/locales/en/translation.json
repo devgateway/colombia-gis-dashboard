@@ -37,7 +37,8 @@
 		"environmentalManagementPlans":"Environmental Management Plans",
 		"rapidImpact":"Rapid Impact",
 		"moreFilters": "More Filters (Advanced)",
-		"lessFilters": "Less Filters (Basic)"
+		"lessFilters": "Less Filters (Basic)",
+		"subActivityStatus": "SubActivity Status"
 	},
 
 	"layers": {
@@ -64,7 +65,8 @@
 		"search":"Search Layers",
 		"noResults":"There are no results that match your search",
 		"byDepartment":"Departments",
-		"byMunicipality":"Municipalities"
+		"byMunicipality":"Municipalities",
+		"searchLayers": "Search Layers"
 	},
 
 	"map": {

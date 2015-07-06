@@ -34,7 +34,7 @@ module.exports = React.createClass({
       return(  
         <div className="filter-col">
           <CustomCheckbox selected={this.state.selected} value={this.props.id} onChange={this._handleClick}/>
-          <span onClick={this._handleClick} className={itemClassNames}> {this.props.name}</span>
+          <span onClick={this._handleClick} className={itemClassNames}> {this.props.label}</span>
         </div>)
     } else {
       return null;
