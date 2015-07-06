@@ -149,3 +149,9 @@
 .download-button{
 	border: 1px solid #c5c5c5;
 }
+
+.saveMapPopup{
+	z-index: 10000;
+	bottom: 60%;
+	width: 450px;
+}
