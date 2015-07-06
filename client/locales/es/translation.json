@@ -34,7 +34,9 @@
 		"endDate":"Fecha de Fin",
 		"contractType":"Tipo de Contrato",
 		"environmentalManagementPlans":"Planes de Gestión Ambiental",
-		"rapidImpact":"Impacto Rapido"
+		"rapidImpact":"Impacto Rapido",
+		"moreFilters": "Mas Filtros (Avanzados)",
+		"lessFilters": "Menos Filtros (Basicos)"
 	},
 
 	"layers": {
