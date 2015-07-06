@@ -18,34 +18,34 @@ var LanStore=require('../../../stores/lanStore.js');
 var Filter  = React.createClass({
     mixins: [Reflux.connect(FilterStore), Reflux.connect(LanStore, 'lan')],
 
-    _onItemChanged: function(filterType, id, value) {     
+    _onItemChanged: function(filterType, id, value) {
         FilterActions.changeFilterItemState(filterType, id, value);
     },
 
-    _onValueChanged: function(filterType,value) {     
+    _onValueChanged: function(filterType,value) {
         FilterActions.changeFilterValue(filterType, value);
     },
 
-    _onClickApply: function(event) {     
+    _onClickApply: function(event) {
         FilterActions.triggerFilterApply();
     },
 
-    _onClickReset: function(event) {     
+    _onClickReset: function(event) {
         FilterActions.triggerFilterReset();
     },
-    
+
     _onAllNoneClicked: function(filterType, selected) {
-        FilterActions.changeAllFilterItemState(filterType, selected);  
-    },    
-    
+        FilterActions.changeAllFilterItemState(filterType, selected);
+    },
+
     _showAdvancedMode: function() {
-        this.setState({advancedMode: "true"}); 
-    },    
-    
+        this.setState({advancedMode: "true"});
+    },
+
     _showBasicMode: function() {
-        this.setState({advancedMode: "false"}); 
-    },    
-    
+        this.setState({advancedMode: "false"});
+    },
+
     getInitialState: function() {
       this.state = this.state || {};
       return this.state;
@@ -72,13 +72,15 @@ var Filter  = React.createClass({
               </ul>
             </div>
             <TabbedArea className="activities" defaultActiveKey={1}>
+            <div className="filters-more">more (advanced) filters</div>
+
               {
                 filters.map(function(filterDefinition){
                   if (!filterDefinition.subLevels){
-                    var group = <FilterGroup 
+                    var group = <FilterGroup
                                   allItems={FilterStore.getAll(filterDefinition.param)}
-                                  filterDefinition={filterDefinition} 
-                                  onItemChanged={self._onItemChanged} 
+                                  filterDefinition={filterDefinition}
+                                  onItemChanged={self._onItemChanged}
                                   onAllNoneClicked={self._onAllNoneClicked}/>
                   } else {
                     var levels = {};
@@ -86,34 +88,35 @@ var Filter  = React.createClass({
                       levels[lvl.param] = FilterStore.getAll(lvl.param);
                     });
                     if (filterDefinition.showTree){
-                      var group = <FilterGroupTree 
+                      var group = <FilterGroupTree
                                   subLevelsItems={levels}
-                                  filterDefinition={filterDefinition} 
-                                  onItemChanged={self._onItemChanged} 
+                                  filterDefinition={filterDefinition}
+                                  onItemChanged={self._onItemChanged}
                                   onAllNoneClicked={self._onAllNoneClicked}/>
                     } else {
-                      var group = <FilterGroupWithSubLevels 
+                      var group = <FilterGroupWithSubLevels
                                   subLevelsItems={levels}
-                                  filterDefinition={filterDefinition} 
-                                  onItemChanged={self._onItemChanged} 
+                                  filterDefinition={filterDefinition}
+                                  onItemChanged={self._onItemChanged}
                                   onAllNoneClicked={self._onAllNoneClicked}/>
-                    }                    
+                    }
                   }
                   if (!filterDefinition.extraFilter && (!filterDefinition.advanced || (filterDefinition.advanced && self.state.advancedMode=="true"))){
                     return <TabPane eventKey={idx++} tab={<Message message={filterDefinition.label}/>}>
                       {group}
-                    </TabPane> 
-                  }                 
+
+                    </TabPane>
+                  }
                 })
-              } 
+              }
               <TabPane tab={<Message message="filters.date"/>}>
                   <FilterDate onValueChanged={self._onValueChanged} resetDates={self.state.resetDates}/>
-              </TabPane>               
+              </TabPane>
             </TabbedArea>
             <FilterActionButton onClickReset={this._onClickReset} onClickApply={this._onClickApply}/>
           </div>
         );
-        
+
     }
 });
 

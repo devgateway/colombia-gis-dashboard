@@ -1,6 +1,6 @@
 
 .show-legends-button{
-  background: $white;
+  background:#d2e5ee;
   border: 1px solid #ccc;
   padding: $gutter $gutter*3;
   @include textUppercase;
@@ -13,7 +13,7 @@
   font-size:13px;
   @include textBold;
   &:hover{
-    background:#bad5e2;
+    background: $white;
   }
 }
 
