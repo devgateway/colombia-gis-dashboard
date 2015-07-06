@@ -57,9 +57,9 @@ module.exports = React.createClass({
     LayerActions.changeLayerValue('shapes','breakStyle',value); 
   },
 
-  _onFundingChanged: function(value, selected) {  
-    FilterActions.changeFilterItemState("ft", value, selected);
-    FilterActions.triggerFilterApply(false, true);
+  _onFundingChanged: function(obj) {  
+    debugger;
+    LayerActions.changeFundingFilterSelection(obj.value, obj.selected);
   },
 
   handleClickForBreaks:function(breakId){
@@ -126,28 +126,30 @@ module.exports = React.createClass({
   render: function() {
 
     console.log('...................... Layer State ......................')
-    console.log(this.state);
+    console.log(this.state.fundingTypes);
     console.log('...................... Layer State ......................')
 
     var level=this.state.level;
-    var fundingTypes = [];//FilterStore.getAll("ft");
+    var fundingTypes = this.state.fundingFilterItems || [];
     var self = this;
     return (
     <li>
       <Toggler ref='toggler'>
         <TogglerContent visibleWhen="collapsed">
-          <div toggler={true} className="toggler-btn"><i className="fa fa-plus-square-o"></i></div>
+          <div toggler={true} className="toggler-button"><i className="fa fa-chevron-down"></i></div>
         </TogglerContent>
         <TogglerContent visibleWhen="expanded">
-          <div toggler={true} className="toggler-btn"><i className="fa fa-minus-square-o"></i></div>
+          <div toggler={true} className="toggler-button"><i className="fa fa-chevron-up"></i></div>
         </TogglerContent>
         <TogglerContent visibleWhen="always">
-
-          <Layer id="shapes" title={i18n.t("layers.fundingByType")}  opacity={this.state.opacity} 
-                onChangeOpacity={this._onChangeOpacity} onChangeVisibility={this._changeVisibility} visible={this.state.visible}/>
-
+          <div><span className="control-title">{i18n.t("layers.fundingByType")}</span></div>
         </TogglerContent>
         <TogglerContent visibleWhen="expanded">
+          <Layer id="shapes"  
+            opacity={this.state.opacity} 
+            onChangeOpacity={this._onChangeOpacity} 
+            onChangeVisibility={this._changeVisibility} 
+            visible={this.state.visible}/>
           <ul>
             <li>
               <h3><Message message='layers.level'/></h3>
