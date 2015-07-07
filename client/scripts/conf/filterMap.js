@@ -72,7 +72,7 @@ var filters = [
   },
   {
     index: 9,
-    label: 'filter.crops',
+    label: 'filters.crops',
     type: 'list',
     modes: ['advanced'],
     param: 'cr',

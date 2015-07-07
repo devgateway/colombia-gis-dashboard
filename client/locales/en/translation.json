@@ -38,7 +38,9 @@
 		"rapidImpact":"Rapid Impact",
 		"moreFilters": "More Filters (Advanced)",
 		"lessFilters": "Less Filters (Basic)",
-		"subActivityStatus": "SubActivity Status"
+		"subActivityStatus": "SubActivity Status",
+		"clearDates": "Clear Dates",
+		"subActivitiesBetween": "Active SubActivities Between:"
 	},
 
 	"layers": {
