@@ -34,13 +34,12 @@
 		"endDate":"Fecha de Fin",
 		"contractType":"Tipo de Contrato",
 		"environmentalManagementPlans":"Planes de Gestión Ambiental",
-
 		"rapidImpact":"Impacto Rápido",
 		"moreFilters": "Mas Filtros (Avanzados)",
 		"lessFilters": "Menos Filtros (Basicos)",
 		"subActivityStatus": "Estado de la SubActividad",
 		"clearDates": "Limpiar Fechas",
-		"subActivitiesBetween": "Sub Actividades Activas Entre:"
+		"subActivitiesBetween": "Sub Actividades Activas Entre:",
 		"aorCor":"AOR/COR"
 
 	},
