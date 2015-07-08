@@ -77,7 +77,7 @@ module.exports = Reflux.createStore({
     return defaultBreaks;
   },
 
-  onActivityLayerInit: function() {
+  onLayerInit: function() {
     this._load(null, this.state.level, true); //initialize data 
   },
 

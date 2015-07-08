@@ -62,17 +62,6 @@ module.exports = React.createClass({
   var idx = 1;
   return(
     <div className="activity-nav">
-      <div className="filter-type-wrapper">
-        <ul className="filter-type-label">
-          <li onClick={this._turnBasicOn}>
-            <span  className={this.state.mode=="basic"? "" : "active"}><Message message='filters.basicFilters'/></span>
-          </li>
-          <li onClick={this._turnAdvancedOn}>
-            <span className={this.state.mode=="advance"? "active" : ""}><Message message='filters.advancedFilters'/></span>
-          </li>
-        </ul>
-      </div>
-
       <div className="tab-pane "> 
         <div className="activity-nav">
           <nav className="activities" >
@@ -86,8 +75,13 @@ module.exports = React.createClass({
                     )
                 }.bind(this))
               }
+              <li>
+                <div className="filters-more" onClick={this.state.mode=="basic"? this._turnAdvancedOn : this._turnBasicOn}>
+                  {this.state.mode=="basic"? <Message message="filters.moreFilters"/> : <Message message="filters.lessFilters"/>}
+                </div>
+              </li>
             </ul> 
-          </nav>
+          </nav>          
           <div>
             {
               filters.map(function(def){
