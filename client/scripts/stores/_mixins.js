@@ -8,12 +8,6 @@ module.exports = {
       if (!options.silent) {
          this.trigger(this.state);
       }
-   },
-
-   setCurrentState: function(savedState) {
-      if(savedState){
-         this.update(_.clone(savedState, true));
-      }
-   },
+   }
 
 }

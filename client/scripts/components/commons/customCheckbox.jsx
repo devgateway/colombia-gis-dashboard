@@ -10,8 +10,9 @@ var CustomCheckbox = React.createClass({
     },
 
     _onClick: function() { 
-       this.setState({selected: !this.state.selected});
-        this.props.onChange({selected:this.state.selected});
+        var selected = !this.state.selected;
+        this.setState({selected: selected});
+        this.props.onChange({selected:selected, value:this.props.value});
     },
 
     componentWillReceiveProps :function(nextProps){

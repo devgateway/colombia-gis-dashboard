@@ -14,7 +14,7 @@ module.exports = React.createClass({
 
 	componentDidMount:function(){
 			/*run actions needed to initialize this layout */
-		actions.activityLayerInit();
+		actions.layerInit();
 	},
 
 

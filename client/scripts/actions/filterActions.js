@@ -6,7 +6,7 @@ var names=[
 	"add","remove","load","clean",
 	"updateItemSelection","updateAllSelection",
 	"filterByKeyword","selectFilteredByKeyword",
-	"updateItemValue", "loadFromSaved"];
+	"updateItemValue"];
 
 module.exports = {
 	ClassificationType: Reflux.createActions(names),

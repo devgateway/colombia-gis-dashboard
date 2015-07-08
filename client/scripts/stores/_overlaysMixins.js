@@ -1,12 +1,13 @@
 var assign = require('object-assign');
 var LayersAction = require('../actions/layersAction.js');
+var RestoreActions = require('../actions/restoreActions.js');
 var LoadingAction = require('../actions/loadingActions.js');
 var FilterStore = require('./filters/filterStore.js');
 var _ = require('lodash');
 
 module.exports = {
 
-	listenables: LayersAction,
+	listenables: [LayersAction, RestoreActions],
 
 	init: function() {		
 		this.listenTo(FilterStore, "_applyFilters");

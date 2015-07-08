@@ -35,7 +35,13 @@
 		"noResults":"There where no results available",
 		"contractType":"Contract Type",
 		"environmentalManagementPlans":"Environmental Management Plans",
-		"rapidImpact":"Rapid Impact"
+		"rapidImpact":"Rapid Impact",
+		"moreFilters": "More Filters (Advanced)",
+		"lessFilters": "Less Filters (Basic)",
+		"subActivityStatus": "SubActivity Status",
+		"clearDates": "Clear Dates",
+		"subActivitiesBetween":"Active SubActivities Between:",
+		"aorCor":"AOR/COR"
 	},
 
 	"layers": {
@@ -62,7 +68,8 @@
 		"search":"Search Layers",
 		"noResults":"There are no results that match your search",
 		"byDepartment":"Departments",
-		"byMunicipality":"Municipalities"
+		"byMunicipality":"Municipalities",
+		"searchLayers": "Search Layers"
 	},
 
 	"map": {

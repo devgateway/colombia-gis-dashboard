@@ -7,9 +7,12 @@ var ArcgisLayersActions=require('../../../../actions/arcgisLayersActions.js');
 var Results=require('./results.jsx');
 var _=require('lodash');
 var CustomCheckbox = require('../../../commons/customCheckbox.jsx');
+var LanStore=require('../../../../stores/lanStore.js');
 
 
 var SearchInput=React.createClass({
+
+	mixins: [Reflux.connect(LanStore, 'lan')],
 
 	handleCLick:function(){
 		this.setState(_.assign(this.state,{"query":this.refs.search_input.getDOMNode().value}));
@@ -44,7 +47,7 @@ var SearchInput=React.createClass({
 							<button type="submit" className="search-button" onClick={this.handleCLick}>
 								<i className="fa fa-search"></i>
 							</button>
-							<input onKeyPress={this.handleOnkeypress} className="keyword-search" type="text" placeholder="Search layer" ref="search_input"/>
+							<input onKeyPress={this.handleOnkeypress} className="keyword-search" type="text" placeholder={i18n.t("layers.searchLayers")} ref="search_input"/>
 						</div>
 					</div>
 					<div className="layer-search-options">
