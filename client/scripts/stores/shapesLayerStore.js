@@ -137,8 +137,8 @@ module.exports = Reflux.createStore({
 		   this._load(null, savedData.shapesState.level, true); //restore data 
 	    } else {
 	       this.update({'visible':false});
-	    },
-	
+	    }
+	},
 
 	onChangeFundingFilterSelection: function(id, selected) {
 		var selectedList = this.state.fundingSelected? this.state.fundingSelected.slice(0) : [];
