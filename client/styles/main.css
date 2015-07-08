@@ -1577,6 +1577,10 @@ ul.tabs {
     .breaksOptions .input-group-addon i {
       width: 54px; }
 
+.colorpicker.colorpicker-with-alpha {
+  width: 149px;
+  margin-left: 39px; }
+
 ul.funding-options {
   margin-left: 0;
   padding-left: 0;
@@ -1646,7 +1650,6 @@ ul.funding-options {
   width: 25px;
   height: 25px;
   float: left;
-  margin: 3px;
   border: 1px; }
 .breaksTemplates .input-group-addon {
   padding: 2px 2px;

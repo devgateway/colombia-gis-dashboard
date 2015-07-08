@@ -120,6 +120,13 @@
 	}
 }
 
+.colorpicker{
+	&.colorpicker-with-alpha{
+		width:149px;
+		margin-left:39px;
+	}
+}
+
 // funding options
 ul.funding-options{
   margin-left:0;
