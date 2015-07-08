@@ -7,5 +7,5 @@ var restoreMap = Reflux.createAction();
 
 module.exports = { 
   saveMap: saveMap,
-  restoreMap: restoreMap
+  restoreMap: restoreMap,
 };

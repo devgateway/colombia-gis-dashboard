@@ -36,11 +36,15 @@
 		"contractType":"Contract Type",
 		"environmentalManagementPlans":"Environmental Management Plans",
 		"rapidImpact":"Rapid Impact",
+<<<<<<< HEAD
 		"moreFilters": "More Filters (Advanced)",
 		"lessFilters": "Less Filters (Basic)",
 		"subActivityStatus": "SubActivity Status",
 		"clearDates": "Clear Dates",
 		"subActivitiesBetween": "Active SubActivities Between:"
+=======
+		"aorCor":"AOR/COR"
+>>>>>>> master
 	},
 
 	"layers": {

@@ -68,7 +68,6 @@ var defaultBreaks = {
 
 module.exports = Reflux.createStore({
 
-
   mixins: [CommonsMixins, DataLayerMixins],
   _getLayerId: function() {
     return 'points';
@@ -82,11 +81,14 @@ module.exports = Reflux.createStore({
     this._load(null, this.state.level, true); //initialize data 
   },
 
-  onRestoreData: function(data, type, dataFilters) {
-    if(this._getLayerId()==type){
-      this.update({dataToRestore: data, isRestorePending: true, filters: dataFilters})
-      this._load(null, data.level, true); //restore data 
-    }
+  onRestoreData: function(savedData) {
+    if(savedData.pointsState){
+      if(!this.state.visible && savedData.pointsState.visible){
+        this.update({'visible':true}); //Hack for changing colors
+      }
+       this.update({dataToRestore: savedData.pointsState, isRestorePending: true, filters: savedData.filterData.filters});
+       this._load(null, savedData.pointsState.level, true); //restore data 
+    } 
   },
 
   getInitialState: function() {

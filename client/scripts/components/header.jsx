@@ -10,9 +10,19 @@ var SaveStore=require('../stores/saveStore.js');
 var AGOLProfile=require('./esri/AGOLProfile.jsx');
 module.exports = React.createClass({
 
+  componentDidMount:function(){
+    document.getElementById('exitSaveMapPopup').onclick = function() {
+        var dialog = document.getElementById('saveMapPopup');
+        dialog.close();  
+    };
+  },
+
   handleClickForSave:function(){
     console.log('Save Map');
     SaveActions.saveMap();
+    var dialog = document.getElementById('saveMapPopup');  
+    dialog.show();  
+    
   },
 
   handleClickForRestore:function(){
@@ -22,6 +32,7 @@ module.exports = React.createClass({
 
   render: function() {
     return (
+            <div>
               <div className="navbar navbar-fixed-top map-header">
                 <div className="navbar-inner">
                   <div className="container-fluid" role="main">
@@ -38,6 +49,12 @@ module.exports = React.createClass({
                   </div>
                 </div>
               </div>
+              <dialog className="saveMapPopup" id="saveMapPopup">  
+                  <h3>Save Window!</h3>  
+                  <p>Html for save functionality should be here! </p>  
+                  <button id="exitSaveMapPopup">Close Dialog</button>  
+              </dialog>
+            </div>
     );
   }
 });

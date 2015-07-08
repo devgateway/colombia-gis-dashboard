@@ -58,7 +58,7 @@ module.exports = React.createClass({
   },
 
   render: function() {
-  var filters = FilterMap.filters;
+  var filters = _.sortBy(FilterMap.filters, 'order');
   var idx = 1;
   return(
     <div className="activity-nav">
