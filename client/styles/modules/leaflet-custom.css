@@ -124,7 +124,7 @@ span.popup-icon{
   height:20px;
   display:block;
   margin: 0 auto;
-  background: url(../../images/popup-icons.png) no-repeat;
+  background: url(../images/popup-icons.png) no-repeat;
 }
 .popup-icon.chart{
 background-position: 0 0;

@@ -4,7 +4,7 @@ var assign = require('object-assign');
 var Reflux = require('reflux');
 var SaveActions = require('../actions/saveActions.js');
 var LayersActions = require('../actions/layersAction.js');
-var FilterActions = require('../actions/filterActions.js');
+var RestoreActions = require('../actions/restoreActions.js');
 var ArcgisLayersActions = require('../actions/arcgisLayersActions.js');
 var LanStore = require('./lanStore.js');
 var FilterStore = require('./filters/filterStore.js');
@@ -74,34 +74,7 @@ module.exports = Reflux.createStore({
   onRestoreMap:function(){
    console.log('stores->saveStore->onRestoreMap');
     if(this.state){
-      LanStore.setCurrentState(this.state.lanState);
-      MapStore.setCurrentState(this.state.mapState);
-      if(this.state.filterData.filters){
-        for (var key in FilterActions) {
-          if (FilterActions.hasOwnProperty(key)) {
-            if (FilterActions[key].loadFromSaved){
-              FilterActions[key].loadFromSaved(this.state.filterData);
-            }
-          }
-        }
-        FilterActions.applyFilters();
-      }
-      if(this.state.shapesState){
-        LayersActions.restoreData(_.clone(this.state.shapesState, true), 'shapes');
-      } else {
-        LayersActions.changeLayerValue('shapes','visible',false);
-      }
-      if(this.state.pointsState){
-        if(!pointsState.visible){
-          LayersActions.changeLayerValue('points','visible',true); //Hack for changing colors
-        }
-        LayersActions.restoreData(_.clone(this.state.pointsState, true), 'points', this.state.filterData.filters);
-      }
-      if(this.state.arcgisState){
-        this.state.arcgisState.layers.map(function(l){
-          ArcgisLayersActions.loadLayer(l);
-        })
-      }
+      RestoreActions.restoreData(_.clone(this.state, true));
     }
   },
 

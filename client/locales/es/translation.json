@@ -34,7 +34,8 @@
 		"endDate":"Fecha de Fin",
 		"contractType":"Tipo de Contrato",
 		"environmentalManagementPlans":"Planes de Gestión Ambiental",
-		"rapidImpact":"Impacto Rapido"
+		"rapidImpact":"Impacto Rapido",
+		"aorCor":"AOR/COR"
 	},
 
 	"layers": {

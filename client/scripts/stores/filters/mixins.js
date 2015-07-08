@@ -2,7 +2,7 @@
 var _ = require('lodash');
 var assign = require('object-assign');
 var Reflux = require('reflux');
-var Util = require('../../api/util.js')
+var Util = require('../../api/util.js');
 
 module.exports = {
 
@@ -10,15 +10,17 @@ module.exports = {
 		this.onUpdateAllSelection(false);
 	},
 
-	onLoadFromSaved: function(data){
-		this.onUpdateAllSelection(false);
-		_.forEach(data.filters, function(filter){
-			if (filter.param == this.state.param){
-				_.forEach(filter.values, function(value){
-					_.assign(_.find(this.state.items, function(i){return i.id == value}), {'selected': true});
-				}.bind(this))
-			}
-		}.bind(this));		
+	onRestoreData: function(savedData) {
+		if(savedData.filterData && savedData.filterData.filters){
+			this.onUpdateAllSelection(false);
+			_.forEach(savedData.filterData.filters, function(filter){
+				if (filter.param == this.state.param){
+					_.forEach(filter.values, function(value){
+						_.assign(_.find(this.state.items, function(i){return i.id == value}), {'selected': true});
+					}.bind(this))
+				}
+			}.bind(this));
+		}		
 	},
 
 	onUpdateItemSelection: function(item, selected){
