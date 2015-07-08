@@ -1557,6 +1557,7 @@ ul.tabs {
       background: #e6edee; }
   .breaksOptions .label {
     margin-top: 2px;
+    margin-left: -5px;
     color: #000000;
     background: none;
     text-align: center;
@@ -1637,15 +1638,47 @@ ul.funding-options {
 .clearFix {
   clear: both; }
 
+.breaksTemplates .label {
+  float: left;
+  width: 50px;
+  margin-top: 7px; }
+.breaksTemplates .colorpicker-element {
+  width: 25px;
+  height: 25px;
+  float: left;
+  margin: 3px;
+  border: 1px; }
+.breaksTemplates .input-group-addon {
+  padding: 2px 2px;
+  font-size: 12px;
+  font-weight: normal;
+  line-height: 1;
+  color: #555;
+  text-align: center;
+  background-color: #eee;
+  border: 1px solid #ccc;
+  border-radius: 4px; }
+
 .loading-container {
   position: absolute;
   bottom: 50%;
   right: 45%;
-  z-index: 1002; }
+  border: 0px solid; }
 
-/* Extra Small Devices, Phones */
-@media only screen and (max-width: 480px) {
-  .loading-container {
-    right: 30%; } }
+.popup-loading-container {
+  height: 240px;
+  padding-left: 175px;
+  padding-top: 80px; }
+
+.subactivities-container {
+  height: 240px; }
+
+.subactivities-list {
+  overflow-y: scroll;
+  height: 195px;
+  width: 420px; }
+
+.download-button {
+  border: 1px solid #c5c5c5; }
 
 /*# sourceMappingURL=main.css.map */
