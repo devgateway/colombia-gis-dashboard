@@ -3,6 +3,7 @@
 var assign = require('object-assign');
 var Reflux = require('reflux');
 var ArcgisLayersActions = require('../actions/arcgisLayersActions.js');
+var RestoreActions = require('../actions/restoreActions.js');
 var Util = require('../api/util.js');
 var API = require('../api/esri.js');
 var _ = require('lodash');
@@ -27,7 +28,7 @@ function setOpaciy(layers){
 
 module.exports = Reflux.createStore({
 
-	listenables: ArcgisLayersActions,
+	listenables: [ArcgisLayersActions, RestoreActions],
     mixins: [CommonsMixins],
 
 	onAddLayerToMap: function(layer) {
@@ -120,8 +121,12 @@ module.exports = Reflux.createStore({
 		this.trigger(this.state)
 	},
 
-	onRestoreData: function(data) {
-		this.update(data);
+	onRestoreData: function(savedData) {
+		if(savedData.arcgisState){
+			savedData.arcgisState.layers.map(function(l){
+				ArcgisLayersActions.loadLayer(l);
+			});
+		}
 	},
 
 	nextZindex: function() {

@@ -12,13 +12,13 @@
 		"basicFilters":"Filtros Básicos",
 		"advancedFilters":"Filtros Avanzados",
 		"locations":"Localidades",
-		"targetPopulation":"Población meta",
+		"targetPopulation":"Población Objetivo",
 		"activityClassification":"Tipo de Actividad",
 		"developmentObjectives":"Objetivos de Desarrollo",
 		"crops":"Cultivos",
 		"subActivityStatus":"Estado de la SubActividad",
 		"subImplementer":"Sub Implementador",
-		"ppp":"Asociación Publico Privada",
+		"ppp":"Asociación Público Privada",
 		"date":"Fecha",
 		"selectAll":"seleccionar todos",
 		"deselectAll":"deseleccionar todos",
@@ -34,7 +34,15 @@
 		"endDate":"Fecha de Fin",
 		"contractType":"Tipo de Contrato",
 		"environmentalManagementPlans":"Planes de Gestión Ambiental",
-		"rapidImpact":"Impacto Rapido"
+
+		"rapidImpact":"Impacto Rápido",
+		"moreFilters": "Mas Filtros (Avanzados)",
+		"lessFilters": "Menos Filtros (Basicos)",
+		"subActivityStatus": "Estado de la SubActividad",
+		"clearDates": "Limpiar Fechas",
+		"subActivitiesBetween": "Sub Actividades Activas Entre:"
+		"aorCor":"AOR/COR"
+
 	},
 
 	"layers": {
@@ -44,7 +52,7 @@
 		"mapLayers":"Capas del mapa",
 		"dataLayers":"Capas de datos",
 		"level":"Nivel",
-		"findExtLayers":"Buscar Capas Externas",
+		"findExtLayers":"Buscar Capa de Datos",
 		"funding":"Financiamiento",		
 		"fundingDistribution":"Distribución del financiamiento",
 		"fundingByType":"Capa de Financiamiento por Tipo de Fuente",
@@ -61,7 +69,8 @@
 		"search":"Buscar en AGOL",
 		"noResults":"No hay resultados que coincidan con su búsqueda",
 		"byDepartment":"Por Departamento",
-		"byMunicipality":"Por Municipalidad"
+		"byMunicipality":"Por Municipio",
+		"searchLayers": "Buscar Capas"
 	},
 
 	"map": {

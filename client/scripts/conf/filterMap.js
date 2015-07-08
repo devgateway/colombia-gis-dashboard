@@ -5,13 +5,15 @@ var Actions = require('../actions/filterActions.js');
 var filters = [
   {
     index: 1,
+    order: 7,
     label: 'filters.locations',
     modes: ['basic', 'advanced'],
     type: 'tree',
     store: StoreDispatcher.Locations,
     actions: Actions.Locations
   }, {
-    index: 2,
+    index: 2,    
+    order: 10,
     type: 'list',
     label: 'filters.targetPopulation',
     modes: ['basic', 'advanced'],
@@ -21,6 +23,7 @@ var filters = [
   },
   {
     index: 3,
+    order: 8,
     type: 'list',
     modes: ['basic', 'advanced'],
     label: 'filters.developmentObjectives',
@@ -30,15 +33,17 @@ var filters = [
   },
   {
     index: 4,
+    order: 4,
     type: 'list',
     modes: ['basic', 'advanced'],
-    label: 'SubActivity Status',
+    label: 'filters.subActivityStatus',
     param: 'st',
     store: StoreDispatcher.SubActivityStatus,
     actions: Actions.SubActivityStatus
   },
   {
     index: 5,
+    order: 13,
     label: 'filters.subImplementer',
     modes: ['basic', 'advanced'],
     type: 'tree',
@@ -55,6 +60,7 @@ var filters = [
   },*/
   {
     index: 7,
+    order: 2,
     label: 'filters.ppp',
     type: 'list',
     modes: ['basic', 'advanced'],
@@ -64,6 +70,7 @@ var filters = [
   },
   {
     index: 8,
+    order: 5,
     label: 'filters.date',
     type: 'date',
     modes: ['basic', 'advanced'],
@@ -72,7 +79,8 @@ var filters = [
   },
   {
     index: 9,
-    label: 'Crops',
+    order: 3,
+    label: 'filters.crops',
     type: 'list',
     modes: ['advanced'],
     param: 'cr',
@@ -80,7 +88,8 @@ var filters = [
     actions: Actions.Crops
   },
   {
-    index: 10,
+    index: 10,    
+    order: 14,
     label: 'filters.contractType',
     type: 'list',
     modes: ['advanced'],
@@ -90,6 +99,7 @@ var filters = [
   },
   {
     index: 11,
+    order: 9,
     label: 'filters.environmentalManagementPlans',
     type: 'list',
     modes: ['advanced'],
@@ -99,7 +109,8 @@ var filters = [
   },
   {
     index: 12,
-    label: 'AOR/COR',
+    order: 1,
+    label: 'filters.aorCor',
     type: 'list',
     modes: ['advanced'],
     param: 'ar',
@@ -108,6 +119,7 @@ var filters = [
   },
   {
     index: 13,
+    order: 6,
     label: 'filters.rapidImpact',
     type: 'list',
     modes: ['advanced'],

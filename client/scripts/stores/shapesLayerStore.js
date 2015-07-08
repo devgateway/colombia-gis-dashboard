@@ -1,7 +1,6 @@
 'use strict';
 
 var Reflux = require('reflux');
-var LayersAction = require('../actions/layersAction.js');
 var Util = require('../api/util.js');
 var API = require('../api/layers.js');
 var GeoStats = require('../api/geostats.js');
@@ -109,7 +108,6 @@ var defaultBreaks = {
 }
 module.exports = Reflux.createStore({
 
-
 	mixins: [CommonsMixins, DataLayerMixins],
 
 	_getLayerId: function() {
@@ -120,11 +118,50 @@ module.exports = Reflux.createStore({
 		return defaultBreaks;
 	},
 
-	onRestoreData: function(data, type) {
+	onLayerInit: function() {
+	    this._loadFundingFilter();
+	},
+
+/*
+  	onRestoreData: function(data, type) {
 	    if(this._getLayerId()==type){
 		   this.update({dataToRestore: data, isRestorePending: true})
 		   this._load(null, data.level, true); //restore data 
 		}
+	
+	},
+*/	
+	onRestoreData: function(savedData) {
+		if(savedData.shapesState){
+		   this.update({dataToRestore: savedData.shapesState, isRestorePending: true});
+		   this._load(null, savedData.shapesState.level, true); //restore data 
+	    } else {
+	       this.update({'visible':false});
+	    },
+	
+
+	onChangeFundingFilterSelection: function(id, selected) {
+		var selectedList = this.state.fundingSelected? this.state.fundingSelected.slice(0) : [];
+		if (selected){
+			selectedList.push(id);			
+		} else {
+			_.remove(selectedList, function(item) {
+		      	return item == id;
+		    })
+		}
+		this.update({fundingSelected: selectedList});
+		var filters = _.clone(this.state.filters || []);
+		if (selectedList.length>0){
+			var ftFilter = _.find(filters, {'param': 'ft'});
+			if (ftFilter){
+				_.assign(ftFilter, {'values': selectedList})
+			} else {
+				filters.push({'param': 'ft', 'values': selectedList});		
+			}
+		} else {
+			_.remove(filters, function(f) {return f.param=='ft';});
+		}
+		this._applyFilters(filters, true);
 	},
 
 	getInitialState: function() {
@@ -137,6 +174,15 @@ module.exports = Reflux.createStore({
 		});
 	},
 
+	_loadFundingFilter: function() {
+	    Util.get(window.DATA_PATH + '/fundingTypes.json').then(function(data) {
+	      	this.update({fundingFilterItems: data});
+	    }.bind(this)).fail(function() {
+	      	console.log('Failed to load data ');
+	    });
+	  },
+
+  
 	_loadByMuncipalities: function() {
 		//var geoData = _.clone(municipalitiesGeoJson);
 		var self = this;

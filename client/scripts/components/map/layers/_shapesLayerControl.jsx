@@ -57,9 +57,9 @@ module.exports = React.createClass({
     LayerActions.changeLayerValue('shapes','breakStyle',value); 
   },
 
-  _onFundingChanged: function(value, selected) {  
-    FilterActions.changeFilterItemState("ft", value, selected);
-    FilterActions.triggerFilterApply(false, true);
+  _onFundingChanged: function(obj) {  
+    debugger;
+    LayerActions.changeFundingFilterSelection(obj.value, obj.selected);
   },
 
   handleClickForBreaks:function(breakId){
@@ -126,11 +126,11 @@ module.exports = React.createClass({
   render: function() {
 
     console.log('...................... Layer State ......................')
-    console.log(this.state);
+    console.log(this.state.fundingTypes);
     console.log('...................... Layer State ......................')
 
     var level=this.state.level;
-    var fundingTypes = [];//FilterStore.getAll("ft");
+    var fundingTypes = this.state.fundingFilterItems || [];
     var self = this;
     return (
     <li>

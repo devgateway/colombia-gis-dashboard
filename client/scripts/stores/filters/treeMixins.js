@@ -6,17 +6,19 @@ var _ = require('lodash');
 var Util = require('../../api/util.js');
 
 module.exports = {
-	
+
 	onLoad:function(){
 		this._loadDataList(this.state.levels);
 	},
 
-	onLoadFromSaved: function(data){
-		this.onUpdateAllSelection(false);
-		_.forEach(data.filters, function(filter){
-			this._setSavedValues(this.state.levels, filter.param, filter.values);			
-		}.bind(this));	
-		this._createItemsTree();	
+	onRestoreData: function(savedData) {
+    	if(savedData.filterData && savedData.filterData.filters){
+			this.onUpdateAllSelection(false);
+			_.forEach(savedData.filterData.filters, function(filter){
+				this._setSavedValues(this.state.levels, filter.param, filter.values);			
+			}.bind(this));	
+			this._createItemsTree();
+		}
 	},
 
 	_setSavedValues: function(level, param, values){

@@ -240,6 +240,12 @@ input[type=checkbox].glyphicon {
   margin-top:-3px;
 }
 
+.clear-dates
+  {
+  width:205px;
+  float: right !important;
+}
+
 .fa-trash{
   font-size:1.2em;
   @include floatRight;
