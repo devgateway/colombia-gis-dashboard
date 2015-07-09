@@ -5,12 +5,9 @@ var assign = require('object-assign');
 var Reflux = require('reflux');
 var LanActions = require('../actions/lanActions.js');
 
-var CommonsMixins = require('./_mixins.js')
-
 module.exports = Reflux.createStore({
 
   listenables: LanActions,
-  mixins: [CommonsMixins],
 
   onChangeLocale:function(lan){
     this.update({'lan':lan});
@@ -26,7 +23,7 @@ module.exports = Reflux.createStore({
   },
 
   getInitialState: function() {
-    return (this.state = {'lan':'es', 'saveItems':['lan']});
+    return (this.state = {'lan':'es'});
   }
 
 });

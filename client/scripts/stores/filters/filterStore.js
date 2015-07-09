@@ -10,7 +10,7 @@ var DateStore=require('./dateStore.js');
 
 module.exports = Reflux.createStore({
 
-	listenables: actions,
+	listenables: [actions],
 
 	_collectFilters:function(params, isTree){
 		if (!isTree){

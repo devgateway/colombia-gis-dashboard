@@ -34,6 +34,10 @@ module.exports = React.createClass({
     };
   },
 
+  componentDidMount: function(){
+    $('.item-label').tooltip();
+  },
+
   render: function() {
     var itemClassNames=(this.state.selected===true)?'item-label label-selected':'item-label';
     
@@ -56,7 +60,7 @@ module.exports = React.createClass({
           <div className={this.props.nested? "filter-parent" : ""}>
             <div className={itemClassName}>
               <CustomCheckbox selected={this.state.selected} value={this.props.id} onChange={this._handleClick}/>
-              <span onClick={this._handleClick} className={itemClassNames}> {this.props.label}</span>
+              <span onClick={this._handleClick} className={itemClassNames} title={this.props.label.length>30? this.props.label : ""}> {this.props.label}</span>
               {childrenCounter}
               {childrenToggler}
             </div>

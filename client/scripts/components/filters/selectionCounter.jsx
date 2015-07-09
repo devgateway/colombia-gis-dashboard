@@ -1,7 +1,11 @@
 
 var React = require('react');
+var Reflux = require('reflux');
+var LanStore=require('../../stores/lanStore.js');
 
 var SelectionCounter = React.createClass({
+
+    mixins: [Reflux.connect(LanStore, 'lan')],
 
     _showSelected: function(event) {
         this.props.onCounterClicked(true);
