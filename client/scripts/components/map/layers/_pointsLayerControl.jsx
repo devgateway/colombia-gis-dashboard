@@ -98,9 +98,9 @@ module.exports = React.createClass({
             }
             </ul>
           </li>
-          <li><h3>Activity Density</h3></li>
           <li className="color-selection">
-            <h3>Color Selection</h3>
+            <h3>Activity Density</h3>
+            <h3 className="color-selection-title">Color Selection</h3>
             <div>
             </div>
             {

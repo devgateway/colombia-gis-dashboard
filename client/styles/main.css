@@ -874,6 +874,10 @@ input[type=checkbox].glyphicon {
   padding: 0.5em;
   margin-top: -3px; }
 
+.clear-dates {
+  width: 205px;
+  float: right !important; }
+
 .fa-trash {
   font-size: 1.2em;
   float: right;
@@ -1199,9 +1203,10 @@ ul.tabs {
 
 .layer-control h3 {
   float: left;
+  margin-top: 0;
   margin-right: 10px;
   font-size: 12px;
-  margin-top: 0;
+  line-height: 23px;
   color: #4d749f; }
 .layer-control .ui-slider-pip {
   top: 30px;
@@ -1530,7 +1535,8 @@ ul.tabs {
       line-height: 15px; }
     .controls-items li.color-selection {
       width: 100%;
-      float: left; }
+      float: left;
+      margin-top: -12px; }
 
 .color-selection {
   margin-top: 30px;
@@ -1538,7 +1544,7 @@ ul.tabs {
 
 .breaksOptions {
   float: left;
-  margin-top: -18px;
+  margin-top: -25px;
   margin-right: 0;
   width: 55px;
   text-align: center; }
@@ -1552,8 +1558,7 @@ ul.tabs {
     clear: both;
     padding: 0; }
     .breaksOptions .label.label-info {
-      border: 1px solid #800;
-      margin-top: -30px; }
+      line-height: 32px; }
   .breaksOptions .input-group-addon {
     padding: 0;
     font-size: 12px;
@@ -1674,5 +1679,10 @@ ul.funding-options {
 
 .download-button {
   border: 1px solid #c5c5c5; }
+
+.saveMapPopup {
+  z-index: 10000;
+  bottom: 60%;
+  width: 450px; }
 
 /*# sourceMappingURL=main.css.map */

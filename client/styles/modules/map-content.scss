@@ -57,6 +57,7 @@
     &.color-selection{
     width:100%;
     float:left;
+    margin-top:-12px
     }
   }
 }
@@ -69,7 +70,7 @@
 
 .breaksOptions {
   float:left;
-  margin-top:-18px;
+  margin-top:-25px;
   margin-right:0;
   width:55px;
   text-align:center;
@@ -85,8 +86,8 @@
     text-align:center;
     clear:both;
     padding:0;
-  &.label-info{
-     border:1px solid #800; margin-top:-30px;
+    &.label-info{
+      line-height:32px;
     }
 	}
 
