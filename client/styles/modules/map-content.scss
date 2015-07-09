@@ -75,29 +75,19 @@
   text-align:center;
 
 	input{
-    width: 54px;
-    height:16px;
-    font-size: 11px;
-    margin: -2px auto 10px -4px;
-    outline:none;
-    color:#888888;
-    background: #d2dadd;
-    border:none;
-    clear:both;
-    text-align:center;
-  &:hover{
-    background:#e6edee;
-    }
+  display:none;
   }
 
 	.label{
-  	margin-top:2px;
     margin-left:-5px;
     color: $black;
     background: none;
     text-align:center;
     clear:both;
     padding:0;
+  &.label-info{
+     border:1px solid #800; margin-top:-30px;
+    }
 	}
 
   .colorpicker-element{
