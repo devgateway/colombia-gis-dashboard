@@ -28,9 +28,11 @@
 
 
 .horizontal{
-	float: left;
+	@include floatLeft;
 	margin-right:10px;
+	margin-top:4px;
 }
+
 .leaflet-popup-pane {
 	z-index: 10000;
 }

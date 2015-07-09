@@ -1227,7 +1227,7 @@ ul.tabs {
   float: left; }
   .layer-control .slider-holder .slider {
     margin-left: 95px;
-    margin-top: 3px; }
+    margin-top: 7px; }
 .layer-control .feature-checkbox {
   float: left;
   margin-top: -5px; }
@@ -1307,6 +1307,11 @@ ul.tabs {
   .layer-control ul li {
     display: block;
     margin-bottom: 20px; }
+
+.horizontal {
+  float: left;
+  margin-right: 10px;
+  margin-top: 4px; }
 
 .arcgis-sig-in {
   position: absolute;
@@ -1564,14 +1569,14 @@ ul.tabs {
     font-size: 12px;
     font-weight: normal;
     line-height: 1;
-    color: #555;
     text-align: center;
     border: none;
     clear: both;
     display: block;
     margin: 0 auto 0 -2px; }
     .breaksOptions .input-group-addon i {
-      width: 54px; }
+      width: 54px;
+      margin-top: -3px; }
 
 .colorpicker.colorpicker-with-alpha {
   width: 149px;
@@ -1612,7 +1617,8 @@ ul.funding-options {
 
 .horizontal {
   float: left;
-  margin-right: 10px; }
+  margin-right: 10px;
+  margin-top: 4px; }
 
 .leaflet-popup-pane {
   z-index: 10000; }
