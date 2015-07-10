@@ -16,7 +16,6 @@ var Breaker=require('./_breaker.jsx');
 
 var Store = require('../../../stores/pointsLayerStore.js');
 
-var Modal= require('react-bootstrap/lib/Modal');
 
 var Button =  require('react-bootstrap/lib/Button');
 
@@ -55,32 +54,30 @@ module.exports = React.createClass({
 
 
   getInitialState:function(){
-    return {showModal: true};
+    return {showModal:false   };
   },
 
 
   _findIndicator:function(){
-   this.setState({showModal: true});
- },
+    this.setState({showModal: !this.state.showModal});
+  },
 
 
- render: function() {
+  render: function() {
+   var level=this.state.level;
 
-
-  var level=this.state.level;
-  var fundingTypes = [];//FilterStore.getAll("ft");
-  return (
+   return (
     <li>
-     <Toggler ref='toggler'>
-      <TogglerContent visibleWhen="collapsed">
-        <div toggler={true} className="toggler-button"><i className="fa fa-chevron-down"></i></div>
-      </TogglerContent>
-      <TogglerContent visibleWhen="expanded">
-        <div toggler={true} className="toggler-button"><i className="fa fa-chevron-up"></i></div>
-     </TogglerContent>
- 
+    <Toggler ref='toggler'>
+    <TogglerContent visibleWhen="collapsed">
+    <div toggler={true} className="toggler-button"><i className="fa fa-chevron-down"></i></div>
+    </TogglerContent>
+    <TogglerContent visibleWhen="expanded">
+    <div toggler={true} className="toggler-button"><i className="fa fa-chevron-up"></i></div>
+    </TogglerContent>
+
     <TogglerContent visibleWhen="always">
-      <div><span className="control-title">{i18n.t("indicators.inidicatorLayer")}</span></div>
+    <div><span className="control-title">{i18n.t("indicators.inidicatorLayer")}</span></div>
     </TogglerContent>
 
     <TogglerContent visibleWhen="expanded">
@@ -103,7 +100,12 @@ module.exports = React.createClass({
 
     <div>Data Source</div>
     <div>
-      Indicator - <Button  bsStyle='primary' bsSize='large' onClick={this._findIndicator}>  Launch demo modal  </Button>
+
+    is modal <b>{this.state.showModal?"YES":"NO"}</b>  <Button  bsStyle='primary' bsSize='large' onClick={this._findIndicator}>  Launch demo modal  </Button>
+
+
+
+
     </div>
 
 
