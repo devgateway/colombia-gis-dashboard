@@ -91,10 +91,6 @@
     }
 	}
 
-
-  .colorpicker-element{
-	 }
-
 	.input-group-addon {
     padding: 0;
     font-size: 12px;
@@ -134,4 +130,10 @@ ul.funding-options{
   .selectable{
     margin-right:5px;
   }
+}
+
+// map content list items
+.layer-option-section{
+    display:block;
+    overflow:hidden;
 }

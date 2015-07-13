@@ -25,6 +25,13 @@ $base-line-height: 110%;
 @mixin opacityHigh{opacity: 0.8}
 @mixin listUnstyled{ padding-left:0; list-style:none}
 @mixin noOutline{ outline:none;}
+@mixin clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
 
 // opacity transition
 @mixin transitionOpacity {

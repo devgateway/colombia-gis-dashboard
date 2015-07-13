@@ -151,7 +151,7 @@ module.exports = React.createClass({
             onChangeVisibility={this._changeVisibility}
             visible={this.state.visible}/>
           <ul>
-            <li>
+            <li className="layer-option-section">
               <h3><Message message='layers.level'/></h3>
               <CustomRadioGroup>
                 <CustomRadio  className="inline" name="departament" checked={(level=='departament')? true : false}
@@ -160,7 +160,7 @@ module.exports = React.createClass({
                 onClick={this._showByMunicipality} label="layers.byMunicipality"/>
               </CustomRadioGroup>
             </li>
-            <li>
+            <li className="layer-option-section">
               <h3>Funding Type</h3>
               {
                 fundingTypes.map(function(fundingType){
@@ -181,6 +181,8 @@ module.exports = React.createClass({
           <li>
               <div className="clearFix"/>
               <h3>Layer Styles</h3>
+              <div className="clearFix"/>
+              <h3>Classification Scheme</h3>
               <div>
                  <div className="breaksTemplates">
                   <div className="label label-info" onClick={this.handleClickForBreaks.bind(this, 0)}>Default</div>
