@@ -11,6 +11,8 @@ var LanStore=require('../../../stores/lanStore.js');
 
 var PointsLayerControl=require('./_pointsLayerControl.jsx');
 var ShapesLayer=require('./_shapesLayerControl.jsx');
+var Indicators=require('./_indicatorsLayerControl.jsx');
+
 
 var Layer=require('./_layer.jsx');
 
@@ -101,6 +103,7 @@ module.exports  = React.createClass({
   render: function() {
     var tiles=_.sortBy(_.filter(this.state.layers,{type:'Map Service'}),'zIndex').reverse();
     var features=_.sortBy(_.filter(this.state.layers,{type:'Feature Service'}),'zIndex').reverse();
+    
     return (
     <div>
       <div className="layer-control-toggle">
@@ -108,7 +111,10 @@ module.exports  = React.createClass({
       </div>
       <div className="layer-control-panel">
         <ul className="layer-control">
-          <li>
+         <li>
+            <Indicators/>
+          </li>
+        <li>
             <PointsLayerControl/>
           </li>
           <li>

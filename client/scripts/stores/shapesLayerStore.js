@@ -119,7 +119,7 @@ module.exports = Reflux.createStore({
 	},
 
 	onLayerInit: function() {
-	    this._loadFundingFilter();
+		this._loadFundingFilter();
 	},
 
 /*
@@ -130,15 +130,17 @@ module.exports = Reflux.createStore({
 		}
 	
 	},
-*/	
+	*/	
 	onRestoreData: function(savedData) {
 		if(savedData.shapesState){
-		   this.update({dataToRestore: savedData.shapesState, isRestorePending: true});
+			this.update({dataToRestore: savedData.shapesState, isRestorePending: true});
 		   this._load(null, savedData.shapesState.level, true); //restore data 
-	    } else {
-	       this.update({'visible':false});
-	    }
+		} else {
+			this.update({'visible':false});
+		}
 	},
+	
+
 
 	onChangeFundingFilterSelection: function(id, selected) {
 		var selectedList = this.state.fundingSelected? this.state.fundingSelected.slice(0) : [];
@@ -146,8 +148,8 @@ module.exports = Reflux.createStore({
 			selectedList.push(id);			
 		} else {
 			_.remove(selectedList, function(item) {
-		      	return item == id;
-		    })
+				return item == id;
+			})
 		}
 		this.update({fundingSelected: selectedList});
 		var filters = _.clone(this.state.filters || []);
@@ -175,14 +177,14 @@ module.exports = Reflux.createStore({
 	},
 
 	_loadFundingFilter: function() {
-	    Util.get(window.DATA_PATH + '/fundingTypes.json').then(function(data) {
-	      	this.update({fundingFilterItems: data});
-	    }.bind(this)).fail(function() {
-	      	console.log('Failed to load data ');
-	    });
-	  },
+		Util.get(window.DATA_PATH + '/fundingTypes.json').then(function(data) {
+			this.update({fundingFilterItems: data});
+		}.bind(this)).fail(function() {
+			console.log('Failed to load data ');
+		});
+	},
 
-  
+	
 	_loadByMuncipalities: function() {
 		//var geoData = _.clone(municipalitiesGeoJson);
 		var self = this;
@@ -208,12 +210,12 @@ module.exports = Reflux.createStore({
 					});
 
 			}.bind(this)).fail(function() {
-			console.log('Error loading data ...');
-		});
-	},
+				console.log('Error loading data ...');
+			});
+		},
 
 
-	_loadByDepartments: function() {
+		_loadByDepartments: function() {
 		//var geoData = _.clone(departmentsGeoJson);
 		var self = this;
 		API.getActivitiesByDepartment(this.state.filters).then(
@@ -237,8 +239,8 @@ module.exports = Reflux.createStore({
 						self._setGeoData(geoData, geoStats);
 					});
 			}.bind(this)).fail(function() {
-			console.log('Error loading data ...');
-		});
-	}
+				console.log('Error loading data ...');
+			});
+		}
 
-});
+	});

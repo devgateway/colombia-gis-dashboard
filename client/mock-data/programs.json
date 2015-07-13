@@ -1,0 +1,47 @@
+[
+  {
+    "code":"DO1",
+    "description":"DO1 - Government presence consolidated",
+    "description_en":"DO1 - Government presence consolidated"
+  },
+  {
+    "code":"DO2",
+    "description":"DO2 - Impact of conflict mitigated for targeted vulnerable populations.",
+    "description_en":"DO2 - Impact of conflict mitigated for targeted vulnerable populations."
+  },
+  {
+    "code":"DO3",
+    "description":"DO3 - Strengthened democratic and economic governance and respect for human rights",
+    "description_en":"DO3 - Strengthened democratic and economic governance and respect for human rights"
+  },
+  {
+    "code":"DO4",
+    "description":"DO4 -  Colombian efforts to sustainably manage the country's environmental resources reinforced",
+    "description_en":"DO4 -  Colombian efforts to sustainably manage the country's environmental resources reinforced"
+  },
+  {
+    "code":"DO5",
+    "description":"DO5 -  Prueba",
+    "description_en":"DO5 - Prueba"
+  },
+  {
+    "code":"FY14(DO1)",
+    "description":"FY14(DO1) - Effective presence of democratic institutions and process in targeted areas",
+    "description_en":"FY14(DO1) - Effective presence of democratic institutions and process in targeted areas"
+  },
+  {
+    "code":"FY14(DO2)",
+    "description":"FY14(DO2) - Reconciliation advanced among victims, ex-combatants and other citizens.",
+    "description_en":"FY14(DO2) - Reconciliation advanced among victims, ex-combatants and other citizens."
+  },
+  {
+    "code":"FY14(DO3)",
+    "description":"FY14(DO3) - Improved Conditions for Inclusive Rural Economic Growth",
+    "description_en":"FY14(DO3) - Improved Conditions for Inclusive Rural Economic Growth"
+  },
+  {
+    "code":"PPP",
+    "description":"PPP - Public Private Partnerships",
+    "description_en":"PPP - Public Private Partnerships"
+  }
+]
