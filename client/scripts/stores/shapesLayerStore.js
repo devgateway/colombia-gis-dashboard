@@ -141,6 +141,7 @@ module.exports = Reflux.createStore({
 	},
 	
 
+
 	onChangeFundingFilterSelection: function(id, selected) {
 		var selectedList = this.state.fundingSelected? this.state.fundingSelected.slice(0) : [];
 		if (selected){
