@@ -194,7 +194,9 @@ module.exports = Reflux.createStore({
 					function(geoData) {
 						var items = [];
 						_.map(data, function(d) {
-							items.push(d.fundingUS);
+							if(!isNaN(d.id)){
+								items.push(d.fundingUS);
+							}							
 							var feature = _.find(geoData.features, function(e) {
 								if (e.properties.ID_2 == d.id /*replacer.replaceDiacritics(e.properties.NAME_1).toUpperCase()==d.name*/ ) {
 									console.log('Found!');
@@ -224,7 +226,9 @@ module.exports = Reflux.createStore({
 					function(geoData) {
 						var items = [];
 						_.map(data, function(d) {							
-							items.push(d.fundingUS);
+							if(!isNaN(d.id)){
+								items.push(d.fundingUS);
+							}
 							var feature = _.find(geoData.features, function(e) {
 								if (e.properties.ID == d.id /*replacer.replaceDiacritics(e.properties.NAME_1).toUpperCase()==d.name*/ ) {
 									console.log('Found!');
