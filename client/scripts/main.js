@@ -5,7 +5,9 @@ window.ESRI_AUTH2_URL = 'https://www.arcgis.com/sharing/oauth2/authorize?client_
 window.ESRI_SEARCH_URL = 'http://www.arcgis.com/sharing/rest/search?f=json&';
 window.ESRI_SELF_URL = 'https://www.arcgis.com/sharing/rest/portals/self';
 window.ESRI_PROXY_URL = 'http://esri-proxy.adstg.org/';
+
 window.DATA_PATH = './json-data';
+window.MOCK_PATH='./mock-data';
 
 if ((window.location.host.indexOf('localhost') > -1) || (window.location.host.indexOf('127.0.0.1') > -1)) {
 	window.ESRI_PROXY_URL = 'http://localhost:3553';
