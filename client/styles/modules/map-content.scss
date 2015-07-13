@@ -122,6 +122,7 @@ ul.funding-options{
   width:550px;
   display:block;
   overflow:hidden;
+
   li{
     float:left;
     width:268px;
@@ -147,6 +148,11 @@ ul.funding-options{
 
   li{
     @include floatLeft;
-    margin-right:10px;
+    margin-right:12px;
   }
+}
+
+.funding-type-option{
+  width:31%;
+  float:left;
 }

@@ -633,7 +633,7 @@ button.layer-search {
       line-height: normal;
       font: "Open Sans", sans-serif; }
 
-.selectable-radio {
+.selectable-radio, .selectable {
   border-radius: 0% !important;
   background-clip: none;
   font-size: 1.5em !important;
@@ -644,9 +644,9 @@ button.layer-search {
   float: left;
   margin-right: 0.2em;
   margin-top: 1px;
-  width: 13px;
-  height: 13px; }
-  .selectable-radio .fa {
+  width: 12px;
+  height: 12px; }
+  .selectable-radio .fa, .selectable .fa {
     font-size: 0.7em;
     margin-left: 2px;
     margin-top: -2px;
@@ -1110,7 +1110,7 @@ button.search-button {
   .selectable.selected, .selected.selectable-radio {
     background: #e9ba00; }
 
-.selectable-radio {
+.selectable-radio, .selectable {
   -webkit-border-radius: 50%;
   border-radius: 50%;
   background-clip: padding-box;
@@ -1625,10 +1625,14 @@ ul.funding-options {
   margin-top: 3px; }
   .funding-types li {
     float: left;
-    margin-right: 10px; }
+    margin-right: 12px; }
+
+.funding-type-option {
+  width: 31%;
+  float: left; }
 
 /*add here all styles used during development later they will be replaced by the final ones */
-.selectable-radio {
+.selectable-radio, .selectable {
   border-radius: 0% !important;
   background-clip: none;
   font-size: 1.5em !important;
@@ -1641,7 +1645,7 @@ ul.funding-options {
   margin-top: 1px;
   width: 13px;
   height: 13px; }
-  .selectable-radio .fa {
+  .selectable-radio .fa, .selectable .fa {
     font-size: 0.7em;
     margin-left: 2px;
     margin-top: -2px;

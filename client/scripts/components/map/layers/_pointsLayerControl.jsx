@@ -91,7 +91,7 @@ module.exports = React.createClass({
                             selected={fundingType.selected}
                             onChange={self._onFundingChanged}
                             value={fundingType.id}/>
-                    <span>{fundingType.name}</span>
+                    <span style="border:1px solid #f00">{fundingType.name}</span>
                   </li>
                 );
               })
