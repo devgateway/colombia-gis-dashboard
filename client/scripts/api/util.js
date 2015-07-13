@@ -27,7 +27,6 @@ module.exports = {
 
 
 	request: function(url){
-		alert('Este metodo se usa ...');
 		return reqwest({ url: url+'?f=json', type: 'json', method: 'get',  crossOrigin: true} );
 
 	},

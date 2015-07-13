@@ -111,7 +111,9 @@ module.exports  = React.createClass({
       </div>
       <div className="layer-control-panel">
         <ul className="layer-control">
-        
+         <li>
+            <Indicators/>
+          </li>
         <li>
             <PointsLayerControl/>
           </li>

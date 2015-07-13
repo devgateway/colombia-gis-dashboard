@@ -16,11 +16,7 @@ var Breaker=require('./_breaker.jsx');
 
 var Store = require('../../../stores/pointsLayerStore.js');
 
-
-var Button =  require('react-bootstrap/lib/Button');
-
-var OverlayTrigger =  require('react-bootstrap/lib/OverlayTrigger');
-
+var Finder=require('../../util/indicatorFinder.jsx');
 
 module.exports = React.createClass({
 
@@ -54,12 +50,11 @@ module.exports = React.createClass({
 
 
   getInitialState:function(){
-    return {showModal:false   };
   },
 
 
-  _findIndicator:function(){
-    this.setState({showModal: !this.state.showModal});
+  _selectIndicator:function(indicator){
+    this.setState({'indicator':indicator})
   },
 
 
@@ -97,17 +92,11 @@ module.exports = React.createClass({
     </li>
 
     <div className="clearFix"/>  
-
-    <div>Data Source</div>
-    <div>
-
-    is modal <b>{this.state.showModal?"YES":"NO"}</b>  <Button  bsStyle='primary' bsSize='large' onClick={this._findIndicator}>  Launch demo modal  </Button>
+      <Finder label={this.state.indicator || 'Select Indicator'} onSelect={this._selectIndicator}/>  
 
 
 
-
-    </div>
-
+    
 
     <li className="color-selection">
 
