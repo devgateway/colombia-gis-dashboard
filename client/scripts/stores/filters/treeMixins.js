@@ -73,14 +73,20 @@ module.exports = {
 		}).slice(1);
 	},	
 
-	_loadDataList: function(level) {
+	_loadDataList: function(level, complexId) {
 		Util.get(window.DATA_PATH + level.sourcePath).then(function(data) {
-			_.forEach(data, function(item){_.assign(item, {'level': level.levelParam});});//assign level to each item
+			_.forEach(data, function(item){
+				_.assign(item, {'level': level.levelParam});//assign level to each item
+				//if (complexId){
+					//replace the id with a complex id with item.id + item.parentId
+					_.assign(item, {'cid': item.id + "#" + item[level.parentIdField], 'complexId': true});
+				//}
+			});
 			var stateList = {};
-			stateList[level.levelParam] = this._capitalize(data);
+			stateList[level.levelParam] = _.sortBy(this._capitalize(data), 'name');
 			this.update(stateList, {silent:true});
 			if (level.child){
-				this._loadDataList(level.child);
+				this._loadDataList(level.child, true);
 			} else {
 				this._createItemsTree();
 			}
@@ -94,6 +100,7 @@ module.exports = {
 	},
 
 	_addTreeLevel: function(level){
+		debugger;
 		var tree = this._createParentChildrenList(this.state[level.levelParam], this.state[level.child.levelParam], level.child.parentIdField);
 		if (level.child.child){
 			_.assign(tree.nested, this._addTreeLevel(level.child));
@@ -113,7 +120,7 @@ module.exports = {
 	},	
 	
 	_updateChildSelection: function(item, selected){
-		_.assign(_.find(this.state[item.level], function(e){return e.id == item.id}), {'selected': selected});
+		_.assign(_.find(this.state[item.level], function(e){return e.cid == item.cid}), {'selected': selected});
 		if (item.nested){
 			_.forEach(item.nested, function(it){
 				this._updateChildSelection(it, selected);

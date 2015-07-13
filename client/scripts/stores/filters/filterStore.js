@@ -35,7 +35,8 @@ module.exports = Reflux.createStore({
 	init: function() {
 		this.state=this.state||{};
 
-		this.listenTo(StoreDispatcher.ClassificationType, this._collectFilters(['a1','a2','a3','a4','a5'], true));
+		this.listenTo(StoreDispatcher.ClassificationTypeBasic, this._collectFilters(['a1','a2'], true));
+		this.listenTo(StoreDispatcher.ClassificationTypeAdvanced, this._collectFilters(['a1','a2','a3','a4','a5'], true));
 		this.listenTo(StoreDispatcher.AorCor, this._collectFilters('ar'));
 
 		this.listenTo(StoreDispatcher.ContractType, this._collectFilters('ct'));

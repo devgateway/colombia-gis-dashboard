@@ -24,7 +24,8 @@ var TreeView =  React.createClass({
 
   _onToggle:function(){
     if (this.state.expanded){
-      this.setState(_.assign(this.state,{expanded: false}));  
+      //this.setState(_.assign(this.state,{expanded: false})); 
+      this.props.itemExpanded(-1); 
     } else {
       this.props.itemExpanded(this.props.index);
     }

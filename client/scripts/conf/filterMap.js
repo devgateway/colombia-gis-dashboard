@@ -50,14 +50,6 @@ var filters = [
     store: StoreDispatcher.SubImplementers,
     actions: Actions.SubImplementers
   },
-  /*{
-    index: 6,
-    label: 'filters.activityClassification',
-    modes: ['basic', 'advanced'],
-    type: 'tree',
-    store: StoreDispatcher.ClassificationType,
-    actions: Actions.ClassificationType
-  },*/
   {
     index: 7,
     order: 2,
@@ -126,7 +118,26 @@ var filters = [
     param: 'ri',
     store: StoreDispatcher.RapidImpact,
     actions: Actions.RapidImpact
-  }      
+  },
+  {
+    index: 14,
+    order: 14,
+    label: 'filters.activityClassification',
+    modes: ['basic'],
+    type: 'tree',
+    store: StoreDispatcher.ClassificationTypeBasic,
+    actions: Actions.ClassificationType
+  },
+  {
+    index: 15,
+    order: 15,
+    label: 'filters.activityClassification',
+    modes: ['advanced'],
+    type: 'tree',
+    store: StoreDispatcher.ClassificationTypeAdvanced,
+    actions: Actions.ClassificationType
+  }
+        
 ];
 
 module.exports = {

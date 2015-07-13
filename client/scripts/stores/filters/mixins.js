@@ -80,7 +80,7 @@ module.exports = {
 
 	_loadItems: function(url) {
 		Util.get(url).then(function(data) {
-			this.update({items: this._capitalize(data),loaded:true});
+			this.update({items: _.sortBy(this._capitalize(data), 'name'), loaded:true});
 		}.bind(this)).fail(function() {
 			console.log('Failed to load data ');
 		});

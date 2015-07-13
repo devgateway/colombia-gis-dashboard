@@ -60,28 +60,40 @@ var locationTree = {
       }
     };
 
-var classificationType = {
+var classificationTypeBasic = {
     'level': 0, 
-    'levelName': 'a1', 
+    'levelParam': 'a1', 
     'sourcePath': '/clasificationType1.json',
     'child': {
       'level': 1, 
-      'levelName': 'a2', 
+      'levelParam': 'a2', 
+      'sourcePath': '/clasificationType2.json', 
+      'parentIdField': 'idLevel1'
+      }
+    };
+
+var classificationTypeAdvanced = {
+    'level': 0, 
+    'levelParam': 'a1', 
+    'sourcePath': '/clasificationType1.json',
+    'child': {
+      'level': 1, 
+      'levelParam': 'a2', 
       'sourcePath': '/clasificationType2.json', 
       'parentIdField': 'idLevel1',
       'child': {
         'level': 2, 
-        'levelName': 'a3', 
+        'levelParam': 'a3', 
         'sourcePath': '/clasificationType3.json', 
         'parentIdField': 'idLevel2',
         'child': {
           'level': 3, 
-          'levelName': 'a4', 
+          'levelParam': 'a4', 
           'sourcePath': '/clasificationType4.json', 
           'parentIdField': 'idLevel3',
           'child': {
             'level': 4, 
-            'levelName': 'a5', 
+            'levelParam': 'a5', 
             'sourcePath': '/clasificationType5.json', 
             'parentIdField': 'idLevel4'
             }
@@ -93,7 +105,8 @@ var classificationType = {
 module.exports = {
   Locations: makeTreeStore(Actions.Locations, locationTree, 'mu'),
   SubImplementers: makeTreeStore(Actions.SubImplementers, subImplementersTree, 'si'),
-  ClassificationType: makeTreeStore(Actions.ClassificationType, classificationType, 'a5'),
+  ClassificationTypeBasic: makeTreeStore(Actions.ClassificationType, classificationTypeBasic, 'a2'),
+  ClassificationTypeAdvanced: makeTreeStore(Actions.ClassificationType, classificationTypeBasic, 'a5'),
   AorCor: makeStore(Actions.AorCor, 'aor-corNames.json', 'ar'),
   ContractType: makeStore(Actions.ContractType, 'contractTypes.json', 'ct'),
   Crops: makeStore(Actions.Crops, 'cropsList.json', 'cr'),
