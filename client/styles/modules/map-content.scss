@@ -137,3 +137,10 @@ ul.funding-options{
     display:block;
     overflow:hidden;
 }
+
+// commitments vs disbursements selection
+.funding-types{
+  li{
+    @include floatLeft;
+  }
+}

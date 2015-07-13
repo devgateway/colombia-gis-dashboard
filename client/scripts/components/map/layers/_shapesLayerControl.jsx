@@ -163,6 +163,12 @@ module.exports = React.createClass({
             </li>
             <li className="layer-option-section">
               <h3>Funding Type</h3>
+              <div className="funding-types">
+              <ul>
+                <li>Commitment</li>
+                <li>Disbursement</li>
+              </ul>
+              </div>
               {
                 fundingTypes.map(function(fundingType){
                   return(

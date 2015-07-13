@@ -1618,6 +1618,9 @@ ul.funding-options {
   display: block;
   overflow: hidden; }
 
+.funding-types li {
+  float: left; }
+
 /*add here all styles used during development later they will be replaced by the final ones */
 .selectable-radio {
   border-radius: 0% !important;
