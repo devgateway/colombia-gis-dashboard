@@ -80,16 +80,17 @@
   }
 
 	.label{
+    @include textCenter;
     margin-left:-5px;
     color: $black;
     background: none;
-    text-align:center;
     clear:both;
     padding:0;
     &.label-info{
       line-height:32px;
     }
 	}
+
 
   .colorpicker-element{
 	 }

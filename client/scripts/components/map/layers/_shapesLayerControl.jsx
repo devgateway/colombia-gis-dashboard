@@ -26,13 +26,13 @@ var color4 = [[255, 255, 102, 0.8], [255, 255, 51, 0.8], [255, 255, 0, 0.8], [20
 
 module.exports = React.createClass({
 
- //mixins: [Reflux.connect(FilterStore), Reflux.connect(Store)], 
- mixins: [Reflux.connect(Store)], 
- 
+ //mixins: [Reflux.connect(FilterStore), Reflux.connect(Store)],
+ mixins: [Reflux.connect(Store)],
+
  _changeVisibility: function(id, value) {
-    LayerActions.changeLayerValue(id,'visible',value); 
+    LayerActions.changeLayerValue(id,'visible',value);
   },
-  
+
   _onChangeOpacity:function(id,value){
     LayerActions.changeLayerValue(id,'opacity',value);
   },
@@ -46,18 +46,18 @@ module.exports = React.createClass({
   },
 
   _changeColor:function(value,level){
-    LayerActions.changeLayerValue('shapes','color',value,level); 
+    LayerActions.changeLayerValue('shapes','color',value,level);
   },
 
   _changeBreak:function(value,level){
-    LayerActions.changeLayerValue('shapes','break',value,level); 
+    LayerActions.changeLayerValue('shapes','break',value,level);
   },
 
   _changeBreakStyle:function(value){
-    LayerActions.changeLayerValue('shapes','breakStyle',value); 
+    LayerActions.changeLayerValue('shapes','breakStyle',value);
   },
 
-  _onFundingChanged: function(obj) {  
+  _onFundingChanged: function(obj) {
     debugger;
     LayerActions.changeFundingFilterSelection(obj.value, obj.selected);
   },
@@ -86,7 +86,7 @@ module.exports = React.createClass({
     default:
         breakStyle = "percentage";
         break;
-    } 
+    }
 
     self._changeBreak([Math.round(breaks[0]), Math.round(breaks[1])], "Level0");
     self._changeBreak([Math.round(breaks[1]), Math.round(breaks[2])], "Level1");
@@ -117,7 +117,7 @@ module.exports = React.createClass({
     default:
         color = color0;
         break;
-    } 
+    }
     color.map(function(n, i){
       self._changeColor({r: n[0], g: n[1], b: n[2], a: n[3]}, "Level"+i);
     })
@@ -145,19 +145,19 @@ module.exports = React.createClass({
           <div><span className="control-title">{i18n.t("layers.fundingByType")}</span></div>
         </TogglerContent>
         <TogglerContent visibleWhen="expanded">
-          <Layer id="shapes"  
-            opacity={this.state.opacity} 
-            onChangeOpacity={this._onChangeOpacity} 
-            onChangeVisibility={this._changeVisibility} 
+          <Layer id="shapes"
+            opacity={this.state.opacity}
+            onChangeOpacity={this._onChangeOpacity}
+            onChangeVisibility={this._changeVisibility}
             visible={this.state.visible}/>
           <ul>
             <li>
               <h3><Message message='layers.level'/></h3>
               <CustomRadioGroup>
-                <CustomRadio  className="inline" name="departament" checked={(level=='departament')? true : false}    
+                <CustomRadio  className="inline" name="departament" checked={(level=='departament')? true : false}
                 onClick={this._showByDepartment} label="layers.byDepartment"/>
-                <CustomRadio  className="inline" name="municipality" checked={(level=='municipality')? true : false}  
-                onClick={this._showByMunicipality} label="layers.byMunicipality"/>    
+                <CustomRadio  className="inline" name="municipality" checked={(level=='municipality')? true : false}
+                onClick={this._showByMunicipality} label="layers.byMunicipality"/>
               </CustomRadioGroup>
             </li>
             <li>
@@ -166,7 +166,7 @@ module.exports = React.createClass({
                 fundingTypes.map(function(fundingType){
                   return(
                     <div>
-                      <CustomCheckbox 
+                      <CustomCheckbox
                               selected={fundingType.selected}
                               onChange={self._onFundingChanged}
                               value={fundingType.id}/>
@@ -175,35 +175,34 @@ module.exports = React.createClass({
                   );
                 })
               }
-           
+
             </li>
-          
+
           <li>
               <div className="clearFix"/>
-              <h3>Styles Breaks</h3>
+              <h3>Layer Styles</h3>
               <div>
-                <div><b>Property <i> {this.state.breaks.field}</i></b></div>
                  <div className="breaksTemplates">
-                  <div className="label label-info" onClick={this.handleClickForBreaks.bind(this, 0)}>Default</div> 
+                  <div className="label label-info" onClick={this.handleClickForBreaks.bind(this, 0)}>Default</div>
                   <div className="label label-info" onClick={this.handleClickForBreaks.bind(this, 1)}>Jenks</div>
                   <div className="label label-info" onClick={this.handleClickForBreaks.bind(this, 2)}>Arithmetic</div>
                   <div className="label label-info" onClick={this.handleClickForBreaks.bind(this, 3)}>Geometric</div>
                 </div>
                 <div className="clearFix"/>
                 <div className="breaksTemplates">
-                  <div className="label label-warning">Default</div>
+                  <div className="label label-layer-style">Default</div>
                   <div className="colorpicker-element">
                   <span className="input-group-addon" onClick={this.handleClickForColor.bind(this, 0)} ><i style={{backgroundColor:'#AA3900'}}></i></span></div>
-                  <div className="label label-warning">Contrast 1</div>
+                  <div className="label label-layer-style">Contrast 1</div>
                   <div className="colorpicker-element">
                   <span className="input-group-addon" onClick={this.handleClickForColor.bind(this, 1)} ><i style={{backgroundColor:'#FF3333'}}></i></span></div>
-                  <div className="label label-warning">Contrast 2</div>
+                  <div className="label label-layer-style">Contrast 2</div>
                   <div className="colorpicker-element">
                   <span className="input-group-addon" onClick={this.handleClickForColor.bind(this, 2)} ><i style={{backgroundColor:'#3399FF'}}></i></span></div>
-                  <div className="label label-warning">Gradient 1</div>
+                  <div className="label label-layer-style">Gradient 1</div>
                   <div className="colorpicker-element">
                   <span className="input-group-addon" onClick={this.handleClickForColor.bind(this, 3)} ><i style={{backgroundColor:'#66FFB2'}}></i></span></div>
-                  <div className="label label-warning">Gradient 2</div>
+                  <div className="label label-layer-style">Gradient 2</div>
                   <div className="colorpicker-element">
                   <span className="input-group-addon" onClick={this.handleClickForColor.bind(this, 4)} ><i style={{backgroundColor:'#FFFF66'}}></i></span></div>
                 </div>
@@ -222,8 +221,8 @@ module.exports = React.createClass({
 
             }
           </li>
-        
-</ul>  
+
+</ul>
         </TogglerContent>
       </Toggler>
     </li>);

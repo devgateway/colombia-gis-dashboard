@@ -32,7 +32,7 @@ var defaultStyle = {
 /*. The range of the break is greater than or equal to the minimum value and less than the maximum value.*/
 
 var defaultBreaks = {
-	'field': 'fundingUS',
+	'field': ' - Funding',
 	breaks: {
 		'Level0': {
 			'min': 0,
@@ -126,24 +126,25 @@ module.exports = Reflux.createStore({
   	onRestoreData: function(data, type) {
 	    if(this._getLayerId()==type){
 		   this.update({dataToRestore: data, isRestorePending: true})
-		   this._load(null, data.level, true); //restore data 
+		   this._load(null, data.level, true); //restore data
 		}
-	
+
 	},
-*/	
+*/
 	onRestoreData: function(savedData) {
 		if(savedData.shapesState){
 		   this.update({dataToRestore: savedData.shapesState, isRestorePending: true});
-		   this._load(null, savedData.shapesState.level, true); //restore data 
+		   this._load(null, savedData.shapesState.level, true); //restore data
 	    } else {
 	       this.update({'visible':false});
+				}
 	    },
-	
+
 
 	onChangeFundingFilterSelection: function(id, selected) {
 		var selectedList = this.state.fundingSelected? this.state.fundingSelected.slice(0) : [];
 		if (selected){
-			selectedList.push(id);			
+			selectedList.push(id);
 		} else {
 			_.remove(selectedList, function(item) {
 		      	return item == id;
@@ -156,7 +157,7 @@ module.exports = Reflux.createStore({
 			if (ftFilter){
 				_.assign(ftFilter, {'values': selectedList})
 			} else {
-				filters.push({'param': 'ft', 'values': selectedList});		
+				filters.push({'param': 'ft', 'values': selectedList});
 			}
 		} else {
 			_.remove(filters, function(f) {return f.param=='ft';});
@@ -182,7 +183,7 @@ module.exports = Reflux.createStore({
 	    });
 	  },
 
-  
+
 	_loadByMuncipalities: function() {
 		//var geoData = _.clone(municipalitiesGeoJson);
 		var self = this;
@@ -200,7 +201,7 @@ module.exports = Reflux.createStore({
 								return e.properties.ID_2 == d.id; //replacer.replaceDiacritics(e.properties.NAME_1).toUpperCase()==d.name
 							});
 							if (feature) {
-								_.assign(feature.properties, _.omit(_.clone(d), "name")); //set feature values  
+								_.assign(feature.properties, _.omit(_.clone(d), "name")); //set feature values
 							}
 						});
 						var geoStats = new GeoStats(items);
@@ -221,7 +222,7 @@ module.exports = Reflux.createStore({
 				API.loadDepartmentsShapes().then(
 					function(geoData) {
 						var items = [];
-						_.map(data, function(d) {							
+						_.map(data, function(d) {
 							items.push(d.fundingUS);
 							var feature = _.find(geoData.features, function(e) {
 								if (e.properties.ID == d.id /*replacer.replaceDiacritics(e.properties.NAME_1).toUpperCase()==d.name*/ ) {
@@ -230,7 +231,7 @@ module.exports = Reflux.createStore({
 								return e.properties.ID == d.id; //replacer.replaceDiacritics(e.properties.NAME_1).toUpperCase()==d.name
 							});
 							if (feature) {
-								_.assign(feature.properties, _.omit(_.clone(d), "name")); //set feature values 
+								_.assign(feature.properties, _.omit(_.clone(d), "name")); //set feature values
 							}
 						});
 						var geoStats = new GeoStats(items);
