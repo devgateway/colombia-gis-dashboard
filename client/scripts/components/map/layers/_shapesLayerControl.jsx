@@ -173,20 +173,20 @@ module.exports = React.createClass({
               {
                 fundingTypes.map(function(fundingType){
                   return(
-                    <div>
+                      <li className="funding-type-option">
                       <CustomCheckbox
                               selected={fundingType.selected}
                               onChange={self._onFundingChanged}
                               value={fundingType.id}/>
                       <span>{fundingType.name}</span>
-                    </div>
+                      </li>
                   );
                 })
               }
             </li>
 
           <li>
-              <div className="clearFix"/>
+              <div className="vbuffer"/>
               <h3>Layer Styles</h3>
               <div className="clearFix"/>
               <h3>Classification Scheme</h3>

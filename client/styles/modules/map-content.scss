@@ -151,8 +151,11 @@ ul.funding-options{
     margin-right:12px;
   }
 }
-
 .funding-type-option{
   width:31%;
   float:left;
+}
+
+.vbuffer{
+  @include vbuffer(30px);
 }

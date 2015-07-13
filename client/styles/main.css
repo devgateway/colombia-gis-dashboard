@@ -1631,6 +1631,11 @@ ul.funding-options {
   width: 31%;
   float: left; }
 
+.vbuffer {
+  height: 30px;
+  clear: both;
+  width: 100%; }
+
 /*add here all styles used during development later they will be replaced by the final ones */
 .selectable-radio, .selectable {
   border-radius: 0% !important;

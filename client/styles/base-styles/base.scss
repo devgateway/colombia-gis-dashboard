@@ -33,6 +33,12 @@ $base-line-height: 110%;
   }
 }
 
+@mixin vbuffer($vbuffer){
+  height:$vbuffer;
+  clear:both;
+  width:100%;
+}
+
 // opacity transition
 @mixin transitionOpacity {
   -webkit-transition: opacity 400ms ease;
