@@ -29,7 +29,7 @@ module.exports = React.createClass({
  //mixins: [Reflux.connect(FilterStore), Reflux.connect(Store)], 
  mixins: [Reflux.connect(Store)], 
  
- _changeVisibility: function(id, value) {
+  _changeVisibility: function(id, value) {
     LayerActions.changeLayerValue(id,'visible',value); 
   },
   
@@ -66,21 +66,25 @@ module.exports = React.createClass({
     console.log('_shapesLayerControl>handleClickForBreaks = ' + breakId);
     var self = this;
     var breaks = [0, 20, 40, 60, 80, 100];
-    var breakStyle = "breakValues";
+    //var breakStyle = "breakValues";
+    var breakStyle = "percentage";
     switch(breakId) {
     case 1:
         if(this.state.geoStats){
-          breaks = this.state.geoStats.getClassJenks(5);
+          //breaks = this.state.geoStats.getClassJenks(5);
+          breaks = this._convertGeoBreaksToPercentage(this.state.geoStats.getClassJenks(5));
         }
         break;
     case 2:
         if(this.state.geoStats){
-          breaks = this.state.geoStats.getClassArithmeticProgression(5);
+          //breaks = this.state.geoStats.getClassArithmeticProgression(5);
+          breaks = this._convertGeoBreaksToPercentage(this.state.geoStats.getClassArithmeticProgression(5));
         }
         break;
     case 3:
         if(this.state.geoStats){
-          breaks = this.state.geoStats.getClassGeometricProgression(5);
+          //breaks = this.state.geoStats.getClassGeometricProgression(5);
+          breaks = this._convertGeoBreaksToPercentage(this.state.geoStats.getClassGeometricProgression(5));
         }
         break;
     default:
@@ -96,6 +100,14 @@ module.exports = React.createClass({
     self._changeBreakStyle(breakStyle);
   },
 
+  _convertGeoBreaksToPercentage:function(geoBreaks){
+    var newBreaks = [0];
+    for(var i=1; i<geoBreaks.length; i++){
+      newBreaks.push((geoBreaks[i]/geoBreaks[geoBreaks.length-1]*100).toFixed(1));
+    }
+    newBreaks.push(100);
+    return newBreaks;
+  },
 
   handleClickForColor:function(colorPattern){
     console.log('_shapesLayerControl>handleClickForColor = ' + colorPattern);
