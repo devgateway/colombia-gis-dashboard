@@ -140,7 +140,13 @@ ul.funding-options{
 
 // commitments vs disbursements selection
 .funding-types{
+  @include floatLeft;
+  width:83%;
+  margin-bottom: $gutter/2;
+  margin-top:3px;
+
   li{
     @include floatLeft;
+    margin-right:10px;
   }
 }

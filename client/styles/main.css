@@ -1618,8 +1618,14 @@ ul.funding-options {
   display: block;
   overflow: hidden; }
 
-.funding-types li {
-  float: left; }
+.funding-types {
+  float: left;
+  width: 83%;
+  margin-bottom: 0.5em;
+  margin-top: 3px; }
+  .funding-types li {
+    float: left;
+    margin-right: 10px; }
 
 /*add here all styles used during development later they will be replaced by the final ones */
 .selectable-radio {

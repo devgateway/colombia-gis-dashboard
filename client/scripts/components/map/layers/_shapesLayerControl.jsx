@@ -163,10 +163,11 @@ module.exports = React.createClass({
             </li>
             <li className="layer-option-section">
               <h3>Funding Type</h3>
+
               <div className="funding-types">
               <ul>
-                <li>Commitment</li>
-                <li>Disbursement</li>
+                <li><span className="selectable-radio"></span>Commitment</li>
+                <li><span className="selectable-radio"></span>Disbursement</li>
               </ul>
               </div>
               {
@@ -182,7 +183,6 @@ module.exports = React.createClass({
                   );
                 })
               }
-
             </li>
 
           <li>
