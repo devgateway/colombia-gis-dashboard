@@ -131,6 +131,7 @@ module.exports = React.createClass({
 
     var level=this.state.level;
     var fundingTypes = this.state.fundingFilterItems || [];
+    debugger;
     var self = this;
     return (
     <li>
