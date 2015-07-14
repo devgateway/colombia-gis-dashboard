@@ -69,11 +69,10 @@
 }
 
 .breaksOptions {
-  float:left;
-  margin-top:-25px;
-  margin-right:0;
+  @include floatLeft;
+  @include textCenter;
+  margin:-25px 0 10px 0;
   width:55px;
-  text-align:center;
 
 	input{
   display:none;
@@ -157,5 +156,5 @@ ul.funding-options{
 }
 
 .vbuffer{
-  @include vbuffer(30px);
+  @include vbuffer(20px);
 }

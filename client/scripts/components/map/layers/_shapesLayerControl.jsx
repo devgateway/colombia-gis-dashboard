@@ -199,19 +199,15 @@ module.exports = React.createClass({
                 </div>
                 <div className="clearFix"/>
                 <div className="breaksTemplates">
-                  <div className="label label-layer-style">Default</div>
+                  <h3>Color Scheme</h3>
                   <div className="colorpicker-element">
                   <span className="input-group-addon" onClick={this.handleClickForColor.bind(this, 0)} ><i style={{backgroundColor:'#AA3900'}}></i></span></div>
-                  <div className="label label-layer-style">Contrast 1</div>
                   <div className="colorpicker-element">
                   <span className="input-group-addon" onClick={this.handleClickForColor.bind(this, 1)} ><i style={{backgroundColor:'#FF3333'}}></i></span></div>
-                  <div className="label label-layer-style">Contrast 2</div>
                   <div className="colorpicker-element">
                   <span className="input-group-addon" onClick={this.handleClickForColor.bind(this, 2)} ><i style={{backgroundColor:'#3399FF'}}></i></span></div>
-                  <div className="label label-layer-style">Gradient 1</div>
                   <div className="colorpicker-element">
                   <span className="input-group-addon" onClick={this.handleClickForColor.bind(this, 3)} ><i style={{backgroundColor:'#66FFB2'}}></i></span></div>
-                  <div className="label label-layer-style">Gradient 2</div>
                   <div className="colorpicker-element">
                   <span className="input-group-addon" onClick={this.handleClickForColor.bind(this, 4)} ><i style={{backgroundColor:'#FFFF66'}}></i></span></div>
                 </div>
