@@ -81,7 +81,7 @@ module.exports = React.createClass({
             </CustomRadioGroup>
           </li>
           <li>
-            <h3 className="color-control value-label">Number of Subactivities</h3>
+            <h3 className="color-control value-label"><Message message='layers.subactivitiesNumber'/></h3>
             <ul className="funding-options">
             {
               fundingTypes.map(function(fundingType){
@@ -99,7 +99,7 @@ module.exports = React.createClass({
             </ul>
           </li>
           <li className="color-selection">
-            <h3 className="color-control">Color Selection</h3>
+            <h3 className="color-control"><Message message='layers.colorSelection'/></h3>
             <div>
             </div>
             {

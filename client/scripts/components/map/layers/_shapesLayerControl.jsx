@@ -162,12 +162,15 @@ module.exports = React.createClass({
               </CustomRadioGroup>
             </li>
             <li className="layer-option-section">
-              <h3>Funding Type</h3>
-
+              <h3 className="color-control"><Message message='layers.fundingType'/></h3>
               <div className="funding-types">
               <ul>
-                <li><span className="selectable-radio"></span>Commitment</li>
-                <li><span className="selectable-radio"></span>Disbursement</li>
+                <li><span className="selectable-radio"></span>
+                  <Message message='layers.fundingSourceCommitments'/>
+                </li>
+                <li><span className="selectable-radio"></span>
+                  <Message message='layers.fundingSourceDisbursements'/>
+                </li>
               </ul>
               </div>
             </li>
@@ -193,7 +196,7 @@ module.exports = React.createClass({
           <li>
               <div className="vbuffer"/>
               <div className="clearFix"/>
-              <h3 className="color-control">Classification Scheme</h3>
+              <h3 className="color-control"><Message message='layers.classificationScheme'/></h3>
               <div>
                  <div className="breaksTemplates">
                   <div className="label label-info" onClick={this.handleClickForBreaks.bind(this, 0)}>Default</div>
@@ -219,7 +222,7 @@ module.exports = React.createClass({
               <div className="clearFix"/>
             </li>
             <li>
-            <h3 className="color-control">Color Selection</h3>
+            <h3 className="color-control"><Message message='layers.colorSelection'/></h3>
 
             {
 
