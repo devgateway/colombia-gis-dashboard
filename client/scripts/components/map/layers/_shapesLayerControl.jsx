@@ -72,18 +72,21 @@ module.exports = React.createClass({
     case 1:
         if(this.state.geoStats){
           //breaks = this.state.geoStats.getClassJenks(5);
+          console.log("--- Jenks: " + this.state.geoStats.getClassJenks(5));
           breaks = this._convertGeoBreaksToPercentage(this.state.geoStats.getClassJenks(5));
         }
         break;
     case 2:
         if(this.state.geoStats){
           //breaks = this.state.geoStats.getClassArithmeticProgression(5);
+          console.log("--- Arithmetic: " + this.state.geoStats.getClassArithmeticProgression(5));
           breaks = this._convertGeoBreaksToPercentage(this.state.geoStats.getClassArithmeticProgression(5));
         }
         break;
     case 3:
         if(this.state.geoStats){
           //breaks = this.state.geoStats.getClassGeometricProgression(5);
+          console.log("--- Geometric: " + this.state.geoStats.getClassGeometricProgression(5));
           breaks = this._convertGeoBreaksToPercentage(this.state.geoStats.getClassGeometricProgression(5));
         }
         break;
@@ -92,18 +95,18 @@ module.exports = React.createClass({
         break;
     } 
 
-    self._changeBreak([Math.round(breaks[0]), Math.round(breaks[1])], "Level0");
-    self._changeBreak([Math.round(breaks[1]), Math.round(breaks[2])], "Level1");
-    self._changeBreak([Math.round(breaks[2]), Math.round(breaks[3])], "Level2");
-    self._changeBreak([Math.round(breaks[3]), Math.round(breaks[4])], "Level3");
-    self._changeBreak([Math.round(breaks[4]), Math.round(breaks[5])], "Level4");
+    self._changeBreak([breaks[0], breaks[1]], "Level0");
+    self._changeBreak([breaks[1], breaks[2]], "Level1");
+    self._changeBreak([breaks[2], breaks[3]], "Level2");
+    self._changeBreak([breaks[3], breaks[4]], "Level3");
+    self._changeBreak([breaks[4], breaks[5]], "Level4");
     self._changeBreakStyle(breakStyle);
   },
 
   _convertGeoBreaksToPercentage:function(geoBreaks){
     var newBreaks = [0];
     for(var i=1; i<geoBreaks.length; i++){
-      newBreaks.push((geoBreaks[i]/geoBreaks[geoBreaks.length-1]*100).toFixed(1));
+      newBreaks.push((geoBreaks[i]/geoBreaks[geoBreaks.length-1]*100).toFixed(2));
     }
     newBreaks.push(100);
     return newBreaks;
