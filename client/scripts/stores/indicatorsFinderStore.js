@@ -6,7 +6,7 @@ var assign = require('object-assign');
 var Reflux = require('reflux');
 var Util = require('../api/util.js');
 var CommonsMixins = require('./_mixins.js');
-var Actions = require('../actions/programsActions.js'); 
+var Actions = require('../actions/indicatorFinderActions.js'); 
 
 module.exports = Reflux.createStore({
 
@@ -15,12 +15,10 @@ module.exports = Reflux.createStore({
   listenables: Actions,
 
   init:function(){
-    
+
   },
 
-
   onLoad: function(level) {
-
     Util.get(window.MOCK_PATH + '/programs.json').then(function(data) {
       this.update({programsList:data});
     }.bind(this)).fail(function() {
@@ -28,8 +26,9 @@ module.exports = Reflux.createStore({
     });
   },
 
+
   getInitialState: function() {
-    return (this.state = {});
+    return (this.state = { pr:undefined, type:undefined, results:[], programsList:[]});
   }
 
 });

@@ -11,13 +11,14 @@ var Table=require('react-bootstrap/lib/Table');
 var Pagination=require('react-bootstrap/lib/Pagination');
 
 var Tooltip=require('react-bootstrap/lib/Tooltip');
-var ProgramStore=require('../../stores/programsStore.js');
+var IndicatorsFinderStore=require('../../stores/indicatorsFinderStore.js');
 var Reflux = require('reflux');
-var Actions=require('../../actions/programsActions.js');
+var Actions=require('../../actions/indicatorFinderActions.js');
 var CheckBox=require('../commons/customCheckbox.jsx')
+
 module.exports = React.createClass({
 	
-	mixins: [Reflux.connect(ProgramStore,"programs")],
+	mixins: [Reflux.connect(IndicatorsFinderStore,"store")],
 
 	getInitialState:function(){
 		return { showModal: false};
@@ -32,23 +33,20 @@ module.exports = React.createClass({
 	},
 
 	_updateType:function(type){
-		alert(type);
+		Actions.typeClick(type)
 	},
 
 	componentDidMount:function(){
 		Actions.load();
 	},
 
-	_handlPagination:function(){
+	_handlePagination:function(){
 
 	},
 
 	render:function() {
-		debugger;
-
-		var popover = <Popover title='popover'>very popover. such engagement</Popover>;
-		var tooltip = <Tooltip>wow.</Tooltip>;
-
+		//var popover = <Popover title='popover'>very popover. such engagement</Popover>;
+		//var tooltip = <Tooltip>wow.</Tooltip>;
 		return (
 					<div>
 						<Button bsStyle='primary' bsSize='large' onClick={this.open}> {this.props.label || 'Open'}</Button>
@@ -63,7 +61,7 @@ module.exports = React.createClass({
 											<Col md={8}>
 												<select onChange ={this._programChanged} style={{width:'100%'}}>
 													<option>Select Program</option>
-													{this.state.programs.programsList?this.state.programs.programsList.map(function(item){
+													{this.state.store.programsList?this.state.store.programsList.map(function(item){
 													return (<option>{item.description}</option>)
 												}):null}
 											</select>
@@ -98,6 +96,7 @@ module.exports = React.createClass({
 														<th nowrap>Ref Code</th>
 														<th nowrap>IR Code</th>
 														<th nowrap>Description</th>
+														<th nowrap></th>
 													</tr>
 												</thead>
 												<tbody>
@@ -106,36 +105,47 @@ module.exports = React.createClass({
 														<td>CF-9</td>
 														<td>IR N.A.3.1</td>
 														<td className="description">Número de asociaciones de productores fortalecidos</td>
+														<td><Button  bsStyle='primary' bsSize='xsmall'><span>Select</span> </Button></td>
 													</tr>
 													<tr>
 														<td>448</td>
 														<td>CF-10</td>
 														<td>IR N.A.3.1</td>
 														<td className="description">Hectáreas de cultivos alternativos cosechados apoyados por programas del USG (F 1.4.2)</td>
+														<td><Button  bsStyle='primary' bsSize='xsmall'><span>Select</span> </Button></td>
+
 													</tr>
 													<tr>
 														<td>447</td>
 														<td>CF-9</td>
 														<td>IR N.A.3.1</td>
 														<td className="description">Número de asociaciones de productores fortalecidos</td>
+														<td><Button  bsStyle='primary' bsSize='xsmall'><span>Select</span> </Button></td>
+
 													</tr>
 													<tr>
 														<td>448</td>
 														<td>CF-10</td>
 														<td>IR N.A.3.1</td>
 														<td className="description">Hectáreas de cultivos alternativos cosechados apoyados por programas del USG (F 1.4.2)</td>
+														<td><Button  bsStyle='primary' bsSize='xsmall'><span>Select</span> </Button></td>
+
 													</tr>
 													<tr>
 														<td>447</td>
 														<td>CF-9</td>
 														<td>IR N.A.3.1</td>
 														<td className="description">Número de asociaciones de productores fortalecidos</td>
+														<td><Button  bsStyle='primary' bsSize='xsmall'><span>Select</span> </Button></td>
+
 													</tr>
 													<tr>
 														<td>448</td>
 														<td>CF-10</td>
 														<td>IR N.A.3.1</td>
 														<td className="description">Hectáreas de cultivos alternativos cosechados apoyados por programas del USG (F 1.4.2)</td>
+														<td><Button  bsStyle='primary' bsSize='xsmall'><span>Select</span> </Button></td>
+
 													</tr>
 												</tbody>
 											</Table>
@@ -152,7 +162,7 @@ module.exports = React.createClass({
 												items={20}
 												maxButtons={5}
 												activePage={1}
-												onSelect={this._handlPagination} />
+												onSelect={this._handlePagination} />
 											</Col>
 
 										</Row>
