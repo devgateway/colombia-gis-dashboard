@@ -125,7 +125,8 @@ module.exports  = React.createClass({
         infoData[tabId].map(function(node, index) {
           var chartnode = [];
           chartnode.push(node.name);
-          chartnode.push(parseInt(parseInt(node.value)/totalValue*100));
+          //chartnode.push(parseFloat((node.value/totalValue*100).toFixed(1)));
+          chartnode.push(parseFloat(node.value));
           chartdata.push(chartnode);
         });
 
@@ -168,7 +169,7 @@ module.exports  = React.createClass({
               verticalAlign: 'middle',
               labelFormatter: function() {
                 var name = this.name.length>21?this.name.substring(0,20):this.name;
-                return name + ' ' + this.y + '%';
+                return name + ' ' + this.percentage.toFixed(1) + '%';
               }
             },
             series: [{data: chartdata}]
