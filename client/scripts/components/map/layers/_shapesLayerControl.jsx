@@ -188,7 +188,7 @@ module.exports = React.createClass({
           <li>
               <div className="vbuffer"/>
               <div className="clearFix"/>
-              <h3>Classification Scheme</h3>
+              <h3 className="color-control">Classification Scheme</h3>
               <div>
                  <div className="breaksTemplates">
                   <div className="label label-info" onClick={this.handleClickForBreaks.bind(this, 0)}>Default</div>

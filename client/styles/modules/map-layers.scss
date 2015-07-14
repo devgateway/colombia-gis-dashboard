@@ -87,7 +87,10 @@
     line-height:23px;
     color: $blue;
     &.color-control{
-      width:125px;
+      width:135px;
+    &.value-label{
+      line-height:14px;
+      }
     }
   }
   .ui-slider-pip {
