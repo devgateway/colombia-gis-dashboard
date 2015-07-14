@@ -942,7 +942,8 @@ input[type=checkbox].glyphicon {
 .filters-more {
   float: left;
   color: #4d749f;
-  font-style: italic; }
+  font-style: italic;
+  cursor: pointer; }
   .filters-more:hover {
     color: #454545; }
 
