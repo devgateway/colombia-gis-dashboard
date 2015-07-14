@@ -86,6 +86,9 @@
     font-size:12px;
     line-height:23px;
     color: $blue;
+    &.color-control{
+      width:125px;
+    }
   }
   .ui-slider-pip {
     top: 30px;

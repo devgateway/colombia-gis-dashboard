@@ -187,7 +187,6 @@ module.exports = React.createClass({
 
           <li>
               <div className="vbuffer"/>
-              <h3>Layer Styles</h3>
               <div className="clearFix"/>
               <h3>Classification Scheme</h3>
               <div>
@@ -199,7 +198,7 @@ module.exports = React.createClass({
                 </div>
                 <div className="clearFix"/>
                 <div className="breaksTemplates">
-                  <h3>Color Scheme</h3>
+                  <h3 className="color-control">Color Palettes</h3>
                   <div className="colorpicker-element">
                   <span className="input-group-addon" onClick={this.handleClickForColor.bind(this, 0)} ><i style={{backgroundColor:'#AA3900'}}></i></span></div>
                   <div className="colorpicker-element">
@@ -215,12 +214,14 @@ module.exports = React.createClass({
               <div className="clearFix"/>
             </li>
             <li>
+            <h3 className="color-control">Color Selection</h3>
+
             {
 
               _.map(_.keys(this.state.breaks.breaks),function(key){
                   var br=this.state.breaks.breaks[key];
                 return (
-                      <Breaker  level={key} label={br.min+'-'+br.max} color={br.style.color} onChangeColor={this._changeColor} />
+                      <Breaker level={key} label={br.min+'-'+br.max} color={br.style.color} onChangeColor={this._changeColor} />
                       )
               }.bind(this))
 

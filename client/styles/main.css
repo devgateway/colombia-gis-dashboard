@@ -1227,6 +1227,8 @@ ul.tabs {
   font-size: 12px;
   line-height: 23px;
   color: #4d749f; }
+  .layer-control h3.color-control {
+    width: 125px; }
 .layer-control .ui-slider-pip {
   top: 30px;
   display: none; }
@@ -1712,7 +1714,8 @@ ul.funding-options {
   .breaksTemplates .colorpicker-element {
     width: 55px;
     float: left;
-    margin-bottom: 2em; }
+    margin-bottom: 2em;
+    margin-top: -5px; }
     .breaksTemplates .colorpicker-element .input-group-addon {
       background-color: transparent;
       border: none;
