@@ -206,7 +206,7 @@ module.exports = React.createClass({
                 </div>
                 <div className="clearFix"/>
                 <div className="breaksTemplates">
-                  <h3 className="color-control">Color Palettes</h3>
+                  <h3 className="color-control"><Message message='layers.colorPalettes'/></h3>
                   <div className="colorpicker-element">
                   <span className="input-group-addon" onClick={this.handleClickForColor.bind(this, 0)} ><i style={{backgroundColor:'#AA3900'}}></i></span></div>
                   <div className="colorpicker-element">

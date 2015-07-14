@@ -61,6 +61,7 @@
 		"fundingSourceDisbursements":"Disbursements",
 		"classificationScheme": "Classification Scheme",
 		"colorSelection": "Color Selection",
+		"colorPalettes": "Color Palettes",
 		"subactivitiesNumber": "Number of Subactivities",
 		"subActivitiesLevel":"Subactivity Layer",
 		"fundingType":"Funding Type",
