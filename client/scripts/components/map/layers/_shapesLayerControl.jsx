@@ -170,11 +170,10 @@ module.exports = React.createClass({
                 <li><span className="selectable-radio"></span>Disbursement</li>
               </ul>
               </div>
-
             </li>
 
 <li className="layer-option-section">
-<h3>Funding Source</h3>
+<h3><Message message='layers.fundingSource'/></h3>
 
 {
   fundingTypes.map(function(fundingType){

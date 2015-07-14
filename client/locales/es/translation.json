@@ -57,6 +57,7 @@
 		"fundingByType":"Capa de Financiamiento",
 		"subActivitiesLevel":"Capa de subactividades",
 		"fundingType":"Tipo de Financiamiento",
+		"fundingSource":"Fuente de Financiamiento",
 		"totalProjects":"Projectos Totales",
 		"indicators":"Indicadores",
 		"featureService":"Servicio de entidades",
