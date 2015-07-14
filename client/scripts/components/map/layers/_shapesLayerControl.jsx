@@ -170,20 +170,26 @@ module.exports = React.createClass({
                 <li><span className="selectable-radio"></span>Disbursement</li>
               </ul>
               </div>
-              {
-                fundingTypes.map(function(fundingType){
-                  return(
-                      <li className="funding-type-option">
-                      <CustomCheckbox
-                              selected={fundingType.selected}
-                              onChange={self._onFundingChanged}
-                              value={fundingType.id}/>
-                      <span>{fundingType.name}</span>
-                      </li>
-                  );
-                })
-              }
+
             </li>
+
+<li className="layer-option-section">
+<h3>Funding Source</h3>
+
+{
+  fundingTypes.map(function(fundingType){
+    return(
+        <li className="funding-type-option">
+        <CustomCheckbox
+                selected={fundingType.selected}
+                onChange={self._onFundingChanged}
+                value={fundingType.id}/>
+        <span>{fundingType.name}</span>
+        </li>
+    );
+  })
+}
+</li>
 
           <li>
               <div className="vbuffer"/>
