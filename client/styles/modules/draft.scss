@@ -131,19 +131,19 @@
 }
 
 .popup-loading-container {
-  height: 240px;
-  padding-left: 175px;
-  padding-top: 80px;
+	height: 240px;
+	padding-left: 175px;
+	padding-top: 80px;
 }
 
 .subactivities-container {
-  height: 240px;
+	height: 240px;
 }
 
 .subactivities-list {
-  overflow-y: scroll;
-  height: 195px;
-  width: 420px;
+	overflow-y: scroll;
+	height: 195px;
+	width: 420px;
 }
 
 .download-button{
@@ -154,4 +154,36 @@
 	z-index: 10000;
 	bottom: 60%;
 	width: 450px;
+}
+
+
+.finder {
+	p.title {
+		margin-top:6px;
+		font-weight:bold;
+	}
+
+	ul{
+		li{
+			margin-left: 10px;
+			float:left;
+		};
+		list-style: none;
+		float: left;
+		margin:0px;
+		padding: 0px;
+	}
+
+	table{
+		margin-top:10px;
+		tr{
+			td{
+				white-space: nowrap;
+			}
+			td.description{
+					white-space:normal
+				}
+
+		}
+	}
 }
