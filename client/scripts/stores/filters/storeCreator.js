@@ -5,6 +5,7 @@ var Reflux = require('reflux');
 var _ = require('lodash');
 var Mixins = require('./mixins.js');
 var TreeMixins = require('./treeMixins.js');
+var MultiLevelMixins = require('./multiLevelSearchMixins.js');
 var Actions = require('../../actions/filterActions.js');
 var RestoreActions = require('../../actions/restoreActions.js');
 
@@ -27,6 +28,19 @@ function makeTreeStore(actions, levels, lowestLevel) {
   return Reflux.createStore({
     listenables: [actions, RestoreActions],
     mixins: [TreeMixins],
+
+    init: function(){
+      this.state = {};
+      _.assign(this.state, {'levels': levels});
+      _.assign(this.state, {'lowestLevel': lowestLevel});
+    } 
+  })
+};
+
+function makeMultiLevelSearchStore(actions, levels, lowestLevel) {
+  return Reflux.createStore({
+    listenables: [actions, RestoreActions],
+    mixins: [MultiLevelMixins],
 
     init: function(){
       this.state = {};
@@ -106,7 +120,7 @@ module.exports = {
   Locations: makeTreeStore(Actions.Locations, locationTree, 'mu'),
   SubImplementers: makeTreeStore(Actions.SubImplementers, subImplementersTree, 'si'),
   ClassificationTypeBasic: makeTreeStore(Actions.ClassificationType, classificationTypeBasic, 'a2'),
-  ClassificationTypeAdvanced: makeTreeStore(Actions.ClassificationType, classificationTypeBasic, 'a5'),
+  ClassificationTypeAdvanced: makeMultiLevelSearchStore(Actions.ClassificationType, classificationTypeAdvanced, 'a5'),
   AorCor: makeStore(Actions.AorCor, 'aor-corNames.json', 'ar'),
   ContractType: makeStore(Actions.ContractType, 'contractTypes.json', 'ct'),
   Crops: makeStore(Actions.Crops, 'cropsList.json', 'cr'),

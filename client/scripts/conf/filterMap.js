@@ -1,6 +1,6 @@
 
 var DateStore = require('../stores/filters/dateStore.js');
-var StoreDispatcher = require('../stores/filters/storeDispatcher.js');
+var StoreDispatcher = require('../stores/filters/storeCreator.js');
 var Actions = require('../actions/filterActions.js');
 var filters = [
   {
@@ -133,7 +133,7 @@ var filters = [
     order: 15,
     label: 'filters.activityClassification',
     modes: ['advanced'],
-    type: 'tree',
+    type: 'multiLevelSearch',
     store: StoreDispatcher.ClassificationTypeAdvanced,
     actions: Actions.ClassificationType
   }

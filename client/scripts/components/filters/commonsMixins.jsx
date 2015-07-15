@@ -14,6 +14,10 @@ module.exports = {
     this.actions.filterByKeyword(keyword);
   },
 
+  _onSearchClear: function(keyword) {
+    this.actions.filterByKeyword("");
+  },
+
   _onSearchEnterKey: function(keyword) {
     this.actions.selectFilteredByKeyword(keyword)
   },

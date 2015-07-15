@@ -5,7 +5,7 @@ var Reflux = require('reflux');
 var _ = require('lodash');
 var Mixins=require('./mixins.js');
 var actions=require('../../actions/filterActions.js');
-var StoreDispatcher = require('./storeDispatcher.js');
+var StoreDispatcher = require('./storeCreator.js');
 var DateStore=require('./dateStore.js');
 
 module.exports = Reflux.createStore({
@@ -36,7 +36,7 @@ module.exports = Reflux.createStore({
 		this.state=this.state||{};
 
 		this.listenTo(StoreDispatcher.ClassificationTypeBasic, this._collectFilters(['a1','a2'], true));
-		this.listenTo(StoreDispatcher.ClassificationTypeAdvanced, this._collectFilters(['a1','a2','a3','a4','a5'], true));
+		//this.listenTo(StoreDispatcher.ClassificationTypeAdvanced, this._collectFilters(['a1','a2','a3','a4','a5'], true));
 		this.listenTo(StoreDispatcher.AorCor, this._collectFilters('ar'));
 
 		this.listenTo(StoreDispatcher.ContractType, this._collectFilters('ct'));
