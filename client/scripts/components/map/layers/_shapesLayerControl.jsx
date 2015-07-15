@@ -222,6 +222,7 @@ module.exports = React.createClass({
               <div className="clearFix"/>
             </li>
             <li>
+            <h3 className="color-control percent-funding"><Message message='layers.fundingPercent'/></h3>
             <h3 className="color-control"><Message message='layers.colorSelection'/></h3>
 
             {
@@ -235,7 +236,6 @@ module.exports = React.createClass({
 
             }
           </li>
-
 </ul>
         </TogglerContent>
       </Toggler>
