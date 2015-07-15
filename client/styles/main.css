@@ -1268,7 +1268,8 @@ ul.tabs {
     float: left; }
   .layer-control .toggler .toggler-btn {
     width: 20px;
-    float: left; }
+    float: left;
+    padding-right: 100px; }
   .layer-control .toggler .updown {
     float: left;
     margin-right: 5px; }
@@ -1276,8 +1277,7 @@ ul.tabs {
     clear: both; }
   .layer-control .toggler .fa {
     color: #4d749f;
-    margin-left: -10px;
-    width: 100%; }
+    margin-left: -10px; }
 .layer-control .ui-state-default,
 .layer-control .ui-widget-content .ui-state-default,
 .layer-control .ui-widget-header .ui-state-default {
