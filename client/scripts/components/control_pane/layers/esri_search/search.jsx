@@ -30,11 +30,19 @@ var SearchInput=React.createClass({
 		return {'feature': true,'image':true,'map':true ,'start':0 ,'num':20};
 	},
 
-	checkOption:function(value, selected){
+	checkOption:function(value){
 		var newState={};
-		newState[value]=selected;
- 		this.setState(newState);
+		newState[value.value]=value.selected;
+ 		this.update(newState);
 	},
+
+    update: function(assignable, options) {
+      options = options || {};
+      this.state = _.assign(this.state, assignable);
+      if (!options.silent) {
+         this.trigger(this.state);
+      }
+    },
 
 
 	render: function() {
