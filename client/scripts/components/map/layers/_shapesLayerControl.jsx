@@ -28,9 +28,9 @@ module.exports = React.createClass({
  mixins: [CommonsMixins, Reflux.connect(Store)], 
  
   _changeVisibility: function(id, value) {
-    LayerActions.changeLayerValue(id,'visible',value); 
+    LayerActions.changeLayerValue(id,'visible',value);
   },
-  
+
   _onChangeOpacity:function(id,value){
     LayerActions.changeLayerValue(id,'opacity',value);
   },
@@ -44,18 +44,18 @@ module.exports = React.createClass({
   },
 
   _changeColor:function(value,level){
-    LayerActions.changeLayerValue('shapes','color',value,level); 
+    LayerActions.changeLayerValue('shapes','color',value,level);
   },
 
   _changeBreak:function(value,level){
-    LayerActions.changeLayerValue('shapes','break',value,level); 
+    LayerActions.changeLayerValue('shapes','break',value,level);
   },
 
   _changeBreakStyle:function(value){
-    LayerActions.changeLayerValue('shapes','breakStyle',value); 
+    LayerActions.changeLayerValue('shapes','breakStyle',value);
   },
 
-  _onFundingChanged: function(obj) {  
+  _onFundingChanged: function(obj) {
     debugger;
     LayerActions.changeFundingFilterSelection(obj.value, obj.selected);
   },
@@ -72,6 +72,7 @@ module.exports = React.createClass({
 
     var level=this.state.level;
     var fundingTypes = this.state.fundingFilterItems || [];
+    debugger;
     var self = this;
     return (
     <li>
@@ -86,44 +87,58 @@ module.exports = React.createClass({
           <div><span className="control-title">{i18n.t("layers.fundingByType")}</span></div>
         </TogglerContent>
         <TogglerContent visibleWhen="expanded">
-          <Layer id="shapes"  
-            opacity={this.state.opacity} 
-            onChangeOpacity={this._onChangeOpacity} 
-            onChangeVisibility={this._changeVisibility} 
+          <Layer id="shapes"
+            opacity={this.state.opacity}
+            onChangeOpacity={this._onChangeOpacity}
+            onChangeVisibility={this._changeVisibility}
             visible={this.state.visible}/>
           <ul>
-            <li>
+            <li className="layer-option-section">
               <h3><Message message='layers.level'/></h3>
               <CustomRadioGroup>
-                <CustomRadio  className="inline" name="departament" checked={(level=='departament')? true : false}    
+                <CustomRadio  className="inline" name="departament" checked={(level=='departament')? true : false}
                 onClick={this._showByDepartment} label="layers.byDepartment"/>
-                <CustomRadio  className="inline" name="municipality" checked={(level=='municipality')? true : false}  
-                onClick={this._showByMunicipality} label="layers.byMunicipality"/>    
+                <CustomRadio  className="inline" name="municipality" checked={(level=='municipality')? true : false}
+                onClick={this._showByMunicipality} label="layers.byMunicipality"/>
               </CustomRadioGroup>
             </li>
-            <li>
-              <h3>Funding Type</h3>
-              {
-                fundingTypes.map(function(fundingType){
-                  return(
-                    <div>
-                      <CustomCheckbox 
-                              selected={fundingType.selected}
-                              onChange={self._onFundingChanged}
-                              value={fundingType.id}/>
-                      <span>{fundingType.name}</span>
-                    </div>
-                  );
-                })
-              }
-           
+            <li className="layer-option-section">
+              <h3 className="color-control"><Message message='layers.fundingType'/></h3>
+              <div className="funding-types">
+              <ul>
+                <li><span className="selectable-radio"></span>
+                  <Message message='layers.fundingSourceCommitments'/>
+                </li>
+                <li><span className="selectable-radio"></span>
+                  <Message message='layers.fundingSourceDisbursements'/>
+                </li>
+              </ul>
+              </div>
             </li>
-          
+
+<li className="layer-option-section">
+<h3><Message message='layers.fundingSource'/></h3>
+
+{
+  fundingTypes.map(function(fundingType){
+    return(
+        <li className="funding-type-option">
+        <CustomCheckbox
+                selected={fundingType.selected}
+                onChange={self._onFundingChanged}
+                value={fundingType.id}/>
+        <span>{fundingType.name}</span>
+        </li>
+    );
+  })
+}
+</li>
+
             <li>
+              <div className="vbuffer"/>
               <div className="clearFix"/>
-              <h3>Styles Breaks</h3>
+              <h3 className="color-control"><Message message='layers.classificationScheme'/></h3>
               <div>
-                <div><b>Property <i> {this.state.breaks.field}</i></b></div>
                 <div className="breaksTemplates">
                   <div className="label label-info" onClick={this._changeBreaksWrapper.bind(this, 0)}>Default</div> 
                   <div className="label label-info" onClick={this._changeBreaksWrapper.bind(this, 1)}>Jenks</div>
@@ -132,19 +147,15 @@ module.exports = React.createClass({
                 </div>
                 <div className="clearFix"/>
                 <div className="breaksTemplates">
-                  <div className="label label-warning">Default</div>
+                  <h3 className="color-control"><Message message='layers.colorPalettes'/></h3>
                   <div className="colorpicker-element">
                   <span className="input-group-addon" onClick={this.handleClickForColor.bind(this, 0, null)} ><i style={{backgroundColor:'#AA3900'}}></i></span></div>
-                  <div className="label label-warning">Contrast 1</div>
                   <div className="colorpicker-element">
                   <span className="input-group-addon" onClick={this.handleClickForColor.bind(this, 1)} ><i style={{backgroundColor:'#FF3333'}}></i></span></div>
-                  <div className="label label-warning">Contrast 2</div>
                   <div className="colorpicker-element">
                   <span className="input-group-addon" onClick={this.handleClickForColor.bind(this, 2)} ><i style={{backgroundColor:'#3399FF'}}></i></span></div>
-                  <div className="label label-warning">Gradient 1</div>
                   <div className="colorpicker-element">
                   <span className="input-group-addon" onClick={this.handleClickForColor.bind(this, 3)} ><i style={{backgroundColor:'#66FFB2'}}></i></span></div>
-                  <div className="label label-warning">Gradient 2</div>
                   <div className="colorpicker-element">
                   <span className="input-group-addon" onClick={this.handleClickForColor.bind(this, 4)} ><i style={{backgroundColor:'#FFFF66'}}></i></span></div>
                 </div>
@@ -152,6 +163,9 @@ module.exports = React.createClass({
               <div className="clearFix"/>
             </li>
             <li>
+            <h3 className="color-control percent-funding"><Message message='layers.fundingPercent'/></h3>
+            <h3 className="color-control"><Message message='layers.colorSelection'/></h3>
+
             {
 
               _.map(_.keys(this.state.breaks.breaks),function(key){
@@ -163,8 +177,7 @@ module.exports = React.createClass({
 
             }
           </li>
-        
-</ul>  
+</ul>
         </TogglerContent>
       </Toggler>
     </li>);

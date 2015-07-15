@@ -57,6 +57,7 @@
     &.color-selection{
     width:100%;
     float:left;
+    margin-top:-12px
     }
   }
 }
@@ -68,46 +69,33 @@
 }
 
 .breaksOptions {
-  float:left;
-  margin-top:-18px;
-  margin-right:0;
+  @include floatLeft;
+  @include textCenter;
+  margin:-37px 0 10px 0;
   width:55px;
-  text-align:center;
+  padding-top:$gutter;
 
 	input{
-    width: 54px;
-    height:16px;
-    font-size: 11px;
-    margin: -2px auto 10px -4px;
-    outline:none;
-    color:#888888;
-    background: #d2dadd;
-    border:none;
-    clear:both;
-    text-align:center;
-  &:hover{
-    background:#e6edee;
-    }
+  display:none;
   }
 
 	.label{
-  	margin-top:2px;
+    @include textCenter;
+    margin-left:-5px;
     color: $black;
     background: none;
-    text-align:center;
     clear:both;
     padding:0;
+    &.label-info{
+      line-height:30px;
+    }
 	}
-
-  .colorpicker-element{
-	 }
 
 	.input-group-addon {
     padding: 0;
     font-size: 12px;
     font-weight: normal;
     line-height: 1;
-    color: #555;
     text-align: center;
     border: none;
     clear:both;
@@ -115,7 +103,15 @@
     margin: 0 auto 0 -2px;
     i{
       width:54px;
+      margin-top:-3px;
     }
+	}
+}
+
+.colorpicker{
+	&.colorpicker-with-alpha{
+		width:149px;
+		margin-left:39px;
 	}
 }
 
@@ -126,6 +122,7 @@ ul.funding-options{
   width:550px;
   display:block;
   overflow:hidden;
+
   li{
     float:left;
     width:268px;
@@ -134,4 +131,31 @@ ul.funding-options{
   .selectable{
     margin-right:5px;
   }
+}
+
+// map content list items
+.layer-option-section{
+    display:block;
+    overflow:hidden;
+}
+
+// commitments vs disbursements selection
+.funding-types{
+  @include floatLeft;
+  width:70%;
+  margin-bottom: $gutter/2;
+  margin-top:3px;
+
+  li{
+    @include floatLeft;
+    margin-right:12px;
+  }
+}
+.funding-type-option{
+  width:31%;
+  float:left;
+}
+
+.vbuffer{
+  @include vbuffer(20px);
 }

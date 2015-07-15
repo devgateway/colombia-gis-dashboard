@@ -368,8 +368,11 @@ ul.tabbed {
   margin-bottom: 0; }
 
 .activity-nav {
-  clear: both;
   overflow: hidden; }
+  .activity-nav:after {
+    content: "";
+    display: table;
+    clear: both; }
 
 .filter-type-wrapper {
   overflow: hidden;
@@ -630,7 +633,7 @@ button.layer-search {
       line-height: normal;
       font: "Open Sans", sans-serif; }
 
-.selectable-radio {
+.selectable-radio, .selectable {
   border-radius: 0% !important;
   background-clip: none;
   font-size: 1.5em !important;
@@ -641,9 +644,9 @@ button.layer-search {
   float: left;
   margin-right: 0.2em;
   margin-top: 1px;
-  width: 13px;
-  height: 13px; }
-  .selectable-radio .fa {
+  width: 12px;
+  height: 12px; }
+  .selectable-radio .fa, .selectable .fa {
     font-size: 0.7em;
     margin-left: 2px;
     margin-top: -2px;
@@ -874,6 +877,10 @@ input[type=checkbox].glyphicon {
   padding: 0.5em;
   margin-top: -3px; }
 
+.clear-dates {
+  width: 205px;
+  float: right !important; }
+
 .fa-trash {
   font-size: 1.2em;
   float: right;
@@ -935,14 +942,19 @@ input[type=checkbox].glyphicon {
 .filters-more {
   float: left;
   color: #4d749f;
-  font-style: italic; }
+  font-style: italic;
+  cursor: pointer; }
   .filters-more:hover {
     color: #454545; }
 
 nav.tab-navigation,
 nav.tabs {
-  clear: both;
   margin: 0; }
+  nav.tab-navigation:after,
+  nav.tabs:after {
+    content: "";
+    display: table;
+    clear: both; }
 
 .nav-tabs {
   border-bottom: none; }
@@ -1035,11 +1047,14 @@ ul.overview-stats {
   font-size: 17px; }
 
 .text-search-wrapper {
-  clear: both;
   -webkit-transition: all 100ms ease;
   -moz-transition: all 100ms ease;
   -o-transition: all 100ms ease;
   transition: all 100ms ease; }
+  .text-search-wrapper:after {
+    content: "";
+    display: table;
+    clear: both; }
   .text-search-wrapper input[type=text] {
     border: 1px solid #fff;
     outline: none;
@@ -1062,16 +1077,22 @@ button.search-button {
   outline: none; }
 
 .layer-search-wrapper {
-  clear: both;
   margin-bottom: 1em; }
+  .layer-search-wrapper:after {
+    content: "";
+    display: table;
+    clear: both; }
 
 .layer-search-options {
   padding-top: 0.7em;
   padding-bottom: 0.5em; }
   .layer-search-options ul {
     padding-left: 0;
-    list-style: none;
-    clear: both; }
+    list-style: none; }
+    .layer-search-options ul:after {
+      content: "";
+      display: table;
+      clear: both; }
     .layer-search-options ul li {
       float: left;
       margin-right: 2em;
@@ -1090,7 +1111,7 @@ button.search-button {
   .selectable.selected, .selected.selectable-radio {
     background: #e9ba00; }
 
-.selectable-radio {
+.selectable-radio, .selectable {
   -webkit-border-radius: 50%;
   border-radius: 50%;
   background-clip: padding-box;
@@ -1108,10 +1129,13 @@ button.search-button {
   pointer-events: none; }
 
 .tab-panel {
-  clear: both;
   margin-bottom: 1em;
   padding: 1em 1.8em;
   overflow: hidden; }
+  .tab-panel:after {
+    content: "";
+    display: table;
+    clear: both; }
 
 .tab-content {
   min-height: 330px;
@@ -1199,10 +1223,18 @@ ul.tabs {
 
 .layer-control h3 {
   float: left;
+  margin-top: 0;
   margin-right: 10px;
   font-size: 12px;
-  margin-top: 0;
+  line-height: 23px;
   color: #4d749f; }
+  .layer-control h3.color-control {
+    width: 135px; }
+    .layer-control h3.color-control.value-label {
+      line-height: 14px; }
+    .layer-control h3.color-control.percent-funding {
+      line-height: 1px;
+      float: none; }
 .layer-control .ui-slider-pip {
   top: 30px;
   display: none; }
@@ -1222,7 +1254,7 @@ ul.tabs {
   float: left; }
   .layer-control .slider-holder .slider {
     margin-left: 95px;
-    margin-top: 3px; }
+    margin-top: 7px; }
 .layer-control .feature-checkbox {
   float: left;
   margin-top: -5px; }
@@ -1302,6 +1334,11 @@ ul.tabs {
   .layer-control ul li {
     display: block;
     margin-bottom: 20px; }
+
+.horizontal {
+  float: left;
+  margin-right: 10px;
+  margin-top: 4px; }
 
 .arcgis-sig-in {
   position: absolute;
@@ -1530,7 +1567,8 @@ ul.tabs {
       line-height: 15px; }
     .controls-items li.color-selection {
       width: 100%;
-      float: left; }
+      float: left;
+      margin-top: -12px; }
 
 .color-selection {
   margin-top: 30px;
@@ -1538,43 +1576,38 @@ ul.tabs {
 
 .breaksOptions {
   float: left;
-  margin-top: -18px;
-  margin-right: 0;
+  text-align: center;
+  margin: -37px 0 10px 0;
   width: 55px;
-  text-align: center; }
+  padding-top: 1em; }
   .breaksOptions input {
-    width: 54px;
-    height: 16px;
-    font-size: 11px;
-    margin: -2px auto 10px -4px;
-    outline: none;
-    color: #888888;
-    background: #d2dadd;
-    border: none;
-    clear: both;
-    text-align: center; }
-    .breaksOptions input:hover {
-      background: #e6edee; }
+    display: none; }
   .breaksOptions .label {
-    margin-top: 2px;
+    text-align: center;
+    margin-left: -5px;
     color: #000000;
     background: none;
-    text-align: center;
     clear: both;
     padding: 0; }
+    .breaksOptions .label.label-info {
+      line-height: 30px; }
   .breaksOptions .input-group-addon {
     padding: 0;
     font-size: 12px;
     font-weight: normal;
     line-height: 1;
-    color: #555;
     text-align: center;
     border: none;
     clear: both;
     display: block;
     margin: 0 auto 0 -2px; }
     .breaksOptions .input-group-addon i {
-      width: 54px; }
+      width: 54px;
+      margin-top: -3px; }
+
+.colorpicker.colorpicker-with-alpha {
+  width: 149px;
+  margin-left: 39px; }
 
 ul.funding-options {
   margin-left: 0;
@@ -1589,8 +1622,30 @@ ul.funding-options {
   ul.funding-options .selectable, ul.funding-options .selectable-radio {
     margin-right: 5px; }
 
+.layer-option-section {
+  display: block;
+  overflow: hidden; }
+
+.funding-types {
+  float: left;
+  width: 70%;
+  margin-bottom: 0.5em;
+  margin-top: 3px; }
+  .funding-types li {
+    float: left;
+    margin-right: 12px; }
+
+.funding-type-option {
+  width: 31%;
+  float: left; }
+
+.vbuffer {
+  height: 20px;
+  clear: both;
+  width: 100%; }
+
 /*add here all styles used during development later they will be replaced by the final ones */
-.selectable-radio {
+.selectable-radio, .selectable {
   border-radius: 0% !important;
   background-clip: none;
   font-size: 1.5em !important;
@@ -1603,7 +1658,7 @@ ul.funding-options {
   margin-top: 1px;
   width: 13px;
   height: 13px; }
-  .selectable-radio .fa {
+  .selectable-radio .fa, .selectable .fa {
     font-size: 0.7em;
     margin-left: 2px;
     margin-top: -2px;
@@ -1611,7 +1666,8 @@ ul.funding-options {
 
 .horizontal {
   float: left;
-  margin-right: 10px; }
+  margin-right: 10px;
+  margin-top: 4px; }
 
 .leaflet-popup-pane {
   z-index: 10000; }
@@ -1634,18 +1690,72 @@ ul.funding-options {
   color: #4278AA;
   font-size: 14px; }
 
-.clearFix {
+.clearFix:after {
+  content: "";
+  display: table;
   clear: both; }
+
+.breaksTemplates {
+  overflow: hidden; }
+  .breaksTemplates .label {
+    float: left;
+    width: 50px;
+    margin-top: 7px; }
+    .breaksTemplates .label.label-info {
+      background: transparent;
+      color: #4d749f;
+      margin-top: 5px;
+      border-right: 1px solid #454545;
+      padding-right: 15px;
+      margin-right: 10px;
+      text-align: left;
+      border-radius: 0;
+      width: auto;
+      font-size: 11px;
+      line-height: 10px;
+      height: 13px; }
+      .breaksTemplates .label.label-info:last-child {
+        border-right: none; }
+      .breaksTemplates .label.label-info:hover {
+        color: #000000; }
+  .breaksTemplates .colorpicker-element {
+    width: 54px;
+    float: left;
+    margin-bottom: 2em;
+    margin-top: -5px; }
+    .breaksTemplates .colorpicker-element .input-group-addon {
+      background-color: transparent;
+      border: none;
+      padding: 0; }
+      .breaksTemplates .colorpicker-element .input-group-addon i {
+        width: 53px;
+        margin-top: 10px; }
 
 .loading-container {
   position: absolute;
   bottom: 50%;
   right: 45%;
-  z-index: 1002; }
+  border: 0px solid; }
 
-/* Extra Small Devices, Phones */
-@media only screen and (max-width: 480px) {
-  .loading-container {
-    right: 30%; } }
+.popup-loading-container {
+  height: 240px;
+  padding-left: 175px;
+  padding-top: 80px; }
+
+.subactivities-container {
+  height: 240px; }
+
+.subactivities-list {
+  overflow-y: scroll;
+  height: 195px;
+  width: 420px; }
+
+.download-button {
+  border: 1px solid #c5c5c5; }
+
+.saveMapPopup {
+  z-index: 10000;
+  bottom: 60%;
+  width: 450px; }
 
 /*# sourceMappingURL=main.css.map */

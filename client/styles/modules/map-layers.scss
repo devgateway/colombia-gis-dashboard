@@ -81,10 +81,21 @@
   h3 {
     @extend .filter-label;
     @include floatLeft;
+    margin-top:0;
     margin-right:10px;
     font-size:12px;
-    margin-top:0;
+    line-height:23px;
     color: $blue;
+    &.color-control{
+      width:135px;
+    &.value-label{
+      line-height:14px;
+      }
+    &.percent-funding{
+      line-height:1px;
+      float:none;
+      }
+    }
   }
   .ui-slider-pip {
     top: 30px;
@@ -111,7 +122,7 @@
     @include floatLeft;
     .slider{
      margin-left:95px;
-     margin-top: 3px;
+     margin-top: 7px;
     }
   }
 
@@ -200,7 +211,12 @@
       margin-bottom: 20px;
 
     }
-
-
   }
+}
+
+// levels in map content
+.horizontal{
+	@include floatLeft;
+	margin-right:10px;
+	margin-top:4px;
 }
