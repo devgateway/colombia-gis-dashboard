@@ -14,20 +14,18 @@ var CustomRadioGroup = require('../../commons/customRadioButton.jsx').RadioGroup
 var Layer = require('./_layer.jsx');
 var _=require('lodash');
 var CustomCheckbox = require('../../commons/customCheckbox.jsx');
+var CommonsMixins = require('./_mixins.js');
 
 var Breaker=require('./_breaker.jsx');
 //var FilterStore = require('../../../stores/filterStore.js');
 
-var color0 = [[255, 200, 170, 0.8], [212, 143, 106, 0.8], [253, 154, 0, 0.8], [170, 57, 0, 0.8], [128, 58, 21, 0.8]];
-var color1 = [[255, 51, 51, 0.8], [255, 153, 51, 0.8], [255, 255, 51, 0.8], [153, 255, 51, 0.8], [51, 255, 153, 0.8]];
-var color2 = [[51, 153, 255, 0.8], [102, 102, 255, 0.8], [178, 102, 255, 0.8], [255, 102, 255, 0.8], [255, 102, 178, 0.8]];
-var color3 = [[102, 255, 178, 0.8], [51, 255, 153, 0.8], [0, 255, 128, 0.8], [0, 204, 102, 0.8], [0, 153, 76, 0.8]];
-var color4 = [[255, 255, 102, 0.8], [255, 255, 51, 0.8], [255, 255, 0, 0.8], [204, 204, 0, 0.8], [153, 153, 0, 0.8]];
+var breaks = [0, 20, 40, 60, 80, 100];
+var breakStyle = "percentage";
 
 module.exports = React.createClass({
 
  //mixins: [Reflux.connect(FilterStore), Reflux.connect(Store)], 
- mixins: [Reflux.connect(Store)], 
+ mixins: [CommonsMixins, Reflux.connect(Store)], 
  
   _changeVisibility: function(id, value) {
     LayerActions.changeLayerValue(id,'visible',value); 
@@ -62,80 +60,8 @@ module.exports = React.createClass({
     LayerActions.changeFundingFilterSelection(obj.value, obj.selected);
   },
 
-  handleClickForBreaks:function(breakId){
-    console.log('_shapesLayerControl>handleClickForBreaks = ' + breakId);
-    var self = this;
-    var breaks = [0, 20, 40, 60, 80, 100];
-    //var breakStyle = "breakValues";
-    var breakStyle = "percentage";
-    switch(breakId) {
-    case 1:
-        if(this.state.geoStats){
-          //breaks = this.state.geoStats.getClassJenks(5);
-          console.log("--- Jenks: " + this.state.geoStats.getClassJenks(5));
-          breaks = this._convertGeoBreaksToPercentage(this.state.geoStats.getClassJenks(5));
-        }
-        break;
-    case 2:
-        if(this.state.geoStats){
-          //breaks = this.state.geoStats.getClassArithmeticProgression(5);
-          console.log("--- Arithmetic: " + this.state.geoStats.getClassArithmeticProgression(5));
-          breaks = this._convertGeoBreaksToPercentage(this.state.geoStats.getClassArithmeticProgression(5));
-        }
-        break;
-    case 3:
-        if(this.state.geoStats){
-          //breaks = this.state.geoStats.getClassGeometricProgression(5);
-          console.log("--- Geometric: " + this.state.geoStats.getClassGeometricProgression(5));
-          breaks = this._convertGeoBreaksToPercentage(this.state.geoStats.getClassGeometricProgression(5));
-        }
-        break;
-    default:
-        breakStyle = "percentage";
-        break;
-    } 
-
-    self._changeBreak([breaks[0], breaks[1]], "Level0");
-    self._changeBreak([breaks[1], breaks[2]], "Level1");
-    self._changeBreak([breaks[2], breaks[3]], "Level2");
-    self._changeBreak([breaks[3], breaks[4]], "Level3");
-    self._changeBreak([breaks[4], breaks[5]], "Level4");
-    self._changeBreakStyle(breakStyle);
-  },
-
-  _convertGeoBreaksToPercentage:function(geoBreaks){
-    var newBreaks = [0];
-    for(var i=1; i<geoBreaks.length; i++){
-      newBreaks.push((geoBreaks[i]/geoBreaks[geoBreaks.length-1]*100).toFixed(2));
-    }
-    newBreaks.push(100);
-    return newBreaks;
-  },
-
-  handleClickForColor:function(colorPattern){
-    console.log('_shapesLayerControl>handleClickForColor = ' + colorPattern);
-    var self = this;
-    var color;
-    switch(colorPattern) {
-    case 1:
-        color = color1;
-        break;
-    case 2:
-        color = color2;
-        break;
-    case 3:
-        color = color3;
-        break;
-    case 4:
-        color = color4;
-        break;
-    default:
-        color = color0;
-        break;
-    } 
-    color.map(function(n, i){
-      self._changeColor({r: n[0], g: n[1], b: n[2], a: n[3]}, "Level"+i);
-    })
+  _changeBreaksWrapper:function(value){
+    this.handleClickForBreaks(value, breaks, breakStyle);
   },
 
   render: function() {
@@ -193,22 +119,22 @@ module.exports = React.createClass({
            
             </li>
           
-          <li>
+            <li>
               <div className="clearFix"/>
               <h3>Styles Breaks</h3>
               <div>
                 <div><b>Property <i> {this.state.breaks.field}</i></b></div>
-                 <div className="breaksTemplates">
-                  <div className="label label-info" onClick={this.handleClickForBreaks.bind(this, 0)}>Default</div> 
-                  <div className="label label-info" onClick={this.handleClickForBreaks.bind(this, 1)}>Jenks</div>
-                  <div className="label label-info" onClick={this.handleClickForBreaks.bind(this, 2)}>Arithmetic</div>
-                  <div className="label label-info" onClick={this.handleClickForBreaks.bind(this, 3)}>Geometric</div>
+                <div className="breaksTemplates">
+                  <div className="label label-info" onClick={this._changeBreaksWrapper.bind(this, 0)}>Default</div> 
+                  <div className="label label-info" onClick={this._changeBreaksWrapper.bind(this, 1)}>Jenks</div>
+                  <div className="label label-info" onClick={this._changeBreaksWrapper.bind(this, 2)}>Arithmetic</div>
+                  <div className="label label-info" onClick={this._changeBreaksWrapper.bind(this, 3)}>Geometric</div>
                 </div>
                 <div className="clearFix"/>
                 <div className="breaksTemplates">
                   <div className="label label-warning">Default</div>
                   <div className="colorpicker-element">
-                  <span className="input-group-addon" onClick={this.handleClickForColor.bind(this, 0)} ><i style={{backgroundColor:'#AA3900'}}></i></span></div>
+                  <span className="input-group-addon" onClick={this.handleClickForColor.bind(this, 0, null)} ><i style={{backgroundColor:'#AA3900'}}></i></span></div>
                   <div className="label label-warning">Contrast 1</div>
                   <div className="colorpicker-element">
                   <span className="input-group-addon" onClick={this.handleClickForColor.bind(this, 1)} ><i style={{backgroundColor:'#FF3333'}}></i></span></div>
@@ -231,7 +157,7 @@ module.exports = React.createClass({
               _.map(_.keys(this.state.breaks.breaks),function(key){
                   var br=this.state.breaks.breaks[key];
                 return (
-                      <Breaker  level={key} label={br.min+'-'+br.max} color={br.style.color} onChangeColor={this._changeColor} />
+                      <Breaker  level={key} label={br.min.toFixed(2)+'-'+br.max.toFixed(2)} color={br.style.color} onChangeColor={this._changeColor} />
                       )
               }.bind(this))
 
