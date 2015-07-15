@@ -85,7 +85,7 @@ module.exports = React.createClass({
           onChangeOpacity={this._onChangeOpacity}
           onChangeVisibility={this._changevisibility}
           visible={this.state.visible}/>
-        <ul className="controls-items">
+        <ul>
           <li className="levels">
             <h3><Message message='layers.level'/></h3>
             <CustomRadioGroup>
@@ -95,7 +95,9 @@ module.exports = React.createClass({
                 onClick={this._showByMunicipality} label="layers.byMunicipality"/>
             </CustomRadioGroup>
           </li>
+
           <li>
+            <div className="clearFix"/>
             <h3 className="color-control value-label"><Message message='layers.subactivitiesNumber'/></h3>
             <ul className="funding-options">
             {
@@ -114,41 +116,35 @@ module.exports = React.createClass({
             </ul>
           </li>
           <li>
-            <div className="clearFix"/>
-            <h3>Styles Breaks</h3>
-            <div>
-              <div><b>Property <i> {this.state.breaks.field}</i></b></div>
-              <div className="breaksTemplates">
-                <div className="label label-info" onClick={this._changeBreaksWrapper.bind(this, 0)}>Default</div> 
-                <div className="label label-info" onClick={this._changeBreaksWrapper.bind(this, 1)}>Jenks</div>
-                <div className="label label-info" onClick={this._changeBreaksWrapper.bind(this, 2)}>Arithmetic</div>
-                <div className="label label-info" onClick={this._changeBreaksWrapper.bind(this, 3)}>Geometric</div>
-              </div>
+              <div className="vbuffer"/>
               <div className="clearFix"/>
-              <div className="breaksTemplates">
-                <div className="label label-warning">Default</div>
-                <div className="colorpicker-element">
-                <span className="input-group-addon" onClick={this.handleClickForColor.bind(this, 0, color0)} ><i style={{backgroundColor:'#F5A82E'}}></i></span></div>
-                <div className="label label-warning">Contrast 1</div>
-                <div className="colorpicker-element">
-                <span className="input-group-addon" onClick={this.handleClickForColor.bind(this, 1)} ><i style={{backgroundColor:'#FF3333'}}></i></span></div>
-                <div className="label label-warning">Contrast 2</div>
-                <div className="colorpicker-element">
-                <span className="input-group-addon" onClick={this.handleClickForColor.bind(this, 2)} ><i style={{backgroundColor:'#3399FF'}}></i></span></div>
-                <div className="label label-warning">Gradient 1</div>
-                <div className="colorpicker-element">
-                <span className="input-group-addon" onClick={this.handleClickForColor.bind(this, 3)} ><i style={{backgroundColor:'#66FFB2'}}></i></span></div>
-                <div className="label label-warning">Gradient 2</div>
-                <div className="colorpicker-element">
-                <span className="input-group-addon" onClick={this.handleClickForColor.bind(this, 4)} ><i style={{backgroundColor:'#FFFF66'}}></i></span></div>
+              <h3 className="color-control"><Message message='layers.classificationScheme'/></h3>
+              <div>
+                <div className="breaksTemplates">
+                  <div className="label label-info" onClick={this._changeBreaksWrapper.bind(this, 0)}>Default</div> 
+                  <div className="label label-info" onClick={this._changeBreaksWrapper.bind(this, 1)}>Jenks</div>
+                  <div className="label label-info" onClick={this._changeBreaksWrapper.bind(this, 2)}>Arithmetic</div>
+                  <div className="label label-info" onClick={this._changeBreaksWrapper.bind(this, 3)}>Geometric</div>
+                </div>
+                <div className="clearFix"/>
+                <div className="breaksTemplates">
+                  <h3 className="color-control"><Message message='layers.colorPalettes'/></h3>
+                  <div className="colorpicker-element">
+                  <span className="input-group-addon" onClick={this.handleClickForColor.bind(this, 0, color0)} ><i style={{backgroundColor:'#AA3900'}}></i></span></div>
+                  <div className="colorpicker-element">
+                  <span className="input-group-addon" onClick={this.handleClickForColor.bind(this, 1)} ><i style={{backgroundColor:'#FF3333'}}></i></span></div>
+                  <div className="colorpicker-element">
+                  <span className="input-group-addon" onClick={this.handleClickForColor.bind(this, 2)} ><i style={{backgroundColor:'#3399FF'}}></i></span></div>
+                  <div className="colorpicker-element">
+                  <span className="input-group-addon" onClick={this.handleClickForColor.bind(this, 3)} ><i style={{backgroundColor:'#66FFB2'}}></i></span></div>
+                  <div className="colorpicker-element">
+                  <span className="input-group-addon" onClick={this.handleClickForColor.bind(this, 4)} ><i style={{backgroundColor:'#FFFF66'}}></i></span></div>
+                </div>
               </div>
-            </div>
-            <div className="clearFix"/>
           </li>
           <li className="color-selection">
+            <h3 className="color-control percent-funding"><Message message='layers.activitiesNumber'/></h3>
             <h3 className="color-control"><Message message='layers.colorSelection'/></h3>
-            <div>
-            </div>
             {
               _.map(_.keys(this.state.breaks.breaks),function(key){
                   var br=this.state.breaks.breaks[key];

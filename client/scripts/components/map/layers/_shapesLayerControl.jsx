@@ -56,7 +56,6 @@ module.exports = React.createClass({
   },
 
   _onFundingChanged: function(obj) {
-    debugger;
     LayerActions.changeFundingFilterSelection(obj.value, obj.selected);
   },
 
@@ -72,7 +71,6 @@ module.exports = React.createClass({
 
     var level=this.state.level;
     var fundingTypes = this.state.fundingFilterItems || [];
-    debugger;
     var self = this;
     return (
     <li>
