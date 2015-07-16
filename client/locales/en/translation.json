@@ -41,7 +41,20 @@
 		"subActivityStatus": "SubActivity Status",
 		"clearDates": "Clear Dates",
 		"subActivitiesBetween":"Active SubActivities Between:",
-		"aorCor":"AOR/COR"
+		"aorCor":"AOR/COR",
+		"default":"Default",
+		"jenks":"Jenks",
+		"arithmetic":"Arithmetic",
+		"geometric":"Geometric",
+		"defaultTip":"Default classification method",
+		"jenksTip":"Natural breaks classification method",
+		"arithmeticTip":"Arithmetic progression",
+		"geometricTip":"Geometric progression",
+		"defaultColor":"Default colors",
+		"contrast1":"Contrast colors 1",
+		"contrast2":"Contrast colors 2",
+		"gradient1":"Gradient colors 1",
+		"gradient2":"Gradient colors 2"
 	},
 
 	"layers": {

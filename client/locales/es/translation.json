@@ -40,7 +40,20 @@
 		"subActivityStatus": "Estado de la SubActividad",
 		"clearDates": "Limpiar Fechas",
 		"subActivitiesBetween": "Sub Actividades Activas Entre:",
-		"aorCor":"AOR/COR"
+		"aorCor":"AOR/COR",
+		"default":"Por defecto",
+		"jenks":"Jenks",
+		"arithmetic":"Aritmética",
+		"geometric":"Geométrica",
+		"defaultTip":"Método de clasificación por defecto",
+		"jenksTip":"Método de clasificación por separación natural",
+		"arithmeticTip":"Progresión aritmética",
+		"geometricTip":"Progresión geométrica",
+		"defaultColor":"Colores por defecto",
+		"contrast1":"Contraste de colores 1",
+		"contrast2":"Contraste de colores 2",
+		"gradient1":"Gradiente de colores 1",
+		"gradient2":"Gradiente de colores 2"
 
 	},
 
