@@ -1,7 +1,12 @@
 
 var React = require('react');
+var Reflux = require('reflux');
+
+var LanStore=require('../../stores/lanStore.js');
 
 var KeywordSearch = React.createClass({
+
+  mixins: [Reflux.connect(LanStore, 'lan')],
 
   _onKeyUp: function(ev) {
 

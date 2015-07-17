@@ -17,7 +17,7 @@ module.exports = {
         method: 'post', 
         //method: 'get', 
         contentType: "application/json",
-        data: JSON.stringify({"filtersInfoWin": infoWindowFilter? infoWindowFilter : [], "filters": filters? filters : []}),
+        data: JSON.stringify({"filters": filters? filters : []}) + JSON.stringify({"filtersInfoWin": infoWindowFilter? infoWindowFilter : []}),
         crossOrigin: true
       }).fail(logFailure);
     },

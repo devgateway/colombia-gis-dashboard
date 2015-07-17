@@ -28,13 +28,17 @@ module.exports = React.createClass({
     return {selected: this.props.selected};
   },
 
+  componentDidMount: function(){
+    $('.item-label').tooltip();
+  },
+
   render: function() {
     var itemClassNames=(this.state.selected===true)?'item-label label-selected':'item-label';
     if (!this.props.hide && (!this.props.showOnlySelected || (this.props.showOnlySelected && (this.props.selected)))){
       return(  
         <div className="filter-col">
           <CustomCheckbox selected={this.state.selected} value={this.props.id} onChange={this._handleClick}/>
-          <span onClick={this._handleClick} className={itemClassNames}> {this.props.name}</span>
+          <span onClick={this._handleClick} className={itemClassNames} title={this.props.label.length>30? this.props.label : ""}> {this.props.label}</span>
         </div>)
     } else {
       return null;

@@ -5,7 +5,7 @@
 	border-radius: 0% !important;
 	background-clip:none;
 
-	font-size: 1.5em !important; 
+	font-size: 1.5em !important;
 	width: 5px;
 	height: 5px;
 	border: 1px solid #cccccc;
@@ -16,7 +16,7 @@
 	width:13px;
 	height:13px;
 	.selected{
-		
+
 	}
 	.fa{
 		font-size:0.7em;
@@ -28,9 +28,11 @@
 
 
 .horizontal{
-	float: left;
+	@include floatLeft;
 	margin-right:10px;
+	margin-top:4px;
 }
+
 .leaflet-popup-pane {
 	z-index: 10000;
 }
@@ -57,93 +59,81 @@
 .clearFix{
 	@include clearfix;
 }
-.breaksOptions {
-
-	input{
-		width: 20px;
-		font-size:10px;
-		margin-top: 4px; 
-	}
-
-	.label{
-		float: left;
-		width: 110px;
-		margin-top:7px;
-	}
-
-	.colorpicker-element{
-		width: 25px;
-		height: 25px;
-		float: left;
-		margin: 3px;
-		border:1px;
-	}
-
-	.input-group-addon {
-		padding: 2px 2px;
-		font-size: 12px;
-		font-weight: normal;
-		line-height: 1;
-		color: #555;
-		text-align: center;
-		background-color: #eee;
-		border: 1px solid #ccc;
-		border-radius: 4px;
-	}
-	
-}
 
 .breaksTemplates {
+	overflow:hidden;
 
 	.label{
 		float: left;
 		width: 50px;
 		margin-top:7px;
+		&.label-layer-style{
+			// background:none;
+			// color: $black;
+			// height:35px;
+			// margin-top:11px;
+			// width:40px;
+			// margin-bottom:15px;
+		}
+		&.label-info{
+			background: transparent;
+			color: $blue;
+			margin-top:5px;
+			border-right:1px solid $grey;
+			padding-right:15px;
+			margin-right: 10px;
+			text-align:left;
+			border-radius: 0;
+			width:auto;  
+			cursor: pointer;
+			font-size:11px;
+			line-height:10px;
+			height:13px;
+			&:last-child{border-right:none;}
+			&:hover{color:$black}
+		}
 	}
 
 	.colorpicker-element{
-		width: 25px;
-		height: 25px;
+		width: 54px;
 		float: left;
-		margin: 3px;
-		border:1px;
-	}
+		margin-bottom:$gutter*2;
+		margin-top:-5px;
 
-	.input-group-addon {
-		padding: 2px 2px;
-		font-size: 12px;
-		font-weight: normal;
-		line-height: 1;
-		color: #555;
-		text-align: center;
-		background-color: #eee;
-		border: 1px solid #ccc;
-		border-radius: 4px;
+		.input-group-addon{
+			background-color: transparent;
+			border:none;
+			padding:0;
+
+			i{
+			width:53px;
+			margin-top:10px;
+			}
+		}
 	}
-	
 }
 
 .loading-container {
 	position: absolute;
 	bottom: 50%;
 	right: 45%;
-	border: 0px solid 
+	border: 0px solid;
 }
 
 .popup-loading-container {
-  height: 240px;
-  padding-left: 175px;
-  padding-top: 80px;
+	height: 240px;
+	padding-left: 175px;
+	padding-top: 80px;
 }
 
 .subactivities-container {
-  height: 240px;
+	height: 240px;
 }
 
 .subactivities-list {
-  overflow-y: scroll;
-  height: 195px;
-  width: 420px;
+	overflow-y: scroll;
+	height: 195px;
+	width: 420px;
 }
 
 .download-button{
@@ -154,4 +144,36 @@
 	z-index: 10000;
 	bottom: 60%;
 	width: 450px;
+}
+
+
+.finder {
+	p.title {
+		margin-top:6px;
+		font-weight:bold;
+	}
+
+	ul{
+		li{
+			margin-left: 10px;
+			float:left;
+		};
+		list-style: none;
+		float: left;
+		margin:0px;
+		padding: 0px;
+	}
+
+	table{
+		margin-top:10px;
+		tr{
+			td{
+				white-space: nowrap;
+			}
+			td.description{
+					white-space:normal
+				}
+
+		}
+	}
 }

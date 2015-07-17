@@ -240,6 +240,12 @@ input[type=checkbox].glyphicon {
   margin-top:-3px;
 }
 
+.clear-dates
+  {
+  width:205px;
+  float: right !important;
+}
+
 .fa-trash{
   font-size:1.2em;
   @include floatRight;
@@ -291,7 +297,7 @@ input[type=checkbox].glyphicon {
 .ui-datepicker .ui-datepicker-title {
   select{
   margin: 1px 3px 0 3px;
-  border:1px solid #ffffff;
+  border:1px solid $white;
   background:#eeeeee;
   font-size:1em;
   padding:4px;
@@ -311,6 +317,7 @@ input[type=checkbox].glyphicon {
   @include floatLeft;
   color: $blue;
   font-style: italic;
+  cursor:pointer;
 
   &:hover{
     color: $grey;

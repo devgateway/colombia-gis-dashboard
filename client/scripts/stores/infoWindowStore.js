@@ -1,5 +1,5 @@
 'use strict';
-
+var _=require('lodash');
 var assign = require('object-assign');
 var Reflux = require('reflux');
 var InfoWindowActions = require('../actions/infoWindowActions.js');
@@ -27,7 +27,7 @@ module.exports=Reflux.createStore({
     },
 
     onGetInfoFromAPICompleted: function(data, filters){
-        this.update({'infoWindow': data});
+        this.update({'infoWindow': _.sortBy(data, 'id')});
         this.output();
     },
 
