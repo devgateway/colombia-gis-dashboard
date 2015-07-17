@@ -53,7 +53,9 @@
 		"contrast1":"Contraste de colores 1",
 		"contrast2":"Contraste de colores 2",
 		"gradient1":"Gradiente de colores 1",
-		"gradient2":"Gradiente de colores 2"
+		"gradient2":"Gradiente de colores 2",
+		"valueRange": "Rango de Valores",
+		"valueRangesBetween": "Rango de Valores Entre:"
 
 	},
 

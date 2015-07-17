@@ -59,7 +59,7 @@ module.exports = React.createClass({
         <div className={className}>
           <div className={this.props.nested? "filter-parent" : ""}>
             <div className={itemClassName}>
-              <CustomCheckbox selected={this.state.selected} value={this.props.id} onChange={this._handleClick}/>
+              <CustomCheckbox selected={this.state.selected} value={this.props.cid} onChange={this._handleClick}/>
               <span onClick={this._handleClick} className={itemClassNames} title={this.props.label.length>30? this.props.label : ""}> {this.props.label}</span>
               {childrenCounter}
               {childrenToggler}

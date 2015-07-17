@@ -22,5 +22,6 @@ module.exports = {
 	AorCor: Reflux.createActions(names),
 	RapidImpact: Reflux.createActions(names),
 	Dates: Reflux.createActions(names),
+	ValueRange: Reflux.createActions(names),
 	applyFilters: Reflux.createAction()
 };
