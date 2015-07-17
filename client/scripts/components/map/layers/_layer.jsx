@@ -92,7 +92,7 @@ render: function() {
       </div>
     <div className="control-wrapper transparency">
       <div className='slider-holder'>
-        <h3>Transparency</h3>
+        <h3><Message message='layers.layerTransparency'/></h3>
         <div className='slider'/>
       </div>
       </div>

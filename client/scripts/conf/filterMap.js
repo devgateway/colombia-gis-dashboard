@@ -1,6 +1,7 @@
 
 var DateStore = require('../stores/filters/dateStore.js');
-var StoreDispatcher = require('../stores/filters/storeDispatcher.js');
+var ValueRangeStore = require('../stores/filters/valueRangeStore.js');
+var StoreDispatcher = require('../stores/filters/storeCreator.js');
 var Actions = require('../actions/filterActions.js');
 var filters = [
   {
@@ -50,14 +51,6 @@ var filters = [
     store: StoreDispatcher.SubImplementers,
     actions: Actions.SubImplementers
   },
-  /*{
-    index: 6,
-    label: 'filters.activityClassification',
-    modes: ['basic', 'advanced'],
-    type: 'tree',
-    store: StoreDispatcher.ClassificationType,
-    actions: Actions.ClassificationType
-  },*/
   {
     index: 7,
     order: 2,
@@ -126,7 +119,35 @@ var filters = [
     param: 'ri',
     store: StoreDispatcher.RapidImpact,
     actions: Actions.RapidImpact
-  }      
+  },
+  {
+    index: 14,
+    order: 14,
+    label: 'filters.activityClassification',
+    modes: ['basic'],
+    type: 'tree',
+    store: StoreDispatcher.ClassificationTypeBasic,
+    actions: Actions.ClassificationType
+  },
+  {
+    index: 15,
+    order: 15,
+    label: 'filters.activityClassification',
+    modes: ['advanced'],
+    type: 'multiLevelSearch',
+    store: StoreDispatcher.ClassificationTypeAdvanced,
+    actions: Actions.ClassificationType
+  },
+  {
+    index: 16,
+    order: 16,
+    label: 'filters.valueRange',
+    modes: ['advanced'],
+    type: 'valueRange',
+    store: ValueRangeStore,
+    actions: Actions.ValueRange
+  }
+        
 ];
 
 module.exports = {

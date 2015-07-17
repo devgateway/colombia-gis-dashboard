@@ -24,7 +24,8 @@ var TreeView =  React.createClass({
 
   _onToggle:function(){
     if (this.state.expanded){
-      this.setState(_.assign(this.state,{expanded: false}));  
+      //this.setState(_.assign(this.state,{expanded: false})); 
+      this.props.itemExpanded(-1); 
     } else {
       this.props.itemExpanded(this.props.index);
     }
@@ -83,7 +84,7 @@ module.exports = React.createClass({
   },
   
   componentDidUpdate: function() {
-    //$(this.getDOMNode()).find('.filter-list-container').mCustomScrollbar({theme:"inset-dark"});
+    $(this.getDOMNode()).find('.filter-list-container').mCustomScrollbar({theme:"inset-dark"});
   },
 
   getInitialState: function() {
