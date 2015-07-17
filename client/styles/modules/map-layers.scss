@@ -145,6 +145,7 @@
     .toggler-btn{
       width: 20px;
       @include floatLeft;
+      padding-right:100px;
     }
     .updown{
       @include floatLeft;

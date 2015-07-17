@@ -1268,7 +1268,8 @@ ul.tabs {
     float: left; }
   .layer-control .toggler .toggler-btn {
     width: 20px;
-    float: left; }
+    float: left;
+    padding-right: 100px; }
   .layer-control .toggler .updown {
     float: left;
     margin-right: 5px; }
@@ -1527,7 +1528,8 @@ ul.tabs {
   overflow: hidden;
   position: relative;
   margin-bottom: 5px;
-  padding: 0 0 5px 15px; }
+  padding: 0 0 5px 15px;
+  cursor: pointer; }
   .toggler .control-title {
     float: left;
     width: 70%;
