@@ -3,7 +3,7 @@
 var assign = require('object-assign');
 var Reflux = require('reflux');
 var _ = require('lodash');
-var actions=require('../../actions/filterActions.js').Dates;
+var actions=require('../../actions/filterActions.js').ValueRange;
 var RestoreActions = require('../../actions/restoreActions.js');
 var Mixins=require('./mixins.js');
 
@@ -16,38 +16,37 @@ module.exports = Reflux.createStore({
 		this.state[item] = value;
 		var itemValue = {};
 		itemValue[item] =  _.clone(this.state[item]);
-		this.update({'loadedFromSaved': false});
 		this.update(itemValue);
 	},
 
 	onRestoreData: function(savedData) {
 		if(savedData.filterData && savedData.filterData.filters){
 			_.forEach(savedData.filterData.filters, function(filter){
-				if (filter.param == 'sd'){
-					_.assign(this.state, {'sd': filter.values[0]});
+				if (filter.param == 'vr1'){
+					_.assign(this.state, {'vr1': filter.values[0]});
 				}
-				if (filter.param == 'ed'){
-					_.assign(this.state, {'ed': filter.values[0]});
+				if (filter.param == 'vr2'){
+					_.assign(this.state, {'vr2': filter.values[0]});
 				}
 			}.bind(this));
-			this.update(_.assign(_.clone(this.state),{'loadedFromSaved': true}));
+			this.update(_.clone(this.state));
 		}	
 	},
 
 	onClean:function(){
-		_.assign(this.state, {'sd': ''});
-		_.assign(this.state, {'ed': ''});
+		_.assign(this.state, {'vr1': ''});
+		_.assign(this.state, {'vr2': ''});
 		this.update(_.clone(this.state));
 	},
 
 	onLoadFromSaved: function(data){
 		this.onClean();
 		_.forEach(data.filters, function(filter){
-			if (filter.param == 'sd'){
-				_.assign(this.state, {'sd': filter.values});
+			if (filter.param == 'vr1'){
+				_.assign(this.state, {'vr1': filter.values});
 			}
-			if (filter.param == 'ed'){
-				_.assign(this.state, {'ed': filter.values});
+			if (filter.param == 'vr2'){
+				_.assign(this.state, {'vr2': filter.values});
 			}
 		}.bind(this));	
 		this.update(_.clone(this.state));	
@@ -55,7 +54,7 @@ module.exports = Reflux.createStore({
 	
 	init: function(){
 		this.state = {};
-		_.assign(this.state, {'sd': ''});
-		_.assign(this.state, {'ed': ''});			
+		_.assign(this.state, {'vr1': ''});
+		_.assign(this.state, {'vr2': ''});			
 	}	
 })

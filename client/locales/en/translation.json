@@ -41,7 +41,9 @@
 		"subActivityStatus": "SubActivity Status",
 		"clearDates": "Clear Dates",
 		"subActivitiesBetween":"Active SubActivities Between:",
-		"aorCor":"AOR/COR"
+		"aorCor":"AOR/COR",
+		"valueRange": "Value Range",
+		"valueRangesBetween": "Value Ranges Between"
 	},
 
 	"layers": {

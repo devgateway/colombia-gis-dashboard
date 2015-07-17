@@ -84,7 +84,7 @@ module.exports = React.createClass({
   },
   
   componentDidUpdate: function() {
-    //$(this.getDOMNode()).find('.filter-list-container').mCustomScrollbar({theme:"inset-dark"});
+    $(this.getDOMNode()).find('.filter-list-container').mCustomScrollbar({theme:"inset-dark"});
   },
 
   getInitialState: function() {

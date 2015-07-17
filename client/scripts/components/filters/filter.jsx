@@ -4,6 +4,7 @@ var Reflux = require('reflux');
 var SingleList=require('./singleList.jsx');
 var TreeList=require('./treeList.jsx');
 var DateFilter=require('./dateFilter.jsx');
+var ValueRangeFilter=require('./valueRangeFilter.jsx');
 var MultiLevelFilter=require('./multiLevelSearchFilter.jsx');
 
 module.exports = React.createClass({
@@ -20,6 +21,9 @@ module.exports = React.createClass({
       break;
     case 'date':
       content = <DateFilter {...this.props}/>
+      break;
+    case 'valueRange':
+      content = <ValueRangeFilter {...this.props}/>
       break;
     case 'multiLevelSearch':
       content = <MultiLevelFilter {...this.props}/>

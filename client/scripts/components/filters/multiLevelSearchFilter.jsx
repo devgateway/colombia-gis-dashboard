@@ -47,7 +47,7 @@ module.exports = React.createClass({
               <div className="filter-group-panel-header">
                 <span className="filter-label" role="label">{<Message message={this.props.label}/>}</span>                
               </div>
-              <KeywordSearch onSearch={this._onSearch} lengthLimit="4" onClear={this._onSearchClear}/>
+              <KeywordSearch onSearch={this._onSearch} lengthLimit="2" onClear={this._onSearchClear}/>
               <div className="filter-list-container">
                 <ul className="filter-list">
                 {

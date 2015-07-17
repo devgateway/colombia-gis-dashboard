@@ -53,10 +53,8 @@ module.exports = {
 	},	
 
 	onFilterByKeyword: function(keyword){
-		_.forEach(this.state.itemsTree, function(itemTree){
-			this._filterItemAndChildren(itemTree, keyword);		
-		}.bind(this));
-		this.update({'itemsTree': _.clone(this.state.itemsTree)});	
+		this.update({'keyword': keyword});
+		this._createItemsTree();
 	},
 
 	_capitalize: function(items) {
@@ -93,7 +91,13 @@ module.exports = {
 	},
 
 	_createItemsTree: function(){
-		this.update({'itemsTree': this._addTreeLevel(this.state.levels)});
+		var itemsTree = this._addTreeLevel(this.state.levels);
+		if (this.state.keyword && this.state.keyword!=""){
+			_.forEach(itemsTree, function(itemTree){
+				this._filterItemAndChildren(itemTree, this.state.keyword);		
+			}.bind(this));
+		}
+		this.update({'itemsTree': itemsTree});
 	},
 
 	_addTreeLevel: function(level){

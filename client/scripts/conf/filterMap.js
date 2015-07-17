@@ -1,5 +1,6 @@
 
 var DateStore = require('../stores/filters/dateStore.js');
+var ValueRangeStore = require('../stores/filters/valueRangeStore.js');
 var StoreDispatcher = require('../stores/filters/storeCreator.js');
 var Actions = require('../actions/filterActions.js');
 var filters = [
@@ -136,6 +137,15 @@ var filters = [
     type: 'multiLevelSearch',
     store: StoreDispatcher.ClassificationTypeAdvanced,
     actions: Actions.ClassificationType
+  },
+  {
+    index: 16,
+    order: 16,
+    label: 'filters.valueRange',
+    modes: ['advanced'],
+    type: 'valueRange',
+    store: ValueRangeStore,
+    actions: Actions.ValueRange
   }
         
 ];
