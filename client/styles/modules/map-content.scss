@@ -78,7 +78,19 @@
   padding-top:$gutter;
 
 	input{
-  display:none;
+    width: 33px;
+    height:16px;
+    font-size: 11px;
+    margin: -2px auto 10px -4px;
+    outline:none;
+    color:#888888;
+    background: #e6edee;
+    border:none;
+    clear:both;
+    text-align:center;
+  }
+  &:hover{
+    border:1px solid $yellow;
   }
 
 	.label{
