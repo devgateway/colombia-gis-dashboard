@@ -10,12 +10,14 @@ var KeywordSearch = React.createClass({
 
   _onKeyUp: function(ev) {
 
-    var lengthLimit=this.props.lengthLimit || 2;
+    var lengthLimit=this.props.lengthLimit || 0;
     var value = $(ev.target).val();
     var length = value.length;
         // filter the items only if we have at least 3 characters
-        if (this.props.onSearch ) {
+        if (this.props.onSearch && length>lengthLimit) {
           this.props.onSearch(value);
+        } else if (this.props.onClear && length==0){
+          this.props.onClear();
         }
         if (ev.keyCode == 13 && this.props.onSearchEnterKey){
          this.props.onSearchEnterKey(value);

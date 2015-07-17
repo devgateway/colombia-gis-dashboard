@@ -24,7 +24,6 @@ var defaultStyle = {
 	'fillOpacity': 0.9
 };
 
-/*. The range of the break is greater than or equal to the minimum value and less than the maximum value.*/
 
 var defaultBreaks = {
 	'field': 'fundingUS',

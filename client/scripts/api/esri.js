@@ -86,7 +86,7 @@ module.exports = {
 
     createLefleatLayer:function(lClass,options, url){
         var uri = url || this.getService().metadata.url;
-        _.assign( options,{useCors: true,cacheLayers:false})
+        _.assign( options,{useCors: true,cacheLayers:false,url:uri})
         if(window.ESIR_USE_PROXY){
             _.assign(options,{proxy:window.ESRI_PROXY_URL})
         }
@@ -94,7 +94,7 @@ module.exports = {
         if (token){
             _.assign(options,{'token':token});
         }
-        var layer = lClass(uri,options);
+        var layer = lClass(options);
         layer.on('map->layers->esriLayers: authenticationrequired', function (e) {
            // console.log('map->layers->esriLayers: authenticationrequired');
         });
