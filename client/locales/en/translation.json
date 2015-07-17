@@ -42,8 +42,19 @@
 		"clearDates": "Clear Dates",
 		"subActivitiesBetween":"Active SubActivities Between:",
 		"aorCor":"AOR/COR",
-		"valueRange": "Value Range",
-		"valueRangesBetween": "Value Ranges Between"
+		"default":"Default",
+		"jenks":"Jenks",
+		"arithmetic":"Arithmetic",
+		"geometric":"Geometric",
+		"defaultTip":"Default classification method",
+		"jenksTip":"Natural breaks classification method",
+		"arithmeticTip":"Arithmetic progression",
+		"geometricTip":"Geometric progression",
+		"defaultColor":"Default colors",
+		"contrast1":"Contrast colors 1",
+		"contrast2":"Contrast colors 2",
+		"gradient1":"Gradient colors 1",
+		"gradient2":"Gradient colors 2"
 	},
 
 	"layers": {
@@ -52,12 +63,22 @@
 		"title":"Map content",
 		"mapLayers":"Map Layers",
 		"dataLayers":"Data Layers",
+		"layerTransparency":"Transparency",
 		"level":"Level",
 		"findExtLayers":"Find External Layers",
 		"funding":"Funding",
 		"fundingDistribution":"Funding Distribution",
-		"fundingByType":"Funding Layer by Source Type",
-		"subActivitiesLevel":"Select Level of Subactivities to Display",
+		"fundingByType":"Funding Type",
+		"fundingSource":"Funding Source",
+		"fundingSourceCommitments":"Commitements",
+		"fundingSourceDisbursements":"Disbursements",
+		"classificationScheme": "Classification Scheme",
+		"colorSelection": "Color Selection",
+		"colorPalettes": "Color Palettes",
+		"fundingPercent": "% Funding",
+		"activitiesNumber": "Number of Activities",
+		"subactivitiesNumber": "Number of Subactivities",
+		"subActivitiesLevel":"Subactivity Layer",
 		"fundingType":"Funding Type",
 		"totalProjects":"Total Projects",
 		"indicators":"Indicators",
@@ -71,8 +92,7 @@
 		"noResults":"There are no results that match your search",
 		"byDepartment":"Departments",
 		"byMunicipality":"Municipalities",
-		"searchLayers": "Search Layers"
-	},
+		"searchLayers": "Search Layers"	},
 
 	"map": {
 		"baseMaps":{

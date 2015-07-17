@@ -90,29 +90,30 @@ module.exports = React.createClass({
     </CustomRadioGroup>
 
     </li>
-
-    <div className="clearFix"/>  
+    <li className="indicator">
+      <div className="clearFix"/>
       <Finder label={this.state.indicator || 'Select Indicator'} onSelect={this._selectIndicator}/>  
-
+      <div className="vbuffer"/>
+      <div className="vbuffer"/>
+    </li>
 
 
     
 
     <li className="color-selection">
-
-    <h3>Color Selection</h3>
-    <div>
-    </div>
-    {
-      _.map(_.keys(this.state.breaks.breaks),function(key){
-        var br=this.state.breaks.breaks[key];
-        return (
-          <Breaker  level={key} label={br.min+'-'+br.max} radius={br.style.radius} color={br.style.color} onChangeColor={this._changeColor}
-          onChageRadius={this._changeRadius}/>
-          )
-      }.bind(this))
-    }
-    </li>
+            <h3 className="color-control"><Message message='layers.colorSelection'/></h3>
+            {
+              _.map(_.keys(this.state.breaks.breaks),function(key){
+                  var br=this.state.breaks.breaks[key];
+                  var minLabel = br.min.toFixed(0);
+                  var maxLabel = (br.max - 1).toFixed(0);
+                return (
+                      <Breaker  level={key} label={minLabel+'-'+maxLabel} radius={br.style.radius} color={br.style.color} onChangeColor={this._changeColor}
+                      onChageRadius={this._changeRadius}/>
+                      )
+              }.bind(this))
+            }
+          </li>
     </ul>
     </TogglerContent>
     </Toggler>
