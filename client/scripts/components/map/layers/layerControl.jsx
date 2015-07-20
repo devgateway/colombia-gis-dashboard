@@ -26,19 +26,7 @@ var FeatureLayer=React.createClass({
 
     return (
       <div>
-      <Toggler ref='toggler'>
-        <TogglerContent visibleWhen="collapsed">
-          <div toggler={true} className="toggler-btn"><i className="fa fa-chevron-down"></i></div>
-        </TogglerContent>
-
-        <TogglerContent visibleWhen="expanded">
-          <div toggler={true} className="toggler-btn"><i className="fa fa-chevron-up"></i></div>
-        </TogglerContent>
-        <TogglerContent visibleWhen="always">
-          <div><span className="control-title">{this.props.title}</span></div>
-        </TogglerContent>
       
-        <TogglerContent visibleWhen="expanded">
           <Layer onDelete={this.props.onDelete} 
           onRemove={this.props.onRemove}
           opacity={this.props.opacity}
@@ -58,8 +46,7 @@ var FeatureLayer=React.createClass({
             }.bind(this))
           }
         </ul>
-    </TogglerContent>
-  </Toggler>
+    
 </div>)
 }
 });
