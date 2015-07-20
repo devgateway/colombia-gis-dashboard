@@ -1229,7 +1229,7 @@ ul.tabs {
   line-height: 23px;
   color: #4d749f; }
   .layer-control h3.color-control {
-    width: 135px; }
+    width: 153px; }
     .layer-control h3.color-control.value-label {
       line-height: 14px; }
     .layer-control h3.color-control.percent-funding {
@@ -1319,7 +1319,10 @@ ul.tabs {
   /* IE6-8 */ }
 .layer-control .ui-slider-label {
   color: #4d749f; }
-.layer-control .fa.fa-times,
+.layer-control .fa.fa-times {
+  position: absolute;
+  top: 10px;
+  right: 10px; }
 .layer-control .fa.fa-arrow-down {
   margin-left: 0.5em; }
 .layer-control .fa.fa-times,
@@ -1583,7 +1586,18 @@ ul.tabs {
   width: 55px;
   padding-top: 1em; }
   .breaksOptions input {
-    display: none; }
+    width: 33px;
+    height: 16px;
+    font-size: 11px;
+    margin: -2px auto 10px -4px;
+    outline: none;
+    color: #888888;
+    background: #e6edee;
+    border: none;
+    clear: both;
+    text-align: center; }
+  .breaksOptions:hover {
+    border: 1px solid #e9ba00; }
   .breaksOptions .label {
     text-align: center;
     margin-left: -5px;
@@ -1713,6 +1727,7 @@ ul.funding-options {
       text-align: left;
       border-radius: 0;
       width: auto;
+      cursor: pointer;
       font-size: 11px;
       line-height: 10px;
       height: 13px; }
@@ -1759,5 +1774,23 @@ ul.funding-options {
   z-index: 10000;
   bottom: 60%;
   width: 450px; }
+
+.finder p.title {
+  margin-top: 6px;
+  font-weight: bold; }
+.finder ul {
+  list-style: none;
+  float: left;
+  margin: 0px;
+  padding: 0px; }
+  .finder ul li {
+    margin-left: 10px;
+    float: left; }
+.finder table {
+  margin-top: 10px; }
+  .finder table tr td {
+    white-space: nowrap; }
+  .finder table tr td.description {
+    white-space: normal; }
 
 /*# sourceMappingURL=main.css.map */
