@@ -72,29 +72,21 @@ render: function() {
   return (
     <div>
       <div className="title">
-        <If condition={this.props.onChangeVisibility}>
-          <Checkbox selected={this.state.checked} onChange={this._handleChageVisibility}/>
-        </If>
-        <If condition={this.props.title}>
+         <If condition={this.props.title}>
           <span className="control-title">{this.props.title}</span>
         </If>
+        
+       
       </div>
-      <div className='updown'>
-        <If condition={this.props.onMoveUp}>
-          <i className="fa fa-arrow-up" onClick={this._up}></i>
-        </If>
-        <If condition={this.props.onMoveDown}>
-          <i onClick={this._down} className="fa fa-arrow-down"></i>
-        </If>
-        <If condition={this.props.onDelete}>
-          <i className="fa fa-times" onClick={this._delete}></i>
-        </If>
-      </div>
+      
       <div className="control-wrapper transparency">
         <div className='slider-holder'>
           <h3><Message message='layers.layerTransparency'/></h3>
           <div className='slider'/>
         </div>
+        <If condition={this.props.onChangeVisibility}>
+          <Checkbox selected={this.state.checked} onChange={this._handleChageVisibility}/>
+        </If>
       </div>
     </div>
     );

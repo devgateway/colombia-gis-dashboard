@@ -15,6 +15,7 @@ var Indicators=require('./_indicatorsLayerControl.jsx');
 
 
 var Layer=require('./_layer.jsx');
+var InnerLayer=require('./_innerLayer.jsx');
 
 var FeatureLayer=React.createClass({
 
@@ -38,7 +39,7 @@ var FeatureLayer=React.createClass({
           <ul>
             {
               this.props.layer.layers.map(function(l){
-              return (<li><Layer
+              return (<li><InnerLayer
               opacity={l.opacity}
               visible={l.visible}
               onChangeOpacity={onChangeOpacity}
