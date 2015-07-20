@@ -1591,18 +1591,24 @@ ul.tabs {
   width: 55px;
   padding-top: 1em; }
   .breaksOptions input {
-    width: 33px;
+    -webkit-transition: all 100ms ease;
+    -moz-transition: all 100ms ease;
+    -o-transition: all 100ms ease;
+    transition: all 100ms ease;
+    width: 54px;
     height: 16px;
     font-size: 11px;
-    margin: -2px auto 10px -4px;
+    margin: -2px auto 10px -5px;
     outline: none;
     color: #888888;
     background: #e6edee;
     border: none;
     clear: both;
     text-align: center; }
-  .breaksOptions:hover {
-    border: 1px solid #e9ba00; }
+    .breaksOptions input:hover {
+      color: #4d749f;
+      background: #ffffff;
+      cursor: pointer; }
   .breaksOptions .label {
     text-align: center;
     margin-left: -5px;

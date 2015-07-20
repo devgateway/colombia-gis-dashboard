@@ -80,19 +80,22 @@
   padding-top:$gutter;
 
 	input{
-    width: 33px;
+    @include transitionAll;
+    width: 54px;
     height:16px;
     font-size: 11px;
-    margin: -2px auto 10px -4px;
+    margin: -2px auto 10px -5px;
     outline:none;
     color:#888888;
     background: #e6edee;
     border:none;
     clear:both;
     text-align:center;
-  }
-  &:hover{
-    border:1px solid $yellow;
+    &:hover{
+      color: $blue;
+      background: $white;
+      cursor:pointer;
+    }
   }
 
 	.label{
