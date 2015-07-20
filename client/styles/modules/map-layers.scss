@@ -209,11 +209,9 @@
 
   ul {
     padding-left:5;
-
     li{
       display:block;
       margin-bottom: 20px;
-
     }
   }
 }
@@ -225,4 +223,27 @@
 	margin-top:4px;
 }
 
-.external-layer-control{ }
+// styling of layer controls overlay section
+.external-layer-control{
+  .title{
+      .selectable{
+        float:left;
+      }
+    }
+.title{
+    border:1px solid #7aa;
+    line-height:100%;
+    width:90%;
+    clear:both;
+    margin-bottom:$gutter;
+  }
+  .control-wrapper{
+      margin-top:-10px;
+    &.transparency{
+        border:3px solid #999;
+        line-height:100%;
+        clear:both;
+        margin-left: $gutter*2.5;
+      }
+  }
+}

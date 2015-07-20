@@ -1344,6 +1344,22 @@ ul.tabs {
   margin-right: 10px;
   margin-top: 4px; }
 
+.external-layer-control .title .selectable, .external-layer-control .title .selectable-radio {
+  float: left; }
+.external-layer-control .title {
+  border: 1px solid #7aa;
+  line-height: 100%;
+  width: 90%;
+  clear: both;
+  margin-bottom: 1em; }
+.external-layer-control .control-wrapper {
+  margin-top: -10px; }
+  .external-layer-control .control-wrapper.transparency {
+    border: 3px solid #999;
+    line-height: 100%;
+    clear: both;
+    margin-left: 2.5em; }
+
 .arcgis-sig-in {
   position: absolute;
   top: 60px;

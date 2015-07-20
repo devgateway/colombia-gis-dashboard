@@ -35,7 +35,6 @@ var FeatureLayer=React.createClass({
           onChangeVisibility={this.props.onChangeVisibility}
           onChangeOpacity={onChangeOpacity}
           id={this.props.id}/>
-          <div className="clear-fix"/>
           <ul>
             {
               this.props.layer.layers.map(function(l){
