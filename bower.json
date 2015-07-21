@@ -17,7 +17,9 @@
     "esri-leaflet-renderers": "https://github.com/Esri/esri-leaflet-renderers.git#~0.0.1-beta.3",
     "malihu-custom-scrollbar-plugin": "~3.0.8",
     "jquery-ui-slider-pips": "~1.9.2",
-    "mjolnic-bootstrap-colorpicker": "~2.1.2"
+    "mjolnic-bootstrap-colorpicker": "~2.1.2",
+    "jQRangeSlider": "https://github.com/mrzmyr/jQRangeSlider",
+    "nouislider": "~8.0.2"
   },
   "devDependencies": {}
 }

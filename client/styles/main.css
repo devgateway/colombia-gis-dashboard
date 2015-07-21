@@ -1229,7 +1229,7 @@ ul.tabs {
   line-height: 23px;
   color: #4d749f; }
   .layer-control h3.color-control {
-    width: 135px; }
+    width: 153px; }
     .layer-control h3.color-control.value-label {
       line-height: 14px; }
     .layer-control h3.color-control.percent-funding {
@@ -1319,7 +1319,10 @@ ul.tabs {
   /* IE6-8 */ }
 .layer-control .ui-slider-label {
   color: #4d749f; }
-.layer-control .fa.fa-times,
+.layer-control .fa.fa-times {
+  position: absolute;
+  top: 10px;
+  right: 10px; }
 .layer-control .fa.fa-arrow-down {
   margin-left: 0.5em; }
 .layer-control .fa.fa-times,
@@ -1340,6 +1343,31 @@ ul.tabs {
   float: left;
   margin-right: 10px;
   margin-top: 4px; }
+
+.external-layer-control li {
+  overflow: hidden;
+  padding-top: 35px;
+  margin-left: 30px;
+  clear: both; }
+  .external-layer-control li .slider-holder {
+    margin-left: 0; }
+  .external-layer-control li .control-wrapper.transparency {
+    margin-left: 0; }
+  .external-layer-control li .title {
+    width: 90%;
+    margin-bottom: 15px;
+    margin-left: -10px; }
+    .external-layer-control li .title .control-title {
+      font-size: 12px;
+      margin: 0;
+      width: 100%; }
+      .external-layer-control li .title .control-title .selectable, .external-layer-control li .title .control-title .selectable-radio {
+        float: left; }
+.external-layer-control .control-wrapper {
+  margin-top: -10px; }
+  .external-layer-control .control-wrapper.transparency {
+    clear: both;
+    margin-left: 2.7em; }
 
 .arcgis-sig-in {
   position: absolute;
@@ -1528,22 +1556,27 @@ ul.tabs {
   overflow: hidden;
   position: relative;
   margin-bottom: 5px;
-  padding: 0 0 5px 15px;
-  cursor: pointer; }
+  padding: 0 0 5px 15px; }
   .toggler .control-title {
     float: left;
     width: 70%;
-    margin: -22px auto 0 50px; }
+    margin: -22px auto 0 50px;
+    cursor: pointer; }
 
 .layer-control-toggle h3 {
   font-weight: bold;
   color: #4d749f;
-  font-size: 13px; }
+  font-size: 13px;
+  cursor: pointer; }
+
+.selectable, .selectable-radio {
+  cursor: pointer; }
 
 .toggler-button {
   background: #d7e0e4;
   padding: 5px 10px;
-  margin-top: 3px; }
+  margin-top: 3px;
+  cursor: pointer; }
   .toggler-button:hover {
     background: #d4dee2; }
 
@@ -1583,7 +1616,24 @@ ul.tabs {
   width: 55px;
   padding-top: 1em; }
   .breaksOptions input {
-    display: none; }
+    -webkit-transition: all 100ms ease;
+    -moz-transition: all 100ms ease;
+    -o-transition: all 100ms ease;
+    transition: all 100ms ease;
+    width: 54px;
+    height: 16px;
+    font-size: 11px;
+    margin: -2px auto 10px -5px;
+    outline: none;
+    color: #888888;
+    background: #e6edee;
+    border: none;
+    clear: both;
+    text-align: center; }
+    .breaksOptions input:hover {
+      color: #4d749f;
+      background: #ffffff;
+      cursor: pointer; }
   .breaksOptions .label {
     text-align: center;
     margin-left: -5px;
@@ -1713,6 +1763,7 @@ ul.funding-options {
       text-align: left;
       border-radius: 0;
       width: auto;
+      cursor: pointer;
       font-size: 11px;
       line-height: 10px;
       height: 13px; }
@@ -1759,5 +1810,23 @@ ul.funding-options {
   z-index: 10000;
   bottom: 60%;
   width: 450px; }
+
+.finder p.title {
+  margin-top: 6px;
+  font-weight: bold; }
+.finder ul {
+  list-style: none;
+  float: left;
+  margin: 0px;
+  padding: 0px; }
+  .finder ul li {
+    margin-left: 10px;
+    float: left; }
+.finder table {
+  margin-top: 10px; }
+  .finder table tr td {
+    white-space: nowrap; }
+  .finder table tr td.description {
+    white-space: normal; }
 
 /*# sourceMappingURL=main.css.map */

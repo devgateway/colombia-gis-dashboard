@@ -15,6 +15,7 @@ var Indicators=require('./_indicatorsLayerControl.jsx');
 
 
 var Layer=require('./_layer.jsx');
+var InnerLayer=require('./_innerLayer.jsx');
 
 var FeatureLayer=React.createClass({
 
@@ -26,40 +27,26 @@ var FeatureLayer=React.createClass({
 
     return (
       <div>
-      <Toggler ref='toggler'>
-        <TogglerContent visibleWhen="collapsed">
-          <div toggler={true} className="toggler-btn"><i className="fa fa-chevron-down"></i></div>
-        </TogglerContent>
 
-        <TogglerContent visibleWhen="expanded">
-          <div toggler={true} className="toggler-btn"><i className="fa fa-chevron-up"></i></div>
-        </TogglerContent>
-        <TogglerContent visibleWhen="always">
-          <div><span className="control-title">{this.props.title}</span></div>
-        </TogglerContent>
-      
-        <TogglerContent visibleWhen="expanded">
-          <Layer onDelete={this.props.onDelete} 
+          <Layer onDelete={this.props.onDelete}
           onRemove={this.props.onRemove}
           opacity={this.props.opacity}
-          visible={this.props.visible}  
-          onChangeVisibility={this.props.onChangeVisibility} 
+          visible={this.props.visible}
+          onChangeVisibility={this.props.onChangeVisibility}
           onChangeOpacity={onChangeOpacity}
           id={this.props.id}/>
-          <div className="clear-fix"/>
           <ul>
             {
               this.props.layer.layers.map(function(l){
-              return (<li><Layer  
+              return (<li><InnerLayer
               opacity={l.opacity}
-              visible={l.visible}  
-              onChangeOpacity={onChangeOpacity} 
+              visible={l.visible}
+              onChangeOpacity={onChangeOpacity}
               onChangeVisibility={onChangeVisibility} title={l.name} id={id}  idx={l.id.toString()}/></li>)
             }.bind(this))
           }
         </ul>
-    </TogglerContent>
-  </Toggler>
+
 </div>)
 }
 });
@@ -76,26 +63,26 @@ module.exports  = React.createClass({
   },
 
   _changevisibility: function(id, value,idx) {
-    ArcgisLayerActions.changeLayerValue('visible', id, value,idx); //TODO:property mame should be in a globar variable 
+    ArcgisLayerActions.changeLayerValue('visible', id, value,idx); //TODO:property mame should be in a globar variable
   },
 
   _handleChangeOpacity: function(id, value,idx) {
-    ArcgisLayerActions.changeLayerValue('opacity', id, value,idx); //TODO:property mame should be in a globar variable 
+    ArcgisLayerActions.changeLayerValue('opacity', id, value,idx); //TODO:property mame should be in a globar variable
 
   },
 
   _handleMoveUp: function(id) {
-    ArcgisLayerActions.changeLayerValue('moveUp', id); //TODO:property mame should be in a globar variable 
+    ArcgisLayerActions.changeLayerValue('moveUp', id); //TODO:property mame should be in a globar variable
 
   },
 
   _handleMoveDown: function(id) {
-    ArcgisLayerActions.changeLayerValue('moveDown', id); //TODO:property mame should be in a globar variable 
+    ArcgisLayerActions.changeLayerValue('moveDown', id); //TODO:property mame should be in a globar variable
 
   },
 
   _onDelete: function(id) {
-    ArcgisLayerActions.changeLayerValue('delete', id); //TODO:property mame should be in a globar variable 
+    ArcgisLayerActions.changeLayerValue('delete', id); //TODO:property mame should be in a globar variable
 
   },
 
@@ -103,7 +90,7 @@ module.exports  = React.createClass({
   render: function() {
     var tiles=_.sortBy(_.filter(this.state.layers,{type:'Map Service'}),'zIndex').reverse();
     var features=_.sortBy(_.filter(this.state.layers,{type:'Feature Service'}),'zIndex').reverse();
-    
+
     return (
     <div>
       <div className="layer-control-toggle">
@@ -128,11 +115,11 @@ module.exports  = React.createClass({
           <h3>Overlays</h3>
         </div>
         <div className="layer-control-panel">
-          <ul className="layer-control">        
+          <ul className="layer-control">
           {
             features.map(function(l){
             return (
-                <li>
+                <li className="external-layer-control">
                   <Toggler ref='toggler'>
                     <TogglerContent visibleWhen="collapsed">
                       <div toggler={true} className="toggler-button"><i className="fa fa-chevron-down"></i></div>
@@ -143,18 +130,18 @@ module.exports  = React.createClass({
                     <TogglerContent visibleWhen="always">
                       <div><span className="control-title">{l.title}</span></div>
                     </TogglerContent>
-                    <TogglerContent visibleWhen="expanded">                            
-                      <FeatureLayer 
-                      onDelete={this._onDelete} 
-                      onChangeOpacity={this._handleChangeOpacity} 
+                    <TogglerContent visibleWhen="expanded">
+                      <FeatureLayer
+                      onDelete={this._onDelete}
+                      onChangeOpacity={this._handleChangeOpacity}
                       onChangeVisibility={this._changevisibility}
-                      id={l.id} type={l.type} 
-                      zIndex={l.zIndex}  
-                      visible={l.visible}  
-                      layer={l.layer}  
+                      id={l.id} type={l.type}
+                      zIndex={l.zIndex}
+                      visible={l.visible}
+                      layer={l.layer}
                       opacity={l.opacity}/>
                     </TogglerContent>
-                  </Toggler>  
+                  </Toggler>
                 </li>
               )
              }.bind(this))
@@ -162,17 +149,17 @@ module.exports  = React.createClass({
           </ul>
         </div>
       </If>
-        
+
       <If condition={tiles.length > 0} >
         <div className="layer-control-toggle">
           <h3>Tiles</h3>
         </div>
         <div className="layer-control-panel">
-          <ul className="layer-control">        
+          <ul className="layer-control">
           {
             tiles.map(function(l){
              return (
-              <li> 
+              <li>
                 <Toggler ref='toggler'>
                   <TogglerContent visibleWhen="collapsed">
                     <div toggler={true} className="toggler-button"><i className="fa fa-chevron-down"></i></div>
@@ -183,16 +170,16 @@ module.exports  = React.createClass({
                   <TogglerContent visibleWhen="always">
                     <div><span className="control-title">{l.title}</span></div>
                   </TogglerContent>
-                  <TogglerContent visibleWhen="expanded">        
+                  <TogglerContent visibleWhen="expanded">
                     <Layer
-                    onDelete={this._onDelete} 
+                    onDelete={this._onDelete}
                     onMoveUp={this._handleMoveUp}
                     onMoveDown={this._handleMoveDown}
                     onChangeOpacity={this._handleChangeOpacity}
                     onChangeVisibility={this._changevisibility}
                     id={l.id}
                     type={l.type}
-                    zIndex={l.zIndex} 
+                    zIndex={l.zIndex}
                     visible={l.visible}
                     opacity={l.opacity}/>
                   </TogglerContent>
@@ -206,5 +193,3 @@ module.exports  = React.createClass({
     </div>
   );
 }});
-
-

@@ -106,8 +106,8 @@
 			padding:0;
 
 			i{
-			width:53px;
-			margin-top:10px;
+				width:53px;
+				margin-top:10px;
 			}
 		}
 	}
@@ -171,9 +171,41 @@
 				white-space: nowrap;
 			}
 			td.description{
-					white-space:normal
-				}
+				white-space:normal
+			}
 
 		}
 	}
+}
+
+.timeSliderContainer{
+	font-size: 9px;
+	position: absolute;
+	bottom: 90px;
+	left:0;
+	right:0;
+	margin-left:auto;
+	margin-right:auto;
+	width: 900px;
+	z-index: 100;
+
+	.sliderTooltip {
+		display: block;
+		color:#FFF;
+		position: absolute;
+		font-size:9px;
+		background-color: #8D2F5D;
+		border:1px solid #EEE;
+		border-radius: 3px;
+		top: -30px;
+		padding: 5px;
+		left: -9px;
+		text-align: center;
+		width: 60px;
+		z-index: 1500;
+	}
+	.noUi-value,.noUi-marker{
+		font-size: 10px;
+	}
+	
 }

@@ -192,8 +192,11 @@
   .ui-slider-label {
     color: $blue;
   }
-
-  .fa.fa-times,
+  .fa.fa-times{
+      position:absolute;
+      top:10px;
+      right:10px;
+    }
   .fa.fa-arrow-down {
     margin-left:$gutter/2;
   }
@@ -206,11 +209,9 @@
 
   ul {
     padding-left:5;
-
     li{
       display:block;
       margin-bottom: 20px;
-
     }
   }
 }
@@ -220,4 +221,46 @@
 	@include floatLeft;
 	margin-right:10px;
 	margin-top:4px;
+}
+
+// styling of layer controls overlay section
+.external-layer-control{
+
+  li{
+    overflow:hidden;
+    padding-top:35px;
+    margin-left:30px;
+    clear:both;
+    .slider-holder{
+      margin-left:0;
+    }
+
+    .control-wrapper{
+    &.transparency{ margin-left:0;}
+    }
+
+    .title{
+      width:90%;
+      margin-bottom:15px;
+      margin-left:-10px;
+
+      .control-title{
+        font-size:12px;
+        margin:0;
+        width:100%;
+          .selectable{
+          float:left;
+            }
+        }
+    }
+  }
+  .control-wrapper{
+      margin-top:-10px;
+    &.transparency{
+        clear:both;
+        margin-left: $gutter*2.7;
+      }
+
+    }
+
 }

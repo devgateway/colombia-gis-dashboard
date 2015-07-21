@@ -5,12 +5,11 @@
   position:relative;
   margin-bottom:5px;
   padding:0 0 5px 15px;
-  cursor:pointer;
-
   .control-title{
     float:left;
     width: 70%;
     margin: -22px auto 0 50px;
+    cursor:pointer;
   }
 }
 .layer-control-toggle{
@@ -18,14 +17,17 @@
     @include textBold;
     color:$blue;
     font-size:13px;
+    cursor:pointer;
   }
 }
-
+.selectable{
+  cursor:pointer;
+}
 .toggler-button{
   background: #d7e0e4;
   padding:5px 10px;
   margin-top:3px;
-
+  cursor:pointer;
   &:hover{
   background: darken(#d7e0e4,1%);
   }
@@ -78,7 +80,22 @@
   padding-top:$gutter;
 
 	input{
-  display:none;
+    @include transitionAll;
+    width: 54px;
+    height:16px;
+    font-size: 11px;
+    margin: -2px auto 10px -5px;
+    outline:none;
+    color:#888888;
+    background: #e6edee;
+    border:none;
+    clear:both;
+    text-align:center;
+    &:hover{
+      color: $blue;
+      background: $white;
+      cursor:pointer;
+    }
   }
 
 	.label{

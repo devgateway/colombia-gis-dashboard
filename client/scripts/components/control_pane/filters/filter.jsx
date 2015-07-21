@@ -52,7 +52,6 @@ var Filter  = React.createClass({
     },
 
     render: function() {
-      debugger;
       var filters = FilterMap.filters;
       var idx = 1;
       var self = this;

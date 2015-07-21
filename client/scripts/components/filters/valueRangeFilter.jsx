@@ -8,7 +8,7 @@ var ValueRangeFilter = React.createClass({
     onStatusChange: function(status, selection) {
         this._setRangeMin(status.vr1);
         this._setRangeMax(status.vr2);
-        debugger;
+        
     },
 
     _setRangeMin: function(value){
