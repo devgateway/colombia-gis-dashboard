@@ -1369,13 +1369,6 @@ ul.tabs {
     clear: both;
     margin-left: 2.7em; }
 
-.test-div {
-  border: 1px solid #800;
-  overflow: hidden;
-  margin-top: 30px;
-  width: 100%;
-  clear: both; }
-
 .arcgis-sig-in {
   position: absolute;
   top: 60px;
