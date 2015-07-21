@@ -225,25 +225,42 @@
 
 // styling of layer controls overlay section
 .external-layer-control{
-  .title{
-      .selectable{
-        float:left;
-      }
-    }
-.title{
-    border:1px solid #7aa;
-    line-height:100%;
-    width:90%;
+
+  li{
+    overflow:hidden;
+    padding-top:35px;
+    margin-left:30px;
     clear:both;
-    margin-bottom:$gutter;
+    .slider-holder{
+      margin-left:0;
+    }
+
+    .control-wrapper{
+    &.transparency{ margin-left:0;}
+    }
+
+    .title{
+      width:90%;
+      margin-bottom:15px;
+      margin-left:-10px;
+
+      .control-title{
+        font-size:12px;
+        margin:0;
+        width:100%;
+          .selectable{
+          float:left;
+            }
+        }
+    }
   }
   .control-wrapper{
       margin-top:-10px;
     &.transparency{
-        border:3px solid #999;
-        line-height:100%;
         clear:both;
-        margin-left: $gutter*2.5;
+        margin-left: $gutter*2.7;
       }
-  }
+    }
 }
+
+.test-div{border:1px solid #800;overflow:hidden;margin-top:30px;width:100%; clear:both;}

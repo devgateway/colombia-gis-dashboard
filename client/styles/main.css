@@ -1344,21 +1344,37 @@ ul.tabs {
   margin-right: 10px;
   margin-top: 4px; }
 
-.external-layer-control .title .selectable, .external-layer-control .title .selectable-radio {
-  float: left; }
-.external-layer-control .title {
-  border: 1px solid #7aa;
-  line-height: 100%;
-  width: 90%;
-  clear: both;
-  margin-bottom: 1em; }
+.external-layer-control li {
+  overflow: hidden;
+  padding-top: 35px;
+  margin-left: 30px;
+  clear: both; }
+  .external-layer-control li .slider-holder {
+    margin-left: 0; }
+  .external-layer-control li .control-wrapper.transparency {
+    margin-left: 0; }
+  .external-layer-control li .title {
+    width: 90%;
+    margin-bottom: 15px;
+    margin-left: -10px; }
+    .external-layer-control li .title .control-title {
+      font-size: 12px;
+      margin: 0;
+      width: 100%; }
+      .external-layer-control li .title .control-title .selectable, .external-layer-control li .title .control-title .selectable-radio {
+        float: left; }
 .external-layer-control .control-wrapper {
   margin-top: -10px; }
   .external-layer-control .control-wrapper.transparency {
-    border: 3px solid #999;
-    line-height: 100%;
     clear: both;
-    margin-left: 2.5em; }
+    margin-left: 2.7em; }
+
+.test-div {
+  border: 1px solid #800;
+  overflow: hidden;
+  margin-top: 30px;
+  width: 100%;
+  clear: both; }
 
 .arcgis-sig-in {
   position: absolute;
