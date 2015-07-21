@@ -6,7 +6,7 @@
  * This component is a wrapper providing a friendly react-like API to other
  * components and connecting some pieces for the real leaflet
  */
- var React = require('react/addons');
+var React = require('react/addons');
 var Reflux = require('reflux');
 var MapStore = require('../../stores/mapStore.js');
 var MapActions = require('../../actions/mapActions.js');
@@ -16,10 +16,10 @@ var If=require('../commons/if.jsx');
 var PointsLayer=require('./layers/data/pointsLayer.jsx');
 var Loading = require('../commons/loading.jsx')
 var ShapesLayer=require('./layers/data/shapesLayer.jsx');
-
+var IndicatorLayer=require('./layers/data/indicatorLayer.jsx');
 var AGOLbtnLogin=require('../esri/AGOLBtnLogin.jsx');
 var LegendControl = require('./layers/esri/legendControl.jsx');
-
+var TimeSliderControl=require('./layers/timeSliderControl.jsx');
 
  module.exports = React.createClass({
 
@@ -51,10 +51,14 @@ var LegendControl = require('./layers/esri/legendControl.jsx');
      <div>
      
      <LeafletMap ref="leafletMapComponent" baseMap={baseMap} bounds={bounds} zoom={zoom} onMapMove={this.updateCurrentBounds}/>
+      <TimeSliderControl/>
       <AGOLbtnLogin/>
       <LegendControl/>
       <PointsLayer getMap={this.getMap}/>
       <ShapesLayer getMap={this.getMap}/>
+      <ShapesLayer getMap={this.getMap}/>
+      <IndicatorLayer getMap={this.getMap}/>
+
       <If condition={this.state.mapStatus.loading} >
         <Loading container="loading-container"/>
       </If>

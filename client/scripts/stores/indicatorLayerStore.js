@@ -4,13 +4,14 @@ var Reflux = require('reflux');
 var LayersAction = require('../actions/layersAction.js');
 var Util = require('../api/util.js');
 var API = require('../api/layers.js');
-var GeoStats = require('../api/geostats.js');
 
 var _ = require('lodash');
 var assign = require('object-assign');
 
 var CommonsMixins = require('./_mixins.js')
 var DataLayerMixins = require('./_overlaysMixins.js')
+var GeoStats = require('../api/geostats.js');
+
 
 var defaultStyle = {
 	"color": {
@@ -126,12 +127,31 @@ module.exports = Reflux.createStore({
 		});
 	},
 
-	_loadByMuncipalities: function() {
-		 alert('_loadByMuncipalities');
-	},
-
+	/*Load GIS data by department */
 	_loadByDepartments: function() {
-	 	alert('_loadByDepartments');	
-	}
+		debugger;
+    this._getGeoData(API.getActivitiesByDepartment); //just delegate the call to the next function passing the target method
+},
+
+_loadByMuncipalities: function() {
+	debugger;
+    this._getGeoData(API.getActivitiesByMuncipalities); //just delegate the call to the next function passing the target method
+},
+
+_getGeoData: function(func) {
+    func(this.state.filters).then(function(results) { //call api function and process results 
+    	var items = [];
+    	_.map(results, function(d){
+    		if(!isNaN(d.id)){
+    			items.push(d.activities);
+    		}
+    	});
+    	var geoStats = new GeoStats(items);
+      //tranform plain data to GeoJson
+      this._setGeoData(Util.toGeoJson(results), geoStats); //process and set changes to state  
+  }.bind(this)).fail(function(e) {
+  	console.log('Error while loading data ...', e);
+  });
+}
 
 });

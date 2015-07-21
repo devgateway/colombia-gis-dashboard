@@ -15,11 +15,12 @@ module.exports = {
 
 	/*Listen  set property event comming from the layer control  */
 	onChangeLayerValue: function(id, property, value, subProperty) {
-		
+		console.log(id);
 		var prevLevel = this.state.level;
 		var newLevel = this.state.level;
+
 		var latestChange  = new Object();
-		latestChange['latestChange'] = {'id':id, 'property':property, 'value':value, 'subProperty':subProperty};
+		latestChange['latestChange'] = {'id':id, 'property':property, 'value':value, 'subProperty':subProperty}; //TODO:Review this structure seems to be  duplicating data that we already have at store level
 		this.update(latestChange, {'silent': true});
 
 
@@ -46,28 +47,26 @@ module.exports = {
 				} else {
 					this.update(assignable);
 				}
+
 			} else if (property == 'color') {
-				console.log('change color');
-				console.log(value);
 				var breaks=_.clone(this.state.breaks);
 				breaks.breaks[subProperty].style.color = value;
 				this.update({'breaks':breaks});
+
 			} else if (property == 'break') {
-				console.log('change breaks');
-				console.log(value);
 				var breaks=_.clone(this.state.breaks);
 				breaks.breaks[subProperty].min = value[0];
 				breaks.breaks[subProperty].max = value[1];
 				this.update({'breaks':breaks}, {'silent': true});
+			
 			} else if (property == 'breakStyle') {
-				console.log('change breakStyle');
-				console.log(value);
 				this.update({'breakStyle':value});
+			
 			} else if (property == 'radius') {
-			 	console.log('change Radius!');
 				var breaks=_.clone(this.state.breaks);
 				breaks.breaks[subProperty].style.radius = value;
 				this.update({'breaks':breaks});
+			
 			} else {
 				this.update(assignable); //other case trigger the new state
 			};

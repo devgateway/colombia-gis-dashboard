@@ -92,7 +92,7 @@ module.exports = {
 			var stateList = {};
 			stateList[level.levelParam] = _.sortBy(this._capitalize(data), 'name');
 			this.update(stateList);
-			debugger;
+			
 			if (level.child){
 				this._loadDataList(level.child, level.levelParam);
 			}

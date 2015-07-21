@@ -14,7 +14,8 @@ var _ = require('lodash');
 
 var Breaker=require('./_breaker.jsx');
 
-var Store = require('../../../stores/pointsLayerStore.js');
+
+var Store = require('../../../stores/indicatorLayerStore.js');
 
 var Finder=require('../../util/indicatorFinder.jsx');
 
@@ -31,21 +32,20 @@ module.exports = React.createClass({
   },
 
   _showByDepartment:function(){
-    LayerActions.changeLayerValue('points','level','departament'); //TODO:property mame should be in a globar variable
+    LayerActions.changeLayerValue('indicators','level','departament'); //TODO:property mame should be in a globar variable
   },
 
   _showByMunicipality:function(){
-    LayerActions.changeLayerValue('points','level','municipality'); //TODO:property mame should be in a globar variable
+    LayerActions.changeLayerValue('indicators','level','municipality'); //TODO:property mame should be in a globar variable
   },
 
   _changeColor:function(value,level){
 
-    LayerActions.changeLayerValue('points','color',value,level); //TODO:property mame should be in a globar variable
+    LayerActions.changeLayerValue('indicators','color',value,level); //TODO:property mame should be in a globar variable
   },
 
   _changeRadius:function(value,level){
-
-    LayerActions.changeLayerValue('points','radius',value,level); //TODO:property mame should be in a globar variable
+    LayerActions.changeLayerValue('indicators','radius',value,level); //TODO:property mame should be in a globar variable
   },
 
 
@@ -54,7 +54,7 @@ module.exports = React.createClass({
 
 
   _selectIndicator:function(indicator){
-    this.setState({'indicator':indicator})
+    this.setState({'indicators':indicator})
   },
 
 
@@ -63,6 +63,7 @@ module.exports = React.createClass({
 
    return (
     <li>
+    
     <Toggler ref='toggler'>
     <TogglerContent visibleWhen="collapsed">
     <div toggler={true} className="toggler-button"><i className="fa fa-chevron-down"></i></div>
@@ -77,7 +78,7 @@ module.exports = React.createClass({
 
     <TogglerContent visibleWhen="expanded">
 
-    <Layer id="indicatos" opacity={this.state.opacity} onChangeOpacity={this._onChangeOpacity} onChangeVisibility={this._changevisibility} visible={this.state.visible}/>
+    <Layer id="indicators" opacity={this.state.opacity} onChangeOpacity={this._onChangeOpacity} onChangeVisibility={this._changevisibility} visible={this.state.visible}/>
 
     <ul className="controls-items">
 
@@ -91,29 +92,29 @@ module.exports = React.createClass({
 
     </li>
     <li className="indicator">
-      <div className="clearFix"/>
-      <Finder label={this.state.indicator || 'Select Indicator'} onSelect={this._selectIndicator}/>  
-      <div className="vbuffer"/>
-      <div className="vbuffer"/>
+    <div className="clearFix"/>
+    <Finder label={this.state.indicator || 'Select Indicator'} onSelect={this._selectIndicator}/>  
+    <div className="vbuffer"/>
+    <div className="vbuffer"/>
     </li>
 
 
     
 
     <li className="color-selection">
-            <h3 className="color-control"><Message message='layers.colorSelection'/></h3>
-            {
-              _.map(_.keys(this.state.breaks.breaks),function(key){
-                  var br=this.state.breaks.breaks[key];
-                  var minLabel = br.min.toFixed(0);
-                  var maxLabel = (br.max - 1).toFixed(0);
-                return (
-                      <Breaker  level={key} label={minLabel+'-'+maxLabel} radius={br.style.radius} color={br.style.color} onChangeColor={this._changeColor}
-                      onChageRadius={this._changeRadius}/>
-                      )
-              }.bind(this))
-            }
-          </li>
+    <h3 className="color-control"><Message message='layers.colorSelection'/></h3>
+    {
+      _.map(_.keys(this.state.breaks.breaks),function(key){
+        var br=this.state.breaks.breaks[key];
+        var minLabel = br.min.toFixed(0);
+        var maxLabel = (br.max - 1).toFixed(0);
+        return (
+          <Breaker  level={key} label={minLabel+'-'+maxLabel} radius={br.style.radius} color={br.style.color} onChangeColor={this._changeColor}
+          onChageRadius={this._changeRadius}/>
+          )
+      }.bind(this))
+    }
+    </li>
     </ul>
     </TogglerContent>
     </Toggler>
