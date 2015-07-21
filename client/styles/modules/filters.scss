@@ -311,6 +311,9 @@ input[type=checkbox].glyphicon {
   font-weight:bold;
   color: $grey;
 }
+.trace-item-label{
+  font-size: 0.8em;
+}
 
 //advanced filters- new set up
 .filters-more{
@@ -322,4 +325,16 @@ input[type=checkbox].glyphicon {
   &:hover{
     color: $grey;
   }
+}
+
+.parent-trace-list{
+  padding-left: 15px;
+}
+
+.filter-multilevel-col{
+  @extend filter-col;
+  width: 550px;
+  border-bottom: 1px solid rgb(227, 227, 227);
+  padding-bottom: 5px;
+  padding-top: 10px;
 }
