@@ -17,7 +17,7 @@ module.exports = {
 			_.forEach(savedData.filterData.filters, function(filter){
 				this._setSavedValues(this.state.levels, filter.param, filter.values);			
 			}.bind(this));	
-			this._createItemsTree();
+			//this._createItemsTree();
 		}
 	},
 
@@ -38,23 +38,32 @@ module.exports = {
 	onUpdateItemSelection: function(item, selected){
 		this._updateChildSelection(item, selected);
 		this.trigger(this.state, true);
-		this._createItemsTree();			
+		//this._createItemsTree();			
 	},	
 
 	onUpdateAllSelection: function(selected){
-		for (var key in this.state) {
+		/*for (var key in this.state) {
 			if (key != "itemsTree"){
 				_.forEach(this.state[key], function(item){
 					_.assign(item, {'selected': selected});
 				});
 			}
-		}
-		this._createItemsTree();			
+		}*/
+		//this._createItemsTree();			
 	},	
 
 	onFilterByKeyword: function(keyword){
-		this.update({'keyword': keyword});
-		this._createItemsTree();
+		for (var key in this.state) {
+			_.forEach(this.state[key], function(item){
+				if (this._itemMatchs(item, keyword)){
+					_.assign(item, {'hide': false});
+				} else {
+					_.assign(item, {'hide': true});
+				}			
+			}.bind(this));
+		}
+		//this.trigger(this.state, true);
+		this.update({'update': !this.state.update});
 	},
 
 	_capitalize: function(items) {
@@ -71,33 +80,37 @@ module.exports = {
 		}).slice(1);
 	},	
 
-	_loadDataList: function(level) {
+	_loadDataList: function(level, parentParam) {
 		Util.get(window.DATA_PATH + level.sourcePath).then(function(data) {
 			_.forEach(data, function(item){
-				_.assign(item, {'level': level.levelParam});//assign level to each item
-				_.assign(item, {'cid': item.id + "#" + item[level.parentIdField]});//create a complex id (cid) for duplicated items with different parents
-			});
+				_.assign(item, {'level': level.levelParam, 'hide': true});//assign level to each item, and hide it
+				if (parentParam){
+					var parentsTrace = this._getParentsTrace(item[level.parentIdField], parentParam);
+					_.assign(item, {'parentsTrace': parentsTrace});
+				}
+			}.bind(this));
 			var stateList = {};
 			stateList[level.levelParam] = _.sortBy(this._capitalize(data), 'name');
-			this.update(stateList, {silent:true});
+			this.update(stateList);
+			debugger;
 			if (level.child){
-				this._loadDataList(level.child);
-			} else {
-				this._createItemsTree();
+				this._loadDataList(level.child, level.levelParam);
 			}
 		}.bind(this)).fail(function() {
 			console.log('Failed to load data ');
 		});
 	},
 
+	_getParentsTrace: function(parentId, parentParam){
+		var parent = _.find(this.state[parentParam], function(e){return e.id == parentId});
+		var parentsTrace = _.clone(parent.parentsTrace) || [];
+		parentsTrace.push(parent.name);
+		return parentsTrace;
+	},
+
+	/*
 	_createItemsTree: function(){
-		var itemsTree = this._addTreeLevel(this.state.levels);
-		if (this.state.keyword && this.state.keyword!=""){
-			_.forEach(itemsTree, function(itemTree){
-				this._filterItemAndChildren(itemTree, this.state.keyword);		
-			}.bind(this));
-		}
-		this.update({'itemsTree': itemsTree});
+		this.update({'itemsTree': this._addTreeLevel(this.state.levels)});
 	},
 
 	_addTreeLevel: function(level){
@@ -119,14 +132,14 @@ module.exports = {
 		}.bind(this));
 		return itemsTree;				
 	},	
-	
+	*/
 	_updateChildSelection: function(item, selected){
-		_.assign(_.find(this.state[item.level], function(e){return e.cid == item.cid}), {'selected': selected});
-		if (item.nested){
+		_.assign(_.find(this.state[item.level], function(e){return e.id == item.id}), {'selected': selected});
+		/*if (item.nested){
 			_.forEach(item.nested, function(it){
 				this._updateChildSelection(it, selected);
 			}.bind(this));
-		}			
+		}*/		
 	},	
 
 	_itemMatchs: function(item, keyword) {
@@ -134,11 +147,11 @@ module.exports = {
 	      var pattern = new RegExp(keyword, 'i');
 	      return pattern.test(item.name)
 	    } else {
-	      return true;
+	      return false;
 	    }
 	},
 
-	_filterItemAndChildren: function(item, keyword){
+	/*_filterItemAndChildren: function(item, keyword){
 		var itemMatchs = this._itemMatchs(item, keyword);
 		var ret = false;
 		if (itemMatchs){
@@ -162,7 +175,7 @@ module.exports = {
 			_.assign(it, {'hide': false});
 			this._makeChildrenVisible(it);	
 		}.bind(this));
-	},
+	},*/
 
 	update: function(assignable, options) {
 		options = options || {};

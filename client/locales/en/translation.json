@@ -54,7 +54,9 @@
 		"contrast1":"Contrast colors 1",
 		"contrast2":"Contrast colors 2",
 		"gradient1":"Gradient colors 1",
-		"gradient2":"Gradient colors 2"
+		"gradient2":"Gradient colors 2",
+		"valueRange": "Value Range",
+		"valueRangesBetween": "Value Ranges Between"
 	},
 
 	"layers": {

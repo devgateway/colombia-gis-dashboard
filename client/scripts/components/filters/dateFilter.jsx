@@ -2,60 +2,47 @@
 
 var React = require('react');
 var Reflux = require('reflux');
+var DatePicker=require('.../../../commons/datePicker.jsx');
+
+var DateFormat = 'dd/mm/yy';
 
 var DateFilter = React.createClass({
 
     onStatusChange: function(status, selection) {
-        this._setStartDate(status.sd);
-        this._setEndDate(status.ed);
+        if(status.loadedFromSaved){
+            this._setStartDate(status.sd);
+            this._setEndDate(status.ed);
+        }
     },
 
     _setStartDate: function(date){
-        $(this.getDOMNode()).find('.start-date').datepicker('setDate', date);
-        this.setState({'startDate': date}); 
+        this.setState({'startDate': date});
+        this.actions.updateItemValue('sd', date);
+        if (!this.state.endDate && date!=''){
+            var d = $.datepicker.parseDate(DateFormat, date);
+            d.setFullYear(d.getFullYear() + 1);
+            var dFormated = $.datepicker.formatDate(DateFormat,d)
+            this.setState({'endDate': dFormated});
+            this.actions.updateItemValue('ed', dFormated);
+        }
     },    
 
     _setEndDate: function(date){
-        $(this.getDOMNode()).find('.end-date').datepicker('setDate', date);
         this.setState({'endDate': date});
+        this.actions.updateItemValue('ed', date);
+        if (!this.state.startDate && date!=''){
+            var d = $.datepicker.parseDate(DateFormat, date);
+            d.setFullYear(d.getFullYear() - 1);
+            var dFormated = $.datepicker.formatDate(DateFormat,d)
+            this.setState({'startDate': dFormated});
+            this.actions.updateItemValue('sd', dFormated);
+        }
     },
 
     _clearDates: function(){
-        $(this.getDOMNode()).find('.start-date').datepicker('setDate', '');
-        $(this.getDOMNode()).find('.end-date').datepicker('setDate', '');
         this.setState({'endDate': '', 'startDate': ''});
-    },    
-
-    componentDidUpdate: function(){
-        var self = this;
-        $('.start-date').datepicker({
-            dateFormat: "dd/mm/yy",
-            changeMonth: true,
-            changeYear: true,
-            onSelect: function(dateText) {
-                $(".end-date").datepicker("option","minDate", dateText);
-                self.actions.updateItemValue('sd', dateText);
-                if ($(".end-date").val().length==0){ //if end date is null, then set it to a year after startDate
-                    var d = $.datepicker.parseDate('dd/mm/yy', dateText);
-                    d.setFullYear(d.getFullYear() + 1);
-                    self.actions.updateItemValue('ed', d);                
-                }
-            }
-        });
-        $('.end-date').datepicker({
-            dateFormat: "dd/mm/yy",
-            changeMonth: true,
-            changeYear: true,
-            onSelect: function(dateText) {
-                $(".start-date").datepicker("option","maxDate", dateText);
-                self.actions.updateItemValue('ed', dateText);
-                if ($(".start-date").val().length==0){ //if start date is null, then set it to a year before endDate
-                    var d = $.datepicker.parseDate('dd/mm/yy', dateText);
-                    d.setFullYear(d.getFullYear() - 1);
-                    self.actions.updateItemValue('sd', d); 
-                }
-            }
-        });      
+        this.actions.updateItemValue('sd', "");
+        this.actions.updateItemValue('ed', "");
     },    
 
     componentDidMount: function(){
@@ -86,11 +73,11 @@ var DateFilter = React.createClass({
                             </div>
                             <div className="input-group date">
                                 <span className="filter-label" role="label"><Message message='filters.startDate'/></span>
-                                <input type="text" className="start-date"/>
+                                <DatePicker dateFormat={DateFormat} maxDate={this.state.endDate} defaultDate={this.state.startDate} onChange={this._setStartDate}/>
                             </div>
                             <div className="input-group date">
                                 <span className="filter-label" role="label"><Message message='filters.endDate'/></span>
-                                <input type="text" className="end-date"/>
+                                <DatePicker dateFormat={DateFormat} minDate={this.state.startDate} defaultDate={this.state.endDate} onChange={this._setEndDate}/>
                             </div>
                             <div className="input-group date">
                                 <button type="button" className="btn btn-apply clear-dates" role="button" onClick={this._clearDates}><Message message="filters.clearDates"/></button>    

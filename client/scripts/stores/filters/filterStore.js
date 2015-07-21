@@ -5,8 +5,9 @@ var Reflux = require('reflux');
 var _ = require('lodash');
 var Mixins=require('./mixins.js');
 var actions=require('../../actions/filterActions.js');
-var StoreDispatcher = require('./storeDispatcher.js');
+var StoreDispatcher = require('./storeCreator.js');
 var DateStore=require('./dateStore.js');
+var ValueRangeStore=require('./valueRangeStore.js');
 
 module.exports = Reflux.createStore({
 
@@ -17,7 +18,7 @@ module.exports = Reflux.createStore({
 			return function(value, selection){
 				if (_.isArray(params)){
 					_.forEach(params, function(param){
-						this.state[param] = _.isArray(value)? _.map(_.filter(value[param].items, function(it){return it.selected}), 'id'): value[param];
+						this.state[param] = _.isArray(value)? _.map(_.filter(value[param].items, function(it){return it.selected}), 'id'): [value[param]];
 					}.bind(this));
 				} else {
 					this.state[params] = _.map(_.filter(value.items, function(it){return it.selected}), 'id');
@@ -35,7 +36,8 @@ module.exports = Reflux.createStore({
 	init: function() {
 		this.state=this.state||{};
 
-		this.listenTo(StoreDispatcher.ClassificationType, this._collectFilters(['a1','a2','a3','a4','a5'], true));
+		this.listenTo(StoreDispatcher.ClassificationTypeBasic, this._collectFilters(['a1','a2'], true));
+		//this.listenTo(StoreDispatcher.ClassificationTypeAdvanced, this._collectFilters(['a1','a2','a3','a4','a5'], true));
 		this.listenTo(StoreDispatcher.AorCor, this._collectFilters('ar'));
 
 		this.listenTo(StoreDispatcher.ContractType, this._collectFilters('ct'));
@@ -52,13 +54,14 @@ module.exports = Reflux.createStore({
 
 		this.listenTo(StoreDispatcher.SubImplementers, this._collectFilters(['sit','si'], true));
 		this.listenTo(StoreDispatcher.TargetPopulation, this._collectFilters('tp'));
+		this.listenTo(ValueRangeStore, this._collectFilters(['vr1','vr2']));
 
 	},
 
 	onApplyFilters:function(){
 		var filters = [];
 		for (var key in this.state) {
-			if (this.state.hasOwnProperty(key) && this.state[key].length>0){
+			if (this.state.hasOwnProperty(key) && this.state[key].length>0 && this.state[key][0]!=""){
 			  	var selection = {'param': key, 'values': this.state[key]};
 			    filters.push(selection);
 			}
