@@ -76,28 +76,32 @@ module.exports=Reflux.createStore({
 
     onGetLegendsCompleted: function(legends, layer){ //Should not be used anymore
       var layerLegends = _.find(this.state.layersLegends, {'id': layer.id});
+      var isNewLegend = false;
       if (!layerLegends){
+        isNewLegend = true;
         layerLegends = {'id': layer.id, 'layerTitle': layer.title, 'visible': true, "legendGroups": []};
-      
-        if (layer.type=='Feature Service'){
-          var legendGroup = {};
-          var subLayerLegend = _.find(layerLegends.legendGroups, {'layerName': legends.name});
-          if (!subLayerLegend){
-            _.assign(legendGroup, {"layerName": legends.name});
-            _.assign(legendGroup, {"legends": API.parseLegendsFromDrawInfo(legends)}); 
-            layerLegends.legendGroups.push(legendGroup);
+      }
+      if (layer.type=='Feature Service'){
+        var legendGroup = {};
+        var subLayerLegend = _.find(layerLegends.legendGroups, {'layerName': legends.name});
+        if (!subLayerLegend){
+          _.assign(legendGroup, {"layerName": legends.name});
+          _.assign(legendGroup, {"legends": API.parseLegendsFromDrawInfo(legends)}); 
+          layerLegends.legendGroups.push(legendGroup);
+          if(isNewLegend){
             this.state.layersLegends.push(layerLegends);
           }
-        } else {
-          legends.layers.map(function(layer){
-            var legendGroup = {};
-            _.assign(legendGroup, {"layerName": layer.layerName});     
-            _.assign(legendGroup, {"legends": layer.legend});
-            layerLegends.legendGroups.push(legendGroup);                 
-          });
-          this.state.layersLegends.push(layerLegends);
         }
-      } 
+      } else if (isNewLegend) {
+        legends.layers.map(function(layer){
+          var legendGroup = {};
+          _.assign(legendGroup, {"layerName": layer.layerName});     
+          _.assign(legendGroup, {"legends": layer.legend});
+          layerLegends.legendGroups.push(legendGroup);                 
+        });
+        this.state.layersLegends.push(layerLegends);
+      }
+      
       this.trigger(this.state);
     },
 
