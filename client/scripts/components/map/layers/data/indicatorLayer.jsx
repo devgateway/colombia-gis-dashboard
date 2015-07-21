@@ -13,7 +13,7 @@
    mixins: [Mixins, Reflux.connect(Store)],
 
    componentDidMount:function(){
-    debugger;
+  
    },
 
    render: function() {

@@ -101,8 +101,7 @@ module.exports = {
 	},
 
 	_addTreeLevel: function(level){
-		debugger;
-		var tree = this._createParentChildrenList(this.state[level.levelParam], this.state[level.child.levelParam], level.child.parentIdField);
+			var tree = this._createParentChildrenList(this.state[level.levelParam], this.state[level.child.levelParam], level.child.parentIdField);
 		if (level.child.child){
 			_.assign(tree.nested, this._addTreeLevel(level.child));
 		}	
