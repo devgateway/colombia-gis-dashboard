@@ -2,100 +2,112 @@
 
 var React = require('react');
 var Reflux = require('reflux');
-var _=require('lodash');
-var Store=require('../../../stores/indicatorLayerStore.js');
+var _ = require('lodash');
+var Store = require('../../../stores/indicatorLayerStore.js');
 
-module.exports  = React.createClass({
+module.exports = React.createClass({
 
-  mixins: [Reflux.connect(Store, 'layer')],
+      mixins: [Reflux.connect(Store, 'layer')],
 
+      getInitialState: function() {
+        return {
+          min: 2005,
+          max: 2016,
+          range: 4,
+          label: 'Q'
+        };
+      },
 
-  getInitialState: function() {
-    return {min: 2005, max:2016,range:4,label:'Q'};
-  },
+      componentWillMount: function() {
 
-  componentWillMount:function(){
+      },
 
-  },
+      //current position divide by number of position per year + start year will give  the actual year
+      _getYear: function(value) {
+        return parseInt(value / this.state.range) + this.state.min;
+      },
 
-  componentDidMount:function(){
+      //poistion- the number of position per year * current year index will give us the period
+      _getYearPeriod: function(value) {
+        var index = this._getYear(value) - this.state.min;
+        return (parseInt(value) + 1) - (index * this.state.range) //is base 0
 
-    var maxRange=(this.state.max-this.state.min)*this.state.range;
-    var subRange=this.state.range;
-    var slider=this.getDOMNode()
-    
-    values=[0,maxRange];
-    for (var i=0 ;i < maxRange;i++){
-      if ((i) % subRange ==0){
-        values.push(i);
-      }
-    }
+      },
 
-    noUiSlider.create(slider, {
-      connect: true,
-      behaviour: 'tap',
-      step:1,
-      start: [ 0, maxRange ],
-      range: {
-        'min': [ 0 ],
-        'max': [ maxRange ]
-      },pips: {
-        mode: 'values',
-        values: values,        
-        density: 2,
-      }
-    });
+      _onSet: function(values, handle, unencodedValues) {
+        var minYear = this._getYear(unencodedValues[0]);
+        var maxYear = this._getYear(unencodedValues[1]);
+        console.log('Selection ' + minYear + '-' + maxYear);
+      },
 
+      _onUpdate: function(values, handle) {
+        var value = values[handle];
+        var year = this._getYear(value); //min year
+        var period = this._getYearPeriod(value)
+        this.tooltips[handle].innerHTML = year + '-' + this.state.label + period;
+      },
 
-    var values=$(slider).find('.noUi-value-large,.noUi-value-sub');
-    _.map(values,function(v){
-      var year=parseInt(v.innerHTML/this.state.range) + this.state.min; //min year
-      v.innerHTML=year;_
-    }.bind(this))
+      componentDidMount: function() {
+        var maxRange = (this.state.max - this.state.min) * this.state.range;
+        var subRange = this.state.range;
+        var slider = this.getDOMNode()
 
+        /*Fill some labels*/
+        values = [0, maxRange];
+        for (var i = 0; i < maxRange; i++) {
+          if ((i) % subRange == 0) {
+            values.push(i);
+          }
+        }
 
-    slider.noUiSlider.on('slide', function(){
-      console.log('slide...');
-    });
+        /*Create Slider*/
+        noUiSlider.create(slider, {
+          connect: true,
+          behaviour: 'tap',
+          step: 1,
+          start: [0, maxRange],
+          range: {
+            'min': [0],
+            'max': [maxRange]
+          },
+          pips: {
+            mode: 'values',
+            values: values,
+            density: 2,
+          }
+        });
 
-    slider.noUiSlider.on('set', function(){
-     console.log('set ...');
-   });
+        //Transform labels vales to years
+        var values = $(slider).find('.noUi-value-large,.noUi-value-sub');
+        _.map(values, function(v) {
+          var year = this._getYear(v.innerHTML); //min year
+          v.innerHTML = year;
+        }.bind(this))
 
-    var tipHandles = slider.getElementsByClassName('noUi-handle'),
-    tooltips = [];
+        // Add  tooltiips divs to the slider handles.
+        this.tipHandles = slider.getElementsByClassName('noUi-handle'),
+          this.tooltips = [];
 
-// Add divs to the slider handles.
-for ( var i = 0; i < tipHandles.length; i++ ){
-  tooltips[i] = document.createElement('div');
-  tooltips[i].className+= 'sliderTooltip';
-  tipHandles[i].appendChild(tooltips[i]);
-}
+        for (var i = 0; i < this.tipHandles.length; i++) {
+          this.tooltips[i] = document.createElement('div');
+          this.tooltips[i].className += 'sliderTooltip';
+          this.tipHandles[i].appendChild(this.tooltips[i]);
+        }
 
-// When the slider changes, write the value to the tooltips.
-slider.noUiSlider.on('update', function( values, handle ){
+        slider.noUiSlider.on('set', this._onSet)
+        slider.noUiSlider.on('update', this._onUpdate)
+      },
 
-  console.log( tooltips[handle])
-  var value= values[handle];
-  var year=parseInt(value/this.state.range) + this.state.min; //min year
-  var index=year-this.state.min;
+      render: function() {
+        console.log('time slider render');
+        var display = (this.state.layer && this.state.layer.visible) ? "block" : "none";
+        return ( < div style = {
+            {
+              display: display
+            }
+          }
+          className = "timeSliderContainer" >
+          < /div>);
+        }
 
-  var subRange=( parseInt(value)+1 ) -(index*this.state.range)//is base 0
-  
-
-
-  tooltips[handle].innerHTML = year+'-'+this.state.label+subRange;
-}.bind(this));
-
-
-
-},
-
-
-render: function() {
-  return (
-    <div className="timeSliderContainer">
-    </div>);
-}
-
-});
+      });
