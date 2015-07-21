@@ -12,9 +12,15 @@
 
    mixins: [Mixins, Reflux.connect(Store)],
 
+   componentDidMount:function(){
+    debugger;
+   },
 
    render: function() {
-    debugger;
+    /* <div className="arcgis-sig-in">
+    {(!this.state.login.token?<button onClick={this.oauth}>AGOL LOGIN</button>:<button onClick={this.logOut}>AGOL LogOut</button>)}
+    </div>*/
+     return (<div></div>)
    }
 
  });

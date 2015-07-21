@@ -63,6 +63,7 @@ module.exports = React.createClass({
 
    return (
     <li>
+    
     <Toggler ref='toggler'>
     <TogglerContent visibleWhen="collapsed">
     <div toggler={true} className="toggler-button"><i className="fa fa-chevron-down"></i></div>
