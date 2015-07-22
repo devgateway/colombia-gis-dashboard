@@ -11,7 +11,6 @@ module.exports=Reflux.createStore({
     // Initial setup
     init: function() {
         this.state = {};
-        var self = this; 
     },
 
     onGetInfoFromAPI: function(infoWindowFilter, filters) {

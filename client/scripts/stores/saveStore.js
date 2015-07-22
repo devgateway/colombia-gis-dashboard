@@ -25,7 +25,7 @@ module.exports = Reflux.createStore({
   listenables: SaveActions,
 
   init: function() {
-    this.state = {}; 
+    this.state = {mapName : ''}; 
     this.listenTo(LanStore, this._handleLanDataUpdate);
     this.listenTo(FilterStore, this._handleFilterDataUpdate); 
     this.listenTo(ShapesLayerStore, this._handleShapesDataUpdate); 
@@ -46,13 +46,14 @@ module.exports = Reflux.createStore({
    var arcgisData = this._getDataFromState(arcgisState);
 
    this.update({
+        'mapName': 'Saved Map for Colombia',
         'mapState': mapData,
         'lanState': lanData,
         'filterData': filterData,
         'shapesState': shapesData,
         'pointsState': pointsData,
         'arcgisState': arcgisData
-      }, {'silent': true});
+      }, {'silent': false});
    var dataToSave = JSON.stringify(this.state);
    //post dataToSave
   },
