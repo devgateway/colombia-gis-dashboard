@@ -816,8 +816,7 @@ input[type=checkbox].glyphicon {
   .filter-parent:hover {
     opacity: 0.8; }
   .filter-parent .selectable, .filter-parent .selectable-radio {
-    margin-top: 0.7em;
-    margin-left: 0.4em; }
+    margin: 0.4em 0.4em 0 0.4em; }
 
 .filter-col, .filter-col-parent, .filter-multilevel-col {
   width: 260px;
@@ -847,7 +846,7 @@ input[type=checkbox].glyphicon {
 .parent-toggle {
   cursor: pointer;
   position: absolute;
-  right: 1.1em;
+  right: 0.16667em;
   font-style: italic;
   font-size: 0.8em;
   line-height: 2.9em;
