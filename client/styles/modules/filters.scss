@@ -210,7 +210,6 @@ input[type=checkbox].glyphicon {
   }
 }
 
-
 .hasDatepicker {
     position: relative;
     z-index: 10000 !important;
@@ -343,9 +342,8 @@ input[type=checkbox].glyphicon {
 }
 .filter-multilevel-col{
   @extend .filter-col;
-  width: 550px;
+  width: 99%;
   border-bottom: 1px solid rgb(227, 227, 227);
-  padding-bottom: 5px;
   padding-top: 10px;
 }
 
@@ -361,4 +359,8 @@ input[type=checkbox].glyphicon {
     margin-left:-$gutter;
     margin-bottom:0;
   }
+}
+.multi-levels{
+  margin-top:-7px;
+  margin-bottom:10px;
 }

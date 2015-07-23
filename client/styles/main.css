@@ -966,9 +966,8 @@ input[type=checkbox].glyphicon {
   content: ""; }
 
 .filter-multilevel-col {
-  width: 550px;
+  width: 99%;
   border-bottom: 1px solid #e3e3e3;
-  padding-bottom: 5px;
   padding-top: 10px; }
 
 .advanced-main-item {
@@ -984,6 +983,10 @@ input[type=checkbox].glyphicon {
       content: "";
       display: table;
       clear: both; }
+
+.multi-levels {
+  margin-top: -7px;
+  margin-bottom: 10px; }
 
 nav.tab-navigation,
 nav.tabs {
