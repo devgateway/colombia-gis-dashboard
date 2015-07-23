@@ -97,7 +97,11 @@ module.exports = {
 				this._filterItemAndChildren(itemTree, this.state.keyword);		
 			}.bind(this));
 		}
-		this.update({'itemsTree': itemsTree});
+		if (_.filter(itemsTree, function(it){return !it.hide}).length==0){
+			this.update({'itemsTree': itemsTree, 'noResults': true});	
+		} else {
+			this.update({'itemsTree': itemsTree, 'noResults': false});
+		}
 	},
 
 	_addTreeLevel: function(level){
