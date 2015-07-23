@@ -313,6 +313,9 @@ input[type=checkbox].glyphicon {
 }
 .trace-item-label{
   font-size: 0.8em;
+  color: $grey;
+  font-style:normal;
+  float:left;
 }
 
 //advanced filters- new set up
@@ -321,20 +324,43 @@ input[type=checkbox].glyphicon {
   color: $blue;
   font-style: italic;
   cursor:pointer;
-
   &:hover{
     color: $grey;
   }
 }
-
 .parent-trace-list{
-  padding-left: 15px;
+  li{
+    @include floatLeft;
+    padding: 0 5px 0 0;
+    margin-right:5px;
+    line-height:1.2em;
+  }
+  li:after{
+    font-family: FontAwesome;
+    content: "\f101";
+    color: $blue;
+  }
+    li:first-child:after,
+    li:last-child:after{content:""}
 }
-
 .filter-multilevel-col{
-  @extend filter-col;
+  @extend .filter-col;
   width: 550px;
   border-bottom: 1px solid rgb(227, 227, 227);
   padding-bottom: 5px;
   padding-top: 10px;
+}
+
+.advanced-main-item{
+  width:100%;
+  padding-bottom:6px;
+
+  .item-label{
+    @include clearfix;
+    width:100%;
+    font-size:0.9em;
+    color: $black;
+    margin-left:-$gutter;
+    margin-bottom:0;
+  }
 }
