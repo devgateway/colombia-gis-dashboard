@@ -25,6 +25,7 @@
 .layer-info {
   @include floatLeft;
   display: inline;
+  white-space: normal;
   width: 150px;
 }
 

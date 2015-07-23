@@ -38,32 +38,30 @@ var ResultRecord=React.createClass({
 
 	render: function() {
 		console.log("layers->search->resultList: Render EsriService");
+		var style1 = {"display": "inline-block"};
 		return(
-				<li>
+				<div style={style1}>
 					<div className="layer-wrapper">
 						<div className="thumbnail pull-left">
 							<img width="110px" height="73px" src={"http://www.arcgis.com/sharing/content/items/"+this.props.id+"/info/"+this.props.thumbnail+  (this.props.token?"?token="+this.props.token:"") }/>
 						</div>
+						<div className="layer-info">
+							<div className="title" data-toggle="Loging is required" title={this.props.title}>{this.props.title} {this.props.loginRequired?<i className="text-warning small">Loing is required</i>:''}
+							</div>
 
-					<div className="layer-info">
-					<div className="title" data-toggle="Loging is required" title={this.props.title}>{this.props.title} {this.props.loginRequired?<i className="text-warning small">Loing is required</i>:''}
-				</div>
-
-				<div className="details">{this.props.snippet}</div>
-				<div className="details small">{this.props.type}  - {this.props.access}</div>
-					<div className="add">
-
-						<AddButton className="btn btn-apply"
-							onAddLayer={this._handleAdd}
-							loading={this.props.loading}
-							error={this.props.error}
-							loaded={this.props.loaded}
-							disabled={((this.props.loginRequired && !this.props.token)|| this.props.loaded)?true:false}/>
+							<div className="details">{this.props.snippet}</div>
+							<div className="details small">{this.props.type}  - {this.props.access}</div>
+							<div className="add">
+								<AddButton className="btn btn-apply"
+									onAddLayer={this._handleAdd}
+									loading={this.props.loading}
+									error={this.props.error}
+									loaded={this.props.loaded}
+									disabled={((this.props.loginRequired && !this.props.token)|| this.props.loaded)?true:false}/>
+							</div>
+						</div>
 					</div>
 				</div>
-
-			</div>
-			</li>
 			)
 	}
 
@@ -78,36 +76,34 @@ module.exports=React.createClass({
 		if(this.props.error){
 			errorMessage = this.props.error.message;
 		} 
+		var style1 = {"whiteSpace": "nowrap"};
 		return(
 			<div>
-			{
-				(errorMessage && errorMessage!="")?<div> <p className='label label label-danger'>{errorMessage}</p>
-				<hr class="h-divider"></hr></div>:""
-			}
-			{(this.props.search.total==0)?(
-				<div>
-					<Message message="layers.noResults"/>
-				</div>
-				):""
-			}
-			<ul className="esri-result-list">
-			{
-				this.props.search.results.map(function(record){
-					return( <ResultRecord  onAddLayer={this.props.onAddLayer}  token={this.props.token}   {...record}/>
-				)}.bind(this))
-			}
-
-			{(this.props.search.nextStart>-1)?(
-				<li>
-					<div className="layer-info text-rigth">
-						<button className="btn btn-apply" onClick={this.props.onNextPage}><Message message="layers.loadMoreResults"/></button>
+				{
+					(errorMessage && errorMessage!="")?<div> <p className='label label label-danger'>{errorMessage}</p>
+					<hr class="h-divider"></hr></div>:""
+				}
+				{(this.props.search.total==0)?(
+					<div>
+						<Message message="layers.noResults"/>
 					</div>
-				</li>):""
-			}
-
-			</ul>
-			
-		</div>
+					):""
+				}
+				<div style={style1}>
+					{
+						this.props.search.results.map(function(record){
+							return( <ResultRecord  onAddLayer={this.props.onAddLayer}  token={this.props.token}   {...record}/>
+						)}.bind(this))
+					}
+					{(this.props.search.nextStart>-1)?(
+						<li>
+							<div className="layer-info text-rigth">
+								<button className="btn btn-apply" onClick={this.props.onNextPage}><Message message="layers.loadMoreResults"/></button>
+							</div>
+						</li>):""
+					}
+				</div>			
+			</div>
 		);
 	}
 
