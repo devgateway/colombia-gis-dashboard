@@ -332,7 +332,7 @@ input[type=checkbox].glyphicon {
 }
 
 .filter-multilevel-col{
-  @extend filter-col;
+  @extend .filter-col;
   width: 550px;
   border-bottom: 1px solid rgb(227, 227, 227);
   padding-bottom: 5px;

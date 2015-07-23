@@ -13,16 +13,16 @@ module.exports = React.createClass({
   componentDidMount:function(){
     document.getElementById('exitSaveMapPopup').onclick = function() {
         var dialog = document.getElementById('saveMapPopup');
-        dialog.close();  
+        dialog.close();
     };
   },
 
   handleClickForSave:function(){
     console.log('Save Map');
     SaveActions.saveMap();
-    var dialog = document.getElementById('saveMapPopup');  
-    dialog.show();  
-    
+    var dialog = document.getElementById('saveMapPopup');
+    dialog.show();
+
   },
 
   handleClickForRestore:function(){
@@ -49,10 +49,15 @@ module.exports = React.createClass({
                   </div>
                 </div>
               </div>
-              <dialog className="saveMapPopup" id="saveMapPopup">  
-                  <h3>Save Window!</h3>  
-                  <p>Html for save functionality should be here! </p>  
-                  <button id="exitSaveMapPopup">Close Dialog</button>  
+              <dialog className="saveMapPopup" id="saveMapPopup">
+                    <div className="panel panel-default">
+        
+                        this is the new panel
+
+                    </div>
+                  <h3>Save Window!</h3>
+                  <p>Html for save functionality should be here! </p>
+                  <button id="exitSaveMapPopup">Close Dialog</button>
               </dialog>
             </div>
     );

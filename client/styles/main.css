@@ -733,7 +733,7 @@ button.layer-search {
     .filter-selectors a:hover {
       color: #98ca68; }
 
-.filter-list-container-carousel .filter-col, .filter-list-container-carousel .filter-col-parent {
+.filter-list-container-carousel .filter-col, .filter-list-container-carousel .filter-col-parent, .filter-list-container-carousel .filter-multilevel-col {
   width: 97%; }
 .filter-list-container-carousel .filter-col-parent {
   float: none;
@@ -819,7 +819,7 @@ input[type=checkbox].glyphicon {
     margin-top: 0.7em;
     margin-left: 0.4em; }
 
-.filter-col, .filter-col-parent {
+.filter-col, .filter-col-parent, .filter-multilevel-col {
   width: 260px;
   float: left;
   display: inline-flex;
@@ -939,6 +939,9 @@ input[type=checkbox].glyphicon {
   font-weight: bold;
   color: #454545; }
 
+.trace-item-label {
+  font-size: 0.8em; }
+
 .filters-more {
   float: left;
   color: #4d749f;
@@ -946,6 +949,15 @@ input[type=checkbox].glyphicon {
   cursor: pointer; }
   .filters-more:hover {
     color: #454545; }
+
+.parent-trace-list {
+  padding-left: 15px; }
+
+.filter-multilevel-col {
+  width: 550px;
+  border-bottom: 1px solid #e3e3e3;
+  padding-bottom: 5px;
+  padding-top: 10px; }
 
 nav.tab-navigation,
 nav.tabs {
@@ -1696,6 +1708,11 @@ ul.funding-options {
   clear: both;
   width: 100%; }
 
+.saveMapPopup {
+  z-index: 10000;
+  bottom: 60%;
+  width: 450px; }
+
 /*add here all styles used during development later they will be replaced by the final ones */
 .selectable-radio, .selectable {
   border-radius: 0% !important;
@@ -1806,11 +1823,6 @@ ul.funding-options {
 .download-button {
   border: 1px solid #c5c5c5; }
 
-.saveMapPopup {
-  z-index: 10000;
-  bottom: 60%;
-  width: 450px; }
-
 .finder p.title {
   margin-top: 6px;
   font-weight: bold; }
@@ -1828,5 +1840,32 @@ ul.funding-options {
     white-space: nowrap; }
   .finder table tr td.description {
     white-space: normal; }
+
+.timeSliderContainer {
+  font-size: 9px;
+  position: absolute;
+  bottom: 90px;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  width: 900px;
+  z-index: 100; }
+  .timeSliderContainer .sliderTooltip {
+    display: block;
+    color: #FFF;
+    position: absolute;
+    font-size: 9px;
+    background-color: #8D2F5D;
+    border: 1px solid #EEE;
+    border-radius: 3px;
+    top: -30px;
+    padding: 5px;
+    left: -9px;
+    text-align: center;
+    width: 60px;
+    z-index: 1500; }
+  .timeSliderContainer .noUi-value, .timeSliderContainer .noUi-marker {
+    font-size: 10px; }
 
 /*# sourceMappingURL=main.css.map */
