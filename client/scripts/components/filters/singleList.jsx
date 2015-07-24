@@ -29,6 +29,12 @@ module.exports = React.createClass({
   render: function() {
     //console.log("render SingleList");
     var selectedItems = _.filter(this.state.items, function(it){return it.selected}); 
+    var noResults = "";
+    if (this.state.noResults){
+      noResults = <div className="filter-no-results">
+                    <br/>{<Message message="filters.noResults"/>}
+                </div>
+    }
     if (this.props.active){
       return ( 
         <div className="tab-content">
@@ -41,6 +47,7 @@ module.exports = React.createClass({
                 <SelectAllNone onSelectAll={this._onSelectAll} onSelectNone={this._onSelectNone}/>
               </div>
               <KeywordSearch onSearch={this._onSearch} onSearchEnterKey={this._onSearchEnterKey}/>
+              {noResults}
               <div className="filter-list-container">
                 <ul className="filter-list">
                 {

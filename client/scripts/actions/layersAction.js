@@ -2,7 +2,8 @@
 var Reflux = require('reflux');
 
 module.exports = {
-	changeFundingFilterSelection:Reflux.createAction(),
+	changeFundingTypeSelection:Reflux.createAction(),
+    changeFundingSourceSelection:Reflux.createAction(),
     layerInit :Reflux.createAction(),
     restoreData:Reflux.createAction(),
 	changeLayerValue:Reflux.createAction(),
