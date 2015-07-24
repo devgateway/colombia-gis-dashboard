@@ -38,6 +38,12 @@ module.exports = React.createClass({
     }
   },
 
+  _hasItems: function(array){
+    var hasItems = false;
+    _.forEach(array, function(arrayInside){if (arrayInside.length>0){hasItems=true}});
+    return hasItems;
+  },
+
   render: function() {
     var listsFiltered = [];
     var listsFull = [];
@@ -53,6 +59,12 @@ module.exports = React.createClass({
         totalSelected = totalSelected + _.filter(list, function(it){return it.selected}).length;
       }
     });
+    var noResults = "";
+    if (!this._hasItems(listsFiltered)){
+      noResults = <div className="filter-no-results">
+                    <br/>{<Message message="filters.performSearch"/>}
+                </div>
+    }
     if (this.props.active){
       return ( 
         <div className="tab-content">
@@ -65,6 +77,7 @@ module.exports = React.createClass({
                 <SelectAllNone onSelectAll={this._onSelectAll} onSelectNone={this._onSelectNone}/>
               </div>
               <KeywordSearch onSearch={this._onSearch} lengthLimit="3" onClear={this._onSearchClear}/>
+              {noResults}
               <div className="filter-list-container">
                 <ul className="filter-list">
                 {
