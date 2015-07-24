@@ -28,17 +28,12 @@ module.exports = React.createClass({
     return 'points';
   },
 
-  _getDefaultBreaks: function() {
-    return breaks;
+  _changeBreaksWrapper:function(value){
+    this.handleClickForBreaks(value, breaks, breakStyle);
   },
-
-  _getDefaultBreakStyle: function() {
-    return breakStyle;
-  },
-
+  
   _changeRadius:function(value,level){
-
-    LayerActions.changeLayerValue('points','radius',value,level); //TODO:property mame should be in a globar variable
+    LayerActions.changeLayerValue('points','radius',value,level); 
   },
 
   componentDidMount: function(){
@@ -49,7 +44,6 @@ module.exports = React.createClass({
 
 
   var level=this.state.level;
-  var fundingTypes = [];//FilterStore.getAll("ft");
   return (
   <li>
     <Toggler ref='toggler'>
@@ -84,26 +78,6 @@ module.exports = React.createClass({
               <CustomRadio className="horizontal" name="municipality" checked={(level=='municipality')? true : false}
                 onClick={this._showByMunicipality} label="layers.byMunicipality"/>
             </CustomRadioGroup>
-          </li>
-
-          <li>
-            <div className="clearFix"/>
-            <h3 className="color-control value-label"><Message message='layers.subactivitiesNumber'/></h3>
-            <ul className="funding-options">
-            {
-              fundingTypes.map(function(fundingType){
-                return(
-                  <li>
-                    <CustomCheckbox
-                            selected={fundingType.selected}
-                            onChange={self._onFundingChanged}
-                            value={fundingType.id}/>
-                    <span>{fundingType.name}</span>
-                  </li>
-                );
-              })
-            }
-            </ul>
           </li>
           <li>
               <div className="vbuffer"/>

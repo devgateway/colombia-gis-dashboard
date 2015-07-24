@@ -31,12 +31,20 @@ module.exports = React.createClass({
     return 'shapes';
   },
 
-  _getDefaultBreaks: function() {
-    return breaks;
+  _changeBreaksWrapper:function(value){
+    this.handleClickForBreaks(value, breaks, breakStyle);
   },
 
-  _getDefaultBreakStyle: function() {
-    return breakStyle;
+  _onFundingSourceChanged: function(obj) {
+    LayerActions.changeFundingSourceSelection(obj.value, obj.selected);
+  },
+
+  _showDisbursements: function() {
+    LayerActions.changeFundingTypeSelection('disbursements');
+  },
+
+  _showCommitments: function() {
+    LayerActions.changeFundingTypeSelection('commitments');
   },
 
   componentDidMount: function(){
@@ -50,7 +58,8 @@ module.exports = React.createClass({
     console.log('...................... Layer State ......................')
 
     var level=this.state.level;
-    var fundingTypes = this.state.fundingFilterItems || [];
+    var fundingSources = this.state.fundingSourceItems || [];
+    var fundingType = this.state.fundingType;
     var self = this;
     return (
     <li>
@@ -90,27 +99,25 @@ module.exports = React.createClass({
             <li className="layer-option-section">
               <h3 className="color-control"><Message message='layers.fundingType'/></h3>
               <div className="funding-types">
-              <ul>
-                <li><span className="selectable-radio"></span>
-                  <Message message='layers.fundingSourceCommitments'/>
-                </li>
-                <li><span className="selectable-radio"></span>
-                  <Message message='layers.fundingSourceDisbursements'/>
-                </li>
-              </ul>
+                <CustomRadioGroup>
+                  <CustomRadio  className="inline" name="commitments" checked={(fundingType=='commitments')? true : false}
+                  onClick={self._showCommitments} label="layers.fundingSourceCommitments"/>
+                  <CustomRadio  className="inline" name="disbursements" checked={(fundingType=='disbursements')? true : false}
+                  onClick={self._showDisbursements} label="layers.fundingSourceDisbursements"/>
+                </CustomRadioGroup>
               </div>
             </li>
             <li className="layer-option-section">
               <h3><Message message='layers.fundingSource'/></h3>
               {
-                fundingTypes.map(function(fundingType){
+                fundingSources.map(function(fundingSource){
                   return(
                       <li className="funding-type-option">
                       <CustomCheckbox
-                              selected={fundingType.selected}
-                              onChange={self._onFundingChanged}
-                              value={fundingType.id}/>
-                      <span>{fundingType.name}</span>
+                              selected={fundingSource.selected}
+                              onChange={self._onFundingSourceChanged}
+                              value={fundingSource.id}/>
+                      <span>{fundingSource.name}</span>
                       </li>
                   );
                 })

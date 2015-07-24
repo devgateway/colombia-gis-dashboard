@@ -113,10 +113,5 @@ module.exports = {
 
   _changeBreakStyle:function(value){
     LayerActions.changeLayerValue(this._getLayerId(),'breakStyle',value); 
-  },
-
-  _changeBreaksWrapper:function(value){
-    this.handleClickForBreaks(value, this._getDefaultBreaks(), this._getDefaultBreakStyle());
-  },
-
+  }
 }
