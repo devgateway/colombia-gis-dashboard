@@ -1,16 +1,20 @@
 .esri-result-list {
-  overflow-y: scroll;
-  height: 380px;
-  padding-left:0;
-  ul {
-    @include listUnstyled;
-  }
+  height: 220px;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
+
+.esri-result-item {
+  padding: 5px;
+  border-right: 1px solid #dedede;
+  display: inline-block;
 }
 
 .layer-wrapper {
   width:300px;
   @include floatLeft;
-  height: 280px;
+  height: 180px;
   overflow:hidden;
   padding: 0 0.5em 0 0;
   @include listUnstyled;
@@ -30,6 +34,7 @@
 }
 
 .title {
+  height: 30px;
   color: $black;
   font-size: 1.1em;
   line-height: 120%;
@@ -48,10 +53,13 @@
 
 
 .details{
+  height: 70px;
+  overflow: auto;
   width:116%;
   color:$black;
   margin-bottom:7px;
   &.small{
+    height: 20px;
     font-size:0.95em;
   }
 }
@@ -110,7 +118,7 @@
   .title{
     font-size: 1em;
     color: $grey;
-    width:40px;
+    //width:40px;
     margin-top:-22px;
     margin-left:32px;
     margin-bottom:30px;

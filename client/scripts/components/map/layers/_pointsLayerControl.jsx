@@ -24,42 +24,21 @@ module.exports = React.createClass({
 
  mixins: [CommonsMixins, Reflux.connect(Store)],
 
-  _changevisibility: function(id, value) {
-    LayerActions.changeLayerValue(id,'visible',value); //TODO:property mame should be in a globar variable
+  _getLayerId: function() {
+    return 'points';
   },
 
-  _onChangeOpacity:function(id,value){
-    LayerActions.changeLayerValue(id,'opacity',value); //TODO:property mame should be in a globar variable
+  _getDefaultBreaks: function() {
+    return breaks;
   },
 
-  _showByDepartment:function(){
-    LayerActions.changeLayerValue('points','level','departament'); //TODO:property mame should be in a globar variable
-  },
-
-  _showByMunicipality:function(){
-    LayerActions.changeLayerValue('points','level','municipality'); //TODO:property mame should be in a globar variable
-  },
-
-  _changeColor:function(value,level){
-
-    LayerActions.changeLayerValue('points','color',value,level); //TODO:property mame should be in a globar variable
+  _getDefaultBreakStyle: function() {
+    return breakStyle;
   },
 
   _changeRadius:function(value,level){
 
     LayerActions.changeLayerValue('points','radius',value,level); //TODO:property mame should be in a globar variable
-  },
-
-  _changeBreak:function(value,level){
-    LayerActions.changeLayerValue('points','break',value,level); 
-  },
-
-  _changeBreakStyle:function(value){
-    LayerActions.changeLayerValue('points','breakStyle',value); 
-  },
-
-  _changeBreaksWrapper:function(value){
-    this.handleClickForBreaks(value, breaks, breakStyle);
   },
 
   componentDidMount: function(){
@@ -80,14 +59,21 @@ module.exports = React.createClass({
       <TogglerContent visibleWhen="expanded">
         <div toggler={true} className="toggler-button"><i className="fa fa-chevron-up"></i></div>
       </TogglerContent>
-      <TogglerContent visibleWhen="always">
-        <div><span className="control-title">{i18n.t("layers.subActivitiesLevel")}</span></div>
+      <TogglerContent visibleWhen="collapsed">
+        <Layer id="points"
+          opacity={this.state.opacity}
+          onChangeOpacity={this._onChangeOpacity}
+          onChangeVisibility={this._changeVisibility}
+          visible={this.state.visible}
+          title={i18n.t("layers.subActivitiesLevel")}
+          showBasicControl={true}/>
       </TogglerContent>
       <TogglerContent visibleWhen="expanded">
         <Layer id="points"
           opacity={this.state.opacity}
           onChangeOpacity={this._onChangeOpacity}
-          onChangeVisibility={this._changevisibility}
+          onChangeVisibility={this._changeVisibility}
+          title={i18n.t("layers.subActivitiesLevel")}
           visible={this.state.visible}/>
         <ul>
           <li className="levels">

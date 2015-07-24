@@ -27,40 +27,16 @@ module.exports = React.createClass({
  //mixins: [Reflux.connect(FilterStore), Reflux.connect(Store)], 
  mixins: [CommonsMixins, Reflux.connect(Store)], 
  
-  _changeVisibility: function(id, value) {
-    LayerActions.changeLayerValue(id,'visible',value);
+  _getLayerId: function() {
+    return 'shapes';
   },
 
-  _onChangeOpacity:function(id,value){
-    LayerActions.changeLayerValue(id,'opacity',value);
+  _getDefaultBreaks: function() {
+    return breaks;
   },
 
-  _showByDepartment:function(){
-    LayerActions.changeLayerValue('shapes','level','departament');
-  },
-
-  _showByMunicipality:function(){
-    LayerActions.changeLayerValue('shapes','level','municipality');
-  },
-
-  _changeColor:function(value,level){
-    LayerActions.changeLayerValue('shapes','color',value,level);
-  },
-
-  _changeBreak:function(value,level){
-    LayerActions.changeLayerValue('shapes','break',value,level);
-  },
-
-  _changeBreakStyle:function(value){
-    LayerActions.changeLayerValue('shapes','breakStyle',value);
-  },
-
-  _onFundingChanged: function(obj) {
-    LayerActions.changeFundingFilterSelection(obj.value, obj.selected);
-  },
-
-  _changeBreaksWrapper:function(value){
-    this.handleClickForBreaks(value, breaks, breakStyle);
+  _getDefaultBreakStyle: function() {
+    return breakStyle;
   },
 
   componentDidMount: function(){
@@ -85,14 +61,21 @@ module.exports = React.createClass({
         <TogglerContent visibleWhen="expanded">
           <div toggler={true} className="toggler-button"><i className="fa fa-chevron-up"></i></div>
         </TogglerContent>
-        <TogglerContent visibleWhen="always">
-          <div><span className="control-title">{i18n.t("layers.fundingByType")}</span></div>
+        <TogglerContent visibleWhen="collapsed">
+          <Layer id="shapes"
+            opacity={this.state.opacity}
+            onChangeOpacity={this._onChangeOpacity}
+            onChangeVisibility={this._changeVisibility}
+            visible={this.state.visible}
+            title={i18n.t("layers.fundingByType")}
+            showBasicControl={true}/>
         </TogglerContent>
         <TogglerContent visibleWhen="expanded">
           <Layer id="shapes"
             opacity={this.state.opacity}
             onChangeOpacity={this._onChangeOpacity}
             onChangeVisibility={this._changeVisibility}
+            title={i18n.t("layers.fundingByType")}
             visible={this.state.visible}/>
           <ul>
             <li className="layer-option-section">
@@ -117,25 +100,22 @@ module.exports = React.createClass({
               </ul>
               </div>
             </li>
-
-<li className="layer-option-section">
-<h3><Message message='layers.fundingSource'/></h3>
-
-{
-  fundingTypes.map(function(fundingType){
-    return(
-        <li className="funding-type-option">
-        <CustomCheckbox
-                selected={fundingType.selected}
-                onChange={self._onFundingChanged}
-                value={fundingType.id}/>
-        <span>{fundingType.name}</span>
-        </li>
-    );
-  })
-}
-</li>
-
+            <li className="layer-option-section">
+              <h3><Message message='layers.fundingSource'/></h3>
+              {
+                fundingTypes.map(function(fundingType){
+                  return(
+                      <li className="funding-type-option">
+                      <CustomCheckbox
+                              selected={fundingType.selected}
+                              onChange={self._onFundingChanged}
+                              value={fundingType.id}/>
+                      <span>{fundingType.name}</span>
+                      </li>
+                  );
+                })
+              }
+            </li>
             <li>
               <div className="vbuffer"/>
               <div className="clearFix"/>
@@ -165,21 +145,18 @@ module.exports = React.createClass({
               <div className="clearFix"/>
             </li>
             <li>
-            <h3 className="color-control percent-funding"><Message message='layers.fundingPercent'/></h3>
-            <h3 className="color-control"><Message message='layers.colorSelection'/></h3>
-
-            {
-
-              _.map(_.keys(this.state.breaks.breaks),function(key){
-                  var br=this.state.breaks.breaks[key];
-                return (
-                      <Breaker  level={key} label={br.min.toFixed(2)+'-'+br.max.toFixed(2)} color={br.style.color} onChangeColor={this._changeColor} />
-                      )
-              }.bind(this))
-
-            }
-          </li>
-</ul>
+              <h3 className="color-control percent-funding"><Message message='layers.fundingPercent'/></h3>
+              <h3 className="color-control"><Message message='layers.colorSelection'/></h3>
+              {                
+                _.map(_.keys(this.state.breaks.breaks),function(key){
+                    var br=this.state.breaks.breaks[key];
+                  return (
+                        <Breaker  level={key} label={br.min.toFixed(2)+'-'+br.max.toFixed(2)} color={br.style.color} onChangeColor={this._changeColor} />
+                        )
+                }.bind(this))
+              }
+            </li>
+          </ul>
         </TogglerContent>
       </Toggler>
     </li>);

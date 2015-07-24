@@ -1,3 +1,7 @@
+'use strict';
+
+var LayerActions = require('../../../actions/layersAction.js');
+
 var color0 = [[255, 200, 170, 0.8], [212, 143, 106, 0.8], [253, 154, 0, 0.8], [170, 57, 0, 0.8], [128, 58, 21, 0.8]];
 var color1 = [[255, 51, 51, 0.8], [255, 153, 51, 0.8], [255, 255, 51, 0.8], [153, 255, 51, 0.8], [51, 255, 153, 0.8]];
 var color2 = [[51, 153, 255, 0.8], [102, 102, 255, 0.8], [178, 102, 255, 0.8], [255, 102, 255, 0.8], [255, 102, 178, 0.8]];
@@ -81,6 +85,38 @@ module.exports = {
     color.map(function(n, i){
       self._changeColor({r: n[0], g: n[1], b: n[2], a: n[3]}, "Level"+i);
     })
+  },
+
+  _changeVisibility: function(id, value) {
+    LayerActions.changeLayerValue(id,'visible',value); 
+  },
+
+  _onChangeOpacity:function(id,value){
+    LayerActions.changeLayerValue(id,'opacity',value); 
+  },
+
+  _showByDepartment:function(){
+    LayerActions.changeLayerValue(this._getLayerId(),'level','departament'); 
+  },
+
+  _showByMunicipality:function(){
+    LayerActions.changeLayerValue(this._getLayerId(),'level','municipality'); 
+  },
+
+  _changeColor:function(value,level){
+    LayerActions.changeLayerValue(this._getLayerId(),'color',value,level);
+  },
+
+  _changeBreak:function(value,level){
+    LayerActions.changeLayerValue(this._getLayerId(),'break',value,level); 
+  },
+
+  _changeBreakStyle:function(value){
+    LayerActions.changeLayerValue(this._getLayerId(),'breakStyle',value); 
+  },
+
+  _changeBreaksWrapper:function(value){
+    this.handleClickForBreaks(value, this._getDefaultBreaks(), this._getDefaultBreakStyle());
   },
 
 }
