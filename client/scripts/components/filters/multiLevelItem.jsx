@@ -35,21 +35,21 @@ module.exports = React.createClass({
     var idx = 0;
     var itemClassNames=(this.state.selected===true)?'item-label label-selected':'item-label';
     var traceItemClassNames=(this.state.selected===true)?'trace-item-label label-selected':'trace-item-label';
-    return(  
+    return(
       <div className="filter-multilevel-col">
         <div>
           <CustomCheckbox selected={this.state.selected} value={this.props.id} onChange={this._handleClick}/>
         </div>
         <ul className="parent-trace-list">
+<li className="advanced-main-item"><span onClick={this._handleClick} className={itemClassNames}> {this.props.label}</span></li>
           {
             parentTrace.map(function(parent) {
-              var style = {'paddingLeft': idx++*10 + 'px'};                
-              return (<li><i><span className={traceItemClassNames} style={style}> {parent}</span></i></li>)
-            },this) 
+              var style = {'paddingLeft': idx++*1 + 'px'};
+              return (<li className="multi-levels"><div className="levels-list"><span className={traceItemClassNames} style={style}> {parent}</span></div></li>)
+            },this)
           }
-          <li><span onClick={this._handleClick} className={itemClassNames} style={{'paddingLeft': idx++*10 + 'px'}}> {this.props.label}</span></li>
         </ul>
       </div>)
-        
+
   }
 });

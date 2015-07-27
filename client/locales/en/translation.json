@@ -56,7 +56,8 @@
 		"gradient1":"Gradient colors 1",
 		"gradient2":"Gradient colors 2",
 		"valueRange": "Value Range",
-		"valueRangesBetween": "Value Ranges Between"
+		"valueRangesBetween": "Value Ranges Between",
+		"performSearch": "Please, perform a search to show some results"
 	},
 
 	"layers": {
