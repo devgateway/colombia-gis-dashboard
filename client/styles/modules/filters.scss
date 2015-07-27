@@ -298,7 +298,7 @@ input[type=checkbox].glyphicon {
   select{
   margin: 1px 3px 0 3px;
   border:1px solid $white;
-  background:#eeeeee;
+  background: $border-grey;
   font-size:1em;
   padding:4px;
   @include noOutline;

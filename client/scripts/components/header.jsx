@@ -49,15 +49,30 @@ module.exports = React.createClass({
                   </div>
                 </div>
               </div>
-              <dialog className="saveMapPopup" id="saveMapPopup">
-                    <div className="panel panel-default">
-        
-                        this is the new panel
+              <dialog className="panel panel-default panel-save-map" id="saveMapPopup">
+              <div className="panel-heading">
+              <h3><i class="fa fa-folder-open"></i>Save This Map</h3>
+              <i className="fa fa-times-circle-o"></i>
+              </div>
+              <div className="panel-body">
+              <div className="input-group">
+              <input className="form-control" type="text" placeholder={i18n.t("layers.searchLayers")} ref=""/>
+              <textarea class="form-control" rows="3"></textarea>
 
-                    </div>
-                  <h3>Save Window!</h3>
-                  <p>Html for save functionality should be here! </p>
-                  <button id="exitSaveMapPopup">Close Dialog</button>
+              </div>
+              </div>
+
+<div class="row">
+<div class="col-md-10 col-md-offset-2">
+
+<button type="button" class="btn btn-apply space-left" role="button" id="exitSaveMapPopup"><span>Save Map</span></button>
+
+</div>
+
+</div>
+
+
+
               </dialog>
             </div>
     );

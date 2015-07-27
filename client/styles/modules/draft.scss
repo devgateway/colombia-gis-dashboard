@@ -16,7 +16,6 @@
 	width:13px;
 	height:13px;
 	.selected{
-
 	}
 	.fa{
 		font-size:0.7em;
@@ -25,8 +24,6 @@
 		float: left;
 	}
 }
-
-
 .horizontal{
 	@include floatLeft;
 	margin-right:10px;

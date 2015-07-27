@@ -538,8 +538,8 @@ ul.basemap-list {
   -o-transition: all 100ms ease;
   transition: all 100ms ease;
   font-weight: bold;
-  margin-left: 1em;
-  outline: none; }
+  outline: none;
+  margin-left: 1em; }
   .btn-apply:hover, button.layer-search:hover {
     background: #659735;
     color: #ffffff; }
@@ -1708,10 +1708,55 @@ ul.funding-options {
   clear: both;
   width: 100%; }
 
-.saveMapPopup {
+.panel.panel-save-map {
   z-index: 10000;
   bottom: 60%;
-  width: 450px; }
+  width: 550px;
+  padding: 0; }
+.panel h3 {
+  float: left;
+  margin: 0;
+  padding: 0;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 13px;
+  color: #4d749f; }
+.panel .panel-heading {
+  background: none; }
+  .panel .panel-heading:after {
+    content: "";
+    display: table;
+    clear: both; }
+.panel .panel-body {
+  padding: 2em;
+  background: #f2f5f9; }
+  .panel .panel-body .input-group {
+    width: 100%; }
+  .panel .panel-body .form-control {
+    -webkit-border-radius: 0;
+    border-radius: 0;
+    background-clip: padding-box;
+    /* stops bg color from leaking outside the border: */
+    outline: none;
+    margin-bottom: 1em;
+    border: 1px solid #eeeeee; }
+  .panel .panel-body textarea {
+    width: 100%;
+    -webkit-border-radius: 0;
+    border-radius: 0;
+    background-clip: padding-box;
+    /* stops bg color from leaking outside the border: */
+    outline: none; }
+.panel .fa.fa-times-circle-o {
+  float: right;
+  -webkit-transition: color 600ms ease;
+  -moz-transition: color 600ms ease;
+  -o-transition: color 600ms ease;
+  transition: color 600ms ease;
+  color: #98ca68;
+  font-size: 20px; }
+  .panel .fa.fa-times-circle-o:hover {
+    color: #454545; }
 
 /*add here all styles used during development later they will be replaced by the final ones */
 .selectable-radio, .selectable {
