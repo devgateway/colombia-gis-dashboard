@@ -1739,14 +1739,10 @@ ul.funding-options {
     /* stops bg color from leaking outside the border: */
     outline: none;
     margin-bottom: 1em;
-    border: 1px solid #eeeeee; }
+    border: 1px solid #eeeeee;
+    width: 100%; }
   .panel .panel-body textarea {
-    width: 100%;
-    -webkit-border-radius: 0;
-    border-radius: 0;
-    background-clip: padding-box;
-    /* stops bg color from leaking outside the border: */
-    outline: none; }
+    width: 100%; }
 .panel .fa.fa-times-circle-o {
   float: right;
   -webkit-transition: color 600ms ease;

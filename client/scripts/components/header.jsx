@@ -57,7 +57,7 @@ module.exports = React.createClass({
               <div className="panel-body">
               <div className="input-group">
               <input className="form-control" type="text" placeholder={i18n.t("layers.searchLayers")} ref=""/>
-              <textarea class="form-control" rows="3"></textarea>
+              <textarea className="form-control" rows="3"></textarea>
 
               </div>
               </div>

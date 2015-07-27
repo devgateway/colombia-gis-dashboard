@@ -14,7 +14,6 @@ h3{
   font-size:13px;
   color: $blue;
 }
-
 .panel-heading{
   @include clearfix;
   background: none;
@@ -27,11 +26,12 @@ h3{
     @include border-radius(0);
     @include noOutline;
     margin-bottom: $gutter;
-    border:1px solid #eeeeee;
+    border: 1px solid $border-grey;
+    width:100%;
   }
-  textarea{ width:100%;@include border-radius(0);
-  @include noOutline;
-}
+  textarea{
+    width:100%;
+  }
 }
 .fa.fa-times-circle-o{
   @include floatRight;
