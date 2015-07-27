@@ -94,7 +94,7 @@
 		"noResults":"No hay resultados que coincidan con su búsqueda",
 		"byDepartment":"Por Departamento",
 		"byMunicipality":"Por Municipio",
-		"searchLayers": "Buscar Capas"
+		"searchLayers": "Guardar mapa"
 	},
 
 	"map": {
@@ -115,5 +115,12 @@
 			"downloadFile":"Descargar archivo",
 			"funding":"Financiamiento"
 		}
+	},
+	"savemap":{
+		"savemaplabel":"Save Mapa",
+		"savemaptitle": "Título del mapa",
+		"savemapdescription": "Descripción del mapa",
+		"savemaptags": "Agregar etiquetas",
+		"savemapvisibility": "Visibilidad del mapa"
 	}
 }
