@@ -14,7 +14,7 @@ var KeywordSearch = React.createClass({
     var value = $(ev.target).val();
     var length = value.length;
         // filter the items only if we have at least 3 characters
-        if (this.props.onSearch && length>lengthLimit) {
+        if (this.props.onSearch && length>=lengthLimit) {
           this.props.onSearch(value);
         } else if (this.props.onClear && length==0){
           this.props.onClear();

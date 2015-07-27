@@ -53,6 +53,7 @@ module.exports = {
 	},	
 
 	onFilterByKeyword: function(keyword){
+		console.log("TreeMixin -> onFilterByKeyword: "+keyword);
 		this.update({'keyword': keyword});
 		this._createItemsTree();
 	},
@@ -92,7 +93,7 @@ module.exports = {
 
 	_createItemsTree: function(){
 		var itemsTree = this._addTreeLevel(this.state.levels);
-		if (this.state.keyword && this.state.keyword!=""){
+		if (this.state.keyword){
 			_.forEach(itemsTree, function(itemTree){
 				this._filterItemAndChildren(itemTree, this.state.keyword);		
 			}.bind(this));
