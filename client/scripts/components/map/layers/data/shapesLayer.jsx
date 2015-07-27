@@ -39,7 +39,7 @@
         }));
 
         var currentValue = feature.properties.fundingUS || 0;
-        featureValue = parseInt((100 / (maxValue / currentValue)));
+        featureValue = (100 / (maxValue / currentValue));
         
       }
       var style = this._getStyle(featureValue);
@@ -69,7 +69,10 @@
          //this.fixReactIds(e.popup);
        }.bind(this)
        React.render(React.createElement(Popup, _.assign(feature.properties, {
-         onChange: _onChange
+         onChange: _onChange,
+         level: this.state.level,
+         filters: this.state.filters,
+         isShapePopup: true
        }), this.state.data), popupHolder);
        e.popup.setContent(popupHolder.innerHTML);
        popupHolder.firstChild.style.display = "none";

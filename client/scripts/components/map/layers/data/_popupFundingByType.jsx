@@ -2,20 +2,44 @@
 
 var React = require('react');
 var Reflux = require('reflux');
+var InfoWindowStore=require('../../../../stores/infoWindowStore.js');
 var If=require('../../../commons/if.jsx');
+var Loading = require('../../../commons/loading.jsx');
+var Mixins = require('./_popupMixins.js');
 
 
 module.exports  = React.createClass({
+
+  mixins: [Mixins, Reflux.connect(InfoWindowStore)],
+
   componentWillMount:function(){
     console.log('popup>componentWillMount');
-    this.setState({tabId: 0});
+    this.setState({tabId: 0});    
+    this._getInfoWindowData(this.props.id, this.props.level, this.props.filters); 
+  },
+
+  componentDidMount: function() {
+    console.log('_popupActivitiesPoint>componentDidMount');
+    this.props.onChange();
+    this._renderChart();
   },
 
   componentDidUpdate: function(props,newState) { 
     console.log('popup>componentDidUpdate'); 
     this.props.onChange();
+    this._renderChart();
   },
-
+  
+  componentWillUpdate: function(props,newState) { 
+    console.log('_popupActivitiesPoint>componentWillUpdate'); 
+    var previousId = 0;
+    if(newState.infoWindowFilter){
+      newState.infoWindowFilter.map(function(node){node.values.map(function(innerNode){previousId = innerNode})});
+    }
+    if(previousId!=props.id || props.filters!=this.props.filters){
+      this._getInfoWindowData(props.id, props.level, props.filters); 
+    }
+  },
 
   handleClick:function(tabId){
     console.log('popup>click');
@@ -26,6 +50,10 @@ module.exports  = React.createClass({
 
   render: function() {
     console.log('popup>render id:' + this.props.id +" tab "+this.state.tabId);
+    var showLoading=true;
+    if(this.state.infoWindow){
+      showLoading=false;
+    }
     return (
       <div className="leaflet-popup-content-wrapper">
         <div className="leaflet-popup-content">
@@ -36,10 +64,11 @@ module.exports  = React.createClass({
                 - {this.props.NAME_2}
               </If>
               </h3>
-            </div>            
-            <div className="panel-body" >
-              <span className="fundingByType-title"><Message message="map.popup.funding"/>: {this.props.fundingUS?this.props.fundingUS.toFixed(2):0}</span>
             </div>
+            <div className="chart-container" id="container"></div>
+            <If condition={showLoading} >
+              <Loading container="popup-loading-container"/>
+            </If>
           </div>
         </div>
       </div>

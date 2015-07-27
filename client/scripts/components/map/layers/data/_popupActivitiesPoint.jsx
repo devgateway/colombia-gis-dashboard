@@ -2,11 +2,10 @@
 
 var React = require('react');
 var Reflux = require('reflux');
-var HighCharts = require('highcharts-browserify');
-var InfoWindowActions=require('../../../../actions/infoWindowActions.js');
 var InfoWindowStore=require('../../../../stores/infoWindowStore.js');
 var If=require('../../../commons/if.jsx');
-var Loading = require('../../../commons/loading.jsx')
+var Loading = require('../../../commons/loading.jsx');
+var Mixins = require('./_popupMixins.js');
 
 var MyActivities = React.createClass({
   render: function() {
@@ -38,27 +37,20 @@ var MyActivities = React.createClass({
 });
 
 module.exports  = React.createClass({
-  mixins: [Reflux.connect(InfoWindowStore)],
+  mixins: [Mixins, Reflux.connect(InfoWindowStore)],
 
   componentWillMount:function(){
-    console.log('popup2>componentWillMount');
+    console.log('_popupActivitiesPoint>componentWillMount');
     this._getInfoWindowData(this.props.id, this.props.level, this.props.filters); 
   },
 
-  _getInfoWindowData: function (id, level, filters) {
-    var param = level? level.substring(0,2) : "de";
-    var infoWindow = [{"param":param,"values":[id]}];
-    var data = InfoWindowActions.getInfoFromAPI(infoWindow, filters) || [];
-    return data;
-  },
-
   componentDidMount: function() {
-    console.log('popup2>componentDidMount');
+    console.log('_popupActivitiesPoint>componentDidMount');
     this._renderChart();
   },
 
   componentWillUpdate: function(props,newState) { 
-    console.log('popup2>componentWillUpdate'); 
+    console.log('_popupActivitiesPoint>componentWillUpdate'); 
     var previousId = 0;
     if(newState.infoWindowFilter){
       newState.infoWindowFilter.map(function(node){node.values.map(function(innerNode){previousId = innerNode})});
@@ -69,119 +61,21 @@ module.exports  = React.createClass({
   },
 
   componentDidUpdate: function(props,newState) { 
-    console.log('popup2>componentDidUpdate'); 
+    console.log('_popupActivitiesPoint>componentDidUpdate'); 
     this.props.onChange();
     this._renderChart();
   },
 
-  setAttributeDisplay: function(classId, attr, display){
-    $(classId).map(function(node, index) {
-        if(index.getAttribute(attr)){
-          index.style.display=display;
-        }
-      })
-  },
-
   handleClick:function(tabId){
-    console.log('popup2>click');
+    console.log('_popupActivitiesPoint>click');
     this.setState({'tabId':tabId});
     this.forceUpdate();
     
   },
 
-  _getTitles: function() {
-    var titleArray = [];
-    if(this.state.infoWindow){
-      this.state.infoWindow.map(function(node, index) {
-        titleArray.push(node.title);
-      });
-    }
-    return titleArray;
-  },
-
-  _getData: function(tabId) {
-    var infoData = [];
-    if(this.state.infoWindow){
-      this.state.infoWindow.map(function(node, index) {
-        infoData.push(node.value);
-      });
-    }
-    return infoData;
-  },
-
-  _renderChart: function() {
-    console.log('popup2>_renderChart');
-    var titleArray = this._getTitles();
-    var infoData = this._getData();
-    var tabId = this.state.tabId ? this.state.tabId : 0;
-
-    if(infoData.length>0 && infoData.length>tabId && infoData[tabId].length>0){
-      if(tabId!=4 ){
-        var chartdata = [];
-        var totalValue = 0;
-        infoData[tabId].map(function(node, index) {
-            totalValue += parseInt(node.value);
-        });
-        infoData[tabId].map(function(node, index) {
-          var chartnode = [];
-          chartnode.push(node.name);
-          //chartnode.push(parseFloat((node.value/totalValue*100).toFixed(1)));
-          chartnode.push(parseFloat(node.value));
-          chartdata.push(chartnode);
-        });
-
-        var chart = new HighCharts.Chart({
-            colors: ['#FFC614', '#3897D3', '#18577A', '#97CB68', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#50B432', '#FF9655', '#FFF263', '#6AF9C4'],
-            chart: {
-              marginTop: 20,
-              width: 420,
-              height: 240,
-              plotBorderWidth: null,
-              renderTo: 'container',
-              type: 'pie',
-            },
-            title: {
-              align: "left",
-              text: titleArray[tabId],
-              style: { 
-                "color": "#4278AA", 
-                "fontSize": "14px" 
-              }
-            },
-            plotOptions: {
-              pie: {
-                  innerSize: "70%",
-                  name: 'Cantidad total',
-                  animation: false,
-                  dataLabels: {
-                      enabled: false
-                  },
-                  showInLegend: true
-              }
-            },
-            legend: {
-              enabled: true,
-              layout: 'vertical',
-              align: 'right',
-              itemStyle: {
-                  color: '#4F4F4F'
-              },
-              verticalAlign: 'middle',
-              labelFormatter: function() {
-                var name = this.name.length>21?this.name.substring(0,20):this.name;
-                return name + ' ' + this.percentage.toFixed(1) + '%';
-              }
-            },
-            series: [{data: chartdata}]
-          });
-      }
-
-    }
-    this.setAttributeDisplay(".popup-nav-wrapper", "data-originalreactid", "inline");
-  },
 
   render: function() {
-    console.log('popup2>render id:' + this.props.id +" tab "+this.state.tabId);
+    console.log('_popupActivitiesPoint>render id:' + this.props.id +" tab "+this.state.tabId);
     var tabId = this.state.tabId ? this.state.tabId : 0;
     var titleArray = this._getTitles();
     var infoData=[];
