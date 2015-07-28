@@ -1,27 +1,44 @@
 .panel{
-  &.panel-save-map{
+  &.dialog-save-map{
 	  z-index: 10000;
-	  bottom: 60%;
+	  bottom: 40%;
 	  width: 550px;
     padding:0;
-  }
+    overflow:hidden;
 
-h3{
-  @include floatLeft;
-  @include space-reset;
-  @include textUppercase;
-  @include textBold;
-  font-size:13px;
-  color: $blue;
-}
+    h3{
+      @include floatLeft;
+      @include space-reset;
+      @include textUppercase;
+      @include textBold;
+      font-size:13px;
+      color: $blue;
+    }
+
+    h4{
+      @include floatLeft;
+      @include space-reset;
+      @include textBold;
+      font-size:12px;
+      color: $blue;
+      margin-right:$gutter;
+    }
+
+
+  }
 .panel-heading{
   @include clearfix;
   background: none;
 }
-.panel-body{
+.panel-body-savemap{
   padding: $gutter*2;
-  background: lighten($blue, 50);
-  .input-group{width:100%;}
+  background: lighten($blue, 45);
+  overflow:hidden;
+  .input-group{
+    // @include vbuffer(30px);
+    width:100%;
+  }
+
   .form-control{
     @include border-radius(0);
     @include noOutline;
@@ -29,6 +46,15 @@ h3{
     border: 1px solid $border-grey;
     width:100%;
   }
+  &.plain{
+    @extend .panel-body-savemap;
+    background:$white;
+  li{
+    @include floatLeft;
+    margin-top: -$gutter/1.4;
+    }
+  }
+
   textarea{
     width:100%;
   }
@@ -40,6 +66,14 @@ h3{
   font-size:20px;
   &:hover{ color: $grey}
 }
+.fa.fa-folder-open{
+  margin-right:$gutter/2;
+}
 
+}
+.taginput{
+  margin-top:$gutter*2;
+  margin-bottom:$gutter;
+  @include border-radius(0);
 }
 // panel styles end

@@ -121,6 +121,8 @@
 		"savemaptitle": "Título del mapa",
 		"savemapdescription": "Descripción del mapa",
 		"savemaptags": "Agregar etiquetas",
-		"savemapvisibility": "Visibilidad del mapa"
+		"savemapvisibility": "Visibilidad del mapa",
+		"savemappublic": "Publico",
+		"savemapprivate": "Privado"
 	}
 }

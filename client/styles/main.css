@@ -1708,31 +1708,41 @@ ul.funding-options {
   clear: both;
   width: 100%; }
 
-.panel.panel-save-map {
+.panel.dialog-save-map {
   z-index: 10000;
-  bottom: 60%;
+  bottom: 40%;
   width: 550px;
-  padding: 0; }
-.panel h3 {
-  float: left;
-  margin: 0;
   padding: 0;
-  text-transform: uppercase;
-  font-weight: bold;
-  font-size: 13px;
-  color: #4d749f; }
+  overflow: hidden; }
+  .panel.dialog-save-map h3 {
+    float: left;
+    margin: 0;
+    padding: 0;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 13px;
+    color: #4d749f; }
+  .panel.dialog-save-map h4 {
+    float: left;
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+    font-size: 12px;
+    color: #4d749f;
+    margin-right: 1em; }
 .panel .panel-heading {
   background: none; }
   .panel .panel-heading:after {
     content: "";
     display: table;
     clear: both; }
-.panel .panel-body {
+.panel .panel-body-savemap, .panel .panel-body-savemap.plain {
   padding: 2em;
-  background: #f2f5f9; }
-  .panel .panel-body .input-group {
+  background: #e1e8f0;
+  overflow: hidden; }
+  .panel .panel-body-savemap .input-group {
     width: 100%; }
-  .panel .panel-body .form-control {
+  .panel .panel-body-savemap .form-control {
     -webkit-border-radius: 0;
     border-radius: 0;
     background-clip: padding-box;
@@ -1741,7 +1751,12 @@ ul.funding-options {
     margin-bottom: 1em;
     border: 1px solid #eeeeee;
     width: 100%; }
-  .panel .panel-body textarea {
+  .panel .plain.panel-body-savemap {
+    background: #ffffff; }
+    .panel .plain.panel-body-savemap li {
+      float: left;
+      margin-top: -0.71429em; }
+  .panel .panel-body-savemap textarea, .panel .panel-body-savemap.plain textarea {
     width: 100%; }
 .panel .fa.fa-times-circle-o {
   float: right;
@@ -1753,6 +1768,16 @@ ul.funding-options {
   font-size: 20px; }
   .panel .fa.fa-times-circle-o:hover {
     color: #454545; }
+.panel .fa.fa-folder-open {
+  margin-right: 0.5em; }
+
+.taginput {
+  margin-top: 2em;
+  margin-bottom: 1em;
+  -webkit-border-radius: 0;
+  border-radius: 0;
+  background-clip: padding-box;
+  /* stops bg color from leaking outside the border: */ }
 
 /*add here all styles used during development later they will be replaced by the final ones */
 .selectable-radio, .selectable {
