@@ -6,7 +6,7 @@ var TabbedArea = require('react-bootstrap/lib/TabbedArea');
 var TabPane = require('react-bootstrap/lib/TabPane');
 
 var Basemaps=require('../map/baseMap.jsx')
-var TabLayerNavigator=require('./layers/tabLayerNavigator.jsx');
+var TabLayerNavigator=require('./../map/tabLayerNavigator.jsx');
 
 var Filter=require('./../filters/filtersManager.jsx');
 
