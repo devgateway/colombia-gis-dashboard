@@ -95,7 +95,8 @@
 		"noResults":"There are no results that match your search",
 		"byDepartment":"Departments",
 		"byMunicipality":"Municipalities",
-		"searchLayers": "Search Layers"	},
+		"searchLayers": "Search Layers"
+	},
 
 	"map": {
 		"baseMaps":{
@@ -115,5 +116,14 @@
 			"downloadFile":"Download file",
 			"funding":"Total Funding: "
 		}
+	},
+	"savemap":{
+		"savemaplabel":"Save This Map",
+		"savemaptitle": "Map Title",
+		"savemapdescription": "Map Description",
+		"savemaptags": "Add Tags",
+		"savemapvisibility": "Map Visibility",
+		"savemappublic": "Public",
+		"savemapprivate": "Private"
 	}
 }
