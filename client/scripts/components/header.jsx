@@ -11,9 +11,7 @@ var AGOLProfile=require('./esri/AGOLProfile.jsx');
 module.exports = React.createClass({
 
   componentDidMount:function(){
-    document.getElementById('exitSaveMapPopup').onclick = function() {
-        $( "#saveMapPopup" ).hide(); 
-    };
+      $( "#saveMapPopup" ).hide(); 
   },
 
   handleClickForSave:function(){
@@ -47,40 +45,35 @@ module.exports = React.createClass({
                   </div>
                 </div>
               </div>
+              <div className="panel panel-default dialog-save-map" id="saveMapPopup">
+                <div className="panel-heading">
+                  <h3><i className="fa fa-folder-open"></i><Message message='savemap.savemaplabel'/></h3>
+                  <a class="leaflet-popup-close-button" href="#close"><i className="fa fa-times-circle-o"></i></a>
+                </div>
 
+                <div className="panel-body panel-body-savemap">
 
-              <dialog className="panel panel-default dialog-save-map" id="saveMapPopup">
-              <div className="panel-heading">
-                <h3><i className="fa fa-folder-open"></i><Message message='savemap.savemaplabel'/></h3>
-                <a class="leaflet-popup-close-button" href="#close"><i className="fa fa-times-circle-o"></i></a>
-              </div>
+                    <input className="form-control" type="text" placeholder={i18n.t('savemap.savemaptitle')} ref=""/>
+                    <textarea className="form-control" rows="3" placeholder={i18n.t('savemap.savemapdescription')}></textarea>
+              
+                </div>
 
-              <div className="panel-body panel-body-savemap">
+                <div className="panel-body-savemap plain">
+                  <h3><Message message='savemap.savemaptags'/></h3>
+                  <input className="form-control taginput" type="text" ref=""/>
 
-                  <input className="form-control" type="text" placeholder={i18n.t('savemap.savemaptitle')} ref=""/>
-                  <textarea className="form-control" rows="3" placeholder={i18n.t('savemap.savemapdescription')}></textarea>
-            
-              </div>
+                  <div className="input-group">
+                    <h4><Message message='savemap.savemapvisibility'/></h4>
 
-            <div className="panel-body-savemap plain">
-              <h3><Message message='savemap.savemaptags'/></h3>
-              <input className="form-control taginput" type="text" ref=""/>
-
-              <div className="input-group">
-                <h4><Message message='savemap.savemapvisibility'/></h4>
-
-                <div className="layer-search-options">
-                <ul>
-                  <li><span className="selectable selected"></span><Message message='savemap.savemapprivate'/></li>
-                  <li><span className="selectable"></span><Message message='savemap.savemappublic'/></li>
-                </ul>
+                    <div className="layer-search-options">
+                    <ul>
+                      <li><span className="selectable selected"></span><Message message='savemap.savemapprivate'/></li>
+                      <li><span className="selectable"></span><Message message='savemap.savemappublic'/></li>
+                    </ul>
+                    </div>
+                  </div>
                 </div>
               </div>
-
-              <button type="button" className="btn btn-apply" role="button" id="exitSaveMapPopup"><span>Save Map</span></button>
-            </div>
-
-              </dialog>
             </div>
     );
   }
