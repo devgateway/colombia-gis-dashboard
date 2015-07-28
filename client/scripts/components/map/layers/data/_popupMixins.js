@@ -26,7 +26,7 @@ module.exports = {
   _getTitles: function() {
     var titleArray = [];
     if(this.props.isShapePopup && this.props.fundingUS){
-        titleArray.push(i18n.t('map.popup.funding') + this.props.fundingUS.toFixed(2));
+        titleArray.push(i18n.t('map.popup.funding') +  this.props.fundingUS.toFixed(2));
     } else if (this.state.infoWindow){
       this.state.infoWindow.map(function(node, index) {
         titleArray.push(node.title);

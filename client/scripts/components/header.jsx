@@ -12,16 +12,14 @@ module.exports = React.createClass({
 
   componentDidMount:function(){
     document.getElementById('exitSaveMapPopup').onclick = function() {
-        var dialog = document.getElementById('saveMapPopup');
-        dialog.close();  
+        $( "#saveMapPopup" ).hide(); 
     };
   },
 
   handleClickForSave:function(){
     console.log('Save Map');
-    SaveActions.saveMap();
-    var dialog = document.getElementById('saveMapPopup');  
-    dialog.show();  
+    //SaveActions.saveMap();
+    $( "#saveMapPopup" ).dialog();
     
   },
 
@@ -41,7 +39,7 @@ module.exports = React.createClass({
                     <div className="header-nav">
                       <AGOLProfile/>
                       <a href="#">Menu</a>&nbsp;&nbsp;
-                      <a href="#" onClick={this.handleClickForSave.bind(this)}>Save</a>&nbsp;&nbsp;
+                      <a href="#" data-toggle="modal" data-target="#myModal" onClick={this.handleClickForSave.bind(this)}>Save</a>&nbsp;&nbsp;
                       <a href="#" onClick={this.handleClickForRestore.bind(this)}>Restore</a>
                       <LanSelector/>
                     </div>
@@ -49,11 +47,10 @@ module.exports = React.createClass({
                   </div>
                 </div>
               </div>
-              <dialog className="saveMapPopup" id="saveMapPopup">  
-                  <h3>Save Window!</h3>  
+              <div className='saveMapPopup' id='saveMapPopup'>
+                <h3>Save Window!</h3>  
                   <p>Html for save functionality should be here! </p>  
-                  <button id="exitSaveMapPopup">Close Dialog</button>  
-              </dialog>
+              </div>
             </div>
     );
   }

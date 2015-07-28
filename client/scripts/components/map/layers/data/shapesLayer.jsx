@@ -40,8 +40,8 @@
 
         var currentValue = feature.properties.fundingUS || 0;
         featureValue = (100 / (maxValue / currentValue));
-        
       }
+
       var style = this._getStyle(featureValue);
       var rgbColor = style.color.r + "," + style.color.g + "," + style.color.b + "," + style.color.a;
 
