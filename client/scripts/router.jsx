@@ -21,10 +21,7 @@ var routes = (
 			</Route>
 
 			
-			<Route name="print" path="/print" handler={PrintLayout}> 
-				<Route name="theMap" path="/print/map" handler={Map} />
-			</Route>
-
+			<Route name="print" path="/print/map" handler={PrintLayout}> </Route>
 			<Route name="template" path="/print/template" handler={Skeleton} />
 			
 			<Route name="arcLogin" path="/arcLogin*" handler={AGOLConfirm} />

@@ -16,7 +16,7 @@ module.exports = React.createClass({
 			<SlideBar>
 			<TabNavigator />;	
 			</SlideBar>
-			<Map ref="map" onAddLayer={this._onAddLayer}></Map>
+			<Map ref="map"></Map>
 			</div>
 			)
 	}
