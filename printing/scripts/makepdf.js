@@ -12,9 +12,8 @@ if (args.length < 5) {
 }
 
 
-var
-	SCRIPT_NAME = args[0]
-MAP_URL = args[1],
+var SCRIPT_NAME = args[0]
+	MAP_URL = args[1],
 	TEMPLATE_URL = args[2],
 	FILE_NAME = args[3],
 	TMP_DIR = args[4]
@@ -98,7 +97,7 @@ page.open(MAP_URL, function(status) {
 
 
 					window.setTimeout(function() {
-						page2.render(TMP_DIR+'/'+FILE_NAME);
+						page2.render(TMP_DIR + '/' + FILE_NAME);
 						console.log('.... file has been generated...')
 						phantom.exit();
 					}, 200);

@@ -19,7 +19,6 @@
     "jquery-ui-slider-pips": "~1.9.2",
     "mjolnic-bootstrap-colorpicker": "~2.1.2",
     "nouislider": "~8.0.2",
-    "html2canvas": "~0.4.1"
   },
   "devDependencies": {}
 }
