@@ -29,7 +29,7 @@ module.exports = React.createClass({
   },
 
   _changeRadius:function(value,level){
-    LayerActions.changeLayerValue('indicators','radius',value,level); 
+    LayerActions.changeLayerValue('indicators','radius',value,level);
   },
 
   _selectIndicator:function(indicator){
@@ -49,19 +49,19 @@ module.exports = React.createClass({
         <div toggler={true} className="toggler-button"><i className="fa fa-chevron-up"></i></div>
       </TogglerContent>
       <TogglerContent visibleWhen="collapsed">
-        <Layer id="indicators" 
-          opacity={this.state.opacity} 
-          onChangeOpacity={this._onChangeOpacity} 
-          onChangeVisibility={this._changeVisibility} 
+        <Layer id="indicators"
+          opacity={this.state.opacity}
+          onChangeOpacity={this._onChangeOpacity}
+          onChangeVisibility={this._changeVisibility}
           visible={this.state.visible}
-          title={i18n.t("layers.inidicatorLayer")}
+          title={i18n.t("layers.indicatorLayer")}
           showBasicControl={true}/>
       </TogglerContent>
       <TogglerContent visibleWhen="expanded">
-        <Layer id="indicators" 
-          opacity={this.state.opacity} 
-          onChangeOpacity={this._onChangeOpacity} 
-          onChangeVisibility={this._changevisibility} 
+        <Layer id="indicators"
+          opacity={this.state.opacity}
+          onChangeOpacity={this._onChangeOpacity}
+          onChangeVisibility={this._changevisibility}
           title={i18n.t("layers.inidicatorLayer")}
           visible={this.state.visible}/>
         <ul className="controls-items">
@@ -74,7 +74,7 @@ module.exports = React.createClass({
           </li>
           <li className="indicator">
             <div className="clearFix"/>
-            <Finder label={this.state.indicator || 'Select Indicator'} onSelect={this._selectIndicator}/>  
+            <Finder label={this.state.indicator || 'Select Indicator'} onSelect={this._selectIndicator}/>
             <div className="vbuffer"/>
             <div className="vbuffer"/>
           </li>

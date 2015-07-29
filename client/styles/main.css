@@ -1197,17 +1197,20 @@ ul.tabs {
   padding-left: 0; }
 
 .esri-result-list {
-  overflow-y: scroll;
-  height: 380px;
-  padding-left: 0; }
-  .esri-result-list ul {
-    padding-left: 0;
-    list-style: none; }
+  height: 220px;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap; }
+
+.esri-result-item {
+  padding: 5px;
+  border-right: 1px solid #dedede;
+  display: inline-block; }
 
 .layer-wrapper {
   width: 300px;
   float: left;
-  height: 280px;
+  height: 180px;
   overflow: hidden;
   padding: 0 0.5em 0 0;
   padding-left: 0;
@@ -1221,12 +1224,13 @@ ul.tabs {
 .layer-info {
   float: left;
   display: inline;
+  white-space: normal;
   width: 150px; }
 
 .title {
   color: #000000;
   font-size: 1.1em;
-  line-height: 120%;
+  line-height: 110%;
   margin-bottom: 0.5em;
   white-space: no-wrap;
   overflow: hidden;
@@ -1239,10 +1243,13 @@ ul.tabs {
   font-size: 0.85em; }
 
 .details {
+  height: 70px;
+  overflow: auto;
   width: 116%;
   color: #000000;
   margin-bottom: 7px; }
   .details.small {
+    height: 20px;
     font-size: 0.95em; }
 
 .add {
@@ -1284,10 +1291,8 @@ ul.tabs {
 .layer-control .title {
   font-size: 1em;
   color: #454545;
-  width: 40px;
   margin-top: -22px;
-  margin-left: 32px;
-  margin-bottom: 30px; }
+  margin-left: 32px; }
 .layer-control .slider-holder {
   position: relative;
   display: block;
@@ -1599,7 +1604,6 @@ ul.tabs {
   margin-bottom: 5px;
   padding: 0 0 5px 15px; }
   .toggler .control-title {
-    float: left;
     width: 70%;
     margin: -22px auto 0 50px;
     cursor: pointer; }
