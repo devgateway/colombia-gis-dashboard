@@ -26,18 +26,45 @@ module.exports = React.createClass({
     };
   },
 
-  _getLists: function(lists, level) {
-    lists.push(_.filter(this.state[level.levelParam], function(it){return !it.hide}));
+  _getLists: function(lists, level, full) {
+    var self = this;
+    if (full){
+      lists.push(this.state[level.levelParam]);
+    } else {
+      lists.push(_.filter(this.state[level.levelParam], function(it){return ((!it.hide)  || (self.state.showOnlySelected && it.selected))}));
+    }
     if (level.child){
-      this._getLists(lists, level.child);
+      this._getLists(lists, level.child, full);
     }
   },
 
+  _hasItems: function(array){
+    var hasItems = false;
+    _.forEach(array, function(arrayInside){if (arrayInside.length>0){hasItems=true}});
+    return hasItems;
+  },
+
   render: function() {
-    var lists = [];
+    var listsFiltered = [];
+    var listsFull = [];
     if (this.state.levels){
-      this._getLists(lists, this.state.levels);
+      this._getLists(listsFiltered, this.state.levels);
+      this._getLists(listsFull, this.state.levels, true);
     } 
+    var totalItems = 0;
+    var totalSelected = 0;
+    _.forEach(listsFull, function(list){
+      if (list){
+        totalItems = totalItems + list.length;
+        totalSelected = totalSelected + _.filter(list, function(it){return it.selected}).length;
+      }
+    });
+    var noResults = "";
+    if (!this._hasItems(listsFiltered)){
+      noResults = <div className="filter-no-results">
+                    <br/>{<Message message="filters.performSearch"/>}
+                </div>
+    }
     if (this.props.active){
       return ( 
         <div className="tab-content">
@@ -46,12 +73,15 @@ module.exports = React.createClass({
               
               <div className="filter-group-panel-header">
                 <span className="filter-label" role="label">{<Message message={this.props.label}/>}</span>                
+                <SelectionCounter selected={totalSelected} total={totalItems} onCounterClicked={this._onCounterClicked}/>
+                <SelectAllNone onSelectAll={this._onSelectAll} onSelectNone={this._onSelectNone}/>
               </div>
-              <KeywordSearch onSearch={this._onSearch} lengthLimit="2" onClear={this._onSearchClear}/>
+              <KeywordSearch onSearch={this._onSearch} lengthLimit="3" onClear={this._onSearchClear}/>
+              {noResults}
               <div className="filter-list-container">
                 <ul className="filter-list">
                 {
-                  lists.map(function(list) {
+                  listsFiltered.map(function(list) {
                     return (list.map(function(item) {
                       return (<li><Item {...item} onItemChange={this._onItemChange} showOnlySelected={this.state.showOnlySelected}/></li>)
                     },this))                                       

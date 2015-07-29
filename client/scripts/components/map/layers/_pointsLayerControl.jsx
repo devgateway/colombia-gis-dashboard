@@ -24,42 +24,16 @@ module.exports = React.createClass({
 
  mixins: [CommonsMixins, Reflux.connect(Store)],
 
-  _changevisibility: function(id, value) {
-    LayerActions.changeLayerValue(id,'visible',value); //TODO:property mame should be in a globar variable
-  },
-
-  _onChangeOpacity:function(id,value){
-    LayerActions.changeLayerValue(id,'opacity',value); //TODO:property mame should be in a globar variable
-  },
-
-  _showByDepartment:function(){
-    LayerActions.changeLayerValue('points','level','departament'); //TODO:property mame should be in a globar variable
-  },
-
-  _showByMunicipality:function(){
-    LayerActions.changeLayerValue('points','level','municipality'); //TODO:property mame should be in a globar variable
-  },
-
-  _changeColor:function(value,level){
-
-    LayerActions.changeLayerValue('points','color',value,level); //TODO:property mame should be in a globar variable
-  },
-
-  _changeRadius:function(value,level){
-
-    LayerActions.changeLayerValue('points','radius',value,level); //TODO:property mame should be in a globar variable
-  },
-
-  _changeBreak:function(value,level){
-    LayerActions.changeLayerValue('points','break',value,level); 
-  },
-
-  _changeBreakStyle:function(value){
-    LayerActions.changeLayerValue('points','breakStyle',value); 
+  _getLayerId: function() {
+    return 'points';
   },
 
   _changeBreaksWrapper:function(value){
     this.handleClickForBreaks(value, breaks, breakStyle);
+  },
+  
+  _changeRadius:function(value,level){
+    LayerActions.changeLayerValue('points','radius',value,level); 
   },
 
   componentDidMount: function(){
@@ -70,7 +44,6 @@ module.exports = React.createClass({
 
 
   var level=this.state.level;
-  var fundingTypes = [];//FilterStore.getAll("ft");
   return (
   <li>
     <Toggler ref='toggler'>
@@ -80,14 +53,21 @@ module.exports = React.createClass({
       <TogglerContent visibleWhen="expanded">
         <div toggler={true} className="toggler-button"><i className="fa fa-chevron-up"></i></div>
       </TogglerContent>
-      <TogglerContent visibleWhen="always">
-        <div><span className="control-title">{i18n.t("layers.subActivitiesLevel")}</span></div>
+      <TogglerContent visibleWhen="collapsed">
+        <Layer id="points"
+          opacity={this.state.opacity}
+          onChangeOpacity={this._onChangeOpacity}
+          onChangeVisibility={this._changeVisibility}
+          visible={this.state.visible}
+          title={i18n.t("layers.subActivitiesLevel")}
+          showBasicControl={true}/>
       </TogglerContent>
       <TogglerContent visibleWhen="expanded">
         <Layer id="points"
           opacity={this.state.opacity}
           onChangeOpacity={this._onChangeOpacity}
-          onChangeVisibility={this._changevisibility}
+          onChangeVisibility={this._changeVisibility}
+          title={i18n.t("layers.subActivitiesLevel")}
           visible={this.state.visible}/>
         <ul>
           <li className="levels">
@@ -98,26 +78,6 @@ module.exports = React.createClass({
               <CustomRadio className="horizontal" name="municipality" checked={(level=='municipality')? true : false}
                 onClick={this._showByMunicipality} label="layers.byMunicipality"/>
             </CustomRadioGroup>
-          </li>
-
-          <li>
-            <div className="clearFix"/>
-            <h3 className="color-control value-label"><Message message='layers.subactivitiesNumber'/></h3>
-            <ul className="funding-options">
-            {
-              fundingTypes.map(function(fundingType){
-                return(
-                  <li>
-                    <CustomCheckbox
-                            selected={fundingType.selected}
-                            onChange={self._onFundingChanged}
-                            value={fundingType.id}/>
-                    <span>{fundingType.name}</span>
-                  </li>
-                );
-              })
-            }
-            </ul>
           </li>
           <li>
               <div className="vbuffer"/>

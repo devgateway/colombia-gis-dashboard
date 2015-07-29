@@ -137,10 +137,9 @@ module.exports = {
 	},
 
 	_applyFilters: function(data, shapesTrigger) {
-		console.log(data);
 		if (shapesTrigger && this._getLayerId()!="shapes") {
 			return;
-		} else {	
+		} else {
 			this.update({
 				filters: data
 			}, {

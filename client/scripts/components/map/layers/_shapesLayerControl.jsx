@@ -27,40 +27,24 @@ module.exports = React.createClass({
  //mixins: [Reflux.connect(FilterStore), Reflux.connect(Store)], 
  mixins: [CommonsMixins, Reflux.connect(Store)], 
  
-  _changeVisibility: function(id, value) {
-    LayerActions.changeLayerValue(id,'visible',value);
-  },
-
-  _onChangeOpacity:function(id,value){
-    LayerActions.changeLayerValue(id,'opacity',value);
-  },
-
-  _showByDepartment:function(){
-    LayerActions.changeLayerValue('shapes','level','departament');
-  },
-
-  _showByMunicipality:function(){
-    LayerActions.changeLayerValue('shapes','level','municipality');
-  },
-
-  _changeColor:function(value,level){
-    LayerActions.changeLayerValue('shapes','color',value,level);
-  },
-
-  _changeBreak:function(value,level){
-    LayerActions.changeLayerValue('shapes','break',value,level);
-  },
-
-  _changeBreakStyle:function(value){
-    LayerActions.changeLayerValue('shapes','breakStyle',value);
-  },
-
-  _onFundingChanged: function(obj) {
-    LayerActions.changeFundingFilterSelection(obj.value, obj.selected);
+  _getLayerId: function() {
+    return 'shapes';
   },
 
   _changeBreaksWrapper:function(value){
     this.handleClickForBreaks(value, breaks, breakStyle);
+  },
+
+  _onFundingSourceChanged: function(obj) {
+    LayerActions.changeFundingSourceSelection(obj.value, obj.selected);
+  },
+
+  _showDisbursements: function() {
+    LayerActions.changeFundingTypeSelection('disbursements');
+  },
+
+  _showCommitments: function() {
+    LayerActions.changeFundingTypeSelection('commitments');
   },
 
   componentDidMount: function(){
@@ -74,7 +58,8 @@ module.exports = React.createClass({
     console.log('...................... Layer State ......................')
 
     var level=this.state.level;
-    var fundingTypes = this.state.fundingFilterItems || [];
+    var fundingSources = this.state.fundingSourceItems || [];
+    var fundingType = this.state.fundingType;
     var self = this;
     return (
     <li>
@@ -85,14 +70,21 @@ module.exports = React.createClass({
         <TogglerContent visibleWhen="expanded">
           <div toggler={true} className="toggler-button"><i className="fa fa-chevron-up"></i></div>
         </TogglerContent>
-        <TogglerContent visibleWhen="always">
-          <div><span className="control-title">{i18n.t("layers.fundingByType")}</span></div>
+        <TogglerContent visibleWhen="collapsed">
+          <Layer id="shapes"
+            opacity={this.state.opacity}
+            onChangeOpacity={this._onChangeOpacity}
+            onChangeVisibility={this._changeVisibility}
+            visible={this.state.visible}
+            title={i18n.t("layers.fundingByType")}
+            showBasicControl={true}/>
         </TogglerContent>
         <TogglerContent visibleWhen="expanded">
           <Layer id="shapes"
             opacity={this.state.opacity}
             onChangeOpacity={this._onChangeOpacity}
             onChangeVisibility={this._changeVisibility}
+            title={i18n.t("layers.fundingByType")}
             visible={this.state.visible}/>
           <ul>
             <li className="layer-option-section">
@@ -107,35 +99,30 @@ module.exports = React.createClass({
             <li className="layer-option-section">
               <h3 className="color-control"><Message message='layers.fundingType'/></h3>
               <div className="funding-types">
-              <ul>
-                <li><span className="selectable-radio"></span>
-                  <Message message='layers.fundingSourceCommitments'/>
-                </li>
-                <li><span className="selectable-radio"></span>
-                  <Message message='layers.fundingSourceDisbursements'/>
-                </li>
-              </ul>
+                <CustomRadioGroup>
+                  <CustomRadio  className="inline" name="commitments" checked={(fundingType=='commitments')? true : false}
+                  onClick={self._showCommitments} label="layers.fundingSourceCommitments"/>
+                  <CustomRadio  className="inline" name="disbursements" checked={(fundingType=='disbursements')? true : false}
+                  onClick={self._showDisbursements} label="layers.fundingSourceDisbursements"/>
+                </CustomRadioGroup>
               </div>
             </li>
-
-<li className="layer-option-section">
-<h3><Message message='layers.fundingSource'/></h3>
-
-{
-  fundingTypes.map(function(fundingType){
-    return(
-        <li className="funding-type-option">
-        <CustomCheckbox
-                selected={fundingType.selected}
-                onChange={self._onFundingChanged}
-                value={fundingType.id}/>
-        <span>{fundingType.name}</span>
-        </li>
-    );
-  })
-}
-</li>
-
+            <li className="layer-option-section">
+              <h3><Message message='layers.fundingSource'/></h3>
+              {
+                fundingSources.map(function(fundingSource){
+                  return(
+                      <li className="funding-type-option">
+                      <CustomCheckbox
+                              selected={fundingSource.selected}
+                              onChange={self._onFundingSourceChanged}
+                              value={fundingSource.id}/>
+                      <span>{fundingSource.name}</span>
+                      </li>
+                  );
+                })
+              }
+            </li>
             <li>
               <div className="vbuffer"/>
               <div className="clearFix"/>
@@ -165,21 +152,18 @@ module.exports = React.createClass({
               <div className="clearFix"/>
             </li>
             <li>
-            <h3 className="color-control percent-funding"><Message message='layers.fundingPercent'/></h3>
-            <h3 className="color-control"><Message message='layers.colorSelection'/></h3>
-
-            {
-
-              _.map(_.keys(this.state.breaks.breaks),function(key){
-                  var br=this.state.breaks.breaks[key];
-                return (
-                      <Breaker  level={key} label={br.min.toFixed(2)+'-'+br.max.toFixed(2)} color={br.style.color} onChangeColor={this._changeColor} />
-                      )
-              }.bind(this))
-
-            }
-          </li>
-</ul>
+              <h3 className="color-control percent-funding"><Message message='layers.fundingPercent'/></h3>
+              <h3 className="color-control"><Message message='layers.colorSelection'/></h3>
+              {                
+                _.map(_.keys(this.state.breaks.breaks),function(key){
+                    var br=this.state.breaks.breaks[key];
+                  return (
+                        <Breaker  level={key} label={br.min.toFixed(2)+'-'+br.max.toFixed(2)} color={br.style.color} onChangeColor={this._changeColor} />
+                        )
+                }.bind(this))
+              }
+            </li>
+          </ul>
         </TogglerContent>
       </Toggler>
     </li>);

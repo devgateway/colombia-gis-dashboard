@@ -17,7 +17,6 @@ module.exports = {
 			_.forEach(savedData.filterData.filters, function(filter){
 				this._setSavedValues(this.state.levels, filter.param, filter.values);			
 			}.bind(this));	
-			//this._createItemsTree();
 		}
 	},
 
@@ -37,19 +36,18 @@ module.exports = {
 
 	onUpdateItemSelection: function(item, selected){
 		this._updateChildSelection(item, selected);
-		this.trigger(this.state, true);
-		//this._createItemsTree();			
+		this.update({'update': !this.state.update});
 	},	
 
 	onUpdateAllSelection: function(selected){
-		/*for (var key in this.state) {
+		for (var key in this.state) {
 			if (key != "itemsTree"){
 				_.forEach(this.state[key], function(item){
 					_.assign(item, {'selected': selected});
 				});
 			}
-		}*/
-		//this._createItemsTree();			
+		}
+		this.update({'update': !this.state.update});			
 	},	
 
 	onFilterByKeyword: function(keyword){
@@ -62,7 +60,6 @@ module.exports = {
 				}			
 			}.bind(this));
 		}
-		//this.trigger(this.state, true);
 		this.update({'update': !this.state.update});
 	},
 
@@ -84,6 +81,7 @@ module.exports = {
 		Util.get(window.DATA_PATH + level.sourcePath).then(function(data) {
 			_.forEach(data, function(item){
 				_.assign(item, {'level': level.levelParam, 'hide': true});//assign level to each item, and hide it
+				_.assign(item, {'cid': item.id + "#" + item[level.parentIdField]});//create a complex id (cid) for duplicated items with different parents
 				if (parentParam){
 					var parentsTrace = this._getParentsTrace(item[level.parentIdField], parentParam);
 					_.assign(item, {'parentsTrace': parentsTrace});
@@ -92,7 +90,6 @@ module.exports = {
 			var stateList = {};
 			stateList[level.levelParam] = _.sortBy(this._capitalize(data), 'name');
 			this.update(stateList);
-			
 			if (level.child){
 				this._loadDataList(level.child, level.levelParam);
 			}
@@ -108,38 +105,9 @@ module.exports = {
 		return parentsTrace;
 	},
 
-	/*
-	_createItemsTree: function(){
-		this.update({'itemsTree': this._addTreeLevel(this.state.levels)});
-	},
-
-	_addTreeLevel: function(level){
-		debugger;
-		var tree = this._createParentChildrenList(this.state[level.levelParam], this.state[level.child.levelParam], level.child.parentIdField);
-		if (level.child.child){
-			_.assign(tree.nested, this._addTreeLevel(level.child));
-		}	
-		return tree;		
-	},	
-
-	_createParentChildrenList: function(parentList, childrenList, parentIdField){
-		var itemsTree = [];
-		_.forEach(parentList, function(parent){
-			var item = _.clone(parent);
-			var children = _.clone(_.filter(childrenList, function(child){return child[parentIdField]==parent.id}), true);
-			_.assign(item, {'nested': children});
-			itemsTree.push(item);
-		}.bind(this));
-		return itemsTree;				
-	},	
-	*/
+	
 	_updateChildSelection: function(item, selected){
-		_.assign(_.find(this.state[item.level], function(e){return e.id == item.id}), {'selected': selected});
-		/*if (item.nested){
-			_.forEach(item.nested, function(it){
-				this._updateChildSelection(it, selected);
-			}.bind(this));
-		}*/		
+		_.assign(_.find(this.state[item.level], function(e){return e.cid == item.cid}), {'selected': selected});
 	},	
 
 	_itemMatchs: function(item, keyword) {
@@ -150,32 +118,6 @@ module.exports = {
 	      return false;
 	    }
 	},
-
-	/*_filterItemAndChildren: function(item, keyword){
-		var itemMatchs = this._itemMatchs(item, keyword);
-		var ret = false;
-		if (itemMatchs){
-			_.assign(item, {'hide': false});
-			this._makeChildrenVisible(item);
-			ret = true;
-		} else {
-			_.assign(item, {'hide': true});
-			_.forEach(item.nested, function(it){
-				if (this._filterItemAndChildren(it, keyword)){
-					_.assign(item, {'hide': false});
-					ret = true;
-				}		
-			}.bind(this));
-		}			
-		return ret;	
-	},
-	
-	_makeChildrenVisible: function(item){
-		_.forEach(item.nested, function(it){
-			_.assign(it, {'hide': false});
-			this._makeChildrenVisible(it);	
-		}.bind(this));
-	},*/
 
 	update: function(assignable, options) {
 		options = options || {};

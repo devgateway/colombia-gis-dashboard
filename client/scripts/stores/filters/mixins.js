@@ -36,14 +36,20 @@ module.exports = {
 	},	
 
 	onFilterByKeyword: function(keyword){
+		var noResults = true;
 		_.forEach(this.state.items, function(item){
 			if (this._itemMatchs(item, keyword)){
 				_.assign(item, {'hide': false});
+				noResults = false;
 			} else {
 				_.assign(item, {'hide': true});	
 			}
 		}.bind(this));
-		this.update({'items': _.clone(this.state.items)});	
+		if (noResults){
+			this.update({'items': _.clone(this.state.items), 'noResults': true});
+		} else {
+			this.update({'items': _.clone(this.state.items), 'noResults': false});
+		}
 	},
 
 	onSelectFilteredByKeyword: function(keyword){

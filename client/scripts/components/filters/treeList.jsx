@@ -102,6 +102,12 @@ module.exports = React.createClass({
       lowerLevelCounterTotal = lowestLevel.length;
       lowerLevelCounterSelected =  _.filter(lowestLevel, function(it){return it.selected}).length;  
     }
+    var noResults = "";
+    if (this.state.noResults){
+      noResults = <div className="filter-no-results">
+                    <br/>{<Message message="filters.noResults"/>}
+                </div>
+    }
     if (this.props.active){
       return ( 
         <div className="tab-content">
@@ -114,6 +120,7 @@ module.exports = React.createClass({
                 <SelectAllNone onSelectAll={this._onSelectAll} onSelectNone={this._onSelectNone}/>
               </div>
               <KeywordSearch onSearch={this._onSearch} onSearchEnterKey={this._onSearchEnterKey}/>
+              {noResults}
               <div className="filter-list-container">
               {
                 items.map(function(item, index) { 
