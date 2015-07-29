@@ -8,7 +8,7 @@ var Header=require('./header.jsx');
 var Footer=require('./footer.jsx');
 
 
-var actions=require('../actions/startUpActions.js');
+var actions=require('../actions/layersAction.js');
 
 module.exports = React.createClass({
 

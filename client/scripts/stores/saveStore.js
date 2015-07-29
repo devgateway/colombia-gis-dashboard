@@ -12,6 +12,7 @@ var MapStore = require('./mapStore.js');
 var ShapesLayerStore = require('./shapesLayerStore.js');
 var PointsLayerStore = require('./pointsLayerStore.js');
 var ArcgisLayerStore = require('./arcgisLayerStore.js');
+var exampleMap= require('../../mock-data/exampleMap.js');
 
 var lanState;
 var mapState;
@@ -53,7 +54,11 @@ module.exports = Reflux.createStore({
         'pointsState': pointsData,
         'arcgisState': arcgisData
       }, {'silent': true});
-   var dataToSave = JSON.stringify(this.state);
+  
+
+     var dataToSave = JSON.stringify(this.state);
+   
+    console.log(dataToSave);
    //post dataToSave
   },
 
@@ -73,9 +78,9 @@ module.exports = Reflux.createStore({
 
   onRestoreMap:function(){
    console.log('stores->saveStore->onRestoreMap');
-    if(this.state){
-      RestoreActions.restoreData(_.clone(this.state, true));
-    }
+    //if(this.state){
+      RestoreActions.restoreData(_.clone(exampleMap, true));
+    //}
   },
 
   update: function(assignable, options) {

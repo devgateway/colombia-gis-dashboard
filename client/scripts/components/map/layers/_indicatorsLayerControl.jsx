@@ -24,11 +24,11 @@ module.exports = React.createClass({
  mixins: [Reflux.connect(Store)],
 
  _changevisibility: function(id, value) {
-    LayerActions.changeLayerValue(id,'visible',value); //TODO:property mame should be in a globar variable
+    LayerActions.changeLayerValue(id,'visible',value); //TODO:property name should be in a globar variable
   },
 
   _onChangeOpacity:function(id,value){
-    LayerActions.changeLayerValue(id,'opacity',value); //TODO:property mame should be in a globar variable
+    LayerActions.changeLayerValue(id,'opacity',value); //TODO:property name should be in a globar variable
   },
 
   _showByDepartment:function(){

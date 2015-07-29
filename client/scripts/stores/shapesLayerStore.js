@@ -119,18 +119,13 @@ module.exports = Reflux.createStore({
 	},
 
 	onLayerInit: function() {
+		debugger
+		console.log('Shape  layer onLayerInit');
 		this._loadFundingFilter();
+		this._load(null, this.state.level, true); //initialize data 
 	},
 
-/*
-  	onRestoreData: function(data, type) {
-	    if(this._getLayerId()==type){
-		   this.update({dataToRestore: data, isRestorePending: true})
-		   this._load(null, data.level, true); //restore data
-		}
 
-	},
-	*/	
 	onRestoreData: function(savedData) {
 		if(savedData.shapesState){
 			this.update({dataToRestore: savedData.shapesState, isRestorePending: true});
@@ -169,7 +164,7 @@ module.exports = Reflux.createStore({
 	getInitialState: function() {
 		return this.state = this.storedState || _.assign(_.clone(this._getDefState()), {
 			level: "departament",
-			visible: false,
+			visible: true,
 			breaks: defaultBreaks, //defaul styles breaks
 			defaultStyle: defaultStyle, //Default symbol styles
 			saveItems: ["breaks", "defaultStyle", "level", "opacity", "visible"]

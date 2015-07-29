@@ -1,0 +1,17 @@
+{
+  "name": "printing",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./app"
+  },
+  "dependencies": {
+    "bluebird": "^2.9.34",
+    "body-parser": "^1.13.2",
+    "express": "^4.13.1",
+    "node-uuid": "^1.4.3",
+    "phantomjs": "^1.9.17",
+    "tinytim": "^0.1.1",
+    "uuid": "^2.0.1"
+  }
+}

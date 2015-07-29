@@ -20,7 +20,7 @@ var IndicatorLayer=require('./layers/data/indicatorLayer.jsx');
 var AGOLbtnLogin=require('../esri/AGOLBtnLogin.jsx');
 var LegendControl = require('./layers/esri/legendControl.jsx');
 var TimeSliderControl=require('./layers/timeSliderControl.jsx');
-
+var Print=require('./print.jsx');
  module.exports = React.createClass({
 
   mixins: [ Reflux.connect(MapStore, 'mapStatus')],
@@ -58,7 +58,7 @@ var TimeSliderControl=require('./layers/timeSliderControl.jsx');
       <ShapesLayer getMap={this.getMap}/>
       <ShapesLayer getMap={this.getMap}/>
       <IndicatorLayer getMap={this.getMap}/>
-
+      <Print/>
       <If condition={this.state.mapStatus.loading} >
         <Loading container="loading-container"/>
       </If>

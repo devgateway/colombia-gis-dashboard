@@ -224,4 +224,3 @@ this.normalizeHeaders = function (response) {
 }
 
 }
-    
