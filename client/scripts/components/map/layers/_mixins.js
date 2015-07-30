@@ -35,13 +35,13 @@ module.exports = {
         }
         break;
     default:
-        break;
+        breaks[5] = 999;
     } 
     if(breakStyle === "percentage"){
       breaks = this._convertGeoBreaksToPercentage(breaks);
     } else {
       //fix to contain the last value
-      breaks[5] = breaks[5]+1;
+      breaks[5] = breaks[5] + 1;
     }
 
     self._changeBreak([breaks[0], breaks[1]], "Level0");
