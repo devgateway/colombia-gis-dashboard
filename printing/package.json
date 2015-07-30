@@ -9,6 +9,7 @@
     "bluebird": "^2.9.34",
     "body-parser": "^1.13.2",
     "express": "^4.13.1",
+    "nedb": "^1.1.2",
     "node-uuid": "^1.4.3",
     "phantomjs": "^1.9.17",
     "tinytim": "^0.1.1",

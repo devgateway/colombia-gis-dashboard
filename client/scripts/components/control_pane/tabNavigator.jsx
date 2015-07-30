@@ -9,7 +9,7 @@ var Basemaps=require('../map/baseMap.jsx')
 var TabLayerNavigator=require('./../map/tabLayerNavigator.jsx');
 
 var Filter=require('./../filters/filtersManager.jsx');
-
+var  StoredMaps=require('../storedMaps/mapList.jsx')
 module.exports  = React.createClass({
 
 
@@ -28,7 +28,11 @@ module.exports  = React.createClass({
           <TabPane className="" eventKey={2} tab={<Message message='filters.title'/>}>
               <Filter/>
           </TabPane>
+        <TabPane className="" eventKey={3} tab={<Message message='maps.maps'/>}>
+              <StoredMaps/>
+          </TabPane>
         
+
         </TabbedArea>
       </div>
       );

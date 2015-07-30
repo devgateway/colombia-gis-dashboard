@@ -14,7 +14,9 @@
     "reflux": "^0.2.8",
     "reqwest": "^1.1.5",
     "shortid": "^2.2.2",
-    "superagent": "^0.21.0"
+    "superagent": "^0.21.0",
+    "tinytim": "^0.1.1"
+    
   },
   "devDependencies": {
     "balanced-match": "^0.2.0",
