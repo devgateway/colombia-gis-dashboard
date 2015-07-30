@@ -30,6 +30,7 @@
   _style: function(feature) {
     if (this.state.geoData) {
       var featureValue;
+      var isMunicipalitySelected = false;
       if(this.state.breakStyle && this.state.breakStyle == "breakValues") {
         featureValue = feature.properties.fundingUS?feature.properties.fundingUS:0;
 
@@ -41,8 +42,19 @@
         var currentValue = feature.properties.fundingUS || 0;
         featureValue = (100 / (maxValue / currentValue));
       }
+      if(this.state.filters && featureValue==0){
+        this.state.filters.map(function(l){
+          if(l.param == 'mu'){
+            l.values.map(function(muId){
+              if(muId == feature.properties.ID_2){
+                isMunicipalitySelected = true;
+              }
+            })
+          }
+        })
+      }
 
-      var style = this._getStyle(featureValue);
+      var style = this._getStyle(featureValue, isMunicipalitySelected);
       var rgbColor = style.color.r + "," + style.color.g + "," + style.color.b + "," + style.color.a;
 
       return {
