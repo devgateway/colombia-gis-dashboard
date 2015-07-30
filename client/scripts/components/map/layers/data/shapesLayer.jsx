@@ -43,7 +43,7 @@
         var currentValue = feature.properties.fundingUS || 0;
         featureValue = (100 / (maxValue / currentValue));
       }
-      console.log("counter!!");
+      
       if(this.state.filters && featureValue==0){
         this.state.filters.map(function(l){
           if(l.param == 'mu'){
@@ -64,23 +64,6 @@
         color: 'rgba(' + rgbColor + ')',
         weight: style.weight
       };
-    }
-  },
-
-
-  _isIdOnMunicipalityFilter: function(idToCheck) {
-    if(this.state.filters){
-      this.state.filters.map(function(l){
-        if(l.param == 'mu'){
-          l.values.map(function(muId){
-            if(muId == idToCheck){
-              isMunicipalitySelected = true;
-              return;
-            }
-          });
-        }
-        return;
-      });
     }
   },
 
