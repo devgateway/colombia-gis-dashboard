@@ -12,7 +12,7 @@ var MapStore = require('./mapStore.js');
 var ShapesLayerStore = require('./shapesLayerStore.js');
 var PointsLayerStore = require('./pointsLayerStore.js');
 var ArcgisLayerStore = require('./arcgisLayerStore.js');
-var exampleMap= require('../../mock-data/exampleMap.js');
+var API = require('../api/saveAndRestore.js');
 
 var lanState;
 var mapState;
@@ -54,12 +54,10 @@ module.exports = Reflux.createStore({
         'pointsState': pointsData,
         'arcgisState': arcgisData
       }, {'silent': true});
-  
-
-     var dataToSave = JSON.stringify(this.state);
-   
-    console.log(dataToSave);
+   var dataToSave = JSON.stringify(this.state);
    //post dataToSave
+    var params = JSON.stringify({Title:'SaveMap', Descriptions: 'Description', Tags:'Tag1,Tag2', Visibility: 'Public', User:'dashboard', Map:dataToSave });
+    SaveActions.saveMapToAPI(params);
   },
 
   _getDataFromState:function(stateVar){
@@ -77,10 +75,28 @@ module.exports = Reflux.createStore({
   },
 
   onRestoreMap:function(){
-   console.log('stores->saveStore->onRestoreMap');
-    //if(this.state){
-      RestoreActions.restoreData(_.clone(exampleMap, true));
-    //}
+    console.log('stores->saveStore->onRestoreMap');
+    SaveActions.restoreMapFromAPI('26');
+  },
+
+  onSaveMapToAPI:function(params){
+    console.log("stores->saveStore: onSaveMapToAPI");
+    API.saveMapToAPI(params).then(
+      function(data){
+        console.log("onSaveMapToAPI Completed");
+      }).fail(function(){
+        console.log('onSaveMapToAPI: Error saving data ...');
+      });
+  },
+
+  onRestoreMapFromAPI:function(id){
+    console.log("stores->saveStore: onRestoreMapFromAPI");
+    API.restoreMapFromAPI(id).then(
+      function(data){
+        data.map(function(l){RestoreActions.restoreData(JSON.parse(l.Map))})
+      }).fail(function(){
+        console.log('onRestoreMapFromAPI: Error saving data ...');
+      });
   },
 
   update: function(assignable, options) {

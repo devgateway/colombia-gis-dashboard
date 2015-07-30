@@ -62,14 +62,14 @@ module.exports = {
 		if (this.state.geoData) {
 
 			var breakData = _.find(_.values(this.state.breaks.breaks), function(t) {
-				return (value >=  t.min && value < t.max)
+				return (value> 0 && value >=  t.min && value < t.max)
 			});
 
 			if (breakData) {
 				return breakData.style;
 			}
 		}
-		console.log('Warning default style returned ...');
+		//console.log('Warning default style returned ...');
 
 		return this.state.defaultStyle;
 
