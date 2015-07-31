@@ -109,8 +109,6 @@ module.exports = Reflux.createStore({
     });
   },
 
-
-
   onFindMaps: function() {
     API.findMaps().then(
       function(data) {
