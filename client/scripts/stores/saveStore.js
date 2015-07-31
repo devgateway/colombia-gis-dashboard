@@ -39,8 +39,6 @@ module.exports = Reflux.createStore({
   onSaveMap: function(options) {
     debugger;
     console.log('stores->saveStore->onSaveMap');
-
-
     var mapData = this._getDataFromState(mapState);
     var lanData = this._getDataFromState(lanState);
     var filterData = {
@@ -50,23 +48,19 @@ module.exports = Reflux.createStore({
     var pointsData = this._getDataFromState(pointsState);
     var arcgisData = this._getDataFromState(arcgisState);
 
-    var mapData = {
+    var params = {
       'title': options.title,
       'description': options.description,
-      'mapState': mapData,
-      'lanState': lanData,
-      'filterData': filterData,
-      'shapesState': shapesData,
-      'pointsState': pointsData,
-      'arcgisState': arcgisData
-    };
-
-    var params = JSON.stringify({
-      title: 'SaveMap',
-      description: 'Description',
-      tags: 'Tag1,Tag2',
-      map: mapData
-    });
+      'tags': options.tags,
+      'map': {
+        'mapState': mapData,
+        'lanState': lanData,
+        'filterData': filterData,
+        'shapesState': shapesData,
+        'pointsState': pointsData,
+        'arcgisState': arcgisData
+      }
+    }
 
     this._saveMap(params);
   },
@@ -85,8 +79,8 @@ module.exports = Reflux.createStore({
     return dataToSave;
   },
 
-  onRestoreMap: function() {
-    debugger;
+  onOpenMap: function(id) {
+   this.onRestoreMapFromAPI(id);
   },
 
   _saveMap: function(params) {
@@ -94,6 +88,8 @@ module.exports = Reflux.createStore({
     API.saveMapToAPI(params).then(
       function(data) {
         this.onHideModal(); //tell save dialog that everything is done 
+        this.onFindMaps(); //refresh map list
+
       }.bind(this)).fail(function(err) {
       this.update({
         'error': err
@@ -103,16 +99,17 @@ module.exports = Reflux.createStore({
   },
 
   onRestoreMapFromAPI: function(id) {
-    console.log("stores->saveStore: onRestoreMapFromAPI");
-    API.restoreMapFromAPI(id).then(
+   console.log("stores->saveStore: onOpenMap"+id);
+    API.getMapById(id).then(
       function(data) {
-        data.map(function(l) {
-          RestoreActions.restoreData(JSON.parse(l.Map))
-        })
+          RestoreActions.restoreData(data.map)
+          ///this.update({map:data})
       }).fail(function() {
       console.log('onRestoreMapFromAPI: Error saving data ...');
     });
   },
+
+
 
   onFindMaps: function() {
     API.findMaps().then(

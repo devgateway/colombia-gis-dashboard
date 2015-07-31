@@ -47,7 +47,6 @@ app.use(function(req, res, next) {
     if(oneof) {
         res.header('Access-Control-Max-Age', 60 * 60 * 24 * 365);
     }
-
     // intercept OPTIONS method
     if (oneof && req.method == 'OPTIONS') {
         res.send(200);
@@ -57,26 +56,19 @@ app.use(function(req, res, next) {
     }
 });
 
-
-
-
 app.get('/', function (req, res) {
     res.status(400).send('This service should be used for printing purpose, please see read the <a href="help.html"> documentation </a>');
 });
 
 app.get('/print', function (req, res) {
     res.status(400).send('Please use /print/{id}');
-
 });
-
 
 app.get('/print/:id', handlePrinting);
 app.get('/download/:name', handleDownload);
 
-
 app.post('/save', function (req, res) {
     var doc =  req.body;
-
     db.insert(doc, function (err, newDoc) {   // Callback is optional
         res.json(newDoc);
     });
@@ -87,9 +79,19 @@ app.get('/maps', function (req, res) {
     db.find({  }, function (err, docs) {
         res.json(docs);
     });
-
-    
 });
+
+app.get('/map/:id', function (req, res) {
+    // Finding all planets in the solar system
+    db.find({'_id':req.params.id  }, function (err, docs) {
+        if(docs.length > 0){
+        res.json(docs[0]);
+        }else{
+            res.sendStatus(404).send("Can't find this map");
+        }
+    });
+});
+
 
 /**
  *

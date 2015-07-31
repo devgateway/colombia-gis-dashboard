@@ -9,7 +9,7 @@ window.ESRI_PROXY_URL = 'http://esri-proxy.adstg.org/';
 
 window.MAP_SAVE_URL = 'http://localhost:3000/save';
 window.MAP_LIST_URL = 'http://localhost:3000/maps';
-window.MAP_GET_URL = 'http://localhost:3000/map/{id}';
+window.MAP_GET_URL = 'http://localhost:3000/map/{{id}}';
 
 
 

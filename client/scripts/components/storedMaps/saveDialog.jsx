@@ -30,7 +30,7 @@ module.exports = React.createClass({
 	save:function(){
 	//TODO add validations
 		var description=this.refs.description.getDOMNode().value;
-		var title=this.refs.title.getDOMNode().title;
+		var title=this.refs.title.getDOMNode().value;
 		_.assign(this.state,{'title':title,'description':description});
 
 		Actions.saveMap(this.state);
