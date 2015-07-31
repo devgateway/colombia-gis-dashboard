@@ -84,7 +84,7 @@
 			margin-right: 10px;
 			text-align:left;
 			border-radius: 0;
-			width:auto;
+			width:auto;  
 			cursor: pointer;
 			font-size:11px;
 			line-height:10px;
@@ -117,13 +117,7 @@
 	position: absolute;
 	bottom: 50%;
 	right: 45%;
-	border: 1px solid #800;
-	.loader-icon{
-		width:50px;
-		position:relative;
-		z-index:10001 !important;
-}
-
+	border: 0px solid;
 }
 
 .popup-loading-container {
@@ -213,5 +207,5 @@
 	.noUi-value,.noUi-marker{
 		font-size: 10px;
 	}
-
+	
 }
