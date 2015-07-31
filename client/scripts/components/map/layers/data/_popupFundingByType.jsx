@@ -2,7 +2,7 @@
 
 var React = require('react');
 var Reflux = require('reflux');
-var InfoWindowStore=require('../../../../stores/infoWindowStore.js');
+var Store=require('../../../../stores/infoWindowShapesStore.js');
 var If=require('../../../commons/if.jsx');
 var Loading = require('../../../commons/loading.jsx');
 var Mixins = require('./_popupMixins.js');
@@ -10,12 +10,12 @@ var Mixins = require('./_popupMixins.js');
 
 module.exports  = React.createClass({
 
-  mixins: [Mixins, Reflux.connect(InfoWindowStore)],
+  mixins: [Mixins, Reflux.connect(Store)],
 
   componentWillMount:function(){
     console.log('popup>componentWillMount');
     this.setState({tabId: 0});    
-    this._getInfoWindowData(this.props.id, this.props.level, this.props.filters); 
+    this._getInfoData(this.props.id, this.props.level, this.props.filters, false); 
   },
 
   componentDidMount: function() {
@@ -37,7 +37,7 @@ module.exports  = React.createClass({
       newState.infoWindowFilter.map(function(node){node.values.map(function(innerNode){previousId = innerNode})});
     }
     if(previousId!=props.id || props.filters!=this.props.filters){
-      this._getInfoWindowData(props.id, props.level, props.filters); 
+      this._getInfoData(props.id, props.level, props.filters, false); 
     }
   },
 

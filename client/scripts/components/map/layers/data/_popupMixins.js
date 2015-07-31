@@ -1,15 +1,21 @@
 var _ = require('lodash');
 
-var InfoWindowActions=require('../../../../actions/infoWindowActions.js');
+var PointsActions=require('../../../../actions/infoWindowActions.js');
+var ShapesActions=require('../../../../actions/infoWindowShapesActions.js');
 var HighCharts = require('highcharts-browserify');
 
 
 module.exports = {
 
-  _getInfoWindowData: function (id, level, filters) {
+  _getInfoData: function (id, level, filters, isPoint) {
     var param = level? level.substring(0,2) : "de";
     var infoWindow = [{"param":param,"values":[id]}];
-    var data = InfoWindowActions.getInfoFromAPI(infoWindow, filters) || [];
+    var data;
+    if(isPoint) {
+      data = PointsActions.getPointsFromAPI(infoWindow, filters) || [];
+    } else {
+      data = ShapesActions.getShapesFromAPI(infoWindow, filters) || [];
+    }
     return data;
   },
 
