@@ -12,3 +12,4 @@ server/config/secrets.js
 client/main.css.map
 
 client/images/ui-icons.png
+printing/tmp/

@@ -6,7 +6,7 @@ var LanSelector=require('./lanSelector.jsx');
 var SaveStore=require('../stores/saveStore.js');
 var SaveActions=require('../actions/saveActions.js');
 var SaveStore=require('../stores/saveStore.js');
-var SaveMap=require('./util/saveMapDialog.jsx')
+var SaveMap=require('./storedMaps/saveDialog.jsx')
 var AGOLProfile=require('./esri/AGOLProfile.jsx');
 module.exports = React.createClass({
 
