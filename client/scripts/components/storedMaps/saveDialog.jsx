@@ -29,7 +29,11 @@ module.exports = React.createClass({
 
 	save:function(){
 	//TODO add validations
-		Actions.saveMap();
+		var description=this.refs.description.getDOMNode().value;
+		var title=this.refs.title.getDOMNode().title;
+		_.assign(this.state,{'title':title,'description':description});
+
+		Actions.saveMap(this.state);
 	},
 
 	close:function(){
@@ -40,6 +44,9 @@ module.exports = React.createClass({
 		Actions.showModal()
 	},
 
+	getInitialState:function(){
+		return {title:'',description:'',tags:''}
+	},
 	
 	updateTags:function(event){
 		debugger;
@@ -47,8 +54,6 @@ module.exports = React.createClass({
 	
 	render:function() {
 		var showModal=this.state.store.showModal || false;
-
-
 		return (
 			<span>
 			<a href="#" data-toggle="modal" data-target="#myModal" onClick={this.open}>Save</a>
@@ -62,17 +67,17 @@ module.exports = React.createClass({
 					</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
-					<input className="form-control" type="text" placeholder={i18n.t('savemap.savemaptitle')}/>
-					<textarea className="form-control" rows="3" placeholder={i18n.t('savemap.savemapdescription')}></textarea>
+					<input name="title" ref="title"  className="form-control" type="text" placeholder={i18n.t('savemap.savemaptitle')}/>
+					<textarea name="description" ref="description" className="form-control" rows="3" placeholder={i18n.t('savemap.savemapdescription')}></textarea>
 					<div className="panel-body-savemap plain">
 					<h3><Message message='savemap.savemaptags'/></h3>
 					<Tags onUpdate={this.updateTags}/>
 					</div>
 				</Modal.Body>
 				<Modal.Footer>
-					<Button bsStyle='primary' className="pull-right" onClick={this.save}>Save changes</Button>
+					<Button bsStyle='primary' className="pull-right" onClick={this.save.bind(this)}>Save changes</Button>
 					<span className="pull-right">|</span> 
-					<Button  className="pull-right" onClick={this.close}>Close</Button> 
+					<Button  className="pull-right" onClick={this.close.bind(this)}>Close</Button> 
 				</Modal.Footer>
 			</Modal>
 			</span>

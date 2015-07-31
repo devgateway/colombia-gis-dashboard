@@ -36,9 +36,11 @@ module.exports = Reflux.createStore({
 
   },
 
-  onSaveMap: function() {
+  onSaveMap: function(options) {
+    debugger;
     console.log('stores->saveStore->onSaveMap');
-    //Fix for esriLayers
+
+
     var mapData = this._getDataFromState(mapState);
     var lanData = this._getDataFromState(lanState);
     var filterData = {
@@ -48,27 +50,24 @@ module.exports = Reflux.createStore({
     var pointsData = this._getDataFromState(pointsState);
     var arcgisData = this._getDataFromState(arcgisState);
 
-    this.update({
+    var mapData = {
+      'title': options.title,
+      'description': options.description,
       'mapState': mapData,
       'lanState': lanData,
       'filterData': filterData,
       'shapesState': shapesData,
       'pointsState': pointsData,
       'arcgisState': arcgisData
-    }, {
-      'silent': true
-    });
-    var dataToSave = JSON.stringify(this.state);
+    };
+
     var params = JSON.stringify({
-      Title: 'SaveMap',
-      Descriptions: 'Description',
-      Tags: 'Tag1,Tag2',
-      Visibility: 'Public',
-      User: 'dashboard',
-      Map: dataToSave
+      title: 'SaveMap',
+      description: 'Description',
+      tags: 'Tag1,Tag2',
+      map: mapData
     });
-    console.log('Saving map to API');
-    debugger;
+
     this._saveMap(params);
   },
 
@@ -87,23 +86,18 @@ module.exports = Reflux.createStore({
   },
 
   onRestoreMap: function() {
-    console.log('stores->saveStore->onRestoreMap');
-    SaveActions.restoreMapFromAPI('26');
+    debugger;
   },
 
   _saveMap: function(params) {
     console.log("stores->saveStore: onSaveMapToAPI");
     API.saveMapToAPI(params).then(
       function(data) {
-
-        this.onHideModal();
-
-
+        this.onHideModal(); //tell save dialog that everything is done 
       }.bind(this)).fail(function(err) {
       this.update({
         'error': err
       });
-
       console.log('onSaveMapToAPI: Error saving data ...');
     });
   },
