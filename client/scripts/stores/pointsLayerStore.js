@@ -57,7 +57,7 @@ var defaultBreaks = {
     },
     'Level4': {
       'min': 175,
-      'max': 999,
+      'max': 1000,
       'style': _.assign(_.clone(defaultStyle), {
 
         'radius': 55,
