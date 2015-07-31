@@ -31,6 +31,9 @@ module.exports=Reflux.createStore({
       } else if(data.latestChange && data.latestChange.property == "color"){ 
         var level = data.latestChange.subProperty;
         this._setLegendColor(data.breaks.field, data.breaks.breaks[level].style.color, level.split("Level")[1])
+      } else if(data.latestChange && data.latestChange.property == "break"){ 
+        var level = data.latestChange.subProperty;
+        this._setLegendLabel(data.breaks.field, data.breaks.breaks[level], level.split("Level")[1])
       }
 
     },
@@ -202,6 +205,23 @@ module.exports=Reflux.createStore({
           legend.symbol.color[1] = rgbColor.g;
           legend.symbol.color[2] = rgbColor.b;
         }
+        this.trigger(this.state);
+      }
+    },
+
+    _setLegendLabel: function(legendId, brk, level) {
+      var layerLegend = _.find(this.state.layersLegends, {'id': legendId});
+      if(layerLegend){
+        debugger;
+        var legend = layerLegend.legendGroups[0].legends[level];
+        if (layerLegend.id.indexOf("Funding")!=-1){
+          var minLabel = brk.min.toFixed(brk.min<10?2:0);
+          var maxLabel = brk.max.toFixed(brk.max<10?2:0);               
+        } else {
+          var minLabel = brk.min.toFixed(0);
+          var maxLabel = (brk.max-1).toFixed(0);               
+        }
+        legend.label = " "+minLabel+" - "+maxLabel;
         this.trigger(this.state);
       }
     },
