@@ -85,6 +85,7 @@
 		"fundingType":"Funding Type",
 		"totalProjects":"Total Projects",
 		"indicators":"Indicators",
+		"indicatorLayer":"Indicator Layers",
 		"featureService":"Feature Service",
 		"mapService":"Map Service",
 		"imageService":"Image Service",
