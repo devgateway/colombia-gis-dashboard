@@ -2,7 +2,7 @@
 var _=require('lodash');
 var assign = require('object-assign');
 var Reflux = require('reflux');
-var Actions = require('../actions/infoWindowActions.js');
+var Actions = require('../actions/infoWindowShapesActions.js');
 var API = require('../api/infoWindow.js');
 
 module.exports=Reflux.createStore({
@@ -14,24 +14,24 @@ module.exports=Reflux.createStore({
         var self = this; 
     },
 
-    onGetPointsFromAPI: function(infoWindowFilter, filters) {
-        console.log("stores->infoWindowStore: onGetInfoFromAPI");
+    onGetShapesFromAPI: function(infoWindowFilter, filters) {
+        console.log("stores->infoWindowShapesStore: onGetInfoFromAPI");
         this.update({'infoWindowFilter': infoWindowFilter, 'infoWindow': null});
         API.getInfoFromAPI(infoWindowFilter, filters).then(
           function(data){
-            Actions.getPointsFromAPI.completed(data, filters);
-        }).fail(function(){
-          console.log('infoWindowStore: Error loading data ...');
-        });
+            Actions.getShapesFromAPI.completed(data, filters);
+          }).fail(function(){
+            console.log('infoWindowStore: Error loading data ...');
+          });
     },
 
-    onGetPointsFromAPICompleted: function(data, filters){
+    onGetShapesFromAPICompleted: function(data, filters){
         this.update({'infoWindow': _.sortBy(data, 'id')});
         this.output();
     },
 
     getInfo: function(infoType) {
-        console.log("stores->infoWindowStore: getInfo");
+        console.log("stores->infoWindowShapesStore: getInfo");
         if (this.state[infoType]) {
           return this.state[infoType];
         } else {
