@@ -36,9 +36,9 @@ module.exports = Reflux.createStore({
 
   },
 
-  onSaveMap: function() {
+  onSaveMap: function(options) {
+    debugger;
     console.log('stores->saveStore->onSaveMap');
-    //Fix for esriLayers
     var mapData = this._getDataFromState(mapState);
     var lanData = this._getDataFromState(lanState);
     var filterData = {
@@ -48,27 +48,20 @@ module.exports = Reflux.createStore({
     var pointsData = this._getDataFromState(pointsState);
     var arcgisData = this._getDataFromState(arcgisState);
 
-    this.update({
-      'mapState': mapData,
-      'lanState': lanData,
-      'filterData': filterData,
-      'shapesState': shapesData,
-      'pointsState': pointsData,
-      'arcgisState': arcgisData
-    }, {
-      'silent': true
-    });
-    var dataToSave = JSON.stringify(this.state);
-    var params = JSON.stringify({
-      Title: 'SaveMap',
-      Descriptions: 'Description',
-      Tags: 'Tag1,Tag2',
-      Visibility: 'Public',
-      User: 'dashboard',
-      Map: dataToSave
-    });
-    console.log('Saving map to API');
-    debugger;
+    var params = {
+      'title': options.title,
+      'description': options.description,
+      'tags': options.tags,
+      'map': {
+        'mapState': mapData,
+        'lanState': lanData,
+        'filterData': filterData,
+        'shapesState': shapesData,
+        'pointsState': pointsData,
+        'arcgisState': arcgisData
+      }
+    }
+
     this._saveMap(params);
   },
 
@@ -86,35 +79,31 @@ module.exports = Reflux.createStore({
     return dataToSave;
   },
 
-  onRestoreMap: function() {
-    console.log('stores->saveStore->onRestoreMap');
-    SaveActions.restoreMapFromAPI('26');
+  onOpenMap: function(id) {
+   this.onRestoreMapFromAPI(id);
   },
 
   _saveMap: function(params) {
     console.log("stores->saveStore: onSaveMapToAPI");
     API.saveMapToAPI(params).then(
       function(data) {
-
-        this.onHideModal();
-
+        this.onHideModal(); //tell save dialog that everything is done 
+        this.onFindMaps(); //refresh map list
 
       }.bind(this)).fail(function(err) {
       this.update({
         'error': err
       });
-
       console.log('onSaveMapToAPI: Error saving data ...');
     });
   },
 
   onRestoreMapFromAPI: function(id) {
-    console.log("stores->saveStore: onRestoreMapFromAPI");
-    API.restoreMapFromAPI(id).then(
+   console.log("stores->saveStore: onOpenMap"+id);
+    API.getMapById(id).then(
       function(data) {
-        data.map(function(l) {
-          RestoreActions.restoreData(JSON.parse(l.Map))
-        })
+          RestoreActions.restoreData(data.map)
+          ///this.update({map:data})
       }).fail(function() {
       console.log('onRestoreMapFromAPI: Error saving data ...');
     });

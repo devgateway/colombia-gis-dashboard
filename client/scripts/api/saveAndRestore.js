@@ -8,14 +8,16 @@ function logFailure(err) {
 
 module.exports = {
 
+
   saveMapToAPI: function(params) {
+    debugger;
     console.log("scripts->api->saveAndRestoreMap: saveMapToAPI");
     return reqwest({
       url: window.MAP_SAVE_URL,
       type: 'json',
       method: 'post',
       contentType: "application/json",
-      data: params,
+      data: JSON.stringify(params),
       crossOrigin: true
     }).fail(logFailure);
   },
@@ -32,7 +34,7 @@ module.exports = {
 
   },
 
-  restoreMapFromAPI: function(id) {
+  getMapById: function(id) {
     console.log("scripts->api->saveAndRestoreMap: restoreMapFromAPI id: " + id);
     var url = tim(window.MAP_GET_URL,{id:id});
     return reqwest({
