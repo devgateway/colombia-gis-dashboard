@@ -5,8 +5,10 @@ var Reflux = require('reflux');
 var _ = require('lodash');
 var Util = require('../api/util.js');
 var API = require('../api/layers.js');
+
 var CommonsMixins = require('./_mixins.js');
 var DataLayerMixins = require('./_overlaysMixins.js');
+
 var GeoStats = require('../api/geostats.js');
 
 
@@ -79,6 +81,7 @@ module.exports = Reflux.createStore({
   },
 
   onLayerInit: function() {
+    console.log('Point layer onLayerInit');
     this._load(null, this.state.level, true); //initialize data 
   },
 

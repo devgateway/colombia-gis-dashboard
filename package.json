@@ -4,15 +4,19 @@
   "dependencies": {
     "form-serialize": "^0.4.1",
     "highcharts-browserify": "^0.1.4-4.0.4",
+    "html2canvas-proxy": "0.0.5",
     "keymirror": "~0.1.0",
     "object-assign": "^1.0.0",
+    "phantom": "^0.7.2",
     "react": "^0.13.3",
     "react-bootstrap": "^0.23.7",
     "react-router": "*",
     "reflux": "^0.2.8",
     "reqwest": "^1.1.5",
     "shortid": "^2.2.2",
-    "superagent": "^0.21.0"
+    "superagent": "^0.21.0",
+    "tinytim": "^0.1.1"
+    
   },
   "devDependencies": {
     "balanced-match": "^0.2.0",

@@ -1,0 +1,21 @@
+@media print {
+
+
+	#sidebar-wrapper,.map-header,.arcgis-sig-in,.legends-container,.print-btn,.leaflet-control-zoom {
+		display: none;
+	}
+
+	
+	.leaflet-container{
+		overflow: visible !important; 
+		} ,
+
+		.map {
+		
+			top: 400px !important;
+			}
+
+		#map-container {
+			background: $white;
+		}
+	}
