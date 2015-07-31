@@ -156,9 +156,11 @@ module.exports = React.createClass({
               <h3 className="color-control"><Message message='layers.colorSelection'/></h3>
               {                
                 _.map(_.keys(this.state.breaks.breaks),function(key){
-                    var br=this.state.breaks.breaks[key];
-                  return (
-                        <Breaker  level={key} label={br.min.toFixed(2)+'-'+br.max.toFixed(2)} color={br.style.color} onChangeColor={this._changeColor} />
+                  var br=this.state.breaks.breaks[key];
+                  var minLabel = br.min.toFixed(br.min<10?2:0);
+                  var maxLabel = br.max.toFixed(br.max<10?2:0);
+                return (
+                        <Breaker  level={key} label={minLabel+' - '+maxLabel} color={br.style.color} onChangeColor={this._changeColor} />
                         )
                 }.bind(this))
               }

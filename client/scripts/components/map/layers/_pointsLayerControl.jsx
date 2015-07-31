@@ -115,7 +115,7 @@ module.exports = React.createClass({
                   var minLabel = br.min.toFixed(0);
                   var maxLabel = (br.max - 1).toFixed(0);
                 return (
-                      <Breaker  level={key} label={minLabel+'-'+maxLabel} radius={br.style.radius} color={br.style.color} onChangeColor={this._changeColor}
+                      <Breaker  level={key} label={minLabel+' - '+maxLabel} radius={br.style.radius} color={br.style.color} onChangeColor={this._changeColor}
                       onChageRadius={this._changeRadius}/>
                       )
               }.bind(this))

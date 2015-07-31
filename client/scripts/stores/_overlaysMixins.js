@@ -57,7 +57,7 @@ module.exports = {
 				var breaks=_.clone(this.state.breaks);
 				breaks.breaks[subProperty].min = value[0];
 				breaks.breaks[subProperty].max = value[1];
-				this.update({'breaks':breaks}, {'silent': true});
+				this.update({'breaks':breaks});
 			
 			} else if (property == 'breakStyle') {
 				this.update({'breakStyle':value});
