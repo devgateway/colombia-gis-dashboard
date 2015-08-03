@@ -10,8 +10,10 @@ var AGOLConfirm= require('./components/esri/AGOLConfirm.jsx');
 var APP=require('./components/app.jsx'); // basic page without layout
 var MapLayout=require('./components/mapLayout.jsx');
 var InfowindowPopup=require('./components/map/infowindowPopup.jsx');
-var PrintLayout=require('./components/printLayout.jsx');
-var Skeleton=require('./components/printSkeleton.jsx')
+/**/
+var PrintHandler=require('./components/printLayout.jsx');
+var PrintMap=require('./components/printMap.jsx');
+var PrintSkeleton=require('./components/printSkeleton.jsx')
 
 var routes = (
 		<Route name="app" path="/" handler={APP}>
@@ -19,15 +21,19 @@ var routes = (
 			<Route name="main" path="/main" handler={MapLayout}> 
 				<Route name="map" path="/map" handler={Map} />
 			</Route>
-
-			
-			<Route name="print" path="/print/map" handler={PrintLayout}> </Route>
-			<Route name="template" path="/print/template" handler={Skeleton} />
 			
 			<Route name="arcLogin" path="/arcLogin*" handler={AGOLConfirm} />
+			
 			<Route name="infowindow" path="/infowindow" handler={InfowindowPopup} >
 				<Route name="chart1" path="/chart1" handler={Chart} />
 			</Route>
+
+			<Route name="print" path="/print" handler={PrintHandler}>
+				<Route name="printMap" path="/print/map/:id" handler={PrintMap} />
+				<Route name="printSkeleton" path="/print/skeleton/:id" handler={PrintSkeleton} />
+			</Route>
+			
+
 			<Redirect from="/" to="map"/>
 		</Route>
 	);

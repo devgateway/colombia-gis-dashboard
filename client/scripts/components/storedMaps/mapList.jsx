@@ -11,6 +11,7 @@ var Panel=require('react-bootstrap/lib/Panel');
 var Label=require('react-bootstrap/lib/Label');
 var Tooltip=require('react-bootstrap/lib/Tooltip');
 var _=require('lodash');
+var PrintDialog=require('./printDialog.jsx');
 
 module.exports  = React.createClass({
 
@@ -20,15 +21,16 @@ mixins: [Reflux.connect(Store,"store")],
     Actions.findMaps();    
   },
 
-  _print:function(id){
-  },
-
   _open:function(id){
     Actions.openMap(id);
   },
 
+getInitialState:function(){
+    return {showDownload:false}
+  },
+
   render: function() {
-    debugger
+    debugger;
     var mapList=this.state.store.maps || [];
     return (
 
@@ -53,9 +55,7 @@ mixins: [Reflux.connect(Store,"store")],
                           <div>   
                             <h5>
                               <Label bsStyle='warning'> {m.title}</Label>
-                              <a href="#">
-                                  <i className="pull-right fa fa-file-pdf-o" title='Print' onClick={this._print.bind(this,m._id)}></i>
-                              </a>
+                              <PrintDialog key={m.id} id={m._id}/>
                               <a href="#">
                               <i className="pull-right fa fa-folder-open-o" title='Open' onClick={this._open.bind(this,m._id)}></i>
                               </a>
