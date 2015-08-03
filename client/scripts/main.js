@@ -24,12 +24,12 @@ if ((window.location.host.indexOf('localhost') > -1) || (window.location.host.in
 	window.DATA_PATH = '/json-data';
 	window.MOCK_PATH = '/mock-data'
 
-	window.MAP_SAVE_URL = 'http://localhost:3000/save';
-	window.MAP_LIST_URL = 'http://localhost:3000/maps';
-	window.MAP_GET_URL = 'http://localhost:3000/map/{{id}}';
+	window.MAP_SAVE_URL = 'http://localhost:3033/save';
+	window.MAP_LIST_URL = 'http://localhost:3033/maps';
+	window.MAP_GET_URL = 'http://localhost:3033/map/{{id}}';
 
-	window.MAP_PRINT_URL = 'http://localhost:3000/print/{{id}}';
-	window.MAP_DOWNLOAD_URL = 'http://localhost:3000/download/{{name}}';
+	window.MAP_PRINT_URL = 'http://localhost:3033/print/{{id}}';
+	window.MAP_DOWNLOAD_URL = 'http://localhost:3033/download/{{name}}';
 
 
 }
