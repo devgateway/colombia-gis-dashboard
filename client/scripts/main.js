@@ -7,12 +7,12 @@ window.ESRI_SELF_URL = 'https://www.arcgis.com/sharing/rest/portals/self';
 window.ESRI_PROXY_URL = 'http://esri-proxy.adstg.org/';
 
 
-window.MAP_SAVE_URL = 'http://map-print.adstg/save';
-window.MAP_LIST_URL = 'http://map-print.adstg/maps';
-window.MAP_GET_URL = 'http://map-print.adstg/map/{{id}}';
+window.MAP_SAVE_URL = 'http://map-print.adstg.org/save';
+window.MAP_LIST_URL = 'http://map-print.adstg.org/maps';
+window.MAP_GET_URL = 'http://map-print.adstg.org/map/{{id}}';
 
-window.MAP_PRINT_URL = 'http://map-print.adstg/print/{{id}}';
-window.MAP_DOWNLOAD_URL = 'http://map-print.adstg/download/{{name}}';
+window.MAP_PRINT_URL = 'http://map-print.adstg.org/print/{{id}}';
+window.MAP_DOWNLOAD_URL = 'http://map-print.adstg.org/download/{{name}}';
 
 
 
