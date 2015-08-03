@@ -16,9 +16,25 @@ var Datastore = require('nedb'),
 /*Globals*/
 var binPath = phantomjs.path
 var tmpFolder = path.join(__dirname, '/tmp');
-var URL_TO_MAP = 'http://localhost:9010/#/print/map/{{id}}'; // URL to the printing version of the map (using https://github.com/baryon/node-tinytim notation) 
-var URL_TO_SKELETON = 'http://localhost:9010/#/print/skeleton/{{id}}'; // {{id}}URL to the print page skeleton (using https://github.com/baryon/node-tinytim notation) 
 
+
+var HOST="http://devgateway.github.io/colombia-gis-dashboard";
+
+if (process.env.NODE_ENV=='production'){
+    HOST='http://devgateway.github.io/colombia-gis-dashboard'  
+}
+
+if (process.env.NODE_ENV=='development'){
+    HOST='http://localhost:9010'  
+}
+
+console.log('TARGET HOST IS ...'+HOST);
+
+var URL_TO_MAP = HOST+'/#/print/map/{{id}}'; // URL to the printing version of the map (using https://github.com/baryon/node-tinytim notation) 
+var URL_TO_SKELETON = HOST+'/#/print/skeleton/{{id}}'; // {{id}}URL to the print page skeleton (using https://github.com/baryon/node-tinytim notation) 
+//
+//
+console.log()
 
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/public'));
@@ -174,5 +190,5 @@ var server = app.listen(3033, function () {
     var host = server.address().address;
     var port = server.address().port;
 
-    console.log('Example app listening at http://%s:%s', host, port);
+    console.log('Print service listening at http://%s:%s', host, port);
 });
