@@ -16,8 +16,8 @@ var Datastore = require('nedb'),
 /*Globals*/
 var binPath = phantomjs.path
 var tmpFolder = path.join(__dirname, '/tmp');
-var URL_TO_MAP = 'http://localhost:9010/#/print/map'; //{{id}} URL to the printing version of the map (using https://github.com/baryon/node-tinytim notation) 
-var URL_TO_SKELETON = 'http://localhost:9010/#/print/template'; // {{id}}URL to the print page skeleton (using https://github.com/baryon/node-tinytim notation) 
+var URL_TO_MAP = 'http://localhost:9010/#/print/map/{{id}}'; // URL to the printing version of the map (using https://github.com/baryon/node-tinytim notation) 
+var URL_TO_SKELETON = 'http://localhost:9010/#/print/skeleton/{{id}}'; // {{id}}URL to the print page skeleton (using https://github.com/baryon/node-tinytim notation) 
 
 
 app.use(bodyParser.json());
@@ -121,8 +121,8 @@ function handleDownload(req, res) {
 function handlePrinting(req, res) {
     var id = req.params.id;
 
-    if (isNaN(id)) { //id is not numeric
-        res.status(400).send('id should be numeric');
+    if (!id) { //id is not numeric
+        res.status(400).send('you should provide and id');
     } else {
 
         makeFile(id).then(function (fileName) {

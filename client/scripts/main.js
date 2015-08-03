@@ -11,6 +11,9 @@ window.MAP_SAVE_URL = 'http://localhost:3000/save';
 window.MAP_LIST_URL = 'http://localhost:3000/maps';
 window.MAP_GET_URL = 'http://localhost:3000/map/{{id}}';
 
+window.MAP_PRINT_URL = 'http://localhost:3000/print/{{id}}';
+window.MAP_DOWNLOAD_URL = 'http://localhost:3000/download/{{name}}';
+
 
 
 window.DATA_PATH = './json-data';

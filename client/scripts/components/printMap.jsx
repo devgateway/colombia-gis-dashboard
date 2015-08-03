@@ -9,21 +9,16 @@ var Reflux = require('reflux');
 var Map=require('./map/map.jsx');
 var SlideBar=require('./commons/slideBar.jsx');
 var TabNavigator=require('./control_pane/tabNavigator.jsx');
-var Actions=require('../actions/saveActions.js');
 var Map=require('./map/map.jsx');
 
 module.exports = React.createClass({
 
-	componentDidMount:function(){
-		Actions.openMap(this.props.params.id);
-	},
-
+	
 	render: function() {
 		return (
-		<div>
-			{/* defer to the child route handler */}
-			<RouteHandler {...this.props}/>
-		</div>
-		)
+			<div>
+				<Map ref="map"></Map>
+			</div>
+			)
 	}
 });

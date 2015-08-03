@@ -1,4 +1,4 @@
-var React = require('react/addons');
+	var React = require('react/addons');
 var Modal=require('react-bootstrap/lib/Modal');
 var Button=require('react-bootstrap/lib/Button');
 

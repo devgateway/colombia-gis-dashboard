@@ -44,4 +44,16 @@ module.exports = {
       crossOrigin: true
     }).fail(logFailure);
   },
+
+  print:function(id){
+    console.log("scripts->api->saveAndRestoreMap: print id: " + id);
+    var url = tim(window.MAP_PRINT_URL,{id:id});
+    return reqwest({
+      url:url, 
+      type: 'json',
+      method: 'get',
+      crossOrigin: true
+    }).fail(logFailure); 
+  }
+
 };
