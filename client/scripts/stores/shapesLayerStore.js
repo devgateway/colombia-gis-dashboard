@@ -164,14 +164,14 @@ module.exports = Reflux.createStore({
 		this.update({fundingSelected: selectedList});
 		var filters = _.clone(this.state.filters || []);
 		if (selectedList.length>0){
-			var fsFilter = _.find(filters, {'param': 'fs'});
+			var fsFilter = _.find(filters, {'param': 'ft'});
 			if (fsFilter){
 				_.assign(fsFilter, {'values': selectedList})
 			} else {
-				filters.push({'param': 'fs', 'values': selectedList});
+				filters.push({'param': 'ft', 'values': selectedList});
 			}
 		} else {
-			_.remove(filters, function(f) {return f.param=='fs';});
+			_.remove(filters, function(f) {return f.param=='ft';});
 		}
 		this._applyFilters(filters, true);
 	},
