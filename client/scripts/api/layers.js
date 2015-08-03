@@ -49,5 +49,27 @@ module.exports = {
             url: 'json-data/municipalitiesOptimized.json',
             type: 'json'
         }).fail(logFailure);  
+    },
+
+    getIndicatorsByDepartment: function (filters) {
+        return request({
+            url: 'http://test.monitor.net.co/GisService.svc/IndicatorInfoByDepartaments/Json',
+            type: 'json',
+            method: 'post',
+            contentType: "application/json",
+            data: JSON.stringify(filters),
+            crossOrigin: true
+        }).fail(logFailure);
+    },
+
+    getIndicatorsByMuncipalities: function (filters) {
+        return request({
+            url: 'http://test.monitor.net.co/GisService.svc/IndicatorInfoByMunicipalities/Json',
+            type: 'json',
+            method: 'post',
+            contentType: "application/json",
+            data: JSON.stringify(filters),
+            crossOrigin: true
+        }).fail(logFailure);
     }
 };

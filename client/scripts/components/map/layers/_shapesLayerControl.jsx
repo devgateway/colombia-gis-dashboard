@@ -31,20 +31,31 @@ module.exports = React.createClass({
     return 'shapes';
   },
 
+  getInitialState:function(){
+    return {fundingSourceSelected: []};
+  },
+
   _changeBreaksWrapper:function(value){
     this.handleClickForBreaks(value, breaks, breakStyle);
   },
 
   _onFundingSourceChanged: function(obj) {
-    LayerActions.changeFundingSourceSelection(obj.value, obj.selected);
+    var fundingSourceSelected = _.clone(this.state.fundingSourceSelected);
+    if(obj.selected){
+      fundingSourceSelected.push(obj.value);
+    }else{
+      fundingSourceSelected.splice(fundingSourceSelected.indexOf(obj.value));
+    }
+    this.setState({"fundingSourceSelected": fundingSourceSelected});
+    LayerActions.changeFilterSelection("fs", fundingSourceSelected);
   },
 
   _showDisbursements: function() {
-    LayerActions.changeFundingTypeSelection('disbursements');
+    LayerActions.changeFilterSelection("ft", "disbursements");
   },
 
   _showCommitments: function() {
-    LayerActions.changeFundingTypeSelection('commitments');
+    LayerActions.changeFilterSelection("ft", "commitments");
   },
 
   componentDidMount: function(){
