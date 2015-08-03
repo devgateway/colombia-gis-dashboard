@@ -11,8 +11,8 @@ window.MAP_SAVE_URL = 'http://map-print.adstg/save';
 window.MAP_LIST_URL = 'http://map-print.adstg/maps';
 window.MAP_GET_URL = 'http://map-print.adstg/map/{{id}}';
 
-window.MAP_PRINT_URL = 'http://map-print/print/{{id}}';
-window.MAP_DOWNLOAD_URL = 'http://map-print/download/{{name}}';
+window.MAP_PRINT_URL = 'http://map-print.adstg/print/{{id}}';
+window.MAP_DOWNLOAD_URL = 'http://map-print.adstg/download/{{name}}';
 
 
 
