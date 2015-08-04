@@ -25,7 +25,18 @@ mixins: [Reflux.connect(Store,"store")],
     Actions.openMap(id);
   },
 
-getInitialState:function(){
+  _onKeyUp: function(ev) {
+    if (ev.keyCode == 13){
+      this.handleClick();
+    }
+  },
+
+  handleClick:function(){
+    var value = this.refs.search_input.getDOMNode().value;
+    Actions.filterByKeyword(value);
+  },
+
+  getInitialState:function(){
     return {showDownload:false}
   },
 
@@ -37,17 +48,18 @@ getInitialState:function(){
       <div>
       <div className="text-search-wrapper">
       <div className="search-box">
-      <button type="submit" className="search-button" onClick={this._handleCLick}>
+      <button type="submit" className="search-button" onClick={this.handleClick}>
       <i className="fa fa-search"></i>
       </button>
-      <input onKeyPress={this.handleOnkeypress} className="keyword-search" type="text" placeholder={i18n.t("maps.searchMap")} ref="search_input"/>
+      <input onKeyUp={this._onKeyUp} className="keyword-search" type="text" placeholder={i18n.t("maps.searchMap")} ref="search_input"/>
       </div>
       </div>
       <h3>List of saved Maps</h3>
       <ul>
         {
           _.map(mapList,function(m){
-              return (
+            if(!m.hide){
+                return (
                   <li>
                     <Grid>
                       <Row>
@@ -73,8 +85,9 @@ getInitialState:function(){
                       </Row>
                     </Grid>
 
-                  </li>)
-            }.bind(this))
+                </li>)
+            }
+          }.bind(this))
             
         }
       </ul>

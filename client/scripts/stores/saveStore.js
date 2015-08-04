@@ -141,6 +141,33 @@ module.exports = Reflux.createStore({
     }
   },
 
+  onFilterByKeyword: function(keyword){
+    var noResults = true;
+    _.forEach(this.state.maps, function(item){
+      if (this._itemMatchs(item, keyword)){
+        _.assign(item, {'hide': false});
+        noResults = false;
+      } else {
+        _.assign(item, {'hide': true}); 
+      }
+    }.bind(this));
+    if (noResults){
+      this.update({'store': _.clone(this.state.store), 'noResults': true});
+    } else {
+      this.update({'store': _.clone(this.state.store), 'noResults': false});
+    }
+  },
+
+  _itemMatchs: function(item, keyword) {
+
+    if (keyword.length > 1) {
+      var pattern = new RegExp(keyword, 'i');
+      return pattern.test(item.title)  || pattern.test(item.description);
+    } else {
+      return true;
+    }
+  },
+
   _handleMapDataUpdate: function(data) {
     mapState = data;
   },
