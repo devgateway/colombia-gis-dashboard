@@ -31,9 +31,10 @@ var FeatureLayer=React.createClass({
           title={this.props.title}
           onChangeVisibility={this.props.onChangeVisibility}
           onChangeOpacity={onChangeOpacity}
+          hideTransparencyControl={this.props.layer.layers.length>1? false : true}
           id={this.props.id}/>
         <If condition={!this.props.showBasicControl}>
-          <ul>
+          <ul style={{'paddingLeft': '20px'}}>
             {
               this.props.layer.layers.map(function(l){
                 return (<li><InnerLayer

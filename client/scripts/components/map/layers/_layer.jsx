@@ -91,12 +91,14 @@ render: function() {
             <i className="fa fa-times" onClick={this._delete}></i>
           </If>
         </div>
-        <div className="control-wrapper transparency">
-          <div className='slider-holder'>
-            <h3><Message message='layers.layerTransparency'/></h3>
-            <div className='slider'/>
-          </div>
-        </div>
+        <If condition={!this.props.hideTransparencyControl}>
+          <div className="control-wrapper transparency">
+            <div className='slider-holder'>
+              <h3><Message message='layers.layerTransparency'/></h3>
+              <div className='slider'/>
+            </div>
+          </div>  
+        </If>
       </If>
     </div>
     );
