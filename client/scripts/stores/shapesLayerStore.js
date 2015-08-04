@@ -153,15 +153,14 @@ module.exports = Reflux.createStore({
 	},
 
 	onChangeFundingSourceSelection: function(id, selected) {
-		var selectedList = this.state.fundingSelected? this.state.fundingSelected.slice(0) : [];
-		if (selected){
-			selectedList.push(id);
-		} else {
-			_.remove(selectedList, function(item) {
-				return item == id;
-			})
-		}
-		this.update({fundingSelected: selectedList});
+		var selectedList = [];
+		_.map(this.state.fundingSourceItems, function(f){
+			if((id!=f.id && f.selected) || (id==f.id && selected) ){
+				selectedList.push(f.id);
+			} else {
+				f.selected = false;
+			}
+		});
 		var filters = _.clone(this.state.filters || []);
 		if (selectedList.length>0){
 			var fsFilter = _.find(filters, {'param': 'ft'});
@@ -174,6 +173,7 @@ module.exports = Reflux.createStore({
 			_.remove(filters, function(f) {return f.param=='ft';});
 		}
 		this._applyFilters(filters, true);
+		this.update({fundingSelected: selectedList});
 	},
 
 	getInitialState: function() {
