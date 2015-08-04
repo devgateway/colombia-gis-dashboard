@@ -53,22 +53,26 @@ module.exports = {
 
     getIndicatorsByDepartment: function (filters) {
         return request({
-            url: 'http://test.monitor.net.co/GisService.svc/IndicatorInfoByDepartaments/Json',
+            url: 'http://test.monitor.net.co/GisService.svc/Filters/DepartmentsFunding/Json',
+            data: JSON.stringify({"filters": filters? filters : []}),
+            //url: 'http://test.monitor.net.co/GisService.svc/IndicatorInfoByDepartaments/Json',
+            //data: JSON.stringify(filters),
             type: 'json',
             method: 'post',
             contentType: "application/json",
-            data: JSON.stringify(filters),
             crossOrigin: true
         }).fail(logFailure);
     },
 
     getIndicatorsByMuncipalities: function (filters) {
         return request({
-            url: 'http://test.monitor.net.co/GisService.svc/IndicatorInfoByMunicipalities/Json',
+            url: 'http://test.monitor.net.co/GisService.svc/Filters/MunicipalitiesFunding/Json',
+            data: JSON.stringify({"filters": filters? filters : []}),
+            //url: 'http://test.monitor.net.co/GisService.svc/IndicatorInfoByMunicipalities/Json',
+            //data: JSON.stringify(filters),
             type: 'json',
             method: 'post',
             contentType: "application/json",
-            data: JSON.stringify(filters),
             crossOrigin: true
         }).fail(logFailure);
     }

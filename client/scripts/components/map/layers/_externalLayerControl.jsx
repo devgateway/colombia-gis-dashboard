@@ -156,21 +156,33 @@ module.exports  = React.createClass({
                   <TogglerContent visibleWhen="expanded">
                     <div toggler={true} className="toggler-button"><i className="fa fa-chevron-up"></i></div>
                   </TogglerContent>
-                  <TogglerContent visibleWhen="always">
-                    <div><span className="control-title">{l.title}</span></div>
+                  <TogglerContent visibleWhen="collapsed">
+                    <Layer
+                      onDelete={this._onDelete}
+                      onMoveUp={this._handleMoveUp}
+                      onMoveDown={this._handleMoveDown}
+                      onChangeOpacity={this._handleChangeOpacity}
+                      onChangeVisibility={this._changevisibility}
+                      id={l.id}
+                      type={l.type}
+                      zIndex={l.zIndex}
+                      visible={l.visible}
+                      opacity={l.opacity}
+                      title={l.title}
+                      showBasicControl={true}/>
                   </TogglerContent>
                   <TogglerContent visibleWhen="expanded">
                     <Layer
-                    onDelete={this._onDelete}
-                    onMoveUp={this._handleMoveUp}
-                    onMoveDown={this._handleMoveDown}
-                    onChangeOpacity={this._handleChangeOpacity}
-                    onChangeVisibility={this._changevisibility}
-                    id={l.id}
-                    type={l.type}
-                    zIndex={l.zIndex}
-                    visible={l.visible}
-                    opacity={l.opacity}/>
+                      onDelete={this._onDelete}
+                      onMoveUp={this._handleMoveUp}
+                      onMoveDown={this._handleMoveDown}
+                      onChangeOpacity={this._handleChangeOpacity}
+                      onChangeVisibility={this._changevisibility}
+                      id={l.id}
+                      type={l.type}
+                      zIndex={l.zIndex}
+                      visible={l.visible}
+                      opacity={l.opacity}/>
                   </TogglerContent>
                 </Toggler>
               </li>)

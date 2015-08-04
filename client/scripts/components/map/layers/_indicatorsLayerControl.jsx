@@ -61,10 +61,10 @@ module.exports = React.createClass({
         <Layer id="indicators" 
           opacity={this.state.opacity} 
           onChangeOpacity={this._onChangeOpacity} 
-          onChangeVisibility={this._changevisibility} 
+          onChangeVisibility={this._changeVisibility} 
           title={i18n.t("layers.inidicatorLayer")}
           visible={this.state.visible}/>
-        <ul className="controls-items">
+        <ul>
           <li className="levels">
             <h3><Message message='layers.level'/></h3>
             <CustomRadioGroup>
