@@ -59,6 +59,14 @@ module.exports = React.createClass({
 
     var level=this.state.level;
     var fundingSources = this.state.fundingSourceItems || [];
+    _.map(this.state.filters, function(f){if(f.param == 'ft'){_.map(f.values, function(v){
+        _.map(fundingSources, function(s){
+          if(s.id == v){
+            s.selected = true;
+          }
+        })
+      })}
+    })
     var fundingType = this.state.fundingType;
     var self = this;
     return (
