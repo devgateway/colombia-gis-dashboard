@@ -10,6 +10,7 @@ $yellow: #e9ba00;
 $gutter: 1em;
 $base-font-family: 'Open Sans', sans-serif;
 $base-line-height: 110%;
+$border-grey:#eeeeee;
 
 //mixins
 @mixin bgLayout{background-color: rgba(0,0,0,0.7);}
@@ -93,6 +94,11 @@ $base-line-height: 110%;
   @include textCenter;
   @include textUppercase;
   @include transitionAll;
+}
+
+@mixin space-reset{
+  margin:0;
+  padding:0;
 }
 
 html{

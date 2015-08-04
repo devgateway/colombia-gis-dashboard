@@ -187,26 +187,26 @@ module.exports = Reflux.createStore({
 								items.push(d.fundingUS);
 							}							
 							var feature = _.find(geoData.features, function(e) {
-								if (e.properties.ID_2 == d.id /*replacer.replaceDiacritics(e.properties.NAME_1).toUpperCase()==d.name*/ ) {
-									console.log('Found!');
-								}
+								//if (e.properties.ID_2 == d.id /*replacer.replaceDiacritics(e.properties.NAME_1).toUpperCase()==d.name*/ ) {
+								//	console.log('Found!');
+								//}
 								return e.properties.ID_2 == d.id; //replacer.replaceDiacritics(e.properties.NAME_1).toUpperCase()==d.name
 							});
 							if (feature) {
-								_.assign(feature.properties, _.omit(_.clone(d), "name")); //set feature values
+								_.assign(feature.properties, _.omit(_.clone(d), "name")); //set feature values	
 							}
 						});
 						var geoStats = new GeoStats(items);
 						self._setGeoData(geoData, geoStats);
 					});
 
-			}.bind(this)).fail(function() {
-				console.log('Error loading data ...');
-			});
-		},
+		}.bind(this)).fail(function() {
+			console.log('Error loading data ...');
+		});
+	},
 
 
-		_loadByDepartments: function() {
+	_loadByDepartments: function() {
 		//var geoData = _.clone(departmentsGeoJson);
 		var self = this;
 		API.getActivitiesByDepartment(this.state.filters).then(

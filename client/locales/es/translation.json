@@ -71,7 +71,7 @@
 		"funding":"Financiamiento",
 		"fundingDistribution":"Distribución del financiamiento",
 		"fundingByType":"Capa de Financiamiento",
-		"subActivitiesLevel":"Capa de subactividades",
+		"subActivitiesLevel":"Capa de Subactividades",
 		"fundingType":"Tipo de Financiamiento",
 		"fundingSource":"Fuente de Financiamiento",
 		"fundingSourceCommitments":"Compromisos",
@@ -84,6 +84,7 @@
 		"activitiesNumber": "Número de Actividades",
 		"totalProjects":"Projectos Totales",
 		"indicators":"Indicadores",
+		"indicatorLayer":"Capa de Indicadores",
 		"featureService":"Servicio de entidades",
 		"mapService":"Servicio de mapas",
 		"imageService":"Servicio de Imágenes",
@@ -94,7 +95,7 @@
 		"noResults":"No hay resultados que coincidan con su búsqueda",
 		"byDepartment":"Por Departamento",
 		"byMunicipality":"Por Municipio",
-		"searchLayers": "Buscar Capas"
+		"searchLayers": "Guardar mapa"
 	},
 
 	"map": {
@@ -113,7 +114,16 @@
 			"totalSubActivities":"SubActividades Totales",
 			"programList":"Lista de Programas",
 			"downloadFile":"Descargar archivo",
-			"funding":"Financiamiento"
+			"funding":"Financiamiento Total: "
 		}
+	},
+	"savemap":{
+		"savemaplabel":"Save Mapa",
+		"savemaptitle": "Título del mapa",
+		"savemapdescription": "Descripción del mapa",
+		"savemaptags": "Agregar etiquetas",
+		"savemapvisibility": "Visibilidad del mapa",
+		"savemappublic": "Publico",
+		"savemapprivate": "Privado"
 	}
 }

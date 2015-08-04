@@ -2,31 +2,30 @@
 var _=require('lodash');
 var assign = require('object-assign');
 var Reflux = require('reflux');
-var InfoWindowActions = require('../actions/infoWindowActions.js');
+var Actions = require('../actions/infoWindowActions.js');
 var API = require('../api/infoWindow.js');
 
 module.exports=Reflux.createStore({
 
-    listenables: InfoWindowActions,
+    listenables: Actions,
     // Initial setup
     init: function() {
         this.state = {};
         var self = this; 
     },
 
-    onGetInfoFromAPI: function(infoWindowFilter, filters) {
+    onGetPointsFromAPI: function(infoWindowFilter, filters) {
         console.log("stores->infoWindowStore: onGetInfoFromAPI");
-        this.update({'infoWindowFilter': infoWindowFilter});
-        this.update({'infoWindow': null});
+        this.update({'infoWindowFilter': infoWindowFilter, 'infoWindow': null});
         API.getInfoFromAPI(infoWindowFilter, filters).then(
           function(data){
-            InfoWindowActions.getInfoFromAPI.completed(data, filters);
-          }).fail(function(){
-            console.log('infoWindowStore: Error loading data ...');
-          });
+            Actions.getPointsFromAPI.completed(data, filters);
+        }).fail(function(){
+          console.log('infoWindowStore: Error loading data ...');
+        });
     },
 
-    onGetInfoFromAPICompleted: function(data, filters){
+    onGetPointsFromAPICompleted: function(data, filters){
         this.update({'infoWindow': _.sortBy(data, 'id')});
         this.output();
     },
@@ -42,8 +41,7 @@ module.exports=Reflux.createStore({
 
     // Callback
     output: function() {
-    // Pass on to listening components
-        this.trigger(this.serialize());
+      this.trigger(this.serialize());
     },
 
     serialize: function() {

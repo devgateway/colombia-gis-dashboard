@@ -144,7 +144,7 @@ module.exports = Reflux.createStore({
 	},
 
 	onRestoreData: function(data, type) {
-		alert('_onRestoreData');
+		//alert('_onRestoreData');
 	},
 
 	getInitialState: function() {

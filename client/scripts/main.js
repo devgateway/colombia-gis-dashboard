@@ -6,13 +6,31 @@ window.ESRI_SEARCH_URL = 'http://www.arcgis.com/sharing/rest/search?f=json&';
 window.ESRI_SELF_URL = 'https://www.arcgis.com/sharing/rest/portals/self';
 window.ESRI_PROXY_URL = 'http://esri-proxy.adstg.org/';
 
+
+window.MAP_SAVE_URL = 'http://map-print.adstg.org/save';
+window.MAP_LIST_URL = 'http://map-print.adstg.org/maps';
+window.MAP_GET_URL = 'http://map-print.adstg.org/map/{{id}}';
+
+window.MAP_PRINT_URL = 'http://map-print.adstg.org/print/{{id}}';
+window.MAP_DOWNLOAD_URL = 'http://map-print.adstg.org/download/{{name}}';
+
+
+
 window.DATA_PATH = './json-data';
-window.MOCK_PATH='./mock-data';
+window.MOCK_PATH = './mock-data';
 
 if ((window.location.host.indexOf('localhost') > -1) || (window.location.host.indexOf('127.0.0.1') > -1)) {
 	window.ESRI_PROXY_URL = 'http://localhost:3553';
 	window.DATA_PATH = '/json-data';
-	window.MOCK_PATH='/mock-data'
+	window.MOCK_PATH = '/mock-data'
+
+	window.MAP_SAVE_URL = 'http://localhost:3033/save';
+	window.MAP_LIST_URL = 'http://localhost:3033/maps';
+	window.MAP_GET_URL = 'http://localhost:3033/map/{{id}}';
+
+	window.MAP_PRINT_URL = 'http://localhost:3033/print/{{id}}';
+	window.MAP_DOWNLOAD_URL = 'http://localhost:3033/download/{{name}}';
+
 
 }
 

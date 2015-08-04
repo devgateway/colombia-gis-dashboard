@@ -22,8 +22,8 @@
   @include floatRight;
   @include transitionAll;
   @include textBold;
+  @include noOutline;
   margin-left: 1em;
-  outline:none;
   &:hover {
     background: darken($green,20%);
     color: $white;

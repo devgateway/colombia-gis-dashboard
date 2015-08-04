@@ -16,7 +16,6 @@
 	width:13px;
 	height:13px;
 	.selected{
-
 	}
 	.fa{
 		font-size:0.7em;
@@ -25,8 +24,6 @@
 		float: left;
 	}
 }
-
-
 .horizontal{
 	@include floatLeft;
 	margin-right:10px;
@@ -84,7 +81,7 @@
 			margin-right: 10px;
 			text-align:left;
 			border-radius: 0;
-			width:auto;  
+			width:auto;
 			cursor: pointer;
 			font-size:11px;
 			line-height:10px;
@@ -118,6 +115,10 @@
 	bottom: 50%;
 	right: 45%;
 	border: 0px solid;
+	img{
+		position:relative;
+		z-index:10001 !important;
+	}
 }
 
 .popup-loading-container {
@@ -139,13 +140,6 @@
 .download-button{
 	border: 1px solid #c5c5c5;
 }
-
-.saveMapPopup{
-	z-index: 10000;
-	bottom: 60%;
-	width: 450px;
-}
-
 
 .finder {
 	p.title {
@@ -207,5 +201,5 @@
 	.noUi-value,.noUi-marker{
 		font-size: 10px;
 	}
-	
+
 }
