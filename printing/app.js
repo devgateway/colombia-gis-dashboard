@@ -12,13 +12,13 @@ var Promise = require("bluebird");
 
 var Datastore = require('nedb'),
     db = new Datastore();
-
+//path.join(__dirname, '/db')
 /*Globals*/
 var binPath = phantomjs.path
 var tmpFolder = path.join(__dirname, '/tmp');
 
 
-var HOST="http://devgateway.github.io/colombia-gis-dashboard";
+var HOST="http://127.0.0.1:9010";
 
 if (process.env.NODE_ENV=='production'){
     HOST='http://devgateway.github.io/colombia-gis-dashboard'  
@@ -87,6 +87,22 @@ app.post('/save', function (req, res) {
     var doc =  req.body;
     db.insert(doc, function (err, newDoc) {   // Callback is optional
         res.json(newDoc);
+    });
+});
+
+app.put('/save/:id', function (req, res) {
+    var id = req.params.id;
+    var doc =  req.body;
+    //db.update(query, update, options, callback)
+    db.update({ '_id': id }, doc, {}, function (err) {   
+        if (err) {
+            return res.send('/save', {
+                errors: err.errors,
+                _id: id
+            });
+        } else {
+            res.json(doc);
+        }
     });
 });
 

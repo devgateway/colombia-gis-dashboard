@@ -25,6 +25,10 @@ mixins: [Reflux.connect(Store,"store")],
     Actions.openMap(id);
   },
 
+  _update:function(id){
+    Actions.updateMap(id);
+  },
+
   _onKeyUp: function(ev) {
     if (ev.keyCode == 13){
       this.handleClick();
@@ -67,13 +71,19 @@ mixins: [Reflux.connect(Store,"store")],
                           <div>   
                             <h5>
                               <Label bsStyle='warning'> {m.title}</Label>
+                              <a href="#">
+                              <i className="pull-right fa fa-times" title='Delete' onClick=''></i>
+                              </a>
+                              <a href="#">
+                              <i className="pull-right fa fa-floppy-o" title='Update' onClick={this._update.bind(this,m._id)}></i>
+                              </a>
                               <PrintDialog key={m.id} id={m._id}/>
                               <a href="#">
                               <i className="pull-right fa fa-folder-open-o" title='Open' onClick={this._open.bind(this,m._id)}></i>
                               </a>
-                              </h5>
-                            </div>
-                         </Col>
+                            </h5>
+                          </div>
+                        </Col>
                       </Row>
                          
                       <Row>

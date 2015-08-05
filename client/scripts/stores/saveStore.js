@@ -37,8 +37,19 @@ module.exports = Reflux.createStore({
   },
 
   onSaveMap: function(options) {
+    var params = this._createParamsForAPI(options);
+    this._saveMap(params);
+  },
+
+  onUpdateMap: function(id) {
     debugger;
-    console.log('stores->saveStore->onSaveMap');
+    var map = _.find(this.state.maps, function(l){return l._id=id});
+    var params = this._createParamsForAPI(map);
+    console.log(params)
+  },
+
+  _createParamsForAPI: function(options) {
+    console.log('stores->saveStore->_createParamsForAPI');
     var mapData = this._getDataFromState(mapState);
     var lanData = this._getDataFromState(lanState);
     var filterData = {
@@ -62,7 +73,7 @@ module.exports = Reflux.createStore({
       }
     }
 
-    this._saveMap(params);
+    return(params);
   },
 
   _getDataFromState: function(stateVar) {

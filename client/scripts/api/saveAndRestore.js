@@ -10,12 +10,24 @@ module.exports = {
 
 
   saveMapToAPI: function(params) {
-    debugger;
     console.log("scripts->api->saveAndRestoreMap: saveMapToAPI");
     return reqwest({
       url: window.MAP_SAVE_URL,
       type: 'json',
       method: 'post',
+      contentType: "application/json",
+      data: JSON.stringify(params),
+      crossOrigin: true
+    }).fail(logFailure);
+  },
+
+  updateMapToAPI: function(id, params) {
+    console.log("scripts->api->saveAndRestoreMap: updateMapToAPI");
+    var url = tim(window.MAP_UPDATE_URL,{id:id});
+    return reqwest({
+      url: url,
+      type: 'json',
+      method: 'put',
       contentType: "application/json",
       data: JSON.stringify(params),
       crossOrigin: true
