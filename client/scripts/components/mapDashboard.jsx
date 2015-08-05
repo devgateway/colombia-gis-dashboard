@@ -8,7 +8,7 @@ var SlideBar=require('./commons/slideBar.jsx');
 var TabNavigator=require('./control_pane/tabNavigator.jsx');
 
 var AGOLbtnLogin=require('./esri/AGOLBtnLogin.jsx');
-var LegendControl = require('./map/layers/esri/legendControl.jsx');
+var LegendControl = require('./map/layers/legends/legendControl.jsx');
 var TimeSliderControl=require('./map/layers/timeSliderControl.jsx');
 
 

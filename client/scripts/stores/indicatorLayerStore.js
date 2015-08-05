@@ -108,7 +108,11 @@ module.exports = Reflux.createStore({
 	_getLayerId: function() {
 		return 'indicators';
 	},
-
+	
+	_getTitle:function(){
+		return 'Indicators'
+	},
+	
 	_getDefaultBreaks: function() {
 		return defaultBreaks;
 	},

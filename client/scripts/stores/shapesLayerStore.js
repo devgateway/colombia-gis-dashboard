@@ -32,6 +32,7 @@ var defaultStyle = {
 /*. The range of the break is greater than or equal to the minimum value and less than the maximum value.*/
 
 var defaultBreaks = {
+	'symbol':{'symbol':{width:10, type:"esriSMS", style:"esriSMSSquare"}},
 	'field': ' - Funding',
 	breaks: {
 		'Level0': {
@@ -114,6 +115,10 @@ module.exports = Reflux.createStore({
 		return 'shapes';
 	},
 
+	_getTitle:function(){
+		return 'Funding By Type'
+	},
+	
 	_getDefaultBreaks: function() {
 		return defaultBreaks;
 	},
@@ -133,8 +138,9 @@ module.exports = Reflux.createStore({
 	*/	
 	onRestoreData: function(savedData) {
 		if(savedData.shapesState){
+			debugger;
 			this.update({dataToRestore: savedData.shapesState, isRestorePending: true});
-		   this._load(null, savedData.shapesState.level, true); //restore data
+		    this._load(null, savedData.shapesState.level, true); //restore data
 		} else {
 			this.update({'visible':false});
 		}
@@ -222,13 +228,13 @@ module.exports = Reflux.createStore({
 						self._setGeoData(geoData, geoStats);
 					});
 
-		}.bind(this)).fail(function() {
-			console.log('Error loading data ...');
-		});
-	},
+			}.bind(this)).fail(function() {
+				console.log('Error loading data ...');
+			});
+		},
 
 
-	_loadByDepartments: function() {
+		_loadByDepartments: function() {
 		//var geoData = _.clone(departmentsGeoJson);
 		var self = this;
 		API.getActivitiesByDepartment(this.state.filters).then(

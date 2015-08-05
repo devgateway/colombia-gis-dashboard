@@ -95,7 +95,6 @@ page.open(MAP_URL, function(status) {
 						return $('#map-image').html();
 					}, base64);
 
-
 					window.setTimeout(function() {
 						page2.render(TMP_DIR + '/' + FILE_NAME);
 						console.log('.... file has been generated...')

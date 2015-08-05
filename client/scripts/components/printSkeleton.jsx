@@ -8,6 +8,7 @@ var SlideBar=require('./commons/slideBar.jsx');
 var TabNavigator=require('./control_pane/tabNavigator.jsx');
 var Actions=require('../actions/saveActions.js')
 var Header=require('./header.jsx');
+var LegendControl = require('./map/layers/legends/legendPrintControl.jsx');
 
 var Footer=require('./footer.jsx');
 
@@ -29,9 +30,16 @@ module.exports = React.createClass({
 				<div id="map-image">
 					<img src='image.jpg'/>				
 					</div>
+				
+				<LegendControl/>
+				<div>
+				 TEST
+				</div>
 				<div style={{'margin-top':'25px','padding-top':'2px;','border':'0px'}}>
 					<Footer/>
 				</div>
+
+
 			</div>
 			)
 	}
