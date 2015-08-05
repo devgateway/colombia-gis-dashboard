@@ -22,14 +22,13 @@ module.exports = Reflux.createStore({
   },
 
   _handleDataLayersUpdate: function(data) {
-    debugger;
-    var exists = _.find(this.state.layersLegends, {
-      'id': data.id
-    });
+
+    var exists = _.find(this.state.layersLegends, {'id': data.id});
 
     if (!exists) {
       this._makeLegend(data.id, data);
     }
+
     this._setLegendVisibility(data.id, data.visible);
     
     if (data.subProperty) {
@@ -39,45 +38,8 @@ module.exports = Reflux.createStore({
     }
   },
 
-  /*
-  
-
-    _addFundingByTypeLegend: function() {
-      var shapes = ShapesLayerStore._getDefaultBreaks();
-      var layerLegends = _.find(this.state.layersLegends, {'id': shapes.field});
-      if (!layerLegends){
-        layerLegends = {'id': shapes.field, 'layerTitle': "Financiamiento por tipo", 'visible': false, "legendGroups": []};
-        var breaks = shapes.breaks;
-        var breaksKeys = Object.keys(breaks);
-        var legendItems = [];
-        for(var i=0; i<breaksKeys.length; i++){
-          var level = breaksKeys[i];
-          var labelStr = " " + breaks[level]["min"] + " - "+ breaks[level]["max"] ;
-          var rgbColor = [breaks[level]["style"]["color"]["r"], breaks[level]["style"]["color"]["g"], breaks[level]["style"]["color"]["b"]];
-          var legendItem = {};
-          _.assign(legendItem, {
-            height: 10,
-            label: labelStr,
-            url: "",
-            width: 10,
-            symbol:{color:rgbColor, width:10, type:"esriSMS", style:"esriSMSSquare"}
-          });
-          legendItems.push(legendItem);
-        }
-        var legendGroup = {};
-        _.assign(legendGroup, {"layerName": "Colores"});
-        _.assign(legendGroup, {"legends": legendItems});
-        layerLegends.legendGroups.push(legendGroup);
-        this.state.layersLegends.push(layerLegends);
-      }
-
-    },
-   */
-
-
   _makeLegend: function(id, data) {
-    debugger;
-
+ 
     var legends = [];
 
     var breaks = data.breaks.breaks;

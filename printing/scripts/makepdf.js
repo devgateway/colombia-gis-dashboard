@@ -4,7 +4,7 @@ var page = require('webpage').create(),
 var fs = require("fs");
 var args = system.args;
 
-//phantomjs makepdf.js http://localhost:9010/#/print/map http://localhost:9010/#/print/template f0d25b40-35a2-11e5-8c2b-b77f2c5c0c6a.pdf C:\JS_PROJECTS\colombia-gis-dashboard\printing\tmp
+//phantomjs makepdf.js http://localhost:9010/#/print/map/AE3EWVrbsDRbBcze http://localhost:9010/#/print/skeleton/AE3EWVrbsDRbBcze AE3EWVrbsDRbBcze.pdf C:\JS_PROJECTS\colombia-gis-dashboard\printing\tmp
 if (args.length < 5) {
 	console.log('you should pass the following paramenters MAP_URL, TEMPLATE_URL, FILE_NAME, TMP_DIR');
 	phantom.exit();

@@ -37,6 +37,8 @@ module.exports=React.createClass({
                               {
                                 legendGroup.legends.map(function(legend){
                                   var image = "";
+                                  
+
                                   if (legend.imageData || (legend.symbol && legend.symbol.imageData)){
                                     var imgData = legend.imageData? legend.imageData : legend.symbol.imageData;
                                     var imgColor = legend.imageColor? legend.imageColor : "#FFFFFF";
@@ -46,6 +48,8 @@ module.exports=React.createClass({
                                   } else {
                                     image = <LegendSymbol symbol={legend.symbol}/>
                                   }
+
+                                  
                                   return (
                                     <li>
                                       {image}

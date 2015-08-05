@@ -49,12 +49,11 @@
      <LeafletMap ref="leafletMapComponent" baseMap={baseMap} bounds={bounds} zoom={zoom} onMapMove={this.updateCurrentBounds}/>
 
      <If condition={this.state.mapStatus.loading} >
-     <Loading container="loading-container"/>
+       <Loading container="loading-container"/>
      </If>
 
-     <EsriLayers getMap={this.getMap}/>
+     <EsriLayers  getMap={this.getMap}/>
      <PointsLayer getMap={this.getMap}/>
-     <ShapesLayer getMap={this.getMap}/>
      <ShapesLayer getMap={this.getMap}/>
      <IndicatorLayer getMap={this.getMap}/> 
       

@@ -2,6 +2,10 @@ var React = require('react');
 var Reflux = require('reflux');
 var If=require('../../../commons/if.jsx');
 var LegendSymbol=require('../esri/esriSymbols.jsx');
+
+
+
+
 module.exports=React.createClass({
 
   getInitialState: function() {
@@ -9,26 +13,21 @@ module.exports=React.createClass({
     return this.state;
   },
 
-  _toggleVisibility: function(){
-    this.setState({'expanded': !this.state.expanded});
-  },
 
   render:function(){
-    debugger;
     if (this.props.visible) {
-      return (<div>
-                <div className="legend-group-title" onClick={this._toggleVisibility}>
-                  <span>{this.props.layerTitle}</span>
-                </div>
-                  <div className="legend-group">
-                    <ul>
+      return (<div className="pdf">
+                
+                <div className="legend ">
+                <div className="title">{this.props.layerTitle}</div>
+                
+                  <ul className="group">
                     {
                       this.props.legendGroups.map(function(legendGroup){
                         return (
                           <li>
-                            <h2>{legendGroup.layerName}</h2>
-                            <div className="legends-list">
-                              <ul>
+                            <div className="title"> {legendGroup.layerName}</div>
+                              <ul className="items">
                               {
                                 legendGroup.legends.map(function(legend){
                                   var image = "";
@@ -50,18 +49,23 @@ module.exports=React.createClass({
                                 })
                               }
                               </ul>
-                            </div>
+                            
                           </li>
                         );
                       })
                     }
                     </ul>
-                  </div>
-
+                  
+                </div>
+                 
               </div>)
     } else {
+
       return <div></div>;
     }
+
+
+
   }
 
 });
