@@ -17,8 +17,7 @@ var Datastore = require('nedb'),
 var binPath = phantomjs.path
 var tmpFolder = path.join(__dirname, '/tmp');
 
-
-var HOST="http://127.0.0.1:9010";
+var HOST="http://devgateway.github.io/colombia-gis-dashboard"
 
 if (process.env.NODE_ENV=='production'){
     HOST='http://devgateway.github.io/colombia-gis-dashboard'  
