@@ -1787,10 +1787,18 @@ h4.modal-title {
 
 .blue-panel {
   background: #e1e8f0;
-  padding: 20px; }
+  padding: 1.5em; }
 
 .plain-panel {
   padding: 20px; }
+  .plain-panel h4 {
+    margin-bottom: 1em; }
+
+.modal-footer {
+  border-top: none;
+  padding: 0 1.7em 1.7em 0; }
+  .modal-footer button {
+    margin-left: 1em; }
 
 /*add here all styles used during development later they will be replaced by the final ones */
 .selectable-radio, .selectable {

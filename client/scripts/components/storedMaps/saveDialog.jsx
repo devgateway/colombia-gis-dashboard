@@ -79,7 +79,7 @@ module.exports = React.createClass({
 					</div>
 				</Modal.Body>
 				<Modal.Footer>
-					<Button bsStyle='primary' className="pull-right" onClick={this.save.bind(this)}>Save changes</Button>
+					<Button className="btn btn-apply pull-right" onClick={this.save.bind(this)}>Save changes</Button>
 					<Button  className="pull-right" onClick={this.close.bind(this)}>Close</Button>
 				</Modal.Footer>
 			</Modal>
