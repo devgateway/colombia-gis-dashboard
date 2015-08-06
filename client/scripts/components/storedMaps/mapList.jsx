@@ -55,7 +55,7 @@ mixins: [Reflux.connect(Store,"store")],
       <button type="submit" className="search-button" onClick={this.handleClick}>
       <i className="fa fa-search"></i>
       </button>
-      <input onKeyUp={this._onKeyUp} className="keyword-search" type="text" placeholder={i18n.t("maps.searchMap")} ref="search_input"/>
+      <input onKeyUp={this._onKeyUp} className="keyword-search" type="text" placeholder={i18n.t("savemap.searchmap")} ref="search_input"/>
       </div>
       </div>
       <h3>List of saved Maps</h3>
@@ -70,7 +70,7 @@ mixins: [Reflux.connect(Store,"store")],
                         <Col md={6}>
                           <div className="save-map-actions">
                             <h5>
-                              <Label bsStyle='warning'> {m.title}</Label>
+                              <span>{m.title}</span>
                               <a href="#">
                               <i className="pull-right fa fa-times" title='Delete' onClick=''></i>
                               </a>

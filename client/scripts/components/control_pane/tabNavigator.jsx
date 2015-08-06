@@ -14,7 +14,7 @@ module.exports  = React.createClass({
 
 
   componentDidMount: function(){
-      $(this.getDOMNode()).mCustomScrollbar({theme:"inset-dark"}); //TODO: can't this be done by a css??  
+      $(this.getDOMNode()).mCustomScrollbar({theme:"inset-dark"}); //TODO: can't this be done by a css??
   },
 
   render: function() {
@@ -28,10 +28,10 @@ module.exports  = React.createClass({
           <TabPane className="" eventKey={2} tab={<Message message='filters.title'/>}>
               <Filter/>
           </TabPane>
-        <TabPane className="" eventKey={3} tab={<Message message='maps.maps'/>}>
+        <TabPane className="" eventKey={3} tab={<Message message='savemap.savedmapstab'/>}>
               <StoredMaps/>
           </TabPane>
-        
+
 
         </TabbedArea>
       </div>

@@ -124,6 +124,7 @@
 		"savemaptags": "Agregar etiquetas",
 		"savemapvisibility": "Visibilidad del mapa",
 		"savemappublic": "Publico",
-		"savemapprivate": "Privado"
+		"savemapprivate": "Privado",
+		"savedmapstab":"Mapas Guardados"
 	}
 }
