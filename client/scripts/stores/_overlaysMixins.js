@@ -123,21 +123,8 @@ module.exports = {
 		}
 	},
 
-	onTriggerFilterApply: function(data, shapesTrigger) {
-		if (shapesTrigger && this._getLayerId()!="shapes") {
-			return;
-		} else {	
-			this.update({
-				filters: data
-			}, {
-				silent: true
-			}); ///silent is tru since the change will be triggered by the load method
-			this._load(null, this.state.level, true); //force re-load;
-		}
-	},
-
-	_applyFilters: function(data, shapesTrigger) {
-		if (shapesTrigger && this._getLayerId()!="shapes") {
+	_applyFilters: function(data, specialTriggerFrom) {
+		if (specialTriggerFrom && this._getLayerId()!=specialTriggerFrom) {
 			return;
 		} else {
 			this.update({

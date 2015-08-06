@@ -31,9 +31,10 @@ var FeatureLayer=React.createClass({
           title={this.props.title}
           onChangeVisibility={this.props.onChangeVisibility}
           onChangeOpacity={onChangeOpacity}
+          hideTransparencyControl={this.props.layer.layers.length>1? false : true}
           id={this.props.id}/>
         <If condition={!this.props.showBasicControl}>
-          <ul>
+          <ul style={{'paddingLeft': '20px'}}>
             {
               this.props.layer.layers.map(function(l){
                 return (<li><InnerLayer
@@ -156,21 +157,33 @@ module.exports  = React.createClass({
                   <TogglerContent visibleWhen="expanded">
                     <div toggler={true} className="toggler-button"><i className="fa fa-chevron-up"></i></div>
                   </TogglerContent>
-                  <TogglerContent visibleWhen="always">
-                    <div><span className="control-title">{l.title}</span></div>
+                  <TogglerContent visibleWhen="collapsed">
+                    <Layer
+                      onDelete={this._onDelete}
+                      onMoveUp={this._handleMoveUp}
+                      onMoveDown={this._handleMoveDown}
+                      onChangeOpacity={this._handleChangeOpacity}
+                      onChangeVisibility={this._changevisibility}
+                      id={l.id}
+                      type={l.type}
+                      zIndex={l.zIndex}
+                      visible={l.visible}
+                      opacity={l.opacity}
+                      title={l.title}
+                      showBasicControl={true}/>
                   </TogglerContent>
                   <TogglerContent visibleWhen="expanded">
                     <Layer
-                    onDelete={this._onDelete}
-                    onMoveUp={this._handleMoveUp}
-                    onMoveDown={this._handleMoveDown}
-                    onChangeOpacity={this._handleChangeOpacity}
-                    onChangeVisibility={this._changevisibility}
-                    id={l.id}
-                    type={l.type}
-                    zIndex={l.zIndex}
-                    visible={l.visible}
-                    opacity={l.opacity}/>
+                      onDelete={this._onDelete}
+                      onMoveUp={this._handleMoveUp}
+                      onMoveDown={this._handleMoveDown}
+                      onChangeOpacity={this._handleChangeOpacity}
+                      onChangeVisibility={this._changevisibility}
+                      id={l.id}
+                      type={l.type}
+                      zIndex={l.zIndex}
+                      visible={l.visible}
+                      opacity={l.opacity}/>
                   </TogglerContent>
                 </Toggler>
               </li>)

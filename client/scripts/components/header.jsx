@@ -7,6 +7,7 @@ var SaveStore=require('../stores/saveStore.js');
 var SaveActions=require('../actions/saveActions.js');
 var SaveStore=require('../stores/saveStore.js');
 var SaveMap=require('./storedMaps/saveDialog.jsx');
+var NationalSubActivities=require('./map/nationalSubActivities.jsx')
 var AGOLProfile=require('./esri/AGOLProfile.jsx');
 module.exports = React.createClass({
 
@@ -41,6 +42,7 @@ module.exports = React.createClass({
                     <div className="header-nav">
                       <AGOLProfile/>
                       <a href="#">Menu</a>&nbsp;&nbsp;
+                      <NationalSubActivities/>&nbsp;&nbsp;
                       <a href="#" data-toggle="modal" data-target="#myModal" onClick={this.open}>Save</a>
                       <SaveMap/>
                       <LanSelector/>

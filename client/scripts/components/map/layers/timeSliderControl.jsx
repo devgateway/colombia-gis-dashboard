@@ -4,6 +4,7 @@ var React = require('react');
 var Reflux = require('reflux');
 var _ = require('lodash');
 var Store = require('../../../stores/indicatorLayerStore.js');
+var LayerActions = require('../../../actions/layersAction.js');
 
 module.exports = React.createClass({
 
@@ -37,7 +38,14 @@ module.exports = React.createClass({
       _onSet: function(values, handle, unencodedValues) {
         var minYear = this._getYear(unencodedValues[0]);
         var maxYear = this._getYear(unencodedValues[1]);
-        console.log('Selection ' + minYear + '-' + maxYear);
+        var minQuarter = this._getYearPeriod(unencodedValues[0]);
+        var maxQuarter = this._getYearPeriod(unencodedValues[1]);
+        LayerActions.changeGroupFilterSelection([
+          {"param": "fyi", "values": minYear},
+          {"param": "qi", "values": minQuarter},
+          {"param": "fyf", "values": maxYear},
+          {"param": "qf", "values": maxQuarter}          
+        ]);
       },
 
       _onUpdate: function(values, handle) {
