@@ -152,7 +152,6 @@ module.exports = Reflux.createStore({
 	    if (!silent){
 	    	this._applyFilters(filters, "shapes");
 	    }
-		this.update({fundingSelected: selectedList});
 	},
 
 	getInitialState: function() {

@@ -55,8 +55,17 @@ module.exports = React.createClass({
 		debugger;
 	},
 
-	render:function() {
-		debugger;
+	componentDidUpdate:function(){
+		var self = this;
+		if(self.state.store.id && self.state.store.showModal){
+			var map = _.find(this.state.store.maps, function(l){return l._id==self.state.store.id});
+			self.refs.title.getDOMNode().value = map.title;
+			self.refs.description.getDOMNode().value = map.description;
+		}
+		
+	},
+
+	render:function() {		
 		var showModal=this.state.store.showModal || false;
 		return (
 			<div className="save-map-trigger">
@@ -72,7 +81,7 @@ module.exports = React.createClass({
 				<Modal.Body>
 
 				<div className="blue-panel">
-					<input name="title" ref="title"  className="form-control" type="text" placeholder={i18n.t('savemap.savemaptitle')}/>
+					<input name="title" ref="title"  className="form-control" type="text" placeholder={i18n.t('savemap.savemaptitle')} />
 					<textarea name="description" ref="description" className="form-control" rows="3" placeholder={i18n.t('savemap.savemapdescription')}></textarea>
 				</div>
 
