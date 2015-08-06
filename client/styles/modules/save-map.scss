@@ -1,43 +1,14 @@
-.panel{
-  &.dialog-save-map{
-	  z-index: 10000;
-	  bottom: 40%;
-	  width: 550px;
-    padding:0;
-    overflow:hidden;
-
-    h3{
-      @include floatLeft;
-      @include space-reset;
-      @include textUppercase;
-      @include textBold;
-      font-size:13px;
-      color: $blue;
-    }
-
-    h4{
-      @include floatLeft;
-      @include space-reset;
-      @include textBold;
-      font-size:12px;
-      color: $blue;
-      margin-right:$gutter;
-    }
-
-
-  }
-.panel-heading{
-  @include clearfix;
-  background: none;
+.save-map-trigger{
+  display:inline;
 }
-.panel-body-savemap{
-  padding: $gutter*2;
-  background: lighten($blue, 45);
-  overflow:hidden;
-  .input-group{
-    // @include vbuffer(30px);
-    width:100%;
-  }
+.modal-header{
+    padding-bottom: $gutter*2.7;
+    .fa.fa-folder-open{
+      margin-right:$gutter/2;
+    }
+}
+.modal-body{
+  padding:0;
 
   .form-control{
     @include border-radius(0);
@@ -45,35 +16,47 @@
     margin-bottom: $gutter;
     border: 1px solid $border-grey;
     width:100%;
-  }
-  &.plain{
-    @extend .panel-body-savemap;
-    background:$white;
-  li{
-    @include floatLeft;
-    margin-top: -$gutter/1.4;
+    &:last-child{
+      margin-bottom:0;
     }
   }
 
-  textarea{
-    width:100%;
-  }
-}
-.fa.fa-times-circle-o{
-  @include floatRight;
-  @include transitionColor;
-  color: $green;
-  font-size:20px;
-  &:hover{ color: $grey}
-}
-.fa.fa-folder-open{
-  margin-right:$gutter/2;
-}
 
 }
-.taginput{
-  margin-top:$gutter*2;
-  margin-bottom:$gutter;
-  @include border-radius(0);
+h4{
+  &.modal-title{
+    @include space-reset;
+    @include floatLeft;
+    @include textUppercase;
+    @include textBold;
+    font-size:13px;
+    color:$blue;
+  }
 }
-// panel styles end
+.close-dialog{
+  @include floatRight;
+  .fa.fa-times-circle-o{
+    @include transitionColor;
+    color: $green;
+    font-size:20px;
+    &:hover{ color: $grey}
+  }
+}
+
+.blue-panel{
+  background: lighten($blue, 45);
+  padding:$gutter*1.5;
+}
+
+.plain-panel{
+  padding:20px;
+  h4{ margin-bottom: $gutter}
+}
+
+.modal-footer{
+  border-top: none;
+  padding:0 $gutter*1.7 $gutter*1.7 0;
+  button{
+    margin-left: $gutter;
+  }
+}
