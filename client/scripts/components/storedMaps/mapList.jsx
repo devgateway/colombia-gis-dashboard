@@ -12,6 +12,8 @@ var Label=require('react-bootstrap/lib/Label');
 var Tooltip=require('react-bootstrap/lib/Tooltip');
 var _=require('lodash');
 var PrintDialog=require('./printDialog.jsx');
+var SaveMap=require('./saveDialog.jsx');
+
 
 module.exports  = React.createClass({
 
@@ -26,7 +28,7 @@ mixins: [Reflux.connect(Store,"store")],
   },
 
   _update:function(id){
-    Actions.updateMap(id);
+    Actions.showModal('update', id)
   },
 
   _onKeyUp: function(ev) {
@@ -45,7 +47,6 @@ mixins: [Reflux.connect(Store,"store")],
   },
 
   render: function() {
-    debugger;
     var mapList=this.state.store.maps || [];
     return (
 
@@ -75,8 +76,9 @@ mixins: [Reflux.connect(Store,"store")],
                               <i className="pull-right fa fa-times" title='Delete' onClick=''></i>
                               </a>
                               <a href="#">
-                              <i className="pull-right fa fa-floppy-o" title='Update' onClick={this._update.bind(this,m._id)}></i>
+                              <i className="pull-right fa fa-floppy-o" title='Update' data-toggle="modal" data-target="#myModal" onClick={this._update.bind(this,m._id)} ></i>
                               </a>
+                              <SaveMap/>
                               <PrintDialog key={m.id} id={m._id}/>
                               <a href="#">
                               <i className="pull-right fa fa-folder-open-o" title='Open' onClick={this._open.bind(this,m._id)}></i>

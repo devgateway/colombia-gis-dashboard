@@ -37,15 +37,17 @@ module.exports = Reflux.createStore({
   },
 
   onSaveMap: function(options) {
+    console.log('stores->saveStore->onSaveMap');
     var params = this._createParamsForAPI(options);
     this._saveMap(params);
   },
 
-  onUpdateMap: function(id) {
+  onUpdateMap: function(id, options) {
     debugger;
-    var map = _.find(this.state.maps, function(l){return l._id=id});
-    var params = this._createParamsForAPI(map);
-    console.log(params)
+    console.log('stores->saveStore->onUpdateMap');
+    //var map = _.find(this.state.maps, function(l){return l._id=id});
+    var params = this._createParamsForAPI(options);
+    this._updateMap(id, params);
   },
 
   _createParamsForAPI: function(options) {
@@ -95,7 +97,7 @@ module.exports = Reflux.createStore({
   },
 
   _saveMap: function(params) {
-    console.log("stores->saveStore: onSaveMapToAPI");
+    console.log("stores->saveStore: _saveMap");
     API.saveMapToAPI(params).then(
       function(data) {
         this.onHideModal(); //tell save dialog that everything is done 
@@ -105,7 +107,23 @@ module.exports = Reflux.createStore({
       this.update({
         'error': err
       });
-      console.log('onSaveMapToAPI: Error saving data ...');
+      console.log('_saveMap: Error saving data ...');
+    });
+  },
+
+
+  _updateMap: function(id, params) {
+    console.log("stores->saveStore: _updateMap");
+    API.updateMapToAPI(id, params).then(
+      function(data) {
+        this.onHideModal(); //tell save dialog that everything is done 
+        this.onFindMaps(); //refresh map list
+
+      }.bind(this)).fail(function(err) {
+      this.update({
+        'error': err
+      });
+      console.log('_updateMap: Error saving data ...');
     });
   },
 
@@ -137,9 +155,10 @@ module.exports = Reflux.createStore({
     });
   },
 
-  onShowModal: function() {
-
+  onShowModal: function(key, id) {
     this.update({
+      'key': key,
+      'id': id,
       'showModal': true
     });
   },

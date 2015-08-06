@@ -1,4 +1,4 @@
-	var React = require('react/addons');
+var React = require('react/addons');
 var Modal=require('react-bootstrap/lib/Modal');
 var Button=require('react-bootstrap/lib/Button');
 
@@ -32,8 +32,11 @@ module.exports = React.createClass({
 		var description=this.refs.description.getDOMNode().value;
 		var title=this.refs.title.getDOMNode().value;
 		_.assign(this.state,{'title':title,'description':description});
-
-		Actions.saveMap(this.state);
+		if(this.state.store.key=='save'){
+			Actions.saveMap(this.state);
+		} else if(this.state.store.key=='update') {
+			Actions.updateMap(this.state.store.id, this.state);
+		}
 	},
 
 	close:function(){
@@ -53,10 +56,10 @@ module.exports = React.createClass({
 	},
 	
 	render:function() {
+		debugger;
 		var showModal=this.state.store.showModal || false;
 		return (
 			<span>
-			<a href="#" data-toggle="modal" data-target="#myModal" onClick={this.open}>Save</a>
 			<Modal className='dialog-save-map' {...this.props} bsSize='large' aria-labelledby='contained-modal-title-lg'
 			 show={showModal} onHide={this.close}>
 				<Modal.Header>

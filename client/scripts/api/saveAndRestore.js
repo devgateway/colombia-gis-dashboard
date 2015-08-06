@@ -23,6 +23,7 @@ module.exports = {
 
   updateMapToAPI: function(id, params) {
     console.log("scripts->api->saveAndRestoreMap: updateMapToAPI");
+    debugger;
     var url = tim(window.MAP_UPDATE_URL,{id:id});
     return reqwest({
       url: url,
