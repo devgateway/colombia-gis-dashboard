@@ -115,7 +115,8 @@
 			"programList":"Lista de Programas",
 			"downloadFile":"Descargar archivo",
 			"funding":"Financiamiento Total: "
-		}
+		},
+		"nationalSubActivities": "SubActividades Nacionales"
 	},
 	"savemap":{
 		"savemaplabel":"Save Mapa",

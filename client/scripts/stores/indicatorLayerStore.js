@@ -10,6 +10,7 @@ var assign = require('object-assign');
 
 var CommonsMixins = require('./_mixins.js')
 var DataLayerMixins = require('./_overlaysMixins.js')
+var IndicatorsFinderStore = require('./indicatorsFinderStore.js')
 var GeoStats = require('../api/geostats.js');
 
 
@@ -105,12 +106,41 @@ module.exports = Reflux.createStore({
 
 	mixins: [CommonsMixins, DataLayerMixins],
 
+	init: function() {		
+		this.listenTo(IndicatorsFinderStore, "_indicatorSelected");
+	},
+
 	_getLayerId: function() {
 		return 'indicators';
 	},
 
 	_getDefaultBreaks: function() {
 		return defaultBreaks;
+	},
+
+	_indicatorSelected: function(data) {
+		if (this.state.indicatorId != data.indicatorSelected){
+			this.onChangeGroupFilterSelection([
+				{"param": "indicatorId", "values": data.indicatorSelected},
+				{"param": "activityId", "values": data.activitySelected}
+			], "indicators");
+		}
+	},
+
+	onChangeGroupFilterSelection: function(filters) {
+		_.forEach(filters, function(filter){
+			this.onChangeFilterSelection(filter.param, filter.values, true);
+		}.bind(this));
+		this._applyFilters(this.state.filters, "indicators");
+	},
+
+	onChangeFilterSelection: function(param, value, silent) {
+		var filters=_.clone(this.state.filters || []);
+	    filters[param] = value;
+	    _.assign(this.state.filters,filters);
+	    if (!silent){
+	    	this._applyFilters(filters, "indicators");
+	    }
 	},
 
 	onRestoreData: function(data, type) {
@@ -123,35 +153,40 @@ module.exports = Reflux.createStore({
 			visible: false,
 			breaks: defaultBreaks, //defaul styles breaks
 			defaultStyle: defaultStyle, //Default symbol styles
-			saveItems: ["breaks", "defaultStyle", "level", "opacity", "visible"]
+			saveItems: ["breaks", "defaultStyle", "level", "opacity", "visible"],
+			filters:  
+				{"indicatorId": "",
+				"activityId": "",
+				"fyi": "2005",
+				"qi": "1",
+				"fyf": "2016",
+				"qf": "1"}
 		});
 	},
 
 	/*Load GIS data by department */
 	_loadByDepartments: function() {
-		debugger;
-    this._getGeoData(API.getActivitiesByDepartment); //just delegate the call to the next function passing the target method
-},
+		this._getGeoData(API.getIndicatorsByDepartment); //just delegate the call to the next function passing the target method
+	},
 
-_loadByMuncipalities: function() {
-	debugger;
-    this._getGeoData(API.getActivitiesByMuncipalities); //just delegate the call to the next function passing the target method
-},
+	_loadByMuncipalities: function() {
+		this._getGeoData(API.getIndicatorsByMuncipalities); //just delegate the call to the next function passing the target method
+	},
 
-_getGeoData: function(func) {
-    func(this.state.filters).then(function(results) { //call api function and process results 
-    	var items = [];
-    	_.map(results, function(d){
-    		if(!isNaN(d.id)){
-    			items.push(d.activities);
-    		}
-    	});
-    	var geoStats = new GeoStats(items);
-      //tranform plain data to GeoJson
-      this._setGeoData(Util.toGeoJson(results), geoStats); //process and set changes to state  
-  }.bind(this)).fail(function(e) {
-  	console.log('Error while loading data ...', e);
-  });
-}
+	_getGeoData: function(func) {
+	    func(this.state.filters).then(function(results) { //call api function and process results 
+	    	var items = [];
+	    	_.map(results, function(d){
+	    		if(!isNaN(d.id)){
+	    			items.push(d.activities);
+	    		}
+	    	});
+	    	var geoStats = new GeoStats(items);
+	      //tranform plain data to GeoJson
+	      this._setGeoData(Util.toGeoJson(results), geoStats); //process and set changes to state  
+		}.bind(this)).fail(function(e) {
+			console.log('Error while loading data ...', e);
+		});
+	}
 
 });
