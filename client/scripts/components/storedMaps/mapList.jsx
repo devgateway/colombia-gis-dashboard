@@ -31,6 +31,10 @@ mixins: [Reflux.connect(Store,"store")],
     Actions.showModal('update', id)
   },
 
+  _delete:function(id){
+    Actions.deleteMap(id);
+  },
+
   _onKeyUp: function(ev) {
     if (ev.keyCode == 13){
       this.handleClick();
@@ -73,7 +77,7 @@ mixins: [Reflux.connect(Store,"store")],
                             <h5>
                               <Label bsStyle='warning'> {m.title}</Label>
                               <a href="#">
-                              <i className="pull-right fa fa-times" title='Delete' onClick=''></i>
+                              <i className="pull-right fa fa-times" title='Delete' onClick={this._delete.bind(this,m._id)}></i>
                               </a>
                               <a href="#">
                               <i className="pull-right fa fa-floppy-o" title='Update' data-toggle="modal" data-target="#myModal" onClick={this._update.bind(this,m._id)} ></i>

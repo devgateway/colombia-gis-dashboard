@@ -43,11 +43,26 @@ module.exports = Reflux.createStore({
   },
 
   onUpdateMap: function(id, options) {
-    debugger;
     console.log('stores->saveStore->onUpdateMap');
     //var map = _.find(this.state.maps, function(l){return l._id=id});
     var params = this._createParamsForAPI(options);
     this._updateMap(id, params);
+  },
+
+  onDeleteMap: function(id) {
+    console.log('stores->saveStore->onDeleteMap');
+    var self = this;
+    API.deleteMapToAPI(id).then(
+      function(data) {
+        debugger;
+        this.onFindMaps(); //refresh map list
+      }.bind(this)).fail(function(err) {
+        debugger;
+        self.update({
+          'error': err
+        });
+        console.log('onDeleteMap: Error deleting data ...');
+      });
   },
 
   _createParamsForAPI: function(options) {
@@ -98,33 +113,35 @@ module.exports = Reflux.createStore({
 
   _saveMap: function(params) {
     console.log("stores->saveStore: _saveMap");
+    var self = this;
     API.saveMapToAPI(params).then(
       function(data) {
         this.onHideModal(); //tell save dialog that everything is done 
         this.onFindMaps(); //refresh map list
 
       }.bind(this)).fail(function(err) {
-      this.update({
-        'error': err
+        self.update({
+          'error': err
+        });
+        console.log('_saveMap: Error saving data ...');
       });
-      console.log('_saveMap: Error saving data ...');
-    });
   },
 
 
   _updateMap: function(id, params) {
     console.log("stores->saveStore: _updateMap");
+    var self = this;
     API.updateMapToAPI(id, params).then(
       function(data) {
         this.onHideModal(); //tell save dialog that everything is done 
         this.onFindMaps(); //refresh map list
 
       }.bind(this)).fail(function(err) {
-      this.update({
-        'error': err
+        self.update({
+          'error': err
+        });
+        console.log('_updateMap: Error saving data ...');
       });
-      console.log('_updateMap: Error saving data ...');
-    });
   },
 
   onRestoreMapFromAPI: function(id) {
@@ -145,9 +162,9 @@ module.exports = Reflux.createStore({
           'maps': data
         });
       }.bind(this)).fail(function() {
-      console.log('onRestoreMapFromAPI: Error saving data ...');
-    });
-  },
+        console.log('onRestoreMapFromAPI: Error saving data ...');
+      });
+    },
 
   onHideModal: function() {
     this.update({

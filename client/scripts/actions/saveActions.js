@@ -7,6 +7,7 @@ module.exports = {
   saveMap: Reflux.createAction(),
   openMap: Reflux.createAction(),
   updateMap: Reflux.createAction(),
+  deleteMap: Reflux.createAction(),
   showModal:  Reflux.createAction(),
   hideModal:  Reflux.createAction(),
   findMaps:  Reflux.createAction(),

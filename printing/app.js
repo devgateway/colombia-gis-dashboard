@@ -64,7 +64,7 @@ app.use(function(req, res, next) {
     }
     // intercept OPTIONS method
     if (oneof && req.method == 'OPTIONS') {
-        res.send(200);
+        res.sendStatus(200);
     }
     else {
         next();
@@ -92,15 +92,24 @@ app.post('/save', function (req, res) {
 app.put('/save/:id', function (req, res) {
     var id = req.params.id;
     var doc =  req.body;
-    //db.update(query, update, options, callback)
     db.update({ '_id': id }, doc, {}, function (err) {   
         if (err) {
-            return res.send('/save', {
-                errors: err.errors,
-                _id: id
-            });
+            return res.sendStatus(403).send('Error in update:' + id + ' - ' + err);
+
         } else {
             res.json(doc);
+        }
+    });
+});
+
+app.delete('/save/:id', function (req, res) {
+    var id = req.params.id;
+    db.remove({ '_id': id }, {}, function (err) { 
+        if (err) {
+            console.log('delete fail:' + id);
+            return res.sendStatus(403).send('Error in delete');
+        } else {
+            res.json({});
         }
     });
 });
@@ -116,7 +125,7 @@ app.get('/map/:id', function (req, res) {
     // Finding all planets in the solar system
     db.find({'_id':req.params.id  }, function (err, docs) {
         if(docs.length > 0){
-        res.json(docs[0]);
+            res.json(docs[0]);
         }else{
             res.sendStatus(404).send("Can't find this map");
         }
