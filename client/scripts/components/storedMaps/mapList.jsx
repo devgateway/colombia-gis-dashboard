@@ -72,7 +72,7 @@ mixins: [Reflux.connect(Store,"store")],
                             <h5>
                               <span>{m.title}</span>
                               <a href="#">
-                              <i className="pull-right fa fa-times" title='Delete' onClick=''></i>
+                              <i className="pull-right fa fa-times-circle-o" title='Delete' onClick=''></i>
                               </a>
                               <a href="#">
                               <i className="pull-right fa fa-pencil" title='Update' onClick={this._update.bind(this,m._id)}></i>
