@@ -55,10 +55,10 @@ mixins: [Reflux.connect(Store,"store")],
       <button type="submit" className="search-button" onClick={this.handleClick}>
       <i className="fa fa-search"></i>
       </button>
-      <input onKeyUp={this._onKeyUp} className="keyword-search" type="text" placeholder={i18n.t("savemap.searchmap")} ref="search_input"/>
+      <input onKeyUp={this._onKeyUp} className="keyword-search" type="text" placeholder={i18n.t("savemap.savedmapssearch")} ref="search_input"/>
       </div>
       </div>
-      <h3>List of saved Maps</h3>
+      <h3><Message message='savemap.savedmapstitle'/></h3>
       <ul>
         {
           _.map(mapList,function(m){

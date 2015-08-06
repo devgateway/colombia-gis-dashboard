@@ -25,7 +25,7 @@ module.exports  = React.createClass({
           <TabPane className="" eventKey={1} tab={<Message message='layers.title'/>}>
             <TabLayerNavigator/>
           </TabPane>
-          <TabPane className="" eventKey={2} tab={<Message message='filters.title'/>}>
+          <TabPane className="filtertab" eventKey={2} tab={<Message message='filters.title'/>}>
               <Filter/>
           </TabPane>
         <TabPane className="" eventKey={3} tab={<Message message='savemap.savedmapstab'/>}>

@@ -26,7 +26,7 @@ nav.tabs {
 .main-tabs .nav-tabs li:last-child a{
   &:before{
   font-family: FontAwesome;
-  content:'\f0b0';
+  content:'\f0ac';
   color: $blue;
   margin-right:5px;
   }
@@ -61,7 +61,6 @@ nav.tabs {
     border:1px solid transparent;
     background: $white;
   }
-
 }
 
 .tab-pane.active{
@@ -77,4 +76,6 @@ nav.tabs {
 .tab-content .inline{
     padding:0.3em;
 }
+
+
 // end:panel tabs
