@@ -126,6 +126,8 @@
 		"savemaptags": "Add Tags",
 		"savemapvisibility": "Map Visibility",
 		"savemappublic": "Public",
-		"savemapprivate": "Private"
+		"savemapprivate": "Private",
+		"savedmapstab":"Saved Maps",
+		"savedmapstitle":"List of Saved Maps"
 	}
 }

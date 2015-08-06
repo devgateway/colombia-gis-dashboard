@@ -20,7 +20,7 @@ module.exports  = React.createClass({
 mixins: [Reflux.connect(Store,"store")],
 
   componentDidMount:function(){
-    Actions.findMaps();    
+    Actions.findMaps();
   },
 
   _open:function(id){
@@ -54,16 +54,16 @@ mixins: [Reflux.connect(Store,"store")],
     var mapList=this.state.store.maps || [];
     return (
 
-      <div>
+      <div className="saved-maps">
       <div className="text-search-wrapper">
       <div className="search-box">
       <button type="submit" className="search-button" onClick={this.handleClick}>
       <i className="fa fa-search"></i>
       </button>
-      <input onKeyUp={this._onKeyUp} className="keyword-search" type="text" placeholder={i18n.t("maps.searchMap")} ref="search_input"/>
+      <input onKeyUp={this._onKeyUp} className="keyword-search" type="text" placeholder={i18n.t("savemap.savedmapssearch")} ref="search_input"/>
       </div>
       </div>
-      <h3>List of saved Maps</h3>
+      <h3><Message message='savemap.savedmapstitle'/></h3>
       <ul>
         {
           _.map(mapList,function(m){
@@ -73,25 +73,25 @@ mixins: [Reflux.connect(Store,"store")],
                     <Grid>
                       <Row>
                         <Col md={6}>
-                          <div>   
+                          <div className="save-map-actions">
                             <h5>
-                              <Label bsStyle='warning'> {m.title}</Label>
+                              <span>{m.title}</span>
                               <a href="#">
                               <i className="pull-right fa fa-times" title='Delete' onClick={this._delete.bind(this,m._id)}></i>
                               </a>
                               <a href="#">
-                              <i className="pull-right fa fa-floppy-o" title='Update' data-toggle="modal" data-target="#myModal" onClick={this._update.bind(this,m._id)} ></i>
+                              <i className="pull-right fa fa-pencil" title='Update' onClick={this._update.bind(this,m._id)}></i>
                               </a>
                               <SaveMap/>
                               <PrintDialog key={m.id} id={m._id}/>
                               <a href="#">
-                              <i className="pull-right fa fa-folder-open-o" title='Open' onClick={this._open.bind(this,m._id)}></i>
+                              <i className="pull-right fa fa-folder-open" title='Open' onClick={this._open.bind(this,m._id)}></i>
                               </a>
                             </h5>
                           </div>
                         </Col>
                       </Row>
-                         
+
                       <Row>
                         <Col md={6}>
                             <Panel >
@@ -104,7 +104,7 @@ mixins: [Reflux.connect(Store,"store")],
                 </li>)
             }
           }.bind(this))
-            
+
         }
       </ul>
       </div>

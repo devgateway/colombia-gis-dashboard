@@ -21,7 +21,6 @@
     }
   }
 
-
 }
 h4{
   &.modal-title{
@@ -58,5 +57,31 @@ h4{
   padding:0 $gutter*1.7 $gutter*1.7 0;
   button{
     margin-left: $gutter;
+  }
+}
+
+.saved-maps{
+  padding:$gutter;
+  ul{@include space-reset; margin-left: -$gutter;}
+
+  h3{  @include space-reset;
+    @include textUppercase;
+    @include textBold;
+    font-size:13px;
+    color:$blue;
+    margin-top:$gutter;
+  }
+  .panel{
+    @include border-radius(0);
+    background-color: transparent;
+    &.panel-default{ border:1px solid transparent}
+    .panel-body{ padding:0 0 $gutter/2 0; font-size:11px;}
+    h5{color: $blue}
+  }
+}
+
+.save-map-actions{
+  .fa{
+     margin-left: $gutter;
   }
 }
