@@ -13,6 +13,8 @@ var Tooltip=require('react-bootstrap/lib/Tooltip');
 var _=require('lodash');
 var PrintDialog=require('./printDialog.jsx');
 var SaveMap=require('./saveDialog.jsx');
+var Modal=require('react-bootstrap/lib/Modal');
+var Button=require('react-bootstrap/lib/Button');
 
 
 module.exports  = React.createClass({
@@ -31,8 +33,12 @@ mixins: [Reflux.connect(Store,"store")],
     Actions.showModal('update', id)
   },
 
-  _delete:function(id){
-    Actions.deleteMap(id);
+  _showDeleteModal:function(isVisible, id){
+    Actions.showDeleteModal(isVisible, id);
+  },
+
+  _delete:function(){
+    Actions.deleteMap();
   },
 
   _onKeyUp: function(ev) {
@@ -52,6 +58,7 @@ mixins: [Reflux.connect(Store,"store")],
 
   render: function() {
     var mapList=this.state.store.maps || [];
+    var showDeleteModal=this.state.store.showDeleteModal || false;
     return (
 
       <div className="saved-maps">
@@ -77,7 +84,7 @@ mixins: [Reflux.connect(Store,"store")],
                             <h5>
                               <span>{m.title}</span>
                               <a href="#">
-                              <i className="pull-right fa fa-times" title='Delete' onClick={this._delete.bind(this,m._id)}></i>
+                              <i className="pull-right fa fa-times" title='Delete' onClick={this._showDeleteModal.bind(this, true, m._id)}></i>
                               </a>
                               <a href="#">
                               <i className="pull-right fa fa-pencil" title='Update' onClick={this._update.bind(this,m._id)}></i>
@@ -107,6 +114,23 @@ mixins: [Reflux.connect(Store,"store")],
 
         }
       </ul>
+      <Modal className='dialog-save-map' {...this.props} bsSize='medium' aria-labelledby='contained-modal-title-lg'
+       show={showDeleteModal} onHide={this._showDeleteModal.bind(this, false)}>
+        <Modal.Header>
+          <Modal.Title>Confirmation</Modal.Title>
+          <a className="close-dialog" href="#" onClick={this._showDeleteModal.bind(this, false)}>
+          <i className="fa fa-times-circle-o"></i></a>
+        </Modal.Header>
+        <Modal.Body>
+          <div className="plain-panel">
+            Are you sure you want to delete this map?
+          </div>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button className="btn btn-apply pull-right" onClick={this._delete.bind(this)}>Yes</Button>
+          <Button  className="pull-right" onClick={this._showDeleteModal.bind(this, false)}>No</Button>
+        </Modal.Footer>
+      </Modal>
       </div>
       );
   }

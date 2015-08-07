@@ -49,20 +49,20 @@ module.exports = Reflux.createStore({
     this._updateMap(id, params);
   },
 
-  onDeleteMap: function(id) {
+  onDeleteMap: function() {
     console.log('stores->saveStore->onDeleteMap');
     var self = this;
+    var id = self.state.id;
     API.deleteMapToAPI(id).then(
       function(data) {
-        debugger;
         this.onFindMaps(); //refresh map list
       }.bind(this)).fail(function(err) {
-        debugger;
         self.update({
           'error': err
         });
         console.log('onDeleteMap: Error deleting data ...');
       });
+    this.onShowDeleteModal(false);
   },
 
   _createParamsForAPI: function(options) {
@@ -177,6 +177,13 @@ module.exports = Reflux.createStore({
       'key': key,
       'id': id,
       'showModal': true
+    });
+  },
+
+  onShowDeleteModal: function(isVisible, id) {
+    this.update({
+      'id': id,
+      'showDeleteModal': isVisible
     });
   },
 
