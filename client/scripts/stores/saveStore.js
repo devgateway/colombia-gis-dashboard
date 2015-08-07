@@ -71,7 +71,6 @@ module.exports = Reflux.createStore({
   _validateParamsForAPI: function(options, isUpdate) {
     var errorMsg = '';
     var isValid = true;
-    debugger;
     if(options.title){
       if(!isUpdate && _.find(this.state.maps, function(m){return m.title==options.title})){
         errorMsg = 'savemap.titleIsDuplicated';
@@ -103,11 +102,11 @@ module.exports = Reflux.createStore({
     var shapesData = this._getDataFromState(shapesState);
     var pointsData = this._getDataFromState(pointsState);
     var arcgisData = this._getDataFromState(arcgisState);
-
+    var tagArray = options.tags?options.tags.split(','):null;
     var params = {
       'title': options.title,
       'description': options.description,
-      'tags': options.tags,
+      'tags': tagArray,
       'map': {
         'mapState': mapData,
         'lanState': lanData,
@@ -117,7 +116,6 @@ module.exports = Reflux.createStore({
         'arcgisState': arcgisData
       }
     }
-
     return(params);
   },
 
@@ -245,7 +243,7 @@ module.exports = Reflux.createStore({
 
     if (keyword.length > 1) {
       var pattern = new RegExp(keyword, 'i');
-      return pattern.test(item.title)  || pattern.test(item.description);
+      return pattern.test(item.title)  || pattern.test(item.description) || pattern.test(item.tags);
     } else {
       return true;
     }

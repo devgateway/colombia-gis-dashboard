@@ -17,7 +17,7 @@ var Tags= React.createClass({
 	},
 
 	render:function() {
-		return (<input className="form-control taginput" type="text" defaultValue={this.props.value} onBlur={this._update} />)
+		return (<Input ref="tags" className="form-control taginput" type="text" defaultValue={this.props.value} onBlur={this._update} />)
 	}
 
 })
@@ -30,7 +30,6 @@ module.exports = React.createClass({
 
 	save:function(){
 	//TODO add validations
-		debugger;
 		var description=this.refs.description.getValue();
 		var title=this.refs.title.getValue();
 		_.assign(this.state,{'title':title,'description':description});
@@ -50,19 +49,29 @@ module.exports = React.createClass({
 	},
 
 	getInitialState:function(){
-		return {title:'',description:'',tags:''}
+		return {title:'', description:''}
 	},
 
 	updateTags:function(event){
-		debugger;
+		_.assign(this.state,{'tags':event});
+	},
+
+	getTags:function(event){
+		var self = this;
+		var tags;
+		if(self.state.store.id && self.state.store.showModal){
+			var map = _.find(this.state.store.maps, function(l){return l._id==self.state.store.id});
+			tags = map.tags;
+		}
+		return tags;
 	},
 
 	componentDidUpdate:function(){
 		var self = this;
 		if(self.state.store.id && self.state.store.showModal){
 			var map = _.find(this.state.store.maps, function(l){return l._id==self.state.store.id});
-			self.refs.title.getDOMNode().value = map.title;
-			self.refs.description.getDOMNode().value = map.description;
+			self.refs.title.getInputDOMNode().value = map.title;
+			self.refs.description.getInputDOMNode().value = map.description;
 		}
 		
 	},
@@ -83,13 +92,13 @@ module.exports = React.createClass({
 				<Modal.Body>
 
 				<div className="blue-panel">
-					<Input name="title" ref="title"  className="form-control" type="text" placeholder={i18n.t('savemap.savemaptitle')} addonAfter='*'/>
+					<Input name="title" ref="title" className="form-control" type="text" placeholder={i18n.t('savemap.savemaptitle')} addonAfter='*'/>
 					<Input type='textarea' name="description" ref="description" className="form-control" rows="3" placeholder={i18n.t('savemap.savemapdescription')} addonAfter='*' />
 				</div>
 
 					<div className="plain-panel">
 					<h4 className="modal-title"><Message message='savemap.savemaptags'/></h4>
-					<Tags onUpdate={this.updateTags}/>
+					<Tags onUpdate={this.updateTags} value={this.getTags()}/>
 					</div>
 					<div className="plain-panel"><Message message='savemap.mandatoryFields'/>
 						<If condition={this.state.store.errorMsg} >
