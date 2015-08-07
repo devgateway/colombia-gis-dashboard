@@ -86,9 +86,11 @@ mixins: [Reflux.connect(Store,"store")],
                           </div>
                         </Col>
                       </Row>
+                      </Grid>
 
+                      <Grid fluid>
                       <Row>
-                        <Col md={6}>
+                        <Col md={12}>
                         <Panel className="pull-left">
                           {m.description}
                         </Panel>
