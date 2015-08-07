@@ -1,7 +1,8 @@
 var React = require('react/addons');
 var Modal=require('react-bootstrap/lib/Modal');
+var Input=require('react-bootstrap/lib/Input');
 var Button=require('react-bootstrap/lib/Button');
-
+var If=require('../commons/if.jsx')
 var IndicatorsFinderStore=require('../../stores/indicatorsFinderStore.js');
 var Reflux = require('reflux');
 var Actions=require('../../actions/saveActions.js');
@@ -29,8 +30,9 @@ module.exports = React.createClass({
 
 	save:function(){
 	//TODO add validations
-		var description=this.refs.description.getDOMNode().value;
-		var title=this.refs.title.getDOMNode().value;
+		debugger;
+		var description=this.refs.description.getValue();
+		var title=this.refs.title.getValue();
 		_.assign(this.state,{'title':title,'description':description});
 		if(this.state.store.key=='save'){
 			Actions.saveMap(this.state);
@@ -81,13 +83,18 @@ module.exports = React.createClass({
 				<Modal.Body>
 
 				<div className="blue-panel">
-					<input name="title" ref="title"  className="form-control" type="text" placeholder={i18n.t('savemap.savemaptitle')} />
-					<textarea name="description" ref="description" className="form-control" rows="3" placeholder={i18n.t('savemap.savemapdescription')}></textarea>
+					<Input name="title" ref="title"  className="form-control" type="text" placeholder={i18n.t('savemap.savemaptitle')} addonAfter='*'/>
+					<Input type='textarea' name="description" ref="description" className="form-control" rows="3" placeholder={i18n.t('savemap.savemapdescription')} addonAfter='*' />
 				</div>
 
 					<div className="plain-panel">
 					<h4 className="modal-title"><Message message='savemap.savemaptags'/></h4>
 					<Tags onUpdate={this.updateTags}/>
+					</div>
+					<div className="plain-panel"><Message message='savemap.mandatoryFields'/>
+						<If condition={this.state.store.errorMsg} >
+							<Message message={this.state.store.errorMsg}/>
+						</If>
 					</div>
 				</Modal.Body>
 				<Modal.Footer>

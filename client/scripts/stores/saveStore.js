@@ -38,15 +38,18 @@ module.exports = Reflux.createStore({
 
   onSaveMap: function(options) {
     console.log('stores->saveStore->onSaveMap');
-    var params = this._createParamsForAPI(options);
-    this._saveMap(params);
+    if(this._validateParamsForAPI(options, false)){
+      var params = this._createParamsForAPI(options);
+      this._saveMap(params);
+    }
   },
 
   onUpdateMap: function(id, options) {
     console.log('stores->saveStore->onUpdateMap');
-    //var map = _.find(this.state.maps, function(l){return l._id=id});
-    var params = this._createParamsForAPI(options);
-    this._updateMap(id, params);
+    if(this._validateParamsForAPI(options, true)){
+      var params = this._createParamsForAPI(options);
+      this._updateMap(id, params);
+    }
   },
 
   onDeleteMap: function() {
@@ -63,6 +66,31 @@ module.exports = Reflux.createStore({
         console.log('onDeleteMap: Error deleting data ...');
       });
     this.onShowDeleteModal(false);
+  },
+
+  _validateParamsForAPI: function(options, isUpdate) {
+    var errorMsg = '';
+    var isValid = true;
+    debugger;
+    if(options.title){
+      if(!isUpdate && _.find(this.state.maps, function(m){return m.title==options.title})){
+        errorMsg = 'savemap.titleIsDuplicated';
+        isValid = false;
+      }
+    } else {
+      errorMsg = 'savemap.mandatoryFieldsMissing';
+      isValid = false;
+    }
+
+    if(!options.description){
+      errorMsg = 'savemap.mandatoryFieldsMissing';
+      isValid = false;
+    }
+
+    this.update({
+      'errorMsg': errorMsg
+    });
+    return isValid;
   },
 
   _createParamsForAPI: function(options) {
@@ -176,7 +204,8 @@ module.exports = Reflux.createStore({
     this.update({
       'key': key,
       'id': id,
-      'showModal': true
+      'showModal': true,
+      'errorMsg': ''
     });
   },
 

@@ -132,6 +132,9 @@
 		"confirmation":"Confirmation",
 		"areyousure":"Are you sure you want to delete this map?",
 		"yes":"Yes",
-		"no":"No"
+		"no":"No",
+		"mandatoryFields":"* Mandatory fields",
+		"mandatoryFieldsMissing":" / Please complete mandatory fields",
+		"titleIsDuplicated":" / This title has already been used. Please indicate a new one."
 	}
 }

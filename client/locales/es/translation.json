@@ -132,6 +132,9 @@
 		"confirmation":"Confirmación",
 		"areyousure":"Está seguro que desea borrar este mapa?",
 		"yes":"Si",
-		"no":"No"
+		"no":"No",
+		"mandatoryFields":"* Campos Obligatorios",
+		"mandatoryFieldsMissing":" / Favor completar los campos obligatorios",
+		"titleIsDuplicated":" / Este título ya ha sido utilizado. Favor indicar uno nuevo."
 	}
 }
