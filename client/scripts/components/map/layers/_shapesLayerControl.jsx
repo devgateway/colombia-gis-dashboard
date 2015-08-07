@@ -47,15 +47,15 @@ module.exports = React.createClass({
       fundingSourceSelected.splice(fundingSourceSelected.indexOf(obj.value));
     }
     this.setState({"fundingSourceSelected": fundingSourceSelected});
-    LayerActions.changeFilterSelection("fs", fundingSourceSelected, false);
+    LayerActions.changeFilterSelection("ft", fundingSourceSelected, false);
   },
 
   _showDisbursements: function() {
-    LayerActions.changeFilterSelection("ft", "disbursements");
+    LayerActions.changeFilterSelection("fs", "disbursements");
   },
 
   _showCommitments: function() {
-    LayerActions.changeFilterSelection("ft", "commitments");
+    LayerActions.changeFilterSelection("fs", "commitments");
   },
 
   componentDidMount: function(){
