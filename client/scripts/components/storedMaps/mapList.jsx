@@ -117,18 +117,16 @@ mixins: [Reflux.connect(Store,"store")],
       <Modal className='dialog-save-map' {...this.props} bsSize='medium' aria-labelledby='contained-modal-title-lg'
        show={showDeleteModal} onHide={this._showDeleteModal.bind(this, false)}>
         <Modal.Header>
-          <Modal.Title>Confirmation</Modal.Title>
+          <Modal.Title><Message message='savemap.confirmation'/></Modal.Title>
           <a className="close-dialog" href="#" onClick={this._showDeleteModal.bind(this, false)}>
           <i className="fa fa-times-circle-o"></i></a>
         </Modal.Header>
         <Modal.Body>
-          <div className="plain-panel">
-            Are you sure you want to delete this map?
-          </div>
+          <div className="plain-panel"><Message message='savemap.areyousure'/></div>
         </Modal.Body>
         <Modal.Footer>
-          <Button className="btn btn-apply pull-right" onClick={this._delete.bind(this)}>Yes</Button>
-          <Button  className="pull-right" onClick={this._showDeleteModal.bind(this, false)}>No</Button>
+          <Button className="btn btn-apply pull-right" onClick={this._delete.bind(this)}><Message message='savemap.yes'/></Button>
+          <Button  className="pull-right" onClick={this._showDeleteModal.bind(this, false)}><Message message='savemap.no'/></Button>
         </Modal.Footer>
       </Modal>
       </div>

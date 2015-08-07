@@ -128,6 +128,10 @@
 		"savemapprivate": "Privado",
 		"savedmapstab":"Mapas Guardados",
 		"savedmapstitle":"Lista de Mapas Guardados",
-		"savedmapssearch":"Buscar de Mapa"
+		"savedmapssearch":"Buscar de Mapa",
+		"confirmation":"Confirmación",
+		"areyousure":"Está seguro que desea borrar este mapa?",
+		"yes":"Si",
+		"no":"No"
 	}
 }
