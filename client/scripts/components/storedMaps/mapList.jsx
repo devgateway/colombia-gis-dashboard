@@ -64,13 +64,15 @@ mixins: [Reflux.connect(Store,"store")],
           _.map(mapList,function(m){
             if(!m.hide){
                 return (
-                  <li>
-                    <Grid>
+                  <li className="saved-map-list">
+                    <Grid fluid>
                       <Row>
-                        <Col md={6}>
-                          <div className="save-map-actions">
-                            <h5>
-                              <span>{m.title}</span>
+                        <Col sm={8}>
+                            <h4 className="pull-left">{m.title}</h4>
+                        </Col>
+
+                        <Col sm={4}>
+                            <div className="save-map-actions pull-right">
                               <a href="#">
                               <i className="pull-right fa fa-times-circle-o" title='Delete' onClick=''></i>
                               </a>
@@ -81,16 +83,15 @@ mixins: [Reflux.connect(Store,"store")],
                               <a href="#">
                               <i className="pull-right fa fa-folder-open" title='Open' onClick={this._open.bind(this,m._id)}></i>
                               </a>
-                            </h5>
                           </div>
                         </Col>
                       </Row>
 
                       <Row>
                         <Col md={6}>
-                            <Panel >
-                              {m.description}
-                            </Panel>
+                        <Panel className="pull-left">
+                          {m.description}
+                        </Panel>
                         </Col>
                       </Row>
                     </Grid>

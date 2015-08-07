@@ -63,8 +63,8 @@ h4{
 .saved-maps{
   padding:$gutter;
   ul{@include space-reset; margin-left: -$gutter;}
-
-  h3{  @include space-reset;
+  h3{
+    @include space-reset;
     @include textUppercase;
     @include textBold;
     font-size:13px;
@@ -74,14 +74,29 @@ h4{
   .panel{
     @include border-radius(0);
     background-color: transparent;
-    &.panel-default{ border:1px solid transparent}
-    .panel-body{ padding:0 0 $gutter/2 0; font-size:11px;}
+    &.panel-default{border-color: transparent}
+    .panel-body{
+      padding:0 0 $gutter/2 0;
+      font-size:12px;
+      color: $blue;
+  }
+
     h5{color: $blue}
   }
 }
-
 .save-map-actions{
+  margin-top:$gutter;
+  font-size:15px;
   .fa{
      margin-left: $gutter;
+  }
+}
+.saved-map-list{
+  background: #d7e0e4;
+  @include border-radius(3px);
+  margin-top:$gutter;
+  h4{
+    @include textBold;
+    font-size:13px;
   }
 }
