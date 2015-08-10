@@ -4,7 +4,11 @@
 		"credits" : "Todos los derecho ..  AidData",
 		"description": "MAPA:",
 		"menu":"Menú",
-		"hideMenu":"Esconder Menú"
+		"hideMenu":"Esconder Menú",
+		"languagelabel":"Idioma",
+		"languageSpanish":"Español",
+		"languageEnglish":"Inglés",
+		"saveMenu":"Guardar"
 	},
 
 	"filters": {

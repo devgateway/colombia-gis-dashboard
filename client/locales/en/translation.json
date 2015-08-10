@@ -4,7 +4,11 @@
 		"credits" : "Copy Rigths AidData",
 		"description": "Map description -",
 		"menu":"Menu",
-		"hideMenu":"Hide Menu"
+		"hideMenu":"Hide Menu",
+		"languagelabel":"Language",
+		"languageSpanish":"Spanish",
+		"languageEnglish":"English",
+		"saveMenu":"Save"
 	},
 
 	"filters": {
