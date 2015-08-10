@@ -127,6 +127,10 @@
 		"savemappublic": "Public",
 		"savemapprivate": "Private",
 		"savedmapstab":"Saved Maps",
-		"savedmapstitle":"List of Saved Maps"
+		"savedmapstitle":"List of Saved Maps",
+		"tooltipupdate":"Update",
+		"tooltipprint":"Print",
+		"tooltipopen":"Open",
+		"tooltipdelete":"Delete"
 	}
 }
