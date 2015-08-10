@@ -91,16 +91,16 @@ page2.open(TEMPLATE_URL, function(status) {
 		});
 
 		page2.clipRect = {
-			top: 87,//clipRect.top,
+			top: 86;//clipRect.top, // getBoundingClientRect not working propetly with some esri layers
 			left: clipRect.left,
 			width: clipRect.width,
 			height: clipRect.height
 		};
 
-		console.log('CLIP TOP---------'+page2.clipRect.top)
-		console.log('CLIP LEFT---------'+page2.clipRect.left)
-		console.log('width--------'+page2.clipRect.width)
-		console.log('height---------'+page2.clipRect.height)
+		console.log('CLIP TOP---------'+clipRect.top)
+		console.log('CLIP LEFT---------'+clipRect.left)
+		console.log('width--------'+clipRect.width)
+		console.log('height---------'+clipRect.height)
 
 		page2.render(TMP_DIR + '/test'+Math.random()+'.png' );
 		base64 = page2.renderBase64('PNG');

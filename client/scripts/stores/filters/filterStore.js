@@ -14,6 +14,7 @@ module.exports = Reflux.createStore({
 	listenables: [actions],
 
 	_collectFilters:function(params, isTree){
+		debugger;
 		if (!isTree){
 			return function(value, selection){
 				if (_.isArray(params)){

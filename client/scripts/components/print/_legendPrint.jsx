@@ -1,10 +1,7 @@
 var React = require('react');
 var Reflux = require('reflux');
-var If=require('../../../commons/if.jsx');
-var LegendSymbol=require('../esri/esriSymbols.jsx');
-
-
-
+var If=require('../commons/if.jsx');
+var LegendSymbol=require('../map/layers/esri/esriSymbols.jsx');
 
 module.exports=React.createClass({
 

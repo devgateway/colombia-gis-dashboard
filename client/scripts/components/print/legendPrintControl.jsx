@@ -2,11 +2,11 @@
 var React = require('react');
 var Reflux = require('reflux');
 
-var LegendStore=require('../../../../stores/esriLayesLegendsStore.js');
-var DataLegendStore=require('../../../../stores/dataLayersLegendsStore.js');
+var LegendStore=require('../../stores/esriLayesLegendsStore.js');
+var DataLegendStore=require('../../stores/dataLayersLegendsStore.js');
 
-var LegendActions=require('../../../../actions/legendActions.js');
-var If=require('../../../commons/if.jsx')
+var LegendActions=require('../../actions/legendActions.js');
+var If=require('../commons/if.jsx')
 var Legend=require('./_legendPrint.jsx');
 
 var _=require('lodash');

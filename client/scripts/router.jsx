@@ -11,9 +11,9 @@ var APP=require('./components/app.jsx'); // basic page without layout
 var MapLayout=require('./components/mapLayout.jsx');
 var InfowindowPopup=require('./components/map/infowindowPopup.jsx');
 /**/
-var PrintHandler=require('./components/printLayout.jsx');
-var PrintMap=require('./components/printMap.jsx');
-var PrintSkeleton=require('./components/printSkeleton.jsx')
+var PrintHandler=require('./components/print/printLayout.jsx');
+var PrintMap=require('./components/print/printMap.jsx');
+var PrintSkeleton=require('./components/print/printSkeleton.jsx')
 
 var routes = (
 		<Route name="app" path="/" handler={APP}>
