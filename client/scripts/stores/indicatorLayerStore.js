@@ -28,7 +28,7 @@ var defaultStyle = {
 
 
 var defaultBreaks = {
-	'field': 'fundingUS',
+	'field': 'Progress',
 	breaks: {
 		'Level0': {
 			'min': 0,
@@ -164,7 +164,69 @@ module.exports = Reflux.createStore({
 		});
 	},
 
-	/*Load GIS data by department */
+
+	_loadByMuncipalities: function() {
+		//var geoData = _.clone(municipalitiesGeoJson);
+		var self = this;
+		API.getIndicatorsByMuncipalities(this.state.filters).then(
+			function(data) {
+				API.loadMunicipalitiesShapes().then(
+					function(geoData) {
+						var items = [];
+						_.map(data, function(d) {
+							if(!isNaN(d.id)){
+								items.push(d.activities);
+							}							
+							var feature = _.find(geoData.features, function(e) {
+								//if (e.properties.ID_2 == d.id /*replacer.replaceDiacritics(e.properties.NAME_1).toUpperCase()==d.name*/ ) {
+								//	console.log('Found!');
+								//}
+								return e.properties.ID_2 == d.id; //replacer.replaceDiacritics(e.properties.NAME_1).toUpperCase()==d.name
+							});
+							if (feature) {
+								_.assign(feature.properties, _.omit(_.clone(d), "name")); //set feature values	
+							}
+						});
+						var geoStats = new GeoStats(items);
+						self._setGeoData(geoData, geoStats);
+					});
+
+		}.bind(this)).fail(function() {
+			console.log('Error loading data ...');
+		});
+	},
+
+
+	_loadByDepartments: function() {
+		//var geoData = _.clone(departmentsGeoJson);
+		var self = this;
+		API.getIndicatorsByDepartment(this.state.filters).then(
+			function(data) {
+				API.loadDepartmentsShapes().then(
+					function(geoData) {
+						var items = [];
+						_.map(data, function(d) {
+							if(!isNaN(d.id)){
+								items.push(d.activities);
+							}
+							var feature = _.find(geoData.features, function(e) {
+								if (e.properties.ID == d.id /*replacer.replaceDiacritics(e.properties.NAME_1).toUpperCase()==d.name*/ ) {
+									console.log('Found!');
+								}
+								return e.properties.ID == d.id; //replacer.replaceDiacritics(e.properties.NAME_1).toUpperCase()==d.name
+							});
+							if (feature) {
+								_.assign(feature.properties, _.omit(_.clone(d), "name")); //set feature values
+							}
+						});
+						var geoStats = new GeoStats(items);
+						self._setGeoData(geoData, geoStats);
+					});
+			}.bind(this)).fail(function() {
+				console.log('Error loading data ...');
+			});
+		}
+	/*
 	_loadByDepartments: function() {
 		this._getGeoData(API.getIndicatorsByDepartment); //just delegate the call to the next function passing the target method
 	},
@@ -188,5 +250,5 @@ module.exports = Reflux.createStore({
 			console.log('Error while loading data ...', e);
 		});
 	}
-
+	*/
 });
