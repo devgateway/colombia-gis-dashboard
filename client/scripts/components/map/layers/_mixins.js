@@ -35,9 +35,14 @@ module.exports = {
         }
         break;
     default:
-        breaks[5] = 999;
+        if (breakStyle === "percentage"){
+          breaks[5] = 100;
+        } else {
+          breaks[5] = 999;
+        }
     } 
     if(breakStyle === "percentage"){
+      debugger;
       breaks = this._convertGeoBreaksToPercentage(breaks);
     } else {
       //fix to contain the last value
