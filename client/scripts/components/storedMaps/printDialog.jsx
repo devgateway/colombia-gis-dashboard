@@ -48,9 +48,9 @@ module.exports = React.createClass({
 			<Modal.Header>
 			<Modal.Title>
 			<i className="fa fa-folder-open"></i> <Message message='savemap.downloadtitle'/>
-			<a class="" style={{'float':'right', 'margin-top':'0px'}} href="#" onClick={this._close}>
-			<i className="fa fa-times-circle-o"></i></a>
 			</Modal.Title>
+			<a className="close-dialog" href="#" onClick={this._close}>
+			<i className="fa fa-times-circle-o"></i></a>
 			</Modal.Header>
 			<Modal.Body>
 				{(this.state.file)?downloadMessage:waitMessage}
