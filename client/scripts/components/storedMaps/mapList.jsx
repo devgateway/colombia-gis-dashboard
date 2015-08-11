@@ -15,7 +15,7 @@ var PrintDialog=require('./printDialog.jsx');
 var SaveMap=require('./saveDialog.jsx');
 var Modal=require('react-bootstrap/lib/Modal');
 var Button=require('react-bootstrap/lib/Button');
-
+var Pagination=require('react-bootstrap/lib/Pagination');
 
 module.exports  = React.createClass({
 
@@ -52,13 +52,22 @@ mixins: [Reflux.connect(Store,"store")],
     Actions.filterByKeyword(value);
   },
 
+  handlePageSelect:function(event, selectedEvent){
+    this.setState({
+      activePage: selectedEvent.eventKey
+    });
+  },
+
   getInitialState:function(){
-    return {showDownload:false}
+    return {pageSize:3, activePage:1, showDownload:false}
   },
 
   render: function() {
-    var mapList=this.state.store.maps || [];
+    var origMapList=this.state.store.maps || [];
+    var mapList=_.union(_.filter(origMapList, {hide:undefined}), _.filter(origMapList, {hide:false}));
     var showDeleteModal=this.state.store.showDeleteModal || false;
+    var itemsSize=mapList.length>this.state.pageSize?(mapList.length/this.state.pageSize).toFixed(0):1;
+
     return (
 
       <div className="saved-maps">
@@ -73,8 +82,10 @@ mixins: [Reflux.connect(Store,"store")],
       <h3><Message message='savemap.savedmapstitle'/></h3>
       <ul>
         {
-          _.map(mapList,function(m){
-            if(!m.hide){
+          _.map(mapList,function(m, i){
+            var lowerBound = (this.state.activePage-1) * 3;
+            var upperBound = this.state.activePage * 3;
+            if(i>=lowerBound && i<upperBound ){
                 return (
                   <li>
                     <Grid>
@@ -114,6 +125,9 @@ mixins: [Reflux.connect(Store,"store")],
 
         }
       </ul>
+      <div>
+        <Pagination bsSize='small' items={itemsSize} activePage={this.state.activePage} onSelect={this.handlePageSelect} />
+      </div>
       <Modal className='dialog-save-map' {...this.props} bsSize='medium' aria-labelledby='contained-modal-title-lg'
        show={showDeleteModal} onHide={this._showDeleteModal.bind(this, false)}>
         <Modal.Header>
