@@ -62,7 +62,11 @@ h4{
 
 .saved-maps{
   padding:$gutter;
-  ul{@include space-reset; margin-left: -$gutter;}
+  ul{
+    @include space-reset;
+    margin-left: -$gutter;
+    margin-bottom: $gutter;
+  }
   h3{
     @include space-reset;
     @include textUppercase;
@@ -79,6 +83,19 @@ h4{
       padding:0 0 $gutter/2 0;
       font-size:12px;
       color: $blue;
+  }
+
+  .pagination{
+    li{
+      a{
+        background-color: $blue;
+      }
+      &.active{
+        a{
+          background-color: $green;
+        }
+      }
+    }
   }
 
     h5{color: $blue}
@@ -103,5 +120,29 @@ h4{
     -webkit-box-shadow:none;
     box-shadow:none;
     margin-bottom:$gutter/2;
+  }
+}
+
+// pring map idalog
+.dialog-print-map{
+  .modal-body{
+    padding:20px;
+  }
+}
+.pagination> a{
+  border-color: $border-grey;
+  color:$black;
+  &:hover{
+    background-color: darken($green,20%);
+  }
+}
+.pagination > .active > a,
+.pagination > .active > a:focus{
+  color:$black;
+  background-color: $green;
+  border-color: $border-grey;
+  &:hover{
+    background-color: darken($green,20%);
+    border-color: $border-grey;
   }
 }

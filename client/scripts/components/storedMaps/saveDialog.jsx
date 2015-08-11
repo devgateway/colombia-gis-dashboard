@@ -73,10 +73,10 @@ module.exports = React.createClass({
 			self.refs.title.getInputDOMNode().value = map.title;
 			self.refs.description.getInputDOMNode().value = map.description;
 		}
-		
+
 	},
 
-	render:function() {		
+	render:function() {
 		var showModal=this.state.store.showModal || false;
 		return (
 			<div className="save-map-trigger">
@@ -107,7 +107,7 @@ module.exports = React.createClass({
 					</div>
 				</Modal.Body>
 				<Modal.Footer>
-					<Button className="btn btn-apply pull-right" onClick={this.save.bind(this)}>Save changes</Button>
+					<Button className="btn btn-apply pull-right" onClick={this.save.bind(this)}>{i18n.t('savemap.savebutton')}</Button>
 					<Button  className="pull-right" onClick={this.close.bind(this)}>{i18n.t('savemap.closebutton')}</Button>
 				</Modal.Footer>
 			</Modal>

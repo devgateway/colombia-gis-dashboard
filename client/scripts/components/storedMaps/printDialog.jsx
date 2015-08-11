@@ -33,7 +33,8 @@ module.exports = React.createClass({
 	},
 
 	render:function() {
-		var downloadMessage=(<p className="bs-callout bs-callout-success"><a href={tim(window.MAP_DOWNLOAD_URL,{'name':this.state.file||null})}>Please click here to download the pdf file</a></p>);
+		var downloadMessage=(<p className="bs-callout bs-callout-success"><a href={tim(window.MAP_DOWNLOAD_URL,{'name':this.state.file||null})}>
+		<Message message="savemap.printreadymessage"/></a></p>);
 		var waitMessage=(<p className="bs-callout bs-callout-warning">
 					<img src="images/ajax-loader.gif" width="20" height= "20"/>
 					<Message message='savemap.printloadmessage'/>
@@ -46,10 +47,10 @@ module.exports = React.createClass({
 			<Modal className='dialog-print-map' bsSize='large' aria-labelledby='contained-modal-title-lg' show={this.state.visible} onHide={this.close}>
 			<Modal.Header>
 			<Modal.Title>
-			<i className="fa fa-folder-open"></i> <Message message='print.download'/>
-			<a class="" style={{'float':'right', 'margin-top':'0px'}} href="#" onClick={this._close}>
-			<i className="fa fa-times-circle-o"></i></a>
+			<i className="fa fa-folder-open"></i> <Message message='savemap.downloadtitle'/>
 			</Modal.Title>
+			<a className="close-dialog" href="#" onClick={this._close}>
+			<i className="fa fa-times-circle-o"></i></a>
 			</Modal.Header>
 			<Modal.Body>
 				{(this.state.file)?downloadMessage:waitMessage}
