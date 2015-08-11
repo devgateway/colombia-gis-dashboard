@@ -12,14 +12,14 @@ var AGOLProfile=require('./esri/AGOLProfile.jsx');
 module.exports = React.createClass({
 
   componentDidMount:function(){
-      $( "#saveMapPopup" ).hide(); 
+      $( "#saveMapPopup" ).hide();
   },
 
   handleClickForSave:function(){
     console.log('Save Map');
     //SaveActions.saveMap();
     $( "#saveMapPopup" ).dialog();
-    
+
   },
 
   handleClickForRestore:function(){
@@ -41,7 +41,7 @@ module.exports = React.createClass({
                     <h2> <Message message="app.title"/></h2>
                     <div className="header-nav">
                       <AGOLProfile/>
-                      <a href="#">Menu</a>&nbsp;&nbsp;
+                      <a href="#">{i18n.t('app.menu')}</a>&nbsp;&nbsp;
                       <NationalSubActivities/>&nbsp;&nbsp;
                       <a href="#" data-toggle="modal" data-target="#myModal" onClick={this.open}>Save</a>
                       <SaveMap/>
@@ -51,7 +51,7 @@ module.exports = React.createClass({
                   </div>
                 </div>
               </div>
-              
+
             </div>
     );
   }
