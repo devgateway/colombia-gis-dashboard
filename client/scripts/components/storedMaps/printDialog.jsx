@@ -33,7 +33,8 @@ module.exports = React.createClass({
 	},
 
 	render:function() {
-		var downloadMessage=(<p className="bs-callout bs-callout-success"><a href={tim(window.MAP_DOWNLOAD_URL,{'name':this.state.file||null})}>Please click here to download the pdf file</a></p>);
+		var downloadMessage=(<p className="bs-callout bs-callout-success"><a href={tim(window.MAP_DOWNLOAD_URL,{'name':this.state.file||null})}>
+		<Message message="savemap.printreadymessage"/></a></p>);
 		var waitMessage=(<p className="bs-callout bs-callout-warning">
 					<img src="images/ajax-loader.gif" width="20" height= "20"/>
 					<Message message='savemap.printloadmessage'/>
