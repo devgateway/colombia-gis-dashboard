@@ -16,7 +16,7 @@ var Breaker=require('./_breaker.jsx');
 
 var Store = require('../../../stores/pointsLayerStore.js');
 
-var color0 = [[253, 154, 0, 0.8], [253, 154, 0, 0.8], [253, 154, 0, 0.8], [253, 154, 0, 0.8], [253, 154, 0, 0.8]];
+var color0 = [[253, 154, 0, 0.6], [253, 154, 0, 0.6], [253, 154, 0, 0.6], [253, 154, 0, 0.6], [253, 154, 0, 0.6]];
 var breaks = [0, 20, 45, 75, 175, 999];
 var breakStyle = "breakValues";
 
