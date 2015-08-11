@@ -864,12 +864,23 @@ input[type=checkbox].glyphicon {
   z-index: 10000 !important; }
 
 .input-group {
-  width: 330px; }
+  width: 100%; }
   .input-group.date {
     margin-top: 2em;
     margin-bottom: 1.5em; }
     .input-group.date:last-child {
       margin-top: 0; }
+
+.input-group-addon {
+  padding: 6px 12px;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1;
+  color: #555;
+  text-align: center;
+  background-color: #e1e8f0;
+  border: 0px solid #e1e8f0;
+  border-radius: 4px; }
 
 .start-date,
 .end-date {
@@ -1852,6 +1863,9 @@ h4.modal-title {
     box-shadow: none;
     margin-bottom: 0.5em; }
 
+.dialog-print-map .modal-body {
+  padding: 20px; }
+
 /*add here all styles used during development later they will be replaced by the final ones */
 .selectable-radio, .selectable {
   border-radius: 0% !important;
@@ -2009,3 +2023,5 @@ h4.modal-title {
     z-index: 1500; }
   .timeSliderContainer .noUi-value, .timeSliderContainer .noUi-marker {
     font-size: 10px; }
+
+/*# sourceMappingURL=main.css.map */

@@ -47,7 +47,7 @@ module.exports = React.createClass({
 			<Modal className='dialog-print-map' bsSize='large' aria-labelledby='contained-modal-title-lg' show={this.state.visible} onHide={this.close}>
 			<Modal.Header>
 			<Modal.Title>
-			<i className="fa fa-folder-open"></i> <Message message='print.download'/>
+			<i className="fa fa-folder-open"></i> <Message message='savemap.downloadtitle'/>
 			<a class="" style={{'float':'right', 'margin-top':'0px'}} href="#" onClick={this._close}>
 			<i className="fa fa-times-circle-o"></i></a>
 			</Modal.Title>
