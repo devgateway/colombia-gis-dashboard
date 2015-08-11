@@ -97,15 +97,15 @@ mixins: [Reflux.connect(Store,"store")],
                         <Col sm={4}>
                             <div className="save-map-actions pull-right">
                               <a href="#">
-                              <i className="pull-right fa fa-times" title='Delete' onClick={this._showDeleteModal.bind(this, true, m._id)}></i>
+                              <i className="pull-right fa fa-times" title={i18n.t('savemap.tooltipdelete')} onClick={this._showDeleteModal.bind(this, true, m._id)}></i>
                               </a>
                               <a href="#">
-                              <i className="pull-right fa fa-pencil" title='Update' onClick={this._update.bind(this,m._id)}></i>
+                              <i className="pull-right fa fa-pencil" title={i18n.t('savemap.tooltipupdate')} onClick={this._update.bind(this,m._id)}></i>
                               </a>
                               <SaveMap/>
                               <PrintDialog key={m.id} id={m._id}/>
                               <a href="#">
-                              <i className="pull-right fa fa-folder-open" title='Open' onClick={this._open.bind(this,m._id)}></i>
+                              <i className="pull-right fa fa-folder-open" title={i18n.t('savemap.tooltipopen')} onClick={this._open.bind(this,m._id)}></i>
                               </a>
                           </div>
                         </Col>
