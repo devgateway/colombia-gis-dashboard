@@ -22,8 +22,8 @@ module.exports = {
     this.actions.selectFilteredByKeyword(keyword)
   },
 
-  _onCounterClicked: function(selected) {
-    this.setState(_.assign(this.state, {'showOnlySelected': selected}));
+  _onShowSelectedClicked: function(selected) {
+    this.setState(_.assign(this.state, {'showOnlySelected': !this.state.showOnlySelected}));
     this.forceUpdate();
   },
   

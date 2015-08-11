@@ -10,6 +10,7 @@ var filters = [
     label: 'filters.locations',
     modes: ['basic', 'advanced'],
     type: 'tree',
+    param: 'mu',
     store: StoreDispatcher.Locations,
     actions: Actions.Locations
   }, {
@@ -48,6 +49,7 @@ var filters = [
     label: 'filters.subImplementer',
     modes: ['basic', 'advanced'],
     type: 'tree',
+    param: 'si',
     store: StoreDispatcher.SubImplementers,
     actions: Actions.SubImplementers
   },
@@ -126,6 +128,7 @@ var filters = [
     label: 'filters.activityClassification',
     modes: ['basic'],
     type: 'tree',
+    param: 'a2',
     store: StoreDispatcher.ClassificationTypeBasic,
     actions: Actions.ClassificationType
   },
@@ -135,6 +138,7 @@ var filters = [
     label: 'filters.activityClassification',
     modes: ['advanced'],
     type: 'multiLevelSearch',
+    param: 'a5',
     store: StoreDispatcher.ClassificationTypeAdvanced,
     actions: Actions.ClassificationType
   },

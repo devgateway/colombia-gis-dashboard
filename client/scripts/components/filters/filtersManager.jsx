@@ -50,8 +50,15 @@ module.exports = React.createClass({
     }));
   },
 
+  _onChangeCounter: function(param, selected, total) {
+    var counters = _.clone(this.state.counters);
+    counters[param] = {"selected": selected, "total": total};
+    this.setState({"counters": counters});
+  },
+
   getInitialState: function() {
     return {
+      counters: {},
       activeIndex: 1,
       mode: 'basic'
     };
@@ -70,7 +77,10 @@ module.exports = React.createClass({
                 _.filter(filters,function(it){return (it.modes.indexOf(this.state.mode) > -1)}.bind(this)).map(function(def){
                   return (
                     <li onClick={this._onActivateFilter.bind(null,def.index)} className={(this.state.activeIndex==def.index)?'active':''}>
-                      <a href="#"><Message message={def.label}/></a>                    
+                      <a href="#">
+                        <Message message={def.label}/>
+                        {this.state.counters[def.param]? " ("+this.state.counters[def.param].selected+"/"+this.state.counters[def.param].total+")" : ""}
+                      </a>                    
                     </li>
                     )
                 }.bind(this))
@@ -85,7 +95,7 @@ module.exports = React.createClass({
           <div>
             {
               filters.map(function(def){
-                return ( <Filter {...def} active={def.index==this.state.activeIndex}/>)
+                return ( <Filter {...def} onChangeCounter={this._onChangeCounter} active={def.index==this.state.activeIndex}/>)
               }.bind(this))
             }
           </div>

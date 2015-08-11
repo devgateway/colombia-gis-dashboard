@@ -11,7 +11,6 @@ module.exports = React.createClass({
 
  render: function() {
   var content;
-
   switch(this.props.type) {
     case 'list':
       content = <SingleList {...this.props}/>

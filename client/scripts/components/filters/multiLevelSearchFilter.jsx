@@ -8,13 +8,27 @@ var CommonsMixins=require('./commonsMixins.jsx');
 var KeywordSearch=require('./keywordSearch.jsx');
 var SelectAllNone=require('./allNoneSelector.jsx');
 var SelectionCounter = require('./selectionCounter.jsx');
+var CustomCheckbox = require('../commons/customCheckbox.jsx');
 
 module.exports = React.createClass({
 
   mixins: [CommonsMixins, PureRenderMixin],
 
   componentDidUpdate: function(){
-    $(this.getDOMNode()).find('.filter-list-container').mCustomScrollbar({theme:"inset-dark"});    
+    $(this.getDOMNode()).find('.filter-list-container').mCustomScrollbar({theme:"inset-dark"});
+    var listsFull = [];
+    if (this.state.levels){
+      this._getLists(listsFull, this.state.levels, true);
+    } 
+    var totalItems = 0;
+    var totalSelected = 0;
+    _.forEach(listsFull, function(list){
+      if (list){
+        totalItems = totalItems + list.length;
+        totalSelected = totalSelected + _.filter(list, function(it){return it.selected}).length;
+      }
+    });
+    this.props.onChangeCounter(this.state.lowestLevel, totalSelected, totalItems);
   },
 
   getInitialState: function() {
@@ -22,7 +36,7 @@ module.exports = React.createClass({
       showOnlySelected: false,
       items: [],
       selected: [],
-      filter: '',
+      filter: ''
     };
   },
 
@@ -46,19 +60,9 @@ module.exports = React.createClass({
 
   render: function() {
     var listsFiltered = [];
-    var listsFull = [];
     if (this.state.levels){
       this._getLists(listsFiltered, this.state.levels);
-      this._getLists(listsFull, this.state.levels, true);
     } 
-    var totalItems = 0;
-    var totalSelected = 0;
-    _.forEach(listsFull, function(list){
-      if (list){
-        totalItems = totalItems + list.length;
-        totalSelected = totalSelected + _.filter(list, function(it){return it.selected}).length;
-      }
-    });
     var noResults = "";
     if (!this._hasItems(listsFiltered)){
       noResults = <div className="filter-no-results">
@@ -73,7 +77,10 @@ module.exports = React.createClass({
               
               <div className="filter-group-panel-header">
                 <span className="filter-label" role="label">{<Message message={this.props.label}/>}</span>                
-                <SelectionCounter selected={totalSelected} total={totalItems} onCounterClicked={this._onCounterClicked}/>
+                <div className="show-selected">
+                  <span><CustomCheckbox onChange={this._onShowSelectedClicked}/></span>
+                  <span><Message message="filters.showSelected"/></span>                                    
+                </div> 
                 <SelectAllNone onSelectAll={this._onSelectAll} onSelectNone={this._onSelectNone}/>
               </div>
               <KeywordSearch onSearch={this._onSearch} lengthLimit="3" onClear={this._onSearchClear}/>

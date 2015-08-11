@@ -42,11 +42,11 @@
     @include transitionAll;
     color: $blue;
     &:hover{
-    color: $green;
+      color: $green;
+    }
   }
-  }
-
 }
+
 .filter-label {
   font-size:1.2em;
   color:$grey;

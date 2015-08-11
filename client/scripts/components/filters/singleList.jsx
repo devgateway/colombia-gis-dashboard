@@ -8,13 +8,15 @@ var CommonsMixins=require('./commonsMixins.jsx');
 var KeywordSearch=require('./keywordSearch.jsx');
 var SelectAllNone=require('./allNoneSelector.jsx');
 var SelectionCounter = require('./selectionCounter.jsx');
+var CustomCheckbox = require('../commons/customCheckbox.jsx');
 
 module.exports = React.createClass({
 
   mixins: [CommonsMixins, PureRenderMixin],
 
   componentDidUpdate: function(){
-    $(this.getDOMNode()).find('.filter-list-container').mCustomScrollbar({theme:"inset-dark"});    
+    $(this.getDOMNode()).find('.filter-list-container').mCustomScrollbar({theme:"inset-dark"});
+    this.props.onChangeCounter(this.props.param, _.filter(this.state.items, function(it){return it.selected}).length, this.state.items.length);    
   },
 
   getInitialState: function() {
@@ -28,7 +30,6 @@ module.exports = React.createClass({
 
   render: function() {
     //console.log("render SingleList");
-    var selectedItems = _.filter(this.state.items, function(it){return it.selected}); 
     var noResults = "";
     if (this.state.noResults){
       noResults = <div className="filter-no-results">
@@ -43,7 +44,10 @@ module.exports = React.createClass({
               
               <div className="filter-group-panel-header">
                 <span className="filter-label" role="label">{<Message message={this.props.label}/>}</span>
-                <SelectionCounter total={this.state.items.length} selected={selectedItems.length} onCounterClicked={this._onCounterClicked}/>
+                <div className="show-selected">
+                  <span><CustomCheckbox onChange={this._onShowSelectedClicked}/></span>
+                  <span><Message message="filters.showOnlySelected"/></span>                                    
+                </div> 
                 <SelectAllNone onSelectAll={this._onSelectAll} onSelectNone={this._onSelectNone}/>
               </div>
               <KeywordSearch onSearch={this._onSearch} onSearchEnterKey={this._onSearchEnterKey}/>
