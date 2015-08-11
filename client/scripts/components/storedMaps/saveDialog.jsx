@@ -80,7 +80,7 @@ module.exports = React.createClass({
 				</Modal.Body>
 				<Modal.Footer>
 					<Button className="btn btn-apply pull-right" onClick={this.save.bind(this)}>Save changes</Button>
-					<Button  className="pull-right" onClick={this.close.bind(this)}>Close</Button>
+					<Button  className="pull-right" onClick={this.close.bind(this)}>{i18n.t('savemap.closebutton')}</Button>
 				</Modal.Footer>
 			</Modal>
 			</div>

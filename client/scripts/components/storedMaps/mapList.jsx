@@ -74,7 +74,7 @@ mixins: [Reflux.connect(Store,"store")],
                         <Col sm={4}>
                             <div className="save-map-actions pull-right">
                               <a href="#">
-                              <i className="pull-right fa fa-times-circle-o" title='Delete' onClick=''></i>
+                              <i className="pull-right fa fa-times-circle-o" title={i18n.t('savemap.savedmapstitle')} onClick=''></i>
                               </a>
                               <a href="#">
                               <i className="pull-right fa fa-pencil" title='Update' onClick={this._update.bind(this,m._id)}></i>

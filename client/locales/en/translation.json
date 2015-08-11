@@ -136,6 +136,7 @@
 		"tooltipprint":"Print",
 		"tooltipopen":"Open",
 		"tooltipdelete":"Delete",
+		"closebutton":"Close",
 		"printloadmessage":"Please wait while the pdf file is being generated, this length of the process will depend on the map configuration",
 		"printreadymessage":"Please click here to download the pdf file"
 
