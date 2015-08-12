@@ -6,13 +6,46 @@ var FilterMap = require('../../../conf/filterMap.js');
 
 var LanStore=require('../../../stores/lanStore.js');
 
-var Filter=require('./filter.jsx');
-
 var _=require('lodash');
 var Message=require('../.../../../commons/message.jsx');
 
 var actions=require('../../../actions/filterActions.js');
 var Store=require('../../../stores/filters/filterStore.js');
+
+var CommonsMixins=require('./commonsMixins.jsx');
+var Item=require('./singleListItem.jsx');
+var TreeList=require('./treeList.jsx');
+var SingleList=require('./singleList.jsx');
+
+
+var Selector = React.createClass({
+
+ render: function() {
+  var content;
+
+  switch(this.props.type) {
+    case 'list':
+      content = <SingleList {...this.props}/>
+      break;
+    case 'tree':
+      content = <TreeList {...this.props}/>
+      break;
+    case 'date':
+      content = null
+      break;
+    case 'valueRange':
+      content = null
+      break;
+    case 'multiLevelSearch':
+      content = null
+      break;
+  }
+
+
+  return(<div>{content}</div>);    
+}
+});
+
 
 
 module.exports = React.createClass({
@@ -31,7 +64,7 @@ module.exports = React.createClass({
       <ul>
             {
               filters.map(function(def){
-                return ( <Filter {...def} active={true}/>)
+                return ( <Selector {...def} active={true}/>)
               }.bind(this))
             }
       </ul>
