@@ -75,6 +75,9 @@ module.exports = Reflux.createStore({
       if(!isUpdate && _.find(this.state.maps, function(m){return m.title==options.title})){
         errorMsg = 'savemap.titleIsDuplicated';
         isValid = false;
+      } else if(options.title.length>100){
+        errorMsg = 'savemap.mandatoryFieldsLength';
+        isValid = false;
       }
     } else {
       errorMsg = 'savemap.mandatoryFieldsMissing';
@@ -83,6 +86,9 @@ module.exports = Reflux.createStore({
 
     if(!options.description){
       errorMsg = 'savemap.mandatoryFieldsMissing';
+      isValid = false;
+    } else if(options.description.length>300){
+      errorMsg = 'savemap.mandatoryFieldsLength';
       isValid = false;
     }
 

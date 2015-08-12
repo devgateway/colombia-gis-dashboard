@@ -92,8 +92,8 @@ module.exports = React.createClass({
 				<Modal.Body>
 
 				<div className="blue-panel">
-					<Input name="title" ref="title" className="form-control" type="text" placeholder={i18n.t('savemap.savemaptitle')} addonAfter='*'/>
-					<Input type='textarea' name="description" ref="description" className="form-control" rows="3" placeholder={i18n.t('savemap.savemapdescription')} addonAfter='*' />
+					<Input name="title" ref="title" className="form-control" type="text" placeholder={i18n.t('savemap.savemaptitle')}  maxlength="100" addonAfter='*'/>
+					<Input type='textarea' name="description" ref="description" className="form-control" rows="3" placeholder={i18n.t('savemap.savemapdescription')} maxlength="300" addonAfter='*' />
 				</div>
 
 					<div className="plain-panel">
