@@ -9,9 +9,7 @@ var Actions=require('../../actions/saveActions.js');
 
 module.exports = React.createClass({
 
-	componentDidMount:function(){
-		Actions.openMap(this.props.params.id);
-	},
+	
 
 	render: function() {
 		return (

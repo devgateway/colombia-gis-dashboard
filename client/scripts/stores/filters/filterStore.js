@@ -3,30 +3,30 @@
 var assign = require('object-assign');
 var Reflux = require('reflux');
 var _ = require('lodash');
-var Mixins=require('./mixins.js');
 var actions=require('../../actions/filterActions.js');
-var StoreDispatcher = require('./storeCreator.js');
-var DateStore=require('./dateStore.js');
-var ValueRangeStore=require('./valueRangeStore.js');
+var Mixins=require('./aggregatorMixins.js');
 
 module.exports = Reflux.createStore({
 
+		mixins: [Mixins],
 	listenables: [actions],
 
 	_collectFilters:function(params, isTree){
-		debugger;
+
 		if (!isTree){
-			return function(value, selection){
+			return function(value){
+					
 				if (_.isArray(params)){
 					_.forEach(params, function(param){
 						this.state[param] = _.isArray(value)? _.map(_.filter(value[param].items, function(it){return it.selected}), 'id'): [value[param]];
 					}.bind(this));
 				} else {
 					this.state[params] = _.map(_.filter(value.items, function(it){return it.selected}), 'id');
-				}
+				} 
 			}
 		} else {
-			return function(value, selection){
+			return function(value){
+						
 				_.forEach(params, function(param){
 					this.state[param] =  _.map(_.filter(value[param], function(it){return it.selected}), 'id');
 				}.bind(this));				
@@ -34,32 +34,8 @@ module.exports = Reflux.createStore({
 		}
 	},
 
-	init: function() {
-		this.state=this.state||{};
 
-		this.listenTo(StoreDispatcher.ClassificationTypeBasic, this._collectFilters(['a1','a2'], true));
-		this.listenTo(StoreDispatcher.ClassificationTypeAdvanced, this._collectFilters(['a1','a2','a3','a4','a5'], true));
-		this.listenTo(StoreDispatcher.AorCor, this._collectFilters('ar'));
-
-		this.listenTo(StoreDispatcher.ContractType, this._collectFilters('ct'));
-		this.listenTo(StoreDispatcher.Crops, this._collectFilters('cr'));
-		this.listenTo(DateStore, this._collectFilters(['sd','ed']));
-
-		this.listenTo(StoreDispatcher.DevelopmentObjectives, this._collectFilters('do'));
-		this.listenTo(StoreDispatcher.EnvironmentalManagementPlans, this._collectFilters('te'));
-		this.listenTo(StoreDispatcher.Locations, this._collectFilters(['de','mu'], true));
-
-		this.listenTo(StoreDispatcher.PublicPrivatePartnership, this._collectFilters('pp'));
-		this.listenTo(StoreDispatcher.RapidImpact, this._collectFilters('ri'));
-		this.listenTo(StoreDispatcher.SubActivityStatus, this._collectFilters('st'));
-
-		this.listenTo(StoreDispatcher.SubImplementers, this._collectFilters(['sit','si'], true));
-		this.listenTo(StoreDispatcher.TargetPopulation, this._collectFilters('tp'));
-		this.listenTo(ValueRangeStore, this._collectFilters(['vr1','vr2']));
-
-	},
-
-	onApplyFilters:function(){
+	_translate:function(){
 		var filters = [];
 		for (var key in this.state) {
 			if (this.state.hasOwnProperty(key) && this.state[key].length>0 && this.state[key][0]!=""){
@@ -67,8 +43,14 @@ module.exports = Reflux.createStore({
 			    filters.push(selection);
 			}
 		}
-		this.trigger(filters);		
+		return filters;
 	},
+
+	onApplyFilters:function(){
+		this.trigger(this._translate());		
+	},
+
+
 
 	getInitialState: function() {
 		return (this.state = {});

@@ -27,7 +27,7 @@ var LegendControl  = React.createClass({
     var esri=_.clone(this.state.esri.layersLegends) || [];
     var  data =this.state.data.layersLegends || [];
     var legends=data.concat(esri);  
-    debugger;
+    
     var legendContent = "";
     var buttonLabel = this.state.shown? <Message message="layers.hideLegend"/> : <Message message="layers.showLegend"/>
 

@@ -133,12 +133,12 @@ module.exports = Reflux.createStore({
 
 	/*Load GIS data by department */
 	_loadByDepartments: function() {
-		debugger;
+		
     this._getGeoData(API.getActivitiesByDepartment); //just delegate the call to the next function passing the target method
 },
 
 _loadByMuncipalities: function() {
-	debugger;
+	
     this._getGeoData(API.getActivitiesByMuncipalities); //just delegate the call to the next function passing the target method
 },
 

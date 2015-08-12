@@ -6,11 +6,6 @@ function createPoint(obj){
 }
 
 
-function logFailure(err, message) {
-	console.error(message);
-	console.error(err);
-}
-
 module.exports = {	
 	/*
 	Interate over a simple array of elements and convert them into a GeoJson format.

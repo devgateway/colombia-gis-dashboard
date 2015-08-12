@@ -7,7 +7,7 @@ var Reflux = require('reflux');
 var Actions=require('../../actions/saveActions.js')
 var LegendControl = require('./legendPrintControl.jsx');
 var Map=require('../map/map.jsx');
-var Filters=require('./filtersPrintControl.jsx');
+var Filters=require('./filters/filtersManager.jsx');
 
 var Grid=require('react-bootstrap/lib/Grid');
 var Row=require('react-bootstrap/lib/Row');
@@ -15,7 +15,9 @@ var Col=require('react-bootstrap/lib/Col');
 
 module.exports = React.createClass({
 
-	
+	componentDidMount:function(){
+		Actions.openMap(this.props.params.id);
+	},
 	render: function() {
 		return (
 			<Grid className="pdf">
@@ -36,23 +38,28 @@ module.exports = React.createClass({
 					<Col lg={12} md={12}>
 						<div id="map">
 							<Map/>
-							<div style={{'page-break-before':'always'}}/>
 						</div>
 					</Col>
 				</Row>
+				<div className="clearFix"/>
+				<div style={{'page-break-before':'always'}}/>
 				
 				<Row>
 					<Col lg={12} md={12}><h1>Map Legends</h1></Col>
 				</Row>
+				
 				<Row>
 					<Col lg={12} md={12}>
 						<LegendControl/>
 					</Col>
 				</Row>
 				
+				<div className="clearFix"/>
+				<div style={{'page-break-before':'always'}}/>
 				<Row>
 					<Col lg={12} md={12}><h1>Data filters</h1></Col>
 				</Row>
+
 				<Row>
 					<Col lg={12} md={12}>
 						<Filters/>

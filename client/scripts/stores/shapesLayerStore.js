@@ -138,7 +138,7 @@ module.exports = Reflux.createStore({
 	*/	
 	onRestoreData: function(savedData) {
 		if(savedData.shapesState){
-			debugger;
+			
 			this.update({dataToRestore: savedData.shapesState, isRestorePending: true});
 		    this._load(null, savedData.shapesState.level, true); //restore data
 		} else {

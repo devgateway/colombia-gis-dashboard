@@ -170,9 +170,9 @@ function makeFile(id) {
 
         var fileName = UUID + '.pdf';
 
-        console.log(mapUrl + '' + templateUrl + ' ' + fileName + ' ' + tmpFolder);
+        console.log( templateUrl + ' ' + fileName + ' ' + tmpFolder);
 
-        var childArgs = [path.join(__dirname, '/scripts/makepdf.js'), mapUrl, templateUrl, fileName, tmpFolder]
+        var childArgs = [path.join(__dirname, '/scripts/makepdf.js'), templateUrl, fileName, tmpFolder]
 
         childProcess.execFile(binPath, childArgs, function (err, stdout, stderr) {
             console.log(stdout);

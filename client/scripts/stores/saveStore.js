@@ -2,9 +2,11 @@
 var _ = require('lodash');
 var assign = require('object-assign');
 var Reflux = require('reflux');
-var SaveActions = require('../actions/saveActions.js');
-var LayersActions = require('../actions/layersAction.js');
+
 var RestoreActions = require('../actions/restoreActions.js');
+var SaveActions = require('../actions/saveActions.js');
+
+var LayersActions = require('../actions/layersAction.js');
 var ArcgisLayersActions = require('../actions/arcgisLayersActions.js');
 var LanStore = require('./lanStore.js');
 var FilterStore = require('./filters/filterStore.js');
@@ -37,7 +39,7 @@ module.exports = Reflux.createStore({
   },
 
   onSaveMap: function(options) {
-    debugger;
+    
     console.log('stores->saveStore->onSaveMap');
     var mapData = this._getDataFromState(mapState);
     var lanData = this._getDataFromState(lanState);
@@ -103,7 +105,6 @@ module.exports = Reflux.createStore({
     API.getMapById(id).then(
       function(data) {
           RestoreActions.restoreData(data.map)
-          ///this.update({map:data})
       }).fail(function() {
       console.log('onRestoreMapFromAPI: Error saving data ...');
     });

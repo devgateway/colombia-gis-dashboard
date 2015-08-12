@@ -10,7 +10,7 @@ module.exports = {
 
 
   saveMapToAPI: function(params) {
-    debugger;
+    
     console.log("scripts->api->saveAndRestoreMap: saveMapToAPI");
     return reqwest({
       url: window.MAP_SAVE_URL,

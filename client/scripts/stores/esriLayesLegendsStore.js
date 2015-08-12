@@ -21,7 +21,7 @@ module.exports = Reflux.createStore({
   },
 
   _handleArcgisLayersUpdate: function(data) {
-    debugger;
+    
     if (data.latestChange && data.latestChange.property == "addLayer") {
       this._addNewLegend(data.latestChange.value)
     } else if (data.latestChange && data.latestChange.property == "deleteLayer") {

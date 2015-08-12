@@ -59,7 +59,7 @@ module.exports = Reflux.createStore({
             _.assign(symbol,{symbol:theSymbol});
 
         if(id=='shapes'){
-          debugger;
+          
            console.log('level'+level);
            console.log(symbol);
         }

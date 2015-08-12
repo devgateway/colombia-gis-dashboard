@@ -49,7 +49,7 @@ module.exports = React.createClass({
 	},
 	
 	updateTags:function(event){
-		debugger;
+		
 	},
 	
 	render:function() {

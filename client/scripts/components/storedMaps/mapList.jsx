@@ -30,7 +30,7 @@ getInitialState:function(){
   },
 
   render: function() {
-    debugger;
+    
     var mapList=this.state.store.maps || [];
     return (
 
