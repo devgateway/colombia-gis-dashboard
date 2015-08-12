@@ -9,7 +9,6 @@
 }
 .modal-body{
   padding:0;
-
   .form-control{
     @include border-radius(0);
     @include noOutline;
@@ -20,7 +19,6 @@
       margin-bottom:0;
     }
   }
-
 }
 h4{
   &.modal-title{
@@ -41,7 +39,6 @@ h4{
     &:hover{ color: $grey}
   }
 }
-
 .blue-panel{
   background: lighten($blue, 45);
   padding:$gutter*1.5;
@@ -105,13 +102,15 @@ h4{
   margin-top:$gutter;
   .fa{
      margin-left: $gutter/1.5;
-     font-size:17px;
+     font-size:14px;
   }
 }
 .saved-map-list{
   background: #d7e0e4;
   @include border-radius(3px);
   margin-top:$gutter;
+  margin-left:$gutter;
+  width:98%;
   h4{
     @include textBold;
     font-size:13px;

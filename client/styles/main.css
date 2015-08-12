@@ -1851,7 +1851,7 @@ h4.modal-title {
   margin-top: 1em; }
   .save-map-actions .fa {
     margin-left: 0.66667em;
-    font-size: 17px; }
+    font-size: 14px; }
 
 .saved-map-list {
   background: #d7e0e4;
@@ -1859,7 +1859,9 @@ h4.modal-title {
   border-radius: 3px;
   background-clip: padding-box;
   /* stops bg color from leaking outside the border: */
-  margin-top: 1em; }
+  margin-top: 1em;
+  margin-left: 1em;
+  width: 98%; }
   .saved-map-list h4 {
     font-weight: bold;
     font-size: 13px; }
