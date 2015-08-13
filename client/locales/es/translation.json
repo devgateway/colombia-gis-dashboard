@@ -57,7 +57,8 @@
 		"gradient2":"Gradiente de colores 2",
 		"valueRange": "Rango de Valores",
 		"valueRangesBetween": "Rango de inversión de USAID por subactividad entre:",
-		"performSearch": "Por favor, realice una búsqueda para mostrar algunos resultados"
+		"performSearch": "Por favor, realice una búsqueda para mostrar algunos resultados",
+		"subActivities":"Sub Actividades"
 	},
 
 	"layers": {

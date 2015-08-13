@@ -28,13 +28,30 @@ module.exports = React.createClass({
     };
   },
 
+  _getItemList: function() {
+    var self = this;
+    var list = [];
+    if (this.props.searchAndSelectMode){
+      return _.filter(this.state.items, function(it){return ((!it.hide)  || (self.state.showOnlySelected && it.selected))});
+      //list.push(_.filter(this.state.items, function(it){return ((!it.hide)  || (self.state.showOnlySelected && it.selected))}));
+      //return list;
+    } else {
+      return this.state.items;
+    }  
+  },
+
   render: function() {
-    //console.log("render SingleList");
+    var itemList = this._getItemList();
+    var showOnlySelected = this.props.searchAndSelectMode? false : this.state.showOnlySelected;
     var noResults = "";
-    if (this.state.noResults){
-      noResults = <div className="filter-no-results">
-                    <br/>{<Message message="filters.noResults"/>}
-                </div>
+    if (this.props.searchAndSelectMode) {
+      if (itemList.length==0){
+        noResults = <div className="filter-no-results"><br/>{<Message message="filters.performSearch"/>}</div>
+      }
+    } else {
+      if (this.state.noResults){
+        noResults = <div className="filter-no-results"><br/>{<Message message="filters.noResults"/>}</div>
+      }
     }
     if (this.props.active){
       return ( 
@@ -55,8 +72,13 @@ module.exports = React.createClass({
               <div className="filter-list-container">
                 <ul className="filter-list">
                 {
-                  this.state.items.map(function(item) {
-                    return (<li><Item {...item} onItemChange={this._onItemChange} showOnlySelected={this.state.showOnlySelected}/></li>)                    
+                  itemList.map(function(item) {
+                    return (<li>
+                        <Item {...item} 
+                          onItemChange={this._onItemChange} 
+                          showOnlySelected={this.state.showOnlySelected}
+                          searchAndSelectMode={this.props.searchAndSelectMode}/>
+                      </li>)                    
                   },this) 
                 }
                 </ul>

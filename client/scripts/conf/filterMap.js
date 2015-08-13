@@ -1,7 +1,7 @@
 
 var DateStore = require('../stores/filters/dateStore.js');
 var ValueRangeStore = require('../stores/filters/valueRangeStore.js');
-var StoreDispatcher = require('../stores/filters/storeCreator.js');
+var StoreCreator = require('../stores/filters/storeCreator.js');
 var Actions = require('../actions/filterActions.js');
 var filters = [
   {
@@ -11,7 +11,7 @@ var filters = [
     modes: ['basic', 'advanced'],
     type: 'tree',
     param: 'mu',
-    store: StoreDispatcher.Locations,
+    store: StoreCreator.Locations,
     actions: Actions.Locations
   }, {
     index: 2,    
@@ -20,7 +20,7 @@ var filters = [
     label: 'filters.targetPopulation',
     modes: ['basic', 'advanced'],
     param: 'tp',
-    store: StoreDispatcher.TargetPopulation,
+    store: StoreCreator.TargetPopulation,
     actions: Actions.TargetPopulation
   },
   {
@@ -30,7 +30,7 @@ var filters = [
     modes: ['basic', 'advanced'],
     label: 'filters.developmentObjectives',
     param: 'do',
-    store: StoreDispatcher.DevelopmentObjectives,
+    store: StoreCreator.DevelopmentObjectives,
     actions: Actions.DevelopmentObjectives
   },
   {
@@ -40,7 +40,7 @@ var filters = [
     modes: ['basic', 'advanced'],
     label: 'filters.subActivityStatus',
     param: 'st',
-    store: StoreDispatcher.SubActivityStatus,
+    store: StoreCreator.SubActivityStatus,
     actions: Actions.SubActivityStatus
   },
   {
@@ -50,8 +50,18 @@ var filters = [
     modes: ['basic', 'advanced'],
     type: 'tree',
     param: 'si',
-    store: StoreDispatcher.SubImplementers,
+    store: StoreCreator.SubImplementers,
     actions: Actions.SubImplementers
+  },
+  {
+    index: 6,
+    order: 12,
+    label: 'filters.subActivities',
+    type: 'list',
+    modes: ['basic', 'advanced'],
+    searchAndSelectMode: true,
+    store:  StoreCreator.SubActivities,
+    actions: Actions.SubActivities
   },
   {
     index: 7,
@@ -60,7 +70,7 @@ var filters = [
     type: 'list',
     modes: ['basic', 'advanced'],
     param: 'pp',
-    store: StoreDispatcher.PublicPrivatePartnership,
+    store: StoreCreator.PublicPrivatePartnership,
     actions: Actions.PublicPrivatePartnership
   },
   {
@@ -79,7 +89,7 @@ var filters = [
     type: 'list',
     modes: ['advanced'],
     param: 'cr',
-    store: StoreDispatcher.Crops,
+    store: StoreCreator.Crops,
     actions: Actions.Crops
   },
   {
@@ -89,7 +99,7 @@ var filters = [
     type: 'list',
     modes: ['advanced'],
     param: 'ct',
-    store: StoreDispatcher.ContractType,
+    store: StoreCreator.ContractType,
     actions: Actions.ContractType
   },
   {
@@ -99,7 +109,7 @@ var filters = [
     type: 'list',
     modes: ['advanced'],
     param: 'te',
-    store: StoreDispatcher.EnvironmentalManagementPlans,
+    store: StoreCreator.EnvironmentalManagementPlans,
     actions: Actions.EnvironmentalManagementPlans
   },
   {
@@ -109,7 +119,7 @@ var filters = [
     type: 'list',
     modes: ['advanced'],
     param: 'ar',
-    store: StoreDispatcher.AorCor,
+    store: StoreCreator.AorCor,
     actions: Actions.AorCor
   },
   {
@@ -119,7 +129,7 @@ var filters = [
     type: 'list',
     modes: ['advanced'],
     param: 'ri',
-    store: StoreDispatcher.RapidImpact,
+    store: StoreCreator.RapidImpact,
     actions: Actions.RapidImpact
   },
   {
@@ -129,7 +139,7 @@ var filters = [
     modes: ['basic'],
     type: 'tree',
     param: 'a2',
-    store: StoreDispatcher.ClassificationTypeBasic,
+    store: StoreCreator.ClassificationTypeBasic,
     actions: Actions.ClassificationType
   },
   {
@@ -139,7 +149,7 @@ var filters = [
     modes: ['advanced'],
     type: 'multiLevelSearch',
     param: 'a5',
-    store: StoreDispatcher.ClassificationTypeAdvanced,
+    store: StoreCreator.ClassificationTypeAdvanced,
     actions: Actions.ClassificationType
   },
   {

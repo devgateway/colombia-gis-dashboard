@@ -19,9 +19,7 @@ module.exports = React.createClass({
   },
 
   componentWillReceiveProps :function(nextProps){
-    if(nextProps.selected!=undefined){
-        this.setState({'selected':nextProps.selected})
-    };
+    this.setState({'selected':nextProps.selected || false})
   },
 
   getInitialState: function() {
@@ -33,8 +31,9 @@ module.exports = React.createClass({
   },
 
   render: function() {
-    var itemClassNames=(this.state.selected===true)?'item-label label-selected':'item-label';
-    if (!this.props.hide && (!this.props.showOnlySelected || (this.props.showOnlySelected && (this.props.selected)))){
+    debugger;
+    var itemClassNames=(this.state.selected)?'item-label label-selected':'item-label';
+    if (this.props.searchAndSelectMode || (!this.props.hide && (!this.props.showOnlySelected || (this.props.showOnlySelected && (this.props.selected))))){
       return(  
         <div className="filter-col">
           <CustomCheckbox selected={this.state.selected} value={this.props.id} onChange={this._handleClick}/>

@@ -23,5 +23,6 @@ module.exports = {
 	RapidImpact: Reflux.createActions(names),
 	Dates: Reflux.createActions(names),
 	ValueRange: Reflux.createActions(names),
+	SubActivities: Reflux.createActions(names),
 	applyFilters: Reflux.createAction()
 };
