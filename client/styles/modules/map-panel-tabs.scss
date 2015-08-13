@@ -17,18 +17,14 @@ nav.tabs {
 }
 .main-tabs .nav-tabs li:first-child a{
   &:before{
-  font-family: FontAwesome;
+  @include tabicon;
   content:'\f041';
-  color: $blue;
-  margin-right:5px;
   }
 }
 .main-tabs .nav-tabs li:last-child a{
   &:before{
-  font-family: FontAwesome;
+  @include tabicon;
   content:'\f0ac';
-  color: $blue;
-  margin-right:5px;
   }
 }
 .main-tabs .nav-tabs li a{
@@ -41,7 +37,6 @@ nav.tabs {
   border:1px solid transparent;
   margin-bottom:1px;
 }
-
 .tabs>li {
   @include floatLeft;
   @include textCenter;
@@ -62,11 +57,9 @@ nav.tabs {
     background: $white;
   }
 }
-
 .tab-pane.active{
   padding:0.55em 0;
 }
-
 .tab-pane.fade.active{
   background:none;
 }
@@ -79,10 +72,8 @@ nav.tabs {
 .main-tabs .nav-tabs li{
 &.filtertab a{
   &:before{
-  font-family: FontAwesome;
+  @include tabicon;
   content:'\f0b0';
-  color: $blue;
-  margin-right:5px;
     }
   }
 }

@@ -1024,15 +1024,15 @@ nav.tabs {
 
 .main-tabs .nav-tabs li:first-child a:before {
   font-family: FontAwesome;
-  content: '\f041';
   color: #4d749f;
-  margin-right: 5px; }
+  margin-right: 5px;
+  content: '\f041'; }
 
 .main-tabs .nav-tabs li:last-child a:before {
   font-family: FontAwesome;
-  content: '\f0ac';
   color: #4d749f;
-  margin-right: 5px; }
+  margin-right: 5px;
+  content: '\f0ac'; }
 
 .main-tabs .nav-tabs li a {
   background: #ededed;
@@ -1083,9 +1083,9 @@ nav.tabs {
 
 .main-tabs .nav-tabs li.filtertab a:before {
   font-family: FontAwesome;
-  content: '\f0b0';
   color: #4d749f;
-  margin-right: 5px; }
+  margin-right: 5px;
+  content: '\f0b0'; }
 
 .overview-pane {
   padding-right: 10em; }
