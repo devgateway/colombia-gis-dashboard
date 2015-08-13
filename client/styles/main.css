@@ -1081,6 +1081,12 @@ nav.tabs {
 .tab-content .inline {
   padding: 0.3em; }
 
+.main-tabs .nav-tabs li.filtertab a:before {
+  font-family: FontAwesome;
+  content: '\f0b0';
+  color: #4d749f;
+  margin-right: 5px; }
+
 .overview-pane {
   padding-right: 10em; }
 

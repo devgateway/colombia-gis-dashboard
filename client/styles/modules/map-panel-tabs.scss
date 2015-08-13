@@ -76,6 +76,15 @@ nav.tabs {
 .tab-content .inline{
     padding:0.3em;
 }
-
+.main-tabs .nav-tabs li{
+&.filtertab a{
+  &:before{
+  font-family: FontAwesome;
+  content:'\f0b0';
+  color: $blue;
+  margin-right:5px;
+    }
+  }
+}
 
 // end:panel tabs
