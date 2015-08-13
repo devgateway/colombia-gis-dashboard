@@ -217,7 +217,7 @@ input[type=checkbox].glyphicon {
 
 // date filter
 .input-group{
-  width:330px;
+  width:100%;
   &.date{
   margin-top:$gutter*2;
   margin-bottom: $gutter*1.5;
@@ -225,6 +225,17 @@ input[type=checkbox].glyphicon {
     margin-top:0;
   }
   }
+}
+.input-group-addon {
+  padding: 6px 12px;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1;
+  color: #555;
+  text-align: center;
+  background-color: #e1e8f0;
+  border: 0px solid #e1e8f0;
+  border-radius: 4px;
 }
 
 .start-date,

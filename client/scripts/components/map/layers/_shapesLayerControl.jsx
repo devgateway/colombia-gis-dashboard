@@ -31,20 +31,31 @@ module.exports = React.createClass({
     return 'shapes';
   },
 
+  getInitialState:function(){
+    return {fundingSourceSelected: []};
+  },
+
   _changeBreaksWrapper:function(value){
     this.handleClickForBreaks(value, breaks, breakStyle);
   },
 
   _onFundingSourceChanged: function(obj) {
-    LayerActions.changeFundingSourceSelection(obj.value, obj.selected);
+    var fundingSourceSelected = _.clone(this.state.fundingSourceSelected);
+    if(obj.selected){
+      fundingSourceSelected.push(obj.value);
+    }else{
+      fundingSourceSelected.splice(fundingSourceSelected.indexOf(obj.value));
+    }
+    this.setState({"fundingSourceSelected": fundingSourceSelected});
+    LayerActions.changeFilterSelection("ft", fundingSourceSelected, false);
   },
 
   _showDisbursements: function() {
-    LayerActions.changeFundingTypeSelection('disbursements');
+    LayerActions.changeFilterSelection("fs", "disbursements");
   },
 
   _showCommitments: function() {
-    LayerActions.changeFundingTypeSelection('commitments');
+    LayerActions.changeFilterSelection("fs", "commitments");
   },
 
   componentDidMount: function(){
@@ -52,13 +63,21 @@ module.exports = React.createClass({
   },
 
   render: function() {
-
     console.log('...................... Layer State ......................')
     console.log(this.state.fundingTypes);
     console.log('...................... Layer State ......................')
-
+    var self = this;
     var level=this.state.level;
     var fundingSources = this.state.fundingSourceItems || [];
+    _.map(fundingSources, function(fs){
+      var isSelected = _.find(self.state.fundingSourceSelected, function(s){return s==fs.id});
+      if(isSelected){
+        fs.selected = true;
+      } else {
+        fs.selected = false;
+      }
+    });
+    
     var fundingType = this.state.fundingType;
     var self = this;
     return (

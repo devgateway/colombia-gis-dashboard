@@ -58,7 +58,6 @@ module.exports = {
 /*. The range of the break is greater than or equal to the minimum value and less than the maximum value.*/
 
 	_getStyle: function(value, isMunicipalitySelected) {
-
 		if (this.state.geoData) {
 
 			var breakData = _.find(_.values(this.state.breaks.breaks), function(t) {

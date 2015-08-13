@@ -32,7 +32,6 @@ var defaultStyle = {
 /*. The range of the break is greater than or equal to the minimum value and less than the maximum value.*/
 
 var defaultBreaks = {
-	'symbol':{'symbol':{width:10, type:"esriSMS", style:"esriSMSSquare"}},
 	'field': ' - Funding',
 	breaks: {
 		'Level0': {
@@ -115,10 +114,6 @@ module.exports = Reflux.createStore({
 		return 'shapes';
 	},
 
-	_getTitle:function(){
-		return 'Funding By Type'
-	},
-	
 	_getDefaultBreaks: function() {
 		return defaultBreaks;
 	},
@@ -127,59 +122,36 @@ module.exports = Reflux.createStore({
 		this._loadFundingFilter();
 	},
 
-/*
-  	onRestoreData: function(data, type) {
-	    if(this._getLayerId()==type){
-		   this.update({dataToRestore: data, isRestorePending: true})
-		   this._load(null, data.level, true); //restore data
-		}
-
-	},
-	*/	
 	onRestoreData: function(savedData) {
 		if(savedData.shapesState){
-			
-			this.update({dataToRestore: savedData.shapesState, isRestorePending: true});
-		    this._load(null, savedData.shapesState.level, true); //restore data
+		   this.update({dataToRestore: savedData.shapesState, isRestorePending: true, filters:savedData.shapesState.filters});
+		   this._load(null, savedData.shapesState.level, true); //restore data
 		} else {
 			this.update({'visible':false});
 		}
 	},
 	
-	onChangeFundingTypeSelection: function(fundingType) {
-		this.update({'fundingType': fundingType});
-		var filters = _.clone(this.state.filters || []);
-		var ftFilter = _.find(filters, {'param': 'ft'});
-		if (ftFilter){
-			_.assign(ftFilter, {'values': [fundingType]})
-		} else {
-			filters.push({'param': 'ft', 'values': [fundingType]});
-		}
-		this._applyFilters(filters, true);
+	onChangeGroupFilterSelection: function(filters) {
+		_.forEach(filters, function(filter){
+			this.onChangeFilterSelection(filter.param, filter.values, true);
+		}.bind(this));
+		this._applyFilters(filters, "shapes");
 	},
 
-	onChangeFundingSourceSelection: function(id, selected) {
-		var selectedList = this.state.fundingSelected? this.state.fundingSelected.slice(0) : [];
-		if (selected){
-			selectedList.push(id);
-		} else {
-			_.remove(selectedList, function(item) {
-				return item == id;
-			})
-		}
-		this.update({fundingSelected: selectedList});
-		var filters = _.clone(this.state.filters || []);
-		if (selectedList.length>0){
-			var fsFilter = _.find(filters, {'param': 'fs'});
-			if (fsFilter){
-				_.assign(fsFilter, {'values': selectedList})
-			} else {
-				filters.push({'param': 'fs', 'values': selectedList});
-			}
-		} else {
-			_.remove(filters, function(f) {return f.param=='fs';});
-		}
-		this._applyFilters(filters, true);
+	onChangeFilterSelection: function(param, value, silent) {
+		var filters=_.clone(this.state.filters || []);
+	    value = Array.isArray(value)? value : [value]; //"values" in query should be an array
+	    var filter = _.find(filters, {'param': param});
+	    if (filter){
+	      filter.values = value;
+	    } else {
+	      filters.push({"param": param, "values": value});
+	    }
+	    _.assign(this.state.filters,filters);
+	    //this.update({"filters": filters}, {'silent': true});
+	    if (!silent){
+	    	this._applyFilters(filters, "shapes");
+	    }
 	},
 
 	getInitialState: function() {
@@ -189,7 +161,7 @@ module.exports = Reflux.createStore({
 			visible: false,
 			breaks: defaultBreaks, //defaul styles breaks
 			defaultStyle: defaultStyle, //Default symbol styles
-			saveItems: ["breaks", "defaultStyle", "level", "opacity", "visible"]
+			saveItems: ["breaks", "defaultStyle", "level", "opacity", "visible", "filters"]
 		});
 	},
 
@@ -228,13 +200,13 @@ module.exports = Reflux.createStore({
 						self._setGeoData(geoData, geoStats);
 					});
 
-			}.bind(this)).fail(function() {
-				console.log('Error loading data ...');
-			});
-		},
+		}.bind(this)).fail(function() {
+			console.log('Error loading data ...');
+		});
+	},
 
 
-		_loadByDepartments: function() {
+	_loadByDepartments: function() {
 		//var geoData = _.clone(departmentsGeoJson);
 		var self = this;
 		API.getActivitiesByDepartment(this.state.filters).then(
