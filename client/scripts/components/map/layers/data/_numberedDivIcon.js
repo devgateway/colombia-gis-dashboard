@@ -18,8 +18,9 @@ module.exports = function(options) {
       var div = document.createElement('div');
       var numdiv = document.createElement('div');
       numdiv.setAttribute("class", "number");
+      numdiv.setAttribute("style", "height:" + this.options.radius + "px");
       numdiv.setAttribute("style", "line-height:" + this.options.radius + "px");
-      numdiv.innerHTML = "<span>" + this.options.number + "</span>" || '';
+      numdiv.innerHTML = "<div>" + this.options.number + "</div>" || '';
       div.appendChild(numdiv);
 
       

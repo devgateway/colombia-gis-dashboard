@@ -13,16 +13,12 @@ module.exports = {
 		this.listenTo(FilterStore, "_applyFilters");
 	},
 
+
 	/*Listen  set property event comming from the layer control  */
 	onChangeLayerValue: function(id, property, value, subProperty) {
 		console.log(id);
 		var prevLevel = this.state.level;
 		var newLevel = this.state.level;
-
-		var latestChange  = new Object();
-		latestChange['latestChange'] = {'id':id, 'property':property, 'value':value, 'subProperty':subProperty}; //TODO:Review this structure seems to be  duplicating data that we already have at store level
-		this.update(latestChange, {'silent': true});
-
 
 		if (id === this._getLayerId()) {
 			var assignable = new Object();
@@ -32,7 +28,8 @@ module.exports = {
 				newLevel = value;
 
 				this.update(assignable, {
-					'silent': true
+					'silent': true,
+					'subProperty':subProperty
 				}); //update level on current state
 
 				this._load(prevLevel, value, false); //load the new level, do  not trigger the state since it will be triggered by the load method  
@@ -40,7 +37,8 @@ module.exports = {
 			} else if (property == 'visible') {
 				if (value == true && !this.state.geoData) {
 					this.update(assignable, {
-						'silent': true
+						'silent': true,
+						'subProperty':subProperty
 					}); //update level on current state
 
 					this._load(prevLevel, newLevel, true);
@@ -51,21 +49,21 @@ module.exports = {
 			} else if (property == 'color') {
 				var breaks=_.clone(this.state.breaks);
 				breaks.breaks[subProperty].style.color = value;
-				this.update({'breaks':breaks});
+				this.update({'breaks':breaks,'subProperty':subProperty});
 
 			} else if (property == 'break') {
 				var breaks=_.clone(this.state.breaks);
 				breaks.breaks[subProperty].min = value[0];
 				breaks.breaks[subProperty].max = value[1];
-				this.update({'breaks':breaks});
+				this.update({'breaks':breaks,'subProperty':subProperty});
 			
 			} else if (property == 'breakStyle') {
-				this.update({'breakStyle':value});
+				this.update({'breakStyle':value,'subProperty':subProperty});
 			
 			} else if (property == 'radius') {
 				var breaks=_.clone(this.state.breaks);
 				breaks.breaks[subProperty].style.radius = value;
-				this.update({'breaks':breaks});
+				this.update({'breaks':breaks,'subProperty':subProperty});
 			
 			} else {
 				this.update(assignable); //other case trigger the new state
@@ -75,6 +73,9 @@ module.exports = {
 
 
 	_getDefState: function() {
+		var id=		this._getLayerId();
+		var title=	this._getTitle();
+		
 		return {
 			level: "departament",
 			visible: true,
@@ -82,6 +83,9 @@ module.exports = {
 			zIndex: 1,
 			isLoaded: false,
 			geoData: null,
+			id:id,
+			title:title
+
 		}
 
 	},

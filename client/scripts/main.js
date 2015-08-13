@@ -105,6 +105,13 @@ L.Path.prototype.setOpacity = function(fill, stroke) { //add setOpacity method t
 }
 
 
+$.ajaxSetup({
+  beforeSend: function() {
+        console.log('JAXA BEFORE SENT');
+    },
+});
+
+
 window.i18n.init(options, function(t) {
 	router.run(function(Handler, state) {
 		React.render(React.createElement(Handler, state), document.getElementById('app-wrapper'));
