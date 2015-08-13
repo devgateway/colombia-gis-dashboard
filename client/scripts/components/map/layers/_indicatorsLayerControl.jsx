@@ -14,7 +14,8 @@ var CommonsMixins = require('./_mixins.js');
 var _ = require('lodash');
 
 var Breaker=require('./_breaker.jsx');
-
+var breaks = [0, 20, 40, 60, 80, 100];
+var breakStyle = "percentage";
 
 var Store = require('../../../stores/indicatorLayerStore.js');
 
@@ -28,8 +29,8 @@ module.exports = React.createClass({
     return 'indicators';
   },
 
-  _changeRadius:function(value,level){
-    LayerActions.changeLayerValue('indicators','radius',value,level); 
+  _changeBreaksWrapper:function(value){
+    this.handleClickForBreaks(value, breaks, breakStyle);
   },
 
   _selectIndicator:function(indicator){
@@ -78,20 +79,48 @@ module.exports = React.createClass({
             <div className="vbuffer"/>
             <div className="vbuffer"/>
           </li>
-          <li className="color-selection">
-            <h3 className="color-control"><Message message='layers.colorSelection'/></h3>
-            {
-              _.map(_.keys(this.state.breaks.breaks),function(key){
-                var br=this.state.breaks.breaks[key];
-                var minLabel = br.min.toFixed(0);
-                var maxLabel = (br.max - 1).toFixed(0);
+          <li>
+              <div className="vbuffer"/>
+              <div className="clearFix"/>
+              <h3 className="color-control"><Message message='layers.classificationScheme'/></h3>
+              <div>
+                <div className="breaksTemplates">
+                  <div className="label label-info" onClick={this._changeBreaksWrapper.bind(this, 0)} title={i18n.t("filters.defaultTip")}><Message message='filters.default'/></div> 
+                  <div className="label label-info" onClick={this._changeBreaksWrapper.bind(this, 1)} title={i18n.t("filters.jenksTip")}><Message message='filters.jenks'/></div>
+                  <div className="label label-info" onClick={this._changeBreaksWrapper.bind(this, 2)} title={i18n.t("filters.arithmeticTip")}><Message message='filters.arithmetic'/></div>
+                  <div className="label label-info" onClick={this._changeBreaksWrapper.bind(this, 3)} title={i18n.t("filters.geometricTip")}><Message message='filters.geometric'/></div>
+                </div>
+                <div className="clearFix"/>
+                <div className="breaksTemplates">
+                  <h3 className="color-control"><Message message='layers.colorPalettes'/></h3>
+                  <div className="colorpicker-element">
+                  <span className="input-group-addon" onClick={this.handleClickForColor.bind(this, 0, null)} title={i18n.t("filters.defaultColor")}><i style={{backgroundColor:'#AA3900'}}></i></span></div>
+                  <div className="colorpicker-element">
+                  <span className="input-group-addon" onClick={this.handleClickForColor.bind(this, 1)} title={i18n.t("filters.contrast1")}><i style={{backgroundColor:'#FF3333'}}></i></span></div>
+                  <div className="colorpicker-element">
+                  <span className="input-group-addon" onClick={this.handleClickForColor.bind(this, 2)} title={i18n.t("filters.contrast2")}><i style={{backgroundColor:'#3399FF'}}></i></span></div>
+                  <div className="colorpicker-element">
+                  <span className="input-group-addon" onClick={this.handleClickForColor.bind(this, 3)} title={i18n.t("filters.gradient1")}><i style={{backgroundColor:'#66FFB2'}}></i></span></div>
+                  <div className="colorpicker-element">
+                  <span className="input-group-addon" onClick={this.handleClickForColor.bind(this, 4)} title={i18n.t("filters.gradient2")}><i style={{backgroundColor:'#FFFF66'}}></i></span></div>
+                </div>
+              </div>
+              <div className="clearFix"/>
+            </li>
+            <li>
+              <h3 className="color-control percent-funding"><Message message='layers.fundingPercent'/></h3>
+              <h3 className="color-control"><Message message='layers.colorSelection'/></h3>
+              {                
+                _.map(_.keys(this.state.breaks.breaks),function(key){
+                  var br=this.state.breaks.breaks[key];
+                  var minLabel = br.min.toFixed(br.min<10?2:0);
+                  var maxLabel = br.max.toFixed(br.max<10?2:0);
                 return (
-                  <Breaker  level={key} label={minLabel+'-'+maxLabel} radius={br.style.radius} color={br.style.color} onChangeColor={this._changeColor}
-                  onChageRadius={this._changeRadius}/>
-                  )
-              }.bind(this))
-            }
-          </li>
+                        <Breaker  level={key} label={minLabel+' - '+maxLabel} color={br.style.color} onChangeColor={this._changeColor} />
+                        )
+                }.bind(this))
+              }
+            </li>
         </ul>
       </TogglerContent>
     </Toggler>

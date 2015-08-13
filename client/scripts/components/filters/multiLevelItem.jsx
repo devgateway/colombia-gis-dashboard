@@ -20,9 +20,7 @@ module.exports = React.createClass({
   },
 
   componentWillReceiveProps :function(nextProps){
-    if(nextProps.selected!=undefined){
-        this.setState({'selected':nextProps.selected})
-    };
+    this.setState({'selected':nextProps.selected || false})
   },
 
   getInitialState: function() {

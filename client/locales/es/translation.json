@@ -31,6 +31,7 @@
 		"apply":"Aplicar Todos",
 		"showAll":"Mostrar todos",
 		"showOnlySelected":"Mostrar solo los seleccionados",
+		"showSelected":"Mostrar seleccionados",
 		"noResults":"No se encontraron resultados disponibles",
 		"expand":"Expandir",
 		"collapse":"Retraer",
@@ -59,8 +60,9 @@
 		"gradient1":"Gradiente de colores 1",
 		"gradient2":"Gradiente de colores 2",
 		"valueRange": "Rango de Valores",
-		"valueRangesBetween": "Rango de Valores Entre:",
-		"performSearch": "Por favor, realice una búsqueda para mostrar algunos resultados"
+		"valueRangesBetween": "Rango de inversión de USAID por subactividad entre:",
+		"performSearch": "Por favor, realice una búsqueda para mostrar algunos resultados",
+		"subActivities":"Sub Actividades"
 	},
 
 	"layers": {

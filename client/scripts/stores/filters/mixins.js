@@ -75,7 +75,11 @@ module.exports = {
 	      var pattern = new RegExp(keyword, 'i');
 	      return pattern.test(item.name)
 	    } else {
-	      return true;
+	    	if (this.state.searchAndSelectMode){
+	    		return false;
+	    	} else {
+	    		return true;
+	    	}	      
 	    }
 	},
 
@@ -95,6 +99,11 @@ module.exports = {
 
 	_loadItems: function(url) {
 		Util.get(url).then(function(data) {
+			if (this.state.searchAndSelectMode){
+				_.forEach(data, function(item){
+					_.assign(item, {'hide': true});//hide the item by default					
+				}.bind(this));
+			}
 			this.update({items: _.sortBy(this._capitalize(data), 'name'), loaded:true});
 			this._initialized=true;
 		}.bind(this)).fail(function() {

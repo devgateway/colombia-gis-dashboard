@@ -9,6 +9,7 @@ var CommonsMixins=require('./commonsMixins.jsx');
 var KeywordSearch=require('./keywordSearch.jsx');
 var SelectAllNone=require('./allNoneSelector.jsx');
 var SelectionCounter = require('./selectionCounter.jsx');
+var CustomCheckbox = require('../commons/customCheckbox.jsx');
 
 var TreeView =  React.createClass({
 
@@ -85,6 +86,14 @@ module.exports = React.createClass({
   
   componentDidUpdate: function() {
     $(this.getDOMNode()).find('.filter-list-container').mCustomScrollbar({theme:"inset-dark"});
+    var lowestLevel = this.state[this.state.lowestLevel];
+    var lowerLevelCounterSelected =  0;
+    var lowerLevelCounterTotal = 0;
+    if (lowestLevel){
+      lowerLevelCounterTotal = lowestLevel.length;
+      lowerLevelCounterSelected =  _.filter(lowestLevel, function(it){return it.selected}).length;  
+    }
+    this.props.onChangeCounter(this.state.lowestLevel, lowerLevelCounterSelected, lowerLevelCounterTotal);    
   },
 
   getInitialState: function() {
@@ -94,14 +103,7 @@ module.exports = React.createClass({
   },
 
   render: function() {
-    var items = this.state.itemsTree || [];
-    var lowestLevel = this.state[this.state.lowestLevel];
-    var lowerLevelCounterSelected =  0;
-    var lowerLevelCounterTotal = 0;
-    if (lowestLevel){
-      lowerLevelCounterTotal = lowestLevel.length;
-      lowerLevelCounterSelected =  _.filter(lowestLevel, function(it){return it.selected}).length;  
-    }
+    var items = this.state.itemsTree || [];    
     var noResults = "";
     if (this.state.noResults){
       noResults = <div className="filter-no-results">
@@ -116,7 +118,10 @@ module.exports = React.createClass({
               
               <div className="filter-group-panel-header">
                 <span className="filter-label" role="label">{<Message message={this.props.label}/>}</span>
-                <SelectionCounter selected={lowerLevelCounterSelected} total={lowerLevelCounterTotal} onCounterClicked={this._onCounterClicked}/>
+                <div className="show-selected">
+                  <span><CustomCheckbox onChange={this._onShowSelectedClicked}/></span>
+                  <span><Message message="filters.showOnlySelected"/></span>                                    
+                </div>                
                 <SelectAllNone onSelectAll={this._onSelectAll} onSelectNone={this._onSelectNone}/>
               </div>
               <KeywordSearch onSearch={this._onSearch} onSearchEnterKey={this._onSearchEnterKey}/>

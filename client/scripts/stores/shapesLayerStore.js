@@ -32,6 +32,7 @@ var defaultStyle = {
 /*. The range of the break is greater than or equal to the minimum value and less than the maximum value.*/
 
 var defaultBreaks = {
+	'symbol':{'symbol':{width:10, type:"esriSMS", style:"esriSMSSquare"}},
 	'field': ' - Funding',
 	breaks: {
 		'Level0': {
@@ -114,6 +115,10 @@ module.exports = Reflux.createStore({
 		return 'shapes';
 	},
 
+	_getTitle:function(){
+		return 'Funding By Type'
+	},
+	
 	_getDefaultBreaks: function() {
 		return defaultBreaks;
 	},
