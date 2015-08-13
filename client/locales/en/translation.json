@@ -135,6 +135,7 @@
 		"savedmapstitle":"List of Saved Maps",
 		"tooltipupdate":"Update",
 		"tooltipprint":"Print",
+		"tooltipprintpng":"Print as png",
 		"tooltipopen":"Open",
 		"tooltipdelete":"Delete",
 		"closebutton":"Close",

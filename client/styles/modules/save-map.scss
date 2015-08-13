@@ -61,8 +61,9 @@ h4{
   padding:$gutter;
   ul{
     @include space-reset;
-    margin-left: -$gutter;
+    margin-left:0;
     margin-bottom: $gutter;
+
   }
   h3{
     @include space-reset;
@@ -109,8 +110,6 @@ h4{
   background: #d7e0e4;
   @include border-radius(3px);
   margin-top:$gutter;
-  margin-left:$gutter;
-  width:98%;
   h4{
     @include textBold;
     font-size:13px;
