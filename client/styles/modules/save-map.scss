@@ -144,3 +144,20 @@ h4{
     border-color: $border-grey;
   }
 }
+// button in panel to save current map
+.non-btn-action{
+  color:darken($green,15%);
+  @include textBold;
+  @include textUppercase;
+  @include transitionColor;
+  font-size:12px;
+  margin-right:$gutter*2.7;
+  margin-top:$gutter/2.4;
+  cursor:pointer;
+  &:hover{
+    color:darken($green,25%);
+  }
+  .fa{
+    margin-right: $gutter/2;
+  }
+}

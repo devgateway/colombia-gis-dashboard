@@ -8,6 +8,8 @@ var TabPane = require('react-bootstrap/lib/TabPane');
 var Basemaps=require('../map/baseMap.jsx')
 var TabLayerNavigator=require('./../map/tabLayerNavigator.jsx');
 
+var SaveMap=require('./storedMaps/saveDialog.jsx');
+
 var Filter=require('./../filters/filtersManager.jsx');
 var  StoredMaps=require('../storedMaps/mapList.jsx')
 module.exports  = React.createClass({
@@ -21,6 +23,11 @@ module.exports  = React.createClass({
     return (
       <div className="fixed" id="map-panel" >
         <Basemaps/>
+        <div className="non-btn-action pull-right">
+        <a href="#" data-toggle="modal" data-target="#myModal" onClick={this.open}>
+          <i className="fa fa-download"></i><Message message='savemap.exportsavebutton'/>
+        </a>
+        </div>
         <TabbedArea className="tabs main-tabs" role="tablist" defaultActiveKey={1}>
           <TabPane className="" eventKey={1} tab={<Message message='layers.title'/>}>
             <TabLayerNavigator/>
@@ -31,9 +38,8 @@ module.exports  = React.createClass({
         <TabPane className="" eventKey={3} tab={<Message message='savemap.savedmapstab'/>}>
               <StoredMaps/>
           </TabPane>
-
-
         </TabbedArea>
+
       </div>
       );
   }

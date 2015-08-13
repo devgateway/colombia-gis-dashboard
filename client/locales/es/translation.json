@@ -140,6 +140,7 @@
 		"tooltipdelete":"Eliminar",
 		"closebutton":"Cerrar",
 		"savebutton":"Guardar Cambios",
+		"exportsavebutton":"Exportar/Guardar Mapa",
 		"downloadtitle":"Descarga de pdf para impresión",
 		"printloadmessage":"Por favor espere mientras se genera el archivo pdf, el tiempo de creación del archivo dependerá de la configuración del mapa",
 		"printreadymessage":"Haga clic aquí para descargar el archivo pdf",
