@@ -124,7 +124,7 @@ module.exports = Reflux.createStore({
 
 	onRestoreData: function(savedData) {
 		if(savedData.shapesState){
-			this.update({dataToRestore: savedData.shapesState, isRestorePending: true});
+		   this.update({dataToRestore: savedData.shapesState, isRestorePending: true, filters:savedData.shapesState.filters});
 		   this._load(null, savedData.shapesState.level, true); //restore data
 		} else {
 			this.update({'visible':false});
@@ -161,7 +161,7 @@ module.exports = Reflux.createStore({
 			visible: false,
 			breaks: defaultBreaks, //defaul styles breaks
 			defaultStyle: defaultStyle, //Default symbol styles
-			saveItems: ["breaks", "defaultStyle", "level", "opacity", "visible"]
+			saveItems: ["breaks", "defaultStyle", "level", "opacity", "visible", "filters"]
 		});
 	},
 

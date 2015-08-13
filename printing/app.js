@@ -101,7 +101,7 @@ app.get('/map/:id', function (req, res) {
     // Finding all planets in the solar system
     db.find({'_id':req.params.id  }, function (err, docs) {
         if(docs.length > 0){
-        res.json(docs[0]);
+             res.json(docs[0]);
         }else{
             res.sendStatus(404).send("Can't find this map");
         }
@@ -170,9 +170,9 @@ function makeFile(id) {
 
         var fileName = UUID + '.pdf';
 
-        console.log(mapUrl + '' + templateUrl + ' ' + fileName + ' ' + tmpFolder);
+        console.log( templateUrl + ' ' + fileName + ' ' + tmpFolder);
 
-        var childArgs = [path.join(__dirname, '/scripts/makepdf.js'), mapUrl, templateUrl, fileName, tmpFolder]
+        var childArgs = [path.join(__dirname, '/scripts/makepdf.js'), templateUrl, fileName, tmpFolder]
 
         childProcess.execFile(binPath, childArgs, function (err, stdout, stderr) {
             console.log(stdout);

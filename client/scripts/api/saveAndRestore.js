@@ -3,6 +3,7 @@ var reqwest = require('reqwest');
 var tim = require('tinytim').tim;
 
 function logFailure(err) {
+  debugger;
   console.error(err);
 }
 
@@ -10,7 +11,6 @@ module.exports = {
 
 
   saveMapToAPI: function(params) {
-    debugger;
     console.log("scripts->api->saveAndRestoreMap: saveMapToAPI");
     return reqwest({
       url: window.MAP_SAVE_URL,
@@ -18,6 +18,30 @@ module.exports = {
       method: 'post',
       contentType: "application/json",
       data: JSON.stringify(params),
+      crossOrigin: true
+    }).fail(logFailure);
+  },
+
+  updateMapToAPI: function(id, params) {
+    console.log("scripts->api->saveAndRestoreMap: updateMapToAPI");
+    var url = tim(window.MAP_UPDATE_DELETE_URL,{id:id});
+    return reqwest({
+      url: url,
+      type: 'json',
+      method: 'put',
+      contentType: "application/json",
+      data: JSON.stringify(params),
+      crossOrigin: true
+    }).fail(logFailure);
+  },
+
+  deleteMapToAPI: function(id) {
+    console.log("scripts->api->saveAndRestoreMap: deleteMapToAPI");
+    var url = tim(window.MAP_UPDATE_DELETE_URL,{id:id});
+    return reqwest({
+      url: url,
+      type: 'json',
+      method: 'delete',
       crossOrigin: true
     }).fail(logFailure);
   },

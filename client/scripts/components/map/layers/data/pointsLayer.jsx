@@ -27,12 +27,13 @@
        mixins: [Mixins, Reflux.connect(Store)],
 
        _pointToLayer: function(feature, latlng) {
-
          var style = this._getStyle(feature.properties.activities);
-        
+         var rgbColor = style.color.r + "," + style.color.g + "," + style.color.b;
+         var rgbaColor = rgbColor + "," + style.color.a;
          var icon = NumberedDivIcon({
            radius: style.radius,
-           bgColor: style.color,
+           rbgaColor: rgbaColor,
+           rbgColor: rgbColor,
            number: feature.properties.activities
          });
 
@@ -50,12 +51,13 @@
          this.layer.eachLayer(function(l) {
             if(l._icon){
              var style = this._getStyle(l.feature.properties.activities);
-             var rgbColor = style.color.r + "," + style.color.g + "," + style.color.b + "," + style.color.a;
+             var rgbColor = style.color.r + "," + style.color.g + "," + style.color.b;
+             var rgbaColor = rgbColor + "," + style.color.a;
              $(l._icon).css('width', style.radius);
              $(l._icon).css('height', style.radius);
              $(l._icon).find('.number').css('line-height', style.radius + 'px')
-             l._icon.style.backgroundColor = 'rgba(' + rgbColor + ')';
-             l._icon.style.boxShadow = 'rgba(' + rgbColor + ') 0px 0px 4px 3px, rgba(' + rgbColor + ') 0px 0px 0px 4px, rgba(' + rgbColor + ') 0px 0px 0px 8px';
+             l._icon.style.backgroundColor = 'rgba(' + rgbaColor + ')';
+             l._icon.style.boxShadow = '0 0 4px 3px rgba(' + rgbColor + ', 0.6), 0 0 0 4px rgba(' + rgbColor + ', 0.4), 0 0 0 8px rgba(' + rgbColor + ', 0.24)';
            }
          }.bind(this));
        },

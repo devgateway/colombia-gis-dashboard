@@ -6,11 +6,19 @@ var Util = require('../../api/util.js');
 
 module.exports = {
 
+	_initialized:false,
+
 	onClean:function(){
 		this.onUpdateAllSelection(false);
 	},
 
+	//TODO:FIX LOADING
 	onRestoreData: function(savedData) {
+		console.log('............. mixins.js -> onRestoreData');
+		if (!this._initialized){
+			this._loadItems()
+		}
+
 		if(savedData.filterData && savedData.filterData.filters){
 			this.onUpdateAllSelection(false);
 			_.forEach(savedData.filterData.filters, function(filter){
@@ -20,7 +28,8 @@ module.exports = {
 					}.bind(this))
 				}
 			}.bind(this));
-		}		
+		}
+		this.update({'items': _.clone(this.state.items)});
 	},
 
 	onUpdateItemSelection: function(item, selected){
@@ -96,6 +105,7 @@ module.exports = {
 				}.bind(this));
 			}
 			this.update({items: _.sortBy(this._capitalize(data), 'name'), loaded:true});
+			this._initialized=true;
 		}.bind(this)).fail(function() {
 			console.log('Failed to load data ');
 		});
