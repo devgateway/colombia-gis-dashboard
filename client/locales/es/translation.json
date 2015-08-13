@@ -4,7 +4,11 @@
 		"credits" : "Todos los derecho ..  AidData",
 		"description": "MAPA:",
 		"menu":"Menú",
-		"hideMenu":"Esconder Menú"
+		"hideMenu":"Esconder Menú",
+		"languagelabel":"Idioma",
+		"languageSpanish":"Español",
+		"languageEnglish":"Inglés",
+		"saveMenu":"Guardar"
 	},
 
 	"filters": {
@@ -119,12 +123,32 @@
 		"nationalSubActivities": "SubActividades Nacionales"
 	},
 	"savemap":{
-		"savemaplabel":"Save Mapa",
+		"savemaplabel":"Guardar Mapa",
 		"savemaptitle": "Título del mapa",
 		"savemapdescription": "Descripción del mapa",
 		"savemaptags": "Agregar etiquetas",
 		"savemapvisibility": "Visibilidad del mapa",
 		"savemappublic": "Publico",
-		"savemapprivate": "Privado"
+		"savemapprivate": "Privado",
+		"savedmapstab":"Mapas Guardados",
+		"savedmapstitle":"Lista de Mapas Guardados",
+		"savedmapssearch":"Buscar Mapa",
+		"tooltipupdate":"Actualizar",
+		"tooltipprint":"Imprimir",
+		"tooltipopen":"Abrir",
+		"tooltipdelete":"Eliminar",
+		"closebutton":"Cerrar",
+		"savebutton":"Guardar Cambios",
+		"downloadtitle":"Descarga de pdf para impresión",
+		"printloadmessage":"Por favor espere mientras se genera el archivo pdf, el tiempo de creación del archivo dependerá de la configuración del mapa",
+		"printreadymessage":"Haga clic aquí para descargar el archivo pdf",
+		"confirmation":"Confirmación",
+		"areyousure":"Está seguro que desea borrar este mapa?",
+		"yes":"Si",
+		"no":"No",
+		"mandatoryFields":"* Campos Obligatorios",
+		"mandatoryFieldsMissing":" / Favor completar los campos obligatorios",
+		"titleIsDuplicated":" / Este título ya ha sido utilizado. Favor indicar uno nuevo.",
+		"mandatoryFieldsLength": " / El título del mapa tiene un máximo de 100 caracteres y la descripción del mapa un máximo de 300 caracteres, por favor revise esos campos"
 	}
 }

@@ -17,7 +17,7 @@ var defaultStyle = {
     r: 253,
     g: 154,
     b: 0,
-    a: 0.8
+    a: 0.6
   },
   "weight": 1,
   "opacity": 1,

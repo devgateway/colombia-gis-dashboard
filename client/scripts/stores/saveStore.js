@@ -37,8 +37,69 @@ module.exports = Reflux.createStore({
   },
 
   onSaveMap: function(options) {
-    debugger;
     console.log('stores->saveStore->onSaveMap');
+    if(this._validateParamsForAPI(options, false)){
+      var params = this._createParamsForAPI(options);
+      this._saveMap(params);
+    }
+  },
+
+  onUpdateMap: function(id, options) {
+    console.log('stores->saveStore->onUpdateMap');
+    if(this._validateParamsForAPI(options, true)){
+      var params = this._createParamsForAPI(options);
+      this._updateMap(id, params);
+    }
+  },
+
+  onDeleteMap: function() {
+    console.log('stores->saveStore->onDeleteMap');
+    var self = this;
+    var id = self.state.id;
+    API.deleteMapToAPI(id).then(
+      function(data) {
+        this.onFindMaps(); //refresh map list
+      }.bind(this)).fail(function(err) {
+        self.update({
+          'error': err
+        });
+        console.log('onDeleteMap: Error deleting data ...');
+      });
+    this.onShowDeleteModal(false);
+  },
+
+  _validateParamsForAPI: function(options, isUpdate) {
+    var errorMsg = '';
+    var isValid = true;
+    if(options.title){
+      if(!isUpdate && _.find(this.state.maps, function(m){return m.title==options.title})){
+        errorMsg = 'savemap.titleIsDuplicated';
+        isValid = false;
+      } else if(options.title.length>100){
+        errorMsg = 'savemap.mandatoryFieldsLength';
+        isValid = false;
+      }
+    } else {
+      errorMsg = 'savemap.mandatoryFieldsMissing';
+      isValid = false;
+    }
+
+    if(!options.description){
+      errorMsg = 'savemap.mandatoryFieldsMissing';
+      isValid = false;
+    } else if(options.description.length>300){
+      errorMsg = 'savemap.mandatoryFieldsLength';
+      isValid = false;
+    }
+
+    this.update({
+      'errorMsg': errorMsg
+    });
+    return isValid;
+  },
+
+  _createParamsForAPI: function(options) {
+    console.log('stores->saveStore->_createParamsForAPI');
     var mapData = this._getDataFromState(mapState);
     var lanData = this._getDataFromState(lanState);
     var filterData = {
@@ -47,11 +108,11 @@ module.exports = Reflux.createStore({
     var shapesData = this._getDataFromState(shapesState);
     var pointsData = this._getDataFromState(pointsState);
     var arcgisData = this._getDataFromState(arcgisState);
-
+    var tagArray = options.tags?options.tags.split(','):null;
     var params = {
       'title': options.title,
       'description': options.description,
-      'tags': options.tags,
+      'tags': tagArray,
       'map': {
         'mapState': mapData,
         'lanState': lanData,
@@ -61,8 +122,7 @@ module.exports = Reflux.createStore({
         'arcgisState': arcgisData
       }
     }
-
-    this._saveMap(params);
+    return(params);
   },
 
   _getDataFromState: function(stateVar) {
@@ -84,18 +144,36 @@ module.exports = Reflux.createStore({
   },
 
   _saveMap: function(params) {
-    console.log("stores->saveStore: onSaveMapToAPI");
+    console.log("stores->saveStore: _saveMap");
+    var self = this;
     API.saveMapToAPI(params).then(
       function(data) {
         this.onHideModal(); //tell save dialog that everything is done 
         this.onFindMaps(); //refresh map list
 
       }.bind(this)).fail(function(err) {
-      this.update({
-        'error': err
+        self.update({
+          'error': err
+        });
+        console.log('_saveMap: Error saving data ...');
       });
-      console.log('onSaveMapToAPI: Error saving data ...');
-    });
+  },
+
+
+  _updateMap: function(id, params) {
+    console.log("stores->saveStore: _updateMap");
+    var self = this;
+    API.updateMapToAPI(id, params).then(
+      function(data) {
+        this.onHideModal(); //tell save dialog that everything is done 
+        this.onFindMaps(); //refresh map list
+
+      }.bind(this)).fail(function(err) {
+        self.update({
+          'error': err
+        });
+        console.log('_updateMap: Error saving data ...');
+      });
   },
 
   onRestoreMapFromAPI: function(id) {
@@ -116,9 +194,9 @@ module.exports = Reflux.createStore({
           'maps': data
         });
       }.bind(this)).fail(function() {
-      console.log('onRestoreMapFromAPI: Error saving data ...');
-    });
-  },
+        console.log('onRestoreMapFromAPI: Error saving data ...');
+      });
+    },
 
   onHideModal: function() {
     this.update({
@@ -126,10 +204,19 @@ module.exports = Reflux.createStore({
     });
   },
 
-  onShowModal: function() {
-
+  onShowModal: function(key, id) {
     this.update({
-      'showModal': true
+      'key': key,
+      'id': id,
+      'showModal': true,
+      'errorMsg': ''
+    });
+  },
+
+  onShowDeleteModal: function(isVisible, id) {
+    this.update({
+      'id': id,
+      'showDeleteModal': isVisible
     });
   },
 
@@ -138,6 +225,33 @@ module.exports = Reflux.createStore({
     this.state = assign(this.state, assignable);
     if (!options.silent) {
       this.trigger(this.state);
+    }
+  },
+
+  onFilterByKeyword: function(keyword){
+    var noResults = true;
+    _.forEach(this.state.maps, function(item){
+      if (this._itemMatchs(item, keyword)){
+        _.assign(item, {'hide': false});
+        noResults = false;
+      } else {
+        _.assign(item, {'hide': true}); 
+      }
+    }.bind(this));
+    if (noResults){
+      this.update({'store': _.clone(this.state.store), 'noResults': true});
+    } else {
+      this.update({'store': _.clone(this.state.store), 'noResults': false});
+    }
+  },
+
+  _itemMatchs: function(item, keyword) {
+
+    if (keyword.length > 1) {
+      var pattern = new RegExp(keyword, 'i');
+      return pattern.test(item.title)  || pattern.test(item.description) || pattern.test(item.tags);
+    } else {
+      return true;
     }
   },
 

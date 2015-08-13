@@ -21,13 +21,13 @@ module.exports = function(options) {
       numdiv.setAttribute("style", "line-height:" + this.options.radius + "px");
       numdiv.innerHTML = "<span>" + this.options.number + "</span>" || '';
       div.appendChild(numdiv);
-      this._setIconStyles(div, 'icon');
 
       
       div.style.width = options.radius;
       div.style.height = options.radius;
-      div.style.backgroundColor =  'rgba(' + options.bgColor + ')' ;
-      div.style.boxShadow = 'rgba(' + options.bgColor + ') 0px 0px 4px 3px, rgba(' + options.bgColor + ') 0px 0px 0px 4px, rgba(' + options.bgColor + ') 0px 0px 0px 8px';
+      div.style.backgroundColor =  'rgba(' + options.rbgaColor + ')' ;
+      div.style.boxShadow = '0 0 4px 3px rgba(' + options.rbgColor + ', 0.6), 0 0 0 4px rgba(' + options.rbgColor + ',0.4), 0 0 0 8px rgba(' + options.rbgColor + ',0.24)';
+      this._setIconStyles(div, 'icon');
       return div;
     },
 

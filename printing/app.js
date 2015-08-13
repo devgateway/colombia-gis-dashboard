@@ -12,13 +12,12 @@ var Promise = require("bluebird");
 
 var Datastore = require('nedb'),
     db = new Datastore();
-
+//path.join(__dirname, '/db')
 /*Globals*/
 var binPath = phantomjs.path
 var tmpFolder = path.join(__dirname, '/tmp');
 
-
-var HOST="http://devgateway.github.io/colombia-gis-dashboard";
+var HOST="http://devgateway.github.io/colombia-gis-dashboard"
 
 if (process.env.NODE_ENV=='production'){
     HOST='http://devgateway.github.io/colombia-gis-dashboard'  
@@ -65,7 +64,7 @@ app.use(function(req, res, next) {
     }
     // intercept OPTIONS method
     if (oneof && req.method == 'OPTIONS') {
-        res.send(200);
+        res.sendStatus(200);
     }
     else {
         next();
@@ -90,6 +89,31 @@ app.post('/save', function (req, res) {
     });
 });
 
+app.put('/save/:id', function (req, res) {
+    var id = req.params.id;
+    var doc =  req.body;
+    db.update({ '_id': id }, doc, {}, function (err) {   
+        if (err) {
+            return res.sendStatus(403).send('Error in update:' + id + ' - ' + err);
+
+        } else {
+            res.json(doc);
+        }
+    });
+});
+
+app.delete('/save/:id', function (req, res) {
+    var id = req.params.id;
+    db.remove({ '_id': id }, {}, function (err) { 
+        if (err) {
+            console.log('delete fail:' + id);
+            return res.sendStatus(403).send('Error in delete');
+        } else {
+            res.json({});
+        }
+    });
+});
+
 app.get('/maps', function (req, res) {
     // Finding all planets in the solar system
     db.find({  }, function (err, docs) {
@@ -101,7 +125,7 @@ app.get('/map/:id', function (req, res) {
     // Finding all planets in the solar system
     db.find({'_id':req.params.id  }, function (err, docs) {
         if(docs.length > 0){
-        res.json(docs[0]);
+            res.json(docs[0]);
         }else{
             res.sendStatus(404).send("Can't find this map");
         }

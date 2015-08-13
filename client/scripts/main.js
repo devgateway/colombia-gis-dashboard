@@ -8,6 +8,7 @@ window.ESRI_PROXY_URL = 'http://esri-proxy.adstg.org/';
 
 
 window.MAP_SAVE_URL = 'http://map-print.adstg.org/save';
+window.MAP_UPDATE_DELETE_URL = 'http://map-print.adstg.org/save/{{id}}';
 window.MAP_LIST_URL = 'http://map-print.adstg.org/maps';
 window.MAP_GET_URL = 'http://map-print.adstg.org/map/{{id}}';
 
@@ -25,6 +26,7 @@ if ((window.location.host.indexOf('localhost') > -1) || (window.location.host.in
 	window.MOCK_PATH = '/mock-data'
 
 	window.MAP_SAVE_URL = 'http://localhost:3033/save';
+	window.MAP_UPDATE_DELETE_URL = 'http://localhost:3033/save/{{id}}';
 	window.MAP_LIST_URL = 'http://localhost:3033/maps';
 	window.MAP_GET_URL = 'http://localhost:3033/map/{{id}}';
 
