@@ -127,6 +127,6 @@ module.exports = {
   PublicPrivatePartnership: makeStore(Actions.PublicPrivatePartnership, 'publicPrivatePartnership.json', {'param': 'pp'}),
   RapidImpact: makeStore(Actions.RapidImpact, 'rapidImpact.json', {'param': 'ri'}),
   SubActivityStatus: makeStore(Actions.SubActivityStatus, 'subActivityStatus.json', {'param': 'st'}),
-  SubActivities: makeStore(Actions.SubActivities, 'municipalitiesList.json', {'param': 'st', 'searchAndSelectMode': true}),
+  SubActivities: makeStore(Actions.SubActivities, 'subActivitiesList.json', {'param': 'st', 'searchAndSelectMode': true}),
   TargetPopulation: makeStore(Actions.TargetPopulation, 'targetPopulation.json', {'param': 'tp'})
 }
