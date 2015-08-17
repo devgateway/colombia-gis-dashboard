@@ -99,6 +99,7 @@ module.exports = React.createClass({
 					<div className="plain-panel">
 					<h4 className="modal-title"><Message message='savemap.savemaptags'/></h4>
 					<Tags onUpdate={this.updateTags} value={this.getTags()}/>
+					<span> <Message message='savemap.tagshelptext'/></span>
 					</div>
 					<div className="plain-panel"><Message message='savemap.mandatoryFields'/>
 						<If condition={this.state.store.errorMsg} >

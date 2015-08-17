@@ -151,6 +151,7 @@
 		"yes":"Si",
 		"no":"No",
 		"mandatoryFields":"* Campos Obligatorios",
+		"tagshelptext":"Por favor separe las etiquetas con comas",
 		"mandatoryFieldsMissing":" / Favor completar los campos obligatorios",
 		"titleIsDuplicated":" / Este título ya ha sido utilizado. Favor indicar uno nuevo.",
 		"mandatoryFieldsLength": " / El título del mapa tiene un máximo de 100 caracteres y la descripción del mapa un máximo de 300 caracteres, por favor revise esos campos"
