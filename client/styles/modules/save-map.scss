@@ -161,3 +161,12 @@ h4{
     margin-right: $gutter/2;
   }
 }
+
+.label-tag{
+  @include border-radius(2px);
+  background:lighten($blue,20%);
+  color: $white;
+  margin-right:$gutter/2;
+  padding: $gutter/6 $gutter/2;
+  font-size:11px;
+}

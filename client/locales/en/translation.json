@@ -64,7 +64,7 @@
 		"valueRangesBetween": "USAID's investment range by subactivity between:",
 		"performSearch": "Please, perform a search to show some results",
 		"subActivities":"SubActivities"
-		
+
 	},
 
 	"layers": {
@@ -128,6 +128,7 @@
 	},
 	"savemap":{
 		"savemaplabel":"Save This Map",
+		"savemapdialogtitle":"Save This Map",
 		"savemaptitle": "Map Title",
 		"savemapdescription": "Map Description",
 		"savemaptags": "Add Tags",
@@ -152,6 +153,7 @@
 		"yes":"Yes",
 		"no":"No",
 		"mandatoryFields":"* Mandatory fields",
+		"tagshelptext":"Please separate tags with commas",
 		"mandatoryFieldsMissing":" / Please complete mandatory fields",
 		"titleIsDuplicated":" / This title has already been used. Please indicate a new one.",
 		"mandatoryFieldsLength": " / The map title have a maximum of 100 characters and the map description a maximum of 300 characters, please check those fields"

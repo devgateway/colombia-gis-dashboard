@@ -1460,8 +1460,7 @@ ul.tabs {
       color: #2472c8; }
   .arcgis-sig-in .marker {
     border-radius: 100%;
-    background-color: rgba(253, 154, 0, 0.8);
-    box-shadow: 0 0 4px 3px rgba(255, 255, 255, 0.6), 0 0 0 4px rgba(255, 88, 1, 0.4), 0 0 0 8px rgba(242, 129, 0, 0.24); }
+    background-color: rgba(253, 154, 0, 0.8); }
     .arcgis-sig-in .marker .number {
       width: 100%;
       height: 100%;
@@ -1910,6 +1909,17 @@ h4.modal-title {
   .non-btn-action .fa {
     margin-right: 0.5em; }
 
+.label-tag {
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  background-clip: padding-box;
+  /* stops bg color from leaking outside the border: */
+  background: #8ba8c7;
+  color: #ffffff;
+  margin-right: 0.5em;
+  padding: 0.16667em 0.5em;
+  font-size: 11px; }
+
 /*add here all styles used during development later they will be replaced by the final ones */
 .selectable-radio, .selectable {
   border-radius: 0% !important;
@@ -2067,5 +2077,51 @@ h4.modal-title {
     z-index: 1500; }
   .timeSliderContainer .noUi-value, .timeSliderContainer .noUi-marker {
     font-size: 10px; }
+
+.pdf h1 {
+  color: #4d749f; }
+.pdf #map {
+  display: block;
+  overflow: hidden; }
+.pdf .map {
+  padding: 15px;
+  border: 10px solid #EEE;
+  position: relative !important;
+  width: 100%;
+  height: 780px; }
+.pdf .legend {
+  width: 45%;
+  margin-left: 10px;
+  margin-top: 30px;
+  float: left;
+  height: 100px; }
+  .pdf .legend .title {
+    font-size: 11pt !important;
+    font-weight: bold; }
+  .pdf .legend ul.group {
+    margin-bottom: 20px;
+    list-style: none;
+    margin-left: 0px;
+    clear: both;
+    padding: 0px;
+    margin: 0px; }
+    .pdf .legend ul.group div.title {
+      font-size: 8pt !important;
+      clear: both; }
+    .pdf .legend ul.group li {
+      padding: 0px;
+      margin: 0px; }
+  .pdf .legend ul.items {
+    list-style: none;
+    margin-left: 0px;
+    max-height: 400px;
+    padding: 0px;
+    margin: 0px;
+    clear: both; }
+    .pdf .legend ul.items li {
+      float: left;
+      width: 100px; }
+.pdf .number {
+  vertical-align: middle; }
 
 /*# sourceMappingURL=main.css.map */
