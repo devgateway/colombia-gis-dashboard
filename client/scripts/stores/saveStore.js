@@ -149,9 +149,9 @@ module.exports = Reflux.createStore({
     var self = this;
     API.saveMapToAPI(params).then(
       function(data) {
-        this.onHideModal(); //tell save dialog that everything is done 
-        this.onFindMaps(); //refresh map list
-
+        self.onHideModal(); //tell save dialog that everything is done 
+        self.onFindMaps(); //refresh map list
+        self.update({'mapName':data.title});
       }.bind(this)).fail(function(err) {
         self.update({
           'error': err
@@ -178,11 +178,12 @@ module.exports = Reflux.createStore({
   },
 
   onRestoreMapFromAPI: function(id) {
-   console.log("stores->saveStore: onOpenMap"+id);
+    console.log("stores->saveStore: onOpenMap"+id);
+    var self=this;
     API.getMapById(id).then(
       function(data) {
-          RestoreActions.restoreData(data.map)
-          ///this.update({map:data})
+          RestoreActions.restoreData(data.map);
+          self.update({'mapName':data.title});
       }).fail(function() {
       console.log('onRestoreMapFromAPI: Error saving data ...');
     });

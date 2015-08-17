@@ -3,13 +3,18 @@ var React = require('react');
 var Reflux = require('reflux');
 var RouteHandler = require('react-router').RouteHandler;
 var LanSelector=require('./lanSelector.jsx');
+var SaveStore=require('../stores/saveStore.js');
 var NationalSubActivities=require('./map/nationalSubActivities.jsx')
 var AGOLProfile=require('./esri/AGOLProfile.jsx');
 
 
 module.exports = React.createClass({
+
+  mixins: [Reflux.connect(SaveStore, 'save')],
+
   render: function() {
     var mapName = i18n.t("app.title");
+    debugger;
     if(this.state.save && this.state.save.mapName){
       mapName=this.state.save.mapName;
     } 
