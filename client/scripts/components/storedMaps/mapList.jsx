@@ -2,6 +2,7 @@
 
 var React = require('react');
 var Reflux = require('reflux');
+var If=require('../commons/if.jsx');
 var Store=require('../../stores/saveStore.js');
 var Actions=require('../../actions/saveActions.js');
 var Grid=require('react-bootstrap/lib/Grid');
@@ -16,6 +17,7 @@ var SaveMap=require('./saveDialog.jsx');
 var Modal=require('react-bootstrap/lib/Modal');
 var Button=require('react-bootstrap/lib/Button');
 var Pagination=require('react-bootstrap/lib/Pagination');
+
 
 module.exports  = React.createClass({
 
@@ -120,6 +122,17 @@ mixins: [Reflux.connect(Store,"store")],
                         </Panel>
                         </Col>
                       </Row>
+                      <Row>
+                        <Col md={12}>
+                        <Panel className="pull-left">
+                          {
+                            _.map(m.tags,function(t){
+                              return (<Label bsStyle='warning'>{t}</Label> )
+                            })
+                          }
+                        </Panel>
+                        </Col>
+                      </Row>
                     </Grid>
 
                 </li>)
@@ -129,7 +142,9 @@ mixins: [Reflux.connect(Store,"store")],
         }
       </ul>
       <div>
-        <Pagination bsSize='small' items={itemsSize} activePage={this.state.activePage} onSelect={this.handlePageSelect} />
+        <If condition={mapList.length>0}>
+          <Pagination bsSize='small' items={itemsSize} activePage={this.state.activePage} onSelect={this.handlePageSelect} />
+        </If>
       </div>
       <Modal className='dialog-save-map' {...this.props} bsSize='medium' aria-labelledby='contained-modal-title-lg'
        show={showDeleteModal} onHide={this._showDeleteModal.bind(this, false)}>
