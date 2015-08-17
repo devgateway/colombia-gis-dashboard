@@ -8,15 +8,22 @@ var TabPane = require('react-bootstrap/lib/TabPane');
 var Basemaps=require('../map/baseMap.jsx')
 var TabLayerNavigator=require('./../map/tabLayerNavigator.jsx');
 
-var SaveMap=require('./storedMaps/saveDialog.jsx');
+var SaveActions=require('../../actions/saveActions.js');
+var SaveMap=require('../storedMaps/saveDialog.jsx');
 
 var Filter=require('./../filters/filtersManager.jsx');
-var  StoredMaps=require('../storedMaps/mapList.jsx')
-module.exports  = React.createClass({
+var StoredMaps=require('../storedMaps/mapList.jsx');
 
+
+module.exports  = React.createClass({
 
   componentDidMount: function(){
       $(this.getDOMNode()).mCustomScrollbar({theme:"inset-dark"}); //TODO: can't this be done by a css??
+      $( "#saveMapPopup" ).hide();
+  },
+
+  open:function(){
+    SaveActions.showModal('save')
   },
 
   render: function() {
@@ -39,7 +46,7 @@ module.exports  = React.createClass({
               <StoredMaps/>
           </TabPane>
         </TabbedArea>
-
+        <SaveMap/>
       </div>
       );
   }
