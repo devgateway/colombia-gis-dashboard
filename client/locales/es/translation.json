@@ -126,6 +126,7 @@
 	},
 	"savemap":{
 		"savemaplabel":"Guardar Mapa",
+		"savemapdialogtitle":"Save Mapa",
 		"savemaptitle": "Título del mapa",
 		"savemapdescription": "Descripción del mapa",
 		"savemaptags": "Agregar etiquetas",

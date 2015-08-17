@@ -84,7 +84,7 @@ module.exports = React.createClass({
 			 show={showModal} onHide={this.close}>
 				<Modal.Header>
 					<Modal.Title>
-						<i className="fa fa-folder-open"></i><Message message='savemap.savemaplabel'/>
+						<i className="fa fa-folder-open"></i><Message message='savemap.savemapdialogtitle'/>
 					</Modal.Title>
 					<a className="close-dialog" href="#" onClick={this.close}>
 					<i className="fa fa-times-circle-o"></i></a>
