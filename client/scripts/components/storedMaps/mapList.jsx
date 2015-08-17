@@ -3,6 +3,7 @@
 var React = require('react');
 var Reflux = require('reflux');
 var If=require('../commons/if.jsx');
+var LanStore=require('../../stores/lanStore.js');
 var Store=require('../../stores/saveStore.js');
 var Actions=require('../../actions/saveActions.js');
 var Grid=require('react-bootstrap/lib/Grid');
@@ -21,7 +22,7 @@ var Pagination=require('react-bootstrap/lib/Pagination');
 
 module.exports  = React.createClass({
 
-mixins: [Reflux.connect(Store,"store")],
+mixins: [Reflux.connect(Store,"store"), Reflux.connect(LanStore, 'lan')],
 
   componentDidMount:function(){
     Actions.findMaps();

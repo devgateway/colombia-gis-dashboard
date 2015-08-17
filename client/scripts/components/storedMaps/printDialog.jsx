@@ -10,8 +10,13 @@ var API=require('../../api/saveAndRestore.js');
 
 var _=require('lodash');
 var tim = require('tinytim').tim;
-var Loading=require('../commons/loading.jsx')
+var Loading=require('../commons/loading.jsx');
+var LanStore=require('../../stores/lanStore.js');
+
+
 module.exports = React.createClass({
+
+	mixins: [Reflux.connect(LanStore, 'lan')],
 
 	_close:function(){
 		this.setState({'visible':false})
