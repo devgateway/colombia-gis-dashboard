@@ -26,7 +26,7 @@ module.exports = Reflux.createStore({
   listenables: SaveActions,
 
   init: function() {
-    this.state = {};
+    this.state = {mapName : ''}; 
     this.listenTo(LanStore, this._handleLanDataUpdate);
     this.listenTo(FilterStore, this._handleFilterDataUpdate);
     this.listenTo(ShapesLayerStore, this._handleShapesDataUpdate);
@@ -114,6 +114,7 @@ module.exports = Reflux.createStore({
       'description': options.description,
       'tags': tagArray,
       'map': {
+        'mapName': 'Saved Map for Colombia',
         'mapState': mapData,
         'lanState': lanData,
         'filterData': filterData,

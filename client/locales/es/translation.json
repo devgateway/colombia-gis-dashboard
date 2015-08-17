@@ -1,8 +1,8 @@
 {
 	"app": {
-		"title": " Esta area puede ser usada para un titulo largo",
-		"credits" : "Todos los derecho ..  AidData",
-		"description": "MAPA:",
+		"title": "Colombia",
+		"credits" : "Todos los derechos reservados ..  AidData",
+		"description": "Mapa de monitoreo:",
 		"menu":"Menú",
 		"hideMenu":"Esconder Menú",
 		"languagelabel":"Idioma",
