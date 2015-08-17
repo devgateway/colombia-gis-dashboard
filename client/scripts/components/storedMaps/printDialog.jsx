@@ -42,7 +42,7 @@ module.exports = React.createClass({
 		return (
 			<span>
 			<a href="#">
-			<i className="pull-right fa fa-file-pdf-o" title='Print' onClick={this._open}></i>
+			<i className="pull-right fa fa-file-pdf-o" title={i18n.t('savemap.tooltipprint')} onClick={this._open}></i>
 			</a>
 			<Modal className='dialog-print-map' bsSize='large' aria-labelledby='contained-modal-title-lg' show={this.state.visible} onHide={this.close}>
 			<Modal.Header>

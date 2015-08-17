@@ -105,12 +105,10 @@ mixins: [Reflux.connect(Store,"store")],
                               <i className="pull-right fa fa-pencil" title={i18n.t('savemap.tooltipupdate')} onClick={this._update.bind(this,m._id)}></i>
                               </a>
                               <SaveMap/>
+                              <PrintDialog key={m.id} id={m._id}/>
                               <a href="#">
-                              <i className="pull-right fa fa-file-pdf-o" title={i18n.t('savemap.tooltipprint')} ></i>
+                              <i className="pull-right fa fa-file-image-o" title={i18n.t('savemap.tooltipprintpng')} ></i>
                               </a>
-                              <a href="#">
-                             <i className="pull-right fa fa-file-image-o" title={i18n.t('savemap.tooltipprintpng')} ></i>
-                             </a>
                               <a href="#">
                               <i className="pull-right fa fa-folder-open" title={i18n.t('savemap.tooltipopen')} onClick={this._open.bind(this,m._id)}></i>
                               </a>
