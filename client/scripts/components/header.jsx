@@ -3,7 +3,6 @@ var React = require('react');
 var Reflux = require('reflux');
 var RouteHandler = require('react-router').RouteHandler;
 var LanSelector=require('./lanSelector.jsx');
-var SaveMap=require('./storedMaps/saveDialog.jsx');
 var NationalSubActivities=require('./map/nationalSubActivities.jsx')
 var AGOLProfile=require('./esri/AGOLProfile.jsx');
 

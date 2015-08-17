@@ -66,9 +66,9 @@ mixins: [Reflux.connect(Store,"store")],
 
   render: function() {
     var origMapList=this.state.store.maps || [];
-    var mapList=_.union(_.filter(origMapList, {hide:undefined}), _.filter(origMapList, {hide:false}));
+    var mapList=_.sortBy(_.union(_.filter(origMapList, {hide:undefined}), _.filter(origMapList, {hide:false})), 'title');
     var showDeleteModal=this.state.store.showDeleteModal || false;
-    var itemsSize=mapList.length>this.state.pageSize?(mapList.length/this.state.pageSize).toFixed(0):1;
+    var itemsSize=mapList.length>this.state.pageSize?Math.ceil(mapList.length/this.state.pageSize):1;
 
     return (
 
@@ -106,10 +106,10 @@ mixins: [Reflux.connect(Store,"store")],
                               </a>
                               <SaveMap/>
                               <a href="#">
-                              <i className="pull-right fa fa-file-pdf-o" title={i18n.t('savemap.tooltipprint')} onClick='{this._update.bind(this,m._id)}'></i>
+                              <i className="pull-right fa fa-file-pdf-o" title={i18n.t('savemap.tooltipprint')} ></i>
                               </a>
                               <a href="#">
-                             <i className="pull-right fa fa-file-image-o" title={i18n.t('savemap.tooltipprintpng')} onClick=''></i>
+                             <i className="pull-right fa fa-file-image-o" title={i18n.t('savemap.tooltipprintpng')} ></i>
                              </a>
                               <a href="#">
                               <i className="pull-right fa fa-folder-open" title={i18n.t('savemap.tooltipopen')} onClick={this._open.bind(this,m._id)}></i>
