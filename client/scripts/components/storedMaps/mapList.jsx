@@ -132,7 +132,7 @@ mixins: [Reflux.connect(Store,"store")],
                         <Panel className="pull-left">
                           {
                             _.map(m.tags,function(t){
-                              return (<Label bsStyle='warning'>{t}</Label> )
+                              return (<span className="label-tag">{t}</span> )
                             })
                           }
                         </Panel>

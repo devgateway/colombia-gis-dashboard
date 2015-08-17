@@ -8,7 +8,7 @@ var TabPane = require('react-bootstrap/lib/TabPane');
 var Basemaps=require('../map/baseMap.jsx')
 var TabLayerNavigator=require('./../map/tabLayerNavigator.jsx');
 
-var SaveMap=require('./storedMaps/saveDialog.jsx');
+var SaveMap=require('../storedMaps/saveDialog.jsx');
 
 var Filter=require('./../filters/filtersManager.jsx');
 var  StoredMaps=require('../storedMaps/mapList.jsx')
