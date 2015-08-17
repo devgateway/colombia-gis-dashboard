@@ -1024,15 +1024,15 @@ nav.tabs {
 
 .main-tabs .nav-tabs li:first-child a:before {
   font-family: FontAwesome;
-  content: '\f041';
   color: #4d749f;
-  margin-right: 5px; }
+  margin-right: 5px;
+  content: '\f041'; }
 
 .main-tabs .nav-tabs li:last-child a:before {
   font-family: FontAwesome;
-  content: '\f0ac';
   color: #4d749f;
-  margin-right: 5px; }
+  margin-right: 5px;
+  content: '\f0ac'; }
 
 .main-tabs .nav-tabs li a {
   background: #ededed;
@@ -1050,7 +1050,7 @@ nav.tabs {
   text-transform: uppercase; }
 
 .tabs > li a {
-  padding: 8px 25px;
+  padding: 8px 15px;
   color: #9e9e9e;
   border: 1px solid transparent;
   background: #d4d4d4;
@@ -1080,6 +1080,12 @@ nav.tabs {
 
 .tab-content .inline {
   padding: 0.3em; }
+
+.main-tabs .nav-tabs li.filtertab a:before {
+  font-family: FontAwesome;
+  color: #4d749f;
+  margin-right: 5px;
+  content: '\f0b0'; }
 
 .overview-pane {
   padding-right: 10em; }
@@ -1818,7 +1824,7 @@ h4.modal-title {
   .saved-maps ul {
     margin: 0;
     padding: 0;
-    margin-left: -1em;
+    margin-left: 0;
     margin-bottom: 1em; }
   .saved-maps h3 {
     margin: 0;
@@ -1851,7 +1857,7 @@ h4.modal-title {
   margin-top: 1em; }
   .save-map-actions .fa {
     margin-left: 0.66667em;
-    font-size: 17px; }
+    font-size: 14px; }
 
 .saved-map-list {
   background: #d7e0e4;
@@ -1886,6 +1892,23 @@ h4.modal-title {
   .pagination > .active > a:focus:hover {
     background-color: #659735;
     border-color: #eeeeee; }
+
+.non-btn-action {
+  color: #72aa3c;
+  font-weight: bold;
+  text-transform: uppercase;
+  -webkit-transition: color 600ms ease;
+  -moz-transition: color 600ms ease;
+  -o-transition: color 600ms ease;
+  transition: color 600ms ease;
+  font-size: 12px;
+  margin-right: 2.7em;
+  margin-top: 0.41667em;
+  cursor: pointer; }
+  .non-btn-action:hover {
+    color: #58842e; }
+  .non-btn-action .fa {
+    margin-right: 0.5em; }
 
 /*add here all styles used during development later they will be replaced by the final ones */
 .selectable-radio, .selectable {
