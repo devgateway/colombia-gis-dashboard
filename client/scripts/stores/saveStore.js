@@ -26,7 +26,7 @@ module.exports = Reflux.createStore({
   listenables: SaveActions,
 
   init: function() {
-    this.state = {};
+    this.state = {mapName : ''}; 
     this.listenTo(LanStore, this._handleLanDataUpdate);
     this.listenTo(FilterStore, this._handleFilterDataUpdate);
     this.listenTo(ShapesLayerStore, this._handleShapesDataUpdate);
@@ -114,6 +114,7 @@ module.exports = Reflux.createStore({
       'description': options.description,
       'tags': tagArray,
       'map': {
+        'mapName': 'Saved Map for Colombia',
         'mapState': mapData,
         'lanState': lanData,
         'filterData': filterData,
@@ -148,9 +149,9 @@ module.exports = Reflux.createStore({
     var self = this;
     API.saveMapToAPI(params).then(
       function(data) {
-        this.onHideModal(); //tell save dialog that everything is done 
-        this.onFindMaps(); //refresh map list
-
+        self.onHideModal(); //tell save dialog that everything is done 
+        self.onFindMaps(); //refresh map list
+        self.update({'mapName':data.title});
       }.bind(this)).fail(function(err) {
         self.update({
           'error': err
@@ -177,11 +178,12 @@ module.exports = Reflux.createStore({
   },
 
   onRestoreMapFromAPI: function(id) {
-   console.log("stores->saveStore: onOpenMap"+id);
+    console.log("stores->saveStore: onOpenMap"+id);
+    var self=this;
     API.getMapById(id).then(
       function(data) {
-          RestoreActions.restoreData(data.map)
-          ///this.update({map:data})
+          RestoreActions.restoreData(data.map);
+          self.update({'mapName':data.title});
       }).fail(function() {
       console.log('onRestoreMapFromAPI: Error saving data ...');
     });
