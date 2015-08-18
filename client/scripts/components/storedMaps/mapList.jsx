@@ -2,6 +2,8 @@
 
 var React = require('react');
 var Reflux = require('reflux');
+var If=require('../commons/if.jsx');
+var LanStore=require('../../stores/lanStore.js');
 var Store=require('../../stores/saveStore.js');
 var Actions=require('../../actions/saveActions.js');
 var Grid=require('react-bootstrap/lib/Grid');
@@ -17,9 +19,10 @@ var Modal=require('react-bootstrap/lib/Modal');
 var Button=require('react-bootstrap/lib/Button');
 var Pagination=require('react-bootstrap/lib/Pagination');
 
+
 module.exports  = React.createClass({
 
-mixins: [Reflux.connect(Store,"store")],
+mixins: [Reflux.connect(Store,"store"), Reflux.connect(LanStore, 'lan')],
 
   componentDidMount:function(){
     Actions.findMaps();
@@ -64,9 +67,9 @@ mixins: [Reflux.connect(Store,"store")],
 
   render: function() {
     var origMapList=this.state.store.maps || [];
-    var mapList=_.union(_.filter(origMapList, {hide:undefined}), _.filter(origMapList, {hide:false}));
+    var mapList=_.sortBy(_.union(_.filter(origMapList, {hide:undefined}), _.filter(origMapList, {hide:false})), 'title');
     var showDeleteModal=this.state.store.showDeleteModal || false;
-    var itemsSize=mapList.length>this.state.pageSize?(mapList.length/this.state.pageSize).toFixed(0):1;
+    var itemsSize=mapList.length>this.state.pageSize?Math.ceil(mapList.length/this.state.pageSize):1;
 
     return (
 
@@ -105,6 +108,9 @@ mixins: [Reflux.connect(Store,"store")],
                               <SaveMap/>
                               <PrintDialog key={m.id} id={m._id}/>
                               <a href="#">
+                              <i className="pull-right fa fa-file-image-o" title={i18n.t('savemap.tooltipprintpng')} ></i>
+                              </a>
+                              <a href="#">
                               <i className="pull-right fa fa-folder-open" title={i18n.t('savemap.tooltipopen')} onClick={this._open.bind(this,m._id)}></i>
                               </a>
                           </div>
@@ -120,6 +126,17 @@ mixins: [Reflux.connect(Store,"store")],
                         </Panel>
                         </Col>
                       </Row>
+                      <Row>
+                        <Col md={12}>
+                        <Panel className="pull-left">
+                          {
+                            _.map(m.tags,function(t){
+                              return (<span className="label-tag">{t}</span> )
+                            })
+                          }
+                        </Panel>
+                        </Col>
+                      </Row>
                     </Grid>
 
                 </li>)
@@ -129,7 +146,9 @@ mixins: [Reflux.connect(Store,"store")],
         }
       </ul>
       <div>
-        <Pagination bsSize='small' items={itemsSize} activePage={this.state.activePage} onSelect={this.handlePageSelect} />
+        <If condition={mapList.length>0}>
+          <Pagination bsSize='small' items={itemsSize} activePage={this.state.activePage} onSelect={this.handlePageSelect} />
+        </If>
       </div>
       <Modal className='dialog-save-map' {...this.props} bsSize='medium' aria-labelledby='contained-modal-title-lg'
        show={showDeleteModal} onHide={this._showDeleteModal.bind(this, false)}>

@@ -10,8 +10,13 @@ var API=require('../../api/saveAndRestore.js');
 
 var _=require('lodash');
 var tim = require('tinytim').tim;
-var Loading=require('../commons/loading.jsx')
+var Loading=require('../commons/loading.jsx');
+var LanStore=require('../../stores/lanStore.js');
+
+
 module.exports = React.createClass({
+
+	mixins: [Reflux.connect(LanStore, 'lan')],
 
 	_close:function(){
 		this.setState({'visible':false})
@@ -42,7 +47,7 @@ module.exports = React.createClass({
 		return (
 			<span>
 			<a href="#">
-			<i className="pull-right fa fa-file-pdf-o" title='Print' onClick={this._open}></i>
+			<i className="pull-right fa fa-file-pdf-o" title={i18n.t('savemap.tooltipprint')} onClick={this._open}></i>
 			</a>
 			<Modal className='dialog-print-map' bsSize='large' aria-labelledby='contained-modal-title-lg' show={this.state.visible} onHide={this.close}>
 			<Modal.Header>
