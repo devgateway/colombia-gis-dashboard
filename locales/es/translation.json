@@ -1,10 +1,14 @@
 {
 	"app": {
-		"title": " Esta area puede ser usada para un titulo largo",
-		"credits" : "Todos los derecho ..  AidData",
-		"description": "MAPA:",
+		"title": "Esta area puede ser usada para un titulo largo",
+		"credits" : "Todos los derechos reservados ..  AidData",
+		"description": "Mapa de monitoreo:",
 		"menu":"Menú",
-		"hideMenu":"Esconder Menú"
+		"hideMenu":"Esconder Menú",
+		"languagelabel":"Idioma",
+		"languageSpanish":"Español",
+		"languageEnglish":"Inglés",
+		"saveMenu":"Guardar"
 	},
 
 	"filters": {
@@ -27,6 +31,7 @@
 		"apply":"Aplicar Todos",
 		"showAll":"Mostrar todos",
 		"showOnlySelected":"Mostrar solo los seleccionados",
+		"showSelected":"Mostrar seleccionados",
 		"noResults":"No se encontraron resultados disponibles",
 		"expand":"Expandir",
 		"collapse":"Retraer",
@@ -55,8 +60,9 @@
 		"gradient1":"Gradiente de colores 1",
 		"gradient2":"Gradiente de colores 2",
 		"valueRange": "Rango de Valores",
-		"valueRangesBetween": "Rango de Valores Entre:",
-		"performSearch": "Por favor, realice una búsqueda para mostrar algunos resultados"
+		"valueRangesBetween": "Rango de inversión de USAID por subactividad entre:",
+		"performSearch": "Por favor, realice una búsqueda para mostrar algunos resultados",
+		"subActivities":"Sub Actividades"
 	},
 
 	"layers": {
@@ -119,12 +125,36 @@
 		"nationalSubActivities": "SubActividades Nacionales"
 	},
 	"savemap":{
-		"savemaplabel":"Save Mapa",
+		"savemaplabel":"Guardar Mapa",
+		"savemapdialogtitle":"Save Mapa",
 		"savemaptitle": "Título del mapa",
 		"savemapdescription": "Descripción del mapa",
 		"savemaptags": "Agregar etiquetas",
 		"savemapvisibility": "Visibilidad del mapa",
 		"savemappublic": "Publico",
-		"savemapprivate": "Privado"
+		"savemapprivate": "Privado",
+		"savedmapstab":"Mapas Guardados",
+		"savedmapstitle":"Lista de Mapas Guardados",
+		"savedmapssearch":"Buscar Mapa",
+		"tooltipupdate":"Actualizar",
+		"tooltipprint":"Imprimir como PDF",
+		"tooltipprintpng":"Imprimir como imágen",
+		"tooltipopen":"Abrir",
+		"tooltipdelete":"Eliminar",
+		"closebutton":"Cerrar",
+		"savebutton":"Guardar Cambios",
+		"exportsavebutton":"Exportar/Guardar Mapa",
+		"downloadtitle":"Descarga de pdf para impresión",
+		"printloadmessage":"Por favor espere mientras se genera el archivo pdf, el tiempo de creación del archivo dependerá de la configuración del mapa",
+		"printreadymessage":"Haga clic aquí para descargar el archivo pdf",
+		"confirmation":"Confirmación",
+		"areyousure":"Está seguro que desea borrar este mapa?",
+		"yes":"Si",
+		"no":"No",
+		"mandatoryFields":"* Campos Obligatorios",
+		"tagshelptext":"Por favor separe las etiquetas con comas",
+		"mandatoryFieldsMissing":" / Favor completar los campos obligatorios",
+		"titleIsDuplicated":" / Este título ya ha sido utilizado. Favor indicar uno nuevo.",
+		"mandatoryFieldsLength": " / El título del mapa tiene un máximo de 100 caracteres y la descripción del mapa un máximo de 300 caracteres, por favor revise esos campos"
 	}
 }
