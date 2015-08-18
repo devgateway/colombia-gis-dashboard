@@ -26,7 +26,7 @@ module.exports = Reflux.createStore({
   listenables: [LayersActions, SaveActions],
 
   init: function() {
-    this.state = {'layersVisible': {'indicators': false, 'points': true, 'shapes': false}};
+    this.state = {mapName : '','layersVisible': {'indicators': false, 'points': true, 'shapes': false}};
     this.listenTo(LanStore, this._handleLanDataUpdate);
     this.listenTo(FilterStore, this._handleFilterDataUpdate);
     this.listenTo(ShapesLayerStore, this._handleShapesDataUpdate);
