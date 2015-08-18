@@ -155,3 +155,8 @@ button.layer-search {
 .selectable{
   @extend .selectable-radio;
 }
+
+.selectable-disabled{
+  @extend .selectable-radio;
+  background: #dddddd;
+}
