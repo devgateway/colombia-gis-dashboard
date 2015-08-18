@@ -65,7 +65,7 @@ app.use(function(req, res, next) {
     }
     // intercept OPTIONS method
     if (oneof && req.method == 'OPTIONS') {
-        res.send(200);
+        res.sendStatus(200);
     }
     else {
         next();
@@ -87,6 +87,31 @@ app.post('/save', function (req, res) {
     var doc =  req.body;
     db.insert(doc, function (err, newDoc) {   // Callback is optional
         res.json(newDoc);
+    });
+});
+
+app.put('/save/:id', function (req, res) {
+    var id = req.params.id;
+    var doc =  req.body;
+    db.update({ '_id': id }, doc, {}, function (err) {   
+        if (err) {
+            return res.sendStatus(403).send('Error in update:' + id + ' - ' + err);
+
+        } else {
+            res.json(doc);
+        }
+    });
+});
+
+app.delete('/save/:id', function (req, res) {
+    var id = req.params.id;
+    db.remove({ '_id': id }, {}, function (err) { 
+        if (err) {
+            console.log('delete fail:' + id);
+            return res.sendStatus(403).send('Error in delete');
+        } else {
+            res.json({});
+        }
     });
 });
 

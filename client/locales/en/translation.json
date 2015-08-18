@@ -1,8 +1,8 @@
 {
 	"app": {
 		"title": "This area can be translated as a written legend of what is being actualized on the map",
-		"credits" : "Copy Rigths AidData",
-		"description": "Map description -",
+		"credits" : "Copyright AidData",
+		"description": "Monitor map:",
 		"menu":"Menu",
 		"hideMenu":"Hide Menu",
 		"languagelabel":"Language",
@@ -64,7 +64,7 @@
 		"valueRangesBetween": "USAID's investment range by subactivity between:",
 		"performSearch": "Please, perform a search to show some results",
 		"subActivities":"SubActivities"
-		
+
 	},
 
 	"layers": {
@@ -132,6 +132,7 @@
 		"savemaptab":"Save",
 		"exportmaptab":"Export",
 		"savemaplabel":"Save or Export This Map",
+		"savemapdialogtitle":"Save This Map",
 		"savemaptitle": "Map Title",
 		"savemapdescription": "Map Description",
 		"savemaptags": "Add Tags",
@@ -141,7 +142,8 @@
 		"savedmapstab":"Saved Maps",
 		"savedmapstitle":"List of Saved Maps",
 		"tooltipupdate":"Update",
-		"tooltipprint":"Print",
+		"tooltipprint":"Print as PDF",
+		"tooltipprintpng":"Print as image",
 		"tooltipopen":"Open",
 		"tooltipdelete":"Delete",
 		"closebutton":"Close",
@@ -155,6 +157,7 @@
 		"yes":"Yes",
 		"no":"No",
 		"mandatoryFields":"* Mandatory fields",
+		"tagshelptext":"Please separate tags with commas",
 		"mandatoryFieldsMissing":" / Please complete mandatory fields",
 		"titleIsDuplicated":" / This title has already been used. Please indicate a new one.",
 		"mandatoryFieldsLength": " / The map title have a maximum of 100 characters and the map description a maximum of 300 characters, please check those fields"
