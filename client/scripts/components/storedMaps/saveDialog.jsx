@@ -78,6 +78,8 @@ module.exports = React.createClass({
 
 	render:function() {
 		var showModal=this.state.store.showModal || false;
+		var errorArray = this.state.store.errorMsg?this.state.store.errorMsg.split(','):null;
+
 		return (
 			<div className="save-map-trigger">
 			<Modal className='dialog-save-map' {...this.props} bsSize='large' aria-labelledby='contained-modal-title-lg'
@@ -102,9 +104,11 @@ module.exports = React.createClass({
 					<span> <Message message='savemap.tagshelptext'/></span>
 					</div>
 					<div className="plain-panel"><Message message='savemap.mandatoryFields'/>
-						<If condition={this.state.store.errorMsg} >
-							<Message message={this.state.store.errorMsg}/>
-						</If>
+						{
+							_.map(errorArray, function(e){
+								return (<Message message={e}/>)
+							})
+						}
 					</div>
 				</Modal.Body>
 				<Modal.Footer>

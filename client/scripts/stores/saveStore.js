@@ -73,23 +73,39 @@ module.exports = Reflux.createStore({
     var isValid = true;
     if(options.title){
       if(!isUpdate && _.find(this.state.maps, function(m){return m.title==options.title})){
-        errorMsg = 'savemap.titleIsDuplicated';
+        errorMsg = errorMsg + 'savemap.titleIsDuplicated,';
         isValid = false;
       } else if(options.title.length>100){
-        errorMsg = 'savemap.mandatoryFieldsLength';
+        errorMsg = errorMsg + 'savemap.mandatoryTitleLength,';
         isValid = false;
       }
     } else {
-      errorMsg = 'savemap.mandatoryFieldsMissing';
+      errorMsg = errorMsg + 'savemap.mandatoryTitleMissing,';
       isValid = false;
     }
 
     if(!options.description){
-      errorMsg = 'savemap.mandatoryFieldsMissing';
+      errorMsg = errorMsg + 'savemap.mandatoryDescriptionMissing,';
       isValid = false;
     } else if(options.description.length>300){
-      errorMsg = 'savemap.mandatoryFieldsLength';
+      errorMsg = errorMsg + 'savemap.mandatoryDescriptionLength,';
       isValid = false;
+    }
+
+    var tagArray = options.tags?options.tags.split(','):null;
+    if(tagArray){
+      if(tagArray.length>3){
+        errorMsg = errorMsg + 'savemap.tagsQuantity,';
+        isValid = false;
+      }
+      var tagFlag = true;
+      for(var i=0; i<tagArray.length && tagFlag; i++){
+        if(tagArray[i].length>80){
+          errorMsg = errorMsg + 'savemap.tagsLength,';
+          tagFlag = false;
+          isValid = false;
+        }
+      }
     }
 
     this.update({
