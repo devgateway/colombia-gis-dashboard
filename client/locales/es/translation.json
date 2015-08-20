@@ -125,7 +125,12 @@
 		"nationalSubActivities": "SubActividades Nacionales"
 	},
 	"savemap":{
-		"savemaplabel":"Guardar Mapa",
+		"exportsavebutton": "Exportar/Guardar Mapa",
+		"exportactivities":"Exportar Actividades",
+		"exportindicators":"Exportar Indicadores",
+		"savemaptab":"Guardar",
+		"exportmaptab":"Exportar",
+		"savemaplabel":"Guardar o Exportar Mapa",
 		"savemapdialogtitle":"Save Mapa",
 		"savemaptitle": "Título del mapa",
 		"savemapdescription": "Descripción del mapa",
@@ -143,7 +148,7 @@
 		"tooltipdelete":"Eliminar",
 		"closebutton":"Cerrar",
 		"savebutton":"Guardar Cambios",
-		"exportsavebutton":"Exportar/Guardar Mapa",
+		"exportbutton":"Exportar Mapa",		
 		"downloadtitle":"Descarga de pdf para impresión",
 		"printloadmessage":"Por favor espere mientras se genera el archivo pdf, el tiempo de creación del archivo dependerá de la configuración del mapa",
 		"printreadymessage":"Haga clic aquí para descargar el archivo pdf",

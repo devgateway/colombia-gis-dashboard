@@ -24,12 +24,12 @@ var RadioGroup=React.createClass({
 
     componentWillMount: function () {
         this._children = React.Children.map(this.props.children, function(child) {
-                return  React.addons.cloneWithProps(child,{'_onClick':child.props.onClick,'onClick':this._handleItemClick}) //if toggler add click event
+                return React.addons.cloneWithProps(child,{'_onClick':child.props.onClick,'onClick':this._handleItemClick}) //if toggler add click event
         },this);
     },
 
     render:function(){
-        return <div>{this._children}</div>
+        return <div>{this.props.children}</div>
     }
 });
 
@@ -38,7 +38,6 @@ var RadioGroup=React.createClass({
 var Radio = React.createClass({
 
     componentWillReceiveProps: function (nextProps) {
-
     },
 
     _onClick: function() {
@@ -47,9 +46,14 @@ var Radio = React.createClass({
 
     render: function() {
         var classes = this.props.checked ? "selectable-radio selected" : "selectable-radio ";
+        var onclick = this._onClick;
+        if (this.props.disabled){
+            classes = "selectable-disabled";
+            onclick = "";
+        }
         return (
         <div className={this.props.className}>
-            <span  className={classes}  onClick={this._onClick}>
+            <span  className={classes}  onClick={onclick}>
             </span>
 
             <Message message={this.props.label}/>

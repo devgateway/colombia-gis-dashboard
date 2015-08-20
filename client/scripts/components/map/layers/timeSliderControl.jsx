@@ -42,9 +42,9 @@ module.exports = React.createClass({
         var maxQuarter = this._getYearPeriod(unencodedValues[1]);
         LayerActions.changeGroupFilterSelection([
           {"param": "fyi", "values": minYear},
-          {"param": "qi", "values": minQuarter},
+          {"param": "sq", "values": minQuarter},
           {"param": "fyf", "values": maxYear},
-          {"param": "qf", "values": maxQuarter}          
+          {"param": "eq", "values": maxQuarter}          
         ]);
       },
 
