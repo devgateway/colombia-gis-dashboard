@@ -33,7 +33,7 @@ h2 {
   margin-top: 0.3em;
   li{
     border-left: 1px solid saturate(lighten( $blue, 35), 65);
-    float:left;
+    @include floatLeft;
     margin-right:13px;
   }
   a {
