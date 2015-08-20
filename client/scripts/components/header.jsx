@@ -17,7 +17,7 @@ module.exports = React.createClass({
     debugger;
     if(this.state.save && this.state.save.mapName){
       mapName=this.state.save.mapName;
-    } 
+    }
     return (
             <div>
               <div className="navbar navbar-fixed-top map-header">
@@ -27,8 +27,8 @@ module.exports = React.createClass({
                     <h2> {mapName} </h2>
                     <div className="header-nav">
                       <AGOLProfile/>
-                      <a href="#">{i18n.t('app.menu')}</a>&nbsp;&nbsp;
-                      <NationalSubActivities/>&nbsp;&nbsp;
+                      <li><a href="#">{i18n.t('app.menu')}</a></li>
+                      <li><NationalSubActivities/></li>
                       <LanSelector/>
                     </div>
 

@@ -31,11 +31,17 @@ h2 {
   @include floatRight;
   text-transform: uppercase;
   margin-top: 0.3em;
+  li{
+    border-left: 1px solid saturate(lighten( $blue, 35), 65);
+    float:left;
+    margin-right:13px;
+  }
   a {
     color: saturate(lighten( $blue, 35), 65);
     @include transitionColor;
     font-size: 1em;
     line-height:1.74em;
+    padding-left: $gutter/1.7;
     &:hover {
       color: $white;
     }

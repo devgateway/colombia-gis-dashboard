@@ -108,6 +108,10 @@ h2 {
   float: right;
   text-transform: uppercase;
   margin-top: 0.3em; }
+  .header-nav li {
+    border-left: 1px solid #a0cdff;
+    float: left;
+    margin-right: 13px; }
   .header-nav a {
     color: #a0cdff;
     -webkit-transition: color 600ms ease;
@@ -115,7 +119,8 @@ h2 {
     -o-transition: color 600ms ease;
     transition: color 600ms ease;
     font-size: 1em;
-    line-height: 1.74em; }
+    line-height: 1.74em;
+    padding-left: 0.58824em; }
     .header-nav a:hover {
       color: #ffffff; }
 
@@ -636,7 +641,7 @@ button.layer-search {
       line-height: normal;
       font: "Open Sans", sans-serif; }
 
-.selectable-radio, .selectable {
+.selectable-radio, .selectable, .selectable-disabled {
   border-radius: 0% !important;
   background-clip: none;
   font-size: 1.5em !important;
@@ -649,11 +654,14 @@ button.layer-search {
   margin-top: 1px;
   width: 12px;
   height: 12px; }
-  .selectable-radio .fa, .selectable .fa {
+  .selectable-radio .fa, .selectable .fa, .selectable-disabled .fa {
     font-size: 0.7em;
     margin-left: 2px;
     margin-top: -2px;
     float: left; }
+
+.selectable-disabled {
+  background: #dddddd; }
 
 .filter-breadcrumb {
   background: #8ba8c7;
@@ -818,7 +826,7 @@ input[type=checkbox].glyphicon {
   margin-bottom: -1px; }
   .filter-parent:hover {
     opacity: 0.8; }
-  .filter-parent .selectable, .filter-parent .selectable-radio {
+  .filter-parent .selectable, .filter-parent .selectable-radio, .filter-parent .selectable-disabled {
     margin: 0.4em 0.4em 0 0.4em; }
 
 .filter-col, .filter-col-parent, .filter-multilevel-col {
@@ -1159,7 +1167,7 @@ button.search-button {
       margin-right: 2em;
       position: relative; }
 
-.selectable, .selectable-radio {
+.selectable, .selectable-radio, .selectable-disabled {
   width: 10px;
   height: 10px;
   border: 1px solid #cccccc;
@@ -1167,12 +1175,12 @@ button.search-button {
   float: left;
   margin-right: 0.5em;
   margin-top: 3px; }
-  .selectable:hover, .selectable-radio:hover {
+  .selectable:hover, .selectable-radio:hover, .selectable-disabled:hover {
     background: #ffe683; }
-  .selectable.selected, .selected.selectable-radio {
+  .selectable.selected, .selected.selectable-radio, .selected.selectable-disabled {
     background: #e9ba00; }
 
-.selectable-radio, .selectable {
+.selectable-radio, .selectable, .selectable-disabled {
   -webkit-border-radius: 50%;
   border-radius: 50%;
   background-clip: padding-box;
@@ -1427,7 +1435,7 @@ ul.tabs {
       font-size: 12px;
       margin: 0;
       width: 100%; }
-      .external-layer-control li .title .control-title .selectable, .external-layer-control li .title .control-title .selectable-radio {
+      .external-layer-control li .title .control-title .selectable, .external-layer-control li .title .control-title .selectable-radio, .external-layer-control li .title .control-title .selectable-disabled {
         float: left; }
 .external-layer-control .control-wrapper {
   margin-top: -10px; }
@@ -1476,7 +1484,7 @@ ul.tabs {
   float: right;
   position: relative;
   border-left: 1px solid #a0cdff;
-  margin-left: 1.1em; }
+  margin-left: 1em; }
   .language-btn .dropdown-menu {
     background-color: black;
     border: none;
@@ -1633,7 +1641,7 @@ ul.tabs {
   font-size: 13px;
   cursor: pointer; }
 
-.selectable, .selectable-radio {
+.selectable, .selectable-radio, .selectable-disabled {
   cursor: pointer; }
 
 .toggler-button {
@@ -1735,7 +1743,7 @@ ul.funding-options {
     float: left;
     width: 268px;
     margin-bottom: 0; }
-  ul.funding-options .selectable, ul.funding-options .selectable-radio {
+  ul.funding-options .selectable, ul.funding-options .selectable-radio, ul.funding-options .selectable-disabled {
     margin-right: 5px; }
 
 .layer-option-section {
@@ -1921,7 +1929,7 @@ h4.modal-title {
   font-size: 11px; }
 
 /*add here all styles used during development later they will be replaced by the final ones */
-.selectable-radio, .selectable {
+.selectable-radio, .selectable, .selectable-disabled {
   border-radius: 0% !important;
   background-clip: none;
   font-size: 1.5em !important;
@@ -1934,7 +1942,7 @@ h4.modal-title {
   margin-top: 1px;
   width: 13px;
   height: 13px; }
-  .selectable-radio .fa, .selectable .fa {
+  .selectable-radio .fa, .selectable .fa, .selectable-disabled .fa {
     font-size: 0.7em;
     margin-left: 2px;
     margin-top: -2px;
