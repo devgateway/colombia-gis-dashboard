@@ -162,9 +162,9 @@ module.exports = Reflux.createStore({
 				{"indicatorId": "",
 				"activityId": "",
 				"fyi": "2005",
-				"qi": "1",
+				"sq": "1",
 				"fyf": "2016",
-				"qf": "1"}
+				"eq": "1"}
 		});
 	},
 
@@ -179,13 +179,10 @@ module.exports = Reflux.createStore({
 						var items = [];
 						_.map(data, function(d) {
 							if(!isNaN(d.id)){
-								items.push(d.activities);
+								items.push(d.value);
 							}							
 							var feature = _.find(geoData.features, function(e) {
-								//if (e.properties.ID_2 == d.id /*replacer.replaceDiacritics(e.properties.NAME_1).toUpperCase()==d.name*/ ) {
-								//	console.log('Found!');
-								//}
-								return e.properties.ID_2 == d.id; //replacer.replaceDiacritics(e.properties.NAME_1).toUpperCase()==d.name
+								return e.properties.ID_2 == d.idMun; //replacer.replaceDiacritics(e.properties.NAME_1).toUpperCase()==d.name
 							});
 							if (feature) {
 								_.assign(feature.properties, _.omit(_.clone(d), "name")); //set feature values	
@@ -214,10 +211,7 @@ module.exports = Reflux.createStore({
 								items.push(d.activities);
 							}
 							var feature = _.find(geoData.features, function(e) {
-								if (e.properties.ID == d.id /*replacer.replaceDiacritics(e.properties.NAME_1).toUpperCase()==d.name*/ ) {
-									console.log('Found!');
-								}
-								return e.properties.ID == d.id; //replacer.replaceDiacritics(e.properties.NAME_1).toUpperCase()==d.name
+								return e.properties.ID == d.idDep; //replacer.replaceDiacritics(e.properties.NAME_1).toUpperCase()==d.name
 							});
 							if (feature) {
 								_.assign(feature.properties, _.omit(_.clone(d), "name")); //set feature values
@@ -226,33 +220,8 @@ module.exports = Reflux.createStore({
 						var geoStats = new GeoStats(items);
 						self._setGeoData(geoData, geoStats);
 					});
-			}.bind(this)).fail(function() {
-				console.log('Error loading data ...');
-			});
-		}
-	/*
-	_loadByDepartments: function() {
-		this._getGeoData(API.getIndicatorsByDepartment); //just delegate the call to the next function passing the target method
-	},
-
-	_loadByMuncipalities: function() {
-		this._getGeoData(API.getIndicatorsByMuncipalities); //just delegate the call to the next function passing the target method
-	},
-
-	_getGeoData: function(func) {
-	    func(this.state.filters).then(function(results) { //call api function and process results 
-	    	var items = [];
-	    	_.map(results, function(d){
-	    		if(!isNaN(d.id)){
-	    			items.push(d.activities);
-	    		}
-	    	});
-	    	var geoStats = new GeoStats(items);
-	      //tranform plain data to GeoJson
-	      this._setGeoData(Util.toGeoJson(results), geoStats); //process and set changes to state  
-		}.bind(this)).fail(function(e) {
-			console.log('Error while loading data ...', e);
+		}.bind(this)).fail(function() {
+			console.log('Error loading data ...');
 		});
 	}
-	*/
 });

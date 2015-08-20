@@ -41,7 +41,7 @@ module.exports  = React.createClass({
 
   componentWillMount:function(){
     console.log('_popupActivitiesPoint>componentWillMount');
-    this._getInfoData(this.props.id, this.props.level, this.props.filters, true); 
+    this._getInfoData(this.props.id, this.props.level, this.props.filters, 'points'); 
   },
 
   componentDidMount: function() {
@@ -56,7 +56,7 @@ module.exports  = React.createClass({
       newState.infoWindowFilter.map(function(node){node.values.map(function(innerNode){previousId = innerNode})});
     }
     if(previousId!=props.id || props.filters!=this.props.filters){
-      this._getInfoData(props.id, props.level, props.filters, true); 
+      this._getInfoData(props.id, props.level, props.filters, 'points'); 
     }
   },
 

@@ -21,4 +21,15 @@ module.exports = {
         crossOrigin: true
       }).fail(logFailure);
     },
+
+    getIndicatorInfoFromAPI: function(infoWindowFilter, filters) {
+      return reqwest({
+        url: 'http://test.monitor.net.co/GisService.svc/Filters/ClusterIndicator/Json', 
+        type: 'json', 
+        method: 'post', 
+        contentType: "application/json",
+        data: JSON.stringify(filters),
+        crossOrigin: true
+      }).fail(logFailure);
+    }
 };

@@ -125,6 +125,7 @@
 		"nationalSubActivities": "SubActividades Nacionales"
 	},
 	"savemap":{
+		"exportsavebutton": "Exportar/Guardar Mapa",
 		"exportactivities":"Exportar Actividades",
 		"exportindicators":"Exportar Indicadores",
 		"savemaptab":"Guardar",
