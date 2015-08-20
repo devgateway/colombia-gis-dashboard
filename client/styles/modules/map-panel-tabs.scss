@@ -17,7 +17,7 @@ nav.tabs {
 }
 .main-tabs .nav-tabs li:first-child a{
   &:before{
-  font-family: FontAwesome;
+  @include icon;
   content:'\f041';
   color: $blue;
   margin-right:5px;
@@ -25,7 +25,7 @@ nav.tabs {
 }
 .main-tabs .nav-tabs li:last-child a{
   &:before{
-  font-family: FontAwesome;
+  @include icon;
   content:'\f0ac';
   color: $blue;
   margin-right:5px;

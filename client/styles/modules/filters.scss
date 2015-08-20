@@ -33,8 +33,8 @@
   line-height:175%;
 }
 .filter-count {
-  color: $bgblue;
   @include textBold;
+  color: $bgblue;
   display: inline;
   line-height:160%;
   padding-left: 7px;
@@ -227,25 +227,25 @@ input[type=checkbox].glyphicon {
   }
 }
 .input-group-addon {
+  @include textCenter;
+  @include border-radius(4px);
   padding: 6px 12px;
   font-size: 14px;
   font-weight: normal;
   line-height: 1;
   color: #555;
-  text-align: center;
   background-color: #e1e8f0;
   border: 0px solid #e1e8f0;
-  border-radius: 4px;
 }
 
 .start-date,
 .end-date
   {
-  width:205px;
   @include noOutline;
   @include floatRight;
   padding: $gutter/2;
   margin-top:-3px;
+  width:205px;
 }
 
 .clear-dates
@@ -316,7 +316,7 @@ input[type=checkbox].glyphicon {
   cursor: pointer;
 }
 .label-selected{
-  font-weight:bold;
+  @include textBold;
   color: $grey;
 }
 .trace-item-label{
@@ -344,7 +344,7 @@ input[type=checkbox].glyphicon {
     line-height:1.2em;
   }
   li:after{
-    font-family: FontAwesome;
+    @include icon;
     content: "\f101";
     color: $blue;
   }
