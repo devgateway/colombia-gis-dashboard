@@ -4,7 +4,7 @@
  var _ = require('lodash');
  var NumberedDivIcon = require('./_numberedDivIcon.js');
  var Store = require('../../../../stores/indicatorLayerStore.js');
- var Popup = require('./_popup.jsx')
+ var Popup = require('./_popupIndicators.jsx')
  var Mixins = require('./_mixins.js');
  var EventConstants = require('react/lib/EventConstants');
 
@@ -43,14 +43,14 @@ module.exports = React.createClass({
       var isFilteredByMunicipality = false;
       var isMunicipalitySelected = false;
       if(this.state.breakStyle && this.state.breakStyle == "breakValues") {
-        featureValue = feature.properties.fundingUS?feature.properties.fundingUS:0;
+        featureValue = feature.properties.value?feature.properties.value:0;
 
       } else {
         var maxValue = _.max(_.collect(this.state.geoData.features, function(e) {
-          return e.properties.fundingUS + 0.01; //Adding some decimal to fix the max value
+          return e.properties.value + 0.01; //Adding some decimal to fix the max value
         }));
 
-        var currentValue = feature.properties.fundingUS || 0;
+        var currentValue = feature.properties.value || 0;
         featureValue = (100 / (maxValue / currentValue));
       }
       

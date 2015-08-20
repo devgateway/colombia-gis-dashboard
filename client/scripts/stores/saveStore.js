@@ -23,10 +23,10 @@ var arcgisState;
 
 module.exports = Reflux.createStore({
 
-  listenables: SaveActions,
+  listenables: [LayersActions, SaveActions],
 
   init: function() {
-    this.state = {mapName : ''}; 
+    this.state = {mapName : '','layersVisible': {'indicators': false, 'points': true, 'shapes': false}};
     this.listenTo(LanStore, this._handleLanDataUpdate);
     this.listenTo(FilterStore, this._handleFilterDataUpdate);
     this.listenTo(ShapesLayerStore, this._handleShapesDataUpdate);
@@ -35,6 +35,15 @@ module.exports = Reflux.createStore({
     this.listenTo(MapStore, this._handleMapDataUpdate);
 
   },
+
+  onChangeLayerValue: function(id, property, value, subProperty) {
+    if (property == 'visible'){
+      var layersVisible = _.clone(this.state.layersVisible);
+      layersVisible[id] = value;
+      this.update({'layersVisible': layersVisible});
+    }
+  },
+
 
   onSaveMap: function(options) {
     console.log('stores->saveStore->onSaveMap');
@@ -124,7 +133,7 @@ module.exports = Reflux.createStore({
     var shapesData = this._getDataFromState(shapesState);
     var pointsData = this._getDataFromState(pointsState);
     var arcgisData = this._getDataFromState(arcgisState);
-    var tagArray = options.tags?options.tags.split(','):null;
+    var tagArray = options.tags? _.isArray(options.tags)? options.tags : options.tags.split(','):null;
     var params = {
       'title': options.title,
       'description': options.description,
@@ -223,9 +232,14 @@ module.exports = Reflux.createStore({
   },
 
   onShowModal: function(key, id) {
+    var map = {};
+    if (id){
+      map = _.find(this.state.maps, function(l){return l._id==id});
+    }
     this.update({
       'key': key,
       'id': id,
+      'map': map,
       'showModal': true,
       'errorMsg': ''
     });

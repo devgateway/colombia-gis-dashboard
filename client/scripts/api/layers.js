@@ -53,10 +53,10 @@ module.exports = {
 
     getIndicatorsByDepartment: function (filters) {
         return request({
-            url: 'http://test.monitor.net.co/GisService.svc/Filters/DepartmentsFunding/Json',
-            data: JSON.stringify({"filters": filters? filters : []}),
-            //url: 'http://test.monitor.net.co/GisService.svc/IndicatorInfoByDepartaments/Json',
-            //data: JSON.stringify(filters),
+            //url: 'http://test.monitor.net.co/GisService.svc/Filters/DepartmentsFunding/Json',
+            //data: JSON.stringify({"filters": filters? filters : []}),
+            url: 'http://test.monitor.net.co/GisService.svc/IndicatorInfoByDepartments/Json',
+            data: JSON.stringify(filters),
             type: 'json',
             method: 'post',
             contentType: "application/json",
@@ -66,10 +66,10 @@ module.exports = {
 
     getIndicatorsByMuncipalities: function (filters) {
         return request({
-            url: 'http://test.monitor.net.co/GisService.svc/Filters/MunicipalitiesFunding/Json',
-            data: JSON.stringify({"filters": filters? filters : []}),
-            //url: 'http://test.monitor.net.co/GisService.svc/IndicatorInfoByMunicipalities/Json',
-            //data: JSON.stringify(filters),
+            //url: 'http://test.monitor.net.co/GisService.svc/Filters/MunicipalitiesFunding/Json',
+            //data: JSON.stringify({"filters": filters? filters : []}),
+            url: 'http://test.monitor.net.co/GisService.svc/IndicatorInfoByMunicipalities/Json',
+            data: JSON.stringify(filters),
             type: 'json',
             method: 'post',
             contentType: "application/json",
