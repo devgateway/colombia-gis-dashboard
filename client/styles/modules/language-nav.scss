@@ -8,6 +8,7 @@
     border: none;
     min-width: 100px;
     margin: 4px 0 0 0;
+    padding-bottom:$gutter;
     @include border-radius(0);
     li {
       background: none;
