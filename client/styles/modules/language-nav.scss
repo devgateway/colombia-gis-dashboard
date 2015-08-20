@@ -11,6 +11,7 @@
     @include border-radius(0);
     li {
       background: none;
+      border:none;
       &:hover {
         padding: 0;
       }

@@ -16,7 +16,8 @@ a {
   a:hover {
     text-decoration: none; }
   a:focus {
-    outline: none; }
+    outline: none;
+    text-decoration: none; }
 
 .fa {
   display: inline-block; }
@@ -1495,7 +1496,8 @@ ul.tabs {
     background-clip: padding-box;
     /* stops bg color from leaking outside the border: */ }
     .language-btn .dropdown-menu li {
-      background: none; }
+      background: none;
+      border: none; }
       .language-btn .dropdown-menu li:hover {
         padding: 0; }
       .language-btn .dropdown-menu li a {
