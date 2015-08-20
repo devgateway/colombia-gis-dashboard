@@ -25,7 +25,7 @@ module.exports = React.createClass({
 	getInitialState:function(){
 		return {'showModal': false}
 	},
-	
+
 	render:function() {
 		var showModal=this.state.showModal || false;
 		return (
@@ -35,10 +35,11 @@ module.exports = React.createClass({
 				 show={showModal} onHide={this.close}>
 					<Modal.Header>
 						<Modal.Title>
-							<i className="fa fa-folder-open"></i> <Message message='map.nationalSubActivities'/> 
-							<a className="" style={{'float':'right', 'margin-top':'0px'}} href="#" onClick={this.close}>
-							<i className="fa fa-times-circle-o"></i></a>
+							<i className="fa fa-folder-open"></i> <Message message='map.nationalSubActivities'/>
 						</Modal.Title>
+						<a className="close-dialog" href="#" onClick={this.close}>
+						<i className="fa fa-times-circle-o"></i></a>
+
 					</Modal.Header>
 					<Modal.Body>
 						<NationalPopupContent/>
