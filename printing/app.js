@@ -18,20 +18,20 @@ var binPath = phantomjs.path
 var tmpFolder = path.join(__dirname, '/tmp');
 
 
-var HOST="http://devgateway.github.io/colombia-gis-dashboard";
+var HOST = "http://devgateway.github.io/colombia-gis-dashboard";
 
-if (process.env.NODE_ENV=='production'){
-    HOST='http://devgateway.github.io/colombia-gis-dashboard'  
+if (process.env.NODE_ENV == 'production') {
+    HOST = 'http://devgateway.github.io/colombia-gis-dashboard'
 }
 
-if (process.env.NODE_ENV=='development'){
-    HOST='http://localhost:9010'  
+if (process.env.NODE_ENV == 'development') {
+    HOST = 'http://localhost:9010'
 }
 
-console.log('TARGET HOST IS ...'+HOST);
+console.log('TARGET HOST IS ...' + HOST);
 
-var URL_TO_MAP = HOST+'/#/print/map/{{id}}'; // URL to the printing version of the map (using https://github.com/baryon/node-tinytim notation) 
-var URL_TO_SKELETON = HOST+'/#/print/skeleton/{{id}}'; // {{id}}URL to the print page skeleton (using https://github.com/baryon/node-tinytim notation) 
+var URL_TO_MAP = HOST + '/#/print/map/{{id}}'; // URL to the printing version of the map (using https://github.com/baryon/node-tinytim notation) 
+var URL_TO_SKELETON = HOST + '/#/print/skeleton/{{id}}'; // {{id}}URL to the print page skeleton (using https://github.com/baryon/node-tinytim notation) 
 //
 //
 console.log()
@@ -48,52 +48,54 @@ app.use(express.static(__dirname + '/public'));
  */
 app.use(function(req, res, next) {
     var oneof = false;
-    if(req.headers.origin) {
+    if (req.headers.origin) {
         res.header('Access-Control-Allow-Origin', req.headers.origin);
         oneof = true;
     }
-    if(req.headers['access-control-request-method']) {
+    if (req.headers['access-control-request-method']) {
         res.header('Access-Control-Allow-Methods', req.headers['access-control-request-method']);
         oneof = true;
     }
-    if(req.headers['access-control-request-headers']) {
+    if (req.headers['access-control-request-headers']) {
         res.header('Access-Control-Allow-Headers', req.headers['access-control-request-headers']);
         oneof = true;
     }
-    if(oneof) {
+    if (oneof) {
         res.header('Access-Control-Max-Age', 60 * 60 * 24 * 365);
     }
     // intercept OPTIONS method
     if (oneof && req.method == 'OPTIONS') {
         res.sendStatus(200);
-    }
-    else {
+    } else {
         next();
     }
 });
 
-app.get('/', function (req, res) {
+app.get('/', function(req, res) {
     res.status(400).send('This service should be used for printing purpose, please see read the <a href="help.html"> documentation </a>');
 });
 
-app.get('/print', function (req, res) {
+app.get('/print', function(req, res) {
     res.status(400).send('Please use /print/{id}');
 });
 
 app.get('/print/:id', handlePrinting);
+app.get('/image/:id', handleImageExport);
 app.get('/download/:name', handleDownload);
 
-app.post('/save', function (req, res) {
-    var doc =  req.body;
-    db.insert(doc, function (err, newDoc) {   // Callback is optional
+app.post('/save', function(req, res) {
+    var doc = req.body;
+    db.insert(doc, function(err, newDoc) { // Callback is optional
         res.json(newDoc);
     });
 });
 
-app.put('/save/:id', function (req, res) {
+app.put('/save/:id', function(req, res) {
     var id = req.params.id;
-    var doc =  req.body;
-    db.update({ '_id': id }, doc, {}, function (err) {   
+    var doc = req.body;
+    db.update({
+        '_id': id
+    }, doc, {}, function(err) {
         if (err) {
             return res.sendStatus(403).send('Error in update:' + id + ' - ' + err);
 
@@ -103,9 +105,11 @@ app.put('/save/:id', function (req, res) {
     });
 });
 
-app.delete('/save/:id', function (req, res) {
+app.delete('/save/:id', function(req, res) {
     var id = req.params.id;
-    db.remove({ '_id': id }, {}, function (err) { 
+    db.remove({
+        '_id': id
+    }, {}, function(err) {
         if (err) {
             console.log('delete fail:' + id);
             return res.sendStatus(403).send('Error in delete');
@@ -115,19 +119,20 @@ app.delete('/save/:id', function (req, res) {
     });
 });
 
-app.get('/maps', function (req, res) {
-    // Finding all planets in the solar system
-    db.find({  }, function (err, docs) {
+app.get('/maps', function(req, res) {
+    db.find({}, function(err, docs) {
         res.json(docs);
     });
 });
 
-app.get('/map/:id', function (req, res) {
-    // Finding all planets in the solar system
-    db.find({'_id':req.params.id  }, function (err, docs) {
-        if(docs.length > 0){
-             res.json(docs[0]);
-        }else{
+app.get('/map/:id', function(req, res) {
+
+    db.find({
+        '_id': req.params.id
+    }, function(err, docs) {
+        if (docs.length > 0) {
+            res.json(docs[0]);
+        } else {
             res.sendStatus(404).send("Can't find this map");
         }
     });
@@ -142,7 +147,7 @@ app.get('/map/:id', function (req, res) {
 function handleDownload(req, res) {
     var name = req.params.name;
     var path_to_file = path.join(tmpFolder, name);
-    fs.exists(path_to_file, function (exists) {
+    fs.exists(path_to_file, function(exists) {
         if (exists) {
             res.download(path_to_file);
         } else {
@@ -166,7 +171,7 @@ function handlePrinting(req, res) {
         res.status(400).send('you should provide and id');
     } else {
 
-        makeFile(id).then(function (fileName) {
+        makeFile(id).then(function(fileName) {
             res.status(200);
             res.json({
                 'name': fileName
@@ -176,6 +181,35 @@ function handlePrinting(req, res) {
     }
 }
 
+
+
+/**
+ *
+ * fb
+ * dgh
+ * rh
+ * @param req
+ * @param res
+ */
+function handleImageExport(req, res) {
+    var id = req.params.id;
+
+    if (!id) { //id is not numeric
+        res.status(400).send('you should provide and id');
+    } else {
+
+        makeImage(id).then(function(fileName) {
+            res.status(200);
+            res.json({
+                'name': fileName
+            })
+        })
+
+    }
+}
+
+
+
 /**
  * [makeFile description]
  * @param  {[type]} id [description]
@@ -183,23 +217,22 @@ function handlePrinting(req, res) {
  */
 function makeFile(id) {
 
-    var UUID = uuid.v1();
+    //var UUID = uuid.v1();
+    var UUID = id; //we can use either or UUI or the ID parameter
 
-    return new Promise(function (resolve, reject) {
-        var mapUrl = tim(URL_TO_MAP, {
-            id: id
-        });
+    return new Promise(function(resolve, reject) {
+
         var templateUrl = tim(URL_TO_SKELETON, {
             id: id
         });
 
         var fileName = UUID + '.pdf';
 
-        console.log( templateUrl + ' ' + fileName + ' ' + tmpFolder);
+        console.log(templateUrl + ' ' + fileName + ' ' + tmpFolder);
 
         var childArgs = [path.join(__dirname, '/scripts/makepdf.js'), templateUrl, fileName, tmpFolder]
 
-        childProcess.execFile(binPath, childArgs, function (err, stdout, stderr) {
+        childProcess.execFile(binPath, childArgs, function(err, stdout, stderr) {
             console.log(stdout);
             resolve(fileName); //
         })
@@ -211,9 +244,42 @@ function makeFile(id) {
 }
 
 
-var server = app.listen(3033, function () {
+
+/**
+ * [makeFile description]
+ * @param  {[type]} id [description]
+ * @return {[type]}    [description]
+ */
+function makeImage(id) {
+
+    //var UUID = uuid.v1();
+    var UUID = id; //we can use either or UUI or the ID parameter
+
+    return new Promise(function(resolve, reject) {
+
+        var templateUrl = tim(URL_TO_SKELETON, {
+            id: id
+        });
+
+        var fileName = UUID + '.pdf';
+
+        console.log(templateUrl + ' ' + fileName + ' ' + tmpFolder);
+
+        var childArgs = [path.join(__dirname, '/scripts/makepdf.js'), templateUrl, fileName, tmpFolder]
+
+        childProcess.execFile(binPath, childArgs, function(err, stdout, stderr) {
+            console.log(stdout);
+            resolve(fileName); //
+        })
+
+
+    });
+
+
+}
+
+var server = app.listen(3033, function() {
     var host = server.address().address;
     var port = server.address().port;
-
     console.log('Print service listening at http://%s:%s', host, port);
 });

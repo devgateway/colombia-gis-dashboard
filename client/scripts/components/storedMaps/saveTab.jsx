@@ -23,6 +23,7 @@ var Tags= React.createClass({
 module.exports = React.createClass({
 
 	save:function(){
+		debugger;
 	//TODO add validations
 		if(this.state.key=='save'){
 			Actions.saveMap(this.state);
