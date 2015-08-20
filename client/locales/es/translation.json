@@ -1,6 +1,6 @@
 {
 	"app": {
-		"title": "Esta area puede ser usada para un titulo largo",
+		"title": "Mapa Inicial",
 		"credits" : "Todos los derechos reservados ..  AidData",
 		"description": "Mapa de monitoreo:",
 		"menu":"Menú",
@@ -68,6 +68,8 @@
 	"layers": {
 		"showLegend":"Mostrar Leyendas",
 		"hideLegend":"Ocultar Leyendas",
+		"fundingByTypeTitle":"Financiamiento por Tipo",
+		"activityTitle":"Actividades Totales",
 		"title":"Contenidos del mapa",
 		"mapLayers":"Capas del mapa",
 		"dataLayers":"Capas de datos",
