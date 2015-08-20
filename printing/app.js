@@ -73,11 +73,11 @@ app.use(function(req, res, next) {
 });
 
 app.get('/', function (req, res) {
-    res.status(400).send('This service should be used for printing purpose, please see read the <a href="help.html"> documentation </a>');
+    res.status(400);
 });
 
 app.get('/print', function (req, res) {
-    res.status(400).send('Please use /print/{id}');
+    res.status(400);
 });
 
 app.get('/print/:id', handlePrinting);
@@ -95,7 +95,7 @@ app.put('/save/:id', function (req, res) {
     var doc =  req.body;
     db.update({ '_id': id }, doc, {}, function (err) {   
         if (err) {
-            return res.sendStatus(403).send('Error in update:' + id + ' - ' + err);
+            return res.sendStatus(403);
 
         } else {
             res.json(doc);
@@ -108,7 +108,7 @@ app.delete('/save/:id', function (req, res) {
     db.remove({ '_id': id }, {}, function (err) { 
         if (err) {
             console.log('delete fail:' + id);
-            return res.sendStatus(403).send('Error in delete');
+            return res.sendStatus(403);
         } else {
             res.json({});
         }
@@ -128,7 +128,8 @@ app.get('/map/:id', function (req, res) {
         if(docs.length > 0){
              res.json(docs[0]);
         }else{
-            res.sendStatus(404).send("Can't find this map");
+
+            res.sendStatus(404);
         }
     });
 });
@@ -146,7 +147,7 @@ function handleDownload(req, res) {
         if (exists) {
             res.download(path_to_file);
         } else {
-            res.status(404).send('File not found');
+            res.status(404);
         }
     });
 }
@@ -163,7 +164,7 @@ function handlePrinting(req, res) {
     var id = req.params.id;
 
     if (!id) { //id is not numeric
-        res.status(400).send('you should provide and id');
+        res.status(400);
     } else {
 
         makeFile(id).then(function (fileName) {
