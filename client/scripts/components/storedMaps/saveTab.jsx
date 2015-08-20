@@ -5,7 +5,7 @@ var Button=require('react-bootstrap/lib/Button');
 var If=require('../commons/if.jsx')
 var Reflux = require('reflux');
 var Actions=require('../../actions/saveActions.js');
-
+var Store=require('../../stores/saveStore.js');
 var _=require('lodash');
 
 var Tags= React.createClass({
@@ -22,12 +22,13 @@ var Tags= React.createClass({
 
 module.exports = React.createClass({
 
+	mixins: [Reflux.connect(Store)],
+
 	save:function(){
-	//TODO add validations
-		if(this.state.key=='save'){
-			Actions.saveMap(this.state);
-		} else if(this.state.key=='update') {
-			Actions.updateMap(this.state.map.id, this.state);
+		if(this.state.map && this.state.map._id){
+			Actions.updateMap(this.state.map._id, this.state.map);
+		} else {
+			Actions.saveMap(this.state.map);	
 		}
 	},
 
@@ -36,26 +37,23 @@ module.exports = React.createClass({
 	},
 
 	_updateTags:function(tags){
-		this.setState({'tags':tags});
+		var map = _.clone(this.state.map);
+		map.tags = tags;
+		this.setState({'map':map});
 	},
 
 	_updateTitle:function(event){
-		this.setState({'title': event.target.value});
+		var map = _.clone(this.state.map);
+		map.title = event.target.value;
+		this.setState({'map':map});
 	},
 
 	_updateDescription:function(event){
-		this.setState({'description': event.target.value});
+		var map = _.clone(this.state.map);
+		map.description = event.target.value;
+		this.setState({'map':map});
 	},
 	
-	componentWillReceiveProps:function(nextProps){
-		this.setState({'key': nextProps.store.key});
-		this.setState({'errorMsg': nextProps.store.errorMsg});
-		if (nextProps.store.map){
-			var map = nextProps.store.map;
-			this.setState({'title': map.title, 'description': map.description, 'tags': map.tags});
-		}
-	},
-
 	render:function() {
 		return (
 			<div className="">
@@ -66,18 +64,18 @@ module.exports = React.createClass({
 						onChange={this._updateTitle}
 						placeholder={i18n.t('savemap.savemaptitle')}  
 						maxlength="100" 
-						value={this.state.title} addonAfter='*'/>
+						value={this.state.map.title} addonAfter='*'/>
 					<Input type='textarea' name="description" 
 						onChange={this._updateDescription}
 						className="form-control" 
 						rows="3" 
 						placeholder={i18n.t('savemap.savemapdescription')} 
-						value={this.state.description} maxlength="300" addonAfter='*' />
+						value={this.state.map.description} maxlength="300" addonAfter='*' />
 				</div>
 
 				<div className="plain-panel">
 					<h4 className="modal-title"><Message message='savemap.savemaptags'/></h4>
-					<Tags onUpdate={this._updateTags} value={this.state.tags}/>
+					<Tags onUpdate={this._updateTags} value={this.state.map.tags}/>
 				</div>
 				<div className="plain-panel"><Message message='savemap.mandatoryFields'/>
 					<If condition={this.state.errorMsg} >
@@ -87,7 +85,7 @@ module.exports = React.createClass({
 				
 				<div>
 					<Button className="btn btn-apply pull-right" onClick={this.save.bind(this)}>{i18n.t('savemap.savebutton')}</Button>
-					<Button  className="pull-right" onClick={this.props.close.bind(this)}>{i18n.t('savemap.closebutton')}</Button>
+					<Button  className="pull-right" onClick={this.props.onClose.bind(this)}>{i18n.t('savemap.closebutton')}</Button>
 				</div>
 			</div>
 			);
