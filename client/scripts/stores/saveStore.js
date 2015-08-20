@@ -101,7 +101,7 @@ module.exports = Reflux.createStore({
       isValid = false;
     }
 
-    var tagArray = options.tags?options.tags.split(','):null;
+    var tagArray = options.tags && typeof options.tags == "string" ? options.tags.split(','):options.tags;
     if(tagArray){
       if(tagArray.length>3){
         errorMsg = errorMsg + 'savemap.tagsQuantity,';
