@@ -57,8 +57,8 @@
   font-size: 1.2rem;
   line-height:80%;
   font-style: italic;
-  margin-top: 5px;
-  margin-right:$gutter;
+  margin-top:-10px;
+  margin-right:$gutter/3;
   a{
     @include transitionAll;
     color: $blue;
