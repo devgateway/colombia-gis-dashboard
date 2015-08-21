@@ -31,7 +31,7 @@ if (args.length < 4) {
 
 	page.viewportSize = {
 		width: 1930,
-		height: 972
+		height: 768
 	};
 
 	page.paperSize = {
