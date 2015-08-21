@@ -36,6 +36,7 @@ module.exports = React.createClass({
 					<Modal.Header>
 						<Modal.Title>
 							<i className="fa fa-folder-open"></i> <Message message='map.nationalSubActivities'/>
+							<span className="children-count">- 1200</span>
 						</Modal.Title>
 						<a className="close-dialog" href="#" onClick={this.close}>
 						<i className="fa fa-times-circle-o"></i></a>
