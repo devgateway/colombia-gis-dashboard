@@ -1,5 +1,5 @@
 var page = require('webpage').create(),
-system = require('system');
+	system = require('system');
 var fs = require("fs");
 var args = system.args;
 
@@ -13,8 +13,8 @@ if (args.length < 4) {
 
 	var SCRIPT_NAME = args[0]
 	TEMPLATE_URL = args[1],
-	FILE_NAME = args[2],
-	TMP_DIR = args[3]
+		FILE_NAME = args[2],
+		TMP_DIR = args[3]
 
 
 	console.log('............... using the following options ...............')
@@ -23,40 +23,12 @@ if (args.length < 4) {
 	console.log('FILE_NAME=' + FILE_NAME);
 	console.log('TMP_DIR=' + TMP_DIR);
 
-	function someCallback(pageNum, numPages) {
-		return "<h1> someCallback: " + pageNum + " / " + numPages + "</h1>";
-	}
-
-
-
 	page.viewportSize = {
 		width: 1930,
 		height: 972
 	};
 
-	page.paperSize = {
-		format: 'Legal',
-		orientation: 'landscape',
-		margin: {
-			top: '50px',
-			left: '20px'
-		},
 
-		header: {
-			height: "1cm",
-			contents: phantom.callback(function(pageNum, numPages) {
-				return "<p><span style='float:right'>Page " + pageNum + " / " + numPages + "</span></p>";
-			})
-		},
-		footer: {
-			height: "1cm",
-			contents: phantom.callback(function(pageNum, numPages) {
-				return "<span style='float:right'>" + pageNum + " / " + numPages + "</span>";
-			})
-		}
-	};
-
-	var base64;
 
 	page.open(TEMPLATE_URL, function(status) {
 		console.log('Print template has been loaded');
@@ -82,30 +54,15 @@ if (args.length < 4) {
 				console.log('width--------' + page.clipRect.width)
 				console.log('height---------' + page.clipRect.height)
 
-				//page.render(TMP_DIR + '/test' + Math.random() + '.png');
-				base64 = page.renderBase64('PNG');
+				page.render(TMP_DIR + '/' + FILE_NAME, {
+					format: 'png',
+					quality: '100'
+				});
 
-				page.clipRect = {
-					left: 0,
-					top: 0,
-					width: 0,
-					height: 0
-				}
+				console.log('Image '+FILE_NAME+' was successfully generated ')
 
-
-
-				var image = page.evaluate(function(base64) {
-					$('#map').html('<img src="data:image/png;base64,' + base64 + '">');
-					return $('#map').html();
-				}, base64);
-
-				window.setTimeout(function() {
-
-					page.render(TMP_DIR + '/' + FILE_NAME);
-					console.log('.... file has been  successfuly generated...')
-					phantom.exit();
-				}, 100)
+			phantom.exit();
 			}, 200);
-}
-});
+		}
+	});
 }

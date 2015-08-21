@@ -104,6 +104,12 @@ $border-grey:#eeeeee;
   padding:0;
 }
 
+@mixin tabicon{
+  font-family: FontAwesome;
+  color: $blue;
+  margin-right:5px;
+}
+
 html{
   font-family:$base-font-family;
 }

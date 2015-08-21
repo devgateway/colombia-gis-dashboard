@@ -80,7 +80,7 @@ module.exports = Reflux.createStore({
   },
 
   _getTitle: function() {
-    return 'Total Activities'
+    return 'layers.activityTitle';
   },
 
   _getDefaultBreaks: function() {

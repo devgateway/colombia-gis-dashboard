@@ -79,7 +79,17 @@ module.exports = React.createClass({
     });
     
     var fundingType = this.state.fundingType;
-    var self = this;
+
+    var showClassification = true;
+    var breaks = this.state.breaks.breaks;
+    var filteredArray;
+    if(this.state.geoData){
+      filteredArray = _.filter(this.state.geoData.features, function(f){return f.properties.fundingUS?true:false;})
+    }
+    if(filteredArray && filteredArray.length==1){
+      breaks = new Object({'Level4':this.state.breaks.breaks.Level4});
+      showClassification = false;
+    }
     return (
     <li>
       <Toggler ref='toggler'>
@@ -145,19 +155,22 @@ module.exports = React.createClass({
             <li>
               <div className="vbuffer"/>
               <div className="clearFix"/>
-              <h3 className="color-control"><Message message='layers.classificationScheme'/></h3>
               <div>
-                <div className="breaksTemplates">
-                  <div className="label label-info" onClick={this._changeBreaksWrapper.bind(this, 0)} title={i18n.t("filters.defaultTip")}><Message message='filters.default'/></div> 
-                  <div className="label label-info" onClick={this._changeBreaksWrapper.bind(this, 1)} title={i18n.t("filters.jenksTip")}><Message message='filters.jenks'/></div>
-                  <div className="label label-info" onClick={this._changeBreaksWrapper.bind(this, 2)} title={i18n.t("filters.arithmeticTip")}><Message message='filters.arithmetic'/></div>
-                  <div className="label label-info" onClick={this._changeBreaksWrapper.bind(this, 3)} title={i18n.t("filters.geometricTip")}><Message message='filters.geometric'/></div>
-                </div>
+                <If condition={showClassification}>
+                  <div className="breaksTemplates">
+                    <h3 className="color-control"><Message message='layers.classificationScheme'/></h3>
+                    <div className="label label-info" onClick={this._changeBreaksWrapper.bind(this, 0)} title={i18n.t("filters.defaultTip")}><Message message='filters.default'/></div> 
+                    <div className="label label-info" onClick={this._changeBreaksWrapper.bind(this, 1)} title={i18n.t("filters.jenksTip")}><Message message='filters.jenks'/></div>
+                    <div className="label label-info" onClick={this._changeBreaksWrapper.bind(this, 2)} title={i18n.t("filters.arithmeticTip")}><Message message='filters.arithmetic'/></div>
+                    <div className="label label-info" onClick={this._changeBreaksWrapper.bind(this, 3)} title={i18n.t("filters.geometricTip")}><Message message='filters.geometric'/></div>
+                  </div>
+                </If>
                 <div className="clearFix"/>
                 <div className="breaksTemplates">
                   <h3 className="color-control"><Message message='layers.colorPalettes'/></h3>
                   <div className="colorpicker-element">
                   <span className="input-group-addon" onClick={this.handleClickForColor.bind(this, 0, null)} title={i18n.t("filters.defaultColor")}><i style={{backgroundColor:'#AA3900'}}></i></span></div>
+                  
                   <div className="colorpicker-element">
                   <span className="input-group-addon" onClick={this.handleClickForColor.bind(this, 1)} title={i18n.t("filters.contrast1")}><i style={{backgroundColor:'#FF3333'}}></i></span></div>
                   <div className="colorpicker-element">
@@ -166,6 +179,7 @@ module.exports = React.createClass({
                   <span className="input-group-addon" onClick={this.handleClickForColor.bind(this, 3)} title={i18n.t("filters.gradient1")}><i style={{backgroundColor:'#66FFB2'}}></i></span></div>
                   <div className="colorpicker-element">
                   <span className="input-group-addon" onClick={this.handleClickForColor.bind(this, 4)} title={i18n.t("filters.gradient2")}><i style={{backgroundColor:'#FFFF66'}}></i></span></div>
+
                 </div>
               </div>
               <div className="clearFix"/>
@@ -174,8 +188,8 @@ module.exports = React.createClass({
               <h3 className="color-control percent-funding"><Message message='layers.fundingPercent'/></h3>
               <h3 className="color-control"><Message message='layers.colorSelection'/></h3>
               {                
-                _.map(_.keys(this.state.breaks.breaks),function(key){
-                  var br=this.state.breaks.breaks[key];
+                _.map(_.keys(breaks),function(key){
+                  var br=breaks[key];
                   var minLabel = br.min.toFixed(br.min<10?2:0);
                   var maxLabel = br.max.toFixed(br.max<10?2:0);
                 return (

@@ -2,19 +2,33 @@ var _ = require('lodash');
 
 var PointsActions=require('../../../../actions/infoWindowActions.js');
 var ShapesActions=require('../../../../actions/infoWindowShapesActions.js');
+var IndicatorsActions=require('../../../../actions/infoWindowIndicatorsActions.js');
 var HighCharts = require('highcharts-browserify');
 
 
 module.exports = {
 
-  _getInfoData: function (id, level, filters, isPoint) {
+  _getInfoData: function (id, level, filters, type) {
     var param = level? level.substring(0,2) : "de";
     var infoWindow = [{"param":param,"values":[id]}];
     var data;
-    if(isPoint) {
-      data = PointsActions.getPointsFromAPI(infoWindow, filters) || [];
-    } else {
-      data = ShapesActions.getShapesFromAPI(infoWindow, filters) || [];
+    debugger;
+    switch(type) {
+      case "points":
+        data = PointsActions.getPointsFromAPI(infoWindow, filters) || [];
+        break;
+      case "shapes":
+        data = ShapesActions.getShapesFromAPI(infoWindow, filters) || [];
+        break;
+      case "indicators":
+        var filtersClone = _.clone(filters);
+        if (param=="de"){
+          _.assign(filtersClone, {'departments': [id]});
+        } else if (param=="mu") {
+          _.assign(filtersClone, {'municipalities': [id]});
+        }
+        data = IndicatorsActions.getInfoFromAPI(infoWindow, filtersClone) || [];
+        break;
     }
     return data;
   },
