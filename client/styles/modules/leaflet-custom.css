@@ -167,15 +167,21 @@ background-position: -120px 0;
 background-position: -120px -29px;
 
 }
-
 .popup-nav-wrapper .nav-tabs > li.active a,
 .popup-nav-wrapper .nav-tabs > li.active a:hover,
 .popup-nav-wrapper .nav-tabs > li.active a:focus{
 border:1px solid transparent;
 }
 
-
-
 .leaflet-tile-pane, .leaflet-objects-pane,.leaflet-shadow-pane ,.leaflet-overlay-pane,.leaflet-marker-pane{
  /* z-index: inherit !important;*/ /* Commented since it was causing troubles with markers*/
+}
+/*national level projects popup tabs styling*/
+ul.national-tabs{
+  margin-left:5px;
+  margin-top:3px;
+}
+ul.national-tabs li a{
+  background-color: #eee;
+  width:118px;
 }

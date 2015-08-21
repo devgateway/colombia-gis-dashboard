@@ -22,10 +22,10 @@ var MyActivities = React.createClass({
       <div>
         <div className="subactivities-list">
         <Message message='map.popup.programList'/>: {items.length}
-        <ul> 
+        <ul>
         {
           items.map(function(node, index) {
-            return <li>{node.name} - ({node.value})</li>          
+            return <li>{node.name} - ({node.value})</li>
           })
         }
         </ul></div>
@@ -49,13 +49,13 @@ module.exports  = React.createClass({
     if (this.state.infoWindow){
       this.state.infoWindow.map(function(node, index) {
         infoData.push(node.value||[]);
-      });    
+      });
     }
     return infoData;
   },
 
   _getTitles: function() {
-    var titleArray = [];    
+    var titleArray = [];
     if (this.state.infoWindow){
       this.state.infoWindow.map(function(node, index) {
         titleArray.push(node.title);
@@ -106,9 +106,9 @@ module.exports  = React.createClass({
             title: {
               align: "left",
               text: titleArray[tabId],
-              style: { 
-                "color": "#4278AA", 
-                "fontSize": "14px" 
+              style: {
+                "color": "#4278AA",
+                "fontSize": "14px"
               }
             },
             plotOptions: {
@@ -144,14 +144,14 @@ module.exports  = React.createClass({
   },
 
   componentWillMount:function(){
-    this._getInfoData(); 
+    this._getInfoData();
   },
 
   componentDidMount: function() {
     this._renderChart("myContainer");
   },
 
-  componentDidUpdate: function(props,newState) { 
+  componentDidUpdate: function(props,newState) {
     $(this.getDOMNode()).find("#chartContainer").html("");
     this._renderChart("chartContainer");
   },
@@ -159,7 +159,7 @@ module.exports  = React.createClass({
   handleClick:function(tabId){
     console.log('_popupActivitiesPoint>click');
     this.setState({'tabId':tabId});
-    this.forceUpdate();    
+    this.forceUpdate();
   },
 
   render: function() {
@@ -177,7 +177,7 @@ module.exports  = React.createClass({
       <div>
         <div className="popup-nav-wrapper2">
           <nav className="tabs" role="tablist" >
-            <ul className="tabs nav nav-tabs" role="tablist" >
+            <ul className="tabs nav national-tabs" role="tablist" >
             <li className="active" role="tab" >
               <a href="#" onClick={this.handleClick.bind(this, 0)}>
                 <span className="popup-icon chart" title="Cost Share Breakdown"></span>
@@ -217,7 +217,7 @@ module.exports  = React.createClass({
               <MyActivities data={infoData[4]} externalFile={infoData[5]} />
             </div>
           </If>
-        </div>         
+        </div>
       </div>
     );
 }
