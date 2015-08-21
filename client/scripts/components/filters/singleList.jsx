@@ -33,8 +33,6 @@ module.exports = React.createClass({
     var list = [];
     if (this.props.searchAndSelectMode){
       return _.filter(this.state.items, function(it){return ((!it.hide)  || (self.state.showOnlySelected && it.selected))});
-      //list.push(_.filter(this.state.items, function(it){return ((!it.hide)  || (self.state.showOnlySelected && it.selected))}));
-      //return list;
     } else {
       return this.state.items;
     }  
@@ -67,7 +65,10 @@ module.exports = React.createClass({
                 </div> 
                 <SelectAllNone onSelectAll={this._onSelectAll} onSelectNone={this._onSelectNone}/>
               </div>
-              <KeywordSearch onSearch={this._onSearch} onSearchEnterKey={this._onSearchEnterKey}/>
+              <KeywordSearch onSearch={this._onSearch} 
+                lengthLimit={this.props.searchAndSelectMode? "5" : ""} 
+                onSearchEnterKey={this.props.searchAndSelectMode? "" : this._onSearchEnterKey}
+                onClear={this._onSearchClear}/>
               {noResults}
               <div className="filter-list-container">
                 <ul className="filter-list">
