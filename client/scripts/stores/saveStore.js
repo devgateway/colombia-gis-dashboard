@@ -77,6 +77,12 @@ module.exports = Reflux.createStore({
     this.onShowDeleteModal(false);
   },
 
+  onExportMap: function(type, format) {
+    console.log('stores->saveStore->onExportMap');
+    var self = this;
+    debugger;
+  },
+
   _validateParamsForAPI: function(options, isUpdate) {
     var errorMsg = '';
     var isValid = true;

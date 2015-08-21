@@ -16,8 +16,7 @@ module.exports = React.createClass({
 	mixins: [Reflux.connect(Store)],
 
 	_export:function(){
-		//TODO add export actions
-		
+		Actions.exportMap(this.state.type, this.state.format);
 	},
 
 	getInitialState:function(){

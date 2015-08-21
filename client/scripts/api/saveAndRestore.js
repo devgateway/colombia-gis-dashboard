@@ -78,6 +78,18 @@ module.exports = {
       method: 'get',
       crossOrigin: true
     }).fail(logFailure); 
+  },
+
+  export:function(params){
+    console.log("scripts->api->export");
+    return reqwest({
+        url: 'http://test.monitor.net.co/GisService.svc/SubActivitiesListToExcel', 
+        type: 'json', 
+        method: 'post', 
+        contentType: "application/json",
+        data: JSON.stringify(params),
+        crossOrigin: true
+      }).fail(logFailure);
   }
 
 };
