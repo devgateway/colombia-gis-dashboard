@@ -1225,6 +1225,25 @@ ul.tabs {
   list-style: none;
   padding-left: 0; }
 
+.subactivities-container {
+  height: 240px; }
+
+.subactivities-list {
+  overflow-y: scroll;
+  height: 195px;
+  width: 420px; }
+  .subactivities-list ul {
+    padding-left: 0;
+    list-style: none;
+    border-top: 1px solid #eee;
+    margin-top: 5px;
+    padding-top: 5px; }
+
+.popup-loading-container {
+  height: 240px;
+  padding-left: 175px;
+  padding-top: 80px; }
+
 .esri-result-list {
   height: 220px;
   overflow-x: scroll;
@@ -2032,17 +2051,6 @@ h4.modal-title {
   height: 240px;
   padding-left: 175px;
   padding-top: 80px; }
-
-.subactivities-container {
-  height: 240px; }
-
-.subactivities-list {
-  overflow-y: scroll;
-  height: 195px;
-  width: 420px; }
-
-.download-button {
-  border: 1px solid #c5c5c5; }
 
 .finder p.title {
   margin-top: 6px;
