@@ -11,7 +11,6 @@ var AGOLbtnLogin=require('./esri/AGOLBtnLogin.jsx');
 var LegendControl = require('./map/layers/legends/legendControl.jsx');
 var TimeSliderControl=require('./map/layers/timeSliderControl.jsx');
 
-
 module.exports = React.createClass({
 
 	render: function() {
@@ -21,10 +20,11 @@ module.exports = React.createClass({
 			<SlideBar>
 			<TabNavigator />;	
 			</SlideBar>
+			
 			<Map ref="map">
-			<AGOLbtnLogin/>
-			<LegendControl/>
-			<TimeSliderControl/>
+				<AGOLbtnLogin/>
+				<LegendControl/>
+				<TimeSliderControl/>
 			</Map>
 			</div>
 			)
