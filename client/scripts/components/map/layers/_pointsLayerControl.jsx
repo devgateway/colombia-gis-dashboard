@@ -41,9 +41,18 @@ module.exports = React.createClass({
   },
 
  render: function() {
-
-
-  var level=this.state.level;
+  var level = this.state.level;
+  var breaks = this.state.breaks.breaks;
+  var showClassification = true;
+  if(this.state.geoData && this.state.geoData.length==1){
+    var actNumber = this.state.geoData[0].properties.activities;
+    var newLevel;
+    var newBreak = _.find(this.state.breaks.breaks, function(e, i){if(e.min<=actNumber && e.max>=actNumber){newLevel=i;return e}});
+    breaks = new Object();
+    breaks[newLevel] = newBreak;
+    var showClassification = false;
+  }
+  
   return (
   <li>
     <Toggler ref='toggler'>
@@ -82,14 +91,16 @@ module.exports = React.createClass({
           <li>
               <div className="vbuffer"/>
               <div className="clearFix"/>
-              <h3 className="color-control"><Message message='layers.classificationScheme'/></h3>
               <div>
-                <div className="breaksTemplates">
-                  <div className="label label-info" onClick={this._changeBreaksWrapper.bind(this, 0)} title={i18n.t("filters.defaultTip")}><Message message='filters.default'/></div> 
-                  <div className="label label-info" onClick={this._changeBreaksWrapper.bind(this, 1)} title={i18n.t("filters.jenksTip")}><Message message='filters.jenks'/></div>
-                  <div className="label label-info" onClick={this._changeBreaksWrapper.bind(this, 2)} title={i18n.t("filters.arithmeticTip")}><Message message='filters.arithmetic'/></div>
-                  <div className="label label-info" onClick={this._changeBreaksWrapper.bind(this, 3)} title={i18n.t("filters.geometricTip")}><Message message='filters.geometric'/></div>
-                </div>
+                <If condition={showClassification}>
+                  <div className="breaksTemplates">
+                    <h3 className="color-control"><Message message='layers.classificationScheme'/></h3>
+                    <div className="label label-info" onClick={this._changeBreaksWrapper.bind(this, 0)} title={i18n.t("filters.defaultTip")}><Message message='filters.default'/></div> 
+                    <div className="label label-info" onClick={this._changeBreaksWrapper.bind(this, 1)} title={i18n.t("filters.jenksTip")}><Message message='filters.jenks'/></div>
+                    <div className="label label-info" onClick={this._changeBreaksWrapper.bind(this, 2)} title={i18n.t("filters.arithmeticTip")}><Message message='filters.arithmetic'/></div>
+                    <div className="label label-info" onClick={this._changeBreaksWrapper.bind(this, 3)} title={i18n.t("filters.geometricTip")}><Message message='filters.geometric'/></div>
+                  </div>
+                </If>
                 <div className="clearFix"/>
                 <div className="breaksTemplates">
                   <h3 className="color-control"><Message message='layers.colorPalettes'/></h3>
@@ -110,10 +121,10 @@ module.exports = React.createClass({
             <h3 className="color-control percent-funding"><Message message='layers.activitiesNumber'/></h3>
             <h3 className="color-control"><Message message='layers.colorSelection'/></h3>
             {
-              _.map(_.keys(this.state.breaks.breaks),function(key){
-                  var br=this.state.breaks.breaks[key];
+              _.map(_.keys(breaks),function(key){
+                  var br=breaks[key];
                   var minLabel = br.min.toFixed(0);
-                  var maxLabel = (br.max - 1).toFixed(0);
+                  var maxLabel = br.max>br.min?(br.max - 1).toFixed(0):(br.max).toFixed(0);
                 return (
                       <Breaker  level={key} label={minLabel+' - '+maxLabel} radius={br.style.radius} color={br.style.color} onChangeColor={this._changeColor}
                       onChageRadius={this._changeRadius}/>
