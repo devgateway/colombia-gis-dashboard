@@ -185,3 +185,12 @@ ul.national-tabs li a{
   background-color: #eee;
   width:118px;
 }
+
+.dialog-national-subactivities .subactivities-list{
+  width:560px;
+  height:305px;
+  border-bottom:1px solid #eee;
+  padding:10px;
+  margin-bottom:10px;
+
+}

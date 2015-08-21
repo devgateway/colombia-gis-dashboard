@@ -21,15 +21,15 @@ var MyActivities = React.createClass({
       <div>
         <div className="subactivities-list">
         <Message message='map.popup.programList'/>: {items.length}
-        <ul> 
+        <ul>
         {
           items.map(function(node, index) {
-            return <li>{node.name} - ({node.value})</li>          
+            return <li>{node.name} - ({node.value})</li>
           })
         }
         </ul></div>
         <If condition={link}>
-          <div><a className="btn download-button" href={link} target='_blank'><Message message='map.popup.downloadFile'/></a></div>
+          <div><a className="btn btn-apply" href={link} target='_blank'><Message message='map.popup.downloadFile'/></a></div>
         </If>
       </div>
     );
@@ -41,7 +41,7 @@ module.exports  = React.createClass({
 
   componentWillMount:function(){
     console.log('_popupActivitiesPoint>componentWillMount');
-    this._getInfoData(this.props.id, this.props.level, this.props.filters, 'points'); 
+    this._getInfoData(this.props.id, this.props.level, this.props.filters, 'points');
   },
 
   componentDidMount: function() {
@@ -49,19 +49,19 @@ module.exports  = React.createClass({
     this._renderChart();
   },
 
-  componentWillUpdate: function(props,newState) { 
-    console.log('_popupActivitiesPoint>componentWillUpdate'); 
+  componentWillUpdate: function(props,newState) {
+    console.log('_popupActivitiesPoint>componentWillUpdate');
     var previousId = 0;
     if(newState.infoWindowFilter){
       newState.infoWindowFilter.map(function(node){node.values.map(function(innerNode){previousId = innerNode})});
     }
     if(previousId!=props.id || props.filters!=this.props.filters){
-      this._getInfoData(props.id, props.level, props.filters, 'points'); 
+      this._getInfoData(props.id, props.level, props.filters, 'points');
     }
   },
 
-  componentDidUpdate: function(props,newState) { 
-    console.log('_popupActivitiesPoint>componentDidUpdate'); 
+  componentDidUpdate: function(props,newState) {
+    console.log('_popupActivitiesPoint>componentDidUpdate');
     this.props.onChange();
     this._renderChart();
   },
@@ -70,7 +70,7 @@ module.exports  = React.createClass({
     console.log('_popupActivitiesPoint>click');
     this.setState({'tabId':tabId});
     this.forceUpdate();
-    
+
   },
 
 

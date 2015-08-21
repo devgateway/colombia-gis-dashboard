@@ -30,7 +30,7 @@ var MyActivities = React.createClass({
         }
         </ul></div>
         <If condition={link}>
-          <div><a className="btn download-button" href={link} target='_blank'><Message message='map.popup.downloadFile'/></a></div>
+          <div><a className="btn btn-apply" href={link} target='_blank'><Message message='map.popup.downloadFile'/></a></div>
         </If>
       </div>
     );
