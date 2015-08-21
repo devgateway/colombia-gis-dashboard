@@ -25,7 +25,7 @@ if (args.length < 4) {
 
 	page.viewportSize = {
 		width: 1930,
-		height: 768
+		height: 972
 	};
 
 
@@ -43,7 +43,7 @@ if (args.length < 4) {
 				});
 
 				page.clipRect = {
-					top: 87,
+					top: clipRect.top,
 					left: clipRect.left,
 					width: clipRect.width,
 					height: clipRect.height

@@ -137,6 +137,7 @@ module.exports = Reflux.createStore({
     var params = {
       'title': options.title,
       'description': options.description,
+      'version':options.version,
       'tags': tagArray,
       'map': {
         'mapName': 'Saved Map for Colombia',
@@ -208,7 +209,9 @@ module.exports = Reflux.createStore({
     API.getMapById(id).then(
       function(data) {
           RestoreActions.restoreData(data.map);
-          self.update({'mapName':data.title});
+          self.update({'mapName':data.title});  
+          self.update({'mapDescription':data.description});
+
       }).fail(function() {
       console.log('onRestoreMapFromAPI: Error saving data ...');
     });

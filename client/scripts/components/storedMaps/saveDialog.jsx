@@ -27,12 +27,12 @@ module.exports = React.createClass({
 
 
 	mixins: [Reflux.connect(Store,"store")],
-
 	save:function(){
-	//TODO add validations
+	
 		var description=this.refs.description.getValue();
 		var title=this.refs.title.getValue();
 		_.assign(this.state,{'title':title,'description':description});
+		
 		if(this.state.store.key=='save'){
 			Actions.saveMap(this.state);
 		} else if(this.state.store.key=='update') {
@@ -66,12 +66,13 @@ module.exports = React.createClass({
 		return tags;
 	},
 
-	componentDidUpdate:function(){
+	componentDidUpdate:function(){ 
 		var self = this;
 		if(self.state.store.id && self.state.store.showModal){
 			var map = _.find(this.state.store.maps, function(l){return l._id==self.state.store.id});
 			self.refs.title.getInputDOMNode().value = map.title;
 			self.refs.description.getInputDOMNode().value = map.description;
+			_.assign(this.state,{"version":map.version});		
 		}
 
 	},
