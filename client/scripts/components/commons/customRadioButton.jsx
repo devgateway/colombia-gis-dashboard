@@ -29,7 +29,7 @@ var RadioGroup=React.createClass({
     },
 
     render:function(){
-        return <div>{this.props.children}</div>
+        return <div>{this._children}</div>
     }
 });
 
@@ -46,14 +46,9 @@ var Radio = React.createClass({
 
     render: function() {
         var classes = this.props.checked ? "selectable-radio selected" : "selectable-radio ";
-        var onclick = this._onClick;
-        if (this.props.disabled){
-            classes = "selectable-disabled";
-            onclick = "";
-        }
         return (
         <div className={this.props.className}>
-            <span  className={classes}  onClick={onclick}>
+            <span  className={classes}  onClick={this._onClick}>
             </span>
 
             <Message message={this.props.label}/>

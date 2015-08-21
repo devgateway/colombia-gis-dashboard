@@ -23,9 +23,9 @@ module.exports = {
       case "indicators":
         var filtersClone = _.clone(filters);
         if (param=="de"){
-          _.assign(filtersClone, {'departments': [id]});
+          _.assign(filtersClone, {'departments': [id], "municipalities":[]});
         } else if (param=="mu") {
-          _.assign(filtersClone, {'municipalities': [id]});
+          _.assign(filtersClone, {'municipalities': [id], 'departments': []});
         }
         data = IndicatorsActions.getInfoFromAPI(infoWindow, filtersClone) || [];
         break;
@@ -56,6 +56,7 @@ module.exports = {
   },
 
   setAttributeDisplay: function(classId, attr, display){
+    debugger;
     $(classId).map(function(node, index) {
         if(index.getAttribute(attr)){
           index.style.display=display;

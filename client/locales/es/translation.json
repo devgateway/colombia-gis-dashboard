@@ -116,6 +116,12 @@
 			"streets":"Calles"
 		},
 		"popup":{
+			"indicatorName": "Nombre del indicador:",
+			"indicatorDisaggregations": "Desagregaciones del Indicador",
+			"otherDisaggregations": "Otras Desagregaciones",
+			"fiscalYearAdvance": "Avance en años fiscales",
+			"fiscalYear": "Año Fiscal",
+			"value": "Valor",
 			"totalActivities":"Actividades Totales",
 			"totalSubActivities":"SubActividades Totales",
 			"programList":"Lista de Programas",

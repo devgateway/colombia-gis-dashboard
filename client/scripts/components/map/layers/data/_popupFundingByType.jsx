@@ -33,7 +33,6 @@ module.exports  = React.createClass({
   componentWillUpdate: function(props,newState) { 
     console.log('_popupActivitiesPoint>componentWillUpdate'); 
     var previousId = 0;
-    debugger;
     if(newState.infoWindowFilter){
       newState.infoWindowFilter.map(function(node){node.values.map(function(innerNode){previousId = innerNode})});
     }

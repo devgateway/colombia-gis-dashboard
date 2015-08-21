@@ -118,6 +118,12 @@
 			"streets":"Streets"
 		},
 		"popup":{
+			"indicatorName": "Indicator Name:",
+			"indicatorDisaggregations": "Indicator Disaggregations",
+			"otherDisaggregations": "Other Disaggregations",
+			"fiscalYearAdvance": "Fiscal Years Advance",
+			"fiscalYear": "Fiscal Year",
+			"value": "Value",
 			"totalActivities":"Total Activities",
 			"totalSubActivities":"Total SubActivities",
 			"programList":"Program List",
