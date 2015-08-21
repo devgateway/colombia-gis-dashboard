@@ -159,8 +159,12 @@
 		"no":"No",
 		"mandatoryFields":"* Mandatory fields",
 		"tagshelptext":"Please separate tags with commas",
-		"mandatoryFieldsMissing":" / Please complete mandatory fields",
+		"mandatoryTitleMissing":" / Please complete the title",
+		"mandatoryDescriptionMissing":" / Please complete the description",
 		"titleIsDuplicated":" / This title has already been used. Please indicate a new one.",
-		"mandatoryFieldsLength": " / The map title have a maximum of 100 characters and the map description a maximum of 300 characters, please check those fields"
+		"mandatoryTitleLength": " / The map title have a maximum of 100 characters",
+		"mandatoryDescriptionLength": " / The map description a maximum of 300 characters",
+		"tagsQuantity":" / The maximum quantity of tags is 3",
+		"tagsLength":" / The maximun lenght for any tag is 80 characters"
 	}
 }
