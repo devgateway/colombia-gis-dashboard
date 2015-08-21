@@ -13,11 +13,8 @@ var Panel=require('react-bootstrap/lib/Panel');
 var Label=require('react-bootstrap/lib/Label');
 var Tooltip=require('react-bootstrap/lib/Tooltip');
 var _=require('lodash');
-
 var PrintDialog=require('./printDialog.jsx');
-var ImageDialog=require('./imageDialog.jsx');
-
-var SaveMap=require('./saveDialog.jsx');
+var SaveMap=require('./saveOrExportDialog.jsx');
 var Modal=require('react-bootstrap/lib/Modal');
 var Button=require('react-bootstrap/lib/Button');
 var Pagination=require('react-bootstrap/lib/Pagination');
@@ -68,7 +65,6 @@ mixins: [Reflux.connect(Store,"store"), Reflux.connect(LanStore, 'lan')],
     return {pageSize:3, activePage:1, showDownload:false}
   },
 
-
   render: function() {
     var origMapList=this.state.store.maps || [];
     var mapList=_.sortBy(_.union(_.filter(origMapList, {hide:undefined}), _.filter(origMapList, {hide:false})), 'title');
@@ -111,7 +107,9 @@ mixins: [Reflux.connect(Store,"store"), Reflux.connect(LanStore, 'lan')],
                               </a>
                               <SaveMap/>
                               <PrintDialog key={m.id} id={m._id}/>
-                              <ImageDialog key={m.id} id={m._id}/>
+                              <a href="#">
+                              <i className="pull-right fa fa-file-image-o" title={i18n.t('savemap.tooltipprintpng')} ></i>
+                              </a>
                               <a href="#">
                               <i className="pull-right fa fa-folder-open" title={i18n.t('savemap.tooltipopen')} onClick={this._open.bind(this,m._id)}></i>
                               </a>

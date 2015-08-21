@@ -7,11 +7,13 @@ var Reflux = require('reflux');
 var Actions=require('../../actions/saveActions.js');
 var CustomRadio = require('../commons/customRadioButton.jsx').Radio;
 var CustomRadioGroup = require('../commons/customRadioButton.jsx').RadioGroup;
-
+var Store=require('../../stores/saveStore.js');
 var _=require('lodash');
 
 module.exports = React.createClass({
 
+
+	mixins: [Reflux.connect(Store)],
 
 	_export:function(){
 		//TODO add export actions
@@ -30,18 +32,20 @@ module.exports = React.createClass({
 		this.setState({'format': format});
 	},
 	
-	componentWillReceiveProps:function(nextProps){
-		var indicatorsEnabled = nextProps.store.layersVisible.indicators;
-		var activitiesEnabled = nextProps.store.layersVisible.shapes || nextProps.store.layersVisible.points;
+	/*componentWillReceiveProps:function(nextProps){
+		var indicatorsEnabled = nextProps.layersVisible.indicators;
+		var activitiesEnabled = nextProps.layersVisible.shapes || nextProps.layersVisible.points;
 		if (!activitiesEnabled){
 			this.setState({'type': 'indicators'});
 		}
 		this.setState({'indicatorsEnabled': indicatorsEnabled});
 		this.setState({'activitiesEnabled': activitiesEnabled});
-	},
+	},*/
 
 	render:function() {
-		debugger;
+		var indicatorsEnabled = this.state.layersVisible.indicators;
+		var activitiesEnabled = this.state.layersVisible.shapes || this.state.layersVisible.points;
+		var type = !activitiesEnabled? 'indicators': this.state.type;
 		return (
 			<div className="">
 				<div className="blue-panel">
@@ -49,15 +53,15 @@ module.exports = React.createClass({
 						<CustomRadioGroup>
 			              <CustomRadio className="horizontal" name="activities" 
 			              	checked={this.state.type=='activities'? true : false} 
-			              	disabled={this.state.activitiesEnabled? false : true}
+			              	disabled={activitiesEnabled? false : true}
 			              	onClick={this._exportTypeChanged} label="savemap.exportactivities"/>
 			              <CustomRadio className="horizontal" name="indicators" 
 			              	checked={this.state.type=='indicators'? true : false} 
-			              	disabled={this.state.indicatorsEnabled? false : true}
+			              	disabled={indicatorsEnabled? false : true}
 			              	onClick={this._exportTypeChanged} label="savemap.exportindicators"/>
 			            </CustomRadioGroup>
 			        </div>
-					<If condition={this.state.type=='activities'} >	
+					<If condition={type=='activities'} >	
 						<div className="plain-panel">
 							<CustomRadioGroup>
 				              <CustomRadio className="" name="csv" 
@@ -72,7 +76,7 @@ module.exports = React.createClass({
 				</div>
 				<div>
 					<Button className="btn btn-apply pull-right" onClick={this._export.bind(this)}>{i18n.t('savemap.exportbutton')}</Button>
-					<Button  className="pull-right" onClick={this.props.close.bind(this)}>{i18n.t('savemap.closebutton')}</Button>
+					<Button  className="pull-right" onClick={this.props.onClose.bind(this)}>{i18n.t('savemap.closebutton')}</Button>
 				</div>
 			</div>
 			);

@@ -9,7 +9,7 @@ var Basemaps=require('../map/baseMap.jsx')
 var TabLayerNavigator=require('./../map/tabLayerNavigator.jsx');
 
 var SaveActions=require('../../actions/saveActions.js');
-var SaveMap=require('../storedMaps/saveDialog.jsx');
+var SaveMap=require('../storedMaps/saveOrExportDialog.jsx');
 
 var Filter=require('./../filters/filtersManager.jsx');
 var StoredMaps=require('../storedMaps/mapList.jsx');
