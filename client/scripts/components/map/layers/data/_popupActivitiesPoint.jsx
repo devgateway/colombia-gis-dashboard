@@ -87,7 +87,7 @@ module.exports  = React.createClass({
       showLoading=false;
     }
     return (
-      <div className="leaflet-popup-content-wrapper">
+      <div>
         <div className="leaflet-popup-content">
           <div className="panel panel-default" >
             <div className="panel-heading popup-header" >

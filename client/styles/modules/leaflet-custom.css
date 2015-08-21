@@ -3,7 +3,7 @@
   -moz-border-radius: 0;
   border-radius: 0;
   font-family: "Open Sans", sans-serif;
-  width: 447px;
+  width: 450px;
   padding: 0;
 }
 .leaflet-popup-content-wrapper h3 {
@@ -40,7 +40,7 @@
   width: 100%;
 }
 .leaflet-popup-content {
-  background: #ececec;
+  border:1px solid #800;
 }
 .leaflet-popup-tip-container {
   width: 370px;
@@ -73,13 +73,21 @@
   margin: 0;
   width: 100%;
 }
+
+.leaflet-popup-content .panel-body{
+  padding:0;
+}
+
 .leaflet-popup-content-wrapper .panel-body ul {
   margin-left: 0;
   padding-left: 1.4em;
   list-style-position: outside;
 }
+
+
+
 .popup-nav-wrapper .tabs>li a {
-  padding: 6px 30px;
+  padding: 6px 28px;
   background: #ececec;
   margin: 0 0 0 2px;
   -webkit-border-radius: 0;
@@ -129,31 +137,36 @@ span.popup-icon{
 .popup-icon.chart{
 background-position: 0 0;
 }
-.popup-icon.chart:hover,
-.popup-icon.chart.active{
+.popup-nav-wrapper .nav-tabs > li > a:hover .popup-icon.chart,
+.popup-nav-wrapper .nav-tabs > li > a:hover .popup-icon.chart.active{
 background-position: 0 -29px;
 }
 
 .popup-icon.funding-dev-obj{
 background-position: -30px 0;
 }
-.popup-icon.funding-dev-obj:hover,
-.popup-icon.funding-dev-obj.active{
+ul.national-tabs li a:hover .popup-icon.funding-dev-obj,
+ul.national-tabs li a:hover > li.active a .popup-icon.funding-dev-obj,
+.popup-nav-wrapper .nav-tabs > li > a:hover .popup-icon.funding-dev-obj,
+.popup-nav-wrapper .nav-tabs > li > a:hover .popup-icon.funding-dev-obj.active{
 background-position: -30px -29px;
 }
 
 .popup-icon.subactivities{
 background-position: -60px 0;
 }
-.popup-icon.subactivities:hover,
-.popup-icon.subactivities.active{
+ul.national-tabs li a:hover .popup-icon.subactivities,
+ul.national-tabs li a:hover > li.active a .popup-icon.subactivities,
+.popup-nav-wrapper .nav-tabs > li > a:hover .popup-icon.subactivities,
+.popup-nav-wrapper .nav-tabs > li > a:hover .popup-icon.subactivities.active{
 background-position: -60px -30px;
 }
 
 .popup-icon.export{
 background-position: -90px 0;
 }
-
+ul.national-tabs li a:hover .popup-icon.export,
+ul.national-tabs li a:hover > li.active a .popup-icon.export,
 .popup-nav-wrapper .nav-tabs > li > a:hover .popup-icon.export,
 .popup-nav-wrapper .nav-tabs > li.active a .popup-icon.export{
 background-position: -90px -29px;
@@ -162,8 +175,10 @@ background-position: -90px -29px;
 .popup-icon.subactivitiesList{
 background-position: -120px 0;
 }
-.popup-icon.subactivitiesList:hover,
-.popup-icon.subactivitiesList.active{
+ul.national-tabs li a:hover .popup-icon.subactivitiesList,
+ul.national-tabs li a:hover > li.active a .popup-icon.subactivitiesList,
+.popup-nav-wrapper .nav-tabs > li > a:hover .popup-icon.subactivitiesList,
+.popup-nav-wrapper .nav-tabs > li > a:hover .popup-icon.subactivitiesList.active{
 background-position: -120px -29px;
 
 }
@@ -192,5 +207,4 @@ ul.national-tabs li a{
   border-bottom:1px solid #eee;
   padding:10px;
   margin-bottom:10px;
-
 }
