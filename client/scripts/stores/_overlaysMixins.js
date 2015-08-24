@@ -75,6 +75,7 @@ module.exports = {
 	_getDefState: function() {
 		var id=		this._getLayerId();
 		var title=	this._getTitle();
+		var subtitle=	this._getSubtitle();
 		
 		return {
 			level: "departament",
@@ -84,8 +85,8 @@ module.exports = {
 			isLoaded: false,
 			geoData: null,
 			id:id,
-			title:title
-
+			title:title,
+			subtitle:subtitle
 		}
 
 	},

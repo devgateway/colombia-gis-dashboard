@@ -30,6 +30,7 @@ module.exports = Reflux.createStore({
     }
 
     this._setLegendVisibility(data.id, data.visible);
+    this._setLegendSubtitle(data.id, data.subtitle);
     
     if (data.subProperty) {
       var level = data.subProperty;
@@ -90,9 +91,10 @@ module.exports = Reflux.createStore({
       "legendGroups": []
     }
   },
+
   _createGroupObject: function(data) {
     return {
-      "layerName": data.title,
+      "layerName": data.subtitle,
       "legends": []
     }
   },
@@ -157,7 +159,17 @@ module.exports = Reflux.createStore({
     this.trigger(this.state);
   },
 
-
+  _setLegendSubtitle: function(id, value) {
+    var layerLegend = _.find(this.state.layersLegends, {
+      'id': id
+    });
+    if (layerLegend) {
+      var legendGroups=_.clone(layerLegend.legendGroups);
+      _.map(legendGroups, function(l){l.layerName=value;});
+      _.assign(legendGroups,{legendGroups});
+    }
+    this.trigger(this.state);
+  },
 
   getInitialState: function() {
 
