@@ -103,7 +103,18 @@
 		"noResults":"No hay resultados que coincidan con su búsqueda",
 		"byDepartment":"Por Departamento",
 		"byMunicipality":"Por Municipio",
-		"searchLayers": "Guardar mapa"
+		"searchLayers": "Guardar mapa",
+		"changeIndicator": "Cambiar Indicador",
+		"selectIndicator": "Seleccionar Indicador",
+		"searchIndicator": "Buscar Indicador",
+		"program": "Programa",
+		"activity": "Actividad",
+		"type": "Tipo",
+		"keyword": "Palabra clave",
+		"find": "Buscar",
+		"description": "Descripción",
+		"select": "Seleccionar",
+		"close": "Cerrar"
 	},
 
 	"map": {

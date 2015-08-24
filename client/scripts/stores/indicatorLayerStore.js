@@ -123,12 +123,13 @@ module.exports = Reflux.createStore({
 	},
 
 	_indicatorSelected: function(data) {
-		debugger;
-		if (this.state.filters.indicatorId != data.indicatorSelected){
+		if (data.indicatorSelected.id && this.state.filters.indicatorId != data.indicatorSelected.id){
 			this.onChangeGroupFilterSelection([
-				{"param": "indicatorId", "values": data.indicatorSelected},
+				{"param": "indicatorId", "values": data.indicatorSelected.id},
+				{"param": "indicatorName", "values": data.indicatorSelected.description},
 				{"param": "activityId", "values": data.activitySelected}
 			], "indicators");
+
 		}
 	},
 
