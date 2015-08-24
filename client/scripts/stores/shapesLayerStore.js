@@ -116,7 +116,7 @@ module.exports = Reflux.createStore({
 	},
 
 	_getTitle:function(){
-		return 'Funding By Type'
+		return 'layers.fundingByTypeTitle';
 	},
 	
 	_getDefaultBreaks: function() {

@@ -55,6 +55,7 @@ module.exports = React.createClass({
 	},
 	
 	render:function() {
+		var errorArray = this.state.errorMsg?this.state.errorMsg.split(','):null;
 		return (
 			<div className="">
 				<div className="blue-panel">
@@ -78,9 +79,11 @@ module.exports = React.createClass({
 					<Tags onUpdate={this._updateTags} value={this.state.map.tags}/>
 				</div>
 				<div className="plain-panel"><Message message='savemap.mandatoryFields'/>
-					<If condition={this.state.errorMsg} >
-						<Message message={this.state.errorMsg}/>
-					</If>
+					{
+						_.map(errorArray, function(e){
+							return (<Message message={e}/>)
+						})
+					}
 				</div>
 				
 				<div>

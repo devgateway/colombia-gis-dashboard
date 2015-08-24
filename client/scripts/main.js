@@ -12,7 +12,9 @@ window.MAP_UPDATE_DELETE_URL = 'http://map-print.adstg.org/save/{{id}}';
 window.MAP_LIST_URL = 'http://map-print.adstg.org/maps';
 window.MAP_GET_URL = 'http://map-print.adstg.org/map/{{id}}';
 
-window.MAP_PRINT_URL = 'http://map-print.adstg.org/print/{{id}}';
+window.MAP_PDF_URL = 'http://map-print.adstg.org/pdf/{{id}}';
+window.MAP_IMAGE_URL = 'http://map-print.adstg.org/png/{{id}}';
+
 window.MAP_DOWNLOAD_URL = 'http://map-print.adstg.org/download/{{name}}';
 
 
@@ -30,7 +32,8 @@ if ((window.location.host.indexOf('localhost') > -1) || (window.location.host.in
 	window.MAP_LIST_URL = 'http://localhost:3033/maps';
 	window.MAP_GET_URL = 'http://localhost:3033/map/{{id}}';
 
-	window.MAP_PRINT_URL = 'http://localhost:3033/print/{{id}}';
+	window.MAP_PDF_URL = 'http://localhost:3033/pdf/{{id}}';
+	window.MAP_IMAGE_URL = 'http://localhost:3033/png/{{id}}';
 	window.MAP_DOWNLOAD_URL = 'http://localhost:3033/download/{{name}}';
 
 
@@ -107,7 +110,7 @@ L.Path.prototype.setOpacity = function(fill, stroke) { //add setOpacity method t
 
 $.ajaxSetup({
   beforeSend: function() {
-        console.log('JAXA BEFORE SENT');
+        console.log('AJAX BEFORE SENT');
     },
 });
 

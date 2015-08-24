@@ -69,9 +69,20 @@ module.exports = {
     }).fail(logFailure);
   },
 
-  print:function(id){
-    console.log("scripts->api->saveAndRestoreMap: print id: " + id);
-    var url = tim(window.MAP_PRINT_URL,{id:id});
+  pdf:function(id){
+    console.log("scripts->api->saveAndRestoreMap: pdf id: " + id);
+    var url = tim(window.MAP_PDF_URL,{id:id});
+    return reqwest({
+      url:url, 
+      type: 'json',
+      method: 'get',
+      crossOrigin: true
+    }).fail(logFailure); 
+  },
+
+    image:function(id){
+    console.log("scripts->api->saveAndRestoreMap: image id: " + id);
+    var url = tim(window.MAP_IMAGE_URL,{id:id});
     return reqwest({
       url:url, 
       type: 'json',

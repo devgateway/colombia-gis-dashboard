@@ -31,7 +31,7 @@ module.exports = React.createClass({
 	},
 
 	_initDownload:function(){
-		API.print(this.props.id).then(function(data){
+		API.pdf(this.props.id).then(function(data){
 			this.setState({visible:true,file:data.name})
 			this.forceUpdate();
 		}.bind(this))

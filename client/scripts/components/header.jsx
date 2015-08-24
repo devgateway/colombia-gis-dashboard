@@ -14,7 +14,6 @@ module.exports = React.createClass({
 
   render: function() {
     var mapName = i18n.t("app.title");
-    debugger;
     if(this.state.save && this.state.save.mapName){
       mapName=this.state.save.mapName;
     } 

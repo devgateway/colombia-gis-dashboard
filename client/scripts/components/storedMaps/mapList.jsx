@@ -14,6 +14,8 @@ var Label=require('react-bootstrap/lib/Label');
 var Tooltip=require('react-bootstrap/lib/Tooltip');
 var _=require('lodash');
 var PrintDialog=require('./printDialog.jsx');
+var ImageDialog=require('./imageDialog.jsx');
+
 var SaveMap=require('./saveOrExportDialog.jsx');
 var Modal=require('react-bootstrap/lib/Modal');
 var Button=require('react-bootstrap/lib/Button');
@@ -107,9 +109,7 @@ mixins: [Reflux.connect(Store,"store"), Reflux.connect(LanStore, 'lan')],
                               </a>
                               <SaveMap/>
                               <PrintDialog key={m.id} id={m._id}/>
-                              <a href="#">
-                              <i className="pull-right fa fa-file-image-o" title={i18n.t('savemap.tooltipprintpng')} ></i>
-                              </a>
+                              <ImageDialog key={m.id} id={m._id}/>
                               <a href="#">
                               <i className="pull-right fa fa-folder-open" title={i18n.t('savemap.tooltipopen')} onClick={this._open.bind(this,m._id)}></i>
                               </a>
