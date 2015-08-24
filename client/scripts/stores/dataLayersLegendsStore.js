@@ -8,6 +8,7 @@ var _ = require('lodash');
 
 var ShapesLayerStore = require('./shapesLayerStore.js');
 var PointsLayerStore = require('./pointsLayerStore.js');
+var IndicatorLayerStore = require('./indicatorLayerStore.js');
 
 module.exports = Reflux.createStore({
 
@@ -19,36 +20,41 @@ module.exports = Reflux.createStore({
     };
     this.listenTo(ShapesLayerStore, this._handleDataLayersUpdate);
     this.listenTo(PointsLayerStore, this._handleDataLayersUpdate);
+    this.listenTo(IndicatorLayerStore, this._handleDataLayersUpdate);
   },
 
   _handleDataLayersUpdate: function(data) {
-
-    var exists = _.find(this.state.layersLegends, {'id': data.id});
-
-    if (!exists) {
-      this._makeLegend(data.id, data);
-    }
-
-    this._setLegendVisibility(data.id, data.visible);
-    this._setLegendSubtitle(data.id, data.subtitle);
     
-    if (data.subProperty) {
-      var level = data.subProperty;
-      this._setLegendColor(data.id, data.breaks.breaks[level].style.color, level.split("Level")[1])
-      this._setLegendLabel(data.id, data.breaks.breaks[level], level.split("Level")[1])
+    if(data.id == 'indicators'){
+      this.update({'hideLegendButton':data.hideLegendButton}, {silent:true})
+    } else {
+
+      var exists = _.find(this.state.layersLegends, {'id': data.id});
+
+      if (!exists) {
+        this._makeLegend(data.id, data);
+      }
+
+      this._setLegendVisibility(data.id, data.visible);
+      this._setLegendSubtitle(data.id, data.subtitle);
+      
+      if (data.subProperty) {
+        var level = data.subProperty;
+        this._setLegendColor(data.id, data.breaks.breaks[level].style.color, level.split("Level")[1])
+        this._setLegendLabel(data.id, data.breaks.breaks[level], level.split("Level")[1])
+      }
     }
+
+    this.trigger(this.state);
   },
 
   _makeLegend: function(id, data) {
- 
     var legends = [];
-
     var breaks = data.breaks.breaks;
     var keys = _.keys(breaks);
 
     _.map(keys,
-      function(k) {
-        var level = k;
+      function(level) {
         var label = " " + breaks[level]["min"] + " - " + breaks[level]["max"];
         var hexColor = this._rgbToHex(breaks[level]["style"]["color"]["r"], breaks[level]["style"]["color"]["g"], breaks[level]["style"]["color"]["b"]);
         var rgbColor = [breaks[level]["style"]["color"]["r"], breaks[level]["style"]["color"]["g"], breaks[level]["style"]["color"]["b"]];
@@ -60,9 +66,7 @@ module.exports = Reflux.createStore({
             _.assign(symbol,{symbol:theSymbol});
 
         if(id=='shapes'){
-          
-           console.log('level'+level);
-           console.log(symbol);
+          label += ' %';
         }
 
         var legendData=_.assign({height: 20,imageColor: hexColor,label: label,url: "",width: 20},symbol);
@@ -80,7 +84,6 @@ module.exports = Reflux.createStore({
     });
 
     this.state.layersLegends.push(legend);
-    this.trigger(this.state)
   },
 
   _createLegendObject: function(data) {
@@ -136,15 +139,16 @@ module.exports = Reflux.createStore({
     if (layerLegend) {
 
       var legend = layerLegend.legendGroups[0].legends[level];
-      if (layerLegend.id.indexOf("Funding") != -1) {
+      if (layerLegend.id == 'shapes') {
         var minLabel = brk.min.toFixed(brk.min < 10 ? 2 : 0);
         var maxLabel = brk.max.toFixed(brk.max < 10 ? 2 : 0);
+        maxLabel += ' %';
+
       } else {
         var minLabel = brk.min.toFixed(0);
         var maxLabel = (brk.max - 1).toFixed(0);
       }
       legend.label = " " + minLabel + " - " + maxLabel;
-      this.trigger(this.state);
     }
   },
 
@@ -156,7 +160,6 @@ module.exports = Reflux.createStore({
     if (layerLegend) {
       layerLegend.visible = value;
     }
-    this.trigger(this.state);
   },
 
   _setLegendSubtitle: function(id, value) {
@@ -168,7 +171,6 @@ module.exports = Reflux.createStore({
       _.map(legendGroups, function(l){l.layerName=value;});
       _.assign(legendGroups,{legendGroups});
     }
-    this.trigger(this.state);
   },
 
   getInitialState: function() {

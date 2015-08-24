@@ -35,15 +35,12 @@ module.exports = {
 				this._load(prevLevel, value, false); //load the new level, do  not trigger the state since it will be triggered by the load method  
 
 			} else if (property == 'visible') {
+				if(id=='indicators'){
+					assignable['hideLegendButton'] = value;
+				}
+				this.update(assignable);
 				if (value == true && !this.state.geoData) {
-					this.update(assignable, {
-						'silent': true,
-						'subProperty':subProperty
-					}); //update level on current state
-
 					this._load(prevLevel, newLevel, true);
-				} else {
-					this.update(assignable);
 				}
 
 			} else if (property == 'color') {
