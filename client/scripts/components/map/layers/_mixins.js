@@ -42,7 +42,6 @@ module.exports = {
         }
     } 
     if(breakStyle === "percentage"){
-      debugger;
       breaks = this._convertGeoBreaksToPercentage(breaks);
     } else {
       //fix to contain the last value
