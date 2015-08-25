@@ -82,6 +82,10 @@ module.exports = Reflux.createStore({
   _getTitle: function() {
     return 'layers.activityTitle';
   },
+  
+  _getSubtitle:function(){
+    return this.state && this.state.subtitle?this.state.subtitle:'layers.activityDepartmentSubtitle';
+  },
 
   _getDefaultBreaks: function() {
     return defaultBreaks;
@@ -111,19 +115,22 @@ module.exports = Reflux.createStore({
   getInitialState: function() {
     return this.state = this.storedState ||
       _.assign(_.clone(this._getDefState()) /*Get default values*/ , {
-        level: "departament",
+        level: 'departament',
+        subtitle:'layers.activityDepartmentSubtitle',
         breaks: defaultBreaks, //defaul styles breaks
         defaultStyle: defaultStyle, //Default symbol styles
-        saveItems: ["breaks", "defaultStyle", "level", "opacity", "visible"]
+        saveItems: ['breaks', 'defaultStyle', 'level', 'opacity', 'visible']
       }) /*override default values*/ ;
   },
 
   /*Load GIS data by department */
   _loadByDepartments: function() {
+    this.update({subtitle:'layers.activityDepartmentSubtitle'});
     this._getGeoData(API.getActivitiesByDepartment); //just delegate the call to the next function passing the target method
   },
 
   _loadByMuncipalities: function() {
+    this.update({subtitle:'layers.activityMunicipalitySubtitle'});
     this._getGeoData(API.getActivitiesByMuncipalities); //just delegate the call to the next function passing the target method
   },
 

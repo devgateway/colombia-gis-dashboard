@@ -29,22 +29,25 @@ var LegendControl  = React.createClass({
     var legends=data.concat(esri);  
     
     var legendContent = "";
-    var buttonLabel = this.state.esri.shown? <Message message="layers.hideLegend"/> : <Message message="layers.showLegend"/>
-
+    var buttonLabel = this.state.esri.shown? <Message message="layers.hideLegend"/> : <Message message="layers.showLegend"/>;
+    var showLegendButton = !this.state.data.hideLegendButton;
     
     return (
-      <div className="legends-container">
-      <button className="show-legends-button" onClick={this._toggleVisibility}>{buttonLabel}</button>
-      <If condition={this.state.esri.shown}> 
-        <div className="legends-content">
-        {
-          legends.map(function(l){
-            return (<Legend legendGroups={l.legendGroups} layerTitle={l.layerTitle} visible={l.visible}/>);
-          })
-        }
+      <If condition={showLegendButton}>
+        <div className="legends-container">
+        <button className="show-legends-button" onClick={this._toggleVisibility}>{buttonLabel}</button>
+        <If condition={this.state.esri.shown}> 
+          <div className="legends-content">
+          {
+            legends.map(function(l){
+              return (<Legend legendGroups={l.legendGroups} layerTitle={l.layerTitle} visible={l.visible}/>);
+            })
+          }
+          </div>
+        </If>
         </div>
       </If>
-      </div>);
+      );
 
   }
 });

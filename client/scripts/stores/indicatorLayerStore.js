@@ -118,6 +118,10 @@ module.exports = Reflux.createStore({
 		return 'Indicators'
 	},
 
+	_getSubtitle:function(){
+		return 'Indicators'
+	},
+
 	_getDefaultBreaks: function() {
 		return defaultBreaks;
 	},
