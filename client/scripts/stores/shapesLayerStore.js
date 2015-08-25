@@ -116,9 +116,13 @@ module.exports = Reflux.createStore({
 	},
 
 	_getTitle:function(){
-		return 'Funding By Type'
+		return 'layers.fundingByTypeTitle';
 	},
 	
+	_getSubtitle:function(){
+		return this.state && this.state.subtitle?this.state.subtitle:'layers.fundingByTypeDepartmentSubtitle';
+	},
+
 	_getDefaultBreaks: function() {
 		return defaultBreaks;
 	},
@@ -162,6 +166,7 @@ module.exports = Reflux.createStore({
 	getInitialState: function() {
 		return this.state = this.storedState || _.assign(_.clone(this._getDefState()), {
 			level: "departament",
+			subtitle:'layers.fundingByTypeDepartmentSubtitle',
 			fundingType: 'commitments',
 			visible: false,
 			breaks: defaultBreaks, //defaul styles breaks
@@ -181,6 +186,7 @@ module.exports = Reflux.createStore({
 	
 	_loadByMuncipalities: function() {
 		//var geoData = _.clone(municipalitiesGeoJson);
+		this.update({subtitle:'layers.fundingByTypeMunicipalitySubtitle'});
 		var self = this;
 		API.getActivitiesByMuncipalities(this.state.filters).then(
 			function(data) {
@@ -212,6 +218,7 @@ module.exports = Reflux.createStore({
 
 
 	_loadByDepartments: function() {
+		this.update({subtitle:'layers.fundingByTypeDepartmentSubtitle'});
 		//var geoData = _.clone(departmentsGeoJson);
 		var self = this;
 		API.getActivitiesByDepartment(this.state.filters).then(

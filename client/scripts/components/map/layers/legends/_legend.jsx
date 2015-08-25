@@ -4,8 +4,6 @@ var If=require('../../../commons/if.jsx');
 var LegendSymbol=require('../esri/esriSymbols.jsx');
 
 
-
-
 module.exports=React.createClass({
 
   getInitialState: function() {
@@ -22,7 +20,7 @@ module.exports=React.createClass({
       return (<div>
                 <div className="legend-group-title" onClick={this._toggleVisibility}>
                   <i className={this.state.expanded? "fa fa-sort-asc" : "fa fa-sort-desc"}/>
-                  <span>{this.props.layerTitle}</span>
+                  <span><Message message={this.props.layerTitle}/></span>
                 </div>
                 <If condition={this.state.expanded}>
                   <div className="legend-group">
@@ -31,7 +29,7 @@ module.exports=React.createClass({
                       this.props.legendGroups.map(function(legendGroup){
                         return (
                           <li>
-                            <h2>{legendGroup.layerName}</h2>
+                            <h2><Message message={legendGroup.layerName}/></h2>
                             <div className="legends-list">
                               <ul>
                               {

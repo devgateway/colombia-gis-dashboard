@@ -185,6 +185,18 @@
 
 }
 
+#imageGalery{
+	position: absolute;
+	border:1px solid red;
+ position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: 100;
+   margin: auto;  
+    left:0;
+  right: 0;
+  width:50%;
+}
 
 .pdf{
 	h1{

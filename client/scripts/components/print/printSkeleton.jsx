@@ -12,26 +12,29 @@ var Filters=require('./filters/filtersManager.jsx');
 var Grid=require('react-bootstrap/lib/Grid');
 var Row=require('react-bootstrap/lib/Row');
 var Col=require('react-bootstrap/lib/Col');
-
+var SaveStore=require('../../stores/saveStore.js');
 module.exports = React.createClass({
+
+	 mixins: [Reflux.connect(SaveStore,'data')],
+
+
 
 	componentDidMount:function(){
 		Actions.openMap(this.props.params.id);
 	},
 	render: function() {
+		debugger;
 		return (
 			<Grid className="pdf">
 				<Row>
 					<Col lg={12} md={12}>
-						<h1>Map title</h1>
+						<h1>{(this.state.data)?this.state.data.mapName:''}</h1>
 					</Col>
 				</Row>
 
-					<Row>
+				<Row>
 					<Col lg={12} md={12}>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin dignissim ligula non blandit dapibus. Donec eu odio facilisis, lacinia nisl et, sagittis mi. Morbi ornare suscipit luctus. Ut in fermentum nisi. 
-						<br/> Donec sed turpis tincidunt, gravida dolor laoreet, ullamcorper nisl. Mauris sagittis purus id hendrerit vehicula. 
-						<br/> Duis pulvinar velit eget sagittis euismod. Integer consequat mi ac tincidunt scelerisque. Praesent viverra, diam nec congue ullamcorper, libero elit venenatis mauris, et fringilla arcu neque sit amet neque.</p>
+						<p>{(this.state.data)?this.state.data.mapDescription:''}</p>
 					</Col>
 				</Row>
 				<Row>

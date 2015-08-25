@@ -82,23 +82,39 @@ module.exports = Reflux.createStore({
     var isValid = true;
     if(options.title){
       if(!isUpdate && _.find(this.state.maps, function(m){return m.title==options.title})){
-        errorMsg = 'savemap.titleIsDuplicated';
+        errorMsg = errorMsg + 'savemap.titleIsDuplicated,';
         isValid = false;
       } else if(options.title.length>100){
-        errorMsg = 'savemap.mandatoryFieldsLength';
+        errorMsg = errorMsg + 'savemap.mandatoryTitleLength,';
         isValid = false;
       }
     } else {
-      errorMsg = 'savemap.mandatoryFieldsMissing';
+      errorMsg = errorMsg + 'savemap.mandatoryTitleMissing,';
       isValid = false;
     }
 
     if(!options.description){
-      errorMsg = 'savemap.mandatoryFieldsMissing';
+      errorMsg = errorMsg + 'savemap.mandatoryDescriptionMissing,';
       isValid = false;
     } else if(options.description.length>300){
-      errorMsg = 'savemap.mandatoryFieldsLength';
+      errorMsg = errorMsg + 'savemap.mandatoryDescriptionLength,';
       isValid = false;
+    }
+
+    var tagArray = options.tags && typeof options.tags == "string" ? options.tags.split(','):options.tags;
+    if(tagArray){
+      if(tagArray.length>3){
+        errorMsg = errorMsg + 'savemap.tagsQuantity,';
+        isValid = false;
+      }
+      var tagFlag = true;
+      for(var i=0; i<tagArray.length && tagFlag; i++){
+        if(tagArray[i].length>80){
+          errorMsg = errorMsg + 'savemap.tagsLength,';
+          tagFlag = false;
+          isValid = false;
+        }
+      }
     }
 
     this.update({
@@ -117,10 +133,11 @@ module.exports = Reflux.createStore({
     var shapesData = this._getDataFromState(shapesState);
     var pointsData = this._getDataFromState(pointsState);
     var arcgisData = this._getDataFromState(arcgisState);
-    var tagArray = options.tags?options.tags.split(','):null;
+    var tagArray = options.tags? _.isArray(options.tags)? options.tags : options.tags.split(','):null;
     var params = {
       'title': options.title,
       'description': options.description,
+      'version':options.version,
       'tags': tagArray,
       'map': {
         'mapName': 'Saved Map for Colombia',
@@ -192,7 +209,9 @@ module.exports = Reflux.createStore({
     API.getMapById(id).then(
       function(data) {
           RestoreActions.restoreData(data.map);
-          self.update({'mapName':data.title});
+          self.update({'mapName':data.title});  
+          self.update({'mapDescription':data.description});
+
       }).fail(function() {
       console.log('onRestoreMapFromAPI: Error saving data ...');
     });
