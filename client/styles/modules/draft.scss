@@ -199,8 +199,19 @@
 }
 
 .pdf{
+
 	h1{
-		color:$blue
+		color:$blue;
+		font-size: 16pt;
+	}
+	.description{
+		font-size: 14pt;
+		margin-top: 10pt;
+		margin-bottom:10pt;
+	}
+	
+	.filters{
+		font-size: 8pt;
 	}
 	#map{
 		display:block;
@@ -214,11 +225,14 @@
 		height: 780px;
 
 	}
+	.leaflet-control-container{
+		display:none;
+	}
 
 	.legend{
-		width:45%;
-		margin-left:10px;
-		margin-top: 30px;
+		width:48%;
+		margin-left:5px;
+		margin-top: 10pt;
 		float: left;
 		height: 100px;
 

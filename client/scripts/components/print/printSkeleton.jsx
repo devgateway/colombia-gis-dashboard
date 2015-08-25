@@ -34,7 +34,7 @@ module.exports = React.createClass({
 
 				<Row>
 					<Col lg={12} md={12}>
-						<p>{(this.state.data)?this.state.data.mapDescription:''}</p>
+						<p className="description">{(this.state.data)?this.state.data.mapDescription:''}</p>
 					</Col>
 				</Row>
 				<Row>
@@ -45,26 +45,24 @@ module.exports = React.createClass({
 					</Col>
 				</Row>
 				<div className="clearFix"/>
-				<div style={{'page-break-before':'always'}}/>
 				
 				<Row>
 					<Col lg={12} md={12}><h1>Map Legends</h1></Col>
 				</Row>
 				
 				<Row>
-					<Col lg={12} md={12}>
+					<Col lg={12} md={12} className="legends">
 						<LegendControl/>
 					</Col>
 				</Row>
 				
 				<div className="clearFix"/>
-				<div style={{'page-break-before':'always'}}/>
 				<Row>
 					<Col lg={12} md={12}><h1>Data filters</h1></Col>
 				</Row>
 
 				<Row>
-					<Col lg={12} md={12}>
+					<Col lg={12} md={12} className="filters">
 						<Filters/>
 					</Col>
 				</Row>

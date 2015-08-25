@@ -22,12 +22,14 @@ module.exports = React.createClass({
 		this.setState({'visible':false})
 	},
 	_open:function(){
-		this.setState({'visible':true})
+
+		this.setState({'visible':true,file:null})
+		this.forceUpdate();
 		this._initDownload();
 	},
 
 	getInitialState:function(){
-		return {visible:false}
+		return {visible:false,file:null}
 	},
 
 	_initDownload:function(){
@@ -58,7 +60,7 @@ module.exports = React.createClass({
 			<i className="fa fa-times-circle-o"></i></a>
 			</Modal.Header>
 			<Modal.Body>
-				{(this.state.file)?downloadMessage:waitMessage}
+				{(this.state.file!=null)?downloadMessage:waitMessage}
 			</Modal.Body>
 			<Modal.Footer>
 			</Modal.Footer>

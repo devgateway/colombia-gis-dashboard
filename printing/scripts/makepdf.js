@@ -35,8 +35,8 @@ if (args.length < 4) {
 	};
 
 	page.paperSize = {
-		format: 'Legal',
-		orientation: 'landscape',
+		format: 'portrait',
+		orientation: 'A4',
 		margin: {
 			top: '50px',
 			left: '20px'
