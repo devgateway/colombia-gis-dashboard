@@ -20,29 +20,34 @@ var LegendControl  = React.createClass({
   },
 
   _toggleVisibility: function(){
-    LegendActions.isShown(!this.state.shown);
+    LegendActions.isShown(!this.state.esri.shown);
   },
 
   render: function() {
     var esri=_.clone(this.state.esri.layersLegends) || [];
-    var  data =this.state.data.layersLegends || [];
+    var data =this.state.data.layersLegends || [];
     var legends=data.concat(esri);  
     
     var legendContent = "";
-    var buttonLabel = this.state.shown? <Message message="layers.hideLegend"/> : <Message message="layers.showLegend"/>
-
+    var buttonLabel = this.state.esri.shown? <Message message="layers.hideLegend"/> : <Message message="layers.showLegend"/>;
+    var showLegendButton = !this.state.data.hideLegendButton;
     
     return (
-      <div className="legends-container">
-      <button className="show-legends-button" onClick={this._toggleVisibility}>{buttonLabel}</button> 
-      <div className="legends-content">
-      {
-        legends.map(function(l){
-          return (<Legend legendGroups={l.legendGroups} layerTitle={l.layerTitle} visible={l.visible}/>);
-        })
-      }
-      </div>
-      </div>);
+      <If condition={showLegendButton}>
+        <div className="legends-container">
+        <button className="show-legends-button" onClick={this._toggleVisibility}>{buttonLabel}</button>
+        <If condition={this.state.esri.shown}> 
+          <div className="legends-content">
+          {
+            legends.map(function(l){
+              return (<Legend legendGroups={l.legendGroups} layerTitle={l.layerTitle} visible={l.visible}/>);
+            })
+          }
+          </div>
+        </If>
+        </div>
+      </If>
+      );
 
   }
 });

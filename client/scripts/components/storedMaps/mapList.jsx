@@ -70,7 +70,8 @@ mixins: [Reflux.connect(Store,"store"), Reflux.connect(LanStore, 'lan')],
 
   render: function() {
     var origMapList=this.state.store.maps || [];
-    var mapList=_.sortBy(_.union(_.filter(origMapList, {hide:undefined}), _.filter(origMapList, {hide:false})), 'title');
+    var mapList=_.sortBy(_.union(_.filter(origMapList, {hide:undefined}), _.filter(origMapList, {hide:false})), 
+      function(n){return n.title.toLowerCase()});
     var showDeleteModal=this.state.store.showDeleteModal || false;
     var itemsSize=mapList.length>this.state.pageSize?Math.ceil(mapList.length/this.state.pageSize):1;
 

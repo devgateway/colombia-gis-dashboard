@@ -17,14 +17,18 @@ nav.tabs {
 }
 .main-tabs .nav-tabs li:first-child a{
   &:before{
-  @include tabicon;
+  @include icon;
   content:'\f041';
+  color: $blue;
+  margin-right:5px;
   }
 }
 .main-tabs .nav-tabs li:last-child a{
   &:before{
-  @include tabicon;
+  @include icon;
   content:'\f0ac';
+  color: $blue;
+  margin-right:5px;
   }
 }
 .main-tabs .nav-tabs li a{
@@ -37,13 +41,14 @@ nav.tabs {
   border:1px solid transparent;
   margin-bottom:1px;
 }
+
 .tabs>li {
   @include floatLeft;
   @include textCenter;
   @include textUppercase;
 }
 .tabs>li a {
-  padding: 8px 15px;
+  padding: 8px 25px;
   color: lighten($grey,35%);
   border:1px solid transparent;
   background: lighten($grey,56%);
@@ -57,9 +62,11 @@ nav.tabs {
     background: $white;
   }
 }
+
 .tab-pane.active{
   padding:0.55em 0;
 }
+
 .tab-pane.fade.active{
   background:none;
 }
@@ -69,13 +76,6 @@ nav.tabs {
 .tab-content .inline{
     padding:0.3em;
 }
-.main-tabs .nav-tabs li{
-&.filtertab a{
-  &:before{
-  @include tabicon;
-  content:'\f0b0';
-    }
-  }
-}
+
 
 // end:panel tabs

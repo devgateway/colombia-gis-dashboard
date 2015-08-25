@@ -96,6 +96,9 @@ $border-grey:#eeeeee;
   @include transitionAll;
 }
 
+@mixin icon{
+  font-family: FontAwesome;
+}
 @mixin space-reset{
   margin:0;
   padding:0;

@@ -44,6 +44,22 @@ module.exports = Reflux.createStore({
     }
   },
 
+  onExportActivities: function(format) {
+    API.exportActivities(format, _.clone(filterState, true)).then(
+      function(data) {
+        debugger;
+        //use data to start download
+      }.bind(this)).fail(function(err) {
+        this.update({
+          'error': err
+        });
+        console.log('onExportActivities: Error on export data ...');
+      }.bind(this));
+  },
+
+  onExportIndicators: function(format) {
+    
+  },
 
   onSaveMap: function(options) {
     console.log('stores->saveStore->onSaveMap');
@@ -101,7 +117,7 @@ module.exports = Reflux.createStore({
       isValid = false;
     }
 
-    var tagArray = options.tags?options.tags.split(','):null;
+    var tagArray = options.tags && typeof options.tags == "string" ? options.tags.split(','):options.tags;
     if(tagArray){
       if(tagArray.length>3){
         errorMsg = errorMsg + 'savemap.tagsQuantity,';

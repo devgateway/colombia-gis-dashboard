@@ -1,6 +1,6 @@
 {
 	"app": {
-		"title": "This area can be translated as a written legend of what is being actualized on the map",
+		"title": "Initial Map",
 		"credits" : "Copyright AidData",
 		"description": "Monitor map:",
 		"menu":"Homepage",
@@ -70,6 +70,12 @@
 	"layers": {
 		"showLegend":"Show Legends",
 		"hideLegend":"Hide Legends",
+		"fundingByTypeTitle":"Funding by Type",
+		"fundingByTypeDepartmentSubtitle":"Funding by Department",
+		"fundingByTypeMunicipalitySubtitle":"Funding by Municipality",
+		"activityTitle":"Number of Subactivities",
+		"activityDepartmentSubtitle":"Number of Subactivities by Department",
+		"activityMunicipalitySubtitle":"Number of Subactivies by Municipality",
 		"title":"Map content",
 		"mapLayers":"Map Layers",
 		"dataLayers":"Data Layers",
@@ -103,7 +109,18 @@
 		"noResults":"There are no results that match your search",
 		"byDepartment":"Departments",
 		"byMunicipality":"Municipalities",
-		"searchLayers": "Search Layers"
+		"searchLayers": "Search Layers",
+		"changeIndicator": "Change Indicator",
+		"selectIndicator": "Select Indicator",
+		"searchIndicator": "Search Indicator",
+		"program": "Program",
+		"activity": "Activity",
+		"type": "Type",
+		"keyword": "Keyword",
+		"find": "Find",
+		"description": "Description",
+		"select": "Select",
+		"close": "Close"
 	},
 
 	"map": {
@@ -118,6 +135,12 @@
 			"streets":"Streets"
 		},
 		"popup":{
+			"indicatorName": "Indicator Name:",
+			"indicatorDisaggregations": "Indicator Disaggregations",
+			"otherDisaggregations": "Other Disaggregations",
+			"fiscalYearAdvance": "Fiscal Years Advance",
+			"fiscalYear": "Fiscal Year",
+			"value": "Value",
 			"totalActivities":"Total Activities",
 			"totalSubActivities":"Total SubActivities",
 			"programList":"Program List",

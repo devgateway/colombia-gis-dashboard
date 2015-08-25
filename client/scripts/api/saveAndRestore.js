@@ -80,7 +80,7 @@ module.exports = {
     }).fail(logFailure); 
   },
 
-    image:function(id){
+  image:function(id){
     console.log("scripts->api->saveAndRestoreMap: image id: " + id);
     var url = tim(window.MAP_IMAGE_URL,{id:id});
     return reqwest({
@@ -89,6 +89,17 @@ module.exports = {
       method: 'get',
       crossOrigin: true
     }).fail(logFailure); 
-  }
+  },
+
+  exportActivities: function(type, filters) {
+    return reqwest({
+      url: 'http://test.monitor.net.co/gisservice.svc/SubActivitiesListToExcel',
+      type: 'json',
+      method: 'post',
+      contentType: "application/json",
+      data: JSON.stringify({"filters": filters}),
+      crossOrigin: true
+    }).fail(logFailure);
+  },
 
 };

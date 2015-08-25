@@ -24,6 +24,12 @@ module.exports = React.createClass({
 
 	mixins: [Reflux.connect(Store)],
 
+	componentDidMount : function(){
+    	$(this.getDOMNode()).find('.title').prop("maxLength", 100);
+    	$(this.getDOMNode()).find('.description').prop("maxLength", 300);
+    	$(this.getDOMNode()).find('.taginput').prop("maxLength", 80);
+    },
+
 	save:function(){
 		if(this.state.map && this.state.map._id){
 			Actions.updateMap(this.state.map._id, this.state.map);
@@ -55,19 +61,19 @@ module.exports = React.createClass({
 	},
 	
 	render:function() {
+		var errorArray = this.state.errorMsg?this.state.errorMsg.split(','):null;
 		return (
 			<div className="">
 				<div className="blue-panel">
 					<Input name="title" 
 						type="text"
-						className="form-control" 
+						className="form-control title" 
 						onChange={this._updateTitle}
 						placeholder={i18n.t('savemap.savemaptitle')}  
-						maxlength="100" 
 						value={this.state.map.title} addonAfter='*'/>
 					<Input type='textarea' name="description" 
 						onChange={this._updateDescription}
-						className="form-control" 
+						className="form-control description" 
 						rows="3" 
 						placeholder={i18n.t('savemap.savemapdescription')} 
 						value={this.state.map.description} maxlength="300" addonAfter='*' />
@@ -78,9 +84,11 @@ module.exports = React.createClass({
 					<Tags onUpdate={this._updateTags} value={this.state.map.tags}/>
 				</div>
 				<div className="plain-panel"><Message message='savemap.mandatoryFields'/>
-					<If condition={this.state.errorMsg} >
-						<Message message={this.state.errorMsg}/>
-					</If>
+					{
+						_.map(errorArray, function(e){
+							return (<Message message={e}/>)
+						})
+					}
 				</div>
 				
 				<div>

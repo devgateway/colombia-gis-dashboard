@@ -3,7 +3,6 @@ var Modal=require('react-bootstrap/lib/Modal');
 var Input=require('react-bootstrap/lib/Input');
 var Button=require('react-bootstrap/lib/Button');
 var If=require('../commons/if.jsx');
-var IndicatorsFinderStore=require('../../stores/indicatorsFinderStore.js');
 var Reflux = require('reflux');
 var Actions=require('../../actions/saveActions.js');
 var CheckBox=require('../commons/customCheckbox.jsx')
