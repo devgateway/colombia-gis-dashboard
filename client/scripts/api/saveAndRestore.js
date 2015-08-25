@@ -93,7 +93,7 @@ module.exports = {
 
   exportActivities: function(type, filters) {
     return reqwest({
-      url: 'http://test.monitor.net.co/gisservice/gisservice.svc/SubActivitiesListToExcel',
+      url: 'http://test.monitor.net.co/gisservice.svc/SubActivitiesListToExcel',
       type: 'json',
       method: 'post',
       contentType: "application/json",
