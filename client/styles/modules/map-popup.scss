@@ -1,2 +1,27 @@
 // style overrides for leaflet.css are in a file called leaflet-custom.css
 // there were issues overriding the default leaflet css filew with sass
+
+.subactivities-container {
+	height: 240px;
+}
+.subactivities-list {
+	overflow-y: scroll;
+	height: 205px;
+	width: 420px;
+	ul{
+		@include listUnstyled;
+		border-top:1px solid #eee;
+		margin-top:5px;
+		padding-top:5px;
+	}
+}
+.popup-loading-container {
+	height: 240px;
+	padding-left: 175px;
+	padding-top: 80px;
+}
+.sub-activities-title{
+	color:#4278AA;
+	font-size:14px;
+	margin-top:10px;
+}

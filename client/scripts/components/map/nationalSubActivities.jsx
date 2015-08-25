@@ -1,14 +1,14 @@
 var React = require('react/addons');
 var Modal=require('react-bootstrap/lib/Modal');
 var Button=require('react-bootstrap/lib/Button');
-
+var Store=require('../../stores/nationalSubActivitiesStore.js');
 var Reflux = require('reflux');
 var NationalPopupContent = require('./nationalSubActivitiesContent.jsx')
 
 var _=require('lodash');
 
 module.exports = React.createClass({
-
+	mixins: [Reflux.connect(Store)],
 
 	close:function(){
 		this.setState({
@@ -25,9 +25,15 @@ module.exports = React.createClass({
 	getInitialState:function(){
 		return {'showModal': false}
 	},
-	
+
 	render:function() {
 		var showModal=this.state.showModal || false;
+		var numberOfActivities;
+		if (this.state.infoWindow){
+			var actCounter = 0;
+			_.map(this.state.infoWindow[4].value, function(v){actCounter+=parseInt(v.value)});
+			numberOfActivities = '- ' + actCounter;
+		}
 		return (
 			<span>
 				<a href="#" data-toggle="modal" data-target="#myModal" onClick={this.open}><Message message='map.nationalSubActivities'/></a>
@@ -35,10 +41,12 @@ module.exports = React.createClass({
 				 show={showModal} onHide={this.close}>
 					<Modal.Header>
 						<Modal.Title>
-							<i className="fa fa-folder-open"></i> <Message message='map.nationalSubActivities'/> 
-							<a className="" style={{'float':'right', 'margin-top':'0px'}} href="#" onClick={this.close}>
-							<i className="fa fa-times-circle-o"></i></a>
+							<i className="fa fa-folder-open"></i> <Message message='map.nationalSubActivities'/>
+							<span className="children-count">{numberOfActivities}</span>
 						</Modal.Title>
+						<a className="close-dialog" href="#" onClick={this.close}>
+						<i className="fa fa-times-circle-o"></i></a>
+
 					</Modal.Header>
 					<Modal.Body>
 						<NationalPopupContent/>

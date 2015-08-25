@@ -11,8 +11,8 @@ module.exports  = React.createClass({
     this.setState({tabId: 0});
   },
 
-  componentDidUpdate: function(props,newState) { 
-    console.log('popup>componentDidUpdate'); 
+  componentDidUpdate: function(props,newState) {
+    console.log('popup>componentDidUpdate');
     this.props.onChange();
   },
 
@@ -21,7 +21,7 @@ module.exports  = React.createClass({
     console.log('popup>click');
     this.setState({'tabId':tabId});
     this.forceUpdate();
-    
+
   },
 
   render: function() {
@@ -29,7 +29,7 @@ module.exports  = React.createClass({
     var url = "./#/chart1?id="+this.props.id+"&tab="+this.state.tabId;
     var content=(  <div className="popup-content"><iframe className="iframe-content" src={url} ></iframe> </div>);
     return (
-      <div className="leaflet-popup-content-wrapper">
+      <div className="">
         <div className="leaflet-popup-content">
           <div className="panel panel-default" >
             <div className="panel-heading popup-header" >

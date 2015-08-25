@@ -3,7 +3,7 @@
 		"title": "Esta area puede ser usada para un titulo largo",
 		"credits" : "Todos los derechos reservados ..  AidData",
 		"description": "Mapa de monitoreo:",
-		"menu":"Menú",
+		"menu":"Página Principal",
 		"hideMenu":"Esconder Menú",
 		"languagelabel":"Idioma",
 		"languageSpanish":"Español",
@@ -146,33 +146,20 @@
 		"tooltipprintpng":"Imprimir como imágen",
 		"tooltipopen":"Abrir",
 		"tooltipdelete":"Eliminar",
-		
 		"closebutton":"Cerrar",
 		"savebutton":"Guardar Cambios",
-		"exportbutton":"Exportar Mapa",		
-		
+		"exportbutton":"Exportar Mapa",
 		"downloadtitle":"Descarga de pdf para impresión",
 		"printloadmessage":"Por favor espere mientras se genera el archivo pdf, el tiempo de creación del archivo dependerá de la configuración del mapa",
 		"printreadymessage":"Haga clic aquí para descargar el archivo pdf",
-		
-		"imagedownloadtitle":"Captura de mapa en imagen",
-		"imageloadmessage":"Por favor espere mientras se genera la imagen, el tiempo de creación del archivo dependerá de la configuración del mapa",
-		"imagereadymessage":"Haga clic aquí para descargar la imagen",
-		
-
 		"confirmation":"Confirmación",
-		
 		"areyousure":"Está seguro que desea borrar este mapa?",
 		"yes":"Si",
 		"no":"No",
 		"mandatoryFields":"* Campos Obligatorios",
 		"tagshelptext":"Por favor separe las etiquetas con comas",
-		"mandatoryTitleMissing":" / Favor de completar el título del mapa",
-		"mandatoryDescriptionMissing":" / Favor de completar el descripción del mapa",
+		"mandatoryFieldsMissing":" / Favor completar los campos obligatorios",
 		"titleIsDuplicated":" / Este título ya ha sido utilizado. Favor indicar uno nuevo.",
-		"mandatoryTitleLength": " / El título del mapa tiene un máximo de 100 caracteres",
-		"mandatoryDescriptionLength": " / La descripción del mapa tiene un máximo de 300 caracteres",
-		"tagsQuantity":" / La máxima cantidad de etiquetas es 3",
-		"tagsLength":" / Cada etiqueta tienen un máximo de 80 caracteres"
+		"mandatoryFieldsLength": " / El título del mapa tiene un máximo de 100 caracteres y la descripción del mapa un máximo de 300 caracteres, por favor revise esos campos"
 	}
 }
