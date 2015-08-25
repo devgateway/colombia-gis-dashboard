@@ -163,13 +163,11 @@ module.exports = Reflux.createStore({
   },
 
   _setLegendSubtitle: function(id, value) {
-    var layerLegend = _.find(this.state.layersLegends, {
-      'id': id
-    });
+    var layerLegend = _.find(this.state.layersLegends, {'id': id});
     if (layerLegend) {
       var legendGroups=_.clone(layerLegend.legendGroups);
       _.map(legendGroups, function(l){l.layerName=value;});
-      _.assign(legendGroups,{legendGroups});
+      _.assign(legendGroups, legendGroups);
     }
   },
 
