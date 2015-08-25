@@ -20,7 +20,7 @@ module.exports = Reflux.createStore({
   onFind:function(){
     console.log(this.state.query);
     API.getIndicatorsList(this.state.query).then(function(data) {
-      this.update({results:data});
+      this.update({results:data, showLoading: false});
     }.bind(this)).fail(
       function(xhttp,err){
         console.log(err)
@@ -28,15 +28,15 @@ module.exports = Reflux.createStore({
     );
   },
 
-  onUpdateIndicator:function(indicatorId, activityId){
-    this.update({"indicatorSelected": indicatorId, "activitySelected": activityId});
+  onUpdateIndicator:function(indicator, activityId){
+    this.update({"indicatorSelected": indicator, "activitySelected": activityId});
     this.trigger(this.state);
   },
 
   onGetActivitiesByProgram: function(value){
     var filters = {"filters":[{"id":value}]};
     API.getActivityList(filters).then(function(data) {
-      this.update({activities:data});
+      this.update({activities:data, showLoading: false});
     }.bind(this)).fail(
       function(xhttp,err){
         console.log(err)
@@ -89,6 +89,7 @@ module.exports = Reflux.createStore({
   getInitialState: function() {
     return (
       this.state = { 
+        'indicatorSelected': {},
         query: [
           {"param":"pr","values":[]},
           {"param":"t","values":[]},

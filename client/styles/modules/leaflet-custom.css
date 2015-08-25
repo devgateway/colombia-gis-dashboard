@@ -53,6 +53,10 @@
   background: #ffffff;
   margin: -10px auto 0;
 }
+.popup-nav-wrapper-ind {
+  @extend .popup-nav-wrapper;
+  display: none;
+}
 .popup-nav-wrapper {
   display: none;
 }

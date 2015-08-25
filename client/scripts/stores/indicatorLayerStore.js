@@ -127,11 +127,13 @@ module.exports = Reflux.createStore({
 	},
 
 	_indicatorSelected: function(data) {
-		if (this.state.indicatorId != data.indicatorSelected){
+		if (data.indicatorSelected.id && this.state.filters.indicatorId != data.indicatorSelected.id){
 			this.onChangeGroupFilterSelection([
-				{"param": "indicatorId", "values": data.indicatorSelected},
+				{"param": "indicatorId", "values": data.indicatorSelected.id},
+				{"param": "indicatorName", "values": data.indicatorSelected.description},
 				{"param": "activityId", "values": data.activitySelected}
 			], "indicators");
+
 		}
 	},
 
@@ -189,6 +191,7 @@ module.exports = Reflux.createStore({
 								return e.properties.ID_2 == d.idMun; //replacer.replaceDiacritics(e.properties.NAME_1).toUpperCase()==d.name
 							});
 							if (feature) {
+								_.assign(d, {'id': d.idMun});
 								_.assign(feature.properties, _.omit(_.clone(d), "name")); //set feature values	
 							}
 						});
@@ -218,6 +221,7 @@ module.exports = Reflux.createStore({
 								return e.properties.ID == d.idDep; //replacer.replaceDiacritics(e.properties.NAME_1).toUpperCase()==d.name
 							});
 							if (feature) {
+								_.assign(d, {'id': d.idDep});
 								_.assign(feature.properties, _.omit(_.clone(d), "name")); //set feature values
 							}
 						});

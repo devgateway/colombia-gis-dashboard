@@ -39,7 +39,7 @@ module.exports = React.createClass({
 
   render: function() {
    var level=this.state.level;
-
+   debugger;
    return (
     <li>
     <Toggler ref='toggler'>
@@ -53,17 +53,17 @@ module.exports = React.createClass({
         <Layer id="indicators" 
           opacity={this.state.opacity} 
           onChangeOpacity={this._onChangeOpacity} 
-          onChangeVisibility={this._changeVisibility} 
+          onChangeVisibility={this.state.filters.indicatorId? this._changeVisibility : null} 
           visible={this.state.visible}
-          title={i18n.t("layers.inidicatorLayer")}
+          title={i18n.t("layers.indicatorLayer")}
           showBasicControl={true}/>
       </TogglerContent>
       <TogglerContent visibleWhen="expanded">
         <Layer id="indicators" 
           opacity={this.state.opacity} 
           onChangeOpacity={this._onChangeOpacity} 
-          onChangeVisibility={this._changeVisibility} 
-          title={i18n.t("layers.inidicatorLayer")}
+          onChangeVisibility={this.state.filters.indicatorId? this._changeVisibility : null} 
+          title={i18n.t("layers.indicatorLayer")}
           visible={this.state.visible}/>
         <ul>
           <li className="levels">
@@ -75,8 +75,8 @@ module.exports = React.createClass({
           </li>
           <li className="indicator">
             <div className="clearFix"/>
-            <Finder label={this.state.indicator || 'Select Indicator'} onSelect={this._selectIndicator}/>  
-            <div className="vbuffer"/>
+            <Finder label={this.state.filters.indicatorId? i18n.t("layers.changeIndicator") : i18n.t("layers.selectIndicator")}/>  
+            <div className=""> {this.state.filters.indicatorId? this.state.filters.indicatorName : ""}</div>
             <div className="vbuffer"/>
           </li>
           <li>
