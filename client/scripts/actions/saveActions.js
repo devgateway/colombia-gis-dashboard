@@ -13,4 +13,6 @@ module.exports = {
   hideModal:  Reflux.createAction(),
   findMaps:  Reflux.createAction(),
   filterByKeyword:  Reflux.createAction(),
+  exportActivities: Reflux.createAction(),
+  exportIndicators: Reflux.createAction(),
 };
