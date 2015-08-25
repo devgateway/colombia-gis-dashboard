@@ -2,15 +2,17 @@
   float: right;
   position: relative;
   border-left: 1px solid saturate(lighten( $blue, 35), 65);
-  margin-left: $gutter*1.1;
+  margin-left: $gutter;
   .dropdown-menu {
     background-color: rgba(0, 0, 0, 1);
     border: none;
     min-width: 100px;
     margin: 4px 0 0 0;
+    padding-bottom:$gutter;
     @include border-radius(0);
     li {
       background: none;
+      border:none;
       &:hover {
         padding: 0;
       }
