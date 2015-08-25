@@ -62,6 +62,7 @@ mixins: [Reflux.connect(Store,"store"), Reflux.connect(LanStore, 'lan')],
       activePage: selectedEvent.eventKey
     });
   },
+  
 
   getInitialState:function(){
     return {pageSize:3, activePage:1, showDownload:false}
