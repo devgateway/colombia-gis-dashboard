@@ -45,6 +45,7 @@ module.exports = Reflux.createStore({
       } else {
         _.map(data.breaks.breaks, function(b, i){
           self._setLegendColor(data.id, b.style.color, i.split("Level")[1]);
+          self._setLegendLabel(data.id, b, i.split("Level")[1])
         })
       }
     }
