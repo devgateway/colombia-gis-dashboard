@@ -134,7 +134,12 @@ module.exports = Reflux.createStore({
     }
 
     this.update({
-      'errorMsg': errorMsg
+      'errorMsg': errorMsg,
+      'map':{
+        'title': options.title,
+        'description': options.description,
+        'tags': options.tags
+      }
     });
     return isValid;
   },
@@ -149,7 +154,7 @@ module.exports = Reflux.createStore({
     var shapesData = this._getDataFromState(shapesState);
     var pointsData = this._getDataFromState(pointsState);
     var arcgisData = this._getDataFromState(arcgisState);
-    var tagArray = options.tags? _.isArray(options.tags)? options.tags : options.tags.split(','):null;
+    var tagArray = options.tags? _.isArray(options.tags)? options.tags : options.tags.trim().split(/\s*,\s*/):null;
     var params = {
       'title': options.title,
       'description': options.description,
