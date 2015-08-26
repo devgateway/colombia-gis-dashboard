@@ -24,7 +24,7 @@ module.exports = Reflux.createStore({
   },
 
   _handleDataLayersUpdate: function(data) {
-    
+    var self = this;
     if(data.id == 'indicators'){
       this.update({'hideLegendButton':data.hideLegendButton}, {silent:true})
     } else {
@@ -42,6 +42,10 @@ module.exports = Reflux.createStore({
         var level = data.subProperty;
         this._setLegendColor(data.id, data.breaks.breaks[level].style.color, level.split("Level")[1])
         this._setLegendLabel(data.id, data.breaks.breaks[level], level.split("Level")[1])
+      } else {
+        _.map(data.breaks.breaks, function(b, i){
+          self._setLegendColor(data.id, b.style.color, i.split("Level")[1]);
+        })
       }
     }
 
@@ -145,8 +149,8 @@ module.exports = Reflux.createStore({
         maxLabel += ' %';
 
       } else {
-        var minLabel = brk.min.toFixed(0);
-        var maxLabel = (brk.max - 1).toFixed(0);
+        var minLabel = brk.min.toFixed(0)
+        var maxLabel =  brk.max>brk.min?(brk.max - 1).toFixed(0):(brk.max).toFixed(0)
       }
       legend.label = " " + minLabel + " - " + maxLabel;
     }
