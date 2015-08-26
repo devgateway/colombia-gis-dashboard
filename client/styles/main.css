@@ -1137,7 +1137,8 @@ ul.overview-stats {
   -webkit-transition: all 100ms ease;
   -moz-transition: all 100ms ease;
   -o-transition: all 100ms ease;
-  transition: all 100ms ease; }
+  transition: all 100ms ease;
+  padding-bottom: 3px; }
   .search-box:hover {
     border: 1px solid #bfcee0; }
 
@@ -1660,7 +1661,7 @@ ul.tabs {
   padding: 0 0 5px 15px; }
   .toggler .control-title {
     width: 70%;
-    margin: -22px auto 0 21px;
+    margin: -22px auto 0 12px;
     cursor: pointer; }
 
 .layer-control-toggle h3 {

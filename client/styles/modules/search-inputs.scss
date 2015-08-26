@@ -12,6 +12,7 @@
   background: $white;
   border: 1px solid lighten( $grey, 50% );
   @include transitionAll;
+  padding-bottom:3px;
   &:hover {
     border: 1px solid lighten( $blue, 35% );
   }
