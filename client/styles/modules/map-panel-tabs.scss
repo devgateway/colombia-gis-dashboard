@@ -48,7 +48,7 @@ nav.tabs {
   @include textUppercase;
 }
 .tabs>li a {
-  padding: 8px 25px;
+  padding: 8px 18px;
   color: lighten($grey,35%);
   border:1px solid transparent;
   background: lighten($grey,56%);
