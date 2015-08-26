@@ -249,20 +249,19 @@
     .title{
       width:90%;
       margin-left:-10px;
-
       .control-title{
         font-size:12px;
-        margin:0;
+        margin:0 0 0 $gutter;
         width:100%;
           .selectable{
-          float:left;
+            float:left;
             }
         }
     }
   }
   .control-wrapper{
       margin-top:-10px;
-    &.transparency{
+      &.transparency{
         clear:both;
         margin: 6px auto 0 $gutter*2.7
       }
