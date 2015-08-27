@@ -1039,15 +1039,21 @@ nav.tabs {
 
 .main-tabs .nav-tabs li:first-child a:before {
   font-family: FontAwesome;
+  content: '\f041';
   color: #4d749f;
-  margin-right: 5px;
-  content: '\f041'; }
+  margin-right: 5px; }
 
 .main-tabs .nav-tabs li:last-child a:before {
   font-family: FontAwesome;
+  content: '\f0ac';
+  color: #4d749f;
+  margin-right: 5px; }
+
+.main-tabs .nav-tabs li.filtertab a:before {
+  font-family: FontAwesome;
   color: #4d749f;
   margin-right: 5px;
-  content: '\f0ac'; }
+  content: '\f0b0'; }
 
 .main-tabs .nav-tabs li a {
   background: #ededed;
@@ -1065,7 +1071,7 @@ nav.tabs {
   text-transform: uppercase; }
 
 .tabs > li a {
-  padding: 8px 15px;
+  padding: 8px 18px;
   color: #9e9e9e;
   border: 1px solid transparent;
   background: #d4d4d4;
@@ -1095,12 +1101,6 @@ nav.tabs {
 
 .tab-content .inline {
   padding: 0.3em; }
-
-.main-tabs .nav-tabs li.filtertab a:before {
-  font-family: FontAwesome;
-  color: #4d749f;
-  margin-right: 5px;
-  content: '\f0b0'; }
 
 .overview-pane {
   padding-right: 10em; }
@@ -1236,7 +1236,7 @@ ul.tabs {
 
 .subactivities-list {
   overflow-y: scroll;
-  height: 195px;
+  height: 205px;
   width: 420px; }
   .subactivities-list ul {
     padding-left: 0;
@@ -1249,6 +1249,11 @@ ul.tabs {
   height: 240px;
   padding-left: 175px;
   padding-top: 80px; }
+
+.sub-activities-title {
+  color: #4278AA;
+  font-size: 14px;
+  margin-top: 10px; }
 
 .esri-result-list {
   height: 220px;
@@ -1994,10 +1999,6 @@ h4.modal-title {
   width: 95%;
   height: 95%; }
 
-.sub-activities-title {
-  color: #4278AA;
-  font-size: 14px; }
-
 .fundingByType-title {
   color: #4278AA;
   font-size: 14px; }
@@ -2103,8 +2104,27 @@ h4.modal-title {
   .timeSliderContainer .noUi-value, .timeSliderContainer .noUi-marker {
     font-size: 10px; }
 
+#imageGalery {
+  position: absolute;
+  border: 1px solid red;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: 100;
+  margin: auto;
+  left: 0;
+  right: 0;
+  width: 50%; }
+
 .pdf h1 {
-  color: #4d749f; }
+  color: #4d749f;
+  font-size: 16pt; }
+.pdf .description {
+  font-size: 14pt;
+  margin-top: 10pt;
+  margin-bottom: 10pt; }
+.pdf .filters {
+  font-size: 8pt; }
 .pdf #map {
   display: block;
   overflow: hidden; }
@@ -2114,10 +2134,12 @@ h4.modal-title {
   position: relative !important;
   width: 100%;
   height: 780px; }
+.pdf .leaflet-control-container {
+  display: none; }
 .pdf .legend {
-  width: 45%;
-  margin-left: 10px;
-  margin-top: 30px;
+  width: 48%;
+  margin-left: 5px;
+  margin-top: 10pt;
   float: left;
   height: 100px; }
   .pdf .legend .title {
