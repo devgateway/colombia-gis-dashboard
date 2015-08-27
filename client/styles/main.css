@@ -1071,7 +1071,7 @@ nav.tabs {
   text-transform: uppercase; }
 
 .tabs > li a {
-  padding: 8px 18px;
+  padding: 8px 19px 8px 15px;
   color: #9e9e9e;
   border: 1px solid transparent;
   background: #d4d4d4;
@@ -1942,7 +1942,7 @@ h4.modal-title {
   -o-transition: color 600ms ease;
   transition: color 600ms ease;
   font-size: 12px;
-  margin-right: 2.7em;
+  margin-right: 2.5em;
   margin-top: 0.41667em;
   cursor: pointer; }
   .non-btn-action:hover {
