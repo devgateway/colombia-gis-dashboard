@@ -361,6 +361,14 @@ ul.tabbed {
 .bs-callout-info h4 {
   color: #5bc0de; }
 
+.bs-callout-simple {
+  border-left-color: none;
+  background: none;
+  color: #4d749f;
+  display: block;
+  padding: 0;
+  margin: 3px auto 0 10px; }
+
 .filter-no-results {
   color: #d9534f;
   padding: 0 10px 15px 10px;
@@ -527,7 +535,8 @@ ul.basemap-list {
   padding-right: 2.8em;
   float: right; }
 
-.btn, .btn-apply, button.layer-search {
+.btn, .btn-apply, button.layer-search,
+.btn-primary {
   cursor: pointer;
   -webkit-border-radius: 2px;
   border-radius: 2px;
@@ -535,10 +544,19 @@ ul.basemap-list {
   /* stops bg color from leaking outside the border: */
   padding: 5px 35px;
   text-transform: uppercase; }
-  .btn:focus, .btn-apply:focus, button.layer-search:focus {
+  .btn:focus, .btn-apply:focus, button.layer-search:focus,
+  .btn-primary:focus {
     outline: none; }
 
-.btn-apply, button.layer-search {
+.btn-primary {
+  background-color: #98ca68;
+  border-color: #98ca68; }
+  .btn-primary:focus, .btn-primary:hover, .btn-primary.active, .btn-primary.focus {
+    background-color: #659735;
+    border-color: #659735; }
+
+.btn-apply, button.layer-search,
+.btn-primary {
   color: #ffffff;
   background: #98ca68;
   float: right;
@@ -549,10 +567,12 @@ ul.basemap-list {
   font-weight: bold;
   outline: none;
   margin-left: 1em; }
-  .btn-apply:hover, button.layer-search:hover {
+  .btn-apply:hover, button.layer-search:hover,
+  .btn-primary:hover {
     background: #659735;
     color: #ffffff; }
-  .btn-apply.space-left, button.space-left.layer-search {
+  .btn-apply.space-left, button.space-left.layer-search,
+  .btn-primary.space-left {
     margin-left: 1em; }
 
 .leaflet-top {
@@ -1039,15 +1059,15 @@ nav.tabs {
 
 .main-tabs .nav-tabs li:first-child a:before {
   font-family: FontAwesome;
+  content: '\f041';
   color: #4d749f;
-  margin-right: 5px;
-  content: '\f041'; }
+  margin-right: 5px; }
 
 .main-tabs .nav-tabs li:last-child a:before {
   font-family: FontAwesome;
+  content: '\f0ac';
   color: #4d749f;
-  margin-right: 5px;
-  content: '\f0ac'; }
+  margin-right: 5px; }
 
 .main-tabs .nav-tabs li a {
   background: #ededed;
@@ -1065,7 +1085,7 @@ nav.tabs {
   text-transform: uppercase; }
 
 .tabs > li a {
-  padding: 8px 15px;
+  padding: 8px 25px;
   color: #9e9e9e;
   border: 1px solid transparent;
   background: #d4d4d4;
@@ -1095,12 +1115,6 @@ nav.tabs {
 
 .tab-content .inline {
   padding: 0.3em; }
-
-.main-tabs .nav-tabs li.filtertab a:before {
-  font-family: FontAwesome;
-  color: #4d749f;
-  margin-right: 5px;
-  content: '\f0b0'; }
 
 .overview-pane {
   padding-right: 10em; }
@@ -1224,7 +1238,8 @@ button.search-button {
   .tab-content input[type="checkbox"],
   .tab-content input[type="radio"] {
     margin-right: 8px; }
-  .tab-content span.btn, .tab-content span.btn-apply {
+  .tab-content span.btn, .tab-content span.btn-apply,
+  .tab-content span.btn-primary {
     padding: 0; }
 
 ul.tabs {
@@ -1236,7 +1251,7 @@ ul.tabs {
 
 .subactivities-list {
   overflow-y: scroll;
-  height: 195px;
+  height: 205px;
   width: 420px; }
   .subactivities-list ul {
     padding-left: 0;
@@ -1249,6 +1264,11 @@ ul.tabs {
   height: 240px;
   padding-left: 175px;
   padding-top: 80px; }
+
+.sub-activities-title {
+  color: #4278AA;
+  font-size: 14px;
+  margin-top: 10px; }
 
 .esri-result-list {
   height: 220px;
@@ -1310,7 +1330,8 @@ ul.tabs {
   overflow: hidden;
   margin-top: 1em; }
 
-.btn, .btn-apply, button.layer-search {
+.btn, .btn-apply, button.layer-search,
+.btn-primary {
   font-size: 0.8em;
   float: left;
   margin-left: 0; }
@@ -1536,14 +1557,17 @@ ul.tabs {
           color: #ffffff; }
   .language-btn .btn-input {
     display: block; }
-  .language-btn .btn-input .btn.form-control, .language-btn .btn-input .form-control.btn-apply, .language-btn .btn-input button.form-control.layer-search {
+  .language-btn .btn-input .btn.form-control, .language-btn .btn-input .form-control.btn-apply, .language-btn .btn-input button.form-control.layer-search,
+  .language-btn .btn-input .form-control.btn-primary {
     text-align: left; }
-  .language-btn .btn-input .btn.form-control span:first-child, .language-btn .btn-input .form-control.btn-apply span:first-child, .language-btn .btn-input button.form-control.layer-search span:first-child {
+  .language-btn .btn-input .btn.form-control span:first-child, .language-btn .btn-input .form-control.btn-apply span:first-child, .language-btn .btn-input button.form-control.layer-search span:first-child,
+  .language-btn .btn-input .form-control.btn-primary span:first-child {
     left: 10px;
     overflow: hidden;
     position: absolute;
     right: 25px; }
-  .language-btn .btn-input .btn.form-control .caret, .language-btn .btn-input .form-control.btn-apply .caret, .language-btn .btn-input button.form-control.layer-search .caret {
+  .language-btn .btn-input .btn.form-control .caret, .language-btn .btn-input .form-control.btn-apply .caret, .language-btn .btn-input button.form-control.layer-search .caret,
+  .language-btn .btn-input .form-control.btn-primary .caret {
     margin-top: -1px;
     position: absolute;
     right: 10px;
@@ -1994,10 +2018,6 @@ h4.modal-title {
   width: 95%;
   height: 95%; }
 
-.sub-activities-title {
-  color: #4278AA;
-  font-size: 14px; }
-
 .fundingByType-title {
   color: #4278AA;
   font-size: 14px; }
@@ -2103,8 +2123,27 @@ h4.modal-title {
   .timeSliderContainer .noUi-value, .timeSliderContainer .noUi-marker {
     font-size: 10px; }
 
+#imageGalery {
+  position: absolute;
+  border: 1px solid red;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: 100;
+  margin: auto;
+  left: 0;
+  right: 0;
+  width: 50%; }
+
 .pdf h1 {
-  color: #4d749f; }
+  color: #4d749f;
+  font-size: 16pt; }
+.pdf .description {
+  font-size: 14pt;
+  margin-top: 10pt;
+  margin-bottom: 10pt; }
+.pdf .filters {
+  font-size: 8pt; }
 .pdf #map {
   display: block;
   overflow: hidden; }
@@ -2114,10 +2153,12 @@ h4.modal-title {
   position: relative !important;
   width: 100%;
   height: 780px; }
+.pdf .leaflet-control-container {
+  display: none; }
 .pdf .legend {
-  width: 45%;
-  margin-left: 10px;
-  margin-top: 30px;
+  width: 48%;
+  margin-left: 5px;
+  margin-top: 10pt;
   float: left;
   height: 100px; }
   .pdf .legend .title {

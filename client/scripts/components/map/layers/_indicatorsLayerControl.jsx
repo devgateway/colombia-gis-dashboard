@@ -50,19 +50,19 @@ module.exports = React.createClass({
         <div toggler={true} className="toggler-button"><i className="fa fa-chevron-up"></i></div>
       </TogglerContent>
       <TogglerContent visibleWhen="collapsed">
-        <Layer id="indicators" 
-          opacity={this.state.opacity} 
-          onChangeOpacity={this._onChangeOpacity} 
-          onChangeVisibility={this.state.filters.indicatorId? this._changeVisibility : null} 
+        <Layer id="indicators"
+          opacity={this.state.opacity}
+          onChangeOpacity={this._onChangeOpacity}
+          onChangeVisibility={this.state.filters.indicatorId? this._changeVisibility : null}
           visible={this.state.visible}
           title={i18n.t("layers.indicatorLayer")}
           showBasicControl={true}/>
       </TogglerContent>
       <TogglerContent visibleWhen="expanded">
-        <Layer id="indicators" 
-          opacity={this.state.opacity} 
-          onChangeOpacity={this._onChangeOpacity} 
-          onChangeVisibility={this.state.filters.indicatorId? this._changeVisibility : null} 
+        <Layer id="indicators"
+          opacity={this.state.opacity}
+          onChangeOpacity={this._onChangeOpacity}
+          onChangeVisibility={this.state.filters.indicatorId? this._changeVisibility : null}
           title={i18n.t("layers.indicatorLayer")}
           visible={this.state.visible}/>
         <ul>
@@ -75,8 +75,10 @@ module.exports = React.createClass({
           </li>
           <li className="indicator">
             <div className="clearFix"/>
-            <Finder label={this.state.filters.indicatorId? i18n.t("layers.changeIndicator") : i18n.t("layers.selectIndicator")}/>  
-            <div className=""> {this.state.filters.indicatorId? this.state.filters.indicatorName : ""}</div>
+            <Finder label={this.state.filters.indicatorId? i18n.t("layers.changeIndicator") : i18n.t("layers.selectIndicator")}/>
+            <div className=""> {this.state.filters.indicatorId? this.state.filters.indicatorName : ""}
+            <span className="bs-callout bs-callout-simple pull-left">Click to change indicator selection</span>
+            </div>
             <div className="vbuffer"/>
           </li>
           <li>
@@ -85,7 +87,7 @@ module.exports = React.createClass({
               <h3 className="color-control"><Message message='layers.classificationScheme'/></h3>
               <div>
                 <div className="breaksTemplates">
-                  <div className="label label-info" onClick={this._changeBreaksWrapper.bind(this, 0)} title={i18n.t("filters.defaultTip")}><Message message='filters.default'/></div> 
+                  <div className="label label-info" onClick={this._changeBreaksWrapper.bind(this, 0)} title={i18n.t("filters.defaultTip")}><Message message='filters.default'/></div>
                   <div className="label label-info" onClick={this._changeBreaksWrapper.bind(this, 1)} title={i18n.t("filters.jenksTip")}><Message message='filters.jenks'/></div>
                   <div className="label label-info" onClick={this._changeBreaksWrapper.bind(this, 2)} title={i18n.t("filters.arithmeticTip")}><Message message='filters.arithmetic'/></div>
                   <div className="label label-info" onClick={this._changeBreaksWrapper.bind(this, 3)} title={i18n.t("filters.geometricTip")}><Message message='filters.geometric'/></div>
@@ -110,7 +112,7 @@ module.exports = React.createClass({
             <li>
               <h3 className="color-control percent-funding"><Message message='layers.fundingPercent'/></h3>
               <h3 className="color-control"><Message message='layers.colorSelection'/></h3>
-              {                
+              {
                 _.map(_.keys(this.state.breaks.breaks),function(key){
                   var br=this.state.breaks.breaks[key];
                   var minLabel = br.min.toFixed(br.min<10?2:0);

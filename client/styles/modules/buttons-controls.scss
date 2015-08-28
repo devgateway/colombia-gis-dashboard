@@ -14,8 +14,19 @@
       @include noOutline;
     }
 }
-
-.btn-apply {
+.btn-primary{
+  background-color: $green;
+  border-color: $green;
+  &:focus,
+  &:hover,
+  &.active,
+  &.focus{
+    background-color: darken($green,20%);
+    border-color: darken($green,20%);
+  }
+}
+.btn-apply,
+.btn-primary {
   @extend .btn;
   color: $white;
   background: $green;
