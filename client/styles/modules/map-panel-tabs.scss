@@ -31,6 +31,14 @@ nav.tabs {
   margin-right:5px;
   }
 }
+
+.main-tabs .nav-tabs li.filtertab a:before{
+  font-family: FontAwesome;
+  color: #4d749f;
+  margin-right: 5px;
+  content: '\f0b0';
+}
+
 .main-tabs .nav-tabs li a{
   background:lighten($grey,66%);
   font-weight:600;
@@ -48,7 +56,7 @@ nav.tabs {
   @include textUppercase;
 }
 .tabs>li a {
-  padding: 8px 25px;
+  padding: 8px 19px 8px 15px;
   color: lighten($grey,35%);
   border:1px solid transparent;
   background: lighten($grey,56%);
