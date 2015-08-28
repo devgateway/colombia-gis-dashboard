@@ -16,7 +16,9 @@ module.exports = React.createClass({
 	mixins: [Reflux.connect(Store)],
 
 	_export:function(){
-		if(this.state.type=='activities'){
+		var activitiesEnabled = this.state.layersVisible.shapes || this.state.layersVisible.points;
+		var type = !activitiesEnabled? 'indicators': this.state.type;
+		if(type=='activities'){
 			Actions.exportActivities(this.state.format);
 		} else {
 			Actions.exportIndicators();	
@@ -24,7 +26,7 @@ module.exports = React.createClass({
 	},
 
 	getInitialState:function(){
-		return {'type': 'activities', 'format': 'csv'};
+		return {'type': 'activities'};
 	},
 
 	_exportTypeActivities:function(type){
@@ -34,13 +36,9 @@ module.exports = React.createClass({
 	_exportTypeIndicators:function(type){
 		this.setState({'type': 'indicators'});
 	},
-	
-	_exportFormatCSV:function(format){
-		this.setState({'format': 'csv'});
-	},
-	
-	_exportFormatXLS:function(format){
-		this.setState({'format': 'xls'});
+
+	componentWillReceiveProps:function(type){
+		debugger;
 	},
 	
 	render:function() {
@@ -53,25 +51,15 @@ module.exports = React.createClass({
 					<div className="plain-panel">
 						<CustomRadioGroup>
 							{activitiesEnabled? 
-				              <CustomRadio className="horizontal" name="activities" 
+				              <CustomRadio className="horizontal" name="activities" checked={type=='activities'? true : false}
 				              	onClick={this._exportTypeActivities} label="savemap.exportactivities"/>
 				            : null}
 				            {indicatorsEnabled?
-				              <CustomRadio className="horizontal" name="indicators" 
+				              <CustomRadio className="horizontal" name="indicators" checked={type=='indicators'? true : false}
 				              	onClick={this._exportTypeIndicators} label="savemap.exportindicators"/>
 				            : null}
 			            </CustomRadioGroup>
 			        </div>
-					<If condition={type=='activities'} >	
-						<div className="plain-panel">
-							<CustomRadioGroup>
-				              <CustomRadio className="" name="csv" 
-				              	onClick={this._exportFormatCSV} label="CSV"/>
-				              <CustomRadio className="" name="xls" 
-				              	onClick={this._exportFormatXLS} label="XLS"/>
-				            </CustomRadioGroup>
-						</div>
-					</If>
 				</div>
 				<div>
 					<Button className="btn btn-apply pull-right" onClick={this._export.bind(this)}>{i18n.t('savemap.exportbutton')}</Button>
