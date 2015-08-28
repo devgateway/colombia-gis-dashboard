@@ -24,9 +24,9 @@ var breakStyle = "percentage";
 
 module.exports = React.createClass({
 
- //mixins: [Reflux.connect(FilterStore), Reflux.connect(Store)], 
- mixins: [CommonsMixins, Reflux.connect(Store)], 
- 
+ //mixins: [Reflux.connect(FilterStore), Reflux.connect(Store)],
+ mixins: [CommonsMixins, Reflux.connect(Store)],
+
   _getLayerId: function() {
     return 'shapes';
   },
@@ -77,7 +77,7 @@ module.exports = React.createClass({
         fs.selected = false;
       }
     });
-    
+
     var fundingType = this.state.fundingType;
 
     var showClassification = true;
@@ -126,17 +126,6 @@ module.exports = React.createClass({
               </CustomRadioGroup>
             </li>
             <li className="layer-option-section">
-              <h3 className="color-control"><Message message='layers.fundingType'/></h3>
-              <div className="funding-types">
-                <CustomRadioGroup>
-                  <CustomRadio  className="inline" name="commitments" checked={(fundingType=='commitments')? true : false}
-                  onClick={self._showCommitments} label="layers.fundingSourceCommitments"/>
-                  <CustomRadio  className="inline" name="disbursements" checked={(fundingType=='disbursements')? true : false}
-                  onClick={self._showDisbursements} label="layers.fundingSourceDisbursements"/>
-                </CustomRadioGroup>
-              </div>
-            </li>
-            <li className="layer-option-section">
               <h3><Message message='layers.fundingSource'/></h3>
               {
                 fundingSources.map(function(fundingSource){
@@ -159,7 +148,7 @@ module.exports = React.createClass({
                 <If condition={showClassification}>
                   <div className="breaksTemplates">
                     <h3 className="color-control"><Message message='layers.classificationScheme'/></h3>
-                    <div className="label label-info" onClick={this._changeBreaksWrapper.bind(this, 0)} title={i18n.t("filters.defaultTip")}><Message message='filters.default'/></div> 
+                    <div className="label label-info" onClick={this._changeBreaksWrapper.bind(this, 0)} title={i18n.t("filters.defaultTip")}><Message message='filters.default'/></div>
                     <div className="label label-info" onClick={this._changeBreaksWrapper.bind(this, 1)} title={i18n.t("filters.jenksTip")}><Message message='filters.jenks'/></div>
                     <div className="label label-info" onClick={this._changeBreaksWrapper.bind(this, 2)} title={i18n.t("filters.arithmeticTip")}><Message message='filters.arithmetic'/></div>
                     <div className="label label-info" onClick={this._changeBreaksWrapper.bind(this, 3)} title={i18n.t("filters.geometricTip")}><Message message='filters.geometric'/></div>
@@ -170,7 +159,7 @@ module.exports = React.createClass({
                   <h3 className="color-control"><Message message='layers.colorPalettes'/></h3>
                   <div className="colorpicker-element">
                   <span className="input-group-addon" onClick={this.handleClickForColor.bind(this, 0, null)} title={i18n.t("filters.defaultColor")}><i style={{backgroundColor:'#AA3900'}}></i></span></div>
-                  
+
                   <div className="colorpicker-element">
                   <span className="input-group-addon" onClick={this.handleClickForColor.bind(this, 1)} title={i18n.t("filters.contrast1")}><i style={{backgroundColor:'#FF3333'}}></i></span></div>
                   <div className="colorpicker-element">
@@ -187,7 +176,7 @@ module.exports = React.createClass({
             <li>
               <h3 className="color-control percent-funding"><Message message='layers.fundingPercent'/></h3>
               <h3 className="color-control"><Message message='layers.colorSelection'/></h3>
-              {                
+              {
                 _.map(_.keys(breaks),function(key){
                   var br=breaks[key];
                   var minLabel = br.min.toFixed(br.min<10?2:0);

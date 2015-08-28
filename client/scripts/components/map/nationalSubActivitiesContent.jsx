@@ -178,27 +178,27 @@ module.exports  = React.createClass({
         <div className="popup-nav-wrapper2">
           <nav className="tabs" role="tablist" >
             <ul className="tabs nav national-tabs" role="tablist" >
-            <li className="active" role="tab" >
+            <li className={tabId==0? "active" : ""} role="tab" >
               <a href="#" onClick={this.handleClick.bind(this, 0)}>
                 <span className="popup-icon chart" title="Cost Share Breakdown"></span>
               </a>
             </li>
-            <li className="" role="tab" >
+            <li className={tabId==1? "active" : ""} role="tab" >
               <a href="#" onClick={this.handleClick.bind(this, 1)}>
                 <span className="popup-icon funding-dev-obj" title="Development Objectives"></span>
               </a>
             </li>
-            <li className="" role="tab" >
+            <li className={tabId==2? "active" : ""} role="tab" >
               <a href="#" onClick={this.handleClick.bind(this, 2)}>
                 <span className="popup-icon subactivities" title="Activity Classication"></span>
               </a>
             </li>
-            <li className="" role="tab" >
+            <li className={tabId==3? "active" : ""} role="tab" >
               <a href="#" onClick={this.handleClick.bind(this, 3)}>
                 <span className="popup-icon export" title="Public Private Partnership"></span>
               </a>
             </li>
-            <li className="" role="tab" >
+            <li className={tabId==4? "active" : ""} role="tab" >
               <a href="#" onClick={this.handleClick.bind(this, 4)}>
                 <span className="popup-icon subactivitiesList" title="Sub Activities"></span>
               </a>

@@ -11,7 +11,7 @@ module.exports = {
 
     getIndicatorsList: function (filters) {
         return request({
-            url: 'http://test.monitor.net.co/GISService.svc/Filters/IndicatorSearch/Json',
+            url: 'http://test.monitor.net.co/gisservice/gisservice.svc/Filters/IndicatorSearch/Json',
             type: 'json',
             method: 'post',
             contentType: "application/json",
@@ -22,7 +22,7 @@ module.exports = {
 
     getActivityList: function (filters) {
         return request({
-            url: 'http://test.monitor.net.co/GisService.svc/Filters/ActivitiesListByProgram/Json',
+            url: 'http://test.monitor.net.co/gisservice/gisservice.svc/Filters/ActivitiesListByProgram/Json',
             type: 'json',
             method: 'post',
             contentType: "application/json",

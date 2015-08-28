@@ -14,7 +14,10 @@ var Tags= React.createClass({
 	},
 
 	render:function() {
-		return (<Input ref="tags" className="form-control taginput" type="text" defaultValue={this.props.value} onBlur={this._update} />)
+		return (<Input ref="tags" 
+			className="form-control taginput" 
+			type="text" maxLength="80" 
+			defaultValue={this.props.value} onBlur={this._update} />)
 	}
 
 })
@@ -25,12 +28,10 @@ module.exports = React.createClass({
 	mixins: [Reflux.connect(Store)],
 
 	componentDidMount : function(){
-    	$(this.getDOMNode()).find('.title').prop("maxLength", 100);
-    	$(this.getDOMNode()).find('.description').prop("maxLength", 300);
-    	$(this.getDOMNode()).find('.taginput').prop("maxLength", 80);
     },
 
 	save:function(){
+		this.props.onClose();
 		if(this.state.map && this.state.map._id){
 			Actions.updateMap(this.state.map._id, this.state.map);
 		} else {
@@ -70,13 +71,13 @@ module.exports = React.createClass({
 						className="form-control title" 
 						onChange={this._updateTitle}
 						placeholder={i18n.t('savemap.savemaptitle')}  
-						value={this.state.map.title} addonAfter='*'/>
+						value={this.state.map.title} maxLength="100" addonAfter='*'/>
 					<Input type='textarea' name="description" 
 						onChange={this._updateDescription}
 						className="form-control description" 
 						rows="3" 
 						placeholder={i18n.t('savemap.savemapdescription')} 
-						value={this.state.map.description} maxlength="300" addonAfter='*' />
+						value={this.state.map.description} maxLength="300" addonAfter='*' />
 				</div>
 
 				<div className="plain-panel">

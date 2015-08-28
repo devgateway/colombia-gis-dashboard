@@ -112,7 +112,8 @@ h2 {
   .header-nav li {
     border-left: 1px solid #a0cdff;
     float: left;
-    margin-right: 13px; }
+    margin-right: 13px;
+    white-space: nowrap; }
   .header-nav a {
     color: #a0cdff;
     -webkit-transition: color 600ms ease;
@@ -1156,7 +1157,8 @@ ul.overview-stats {
   -webkit-transition: all 100ms ease;
   -moz-transition: all 100ms ease;
   -o-transition: all 100ms ease;
-  transition: all 100ms ease; }
+  transition: all 100ms ease;
+  padding-bottom: 3px; }
   .search-box:hover {
     border: 1px solid #bfcee0; }
 
@@ -1372,6 +1374,7 @@ ul.tabs {
   position: relative;
   display: block;
   width: 245px;
+  margin-top: 0;
   float: left; }
   .layer-control .slider-holder .slider {
     margin-left: 95px;
@@ -1467,8 +1470,8 @@ ul.tabs {
 
 .external-layer-control li {
   overflow: hidden;
-  padding-top: 35px;
-  margin-left: 30px;
+  padding-top: 25px;
+  margin-left: 12px;
   clear: both; }
   .external-layer-control li .slider-holder {
     margin-left: 0; }
@@ -1476,11 +1479,10 @@ ul.tabs {
     margin-left: 0; }
   .external-layer-control li .title {
     width: 90%;
-    margin-bottom: 15px;
     margin-left: -10px; }
     .external-layer-control li .title .control-title {
       font-size: 12px;
-      margin: 0;
+      margin: 0 0 0 1em;
       width: 100%; }
       .external-layer-control li .title .control-title .selectable, .external-layer-control li .title .control-title .selectable-radio, .external-layer-control li .title .control-title .selectable-disabled {
         float: left; }
@@ -1488,7 +1490,7 @@ ul.tabs {
   margin-top: -10px; }
   .external-layer-control .control-wrapper.transparency {
     clear: both;
-    margin-left: 2.7em; }
+    margin: 6px auto 0 2.7em; }
 
 .arcgis-sig-in {
   position: absolute;
@@ -1684,7 +1686,7 @@ ul.tabs {
   padding: 0 0 5px 15px; }
   .toggler .control-title {
     width: 70%;
-    margin: -22px auto 0 50px;
+    margin: -22px auto 0 12px;
     cursor: pointer; }
 
 .layer-control-toggle h3 {
