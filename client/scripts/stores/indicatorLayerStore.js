@@ -153,8 +153,20 @@ module.exports = Reflux.createStore({
 	    }
 	},
 
-	onRestoreData: function(data, type) {
-		//alert('_onRestoreData');
+	onRestoreData: function(savedData) {
+		debugger;
+		if(savedData.indicatorsState){
+			if (!this.state.visible && savedData.indicatorsState.visible) {
+		        this.update({'visible': true}); //Hack for changing colors
+		    }
+			this.update({
+		   		'dataToRestore': savedData.indicatorsState,
+		   		'isRestorePending': true, 
+		   		'filters':savedData.indicatorsState.filters});
+		   this._load(null, savedData.indicatorsState.level, true); //restore data
+		} else {
+			this.update({'visible':false});
+		}
 	},
 
 	getInitialState: function() {
@@ -163,7 +175,7 @@ module.exports = Reflux.createStore({
 			visible: false,
 			breaks: defaultBreaks, //defaul styles breaks
 			defaultStyle: defaultStyle, //Default symbol styles
-			saveItems: ["breaks", "defaultStyle", "level", "opacity", "visible"],
+			saveItems: ["breaks", "defaultStyle", "level", "opacity", "visible", "filters"],
 			filters:  
 				{"indicatorId": "",
 				"activityId": "",

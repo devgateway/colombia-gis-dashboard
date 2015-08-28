@@ -70,10 +70,10 @@
 		"hideLegend":"Ocultar Leyendas",
 		"fundingByTypeTitle":"Financiamiento por Tipo",
 		"fundingByTypeDepartmentSubtitle":"Financiamiento por Departamento",
-		"fundingByTypeMunicipalitySubtitle":"Financiamiento por Municipio",
-		"activityTitle":"Número de SubActividades",
-		"activityDepartmentSubtitle":"Número de Subactividades por Departamento",
-		"activityMunicipalitySubtitle":"Número de Subactividades por Municipio",
+		"fundingByTypeMunicipalitySubtitle":"Financiamiento por Municipalidad",
+		"activityTitle":"Número of Subactividades",
+		"activityDepartmentSubtitle":"Número of Subactividades por Departamento",
+		"activityMunicipalitySubtitle":"Número of Subactividades por Municipalidad",
 		"title":"Contenidos del mapa",
 		"mapLayers":"Capas del mapa",
 		"dataLayers":"Capas de datos",
@@ -107,7 +107,18 @@
 		"noResults":"No hay resultados que coincidan con su búsqueda",
 		"byDepartment":"Por Departamento",
 		"byMunicipality":"Por Municipio",
-		"searchLayers": "Guardar mapa"
+		"searchLayers": "Buscar Capas",
+		"changeIndicator": "Cambiar Indicador",
+		"selectIndicator": "Seleccionar Indicador",
+		"searchIndicator": "Buacar Indicador",
+		"program": "Programa",
+		"activity": "Actividad",
+		"type": "Tipo",
+		"keyword": "Palabra Clave",
+		"find": "Buscar",
+		"description": "Descripción",
+		"select": "Seleccionar",
+		"close": "Cerrar"
 	},
 
 	"map": {
@@ -122,6 +133,12 @@
 			"streets":"Calles"
 		},
 		"popup":{
+			"indicatorName": "Nombre del Indicador:",
+			"indicatorDisaggregations": "Desagregaciones del Indicador",
+			"otherDisaggregations": "Otras Desagregaciones",
+			"fiscalYearAdvance": "Avance en Año Fiscal",
+			"fiscalYear": "Año Fiscal",
+			"value": "Valor",
 			"totalActivities":"Actividades Totales",
 			"totalSubActivities":"SubActividades Totales",
 			"programList":"Lista de Programas",
@@ -158,24 +175,21 @@
 		"downloadtitle":"Descarga de pdf para impresión",
 		"printloadmessage":"Por favor espere mientras se genera el archivo pdf, el tiempo de creación del archivo dependerá de la configuración del mapa",
 		"printreadymessage":"Haga clic aquí para descargar el archivo pdf",
-		
-		"imagedownloadtitle":"Captura de mapa en imagen",
-		"imageloadmessage":"Por favor espere mientras se genera la imagen, el tiempo de creación del archivo dependerá de la configuración del mapa",
-		"imagereadymessage":"Haga clic aquí para descargar la imagen",
-		
-
+		"imagedownloadtitle":"Descargar pdf para impresión",
+		"imageloadmessage":"Por favor espere mientras la imagen está siendo generada, el tiempo del proceso depende de la configuración del mapa",
+		"imagereadymessage":"Click aquí para descargar la imagen generada",
 		"confirmation":"Confirmación",
 		"areyousure":"Está seguro que desea borrar este mapa?",
 		"yes":"Si",
 		"no":"No",
 		"mandatoryFields":"* Campos Obligatorios",
 		"tagshelptext":"Por favor separe las etiquetas con comas",
-		"mandatoryFieldsMissing":" / Favor completar los campos obligatorios",
-		"mandatoryDescriptionMissing":" / Favor de completar el descripción del mapa",
+		"mandatoryTitleMissing":" / Favor completar el título",
+		"mandatoryDescriptionMissing":" / Favor completar la descripción",
 		"titleIsDuplicated":" / Este título ya ha sido utilizado. Favor indicar uno nuevo.",
 		"mandatoryTitleLength": " / El título del mapa tiene un máximo de 100 caracteres",
-		"mandatoryDescriptionLength": " / La descripción del mapa tiene un máximo de 300 caracteres",
-		"tagsQuantity":" / La máxima cantidad de etiquetas es 3",
-		"tagsLength":" / Cada etiqueta tienen un máximo de 80 caracteres"
+		"mandatoryDescriptionLength": " / La descripción del mapa un máximo de 300 caracteres",
+		"tagsQuantity":" / La cantidad máxima de etiquetas es de 3",
+		"tagsLength":" / El largo máximo para cualquier etiqueta es de 80 caracteres"
 	}
 }

@@ -20,6 +20,7 @@ module.exports = React.createClass({
 
 	_onClose:function(){
 		Actions.hideModal();
+		Actions.findMaps();
 	},
 
 	open:function(){
@@ -28,10 +29,14 @@ module.exports = React.createClass({
 
 	render:function() {
 		var showModal=this.state.showModal || false;
+		/*if (!showModal){
+			return null;
+		}*/
+		//console.log("exportDialog -> showModal:" + showModal);
 		return (
 			<div className="save-map-trigger">
 			<Modal className='dialog-save-map' {...this.props} bsSize='large' aria-labelledby='contained-modal-title-lg'
-			 show={showModal} onHide={this.close}>
+			 show={showModal} onHide={this._onClose}>
 				<Modal.Header>
 					<Modal.Title>
 						<i className="fa fa-folder-open"></i><Message message='savemap.savemaplabel'/>
