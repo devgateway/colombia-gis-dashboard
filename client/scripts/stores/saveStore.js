@@ -9,6 +9,7 @@ var ArcgisLayersActions = require('../actions/arcgisLayersActions.js');
 var LanStore = require('./lanStore.js');
 var FilterStore = require('./filters/filterStore.js');
 var MapStore = require('./mapStore.js');
+var IndicatorsLayerStore = require('./indicatorLayerStore.js');
 var ShapesLayerStore = require('./shapesLayerStore.js');
 var PointsLayerStore = require('./pointsLayerStore.js');
 var ArcgisLayerStore = require('./arcgisLayerStore.js');
@@ -17,6 +18,7 @@ var API = require('../api/saveAndRestore.js');
 var lanState;
 var mapState;
 var filterState;
+var indicatorsState;
 var shapesState;
 var pointsState;
 var arcgisState;
@@ -29,6 +31,7 @@ module.exports = Reflux.createStore({
     this.state = {mapName : '','layersVisible': {'indicators': false, 'points': true, 'shapes': false}};
     this.listenTo(LanStore, this._handleLanDataUpdate);
     this.listenTo(FilterStore, this._handleFilterDataUpdate);
+    this.listenTo(IndicatorsLayerStore, this._handleIndicatorsDataUpdate);
     this.listenTo(ShapesLayerStore, this._handleShapesDataUpdate);
     this.listenTo(PointsLayerStore, this._handlePointsDataUpdate);
     this.listenTo(ArcgisLayerStore, this._handleArcgisDataUpdate);
@@ -44,11 +47,10 @@ module.exports = Reflux.createStore({
     }
   },
 
-  onExportActivities: function(format) {
-    API.exportActivities(format, _.clone(filterState, true)).then(
-      function(data) {
-        debugger;
-        //use data to start download
+  onExportActivities: function() {
+    API.exportActivities(_.clone(filterState, true)).then(
+      function(data) {        
+        location.href = data[0].name;
       }.bind(this)).fail(function(err) {
         this.update({
           'error': err
@@ -57,8 +59,16 @@ module.exports = Reflux.createStore({
       }.bind(this));
   },
 
-  onExportIndicators: function(format) {
-    
+  onExportIndicators: function() {
+    API.exportIndicators(_.clone(indicatorsState.filters, true)).then(
+      function(data) {        
+        location.href = data;
+      }.bind(this)).fail(function(err) {
+        this.update({
+          'error': err
+        });
+        console.log('onExportIndicators: Error on export data ...');
+      }.bind(this));
   },
 
   onSaveMap: function(options) {
@@ -132,15 +142,9 @@ module.exports = Reflux.createStore({
         }
       }
     }
-
-    this.update({
-      'errorMsg': errorMsg,
-      'map':{
-        'title': options.title,
-        'description': options.description,
-        'tags': options.tags
-      }
-    });
+    if (!isValid){
+      this.update({'errorMsg': errorMsg});
+    }
     return isValid;
   },
 
@@ -151,10 +155,11 @@ module.exports = Reflux.createStore({
     var filterData = {
       'filters': _.clone(filterState, true)
     };
+    var indicatorsData = this._getDataFromState(indicatorsState);
     var shapesData = this._getDataFromState(shapesState);
     var pointsData = this._getDataFromState(pointsState);
     var arcgisData = this._getDataFromState(arcgisState);
-    var tagArray = options.tags? _.isArray(options.tags)? options.tags : options.tags.trim().split(/\s*,\s*/):null;
+    var tagArray = options.tags? _.isArray(options.tags)? options.tags : options.tags.split(','):null;
     var params = {
       'title': options.title,
       'description': options.description,
@@ -165,6 +170,7 @@ module.exports = Reflux.createStore({
         'mapState': mapData,
         'lanState': lanData,
         'filterData': filterData,
+        'indicatorsState': indicatorsData,
         'shapesState': shapesData,
         'pointsState': pointsData,
         'arcgisState': arcgisData
@@ -250,9 +256,7 @@ module.exports = Reflux.createStore({
     },
 
   onHideModal: function() {
-    this.update({
-      'showModal': false
-    });
+    this.update({'showModal': false});
   },
 
   onShowModal: function(key, id) {
@@ -321,6 +325,10 @@ module.exports = Reflux.createStore({
 
   _handleLanDataUpdate: function(data) {
     lanState = data;
+  },
+
+  _handleIndicatorsDataUpdate: function(data) {
+    indicatorsState = data;
   },
 
   _handleShapesDataUpdate: function(data) {

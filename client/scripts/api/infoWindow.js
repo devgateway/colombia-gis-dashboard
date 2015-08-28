@@ -11,7 +11,7 @@ module.exports = {
     getInfoFromAPI: function(infoWindowFilter, filters) {
       console.log("scripts->api->infoWindow: getInfoFromAPI");
       return reqwest({
-        url: 'http://test.monitor.net.co/GisService.svc/Filters/Clusters/Json', 
+        url: 'http://test.monitor.net.co/gisservice/gisservice.svc/Filters/Clusters/Json', 
         //url: 'mock-data/infoWindowData.json',
         type: 'json', 
         method: 'post', 
@@ -24,7 +24,7 @@ module.exports = {
 
     getIndicatorInfoFromAPI: function(infoWindowFilter, filters) {
       return reqwest({
-        url: 'http://test.monitor.net.co/GisService.svc/Filters/ClusterIndicator/Json', 
+        url: 'http://test.monitor.net.co/gisservice/gisservice.svc/Filters/ClusterIndicator/Json', 
         type: 'json', 
         method: 'post', 
         contentType: "application/json",

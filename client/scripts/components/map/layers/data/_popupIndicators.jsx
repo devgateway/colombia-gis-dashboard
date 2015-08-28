@@ -11,7 +11,6 @@ var _ = require('lodash');
  
 var DisaggregationsTab = React.createClass({
   render: function() {
-    debugger;
     return (
       <div>
         <h3 className="panel-title" ><Message message='map.popup.indicatorName'/></h3>
@@ -128,7 +127,7 @@ module.exports  = React.createClass({
       showLoading=false;
     }
     return (
-      <div className="leaflet-popup-content-wrapper">
+      <div>
         <div className="leaflet-popup-content">
           <div className="panel panel-default" >
             <div className="panel-heading popup-header" >
@@ -141,12 +140,12 @@ module.exports  = React.createClass({
             <div className="popup-nav-wrapper">
               <nav className="tabs" role="tablist" >
                 <ul className="tabs nav nav-tabs" role="tablist" >
-                  <li className="active" role="tab" >
+                  <li className={tabId==0? "active" : ""} role="tab" >
                     <a href="#" onClick={this.handleClick.bind(this, 0)}>
                       <span className="popup-icon funding-dev-obj" title="indicator Disaggregations"></span>
                     </a>
                   </li>
-                  <li className="" role="tab" >
+                  <li className={tabId==1? "active" : ""} role="tab" >
                     <a href="#" onClick={this.handleClick.bind(this, 1)}>
                       <span className="popup-icon subactivitiesList" title="Fiscal Years Advance"></span>
                     </a>
