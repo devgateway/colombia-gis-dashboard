@@ -54,19 +54,10 @@
 
 .breaksTemplates {
 	overflow:hidden;
-
 	.label{
 		float: left;
 		width: 50px;
 		margin-top:7px;
-		&.label-layer-style{
-			// background:none;
-			// color: $black;
-			// height:35px;
-			// margin-top:11px;
-			// width:40px;
-			// margin-bottom:15px;
-		}
 		&.label-info{
 			background: transparent;
 			color: $blue;
@@ -84,6 +75,10 @@
 			&:last-child{border-right:none;}
 			&:hover{color:$black}
 		}
+		&.label-info-selected{
+			@extend .label-info;
+			color: $black;
+		}
 	}
 
 	.colorpicker-element{
@@ -91,16 +86,14 @@
 		float: left;
 		margin-bottom:$gutter*2;
 		margin-top:-5px;
-
 		.input-group-addon{
 			background-color: transparent;
 			border:none;
 			padding:0;
-
 			i{
 				width:53px;
 				margin-top:10px;
-			}
+				}
 		}
 	}
 }
@@ -192,7 +185,7 @@
   bottom: 0;
   right: 0;
   z-index: 100;
-   margin: auto;  
+   margin: auto;
     left:0;
   right: 0;
   width:50%;
@@ -209,7 +202,7 @@
 		margin-top: 10pt;
 		margin-bottom:10pt;
 	}
-	
+
 	.filters{
 		font-size: 8pt;
 	}

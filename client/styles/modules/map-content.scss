@@ -178,3 +178,51 @@ ul.funding-options{
 .vbuffer{
   @include vbuffer(20px);
 }
+
+//color scheme
+
+.breaksTemplates {
+	overflow:hidden;
+	.label{
+		float: left;
+		width: 50px;
+		margin-top:7px;
+		&.label-info{
+			background: transparent;
+			color: $blue;
+			margin-top:5px;
+			border-right:1px solid $grey;
+			padding-right:15px;
+			margin-right: 10px;
+			text-align:left;
+			border-radius: 0;
+			width:auto;
+			cursor: pointer;
+			font-size:11px;
+			line-height:10px;
+			height:13px;
+			&:last-child{border-right:none;}
+			&:hover{color:$black}
+		}
+		&.label-info-selected{
+			@extend .label-info;
+			color: $black;
+		}
+	}
+
+	.colorpicker-element{
+		width: 54px;
+		float: left;
+		margin-bottom:$gutter*2;
+		margin-top:-5px;
+		.input-group-addon{
+			background-color: transparent;
+			border:none;
+			padding:0;
+			i{
+				width:53px;
+				margin-top:10px;
+				}
+		}
+	}
+}

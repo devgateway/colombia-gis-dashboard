@@ -1070,6 +1070,12 @@ nav.tabs {
   color: #4d749f;
   margin-right: 5px; }
 
+.main-tabs .nav-tabs li.filtertab a:before {
+  font-family: FontAwesome;
+  color: #4d749f;
+  margin-right: 5px;
+  content: '\f0b0'; }
+
 .main-tabs .nav-tabs li a {
   background: #ededed;
   font-weight: 600;
@@ -1086,7 +1092,7 @@ nav.tabs {
   text-transform: uppercase; }
 
 .tabs > li a {
-  padding: 8px 25px;
+  padding: 8px 19px 8px 15px;
   color: #9e9e9e;
   border: 1px solid transparent;
   background: #d4d4d4;
@@ -1767,7 +1773,7 @@ ul.tabs {
     background: none;
     clear: both;
     padding: 0; }
-    .breaksOptions .label.label-info {
+    .breaksOptions .label.label-info, .breaksOptions .breaksTemplates .label.label-info-selected, .breaksTemplates .breaksOptions .label.label-info-selected {
       line-height: 30px; }
   .breaksOptions .input-group-addon {
     padding: 0;
@@ -1821,6 +1827,45 @@ ul.funding-options {
   height: 20px;
   clear: both;
   width: 100%; }
+
+.breaksTemplates {
+  overflow: hidden; }
+  .breaksTemplates .label {
+    float: left;
+    width: 50px;
+    margin-top: 7px; }
+    .breaksTemplates .label.label-info, .breaksTemplates .label.label-info-selected {
+      background: transparent;
+      color: #4d749f;
+      margin-top: 5px;
+      border-right: 1px solid #454545;
+      padding-right: 15px;
+      margin-right: 10px;
+      text-align: left;
+      border-radius: 0;
+      width: auto;
+      cursor: pointer;
+      font-size: 11px;
+      line-height: 10px;
+      height: 13px; }
+      .breaksTemplates .label.label-info:last-child, .breaksTemplates .label.label-info-selected:last-child {
+        border-right: none; }
+      .breaksTemplates .label.label-info:hover, .breaksTemplates .label.label-info-selected:hover {
+        color: #000000; }
+    .breaksTemplates .label.label-info-selected {
+      color: #000000; }
+  .breaksTemplates .colorpicker-element {
+    width: 54px;
+    float: left;
+    margin-bottom: 2em;
+    margin-top: -5px; }
+    .breaksTemplates .colorpicker-element .input-group-addon {
+      background-color: transparent;
+      border: none;
+      padding: 0; }
+      .breaksTemplates .colorpicker-element .input-group-addon i {
+        width: 53px;
+        margin-top: 10px; }
 
 .save-map-trigger {
   display: inline; }
@@ -1963,7 +2008,7 @@ h4.modal-title {
   -o-transition: color 600ms ease;
   transition: color 600ms ease;
   font-size: 12px;
-  margin-right: 2.7em;
+  margin-right: 2.5em;
   margin-top: 0.41667em;
   cursor: pointer; }
   .non-btn-action:hover {
@@ -2035,7 +2080,7 @@ h4.modal-title {
     float: left;
     width: 50px;
     margin-top: 7px; }
-    .breaksTemplates .label.label-info {
+    .breaksTemplates .label.label-info, .breaksTemplates .label.label-info-selected {
       background: transparent;
       color: #4d749f;
       margin-top: 5px;
@@ -2049,10 +2094,12 @@ h4.modal-title {
       font-size: 11px;
       line-height: 10px;
       height: 13px; }
-      .breaksTemplates .label.label-info:last-child {
+      .breaksTemplates .label.label-info:last-child, .breaksTemplates .label.label-info-selected:last-child {
         border-right: none; }
-      .breaksTemplates .label.label-info:hover {
+      .breaksTemplates .label.label-info:hover, .breaksTemplates .label.label-info-selected:hover {
         color: #000000; }
+    .breaksTemplates .label.label-info-selected {
+      color: #000000; }
   .breaksTemplates .colorpicker-element {
     width: 54px;
     float: left;
