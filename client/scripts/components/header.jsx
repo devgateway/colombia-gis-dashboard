@@ -26,7 +26,7 @@ module.exports = React.createClass({
                     <h2> {mapName} </h2>
                     <div className="header-nav">
                       <AGOLProfile/>
-                      <li><a href="#">{i18n.t('app.menu')}</a></li>
+                      <li><a href="#"><Message message="app.menu"/></a></li>
                       <li><NationalSubActivities/></li>
                       <LanSelector/>
                     </div>
