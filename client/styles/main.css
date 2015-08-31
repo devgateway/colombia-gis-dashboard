@@ -2074,45 +2074,6 @@ h4.modal-title {
   display: table;
   clear: both; }
 
-.breaksTemplates {
-  overflow: hidden; }
-  .breaksTemplates .label {
-    float: left;
-    width: 50px;
-    margin-top: 7px; }
-    .breaksTemplates .label.label-info, .breaksTemplates .label.label-info-selected {
-      background: transparent;
-      color: #4d749f;
-      margin-top: 5px;
-      border-right: 1px solid #454545;
-      padding-right: 15px;
-      margin-right: 10px;
-      text-align: left;
-      border-radius: 0;
-      width: auto;
-      cursor: pointer;
-      font-size: 11px;
-      line-height: 10px;
-      height: 13px; }
-      .breaksTemplates .label.label-info:last-child, .breaksTemplates .label.label-info-selected:last-child {
-        border-right: none; }
-      .breaksTemplates .label.label-info:hover, .breaksTemplates .label.label-info-selected:hover {
-        color: #000000; }
-    .breaksTemplates .label.label-info-selected {
-      color: #000000; }
-  .breaksTemplates .colorpicker-element {
-    width: 54px;
-    float: left;
-    margin-bottom: 2em;
-    margin-top: -5px; }
-    .breaksTemplates .colorpicker-element .input-group-addon {
-      background-color: transparent;
-      border: none;
-      padding: 0; }
-      .breaksTemplates .colorpicker-element .input-group-addon i {
-        width: 53px;
-        margin-top: 10px; }
-
 .loading-container {
   position: absolute;
   bottom: 50%;
