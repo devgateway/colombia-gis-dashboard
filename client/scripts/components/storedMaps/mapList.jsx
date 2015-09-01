@@ -35,6 +35,7 @@ mixins: [Reflux.connect(Store,"store"), Reflux.connect(LanStore, 'lan')],
   },
 
   _update:function(id){
+    Actions.openMap(id);
     Actions.showModal('update', id)
   },
 
