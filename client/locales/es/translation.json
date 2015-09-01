@@ -63,7 +63,9 @@
 		"valueRange": "Rango de Valores",
 		"valueRangesBetween": "Rango de inversión de USAID por subactividad entre:",
 		"performSearch": "Por favor, realice una búsqueda para mostrar algunos resultados",
-		"subActivities":"Sub Actividades"
+		"subActivities":"Sub Actividades",
+		"searchLengthMessage1": " (Ingrese al menos ",
+		"searchLengthMessage2": " caracteres para activar la búsqueda)"
 	},
 
 	"layers": {
