@@ -640,6 +640,13 @@ ul.basemap-list {
 .scooch-disabled {
   display: none; }
 
+.btn-default[disabled] {
+  background: #98ca68;
+  color: #d8ebc6; }
+  .btn-default[disabled]:hover {
+    background: #98ca68;
+    color: #ffffff; }
+
 button.layer-search {
   padding: 5px;
   float: right;
@@ -1278,6 +1285,20 @@ ul.tabs {
   font-size: 14px;
   margin-top: 10px; }
 
+.indicator-search .title {
+  font-weight: bold;
+  color: #4d749f;
+  padding-bottom: 0.5em;
+  display: inline-block; }
+.indicator-search select {
+  outline: none; }
+.indicator-search .blue-panel {
+  margin-bottom: 1em; }
+.indicator-search input[type='text'] {
+  padding: 5px;
+  border: 1px solid #eeeeee;
+  margin-bottom: 1em; }
+
 .esri-result-list {
   height: 220px;
   overflow-x: scroll;
@@ -1873,6 +1894,8 @@ ul.funding-options {
 .modal-header {
   padding-bottom: 2.7em; }
   .modal-header .fa.fa-folder-open {
+    margin-right: 0.5em; }
+  .modal-header .fa.fa-arrows-h {
     margin-right: 0.5em; }
 
 .modal-body {

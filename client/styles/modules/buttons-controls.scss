@@ -110,6 +110,15 @@
 display:none;
 }
 
+.btn-default[disabled]{
+  background: $green;
+  color: lighten($green,25%);
+  &:hover{
+    background: $green;
+    color: $white;
+  }
+}
+
 // layer search button
 button.layer-search {
   @extend .btn-apply;

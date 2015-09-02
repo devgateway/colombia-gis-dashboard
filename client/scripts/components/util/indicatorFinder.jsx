@@ -19,7 +19,7 @@ var Actions=require('../../actions/indicatorFinderActions.js');
 var CheckBox=require('../commons/customCheckbox.jsx')
 
 module.exports = React.createClass({
-	
+
 	mixins: [Reflux.connect(IndicatorsFinderStore)],
 
 	getInitialState:function(){
@@ -81,7 +81,7 @@ module.exports = React.createClass({
 	_find:function(){
 		this.setState({"currentPage": 1, "showLoading": true});
 		Actions.updateQuery('page', 1);//reset page
-		Actions.find();	
+		Actions.find();
 	},
 
 	render:function() {
@@ -90,16 +90,16 @@ module.exports = React.createClass({
 		debugger;
 		return (
 			<div>
-				<Button bsStyle='primary' bsSize='large' onClick={this.open}> {this.props.label || 'Open'}</Button>
-				<Modal  {...this.props} bsSize='large' aria-labelledby='contained-modal-title-lg' show={this.state.showModal} onHide={this.close}>
+				<Button bsStyle='primary' bsSize='large' onClick={this.open}>{this.props.label || 'Open'}</Button>
+				<Modal  {...this.props} bsSize='large' className="indicator-search" aria-labelledby='contained-modal-title-lg' show={this.state.showModal} onHide={this.close}>
 					<Modal.Header closeButton>
-						<Modal.Title><Message message='layers.searchIndicator'/></Modal.Title>
+						<Modal.Title><i className="fa fa-arrows-h"></i><Message message='layers.searchIndicator'/></Modal.Title>
 					</Modal.Header>
-					<Modal.Body className="finder">
+					<Modal.Body className="finder blue-panel">
 					<Grid fluid={true}>
 						<Row>
-							<Col md={2}><p className="title"><Message message='layers.program'/></p></Col>
-							<Col md={8}>
+							<Col md={2}><span className="title"><Message message='layers.program'/></span></Col>
+							<Col md={10}>
 								<select value={this.state.programSelected} onChange ={this._programChanged} style={{width:'100%'}}>
 									<option><Message message='layers.select'/></option>
 									{this.state.programs?_.map(this.state.programs, function(item){
@@ -109,8 +109,8 @@ module.exports = React.createClass({
 							</Col>
 						</Row>
 						<Row>
-							<Col md={2}><p className="title"><Message message='layers.activity'/></p></Col>
-							<Col md={8}>
+							<Col md={2}><span className="title"><Message message='layers.activity'/></span></Col>
+							<Col md={10}>
 								<select disabled={this.state.activities?"":"disabled"} value={this.state.activitySelected} onChange={this._activityChanged} style={{width:'100%'}}>
 									<option><Message message='layers.select'/></option>
 									{this.state.activities?_.map(this.state.activities, function(item){
@@ -120,7 +120,7 @@ module.exports = React.createClass({
 							</Col>
 						</Row>
 						<Row>
-							<Col md={2}><p className="title"><Message message='layers.type'/></p></Col>
+							<Col md={2}><span className="title"><Message message='layers.type'/></span></Col>
 							<Col md={10}>
 								<ul>
 								{_.map(this.state.types, function(type){
@@ -131,22 +131,21 @@ module.exports = React.createClass({
 							</Col>
 						</Row>
 						<Row>
-							<Col md={2}><p className="title"><Message message='layers.keyword'/></p></Col>
-							<Col md={8}>
+							<Col md={2}><span className="title"><Message message='layers.keyword'/></span></Col>
+							<Col md={10}>
 								<input type="text" onChange={this._changeKeyword} style={{width:'100%'}}/>
 							</Col>
 						</Row>
 						<Row>
-							<Col md={4}>
+							<Col md={2}>
 								{this.state.showLoading?
 								<div><img src="images/ajax-loader-small.gif"/></div>
 								:null}
 							</Col>
-							<Col md={6}>
-								<Button disabled={this.state.activitySelected?"":"disabled"} className="pull-right" bsStyle='primary' bsSize='large' onClick={this._find}><Message message='layers.find'/></Button>
+							<Col md={10}>
 							</Col>
 						</Row>
-						{this.state.results.indicators.length>0? 
+						{this.state.results.indicators.length>0?
 							<div>
 								<Row>
 									<Col md={12}>
@@ -185,13 +184,14 @@ module.exports = React.createClass({
 									</Col>
 								</Row>
 							</div>
-							: null							
+							: null
 						}
-						
-					</Grid>			
+
+					</Grid>
 				</Modal.Body>
 				<Modal.Footer>
-					<Button onClick={this.close}><Message message='layers.close'/></Button>
+				<Button className="pull-right" onClick={this.close}><Message message='layers.close'/></Button>
+					<Button className="btn btn-apply pull-right" disabled={this.state.activitySelected?"":"disabled"} onClick={this._find}><Message message='layers.find'/></Button>
 				</Modal.Footer>
 			</Modal>
 		</div>

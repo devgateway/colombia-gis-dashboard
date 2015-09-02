@@ -25,3 +25,27 @@
 	font-size:14px;
 	margin-top:10px;
 }
+
+
+// indicator search popup
+
+.indicator-search{
+	.title{
+		@include textBold;
+		color: $blue;
+		padding-bottom:$gutter/2;
+		display:inline-block;
+	}
+	select{
+		outline:none;
+	}
+.blue-panel{
+	margin-bottom:$gutter;
+	}
+input[type='text']{
+	padding:5px;
+	border:1px solid $border-grey;
+	margin-bottom:$gutter;
+}
+
+}
