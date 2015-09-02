@@ -71,6 +71,9 @@
 	"layers": {
 		"showLegend":"Show Legends",
 		"hideLegend":"Hide Legends",
+		"indicatorTitle":"Indicators",
+		"indicatorDepartmentSubtitle":"Indicator progress by Department",
+		"indicatorMunicipalitySubtitle":"Indicator progress by Municipality",
 		"fundingByTypeTitle":"Funding by Type",
 		"fundingByTypeDepartmentSubtitle":"Funding by Department",
 		"fundingByTypeMunicipalitySubtitle":"Funding by Municipality",

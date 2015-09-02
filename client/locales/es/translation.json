@@ -71,6 +71,9 @@
 	"layers": {
 		"showLegend":"Mostrar Leyendas",
 		"hideLegend":"Ocultar Leyendas",
+		"indicatorTitle":"Indicadores",
+		"indicatorDepartmentSubtitle":"Progreso de indicadores por Departamento",
+		"indicatorMunicipalitySubtitle":"Progreso de indicadores por Municipalidad",
 		"fundingByTypeTitle":"Financiamiento por Tipo",
 		"fundingByTypeDepartmentSubtitle":"Financiamiento por Departamento",
 		"fundingByTypeMunicipalitySubtitle":"Financiamiento por Municipalidad",
@@ -113,7 +116,7 @@
 		"searchLayers": "Buscar Capas",
 		"changeIndicator": "Cambiar Indicador",
 		"selectIndicator": "Seleccionar Indicador",
-		"searchIndicator": "Buacar Indicador",
+		"searchIndicator": "Buscar Indicador",
 		"program": "Programa",
 		"activity": "Actividad",
 		"type": "Tipo",

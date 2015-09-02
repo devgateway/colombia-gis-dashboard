@@ -28,6 +28,7 @@ var defaultStyle = {
 
 
 var defaultBreaks = {
+	'symbol':{'symbol':{width:10, type:"esriSMS", style:"esriSMSSquare"}},
 	'field': 'Progress',
 	breaks: {
 		'Level0': {
@@ -115,11 +116,11 @@ module.exports = Reflux.createStore({
 	},
 
 	_getTitle:function(){
-		return 'Indicators'
+		return 'layers.indicatorTitle';
 	},
 
 	_getSubtitle:function(){
-		return 'Indicators'
+		return this.state && this.state.subtitle?this.state.subtitle:'layers.indicatorDepartmentSubtitle';
 	},
 
 	_getDefaultBreaks: function() {
@@ -189,6 +190,7 @@ module.exports = Reflux.createStore({
 
 	_loadByMuncipalities: function() {
 		//var geoData = _.clone(municipalitiesGeoJson);
+		this.update({subtitle:'layers.indicatorMunicipalitySubtitle'});
 		var self = this;
 		API.getIndicatorsByMuncipalities(this.state.filters).then(
 			function(data) {
@@ -219,6 +221,7 @@ module.exports = Reflux.createStore({
 
 	_loadByDepartments: function() {
 		//var geoData = _.clone(departmentsGeoJson);
+		this.update({subtitle:'layers.indicatorDepartmentSubtitle'});
 		var self = this;
 		API.getIndicatorsByDepartment(this.state.filters).then(
 			function(data) {
