@@ -205,10 +205,12 @@ module.exports = Reflux.createStore({
 								return e.properties.ID_2 == d.idMun; //replacer.replaceDiacritics(e.properties.NAME_1).toUpperCase()==d.name
 							});
 							if (feature) {
-								_.assign(d, {'id': d.idMun});
+								_.assign(feature, {'id': d.idMun, 'hasValue': true}); //indicate that the feature has valid values
 								_.assign(feature.properties, _.omit(_.clone(d), "name")); //set feature values	
 							}
 						});
+						var geoDataFeaturesValid = _.filter(geoData.features, {'hasValue': true});
+						_.assign(geoData, {'features': geoDataFeaturesValid});
 						var geoStats = new GeoStats(items);
 						self._setGeoData(geoData, geoStats);
 					});
@@ -230,16 +232,18 @@ module.exports = Reflux.createStore({
 						var items = [];
 						_.map(data, function(d) {
 							if(!isNaN(d.id)){
-								items.push(d.activities);
+								items.push(d.values);
 							}
 							var feature = _.find(geoData.features, function(e) {
 								return e.properties.ID == d.idDep; //replacer.replaceDiacritics(e.properties.NAME_1).toUpperCase()==d.name
 							});
 							if (feature) {
-								_.assign(d, {'id': d.idDep});
+								_.assign(feature, {'id': d.idDep, 'hasValue': true}); //indicate that the feature has valid values
 								_.assign(feature.properties, _.omit(_.clone(d), "name")); //set feature values
 							}
 						});
+						var geoDataFeaturesValid = _.filter(geoData.features, {'hasValue': true});
+						_.assign(geoData, {'features': geoDataFeaturesValid});
 						var geoStats = new GeoStats(items);
 						self._setGeoData(geoData, geoStats);
 					});
