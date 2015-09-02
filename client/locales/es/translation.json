@@ -193,6 +193,7 @@
 		"mandatoryTitleLength": " / El título del mapa tiene un máximo de 100 caracteres",
 		"mandatoryDescriptionLength": " / La descripción del mapa un máximo de 300 caracteres",
 		"tagsQuantity":" / La cantidad máxima de etiquetas es de 3",
-		"tagsLength":" / El largo máximo para cualquier etiqueta es de 80 caracteres"
+		"tagsLength":" / El largo máximo para cualquier etiqueta es de 80 caracteres",
+		"exportError": "Se ha producido un error durante la exportación de datos"
 	}
 }

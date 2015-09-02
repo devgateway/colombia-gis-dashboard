@@ -193,6 +193,7 @@
 		"mandatoryTitleLength": " / The map title have a maximum of 100 characters",
 		"mandatoryDescriptionLength": " / The map description a maximum of 300 characters",
 		"tagsQuantity":" / The maximum quantity of tags is 3",
-		"tagsLength":" / The maximun lenght for any tag is 80 characters"
+		"tagsLength":" / The maximun lenght for any tag is 80 characters",
+		"exportError": "An error has occurred during export data"
 	}
 }

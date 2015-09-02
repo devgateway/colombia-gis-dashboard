@@ -23,7 +23,6 @@ module.exports=Reflux.createStore({
     },
 
     _handleNationalSubactivities: function(data) {
-      debugger;
       this.update({'nationalSubactivities': data.nationalSubactivities});
     },
 
