@@ -17,7 +17,8 @@
 		"advancedFilters":"Advanced Filters",
 		"locations":"Locations",
 		"targetPopulation":"Target Population",
-		"activityClassification":"Activity Classification",
+		"activityClassificationBasic":"Activity Classification (Basic)",
+		"activityClassificationAdvanced":"Activity Classification (Advanced)",
 		"developmentObjectives":"Development Objectives",
 		"crops":"Crops",
 		"subActivityStatus":"SubActivity Status",
@@ -62,7 +63,9 @@
 		"valueRange": "Value Range",
 		"valueRangesBetween": "USAID's investment range by subactivity between:",
 		"performSearch": "Please, perform a search to show some results",
-		"subActivities":"SubActivities"
+		"subActivities":"SubActivities",
+		"searchLengthMessage1": " (Type at least ",
+		"searchLengthMessage2": " characters to activate Search)"
 	},
 
 	"layers": {
@@ -190,6 +193,7 @@
 		"mandatoryTitleLength": " / The map title have a maximum of 100 characters",
 		"mandatoryDescriptionLength": " / The map description a maximum of 300 characters",
 		"tagsQuantity":" / The maximum quantity of tags is 3",
-		"tagsLength":" / The maximun lenght for any tag is 80 characters"
+		"tagsLength":" / The maximun lenght for any tag is 80 characters",
+		"exportError": "An error has occurred during export data"
 	}
 }

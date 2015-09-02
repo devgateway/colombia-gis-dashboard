@@ -17,7 +17,8 @@
 		"advancedFilters":"Filtros Avanzados",
 		"locations":"Localidades",
 		"targetPopulation":"Población Objetivo",
-		"activityClassification":"Tipo de Actividad",
+		"activityClassificationBasic":"Tipo de Actividad (Básico)",
+		"activityClassificationAdvanced":"Tipo de Actividad (Avanzado)",
 		"developmentObjectives":"Objetivos de Desarrollo",
 		"crops":"Cultivos",
 		"subActivityStatus":"Estado de la SubActividad",
@@ -62,7 +63,9 @@
 		"valueRange": "Rango de Valores",
 		"valueRangesBetween": "Rango de inversión de USAID por subactividad entre:",
 		"performSearch": "Por favor, realice una búsqueda para mostrar algunos resultados",
-		"subActivities":"Sub Actividades"
+		"subActivities":"Sub Actividades",
+		"searchLengthMessage1": " (Ingrese al menos ",
+		"searchLengthMessage2": " caracteres para activar la búsqueda)"
 	},
 
 	"layers": {
@@ -190,6 +193,7 @@
 		"mandatoryTitleLength": " / El título del mapa tiene un máximo de 100 caracteres",
 		"mandatoryDescriptionLength": " / La descripción del mapa un máximo de 300 caracteres",
 		"tagsQuantity":" / La cantidad máxima de etiquetas es de 3",
-		"tagsLength":" / El largo máximo para cualquier etiqueta es de 80 caracteres"
+		"tagsLength":" / El largo máximo para cualquier etiqueta es de 80 caracteres",
+		"exportError": "Se ha producido un error durante la exportación de datos"
 	}
 }

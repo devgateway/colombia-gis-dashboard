@@ -32,10 +32,11 @@ module.exports = React.createClass({
   },
 
   getInitialState:function(){
-    return {fundingSourceSelected: []};
+    return {"fundingSourceSelected": [], "breakSelected": 0};
   },
 
   _changeBreaksWrapper:function(value){
+    this.setState({"breakSelected": value});
     this.handleClickForBreaks(value, breaks, breakStyle);
   },
 
@@ -148,10 +149,10 @@ module.exports = React.createClass({
                 <If condition={showClassification}>
                   <div className="breaksTemplates">
                     <h3 className="color-control"><Message message='layers.classificationScheme'/></h3>
-                    <div className="label label-info" onClick={this._changeBreaksWrapper.bind(this, 0)} title={i18n.t("filters.defaultTip")}><Message message='filters.default'/></div>
-                    <div className="label label-info" onClick={this._changeBreaksWrapper.bind(this, 1)} title={i18n.t("filters.jenksTip")}><Message message='filters.jenks'/></div>
-                    <div className="label label-info" onClick={this._changeBreaksWrapper.bind(this, 2)} title={i18n.t("filters.arithmeticTip")}><Message message='filters.arithmetic'/></div>
-                    <div className="label label-info" onClick={this._changeBreaksWrapper.bind(this, 3)} title={i18n.t("filters.geometricTip")}><Message message='filters.geometric'/></div>
+                    <div className={this.state.breakSelected==0?"label label-info-selected":"label label-info"} onClick={this._changeBreaksWrapper.bind(this, 0)} title={i18n.t("filters.defaultTip")}><Message message='filters.default'/></div>
+                    <div className={this.state.breakSelected==1?"label label-info-selected":"label label-info"} onClick={this._changeBreaksWrapper.bind(this, 1)} title={i18n.t("filters.jenksTip")}><Message message='filters.jenks'/></div>
+                    <div className={this.state.breakSelected==2?"label label-info-selected":"label label-info"} onClick={this._changeBreaksWrapper.bind(this, 2)} title={i18n.t("filters.arithmeticTip")}><Message message='filters.arithmetic'/></div>
+                    <div className={this.state.breakSelected==3?"label label-info-selected":"label label-info"} onClick={this._changeBreaksWrapper.bind(this, 3)} title={i18n.t("filters.geometricTip")}><Message message='filters.geometric'/></div>
                   </div>
                 </If>
                 <div className="clearFix"/>

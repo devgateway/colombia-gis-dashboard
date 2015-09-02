@@ -37,14 +37,11 @@ module.exports = React.createClass({
 		this.setState({'type': 'indicators'});
 	},
 
-	componentWillReceiveProps:function(type){
-		debugger;
-	},
-	
 	render:function() {
 		var indicatorsEnabled = this.state.layersVisible.indicators;
 		var activitiesEnabled = this.state.layersVisible.shapes || this.state.layersVisible.points;
 		var type = !activitiesEnabled? 'indicators': this.state.type;
+		var errorArray = this.state.error?this.state.error.split(','):null;
 		return (
 			<div className="">
 				<div className="blue-panel">
@@ -61,6 +58,15 @@ module.exports = React.createClass({
 			            </CustomRadioGroup>
 			        </div>
 				</div>
+				{errorArray?
+					<div className="filter-no-results"><br/>
+						{
+							_.map(errorArray, function(e){
+								return (<Message message={e}/>)
+							})
+						}
+					</div>
+				: null}
 				<div>
 					<Button className="btn btn-apply pull-right" onClick={this._export.bind(this)}>{i18n.t('savemap.exportbutton')}</Button>
 					<Button  className="pull-right" onClick={this.props.onClose.bind(this)}>{i18n.t('savemap.closebutton')}</Button>

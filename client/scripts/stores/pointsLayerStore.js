@@ -123,6 +123,10 @@ module.exports = Reflux.createStore({
       }) /*override default values*/ ;
   },
 
+  _updateNationalSubactivities: function(data) {
+    this.update({'nationalSubactivities': _.find(data, {'id': 'CN'})});
+  },
+  
   /*Load GIS data by department */
   _loadByDepartments: function() {
     this.update({subtitle:'layers.activityDepartmentSubtitle'});
@@ -136,6 +140,7 @@ module.exports = Reflux.createStore({
 
   _getGeoData: function(func) {
     func(this.state.filters).then(function(results) { //call api function and process results 
+      this._updateNationalSubactivities(results);
       var items = [];
       _.map(results, function(d) {
         if (!isNaN(d.id)) {
