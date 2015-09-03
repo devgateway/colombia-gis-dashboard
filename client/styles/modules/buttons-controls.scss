@@ -35,10 +35,11 @@
   @include textBold;
   @include noOutline;
   margin-left: 1em;
-  &:hover {
+  &:hover, &:focus {
     background: darken($green,20%);
     color: $white;
   }
+
   &.space-left {
     margin-left: $gutter;
   }

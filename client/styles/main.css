@@ -581,8 +581,9 @@ ul.basemap-list {
   font-weight: bold;
   outline: none;
   margin-left: 1em; }
-  .btn-apply:hover, button.layer-search:hover,
-  .btn-primary:hover {
+  .btn-apply:hover, button.layer-search:hover, .btn-apply:focus, button.layer-search:focus,
+  .btn-primary:hover,
+  .btn-primary:focus {
     background: #659735;
     color: #ffffff; }
   .btn-apply.space-left, button.space-left.layer-search,
