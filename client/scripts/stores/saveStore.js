@@ -50,11 +50,14 @@ module.exports = Reflux.createStore({
   onExportActivities: function() {
     API.exportActivities(_.clone(filterState, true)).then(
       function(data) {        
-        location.href = data[0].name;
+        if (data[0] && data[0].name){
+          this.onHideModal(); //tell save dialog that everything is done 
+          location.href = data[0].name;
+        } else {
+          this.update({'error': 'savemap.exportError,'});        
+        }
       }.bind(this)).fail(function(err) {
-        this.update({
-          'error': err
-        });
+        this.update({'error': err});
         console.log('onExportActivities: Error on export data ...');
       }.bind(this));
   },
@@ -62,6 +65,7 @@ module.exports = Reflux.createStore({
   onExportIndicators: function() {
     API.exportIndicators(_.clone(indicatorsState.filters, true)).then(
       function(data) {        
+        this.onHideModal(); //tell save dialog that everything is done 
         location.href = data;
       }.bind(this)).fail(function(err) {
         this.update({
@@ -263,7 +267,7 @@ module.exports = Reflux.createStore({
     },
 
   onHideModal: function() {
-    this.update({'showModal': false});
+    this.update({'showModal': false, 'error': ''}); //close modal and reset errors
   },
 
   onShowModal: function(key, id) {

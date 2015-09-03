@@ -34,9 +34,10 @@ module.exports = React.createClass({
 			_.map(this.state.infoWindow[4].value, function(v){actCounter+=parseInt(v.value)});
 			numberOfActivities = '- ' + actCounter;
 		}
+		var nationalSubActivitiesCount = this.state.nationalSubactivities? this.state.nationalSubactivities.activities : 0;
 		return (
 			<span>
-				<a href="#" data-toggle="modal" data-target="#myModal" onClick={this.open}><Message message='map.nationalSubActivities'/></a>
+				<a href="#" data-toggle="modal" data-target="#myModal" onClick={nationalSubActivitiesCount>0? this.open : ""}><Message message='map.nationalSubActivities'/> ({nationalSubActivitiesCount})</a>
 				<Modal className='dialog-national-subactivities' {...this.props} bsSize='medium' aria-labelledby='contained-modal-title-lg'
 				 show={showModal} onHide={this.close}>
 					<Modal.Header>
