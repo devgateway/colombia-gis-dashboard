@@ -2,9 +2,8 @@
 .activity-nav {
   @include clearfix;
   overflow: hidden;
+  margin-left:1px;
 }
-
-
 
 .filter-type-wrapper {
   overflow: hidden;

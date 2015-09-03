@@ -45,14 +45,14 @@ module.exports = React.createClass({
 					<i className="fa fa-times-circle-o"></i></a>
 				</Modal.Header>
 				<Modal.Body>
-					<div className="activity-nav">
+					<div className="export-activity-nav">
 						<TabbedArea ref="tabbedArea" className="activities" defaultActiveKey={1}>
 							<TabPane key={1} eventKey={1} tab={<Message message="savemap.savemaptab"/>} >
 								<SaveTab onClose={this._onClose}/>
 							</TabPane>
 							{!(this.state.id)?
 								<TabPane key={2} eventKey={2} tab={<Message message="savemap.exportmaptab"/>}>
-									<ExportTab layersVisible={this.state.layersVisible} onClose={this._onClose}/>								
+									<ExportTab layersVisible={this.state.layersVisible} onClose={this._onClose}/>
 								</TabPane>
 							: null}
 						</TabbedArea>

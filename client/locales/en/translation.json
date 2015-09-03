@@ -117,6 +117,8 @@
 		"changeIndicator": "Change Indicator",
 		"selectIndicator": "Select Indicator",
 		"searchIndicator": "Search Indicator",
+		"selectedIndicator": "Selected Indicator Name",
+		"selectedIndidcatorPrompt": "Click to change indicator selection",
 		"program": "Program",
 		"activity": "Activity",
 		"type": "Type",

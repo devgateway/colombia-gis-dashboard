@@ -110,6 +110,10 @@ $border-grey:#eeeeee;
   margin-right:5px;
 }
 
+@mixin bluebg{
+  background: rgba(242,246,247,0.6);
+}
+
 html{
   font-family:$base-font-family;
 }
@@ -199,4 +203,20 @@ i.fa.fa-search{
   background: rbga(255,255,255,0.6);
 
   img{ margin-right: $gutter;}
+}
+
+// centered img
+.img-centered{
+  @include textCenter;
+  display:block;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+// used to remove padding from grid columns
+.no-padding {
+   padding: 0 !important;
+   margin: 0 !important;
+   padding-right: 0;
+   padding-left: 0;
 }
