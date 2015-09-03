@@ -21,7 +21,7 @@ module.exports = React.createClass({
 		if(type=='activities'){
 			Actions.exportActivities(this.state.format);
 		} else {
-			Actions.exportIndicators();
+			Actions.exportIndicators();	
 		}
 	},
 
@@ -32,14 +32,11 @@ module.exports = React.createClass({
 	_exportTypeActivities:function(type){
 		this.setState({'type': 'activities'});
 	},
-
+	
 	_exportTypeIndicators:function(type){
 		this.setState({'type': 'indicators'});
 	},
 
-	componentWillReceiveProps:function(type){
-		debugger;
-	},
 	render:function() {
 		var indicatorsEnabled = this.state.layersVisible.indicators;
 		var activitiesEnabled = this.state.layersVisible.shapes || this.state.layersVisible.points;
@@ -47,10 +44,10 @@ module.exports = React.createClass({
 		var errorArray = this.state.error?this.state.error.split(','):null;
 		return (
 			<div className="">
-				<div className="export-selection-wrapper">
+				<div className="blue-panel">
 					<div className="plain-panel">
 						<CustomRadioGroup>
-							{activitiesEnabled?
+							{activitiesEnabled? 
 				              <CustomRadio className="horizontal" name="activities" checked={type=='activities'? true : false}
 				              	onClick={this._exportTypeActivities} label="savemap.exportactivities"/>
 				            : null}
@@ -61,7 +58,6 @@ module.exports = React.createClass({
 			            </CustomRadioGroup>
 			        </div>
 				</div>
-				<div className="adjacent-buttons">
 				{errorArray?
 					<div className="filter-no-results"><br/>
 						{

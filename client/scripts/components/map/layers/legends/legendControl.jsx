@@ -33,8 +33,7 @@ var LegendControl  = React.createClass({
     var showLegendButton = !this.state.data.hideLegendButton;
     
     return (
-      <If condition={showLegendButton}>
-        <div className="legends-container">
+      <div className="legends-container">
         <button className="show-legends-button" onClick={this._toggleVisibility}>{buttonLabel}</button>
         <If condition={this.state.esri.shown}> 
           <div className="legends-content">
@@ -45,8 +44,7 @@ var LegendControl  = React.createClass({
           }
           </div>
         </If>
-        </div>
-      </If>
+      </div>
       );
 
   }

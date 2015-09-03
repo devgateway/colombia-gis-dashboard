@@ -28,6 +28,7 @@ var defaultStyle = {
 
 
 var defaultBreaks = {
+	'symbol':{'symbol':{width:10, type:"esriSMS", style:"esriSMSSquare"}},
 	'field': 'Progress',
 	breaks: {
 		'Level0': {
@@ -115,11 +116,11 @@ module.exports = Reflux.createStore({
 	},
 
 	_getTitle:function(){
-		return 'Indicators'
+		return 'layers.indicatorTitle';
 	},
 
 	_getSubtitle:function(){
-		return 'Indicators'
+		return this.state && this.state.subtitle?this.state.subtitle:'layers.indicatorDepartmentSubtitle';
 	},
 
 	_getDefaultBreaks: function() {
@@ -189,6 +190,7 @@ module.exports = Reflux.createStore({
 
 	_loadByMuncipalities: function() {
 		//var geoData = _.clone(municipalitiesGeoJson);
+		this.update({subtitle:'layers.indicatorMunicipalitySubtitle'});
 		var self = this;
 		API.getIndicatorsByMuncipalities(this.state.filters).then(
 			function(data) {
@@ -203,10 +205,12 @@ module.exports = Reflux.createStore({
 								return e.properties.ID_2 == d.idMun; //replacer.replaceDiacritics(e.properties.NAME_1).toUpperCase()==d.name
 							});
 							if (feature) {
-								_.assign(d, {'id': d.idMun});
+								_.assign(feature, {'id': d.idMun, 'hasValue': true}); //indicate that the feature has valid values
 								_.assign(feature.properties, _.omit(_.clone(d), "name")); //set feature values	
 							}
 						});
+						var geoDataFeaturesValid = _.filter(geoData.features, {'hasValue': true});
+						_.assign(geoData, {'features': geoDataFeaturesValid});
 						var geoStats = new GeoStats(items);
 						self._setGeoData(geoData, geoStats);
 					});
@@ -219,6 +223,7 @@ module.exports = Reflux.createStore({
 
 	_loadByDepartments: function() {
 		//var geoData = _.clone(departmentsGeoJson);
+		this.update({subtitle:'layers.indicatorDepartmentSubtitle'});
 		var self = this;
 		API.getIndicatorsByDepartment(this.state.filters).then(
 			function(data) {
@@ -227,16 +232,18 @@ module.exports = Reflux.createStore({
 						var items = [];
 						_.map(data, function(d) {
 							if(!isNaN(d.id)){
-								items.push(d.activities);
+								items.push(d.values);
 							}
 							var feature = _.find(geoData.features, function(e) {
 								return e.properties.ID == d.idDep; //replacer.replaceDiacritics(e.properties.NAME_1).toUpperCase()==d.name
 							});
 							if (feature) {
-								_.assign(d, {'id': d.idDep});
+								_.assign(feature, {'id': d.idDep, 'hasValue': true}); //indicate that the feature has valid values
 								_.assign(feature.properties, _.omit(_.clone(d), "name")); //set feature values
 							}
 						});
+						var geoDataFeaturesValid = _.filter(geoData.features, {'hasValue': true});
+						_.assign(geoData, {'features': geoDataFeaturesValid});
 						var geoStats = new GeoStats(items);
 						self._setGeoData(geoData, geoStats);
 					});
