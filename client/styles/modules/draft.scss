@@ -49,7 +49,9 @@
 }
 
 .clearFix{
-	@include clearfix;
+	float:none;
+	width:100%;
+	clear:both;
 }
 
 

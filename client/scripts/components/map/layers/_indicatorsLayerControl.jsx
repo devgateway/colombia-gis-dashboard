@@ -10,6 +10,9 @@ var CustomRadio = require('../../commons/customRadioButton.jsx').Radio;
 var CustomRadioGroup = require('../../commons/customRadioButton.jsx').RadioGroup;
 var Layer = require('./_layer.jsx');
 var CommonsMixins = require('./_mixins.js');
+var Grid=require('react-bootstrap/lib/Grid');
+var Row=require('react-bootstrap/lib/Row');
+var Col=require('react-bootstrap/lib/Col');
 
 var _ = require('lodash');
 
@@ -73,15 +76,36 @@ module.exports = React.createClass({
             </CustomRadioGroup>
           </li>
           <li className="indicator">
-            <div className="clearFix"/>
+
+          <div className="clearFix">
+          <Grid fluid={false}>
+          <Row>
+            <Col md={2} className="no-padding">
             <Finder label={this.state.filters.indicatorId? i18n.t("layers.changeIndicator") : i18n.t("layers.selectIndicator")}/>
-            <div className=""> {this.state.filters.indicatorId? this.state.filters.indicatorName : ""}
+              </Col>
+                  <Col md={6} className="no-padding">
+                 {this.state.filters.indicatorId? this.state.filters.indicatorName : ""}
             <span className="bs-callout bs-callout-simple pull-left">Click to change indicator selection</span>
+                </Col>
+              </Row>
+            </Grid>
             </div>
-            <div className="vbuffer"/>
+
+            <div className="selected-indicator">
+            <Grid fluid={true}>
+                <Row>
+                <Col md={3} className="no-padding">
+              <h3>Selected Indicator Name</h3>
+                </Col>
+              <Col md={6}>
+              <span>this is the name of the selected indicator</span>
+              </Col>
+                </Row>
+              </Grid>
+            </div>
+
           </li>
           <li>
-              <div className="vbuffer"/>
               <div className="clearFix"/>
               <h3 className="color-control"><Message message='layers.classificationScheme'/></h3>
               <div>

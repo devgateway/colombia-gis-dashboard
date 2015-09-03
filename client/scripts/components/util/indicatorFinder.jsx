@@ -92,15 +92,17 @@ module.exports = React.createClass({
 			<div>
 				<Button bsStyle='primary' bsSize='large' onClick={this.open}>{this.props.label || 'Open'}</Button>
 				<Modal  {...this.props} bsSize='large' className="indicator-search" aria-labelledby='contained-modal-title-lg' show={this.state.showModal} onHide={this.close}>
-					<Modal.Header closeButton>
+					<Modal.Header>
+					<a className="close-dialog" href="#" onClick={this.close}>
+					<i className="fa fa-times-circle-o"></i></a>
 						<Modal.Title><i className="fa fa-arrows-h"></i><Message message='layers.searchIndicator'/></Modal.Title>
 					</Modal.Header>
-					<Modal.Body className="finder blue-panel">
+					<Modal.Body className="finder">
 					<Grid fluid={true}>
-						<Row>
+						<Row className="blue-panel">
 							<Col md={2}><span className="title"><Message message='layers.program'/></span></Col>
 							<Col md={10}>
-								<select value={this.state.programSelected} onChange ={this._programChanged} style={{width:'100%'}}>
+								<select className="form-control" value={this.state.programSelected} onChange ={this._programChanged} style={{width:'100%'}}>
 									<option><Message message='layers.select'/></option>
 									{this.state.programs?_.map(this.state.programs, function(item){
 										return (<option value={item.code}>{item.description}</option>)
@@ -108,10 +110,10 @@ module.exports = React.createClass({
 								</select>
 							</Col>
 						</Row>
-						<Row>
+						<Row className="blue-panel">
 							<Col md={2}><span className="title"><Message message='layers.activity'/></span></Col>
 							<Col md={10}>
-								<select disabled={this.state.activities?"":"disabled"} value={this.state.activitySelected} onChange={this._activityChanged} style={{width:'100%'}}>
+								<select className="form-control" disabled={this.state.activities?"":"disabled"} value={this.state.activitySelected} onChange={this._activityChanged} style={{width:'100%'}}>
 									<option><Message message='layers.select'/></option>
 									{this.state.activities?_.map(this.state.activities, function(item){
 										return (<option value={item.id}>{item.name}</option>)
@@ -119,7 +121,7 @@ module.exports = React.createClass({
 								</select>
 							</Col>
 						</Row>
-						<Row>
+						<Row className="blue-panel">
 							<Col md={2}><span className="title"><Message message='layers.type'/></span></Col>
 							<Col md={10}>
 								<ul>
@@ -130,26 +132,27 @@ module.exports = React.createClass({
 								</ul>
 							</Col>
 						</Row>
-						<Row>
+						<Row className="blue-panel">
 							<Col md={2}><span className="title"><Message message='layers.keyword'/></span></Col>
 							<Col md={10}>
-								<input type="text" onChange={this._changeKeyword} style={{width:'100%'}}/>
+								<input type="text" placeholder={i18n.t('layers.keyword')} onChange={this._changeKeyword} style={{width:'100%'}}/>
 							</Col>
 						</Row>
 						<Row>
-							<Col md={2}>
+							<Col md={12}>
 								{this.state.showLoading?
-								<div><img src="images/ajax-loader-small.gif"/></div>
+								<div><img className="img-centered" src="images/ajax-loader-small.gif"/></div>
 								:null}
 							</Col>
-							<Col md={10}>
-							</Col>
 						</Row>
-						{this.state.results.indicators.length>0?
-							<div>
+
+					{this.state.results.indicators.length>0?
+
+							<div className="container-full">
 								<Row>
 									<Col md={12}>
-										<Table striped bordered condensed hover>
+									<div className="indicator-table">
+										<Table striped condensed hover>
 											<thead>
 												<tr>
 													<th nowrap>Ref Code</th>
@@ -167,6 +170,7 @@ module.exports = React.createClass({
 												}.bind(this))}
 											</tbody>
 										</Table>
+									</div>
 									</Col>
 								</Row>
 								<Row>
@@ -190,8 +194,10 @@ module.exports = React.createClass({
 					</Grid>
 				</Modal.Body>
 				<Modal.Footer>
+
+				<Button className="btn btn-apply pull-right" disabled={this.state.activitySelected?"":"disabled"} onClick={this._find}><Message message='layers.find'/></Button>
 				<Button className="pull-right" onClick={this.close}><Message message='layers.close'/></Button>
-					<Button className="btn btn-apply pull-right" disabled={this.state.activitySelected?"":"disabled"} onClick={this._find}><Message message='layers.find'/></Button>
+
 				</Modal.Footer>
 			</Modal>
 		</div>

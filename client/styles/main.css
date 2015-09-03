@@ -77,6 +77,18 @@ i.fa.fa-search {
   .bs-callout img {
     margin-right: 1em; }
 
+.img-centered {
+  text-align: center;
+  display: block;
+  margin-left: auto;
+  margin-right: auto; }
+
+.no-padding {
+  padding: 0 !important;
+  margin: 0 !important;
+  padding-right: 0;
+  padding-left: 0; }
+
 #app-wrapper {
   height: 100%;
   font-family: "Open Sans", sans-serif; }
@@ -1292,12 +1304,40 @@ ul.tabs {
   display: inline-block; }
 .indicator-search select {
   outline: none; }
+  .indicator-search select.form-control {
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    border-radius: 0 !important;
+    -webkit-appearance: none;
+    height: 32px; }
 .indicator-search .blue-panel {
-  margin-bottom: 1em; }
+  padding: 1em 0 0 0; }
+.indicator-search .finder {
+  padding-bottom: 2em;
+  margin-bottom: 2em;
+  margin-top: 0; }
+  .indicator-search .finder ul {
+    padding-left: 0;
+    list-style: none;
+    margin-left: -8px; }
+    .indicator-search .finder ul li {
+      margin-right: 10px; }
 .indicator-search input[type='text'] {
   padding: 5px;
   border: 1px solid #eeeeee;
-  margin-bottom: 1em; }
+  margin-bottom: 1em;
+  outline: none;
+  height: 32px; }
+
+.indicator-table .table {
+  border-bottom: 1px solid #eeeeee; }
+.indicator-table .table > tbody > tr > td {
+  border-top: 1px solid transparent;
+  color: #4d749f;
+  font-weight: bold;
+  padding-top: 9px;
+  padding-bottom: 9px; }
 
 .esri-result-list {
   height: 220px;
@@ -1830,6 +1870,8 @@ ul.funding-options {
 .layer-option-section {
   display: block;
   overflow: hidden; }
+  .layer-option-section h3 {
+    border: 1px solid transparent; }
 
 .funding-types {
   float: left;
@@ -1887,6 +1929,11 @@ ul.funding-options {
       .breaksTemplates .colorpicker-element .input-group-addon i {
         width: 53px;
         margin-top: 10px; }
+
+.selected-indicator {
+  margin-top: 1em; }
+  .selected-indicator h3 {
+    line-height: 15px; }
 
 .save-map-trigger {
   display: inline; }
@@ -2092,9 +2139,9 @@ h4.modal-title {
   color: #4278AA;
   font-size: 14px; }
 
-.clearFix:after {
-  content: "";
-  display: table;
+.clearFix {
+  float: none;
+  width: 100%;
   clear: both; }
 
 .loading-container {

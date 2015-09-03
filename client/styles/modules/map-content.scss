@@ -156,6 +156,9 @@ ul.funding-options{
 .layer-option-section{
     display:block;
     overflow:hidden;
+    h3{
+      border:1px solid transparent;
+    }
 }
 
 // commitments vs disbursements selection
@@ -225,4 +228,11 @@ ul.funding-options{
 				}
 		}
 	}
+}
+
+.selected-indicator{
+  margin-top:$gutter;
+  h3{
+    line-height:15px;
+  }
 }

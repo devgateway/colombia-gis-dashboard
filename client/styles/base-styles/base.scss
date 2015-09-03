@@ -200,3 +200,19 @@ i.fa.fa-search{
 
   img{ margin-right: $gutter;}
 }
+
+// centered img
+.img-centered{
+  @include textCenter;
+  display:block;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+// used to remove padding from grid columns
+.no-padding {
+   padding: 0 !important;
+   margin: 0 !important;
+   padding-right: 0;
+   padding-left: 0;
+}

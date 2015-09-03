@@ -38,14 +38,46 @@
 	}
 	select{
 		outline:none;
+		&.form-control{
+		-webkit-box-shadow:none;
+		-moz-box-shadow:none;
+		box-shadow:none;
+		border-radius:0 !important;
+		-webkit-appearance: none;
+		height:32px;
+		}
 	}
 .blue-panel{
-	margin-bottom:$gutter;
+	padding:$gutter 0 0 0;
+}
+.finder{
+	padding-bottom:$gutter*2;
+	margin-bottom:$gutter*2;
+	margin-top:0;
+	ul{
+		@include listUnstyled;
+		margin-left:-8px;
+		li{
+			margin-right:10px;
+		}
 	}
+}
 input[type='text']{
 	padding:5px;
 	border:1px solid $border-grey;
 	margin-bottom:$gutter;
+	outline:none;
+	height:32px;
 }
 
+}
+.indicator-table{
+	.table{ border-bottom:1px solid $border-grey}
+	.table > tbody > tr > td{
+		border-top:1px solid transparent;
+		color: $blue;
+		font-weight:bold;
+		padding-top:9px;
+		padding-bottom:9px;
+	}
 }
