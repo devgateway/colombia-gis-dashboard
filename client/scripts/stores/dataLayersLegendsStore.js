@@ -25,31 +25,26 @@ module.exports = Reflux.createStore({
 
   _handleDataLayersUpdate: function(data) {
     var self = this;
-    if(data.id == 'indicators'){
-      this.update({'hideLegendButton':data.hideLegendButton}, {silent:true})
-    } else {
+    var exists = _.find(this.state.layersLegends, {'id': data.id});
 
-      var exists = _.find(this.state.layersLegends, {'id': data.id});
-
-      if (!exists) {
-        this._makeLegend(data.id, data);
-      }
-
-      this._setLegendVisibility(data.id, data.visible);
-      this._setLegendSubtitle(data.id, data.subtitle);
-      
-      if (data.subProperty) {
-        var level = data.subProperty;
-        this._setLegendColor(data.id, data.breaks.breaks[level].style.color, level.split("Level")[1])
-        this._setLegendLabel(data.id, data.breaks.breaks[level], level.split("Level")[1])
-      } else {
-        _.map(data.breaks.breaks, function(b, i){
-          self._setLegendColor(data.id, b.style.color, i.split("Level")[1]);
-          self._setLegendLabel(data.id, b, i.split("Level")[1])
-        })
-      }
+    if (!exists) {
+      this._makeLegend(data.id, data);
     }
 
+    this._setLegendVisibility(data.id, data.visible);
+    this._setLegendSubtitle(data.id, data.subtitle);
+    
+    if (data.subProperty) {
+      var level = data.subProperty;
+      this._setLegendColor(data.id, data.breaks.breaks[level].style.color, level.split("Level")[1])
+      this._setLegendLabel(data.id, data.breaks.breaks[level], level.split("Level")[1])
+    } else {
+      _.map(data.breaks.breaks, function(b, i){
+        self._setLegendColor(data.id, b.style.color, i.split("Level")[1]);
+        self._setLegendLabel(data.id, b, i.split("Level")[1])
+      })
+    }
+      
     this.trigger(this.state);
   },
 

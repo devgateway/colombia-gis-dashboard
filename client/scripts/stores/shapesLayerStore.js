@@ -204,9 +204,12 @@ module.exports = Reflux.createStore({
 								return e.properties.ID_2 == d.id; //replacer.replaceDiacritics(e.properties.NAME_1).toUpperCase()==d.name
 							});
 							if (feature) {
+								_.assign(feature, {'hasValue': true}); //indicate that the feature has valid values
 								_.assign(feature.properties, _.omit(_.clone(d), "name")); //set feature values	
 							}
 						});
+						var geoDataFeaturesValid = _.filter(geoData.features, {'hasValue': true});
+						_.assign(geoData, {'features': geoDataFeaturesValid});
 						var geoStats = new GeoStats(items);
 						self._setGeoData(geoData, geoStats);
 					});
@@ -237,9 +240,12 @@ module.exports = Reflux.createStore({
 								return e.properties.ID == d.id; //replacer.replaceDiacritics(e.properties.NAME_1).toUpperCase()==d.name
 							});
 							if (feature) {
+								_.assign(feature, {'hasValue': true}); //indicate that the feature has valid values
 								_.assign(feature.properties, _.omit(_.clone(d), "name")); //set feature values
 							}
 						});
+						var geoDataFeaturesValid = _.filter(geoData.features, {'hasValue': true});
+						_.assign(geoData, {'features': geoDataFeaturesValid});
 						var geoStats = new GeoStats(items);
 						self._setGeoData(geoData, geoStats);
 					});
