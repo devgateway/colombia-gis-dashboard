@@ -2122,7 +2122,8 @@ h4.modal-title {
   .export-activity-nav .tab-content {
     min-height: 150px;
     width: 100%;
-    padding: 2em 3em 1em 3em; }
+    padding: 2em 3em 1em 3em;
+    margin-top: -2px; }
 
 .export-selection-wrapper {
   background: #ffffff;
