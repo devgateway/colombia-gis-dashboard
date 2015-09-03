@@ -87,25 +87,13 @@ module.exports = React.createClass({
                   <Col md={2} className="no-padding">
                     <Finder label={this.state.filters.indicatorId? i18n.t("layers.changeIndicator") : i18n.t("layers.selectIndicator")}/>
                   </Col>
-                  <Col md={6} className="no-padding">                 
-                    <span className="bs-callout bs-callout-simple pull-left"><Message message='layers.selectedIndidcatorPrompt'/></span>
+                  <Col md={4} className="no-padding">                 
+                    {this.state.filters.indicatorId? this.state.filters.indicatorName : ""}
                   </Col>
                 </Row>
               </Grid>
             </div>
 
-            <div className="selected-indicator">
-              <Grid fluid={true}>
-                <Row>
-                  <Col md={3} className="no-padding">
-                    <h3><Message message='layers.selectedIndicator'/></h3>
-                  </Col>
-                  <Col md={6}>
-                    <span>{this.state.filters.indicatorId? this.state.filters.indicatorName : ""}</span>
-                  </Col>
-                </Row>
-              </Grid>
-            </div>
           </li>
           <li>
             <div className="clearFix"/>
