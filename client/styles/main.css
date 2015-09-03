@@ -398,7 +398,8 @@ ul.tabbed {
   margin-bottom: 0; }
 
 .activity-nav {
-  overflow: hidden; }
+  overflow: hidden;
+  margin-left: 1px; }
   .activity-nav:after {
     content: "";
     display: table;
@@ -1318,7 +1319,7 @@ ul.tabs {
     -webkit-appearance: none;
     height: 32px; }
 .indicator-search .blue-panel {
-  padding: 1em 0 0 0; }
+  padding: 1.2em 3em; }
 .indicator-search .finder {
   padding-bottom: 2em;
   margin-bottom: 2em;
@@ -1342,8 +1343,7 @@ ul.tabs {
   border-top: 1px solid transparent;
   color: #4d749f;
   font-weight: bold;
-  padding-top: 9px;
-  padding-bottom: 9px; }
+  padding: 12px 15px; }
 
 .esri-result-list {
   height: 220px;
