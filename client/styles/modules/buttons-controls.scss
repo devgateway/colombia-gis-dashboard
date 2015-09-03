@@ -8,7 +8,7 @@
 .btn {
   cursor: pointer;
   @include border-radius(2px);
-  padding: 5px 35px;
+  padding: 8px 35px;
   text-transform: uppercase;
     &:focus{
       @include noOutline;
@@ -108,6 +108,14 @@
 }
 .scooch-disabled {
 display:none;
+}
+
+.btn-default{
+  border-color: $border-grey;
+  &:hover{
+    background: $border-grey;
+    border-color: $border-grey;
+  }
 }
 
 .btn-default[disabled]{

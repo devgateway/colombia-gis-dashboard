@@ -555,7 +555,7 @@ ul.basemap-list {
   border-radius: 2px;
   background-clip: padding-box;
   /* stops bg color from leaking outside the border: */
-  padding: 5px 35px;
+  padding: 8px 35px;
   text-transform: uppercase; }
   .btn:focus, .btn-apply:focus, button.layer-search:focus,
   .btn-primary:focus {
@@ -651,6 +651,12 @@ ul.basemap-list {
 
 .scooch-disabled {
   display: none; }
+
+.btn-default {
+  border-color: #eeeeee; }
+  .btn-default:hover {
+    background: #eeeeee;
+    border-color: #eeeeee; }
 
 .btn-default[disabled] {
   background: #98ca68;
@@ -931,7 +937,7 @@ input[type=checkbox].glyphicon {
   font-weight: normal;
   line-height: 1;
   color: #555;
-  background-color: #e1e8f0;
+  background-color: transparent;
   border: 0px solid #e1e8f0; }
 
 .start-date,
@@ -1966,7 +1972,8 @@ h4.modal-title {
   text-transform: uppercase;
   font-weight: bold;
   font-size: 13px;
-  color: #4d749f; }
+  color: #4d749f;
+  margin-bottom: 0.5em; }
 
 .close-dialog {
   float: right; }
@@ -2096,6 +2103,36 @@ h4.modal-title {
   margin-right: 0.5em;
   padding: 0.16667em 0.5em;
   font-size: 11px; }
+
+.export-activity-nav {
+  padding-top: 1em; }
+  .export-activity-nav ul.activities {
+    margin-left: 3em; }
+    .export-activity-nav ul.activities li a {
+      background: rgba(242, 246, 247, 0.6);
+      text-transform: uppercase;
+      padding: 1em 2em;
+      border: 1px solid transparent;
+      background: #eeeeee;
+      color: #ffffff; }
+    .export-activity-nav ul.activities li.active a {
+      background: rgba(242, 246, 247, 0.6);
+      color: #4d749f; }
+  .export-activity-nav .tab-content {
+    min-height: 150px;
+    width: 100%;
+    padding: 2em 3em 1em 3em; }
+
+.export-selection-wrapper {
+  background: #ffffff;
+  padding-bottom: 2em;
+  margin-bottom: 1.5em;
+  border: 1px solid #eeeeee; }
+  .export-selection-wrapper .horizontal {
+    line-height: 13px; }
+
+.adjacent-buttons button {
+  margin-left: 1em; }
 
 /*add here all styles used during development later they will be replaced by the final ones */
 .selectable-radio, .selectable, .selectable-disabled {

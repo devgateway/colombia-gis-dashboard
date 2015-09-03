@@ -31,6 +31,7 @@ h4{
     @include textBold;
     font-size:13px;
     color:$blue;
+    margin-bottom:$gutter/2;
   }
 }
 .close-dialog{
@@ -172,4 +173,43 @@ h4{
   margin-right:$gutter/2;
   padding: $gutter/6 $gutter/2;
   font-size:11px;
+}
+
+.export-activity-nav{
+  padding-top:$gutter;
+  ul.activities{
+    margin-left:$gutter*3;
+    li{
+      a{
+        @include bluebg;
+        @include textUppercase;
+        padding:$gutter $gutter*2;
+        border:1px solid transparent;
+        background: $border-grey;
+        color: $white;
+        }
+        &.active a{
+          @include bluebg;
+          color: $blue;
+        }
+      }
+    }
+  .tab-content{
+    min-height:150px;
+    width:100%;
+    padding:2em 3em 1em 3em;
+  }
+}
+.export-selection-wrapper{
+  background: $white;
+  padding-bottom:$gutter*2;
+  margin-bottom:$gutter*1.5;
+  border:1px solid $border-grey;
+  .horizontal{
+    line-height:13px;
+  }
+}
+
+.adjacent-buttons{
+  button{margin-left:$gutter}
 }
