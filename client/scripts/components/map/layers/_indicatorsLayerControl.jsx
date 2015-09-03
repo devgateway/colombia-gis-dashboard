@@ -85,7 +85,7 @@ module.exports = React.createClass({
               </Col>
                   <Col md={6} className="no-padding">
                  {this.state.filters.indicatorId? this.state.filters.indicatorName : ""}
-            <span className="bs-callout bs-callout-simple pull-left">Click to change indicator selection</span>
+            <span className="bs-callout bs-callout-simple pull-left"><Message message='layers.selectedIndidcatorPrompt'/></span>
                 </Col>
               </Row>
             </Grid>
@@ -95,7 +95,7 @@ module.exports = React.createClass({
             <Grid fluid={true}>
                 <Row>
                 <Col md={3} className="no-padding">
-              <h3>Selected Indicator Name</h3>
+              <h3><Message message='layers.selectedIndicator'/></h3>
                 </Col>
               <Col md={6}>
               <span>this is the name of the selected indicator</span>

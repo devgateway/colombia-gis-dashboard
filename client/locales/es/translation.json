@@ -111,6 +111,8 @@
 		"changeIndicator": "Cambiar Indicador",
 		"selectIndicator": "Seleccionar Indicador",
 		"searchIndicator": "Buacar Indicador",
+		"selectedIndicator": "Seleccionado Nombre Indicador",
+		"selectedIndidcatorPrompt": "Modificar la selección de indicadores",
 		"program": "Programa",
 		"activity": "Actividad",
 		"type": "Tipo",
