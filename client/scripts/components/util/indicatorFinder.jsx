@@ -48,14 +48,14 @@ module.exports = React.createClass({
 	_programChanged:function(event){
 		var state = _.clone(this.state);
 		state.activities = undefined;
-		state.activitySelected = undefined;
+		state._activitySelected = undefined;
 		this.setState(state);//reset activitySelected
 		this.setState({"programSelected": event.target.value, "showLoading": true});
 		Actions.getActivitiesByProgram(event.target.value);
 	},
 
 	_activityChanged:function(event){
-		this.setState({"activitySelected": event.target.value});
+		this.setState({"_activitySelected": event.target.value});
 		Actions.updateQuery('pr',event.target.value);
 	},
 
@@ -64,7 +64,7 @@ module.exports = React.createClass({
 	},
 
 	_changeIndicator:function(indicator,event){
-		Actions.updateIndicator(indicator, this.state.activitySelected);
+		Actions.updateIndicator(indicator, this.state._activitySelected);
 		this.close();
 	},
 
@@ -113,7 +113,7 @@ module.exports = React.createClass({
 						<Row className="blue-panel">
 							<Col md={2}><span className="title"><Message message='layers.activity'/></span></Col>
 							<Col md={10}>
-								<select className="form-control" disabled={this.state.activities?"":"disabled"} value={this.state.activitySelected} onChange={this._activityChanged} style={{width:'100%'}}>
+								<select className="form-control" disabled={this.state.activities?"":"disabled"} value={this.state._activitySelected} onChange={this._activityChanged} style={{width:'100%'}}>
 									<option><Message message='layers.select'/></option>
 									{this.state.activities?_.map(this.state.activities, function(item){
 										return (<option value={item.id}>{item.name}</option>)
@@ -195,7 +195,7 @@ module.exports = React.createClass({
 				</Modal.Body>
 				<Modal.Footer>
 
-				<Button className="btn btn-apply pull-right" disabled={this.state.activitySelected?"":"disabled"} onClick={this._find}><Message message='layers.find'/></Button>
+				<Button className="btn btn-apply pull-right" disabled={this.state._activitySelected?"":"disabled"} onClick={this._find}><Message message='layers.find'/></Button>
 				<Button className="pull-right" onClick={this.close}><Message message='layers.close'/></Button>
 
 				</Modal.Footer>
