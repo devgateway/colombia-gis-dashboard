@@ -134,7 +134,7 @@ module.exports = Reflux.createStore({
 				{"param": "indicatorName", "values": data.indicatorSelected.description},
 				{"param": "activityId", "values": data.activitySelected}
 			], "indicators");
-
+			this.update({'visible': true});
 		}
 	},
 

@@ -47,6 +47,7 @@ module.exports = React.createClass({
 
   render: function() {
    var level=this.state.level;
+   debugger;
    return (
     <li>
     <Toggler ref='toggler'>
