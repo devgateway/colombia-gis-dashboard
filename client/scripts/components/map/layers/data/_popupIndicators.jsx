@@ -102,15 +102,8 @@ module.exports  = React.createClass({
     this.setAttributeDisplay(".popup-nav-wrapper", "data-originalreactid", "inline");
   },
   
-  componentWillUpdate: function(props,newState) { 
-    console.log('_popupActivitiesPoint>componentWillUpdate --> '+props.id); 
-    var previousId = 0;
-    if(newState.infoWindowFilter){
-      newState.infoWindowFilter.map(function(node){node.values.map(function(innerNode){previousId = innerNode})});
-    }
-    if(previousId!=props.id || props.filters!=this.props.filters){
-      this._getInfoData(props.id, props.level, props.filters, 'indicators'); 
-    }
+  componentWillReceiveProps: function(nextProps) {
+    this._getInfoData(nextProps.id, nextProps.level, nextProps.filters, 'indicators');
   },
 
   handleClick:function(tabId){
@@ -125,6 +118,9 @@ module.exports  = React.createClass({
     var showLoading=true;
     if(this.state.infoWindow){
       showLoading=false;
+    }
+    if (this.props.isClosed()){
+      return null;
     }
     return (
       <div>

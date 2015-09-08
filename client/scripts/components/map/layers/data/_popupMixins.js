@@ -56,7 +56,6 @@ module.exports = {
   },
 
   setAttributeDisplay: function(classId, attr, display){
-    debugger;
     $(classId).map(function(node, index) {
         if(index.getAttribute(attr)){
           index.style.display=display;

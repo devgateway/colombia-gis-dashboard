@@ -30,15 +30,8 @@ module.exports  = React.createClass({
     this._renderChart();
   },
   
-  componentWillUpdate: function(props,newState) { 
-    console.log('_popupActivitiesPoint>componentWillUpdate'); 
-    var previousId = 0;
-    if(newState.infoWindowFilter){
-      newState.infoWindowFilter.map(function(node){node.values.map(function(innerNode){previousId = innerNode})});
-    }
-    if(previousId!=props.id || props.filters!=this.props.filters){
-      this._getInfoData(props.id, props.level, props.filters, 'shapes'); 
-    }
+  componentWillReceiveProps: function(nextProps) {
+    this._getInfoData(nextProps.id, nextProps.level, nextProps.filters, 'shapes');
   },
 
   handleClick:function(tabId){
@@ -53,6 +46,9 @@ module.exports  = React.createClass({
     var showLoading=true;
     if(this.state.infoWindow){
       showLoading=false;
+    }
+    if (this.props.isClosed()){
+      return null;
     }
     return (
       <div>
