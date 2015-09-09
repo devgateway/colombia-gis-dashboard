@@ -47,6 +47,7 @@ var DisaggregationsTab = React.createClass({
 
 var YearsAdvanceTab = React.createClass({
   render: function() {
+      debugger;
     return (
       <div>
         <h3 className="panel-title" ><Message message='map.popup.fiscalYearAdvance'/></h3>
@@ -70,7 +71,7 @@ var YearsAdvanceTab = React.createClass({
           </tbody>
         </Table>
         <div>
-          <a className="btn download-button" href={_.find(this.props.data, {'key': 'Excel file'}).value.value} target='_blank'>
+          <a className="btn btn-apply" href={_.find(this.props.data, {'key': 'Excel file'}).value[0].value} target='_blank'>
             <Message message='map.popup.downloadFile'/>
           </a>
         </div>
