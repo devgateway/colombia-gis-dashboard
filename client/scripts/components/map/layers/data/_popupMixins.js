@@ -77,11 +77,13 @@ module.exports = {
             totalValue += parseInt(node.value);
         });
         infoData[tabId].map(function(node, index) {
-          var chartnode = [];
-          chartnode.push(node.name);
-          //chartnode.push(parseFloat((node.value/totalValue*100).toFixed(1)));
-          chartnode.push(parseFloat(node.value));
-          chartdata.push(chartnode);
+          if (node.value!=0){
+            var chartnode = [];
+            chartnode.push(node.name);
+            //chartnode.push(parseFloat((node.value/totalValue*100).toFixed(1)));
+            chartnode.push(parseFloat(node.value));
+            chartdata.push(chartnode);
+          }
         });
 
         var chart = new HighCharts.Chart({
