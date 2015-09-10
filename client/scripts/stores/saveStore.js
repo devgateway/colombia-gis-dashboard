@@ -17,7 +17,7 @@ var API = require('../api/saveAndRestore.js');
 
 var lanState;
 var mapState;
-var filterState;
+var filterState = {'filters': []};
 var indicatorsState;
 var shapesState;
 var pointsState;

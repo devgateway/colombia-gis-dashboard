@@ -61,11 +61,12 @@ var YearsAdvanceTab = React.createClass({
           <tbody>
             {
               _.find(this.props.data, {'key': 'FiscalYearsAdvance'}).value.map(function(node, index) {
-                return    
-                <tr>
-                  <td>{node.name}</td>
-                  <td>{node.value}</td>
-                </tr>       
+                return (
+                  <tr>
+                    <td>{node.name}</td>
+                    <td>{node.value}</td>
+                  </tr>   
+                  )    
               })
             }            
           </tbody>
@@ -150,7 +151,7 @@ module.exports  = React.createClass({
                 </ul>
               </nav>
             </div>
-            <div className="panel-body">
+            <div className="panel-body indicator-tab-container">
               <If condition={showLoading} >
                 <Loading container="popup-loading-container"/>
               </If>

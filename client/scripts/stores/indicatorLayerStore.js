@@ -205,7 +205,8 @@ module.exports = Reflux.createStore({
 								return e.properties.ID_2 == d.idMun; //replacer.replaceDiacritics(e.properties.NAME_1).toUpperCase()==d.name
 							});
 							if (feature) {
-								_.assign(feature, {'id': d.idMun, 'hasValue': true}); //indicate that the feature has valid values
+								_.assign(d, {'id': d.idMun}); //overwrite indicatorId with locationId
+								_.assign(feature, {'hasValue': true}); //indicate that the feature has valid values
 								_.assign(feature.properties, _.omit(_.clone(d), "name")); //set feature values	
 							}
 						});
@@ -238,7 +239,8 @@ module.exports = Reflux.createStore({
 								return e.properties.ID == d.idDep; //replacer.replaceDiacritics(e.properties.NAME_1).toUpperCase()==d.name
 							});
 							if (feature) {
-								_.assign(feature, {'id': d.idDep, 'hasValue': true}); //indicate that the feature has valid values
+								_.assign(d, {'id': d.idDep}); //overwrite indicatorId with locationId
+								_.assign(feature, {'hasValue': true}); //indicate that the feature has valid values
 								_.assign(feature.properties, _.omit(_.clone(d), "name")); //set feature values
 							}
 						});
