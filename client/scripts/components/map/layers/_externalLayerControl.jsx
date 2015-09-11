@@ -183,6 +183,7 @@ module.exports  = React.createClass({
                       type={l.type}
                       zIndex={l.zIndex}
                       visible={l.visible}
+                      title={l.title}
                       opacity={l.opacity}/>
                   </TogglerContent>
                 </Toggler>

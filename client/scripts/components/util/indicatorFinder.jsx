@@ -48,14 +48,14 @@ module.exports = React.createClass({
 	_programChanged:function(event){
 		var state = _.clone(this.state);
 		state.activities = undefined;
-		state.activitySelected = undefined;
+		state._activitySelected = undefined;
 		this.setState(state);//reset activitySelected
 		this.setState({"programSelected": event.target.value, "showLoading": true});
 		Actions.getActivitiesByProgram(event.target.value);
 	},
 
 	_activityChanged:function(event){
-		this.setState({"activitySelected": event.target.value});
+		this.setState({"_activitySelected": event.target.value});
 		Actions.updateQuery('pr',event.target.value);
 	},
 
@@ -64,7 +64,7 @@ module.exports = React.createClass({
 	},
 
 	_changeIndicator:function(indicator,event){
-		Actions.updateIndicator(indicator, this.state.activitySelected);
+		Actions.updateIndicator(indicator, this.state._activitySelected);
 		this.close();
 	},
 
@@ -113,7 +113,7 @@ module.exports = React.createClass({
 						<Row className="blue-panel">
 							<Col md={2}><span className="title"><Message message='layers.activity'/></span></Col>
 							<Col md={10}>
-								<select className="form-control" disabled={this.state.activities?"":"disabled"} value={this.state.activitySelected} onChange={this._activityChanged} style={{width:'100%'}}>
+								<select className="form-control" disabled={this.state.activities?"":"disabled"} value={this.state._activitySelected} onChange={this._activityChanged} style={{width:'100%'}}>
 									<option><Message message='layers.select'/></option>
 									{this.state.activities?_.map(this.state.activities, function(item){
 										return (<option value={item.id}>{item.name}</option>)
@@ -134,8 +134,11 @@ module.exports = React.createClass({
 						</Row>
 						<Row className="blue-panel">
 							<Col md={2}><span className="title"><Message message='layers.keyword'/></span></Col>
-							<Col md={10}>
+							<Col md={7}>
 								<input type="text" placeholder={i18n.t('layers.keyword')} onChange={this._changeKeyword} style={{width:'100%'}}/>
+							</Col>
+							<Col md={3}>
+								<Button className="btn btn-apply pull-right" disabled={this.state._activitySelected?"":"disabled"} onClick={this._find}><Message message='layers.find'/></Button>
 							</Col>
 						</Row>
 						<Row>
@@ -143,9 +146,9 @@ module.exports = React.createClass({
 								{this.state.showLoading?
 								<div><img className="img-centered" src="images/ajax-loader-small.gif"/></div>
 								:null}
-							</Col>
+							</Col>							
 						</Row>
-
+						
 					{this.state.results.indicators.length>0?
 
 							<div className="container-full">
@@ -194,10 +197,7 @@ module.exports = React.createClass({
 					</Grid>
 				</Modal.Body>
 				<Modal.Footer>
-
-				<Button className="btn btn-apply pull-right" disabled={this.state.activitySelected?"":"disabled"} onClick={this._find}><Message message='layers.find'/></Button>
-				<Button className="pull-right" onClick={this.close}><Message message='layers.close'/></Button>
-
+					<Button className="pull-right" onClick={this.close}><Message message='layers.close'/></Button>
 				</Modal.Footer>
 			</Modal>
 		</div>

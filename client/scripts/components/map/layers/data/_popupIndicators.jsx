@@ -47,6 +47,7 @@ var DisaggregationsTab = React.createClass({
 
 var YearsAdvanceTab = React.createClass({
   render: function() {
+      debugger;
     return (
       <div>
         <h3 className="panel-title" ><Message message='map.popup.fiscalYearAdvance'/></h3>
@@ -60,17 +61,18 @@ var YearsAdvanceTab = React.createClass({
           <tbody>
             {
               _.find(this.props.data, {'key': 'FiscalYearsAdvance'}).value.map(function(node, index) {
-                return    
-                <tr>
-                  <td>{node.name}</td>
-                  <td>{node.value}</td>
-                </tr>       
+                return (
+                  <tr>
+                    <td>{node.name}</td>
+                    <td>{node.value}</td>
+                  </tr>   
+                  )    
               })
             }            
           </tbody>
         </Table>
         <div>
-          <a className="btn download-button" href={_.find(this.props.data, {'key': 'Excel file'}).value.value} target='_blank'>
+          <a className="btn btn-apply" href={_.find(this.props.data, {'key': 'Excel file'}).value[0].value} target='_blank'>
             <Message message='map.popup.downloadFile'/>
           </a>
         </div>
@@ -102,15 +104,8 @@ module.exports  = React.createClass({
     this.setAttributeDisplay(".popup-nav-wrapper", "data-originalreactid", "inline");
   },
   
-  componentWillUpdate: function(props,newState) { 
-    console.log('_popupActivitiesPoint>componentWillUpdate --> '+props.id); 
-    var previousId = 0;
-    if(newState.infoWindowFilter){
-      newState.infoWindowFilter.map(function(node){node.values.map(function(innerNode){previousId = innerNode})});
-    }
-    if(previousId!=props.id || props.filters!=this.props.filters){
-      this._getInfoData(props.id, props.level, props.filters, 'indicators'); 
-    }
+  componentWillReceiveProps: function(nextProps) {
+    this._getInfoData(nextProps.id, nextProps.level, nextProps.filters, 'indicators');
   },
 
   handleClick:function(tabId){
@@ -125,6 +120,9 @@ module.exports  = React.createClass({
     var showLoading=true;
     if(this.state.infoWindow){
       showLoading=false;
+    }
+    if (this.props.isClosed()){
+      return null;
     }
     return (
       <div>
@@ -153,7 +151,7 @@ module.exports  = React.createClass({
                 </ul>
               </nav>
             </div>
-            <div className="panel-body">
+            <div className="panel-body indicator-tab-container">
               <If condition={showLoading} >
                 <Loading container="popup-loading-container"/>
               </If>

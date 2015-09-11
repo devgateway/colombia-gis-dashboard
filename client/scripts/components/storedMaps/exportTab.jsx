@@ -18,6 +18,7 @@ module.exports = React.createClass({
 	_export:function(){
 		var activitiesEnabled = this.state.layersVisible.shapes || this.state.layersVisible.points;
 		var type = !activitiesEnabled? 'indicators': this.state.type;
+		this.setState({'exportDisabled': true});
 		if(type=='activities'){
 			Actions.exportActivities(this.state.format);
 		} else {
@@ -67,8 +68,11 @@ module.exports = React.createClass({
 						}
 					</div>
 				: null}
+				{this.state.exportDisabled?
+					<div><img className="img-centered" src="images/ajax-loader-small.gif"/></div>
+				:null}
 				<div>
-					<Button className="btn btn-apply pull-right" onClick={this._export.bind(this)}>{i18n.t('savemap.exportbutton')}</Button>
+					<Button className="btn btn-apply pull-right" disabled={this.state.exportDisabled?"disabled":""} onClick={this._export.bind(this)}>{i18n.t('savemap.exportbutton')}</Button>
 					<Button  className="pull-right" onClick={this.props.onClose.bind(this)}>{i18n.t('savemap.closebutton')}</Button>
 				</div>
 			</div>

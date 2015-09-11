@@ -17,7 +17,7 @@ var API = require('../api/saveAndRestore.js');
 
 var lanState;
 var mapState;
-var filterState;
+var filterState = {'filters': []};
 var indicatorsState;
 var shapesState;
 var pointsState;
@@ -66,7 +66,7 @@ module.exports = Reflux.createStore({
     API.exportIndicators(_.clone(indicatorsState.filters, true)).then(
       function(data) {        
         this.onHideModal(); //tell save dialog that everything is done 
-        location.href = data;
+        window.open(data);
       }.bind(this)).fail(function(err) {
         this.update({
           'error': err
@@ -339,6 +339,9 @@ module.exports = Reflux.createStore({
   },
 
   _handleIndicatorsDataUpdate: function(data) {
+    var layersVisible = _.clone(this.state.layersVisible);
+    layersVisible.indicators = data.visible;
+    this.update({'layersVisible': layersVisible});
     indicatorsState = data;
   },
 

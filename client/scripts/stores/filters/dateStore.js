@@ -35,8 +35,7 @@ module.exports = Reflux.createStore({
 	},
 
 	onClean:function(){
-		_.assign(this.state, {'sd': ''});
-		_.assign(this.state, {'ed': ''});
+		_.assign(this.state, {'sd': '', 'ed': ''});
 		this.update(_.clone(this.state));
 	},
 

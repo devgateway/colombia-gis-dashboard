@@ -12,7 +12,7 @@ module.exports = React.createClass({
 
       getInitialState: function() {
         return {
-          min: 2005,
+          min: 2010,
           max: 2016,
           range: 4,
           label: 'Q'

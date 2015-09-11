@@ -79,7 +79,9 @@ module.exports = React.createClass({
                     <li onClick={this._onActivateFilter.bind(null,def.index)} className={(this.state.activeIndex==def.index)?'active':''}>
                       <a href="#">
                         <Message message={def.label}/>
-                        {this.state.counters[def.param]? " ("+this.state.counters[def.param].selected+"/"+this.state.counters[def.param].total+")" : ""}
+                        {def.param?
+                          this.state.counters[def.param]? " ("+this.state.counters[def.param].selected+"/"+this.state.counters[def.param].total+")" : ""
+                        : ""}
                       </a>                    
                     </li>
                     )

@@ -73,26 +73,31 @@
 
    _bindPopup: function(feature, layer) {
      layer.bindPopup('');
+     var _closed = true;
+     var _isClosed = function() {
+       return _closed;
+     }.bind(this);
      layer.on('popupopen', function(e) {
        layer._popup.options.autoPanPaddingTopLeft = new L.Point(0, 50);
        var popupHolder = this.getDOMNode();
+       _closed = false;
        var _onChange = function() {
          popupHolder.firstChild.style.display = "";
          e.popup.setContent(popupHolder.innerHTML);
-         //popupHolder.firstChild.style.display="none";
-         //this.fixReactIds(e.popup);
        }.bind(this)
        React.render(React.createElement(Popup, _.assign(feature.properties, {
+         isClosed: _isClosed,
          onChange: _onChange,
          level: this.state.level,
          filters: this.state.filters,
          isShapePopup: true
        }), this.state.data), popupHolder);
        e.popup.setContent(popupHolder.innerHTML);
-       popupHolder.firstChild.style.display = "none";
-       //this.fixReactIds(e.popup);
-       //this.fixReactEvents(e.popup);
      }.bind(this));
+     layer.on('popupclose', function(e) {
+        e.popup.setContent("");
+        _closed = true;
+     });
    },
 
 
