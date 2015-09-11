@@ -35,7 +35,7 @@ mixins: [Reflux.connect(Store,"store"), Reflux.connect(LanStore, 'lan')],
   },
 
   _update:function(id){
-    Actions.openMap(id);
+    //Actions.openMap(id);
     Actions.showModal('update', id)
   },
 
@@ -110,7 +110,6 @@ mixins: [Reflux.connect(Store,"store"), Reflux.connect(LanStore, 'lan')],
                               <a href="#">
                               <i className="pull-right fa fa-pencil" title={i18n.t('savemap.tooltipupdate')} onClick={this._update.bind(this,m._id)}></i>
                               </a>
-                              <SaveMap/>
                               <PrintDialog key={m.id} id={m._id}/>
                               <ImageDialog key={m.id} id={m._id}/>
                               <a href="#">

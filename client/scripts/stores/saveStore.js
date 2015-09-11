@@ -205,7 +205,7 @@ module.exports = Reflux.createStore({
   },
 
   onOpenMap: function(id) {
-   this.onRestoreMapFromAPI(id);
+    this.onRestoreMapFromAPI(id);
   },
 
   _saveMap: function(params) {
@@ -282,6 +282,9 @@ module.exports = Reflux.createStore({
       'showModal': true,
       'errorMsg': ''
     });
+    if(key=='update'){
+      this.onOpenMap(id);
+    }
   },
 
   onShowDeleteModal: function(isVisible, id) {
