@@ -56,6 +56,15 @@
     color: #5bc0de;
 }
 
+.bs-callout-simple {
+    border-left-color:none;
+    background: none;
+    color: $blue;
+    display:block;
+    padding:0;
+    margin: 3px auto 0 10px;
+}
+
 .filter-no-results{
   color:#d9534f;
   padding: 0 10px 15px 10px;

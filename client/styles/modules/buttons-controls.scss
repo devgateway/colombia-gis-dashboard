@@ -8,14 +8,25 @@
 .btn {
   cursor: pointer;
   @include border-radius(2px);
-  padding: 5px 35px;
+  padding: 8px 35px;
   text-transform: uppercase;
     &:focus{
       @include noOutline;
     }
 }
-
-.btn-apply {
+.btn-primary{
+  background-color: $green;
+  border-color: $green;
+  &:focus,
+  &:hover,
+  &.active,
+  &.focus{
+    background-color: darken($green,20%);
+    border-color: darken($green,20%);
+  }
+}
+.btn-apply,
+.btn-primary {
   @extend .btn;
   color: $white;
   background: $green;
@@ -24,10 +35,11 @@
   @include textBold;
   @include noOutline;
   margin-left: 1em;
-  &:hover {
+  &:hover, &:focus {
     background: darken($green,20%);
     color: $white;
   }
+
   &.space-left {
     margin-left: $gutter;
   }
@@ -97,6 +109,23 @@
 }
 .scooch-disabled {
 display:none;
+}
+
+.btn-default{
+  border-color: $border-grey;
+  &:hover{
+    background: $border-grey;
+    border-color: $border-grey;
+  }
+}
+
+.btn-default[disabled]{
+  background: $green;
+  color: lighten($green,25%);
+  &:hover{
+    background: $green;
+    color: $white;
+  }
 }
 
 // layer search button

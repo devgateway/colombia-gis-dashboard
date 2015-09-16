@@ -5,6 +5,7 @@ var Reflux = require('reflux');
 var Actions = require('../actions/nationalSubActivitiesActions.js');
 var API = require('../api/infoWindow.js');
 var FilterStore = require('./filters/filterStore.js');
+var PointsLayerStore = require('./pointsLayerStore.js');
 
 module.exports=Reflux.createStore({
 
@@ -14,10 +15,15 @@ module.exports=Reflux.createStore({
         this.state = {};
         var self = this; 
         this.listenTo(FilterStore, this._handleFilterDataUpdate);    
+        this.listenTo(PointsLayerStore, this._handleNationalSubactivities);    
     },
 
     _handleFilterDataUpdate: function(data) {
       this.update({'filters': data});
+    },
+
+    _handleNationalSubactivities: function(data) {
+      this.update({'nationalSubactivities': data.nationalSubactivities});
     },
 
     onGetPopupInfoFromAPI: function(infoWindowFilter, filters) {
@@ -55,7 +61,7 @@ module.exports=Reflux.createStore({
     },
 
     getInitialState: function() {
-       return this.serialize();
+       return {'nationalSubactivities': {'activities': 0}};
     },
 
     update: function(assignable, options) {

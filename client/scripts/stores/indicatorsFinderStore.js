@@ -35,6 +35,7 @@ module.exports = Reflux.createStore({
 
   onGetActivitiesByProgram: function(value){
     var filters = {"filters":[{"id":value}]};
+    this.update({'results':{indicators:[]}}, {'silent': true});
     API.getActivityList(filters).then(function(data) {
       this.update({activities:data, showLoading: false});
     }.bind(this)).fail(

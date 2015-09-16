@@ -135,7 +135,7 @@ var filters = [
   {
     index: 14,
     order: 14,
-    label: 'filters.activityClassification',
+    label: 'filters.activityClassificationBasic',
     modes: ['basic'],
     type: 'tree',
     param: 'a2',
@@ -145,7 +145,7 @@ var filters = [
   {
     index: 15,
     order: 15,
-    label: 'filters.activityClassification',
+    label: 'filters.activityClassificationAdvanced',
     modes: ['advanced'],
     type: 'multiLevelSearch',
     param: 'a5',

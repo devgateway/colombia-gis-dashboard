@@ -123,6 +123,10 @@ module.exports = Reflux.createStore({
       }) /*override default values*/ ;
   },
 
+  _updateNationalSubactivities: function(data) {
+    this.update({'nationalSubactivities': _.find(data, {'id': 'CN'})});
+  },
+  
   /*Load GIS data by department */
   _loadByDepartments: function() {
     this.update({subtitle:'layers.activityDepartmentSubtitle'});
@@ -136,15 +140,20 @@ module.exports = Reflux.createStore({
 
   _getGeoData: function(func) {
     func(this.state.filters).then(function(results) { //call api function and process results 
+      this._updateNationalSubactivities(results);
       var items = [];
+      var resultsWithCoordinates = [];
       _.map(results, function(d) {
-        if (!isNaN(d.id)) {
-          items.push(d.activities);
+        if (d.latitude!=0 && d.longitude!=0){
+          resultsWithCoordinates.push(d);//filter only results with coordinates to show points on map
+          if (!isNaN(d.id)) {
+            items.push(d.activities);
+          }
         }
       });
       var geoStats = new GeoStats(items);
       //tranform plain data to GeoJson
-      this._setGeoData(Util.toGeoJson(results), geoStats); //process and set changes to state  
+      this._setGeoData(Util.toGeoJson(resultsWithCoordinates), geoStats); //process and set changes to state  
     }.bind(this)).fail(function(e) {
       console.log('Error while loading data ...', e);
     });
