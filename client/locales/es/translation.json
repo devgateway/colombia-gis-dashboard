@@ -1,6 +1,6 @@
 {
 	"app": {
-		"title": "Esta area puede ser usada para un titulo largo",
+		"title": "Mapa Inicial",
 		"credits" : "Todos los derechos reservados ..  AidData",
 		"description": "Mapa de monitoreo:",
 		"menu":"Página Principal",
@@ -153,7 +153,12 @@
 			"totalSubActivities":"SubActividades Totales",
 			"programList":"Lista de Programas",
 			"downloadFile":"Descargar archivo",
-			"funding":"Financiamiento Total: "
+			"funding":"Financiamiento Total: ",
+			"costShareBreakdown": "Desglose de la inversión",
+			"objectivesInfoWindow": "Objetivos de Desarrollo",
+			"activityClassication": "Tipo de Actividad",
+			"ppp": "Alianza Público Privada",
+			"subActivities": "Subactividades"
 		},
 		"nationalSubActivities": "SubActividades Nacionales"
 	},
