@@ -126,7 +126,9 @@
 		"find": "Buscar",
 		"description": "Descripción",
 		"select": "Seleccionar",
-		"close": "Cerrar"
+		"close": "Cerrar",
+		"noResultsForDataLayer": "Sin Resultados",
+		"noResultsForDataLayerMessage": "No hay resultados para mostrar en el mapa que coincidan con los filtros seleccionados."
 	},
 
 	"map": {

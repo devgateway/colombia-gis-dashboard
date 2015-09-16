@@ -87,7 +87,7 @@ module.exports = React.createClass({
          isClosed: _isClosed,
          onChange: _onChange,
          level: this.state.level,
-         filters: this.state.filters
+         filters: this.state.layerFilters
        })), popupHolder);
        e.popup.setContent(popupHolder.innerHTML);
        this.fixReactIds(e.popup);

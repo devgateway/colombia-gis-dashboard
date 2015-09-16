@@ -12,6 +12,7 @@ var LanStore=require('../../../stores/lanStore.js');
 var PointsLayerControl=require('./_pointsLayerControl.jsx');
 var ShapesLayer=require('./_shapesLayerControl.jsx');
 var Indicators=require('./_indicatorsLayerControl.jsx');
+var NoResultsPopup=require('./NoResultsPopup.jsx');
 
 
 module.exports  = React.createClass({
@@ -53,6 +54,7 @@ module.exports  = React.createClass({
         <h3><Message message='layers.dataLayers'/></h3>
       </div>
       <div className="layer-control-panel">
+        <NoResultsPopup/>
         <ul className="layer-control">
          <li>
             <Indicators/>

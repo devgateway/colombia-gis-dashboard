@@ -47,7 +47,6 @@ module.exports = React.createClass({
 
   render: function() {
    var level=this.state.level;
-   debugger;
    return (
     <li>
     <Toggler ref='toggler'>
@@ -61,7 +60,7 @@ module.exports = React.createClass({
         <Layer id="indicators"
           opacity={this.state.opacity}
           onChangeOpacity={this._onChangeOpacity}
-          onChangeVisibility={this.state.filters.indicatorId? this._changeVisibility : null}
+          onChangeVisibility={this.state.layerFilters.indicatorId? this._changeVisibility : null}
           visible={this.state.visible}
           title={i18n.t("layers.indicatorLayer")}
           showBasicControl={true}/>
@@ -70,7 +69,7 @@ module.exports = React.createClass({
         <Layer id="indicators"
           opacity={this.state.opacity}
           onChangeOpacity={this._onChangeOpacity}
-          onChangeVisibility={this.state.filters.indicatorId? this._changeVisibility : null}
+          onChangeVisibility={this.state.layerFilters.indicatorId? this._changeVisibility : null}
           title={i18n.t("layers.indicatorLayer")}
           visible={this.state.visible}/>
         <ul>
@@ -86,10 +85,10 @@ module.exports = React.createClass({
               <Grid fluid={false}>
                 <Row>
                   <Col md={2} className="no-padding">
-                    <Finder label={this.state.filters.indicatorId? i18n.t("layers.changeIndicator") : i18n.t("layers.selectIndicator")}/>
+                    <Finder label={this.state.layerFilters.indicatorId? i18n.t("layers.changeIndicator") : i18n.t("layers.selectIndicator")}/>
                   </Col>
                   <Col md={4} className="no-padding">                 
-                    {this.state.filters.indicatorId? this.state.filters.indicatorName : ""}
+                    {this.state.layerFilters.indicatorId? this.state.layerFilters.indicatorName : ""}
                   </Col>
                 </Row>
               </Grid>

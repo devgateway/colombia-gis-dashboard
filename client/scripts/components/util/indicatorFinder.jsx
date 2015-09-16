@@ -87,7 +87,6 @@ module.exports = React.createClass({
 	render:function() {
 		var totalPages = Math.ceil(this.state.results.count/10);
 		console.log("#programs -> "+this.state.programs.length);
-		debugger;
 		return (
 			<div>
 				<Button bsStyle='primary' bsSize='large' onClick={this.open}>{this.props.label || 'Open'}</Button>

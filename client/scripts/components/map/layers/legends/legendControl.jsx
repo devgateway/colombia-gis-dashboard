@@ -30,7 +30,6 @@ var LegendControl  = React.createClass({
     
     var legendContent = "";
     var buttonLabel = this.state.esri.shown? <Message message="layers.hideLegend"/> : <Message message="layers.showLegend"/>;
-    var showLegendButton = !this.state.data.hideLegendButton;
     
     return (
       <div className="legends-container">

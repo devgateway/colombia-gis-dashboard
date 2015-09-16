@@ -66,7 +66,6 @@ var DateFilter = React.createClass({
 
     render: function() {  
         console.log('DateFilter -> render');
-        debugger;
         if (this.props.active){
             return(
                 <div className="tab-content">

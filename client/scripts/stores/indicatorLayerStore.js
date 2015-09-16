@@ -1,9 +1,10 @@
 'use strict';
 
 var Reflux = require('reflux');
-var LayersAction = require('../actions/layersAction.js');
 var Util = require('../api/util.js');
 var API = require('../api/layers.js');
+var LayersAction = require('../actions/layersAction.js');
+var LoadingAction = require('../actions/loadingActions.js');
 
 var _ = require('lodash');
 var assign = require('object-assign');
@@ -105,6 +106,7 @@ var defaultBreaks = {
 }
 module.exports = Reflux.createStore({
 
+	listenables: [LayersAction],
 	mixins: [CommonsMixins, DataLayerMixins],
 
 	init: function() {		
@@ -128,8 +130,8 @@ module.exports = Reflux.createStore({
 	},
 
 	_indicatorSelected: function(data) {
-		if (data.indicatorSelected.id && this.state.filters.indicatorId != data.indicatorSelected.id){
-			this.onChangeGroupFilterSelection([
+		if (data.indicatorSelected.id && this.state.layerFilters.indicatorId != data.indicatorSelected.id){
+			this.onChangeGroupFilterSelection('indicators', [
 				{"param": "indicatorId", "values": data.indicatorSelected.id},
 				{"param": "indicatorName", "values": data.indicatorSelected.description},
 				{"param": "activityId", "values": data.activitySelected}
@@ -138,24 +140,27 @@ module.exports = Reflux.createStore({
 		}
 	},
 
-	onChangeGroupFilterSelection: function(filters) {
-		_.forEach(filters, function(filter){
-			this.onChangeFilterSelection(filter.param, filter.values, true);
-		}.bind(this));
-		this._applyFilters(this.state.filters, "indicators");
+	onChangeGroupFilterSelection: function(layerId, filters) {
+		if (layerId == this._getLayerId()){
+			_.forEach(filters, function(filter){
+				this.onChangeFilterSelection(layerId, filter.param, filter.values, true);
+			}.bind(this));
+			this._applyLayerFilters(this.state.layerFilters, "indicators");
+		}
 	},
 
-	onChangeFilterSelection: function(param, value, silent) {
-		var filters=_.clone(this.state.filters || []);
-	    filters[param] = value;
-	    _.assign(this.state.filters,filters);
-	    if (!silent){
-	    	this._applyFilters(filters, "indicators");
-	    }
+	onChangeFilterSelection: function(layerId, param, value, silent) {
+		if (layerId == this._getLayerId()){
+			var filters=_.clone(this.state.layerFilters || []);
+		    filters[param] = value;
+		    _.assign(this.state.layerFilters,filters);
+		    if (!silent){
+		    	this._applyLayerFilters(filters, "indicators");
+		    }
+		}
 	},
 
 	onRestoreData: function(savedData) {
-		debugger;
 		if(savedData.indicatorsState){
 			if (!this.state.visible && savedData.indicatorsState.visible) {
 		        this.update({'visible': true}); //Hack for changing colors
@@ -163,8 +168,8 @@ module.exports = Reflux.createStore({
 			this.update({
 		   		'dataToRestore': savedData.indicatorsState,
 		   		'isRestorePending': true, 
-		   		'filters':savedData.indicatorsState.filters});
-		   this._load(null, savedData.indicatorsState.level, true); //restore data
+		   		'layerFilters':savedData.indicatorsState.layerFilters});
+		   this._loadIndicatorsGeoData(savedData.indicatorsState.level); //restore data
 		} else {
 			this.update({'visible':false});
 		}
@@ -176,8 +181,8 @@ module.exports = Reflux.createStore({
 			visible: false,
 			breaks: defaultBreaks, //defaul styles breaks
 			defaultStyle: defaultStyle, //Default symbol styles
-			saveItems: ["breaks", "defaultStyle", "level", "opacity", "visible", "filters"],
-			filters:  
+			saveItems: ["breaks", "defaultStyle", "level", "opacity", "visible", "layerFilters"],
+			layerFilters:  
 				{"indicatorId": "",
 				"activityId": "",
 				"fyi": "2005",
@@ -187,13 +192,30 @@ module.exports = Reflux.createStore({
 		});
 	},
 
+	/*Load GIS data by level*/
+	_loadIndicatorsGeoData: function(newLevel) {
+		LoadingAction.showLoading();
+		if (newLevel == 'departament') {
+			this._loadBy_Departments(); //load data 
+		} else if (newLevel == 'municipality') {
+			this._loadBy_Muncipalities();
+		}
+	},
 
-	_loadByMuncipalities: function() {
+	_applyLayerFilters: function(data, specialTriggerFrom) {
+		this.update({layerFilters: data}, {silent: true});
+		this._loadIndicatorsGeoData(this.state.level); //force re-load;
+	},
+
+	_loadBy_Muncipalities: function() {
 		//var geoData = _.clone(municipalitiesGeoJson);
 		this.update({subtitle:'layers.indicatorMunicipalitySubtitle'});
 		var self = this;
-		API.getIndicatorsByMuncipalities(this.state.filters).then(
+		API.getIndicatorsByMuncipalities(this.state.layerFilters).then(
 			function(data) {
+				if (data.length==0){
+			        LayersAction.showNoResultsPopup("layers.noResultsForDataLayerMessage");   
+			    }
 				API.loadMunicipalitiesShapes().then(
 					function(geoData) {
 						var items = [];
@@ -222,12 +244,15 @@ module.exports = Reflux.createStore({
 	},
 
 
-	_loadByDepartments: function() {
+	_loadBy_Departments: function() {
 		//var geoData = _.clone(departmentsGeoJson);
 		this.update({subtitle:'layers.indicatorDepartmentSubtitle'});
 		var self = this;
-		API.getIndicatorsByDepartment(this.state.filters).then(
+		API.getIndicatorsByDepartment(this.state.layerFilters).then(
 			function(data) {
+				if (data.length==0){
+			        LayersAction.showNoResultsPopup("layers.noResultsForDataLayerMessage");
+			    }
 				API.loadDepartmentsShapes().then(
 					function(geoData) {
 						var items = [];

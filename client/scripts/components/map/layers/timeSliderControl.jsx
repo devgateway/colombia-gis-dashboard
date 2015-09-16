@@ -40,7 +40,7 @@ module.exports = React.createClass({
         var maxYear = this._getYear(unencodedValues[1]);
         var minQuarter = this._getYearPeriod(unencodedValues[0]);
         var maxQuarter = this._getYearPeriod(unencodedValues[1]);
-        LayerActions.changeGroupFilterSelection([
+        LayerActions.changeGroupFilterSelection('indicators',[
           {"param": "fyi", "values": minYear},
           {"param": "sq", "values": minQuarter},
           {"param": "fyf", "values": maxYear},

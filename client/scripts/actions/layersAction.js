@@ -8,4 +8,5 @@ module.exports = {
     restoreData:Reflux.createAction(),
 	changeLayerValue:Reflux.createAction(),
 	triggerFilterApply: Reflux.createAction(),
+	showNoResultsPopup: Reflux.createAction()
 };

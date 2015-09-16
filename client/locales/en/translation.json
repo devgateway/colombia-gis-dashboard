@@ -126,7 +126,9 @@
 		"find": "Find",
 		"description": "Description",
 		"select": "Select",
-		"close": "Close"
+		"close": "Close",
+		"noResultsForDataLayer": "No Results",
+		"noResultsForDataLayerMessage": "There are not results to show in map that matchs with selected filters."
 	},
 
 	"map": {
