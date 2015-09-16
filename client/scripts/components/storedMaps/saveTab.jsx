@@ -84,7 +84,7 @@ module.exports = React.createClass({
 					<h4 className="modal-title"><Message message='savemap.savemaptags'/></h4>
 					<Tags onUpdate={this._updateTags} value={this.state.map.tags}/>
 				</div>
-				<div className=""><Message message='savemap.mandatoryFields'/>
+				<div className="required"><Message message='savemap.mandatoryFields'/>
 					{
 						_.map(errorArray, function(e){
 							return (<Message message={e}/>)
