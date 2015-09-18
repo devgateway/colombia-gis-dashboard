@@ -21,10 +21,18 @@
     margin-bottom: $gutter;
     border: 1px solid $border-grey;
     width:100%;
+    padding-left:$gutter*1.3;
     &:last-child{
       margin-bottom:0;
     }
   }
+  .input-group-addon{
+      color: $danger;
+      position:absolute;
+      z-index:2;
+      left:-3px;
+      top:3px;
+    }
 }
 
 h4{
@@ -129,7 +137,7 @@ h4{
   }
 }
 
-// pring map idalog
+// pring map dialog
 .dialog-print-map{
   .modal-body{
     padding:20px;

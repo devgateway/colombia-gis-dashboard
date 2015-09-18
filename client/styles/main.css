@@ -1305,6 +1305,11 @@ ul.tabs {
   font-size: 14px;
   margin-top: 10px; }
 
+.indicator-tab-container {
+  overflow-y: auto;
+  height: 240px;
+  width: 420px; }
+
 .indicator-search .title {
   font-weight: bold;
   color: #4d749f;
@@ -1545,7 +1550,7 @@ ul.tabs {
 .external-layer-control li {
   overflow: hidden;
   padding-top: 25px;
-  margin-left: 12px;
+  margin-left: 39px;
   clear: both; }
   .external-layer-control li .slider-holder {
     margin-left: 0; }
@@ -1687,8 +1692,8 @@ ul.tabs {
   width: 250px;
   background-color: #ffffff;
   position: absolute;
-  bottom: 24px;
-  right: 86px;
+  bottom: 65px;
+  right: 20px;
   padding: 0; }
 
 .legends-content {
@@ -1962,9 +1967,16 @@ ul.funding-options {
     outline: none;
     margin-bottom: 1em;
     border: 1px solid #eeeeee;
-    width: 100%; }
+    width: 100%;
+    padding-left: 1.3em; }
     .modal-body .form-control:last-child {
       margin-bottom: 0; }
+  .modal-body .input-group-addon {
+    color: #d9534f;
+    position: absolute;
+    z-index: 2;
+    left: -3px;
+    top: 3px; }
 
 h4.modal-title {
   margin: 0;
@@ -2223,7 +2235,7 @@ h4.modal-title {
   right: 0;
   margin-left: auto;
   margin-right: auto;
-  width: 900px;
+  width: 750px;
   z-index: 100; }
   .timeSliderContainer .sliderTooltip {
     display: block;

@@ -170,9 +170,6 @@ button.layer-search {
   margin-top: 1px;
   width:12px;
   height:12px;
-  .selected{
-
-  }
   .fa{
     font-size:0.7em;
     margin-left: 2px;
@@ -180,12 +177,16 @@ button.layer-search {
     float: left;
   }
 }
-
 .selectable{
   @extend .selectable-radio;
 }
-
 .selectable-disabled{
   @extend .selectable-radio;
   background: #dddddd;
 }
+// apply button in indicator popup
+ .leaflet-container .btn-apply{
+   color: $white;
+   margin-left:$gutter/2.5;
+   margin-top:$gutter*2;
+ }
