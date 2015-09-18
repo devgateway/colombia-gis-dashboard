@@ -56,15 +56,15 @@ module.exports  = React.createClass({
       <div className="layer-control-panel">
         <NoResultsPopup/>
         <ul className="layer-control">
-         <li>
-            <Indicators/>
-          </li>
-        <li>
+          <li>
             <PointsLayerControl/>
           </li>
           <li>
             <ShapesLayer/>
           </li>
+          <li>
+            <Indicators/>
+          </li>          
         </ul>
       </div>
     </div>
