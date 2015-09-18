@@ -31,7 +31,6 @@ module.exports = React.createClass({
   },
 
   render: function() {
-    debugger;
     var itemClassNames=(this.state.selected)?'item-label label-selected':'item-label';
     if (this.props.searchAndSelectMode || (!this.props.hide && (!this.props.showOnlySelected || (this.props.showOnlySelected && (this.props.selected))))){
       return(  

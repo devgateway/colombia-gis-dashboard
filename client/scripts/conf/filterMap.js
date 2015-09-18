@@ -59,6 +59,7 @@ var filters = [
     label: 'filters.subActivities',
     type: 'list',
     modes: ['basic', 'advanced'],
+    param: 'sa',
     searchAndSelectMode: true,
     store:  StoreCreator.SubActivities,
     actions: Actions.SubActivities

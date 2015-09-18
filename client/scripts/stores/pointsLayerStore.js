@@ -5,6 +5,7 @@ var Reflux = require('reflux');
 var _ = require('lodash');
 var Util = require('../api/util.js');
 var API = require('../api/layers.js');
+var LayersAction = require('../actions/layersAction.js');
 
 var CommonsMixins = require('./_mixins.js');
 var DataLayerMixins = require('./_overlaysMixins.js');
@@ -74,7 +75,9 @@ var defaultBreaks = {
 
 module.exports = Reflux.createStore({
 
+  listenables: [LayersAction],
   mixins: [CommonsMixins, DataLayerMixins],
+
   _getLayerId: function() {
     return 'points';
   },
@@ -93,7 +96,7 @@ module.exports = Reflux.createStore({
 
   onLayerInit: function() {
     console.log('Point layer onLayerInit');
-    this._load(null, this.state.level, true); //initialize data 
+    this._load(this.state.level); //initialize data 
   },
 
   onRestoreData: function(savedData) {
@@ -108,7 +111,7 @@ module.exports = Reflux.createStore({
         isRestorePending: true,
         filters: savedData.filterData.filters
       });
-      this._load(null, savedData.pointsState.level, true); //restore data 
+      this._load(savedData.pointsState.level); //restore data 
     }
   },
 
@@ -142,6 +145,9 @@ module.exports = Reflux.createStore({
     func(this.state.filters).then(function(results) { //call api function and process results 
       this._updateNationalSubactivities(results);
       var items = [];
+      if (results.length==0){
+        LayersAction.showNoResultsPopup("layers.noResultsForDataLayerMessage");   
+      }
       var resultsWithCoordinates = [];
       _.map(results, function(d) {
         if (d.latitude!=0 && d.longitude!=0){

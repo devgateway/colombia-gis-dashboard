@@ -99,6 +99,7 @@
 		"colorSelection": "Color Selection",
 		"colorPalettes": "Color Palettes",
 		"fundingPercent": "% Funding",
+		"advancePercent": "% of Advance",
 		"activitiesNumber": "Number of Activities",
 		"totalProjects":"Total Projects",
 		"indicators":"Indicators",
@@ -126,7 +127,9 @@
 		"find": "Find",
 		"description": "Description",
 		"select": "Select",
-		"close": "Close"
+		"close": "Close",
+		"noResultsForDataLayer": "No Results",
+		"noResultsForDataLayerMessage": "There are not results to show in map that matchs with selected filters."
 	},
 
 	"map": {
@@ -151,7 +154,12 @@
 			"totalSubActivities":"Total SubActivities",
 			"programList":"Program List",
 			"downloadFile":"Download file",
-			"funding":"Total Funding: "
+			"funding":"Total Funding: ",
+			"costShareBreakdown": "Cost Share Breakdown",
+			"objectivesInfoWindow": "Development Objectives",
+			"activityClassication": "Activity Classification",
+			"ppp": "Public Private Partnership",
+			"subActivities": "Sub Activities"
 		},
 		"nationalSubActivities": "National SubActivities"
 	},
@@ -179,7 +187,7 @@
 		"tooltipdelete":"Delete",
 		"closebutton":"Close",
 		"savebutton":"Save Map",
-		"exportbutton":"Export Map",
+		"exportbutton":"Export Data",
 		"downloadtitle":"Download pdf for printing",
 		"printloadmessage":"Please wait while the pdf file is being generated, this length of the process will depend on the map configuration",
 		"printreadymessage":"Please click here to download the pdf file",

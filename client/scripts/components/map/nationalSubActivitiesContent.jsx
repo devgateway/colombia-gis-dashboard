@@ -58,7 +58,7 @@ module.exports  = React.createClass({
     var titleArray = [];
     if (this.state.infoWindow){
       this.state.infoWindow.map(function(node, index) {
-        titleArray.push(node.title);
+        titleArray.push(i18n.t("map.popup."+node.key));
       });
     }
     return titleArray;
@@ -112,6 +112,9 @@ module.exports  = React.createClass({
                 "color": "#4278AA",
                 "fontSize": "14px"
               }
+            },
+            tooltip: {
+                pointFormat: '{series.name}:  <b>$ {point.y}</b>',                
             },
             plotOptions: {
               pie: {

@@ -1,5 +1,4 @@
 var assign = require('object-assign');
-var LayersAction = require('../actions/layersAction.js');
 var RestoreActions = require('../actions/restoreActions.js');
 var LoadingAction = require('../actions/loadingActions.js');
 var FilterStore = require('./filters/filterStore.js');
@@ -7,7 +6,7 @@ var _ = require('lodash');
 
 module.exports = {
 
-	listenables: [LayersAction, RestoreActions],
+	listenables: [RestoreActions],
 
 	init: function() {		
 		this.listenTo(FilterStore, "_applyFilters");
@@ -17,30 +16,22 @@ module.exports = {
 	/*Listen  set property event comming from the layer control  */
 	onChangeLayerValue: function(id, property, value, subProperty) {
 		console.log(id);
-		var prevLevel = this.state.level;
-		var newLevel = this.state.level;
-
+	
 		if (id === this._getLayerId()) {
 			var assignable = new Object();
 			assignable[property] = value;
 
-			if (property == 'level') { //if level is changed or if layer is turned on we should load the data  
-				newLevel = value;
-
+			if (property == 'level') { //if level is changed or if layer is turned on we should load the data  				
 				this.update(assignable, {
 					'silent': true,
 					'subProperty':subProperty
 				}); //update level on current state
-
-				this._load(prevLevel, value, false); //load the new level, do  not trigger the state since it will be triggered by the load method  
+				this._load(value); //load the new level, do  not trigger the state since it will be triggered by the load method  
 
 			} else if (property == 'visible') {
-				if(id=='indicators'){
-					assignable['hideLegendButton'] = value;
-				}
 				this.update(assignable);
 				if (value == true && !this.state.geoData) {
-					this._load(prevLevel, newLevel, true);
+					this._load(this.state.level);
 				}
 
 			} else if (property == 'color') {
@@ -88,18 +79,8 @@ module.exports = {
 
 	},
 
-
-	_load: function(prevLevel, newLevel, force) {
-		if ((newLevel != prevLevel) || (force === true)) {
-			LoadingAction.showLoading();
-			this._loadGeoData(newLevel);
-		} else {
-			console.log('nothing to change here');
-		}
-	},
-
-	/*Load GIS data by level*/
-	_loadGeoData: function(newLevel) {
+	_load: function(newLevel) {
+		LoadingAction.showLoading();
 		if (newLevel == 'departament') {
 			this._loadByDepartments(); //load data 
 		} else if (newLevel == 'municipality') {
@@ -134,7 +115,7 @@ module.exports = {
 			}, {
 				silent: true
 			}); ///silent is tru since the change will be triggered by the load method
-			this._load(null, this.state.level, true); //force re-load;
+			this._load(this.state.level); //force re-load;
 		}
 	},
 }

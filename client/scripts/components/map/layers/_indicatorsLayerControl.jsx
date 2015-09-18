@@ -42,15 +42,27 @@ module.exports = React.createClass({
   },
 
   _selectIndicator:function(indicator){
-    this.setState({'indicators':indicator})
+    this.setState({'indicators':indicator});
+  },
+
+  _onChangeVisibility:function(id,newValue,idx){
+    debugger;
+    if (this.state.layerFilters.indicatorId){
+      this._changeVisibility(id,newValue,idx);
+    } else {
+      this.setState({'showFinder': true, 'expanded': true});
+    }
+  },
+
+  _onFinderClose:function(indicator){
+    this.setState({'showFinder': false, 'expanded': false});
   },
 
   render: function() {
    var level=this.state.level;
-   debugger;
    return (
     <li>
-    <Toggler ref='toggler'>
+    <Toggler ref='toggler' expanded={this.state.expanded}>
       <TogglerContent visibleWhen="collapsed">
         <div toggler={true} className="toggler-button"><i className="fa fa-chevron-down"></i></div>
       </TogglerContent>
@@ -61,7 +73,7 @@ module.exports = React.createClass({
         <Layer id="indicators"
           opacity={this.state.opacity}
           onChangeOpacity={this._onChangeOpacity}
-          onChangeVisibility={this.state.filters.indicatorId? this._changeVisibility : null}
+          onChangeVisibility={this._onChangeVisibility}
           visible={this.state.visible}
           title={i18n.t("layers.indicatorLayer")}
           showBasicControl={true}/>
@@ -70,7 +82,7 @@ module.exports = React.createClass({
         <Layer id="indicators"
           opacity={this.state.opacity}
           onChangeOpacity={this._onChangeOpacity}
-          onChangeVisibility={this.state.filters.indicatorId? this._changeVisibility : null}
+          onChangeVisibility={this._onChangeVisibility}
           title={i18n.t("layers.indicatorLayer")}
           visible={this.state.visible}/>
         <ul>
@@ -86,10 +98,10 @@ module.exports = React.createClass({
               <Grid fluid={false}>
                 <Row>
                   <Col md={2} className="no-padding">
-                    <Finder label={this.state.filters.indicatorId? i18n.t("layers.changeIndicator") : i18n.t("layers.selectIndicator")}/>
+                    <Finder visible={this.state.showFinder} onClose={this._onFinderClose} label={this.state.layerFilters.indicatorId? i18n.t("layers.changeIndicator") : i18n.t("layers.selectIndicator")}/>
                   </Col>
                   <Col md={4} className="no-padding">                 
-                    {this.state.filters.indicatorId? this.state.filters.indicatorName : ""}
+                    {this.state.layerFilters.indicatorId? this.state.layerFilters.indicatorName : ""}
                   </Col>
                 </Row>
               </Grid>
@@ -124,7 +136,7 @@ module.exports = React.createClass({
             <div className="clearFix"/>
           </li>
           <li>
-            <h3 className="color-control percent-funding"><Message message='layers.fundingPercent'/></h3>
+            <h3 className="color-control percent-funding"><Message message='layers.advancePercent'/></h3>
             <h3 className="color-control"><Message message='layers.colorSelection'/></h3>
             {
               _.map(_.keys(this.state.breaks.breaks),function(key){

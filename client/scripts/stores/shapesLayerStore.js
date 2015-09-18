@@ -4,6 +4,7 @@ var Reflux = require('reflux');
 var Util = require('../api/util.js');
 var API = require('../api/layers.js');
 var GeoStats = require('../api/geostats.js');
+var LayersAction = require('../actions/layersAction.js');
 
 var _ = require('lodash');
 var assign = require('object-assign');
@@ -109,6 +110,7 @@ var defaultBreaks = {
 }
 module.exports = Reflux.createStore({
 
+	listenables: [LayersAction],
 	mixins: [CommonsMixins, DataLayerMixins],
 
 	_getLayerId: function() {
@@ -134,33 +136,38 @@ module.exports = Reflux.createStore({
 	onRestoreData: function(savedData) {
 		if(savedData.shapesState){
 		   this.update({dataToRestore: savedData.shapesState, isRestorePending: true, filters:savedData.shapesState.filters});
-		   this._load(null, savedData.shapesState.level, true); //restore data
+		   this._load(savedData.shapesState.level); //restore data
 		} else {
 			this.update({'visible':false});
 		}
 	},
 	
-	onChangeGroupFilterSelection: function(filters) {
-		_.forEach(filters, function(filter){
-			this.onChangeFilterSelection(filter.param, filter.values, true);
-		}.bind(this));
-		this._applyFilters(filters, "shapes");
+	onChangeGroupFilterSelection: function(layerId, filters) {
+		if (layerId == this._getLayerId()){
+			_.forEach(filters, function(filter){
+				this.onChangeFilterSelection(layerId, filter.param, filter.values, true);
+			}.bind(this));
+			this._applyFilters(filters, "shapes");
+		}
 	},
 
-	onChangeFilterSelection: function(param, value, silent) {
-		var filters=_.clone(this.state.filters || []);
-	    value = Array.isArray(value)? value : [value]; //"values" in query should be an array
-	    var filter = _.find(filters, {'param': param});
-	    if (filter){
-	      filter.values = value;
-	    } else {
-	      filters.push({"param": param, "values": value});
-	    }
-	    _.assign(this.state.filters,filters);
-	    //this.update({"filters": filters}, {'silent': true});
-	    if (!silent){
-	    	this._applyFilters(filters, "shapes");
-	    }
+	onChangeFilterSelection: function(layerId, param, value, silent) {
+		debugger
+		if (layerId == this._getLayerId()){
+			var filters=_.clone(this.state.filters || []);
+		    value = Array.isArray(value)? value : [value]; //"values" in query should be an array
+		    var filter = _.find(filters, {'param': param});
+		    if (filter){
+		      filter.values = value;
+		    } else {
+		      filters.push({"param": param, "values": value});
+		    }
+		    _.assign(this.state.filters,filters);
+		    //this.update({"filters": filters}, {'silent': true});
+		    if (!silent){
+		    	this._applyFilters(filters, "shapes");
+		    }
+		}
 	},
 
 	getInitialState: function() {

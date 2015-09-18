@@ -25,6 +25,7 @@ init: function() {
 		this.listenTo(StoreDispatcher.PublicPrivatePartnership, this._collectFilters('pp'));
 		this.listenTo(StoreDispatcher.RapidImpact, this._collectFilters('ri'));
 		this.listenTo(StoreDispatcher.SubActivityStatus, this._collectFilters('st'));
+		this.listenTo(StoreDispatcher.SubActivities, this._collectFilters('sa'));
 
 		this.listenTo(StoreDispatcher.SubImplementers, this._collectFilters(['sit','si'], true));
 		this.listenTo(StoreDispatcher.TargetPopulation, this._collectFilters('tp'));

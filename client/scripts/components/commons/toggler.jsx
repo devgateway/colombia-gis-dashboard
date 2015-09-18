@@ -15,6 +15,10 @@ var TogglerContent=React.createClass({
 
 
 var Toggler=React.createClass({
+  componentWillReceiveProps :function(nextProps){
+    this.setState({'expanded': nextProps.expanded || this.state.expanded})
+  },
+
   getInitialState:function(){
     return {'expanded':false}
   },

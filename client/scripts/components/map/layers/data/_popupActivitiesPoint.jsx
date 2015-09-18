@@ -95,27 +95,27 @@ module.exports  = React.createClass({
                 <ul className="tabs nav nav-tabs" role="tablist" >
                 <li className={tabId==0? "active" : ""} role="tab" >
                   <a href="#" onClick={this.handleClick.bind(this, 0)}>
-                    <span className="popup-icon chart" title="Cost Share Breakdown"></span>
+                    <span className="popup-icon chart" title={i18n.t("map.popup.costShareBreakdown")}></span>
                   </a>
                 </li>
                 <li className={tabId==1? "active" : ""} role="tab" >
                   <a href="#" onClick={this.handleClick.bind(this, 1)}>
-                    <span className="popup-icon funding-dev-obj" title="Development Objectives"></span>
+                    <span className="popup-icon funding-dev-obj" title={i18n.t("map.popup.objectivesInfoWindow")}></span>
                   </a>
                 </li>
                 <li className={tabId==2? "active" : ""} role="tab" >
                   <a href="#" onClick={this.handleClick.bind(this, 2)}>
-                    <span className="popup-icon subactivities" title="Activity Classication"></span>
+                    <span className="popup-icon subactivities" title={i18n.t("map.popup.activityClassication")}></span>
                   </a>
                 </li>
                 <li className={tabId==3? "active" : ""} role="tab" >
                   <a href="#" onClick={this.handleClick.bind(this, 3)}>
-                    <span className="popup-icon export" title="Public Private Partnership"></span>
+                    <span className="popup-icon export" title={i18n.t("map.popup.ppp")}></span>
                   </a>
                 </li>
                 <li className={tabId==4? "active" : ""} role="tab" >
                   <a href="#" onClick={this.handleClick.bind(this, 4)}>
-                    <span className="popup-icon subactivitiesList" title="Sub Activities"></span>
+                    <span className="popup-icon subactivitiesList" title={i18n.t("map.popup.subActivities")}></span>
                   </a>
                 </li>
                 </ul>

@@ -49,7 +49,7 @@ module.exports = {
         titleArray.push(i18n.t('map.popup.funding') +  this.props.fundingUS.toFixed(2));
     } else if (this.state.infoWindow){
       this.state.infoWindow.map(function(node, index) {
-        titleArray.push(node.title);
+        titleArray.push(i18n.t("map.popup."+node.key));
       });
     }
     return titleArray;
@@ -103,6 +103,9 @@ module.exports = {
                 "color": "#4278AA", 
                 "fontSize": "14px" 
               }
+            },
+            tooltip: {
+                pointFormat: '{series.name}:  <b>$ {point.y}</b>',                
             },
             plotOptions: {
               pie: {

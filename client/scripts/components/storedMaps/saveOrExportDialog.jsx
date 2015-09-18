@@ -32,10 +32,10 @@ module.exports = React.createClass({
 		/*if (!showModal){
 			return null;
 		}*/
-		//console.log("exportDialog -> showModal:" + showModal);
+		console.log("exportDialog -> showModal:" + showModal);
 		return (
 			<div className="save-map-trigger">
-			<Modal className='dialog-save-map' {...this.props} bsSize='large' aria-labelledby='contained-modal-title-lg'
+			<Modal animation={false} className='dialog-save-map' {...this.props} bsSize='large' aria-labelledby='contained-modal-title-lg'
 			 show={showModal} onHide={this._onClose}>
 				<Modal.Header>
 					<Modal.Title>

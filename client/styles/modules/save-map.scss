@@ -1,6 +1,9 @@
 .save-map-trigger{
   display:inline;
 }
+.dialog-save-map{
+  z-index: 10005;
+}
 .modal-header{
     padding-bottom: $gutter*2.7;
     .fa.fa-folder-open{
@@ -31,6 +34,7 @@
       top:3px;
     }
 }
+
 h4{
   &.modal-title{
     @include space-reset;
