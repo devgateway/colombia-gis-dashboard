@@ -12,6 +12,9 @@ $base-font-family: 'Open Sans', sans-serif;
 $base-line-height: 110%;
 $border-grey:#eeeeee;
 
+// callout color
+$danger:#d9534f;
+
 //mixins
 @mixin bgLayout{background-color: rgba(0,0,0,0.7);}
 @mixin topbottomContainer{padding-left:$gutter*3;width:100%;} //inner container widths in header and footer

@@ -37,11 +37,11 @@
     color: $green;
 }
 .bs-callout-danger {
-    border-left-color: #d9534f;
-    color:#d9534f;
+    border-left-color: $danger;
+    color:$danger;
 }
 .bs-callout-danger h4 {
-    color: #d9534f;
+    color: $danger;
 }
 .bs-callout-warning {
     border-left-color: #f0ad4e;
@@ -66,12 +66,12 @@
 }
 
 .filter-no-results{
-  color:#d9534f;
+  color:$danger;
   padding: 0 10px 15px 10px;
   margin: 10px 0;
   background: lighten($grey,70%);
   border:1px solid lighten($grey,60%);
-  border-left:3px solid #d9534f;
+  border-left:3px solid $danger;
 }
 
 .filter-no-results h4 {
