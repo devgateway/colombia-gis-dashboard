@@ -123,7 +123,7 @@ module.exports = React.createClass({
             <div className="clearFix"/>
           </li>
           <li>
-            <h3 className="color-control percent-funding"><Message message='layers.fundingPercent'/></h3>
+            <h3 className="color-control percent-funding"><Message message='layers.advancePercent'/></h3>
             <h3 className="color-control"><Message message='layers.colorSelection'/></h3>
             {
               _.map(_.keys(this.state.breaks.breaks),function(key){

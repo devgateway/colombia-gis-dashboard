@@ -65,7 +65,7 @@ module.exports = Reflux.createStore({
             _.assign(theSymbol,{color:rgbColor});
             _.assign(symbol,{symbol:theSymbol});
 
-        if(id=='shapes'){
+        if(id=='shapes' || id=='indicators'){
           label += ' %';
         }
 
@@ -139,7 +139,7 @@ module.exports = Reflux.createStore({
     if (layerLegend) {
 
       var legend = layerLegend.legendGroups[0].legends[level];
-      if (layerLegend.id == 'shapes') {
+      if (layerLegend.id == 'shapes'  || layerLegend.id=='indicators') {
         var minLabel = brk.min.toFixed(brk.min < 10 ? 2 : 0);
         var maxLabel = brk.max.toFixed(brk.max < 10 ? 2 : 0);
         maxLabel += ' %';
