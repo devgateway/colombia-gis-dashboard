@@ -13,7 +13,7 @@ var taskConfig = function(grunt) {
       'browserify:dist'
     ],
     docs: [
-      'jsdoc:dist',
+      //'jsdoc:dist',
       //'styleguide:dist'
     ]
   });
