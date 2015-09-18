@@ -28,6 +28,9 @@ module.exports = React.createClass({
 
 	close:function(){
 		this.setState({ showModal: false });
+		if (this.props.onClose){
+			this.props.onClose();
+		}
 	},
 
 	open:function(){
@@ -70,6 +73,10 @@ module.exports = React.createClass({
 
 	componentDidMount:function(){
 		Actions.load();
+		debugger;
+		if (this.props.visible){
+			this.open();
+		}
 	},
 
 	_handlePagination:function(event,val){
@@ -84,7 +91,15 @@ module.exports = React.createClass({
 		Actions.find();
 	},
 
+	componentWillReceiveProps :function(nextProps){
+		debugger;
+		if (nextProps.visible){
+			this.open();
+		}
+	},
+
 	render:function() {
+		debugger;
 		var totalPages = Math.ceil(this.state.results.count/10);
 		console.log("#programs -> "+this.state.programs.length);
 		return (
