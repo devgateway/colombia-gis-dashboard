@@ -63,7 +63,7 @@ module.exports = Reflux.createStore({
   },
 
   onExportIndicators: function() {
-    API.exportIndicators(_.clone(indicatorsState.filters, true)).then(
+    API.exportIndicators(_.clone(indicatorsState.layerFilters, true)).then(
       function(data) {        
         this.onHideModal(); //tell save dialog that everything is done 
         window.open(data);
