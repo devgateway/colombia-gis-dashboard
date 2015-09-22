@@ -173,6 +173,9 @@ input[type=checkbox].glyphicon {
   overflow:hidden;
   white-space:nowrap;
   text-overflow: ellipsis;
+  &.single-col{
+    width:100%;
+  }
 }
 
 .filter-col-parent{
