@@ -5,7 +5,7 @@ var Util = require('../api/util.js');
 var API = require('../api/layers.js');
 var GeoStats = require('../api/geostats.js');
 var LayersAction = require('../actions/layersAction.js');
-
+var RestoreActions = require('../actions/restoreActions.js');
 var _ = require('lodash');
 var assign = require('object-assign');
 
@@ -110,7 +110,7 @@ var defaultBreaks = {
 }
 module.exports = Reflux.createStore({
 
-	listenables: [LayersAction],
+	listenables: [LayersAction, RestoreActions],
 	mixins: [CommonsMixins, DataLayerMixins],
 
 	_getLayerId: function() {

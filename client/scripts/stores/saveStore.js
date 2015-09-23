@@ -7,7 +7,6 @@ var LayersActions = require('../actions/layersAction.js');
 var RestoreActions = require('../actions/restoreActions.js');
 var ArcgisLayersActions = require('../actions/arcgisLayersActions.js');
 var LanStore = require('./lanStore.js');
-var FilterStore = require('./filters/filterStore.js');
 var MapStore = require('./mapStore.js');
 var IndicatorsLayerStore = require('./indicatorLayerStore.js');
 var ShapesLayerStore = require('./shapesLayerStore.js');
@@ -30,7 +29,6 @@ module.exports = Reflux.createStore({
   init: function() {
     this.state = {mapName : '','layersVisible': {'indicators': false, 'points': true, 'shapes': false}};
     this.listenTo(LanStore, this._handleLanDataUpdate);
-    this.listenTo(FilterStore, this._handleFilterDataUpdate);
     this.listenTo(IndicatorsLayerStore, this._handleIndicatorsDataUpdate);
     this.listenTo(ShapesLayerStore, this._handleShapesDataUpdate);
     this.listenTo(PointsLayerStore, this._handlePointsDataUpdate);
@@ -333,18 +331,11 @@ module.exports = Reflux.createStore({
     mapState = data;
   },
 
-  _handleFilterDataUpdate: function(data) {
-    filterState = data;
-  },
-
   _handleLanDataUpdate: function(data) {
     lanState = data;
   },
 
   _handleIndicatorsDataUpdate: function(data) {
-    var layersVisible = _.clone(this.state.layersVisible);
-    layersVisible.indicators = data.visible;
-    this.update({'layersVisible': layersVisible});
     indicatorsState = data;
   },
 
@@ -354,6 +345,7 @@ module.exports = Reflux.createStore({
 
   _handlePointsDataUpdate: function(data) {
     pointsState = data;
+    filterState = data.filters;//takes filters state (workaround for listener problem)
   },
 
   _handleArcgisDataUpdate: function(data) {
