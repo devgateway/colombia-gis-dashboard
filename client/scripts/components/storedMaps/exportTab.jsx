@@ -22,7 +22,7 @@ module.exports = React.createClass({
 		if(type=='activities'){
 			Actions.exportActivities(this.state.format);
 		} else {
-			Actions.exportIndicators();	
+			Actions.exportIndicators();
 		}
 	},
 
@@ -33,7 +33,7 @@ module.exports = React.createClass({
 	_exportTypeActivities:function(type){
 		this.setState({'type': 'activities'});
 	},
-	
+
 	_exportTypeIndicators:function(type){
 		this.setState({'type': 'indicators'});
 	},
@@ -45,10 +45,10 @@ module.exports = React.createClass({
 		var errorArray = this.state.error?this.state.error.split(','):null;
 		return (
 			<div className="">
-				<div className="blue-panel">
-					<div className="plain-panel">
+				<div className="export-selection-wrapper">
+					<div className="blue-panel">
 						<CustomRadioGroup>
-							{activitiesEnabled? 
+							{activitiesEnabled?
 				              <CustomRadio className="horizontal" name="activities" checked={type=='activities'? true : false}
 				              	onClick={this._exportTypeActivities} label="savemap.exportactivities"/>
 				            : null}
@@ -71,7 +71,7 @@ module.exports = React.createClass({
 				{this.state.exportDisabled?
 					<div><img className="img-centered" src="images/ajax-loader-small.gif"/></div>
 				:null}
-				<div>
+				<div className="adjacent-buttons">
 					<Button className="btn btn-apply pull-right" disabled={this.state.exportDisabled?"disabled":""} onClick={this._export.bind(this)}>{i18n.t('savemap.exportbutton')}</Button>
 					<Button  className="pull-right" onClick={this.props.onClose.bind(this)}>{i18n.t('savemap.closebutton')}</Button>
 				</div>
