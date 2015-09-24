@@ -92,14 +92,12 @@ module.exports = React.createClass({
 	},
 
 	componentWillReceiveProps :function(nextProps){
-		debugger;
 		if (nextProps.visible){
 			this.open();
 		}
 	},
 
 	render:function() {
-		debugger;
 		var totalPages = Math.ceil(this.state.results.count/10);
 		console.log("#programs -> "+this.state.programs.length);
 		return (
@@ -109,7 +107,7 @@ module.exports = React.createClass({
 					<Modal.Header>
 					<a className="close-dialog" href="#" onClick={this.close}>
 					<i className="fa fa-times-circle-o"></i></a>
-						<Modal.Title><i className="fa fa-arrows-h"></i><Message message='layers.searchIndicator'/></Modal.Title>
+						<Modal.Title><i className="fa fa-arrows-h"></i><Message message='layers.selectIndicator'/></Modal.Title>
 					</Modal.Header>
 					<Modal.Body className="finder">
 					<Grid fluid={true}>
@@ -162,9 +160,10 @@ module.exports = React.createClass({
 								:null}
 							</Col>							
 						</Row>
-						
-					{this.state.results.indicators.length>0?
-
+						{
+							this.state.showNoResults? <div className="filter-no-results"><br/><Message message="filters.noResults"/></div> : ""
+						}
+						{this.state.results.indicators.length>0?
 							<div className="container-full">
 								<Row>
 									<Col md={12}>
@@ -207,7 +206,6 @@ module.exports = React.createClass({
 							</div>
 							: null
 						}
-
 					</Grid>
 				</Modal.Body>
 				<Modal.Footer>

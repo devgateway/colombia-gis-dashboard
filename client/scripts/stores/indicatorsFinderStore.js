@@ -19,8 +19,12 @@ module.exports = Reflux.createStore({
 
   onFind:function(){
     console.log(this.state.query);
+    this.update({showNoResults: false});
     API.getIndicatorsList(this.state.query).then(function(data) {
       this.update({results:data, showLoading: false});
+      if (!data.indicators || data.indicators.length==0){
+        this.update({showNoResults: true});
+      }    
     }.bind(this)).fail(
       function(xhttp,err){
         console.log(err)
@@ -38,7 +42,7 @@ module.exports = Reflux.createStore({
     this.update({'results':{indicators:[]}}, {'silent': true});
     API.getActivityList(filters).then(function(data) {
       this.update({activities:data, showLoading: false});
-    }.bind(this)).fail(
+      }.bind(this)).fail(
       function(xhttp,err){
         console.log(err)
       }

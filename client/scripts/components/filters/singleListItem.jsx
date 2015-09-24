@@ -32,9 +32,10 @@ module.exports = React.createClass({
 
   render: function() {
     var itemClassNames=(this.state.selected)?'item-label label-selected':'item-label';
+    var colClass = this.props.searchAndSelectMode? "filter-col single-col" : "filter-col";
     if (this.props.searchAndSelectMode || (!this.props.hide && (!this.props.showOnlySelected || (this.props.showOnlySelected && (this.props.selected))))){
       return(  
-        <div className="filter-col">
+        <div className={colClass}>
           <CustomCheckbox selected={this.state.selected} value={this.props.id} onChange={this._handleClick}/>
           <span onClick={this._handleClick} className={itemClassNames} title={this.props.label.length>30? this.props.label : ""}> {this.props.label}</span>
         </div>)

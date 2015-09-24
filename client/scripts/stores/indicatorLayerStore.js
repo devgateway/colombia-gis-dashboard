@@ -5,7 +5,7 @@ var Util = require('../api/util.js');
 var API = require('../api/layers.js');
 var LayersAction = require('../actions/layersAction.js');
 var LoadingAction = require('../actions/loadingActions.js');
-
+var RestoreActions = require('../actions/restoreActions.js');
 var _ = require('lodash');
 var assign = require('object-assign');
 
@@ -106,7 +106,7 @@ var defaultBreaks = {
 }
 module.exports = Reflux.createStore({
 
-	listenables: [LayersAction],
+	listenables: [LayersAction, RestoreActions],
 	mixins: [CommonsMixins, DataLayerMixins],
 
 	init: function() {		
@@ -161,6 +161,7 @@ module.exports = Reflux.createStore({
 	},
 
 	onRestoreData: function(savedData) {
+		debugger;
 		if(savedData.indicatorsState){
 			if (!this.state.visible && savedData.indicatorsState.visible) {
 		        this.update({'visible': true}); //Hack for changing colors

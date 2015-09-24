@@ -6,10 +6,9 @@ var _ = require('lodash');
 var Util = require('../api/util.js');
 var API = require('../api/layers.js');
 var LayersAction = require('../actions/layersAction.js');
-
 var CommonsMixins = require('./_mixins.js');
 var DataLayerMixins = require('./_overlaysMixins.js');
-
+var RestoreActions = require('../actions/restoreActions.js');
 var GeoStats = require('../api/geostats.js');
 
 
@@ -75,7 +74,7 @@ var defaultBreaks = {
 
 module.exports = Reflux.createStore({
 
-  listenables: [LayersAction],
+  listenables: [LayersAction, RestoreActions],
   mixins: [CommonsMixins, DataLayerMixins],
 
   _getLayerId: function() {
@@ -109,9 +108,11 @@ module.exports = Reflux.createStore({
       this.update({
         dataToRestore: savedData.pointsState,
         isRestorePending: true,
-        filters: savedData.filterData.filters
+        filters: savedData.pointsState.filters
       });
       this._load(savedData.pointsState.level); //restore data 
+    } else {
+      this.update({'visible':false});
     }
   },
 
@@ -122,7 +123,7 @@ module.exports = Reflux.createStore({
         subtitle:'layers.activityDepartmentSubtitle',
         breaks: defaultBreaks, //defaul styles breaks
         defaultStyle: defaultStyle, //Default symbol styles
-        saveItems: ['breaks', 'defaultStyle', 'level', 'opacity', 'visible']
+        saveItems: ['breaks', 'defaultStyle', 'level', 'opacity', 'visible', 'filters']
       }) /*override default values*/ ;
   },
 
