@@ -160,9 +160,10 @@ module.exports = React.createClass({
 								:null}
 							</Col>							
 						</Row>
-						
-					{this.state.results.indicators.length>0?
-
+						{
+							this.state.showNoResults? <div className="filter-no-results"><br/><Message message="filters.noResults"/></div> : ""
+						}
+						{this.state.results.indicators.length>0?
 							<div className="container-full">
 								<Row>
 									<Col md={12}>
@@ -205,7 +206,6 @@ module.exports = React.createClass({
 							</div>
 							: null
 						}
-
 					</Grid>
 				</Modal.Body>
 				<Modal.Footer>
