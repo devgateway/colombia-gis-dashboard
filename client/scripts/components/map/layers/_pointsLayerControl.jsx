@@ -36,9 +36,9 @@ module.exports = React.createClass({
     this.setState({"breakSelected": value});
     this.handleClickForBreaks(value, breaks, breakStyle);
   },
-  
+
   _changeRadius:function(value,level){
-    LayerActions.changeLayerValue('points','radius',value,level); 
+    LayerActions.changeLayerValue('points','radius',value,level);
   },
 
   componentDidMount: function(){
@@ -57,7 +57,7 @@ module.exports = React.createClass({
       breaks[newLevel] = newBreak;
       var showClassification = false;
     }
-    
+
     return (
     <li>
       <Toggler ref='toggler'>
@@ -100,7 +100,7 @@ module.exports = React.createClass({
                   <If condition={showClassification}>
                     <div className="breaksTemplates">
                       <h3 className="color-control"><Message message='layers.classificationScheme'/></h3>
-                      <div className={this.state.breakSelected==0?"label label-info-selected":"label label-info"} onClick={this._changeBreaksWrapper.bind(this, 0)} title={i18n.t("filters.defaultTip")}><Message message='filters.default'/></div> 
+                      <div className={this.state.breakSelected==0?"label label-info-selected":"label label-info"} onClick={this._changeBreaksWrapper.bind(this, 0)} title={i18n.t("filters.defaultTip")}><Message message='filters.default'/></div>
                       <div className={this.state.breakSelected==1?"label label-info-selected":"label label-info"} onClick={this._changeBreaksWrapper.bind(this, 1)} title={i18n.t("filters.jenksTip")}><Message message='filters.jenks'/></div>
                       <div className={this.state.breakSelected==2?"label label-info-selected":"label label-info"} onClick={this._changeBreaksWrapper.bind(this, 2)} title={i18n.t("filters.arithmeticTip")}><Message message='filters.arithmetic'/></div>
                       <div className={this.state.breakSelected==3?"label label-info-selected":"label label-info"} onClick={this._changeBreaksWrapper.bind(this, 3)} title={i18n.t("filters.geometricTip")}><Message message='filters.geometric'/></div>
@@ -123,7 +123,7 @@ module.exports = React.createClass({
                 </div>
             </li>
             <li className="color-selection">
-              <h3 className="color-control percent-funding"><Message message='layers.activitiesNumber'/></h3>
+              <h3 className="color-control percent-funding"><Message message='layers.subactivitiesNumber'/></h3>
               <h3 className="color-control"><Message message='layers.colorSelection'/></h3>
               {
                 _.map(_.keys(breaks),function(key){
