@@ -1289,16 +1289,15 @@ ul.tabs {
   padding-left: 0; }
 
 .subactivities-container {
-  height: auto;
-  margin-top: 15px;
-  overflow-y: auto; }
+  height: 300px;
+  margin-top: 15px; }
   .subactivities-container h3 {
     margin-top: 0.5em;
     margin-bottom: 0.5em; }
 
 .leaflet-popup-content-wrapper .panel-body .subactivities-list {
   overflow-y: scroll;
-  height: 205px;
+  height: 200px;
   width: 420px; }
   .leaflet-popup-content-wrapper .panel-body .subactivities-list ul {
     padding-left: 0;
@@ -1317,6 +1316,9 @@ ul.tabs {
   font-size: 14px;
   margin-top: 10px; }
 
+.dialog-national-subactivities .sub-activities-title {
+  margin-left: 10px; }
+
 .indicator-tab-container {
   overflow-y: auto;
   height: 240px;
@@ -1329,6 +1331,14 @@ ul.tabs {
     list-style: none; }
     .indicator-tab-container .popup-layer-info ul li {
       display: block; }
+
+.subactivities-list {
+  height: 300px;
+  overflow-y: scroll;
+  margin-top: 0.5em; }
+  .subactivities-list ul {
+    padding-left: 0;
+    list-style: none; }
 
 .indicator-search .title {
   font-weight: bold;
