@@ -20,7 +20,7 @@ h1 {
 }
 h2 {
   color: $white;
-  font-size: 1.3rem;
+  font-size: $text-small;
   @include textBold;
   display: inline-block;
   line-height: $base-line-height;
