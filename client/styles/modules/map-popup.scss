@@ -2,8 +2,9 @@
 // there were issues overriding the default leaflet css filew with sass
 
 .subactivities-container {
-	height: 240px;
+	height: auto;
 	margin-top:15px;
+	overflow-y:auto;
 	h3{
 		margin-top:$gutter/2;
 		margin-bottom:$gutter/2;

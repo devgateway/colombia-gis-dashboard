@@ -122,8 +122,6 @@ module.exports  = React.createClass({
     return (
       <div>
         <div className="leaflet-popup-content">
-        <a className="close-dialog" href="#" onClick={this.close}>
-        <i className="fa fa-times-circle-o pull-right"></i></a>
           <div className="panel panel-default" >
             <div className="panel-heading popup-header" >
               <h3 className="panel-title" >{this.props.NAME_1}

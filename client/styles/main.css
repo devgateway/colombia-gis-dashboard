@@ -1289,8 +1289,9 @@ ul.tabs {
   padding-left: 0; }
 
 .subactivities-container {
-  height: 240px;
-  margin-top: 15px; }
+  height: auto;
+  margin-top: 15px;
+  overflow-y: auto; }
   .subactivities-container h3 {
     margin-top: 0.5em;
     margin-bottom: 0.5em; }
