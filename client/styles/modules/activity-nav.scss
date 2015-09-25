@@ -63,27 +63,29 @@ ul.activities {
     margin-bottom:$gutter*1.2;
 
     a {
-      color:$grey-light;
-      line-height: 80%;
-      padding: 0;
-      border-radius: 0;
-      display: inline;
-      margin-right: 0px;
       @include transitionAll;
       background: lighten($grey,65%);
-      padding:0.3em 0.7em;
       border: 1px solid lighten($grey,50%);
+      border-radius: 0;
+      color:$grey-light;
+      display: inline;
+      line-height: 80%;
+      margin-right: 0px;
+      padding:0.3em 0.7em;
+
       &:hover{
         color: $blue;
       }
+
       &.active,
       &:focus {
+        cursor:pointer;
         background: none;
         border:1px solid transparent;
-        outline: none;
         line-height: 85%;
-        cursor:pointer;
+        outline: none;
       }
+
     }
 
   }

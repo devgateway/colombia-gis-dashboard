@@ -446,27 +446,26 @@ ul.activities {
     margin-right: 0.5em;
     margin-bottom: 1.2em; }
     ul.activities li a {
-      color: #8d8d8d;
-      line-height: 80%;
-      padding: 0;
-      border-radius: 0;
-      display: inline;
-      margin-right: 0px;
       -webkit-transition: all 100ms ease;
       -moz-transition: all 100ms ease;
       -o-transition: all 100ms ease;
       transition: all 100ms ease;
       background: #ebebeb;
-      padding: 0.3em 0.7em;
-      border: 1px solid #c5c5c5; }
+      border: 1px solid #c5c5c5;
+      border-radius: 0;
+      color: #8d8d8d;
+      display: inline;
+      line-height: 80%;
+      margin-right: 0px;
+      padding: 0.3em 0.7em; }
       ul.activities li a:hover {
         color: #4d749f; }
       ul.activities li a.active, ul.activities li a:focus {
+        cursor: pointer;
         background: none;
         border: 1px solid transparent;
-        outline: none;
         line-height: 85%;
-        cursor: pointer; }
+        outline: none; }
 
 .basemap-selector {
   width: 485px;
