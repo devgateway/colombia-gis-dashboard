@@ -125,6 +125,8 @@ module.exports = React.createClass({
             <li className="color-selection">
               <h3 className="color-control percent-funding"><Message message='layers.subactivitiesNumber'/></h3>
               <h3 className="color-control"><Message message='layers.colorSelection'/></h3>
+              <h3 className="color-control cluster-size"><Message message='layers.clusterSize'/></h3>
+
               {
                 _.map(_.keys(breaks),function(key){
                     var br=breaks[key];

@@ -398,40 +398,40 @@ ul.tabbed {
   margin-bottom: 0; }
 
 .activity-nav {
-  overflow: hidden;
-  margin-left: 1px; }
+  margin-left: 1px;
+  overflow: hidden; }
   .activity-nav:after {
     content: "";
     display: table;
     clear: both; }
 
 .filter-type-wrapper {
-  overflow: hidden;
-  margin-top: 0.83333em; }
+  margin-top: 0.83333em;
+  overflow: hidden; }
   .filter-type-wrapper ul.filter-type-label {
     padding-left: 15px; }
     .filter-type-wrapper ul.filter-type-label li {
       float: left;
       padding-left: 0;
       list-style: none;
-      margin-right: 1em;
       height: 20px;
+      margin-right: 1em;
       margin-bottom: 1em; }
       .filter-type-wrapper ul.filter-type-label li:first-child {
         border-right: 1px solid #ababab;
-        padding-right: 1em;
-        margin-right: 1em; }
+        margin-right: 1em;
+        padding-right: 1em; }
       .filter-type-wrapper ul.filter-type-label li span {
         color: #454545;
+        cursor: pointer;
         font-size: 0.9em;
-        line-height: 10%;
-        cursor: pointer; }
+        line-height: 10%; }
         .filter-type-wrapper ul.filter-type-label li span:hover, .filter-type-wrapper ul.filter-type-label li span.active {
           color: #4d749f; }
       .filter-type-wrapper ul.filter-type-label li .fa {
-        margin-right: 0.5em;
         font-size: 0.8em;
-        line-height: 110%; }
+        line-height: 110%;
+        margin-right: 0.5em; }
 
 nav.activities {
   overflow: hidden; }
@@ -1469,6 +1469,9 @@ ul.tabs {
     .layer-control h3.color-control.percent-funding {
       line-height: 1px;
       float: none; }
+    .layer-control h3.color-control.cluster-size {
+      margin-top: 15px;
+      position: absolute; }
 .layer-control .ui-slider-pip {
   top: 30px;
   display: none; }
@@ -1858,7 +1861,7 @@ ul.tabs {
     width: 54px;
     height: 16px;
     font-size: 11px;
-    margin: -2px auto 10px -5px;
+    margin: -2px auto 10px -3px;
     outline: none;
     color: #888888;
     background: #e6edee;
