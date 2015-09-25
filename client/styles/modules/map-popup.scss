@@ -3,6 +3,11 @@
 
 .subactivities-container {
 	height: 240px;
+	margin-top:15px;
+	h3{
+		margin-top:$gutter/2;
+		margin-bottom:$gutter/2;
+	}
 }
 .leaflet-popup-content-wrapper .panel-body .subactivities-list{
 	overflow-y: scroll;
@@ -29,6 +34,18 @@
 	overflow-y: auto;
 	height: 240px;
 	width: 420px;
+	h3.panel-title{
+		width:100%;
+		margin-top:20px;
+	}
+.popup-layer-info{
+	ul{
+		@include listUnstyled;
+		li{
+			display:block;
+		}
+	}
+}
 }
 
 

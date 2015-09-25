@@ -712,6 +712,11 @@ button.layer-search {
 .selectable-disabled {
   background: #dddddd; }
 
+.leaflet-container .btn-apply, .leaflet-container button.layer-search {
+  color: #ffffff;
+  margin-left: 0.4em;
+  margin-top: 2em; }
+
 .filter-breadcrumb {
   background: #8ba8c7;
   padding: 0.33333em;
@@ -886,6 +891,8 @@ input[type=checkbox].glyphicon {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis; }
+  .filter-col.single-col, .single-col.filter-col-parent, .single-col.filter-multilevel-col {
+    width: 100%; }
 
 .filter-col-parent {
   width: 545px;
@@ -1282,13 +1289,17 @@ ul.tabs {
   padding-left: 0; }
 
 .subactivities-container {
-  height: 240px; }
+  height: 240px;
+  margin-top: 15px; }
+  .subactivities-container h3 {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em; }
 
-.subactivities-list {
+.leaflet-popup-content-wrapper .panel-body .subactivities-list {
   overflow-y: scroll;
   height: 205px;
   width: 420px; }
-  .subactivities-list ul {
+  .leaflet-popup-content-wrapper .panel-body .subactivities-list ul {
     padding-left: 0;
     list-style: none;
     border-top: 1px solid #eee;
@@ -1309,6 +1320,14 @@ ul.tabs {
   overflow-y: auto;
   height: 240px;
   width: 420px; }
+  .indicator-tab-container h3.panel-title {
+    width: 100%;
+    margin-top: 20px; }
+  .indicator-tab-container .popup-layer-info ul {
+    padding-left: 0;
+    list-style: none; }
+    .indicator-tab-container .popup-layer-info ul li {
+      display: block; }
 
 .indicator-search .title {
   font-weight: bold;
@@ -1857,7 +1876,7 @@ ul.tabs {
     border: none;
     clear: both;
     display: block;
-    margin: 0 auto 0 -2px; }
+    margin: 0 auto 0 -1px; }
     .breaksOptions .input-group-addon i {
       width: 54px;
       margin-top: -3px; }
@@ -1950,6 +1969,9 @@ ul.funding-options {
 .save-map-trigger {
   display: inline; }
 
+.dialog-save-map {
+  z-index: 10005; }
+
 .modal-header {
   padding-bottom: 2.7em; }
   .modal-header .fa.fa-folder-open {
@@ -2002,7 +2024,8 @@ h4.modal-title {
 
 .blue-panel {
   background: #e1e8f0;
-  padding: 1.5em; }
+  padding: 1.5em;
+  overflow: hidden; }
 
 .plain-panel {
   padding: 20px; }
@@ -2138,12 +2161,10 @@ h4.modal-title {
     margin-top: -2px; }
 
 .export-selection-wrapper {
-  background: #ffffff;
-  padding-bottom: 2em;
-  margin-bottom: 1.5em;
-  border: 1px solid #eeeeee; }
+  margin-bottom: 1.5em; }
   .export-selection-wrapper .horizontal {
-    line-height: 13px; }
+    line-height: 13px;
+    padding-bottom: 0.5em; }
 
 .adjacent-buttons button {
   margin-left: 1em; }
