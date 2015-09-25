@@ -5,17 +5,21 @@ $grey:#454545;
 $grey-light: #8d8d8d;
 $green: #98ca68;
 $blue: #4d749f;
+$blue-dark: #234b77;
 $bgblue:#74a4d6;
 $white: #ffffff;
 $yellow: #e9ba00;
 $border-grey:#eeeeee;
+$border-grey-alt:#d1d1d1;
+$danger:#d9534f;
 
 $gutter: 1em;
 $base-font-family: 'Open Sans', sans-serif;
 $base-line-height: 110%;
 
-// callout color
-$danger:#d9534f;
+// fonts
+
+// dimensions
 
 //mixins
 @mixin bgLayout{background-color: rgba(0,0,0,0.7);}
