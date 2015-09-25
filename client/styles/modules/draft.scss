@@ -108,19 +108,16 @@
 	font-size: 9px;
 	position: absolute;
 	bottom: 90px;
-	left:0;
-	right:0;
-	margin-left:auto;
-	margin-right:auto;
+	right:300px;
 	width: 750px;
 	z-index: 100;
 
 	.sliderTooltip {
 		display: block;
-		color:#FFF;
+		color:$grey;
 		position: absolute;
 		font-size:9px;
-		background-color: #8D2F5D;
+		background-color: #d2e5ee;
 		border:1px solid #EEE;
 		border-radius: 3px;
 		top: -30px;
@@ -132,6 +129,10 @@
 	}
 	.noUi-value,.noUi-marker{
 		font-size: 10px;
+	}
+
+	.noUi-connect{
+		background:$green;
 	}
 
 }
