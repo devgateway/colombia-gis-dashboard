@@ -1,48 +1,38 @@
 .basemap-selector {
-  width: 485px;
   overflow: hidden;
-  background: #800;
+  width: 485px;
 }
+
 .basemap-option-selected {
-  cursor: pointer;
   color: $blue;
+  cursor: pointer;
 }
+
 .basemap-option {
   cursor: pointer;
 }
 
 .map-panel-header {
+  border-bottom: 1px solid $border-grey-alt;
   margin: 0 0 $gutter 0;
-  padding-bottom:$gutter/2;
-  border-bottom: 1px solid lighten( $grey, 55% );
   overflow: hidden;
+  padding-bottom:$gutter/2;
   width:98%;
 }
+
 .map-panel-label {
   @include textBold;
   @include textUppercase;
   font-size: 1.3rem;
 }
-// includes views and predefined maps
+
 .basemap-label {
   @extend .map-panel-label;
   @include floatLeft;
-  color: saturate(darken($blue, 16), 20);
+  color: $blue-dark;
   margin-right: $gutter;
 }
-.predefined-maps {
-  @extend .map-panel-label;
-  @include floatRight;
-  @include transitionColor;
-  a {
-    color: darken($green, 30%);
-    &:hover {
-      color: $green;
-    }
-  }
-}
-// end:predefined maps
-//start: basemap nav
+
 ul.basemap-list {
   @include floatLeft;
   @include listUnstyled;
@@ -53,17 +43,17 @@ ul.basemap-list {
   li {
     @include floatLeft;
     @include transitionColor;
+    border-right: 1px solid $black;
+    color: $black;
+    cursor: pointer;
+    font-size: 1.1rem;
+    height: 12px;
+    line-height: 85%;
     margin-right: $gutter;
     padding-right: $gutter;
-    border-right: 1px solid $black;
-    height: 12px;
-    font-size: 1.1rem;
-    line-height: 85%;
-    cursor: pointer;
-    color: $black;
 
     &:hover {
-      color: saturate($blue,35%);
+      color: $blue-dark;
     }
     &:last-child {
       border-right: none;
@@ -72,10 +62,9 @@ ul.basemap-list {
   a {
     color: $blue;
     @include transitionColor;
+
     &:hover {
       color: $blue;
     }
   }
-  // ends: a
 }
-// ends: ul

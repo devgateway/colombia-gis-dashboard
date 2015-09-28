@@ -97,6 +97,7 @@
 		"classificationScheme": "Classification Scheme",
 		"subactivitiesNumber": "Number of Subactivities",
 		"colorSelection": "Color Selection",
+		"clusterSize": "Size",
 		"colorPalettes": "Color Palettes",
 		"fundingPercent": "% Funding",
 		"advancePercent": "% of Advance",

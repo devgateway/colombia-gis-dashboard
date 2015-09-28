@@ -1,9 +1,9 @@
 .button-pane {
+  @include floatRight;
   overflow: hidden;
   padding-bottom: $gutter;
   padding-top: $gutter/2;
   padding-right: 2.8em;
-  @include floatRight;
 }
 .btn {
   cursor: pointer;
@@ -21,8 +21,8 @@
   &:hover,
   &.active,
   &.focus{
-    background-color: darken($green,20%);
-    border-color: darken($green,20%);
+    background-color: $green-dark;
+    border-color:$green-dark;
   }
 }
 .btn-apply,
@@ -34,9 +34,9 @@
   @include transitionAll;
   @include textBold;
   @include noOutline;
-  margin-left: 1em;
+  margin-left: $gutter;
   &:hover, &:focus {
-    background: darken($green,20%);
+    background: $green-dark;
     color: $white;
   }
 
@@ -54,8 +54,8 @@
   padding: 10px;
 }
 .m-scaled .m-active {
-  opacity: 1;
   box-shadow: none;
+  opacity: 1;
   z-index: 1;
 }
 .m-center {
@@ -66,49 +66,53 @@
   width: 570px;
   margin-left: -25px;
   .filter-label {
-    font-size: 0.9em;
     color: $grey;
+    font-size: 0.9em;
   }
   .filter-selectors {
     margin-top: 10px;
   }
   .filter-count {
-    margin-top: 5px;
     font-size:0.9em;
+    margin-top: 5px;
   }
 }
 .m-fade-out {
   -webkit-mask-image: none;
 }
 .m-scooch-controls {
+  cursor:pointer;
+  font-size: 40px;
   margin-left: -15px;
   position: absolute;
   top: 90px;
-  font-size: 40px;
   z-index:0;
-  cursor:pointer;
   @include transitionAll;
   &:hover {
-    text-decoration: none;
     color: $green;
+    text-decoration: none;
   }
   a {
     @include noOutline;
     text-decoration: none;
   }
+
   &.right{ right:-15px}
   &.left{ left:-8px}
 }
+
 .scooch-prev {
-  float: left;
+  @include floatLeft;
   z-index: 300;
 }
+
 .scooch-next {
-  float: right;
+  @include floatRight;
   z-index: 300;
 }
+
 .scooch-disabled {
-display:none;
+  display:none;
 }
 
 .btn-default{
@@ -121,7 +125,8 @@ display:none;
 
 .btn-default[disabled]{
   background: $green;
-  color: lighten($green,25%);
+  color: $green-disabled;
+
   &:hover{
     background: $green;
     color: $white;
@@ -131,9 +136,9 @@ display:none;
 // layer search button
 button.layer-search {
   @extend .btn-apply;
-  padding: 5px;
-  float: right;
+  @include floatRight;
   margin-left: 0;
+  padding: 5px;
 }
 // ???
 .marker {
@@ -157,24 +162,23 @@ button.layer-search {
 
 // find out where we are using this
 .selectable-radio{
-    border-radius: 0% !important;
-    background-clip:none;
-
+  @include floatLeft;
+  border-radius: 0% !important;
+  background-clip:none;
   font-size: 1.5em !important;
   width: 5px;
   height: 5px;
-  border: 1px solid #cccccc;
-  background: #ffffff;
-  float: left;
+  border: 1px solid $border-grey-alt;
+  background: $white;
   margin-right: 0.2em;
   margin-top: 1px;
   width:12px;
   height:12px;
   .fa{
+    @include floatLeft;
     font-size:0.7em;
     margin-left: 2px;
     margin-top: -2px;
-    float: left;
   }
 }
 .selectable{
@@ -182,7 +186,7 @@ button.layer-search {
 }
 .selectable-disabled{
   @extend .selectable-radio;
-  background: #dddddd;
+  background: $border-grey-alt;
 }
 // apply button in indicator popup
  .leaflet-container .btn-apply{

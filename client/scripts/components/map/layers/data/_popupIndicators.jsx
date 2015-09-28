@@ -8,38 +8,33 @@ var Loading = require('../../../commons/loading.jsx');
 var Mixins = require('./_popupMixins.js');
 var Table=require('react-bootstrap/lib/Table');
 var _ = require('lodash');
- 
+
 var DisaggregationsTab = React.createClass({
   render: function() {
     return (
       <div>
-        <h3 className="panel-title" ><Message message='map.popup.indicatorName'/></h3>
-        <br/>
-        <div className="">{_.find(this.props.data, {'key': 'IndicatorName'}).value[0].value}</div> 
-        <br/>
-        <div>       
-          <h3 className="panel-title" ><Message message='map.popup.indicatorDisaggregations'/></h3>   
-            <br/>     
-            <div>       
+        <h3 className="panel-title"><Message message='map.popup.indicatorName'/></h3>
+        <div className="">{_.find(this.props.data, {'key': 'IndicatorName'}).value[0].value}</div>
+        <div>
+          <h3 className="panel-title" ><Message message='map.popup.indicatorDisaggregations'/></h3>
+            <div className="popup-layer-info">
               <ul> {
                 _.find(this.props.data, {'key': 'IndicatorDisaggregation'}).value.map(function(node, index) {
-                  return <li>{node.id}: ({node.value})</li>          
+                  return <li>{node.id}: ({node.value})</li>
                 })
               } </ul>
             </div>
-        </div> 
-        <br/>
+        </div>
         <div>
-          <h3 className="panel-title" ><Message message='map.popup.otherDisaggregations'/></h3> 
-            <br/>
-            <div>       
+          <h3 className="panel-title" ><Message message='map.popup.otherDisaggregations'/></h3>
+          <div className="popup-layer-info">
               <ul> {
                 _.find(this.props.data, {'key': 'IndicatorOtherDisaggregation'}).value.map(function(node, index) {
-                  return <li>{node.id}: ({node.value})</li>          
+                  return <li>{node.id}: ({node.value})</li>
                 })
               } </ul>
             </div>
-        </div> 
+        </div>
       </div>
     );
   }
@@ -65,10 +60,10 @@ var YearsAdvanceTab = React.createClass({
                   <tr>
                     <td>{node.name}</td>
                     <td>{node.value}</td>
-                  </tr>   
-                  )    
+                  </tr>
+                  )
               })
-            }            
+            }
           </tbody>
         </Table>
         <div>
@@ -88,8 +83,8 @@ module.exports  = React.createClass({
 
   componentWillMount:function(){
     console.log('popup>componentWillMount');
-    this.setState({tabId: 0});    
-    this._getInfoData(this.props.id, this.props.level, this.props.filters, 'indicators'); 
+    this.setState({tabId: 0});
+    this._getInfoData(this.props.id, this.props.level, this.props.filters, 'indicators');
   },
 
   componentDidMount: function() {
@@ -98,12 +93,12 @@ module.exports  = React.createClass({
     this.setAttributeDisplay(".popup-nav-wrapper", "data-originalreactid", "inline");
   },
 
-  componentDidUpdate: function(props,newState) { 
-    console.log('popup>componentDidUpdate'); 
+  componentDidUpdate: function(props,newState) {
+    console.log('popup>componentDidUpdate');
     this.props.onChange();
     this.setAttributeDisplay(".popup-nav-wrapper", "data-originalreactid", "inline");
   },
-  
+
   componentWillReceiveProps: function(nextProps) {
     this._getInfoData(nextProps.id, nextProps.level, nextProps.filters, 'indicators');
   },
@@ -129,7 +124,7 @@ module.exports  = React.createClass({
         <div className="leaflet-popup-content">
           <div className="panel panel-default" >
             <div className="panel-heading popup-header" >
-              <h3 className="panel-title" >{this.props.NAME_1} 
+              <h3 className="panel-title" >{this.props.NAME_1}
               <If condition={this.props.NAME_2} >
                 - {this.props.NAME_2}
               </If>
@@ -147,7 +142,7 @@ module.exports  = React.createClass({
                     <a href="#" onClick={this.handleClick.bind(this, 1)}>
                       <span className="popup-icon subactivitiesList" title="Fiscal Years Advance"></span>
                     </a>
-                  </li>                
+                  </li>
                 </ul>
               </nav>
             </div>

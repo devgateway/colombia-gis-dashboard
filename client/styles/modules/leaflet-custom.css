@@ -117,12 +117,19 @@
 .popup-nav-wrapper ul.tabs.nav.nav-tabs {
   border-bottom: none;
 }
-.leaflet-popup-close-button {
+.leaflet-container a.leaflet-popup-close-button {
   font-size: 1.5em;
-  width: 28px;
-  height: 10px;
   float: right;
-  margin-right: 5px;
+  margin-right: 8px;
+  margin-top:6px;
+  font-family: FontAwesome;
+  visibility:hidden;
+}
+.leaflet-container a.leaflet-popup-close-button:before{
+  font-family: FontAwesome;
+  content: "\f05c";
+  color: #98ca68;
+  visibility:visible;
 }
 .leaflet-popup-close-button:hover {
   color: #5ca4e7;

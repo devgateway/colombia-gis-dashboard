@@ -3,7 +3,7 @@
   background: lighten($blue,20%);
   padding: $gutter/3;
   color: $white;
-  font-size: 1.3rem;
+  font-size: $text-small;
   @include textBold;
   @include transitionAll;
   &:hover {

@@ -2,12 +2,19 @@
 // there were issues overriding the default leaflet css filew with sass
 
 .subactivities-container {
-	height: 240px;
+	height: 300px;
+	margin-top:15px;
+
+	h3{
+		margin-top:$gutter/2;
+		margin-bottom:$gutter/2;
+	}
 }
 .leaflet-popup-content-wrapper .panel-body .subactivities-list{
 	overflow-y: scroll;
-	height: 205px;
+	height: 200px;
 	width: 420px;
+
 	ul{
 		@include listUnstyled;
 		border-top:1px solid #eee;
@@ -25,13 +32,38 @@
 	font-size:14px;
 	margin-top:10px;
 }
+
+.dialog-national-subactivities{
+	.sub-activities-title{
+		margin-left:10px;
+	}
+}
 .indicator-tab-container {
 	overflow-y: auto;
 	height: 240px;
 	width: 420px;
+	h3.panel-title{
+		width:100%;
+		margin-top:20px;
+	}
+.popup-layer-info{
+	ul{
+		@include listUnstyled;
+		li{
+			display:block;
+		}
+	}
+}
 }
 
-
+.subactivities-list{
+	height:300px;
+	overflow-y:scroll;
+	margin-top: $gutter/2;
+	ul{
+		@include listUnstyled;
+	}
+}
 // indicator search popup
 
 .indicator-search{
