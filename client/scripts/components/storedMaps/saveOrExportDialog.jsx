@@ -1,3 +1,4 @@
+'use strict';
 var React = require('react/addons');
 var Modal=require('react-bootstrap/lib/Modal');
 var Input=require('react-bootstrap/lib/Input');
@@ -29,29 +30,26 @@ module.exports = React.createClass({
 
 	render:function() {
 		var showModal=this.state.showModal || false;
-		/*if (!showModal){
-			return null;
-		}*/
-		console.log("exportDialog -> showModal:" + showModal);
+		console.log('exportDialog -> showModal:' + showModal);
 		return (
-			<div className="save-map-trigger">
+			<div className='save-map-trigger'>
 			<Modal animation={false} className='dialog-save-map' {...this.props} bsSize='large' aria-labelledby='contained-modal-title-lg'
 			 show={showModal} onHide={this._onClose}>
 				<Modal.Header>
 					<Modal.Title>
-						<i className="fa fa-folder-open"></i><Message message='savemap.savemaplabel'/>
+						<i className='fa fa-folder-open'></i><Message message='savemap.savemaplabel'/>
 					</Modal.Title>
-					<a className="close-dialog" href="#" onClick={this._onClose}>
-					<i className="fa fa-times-circle-o"></i></a>
+					<a className='close-dialog' href='#' onClick={this._onClose}>
+					<i className='fa fa-times-circle-o'></i></a>
 				</Modal.Header>
 				<Modal.Body>
-					<div className="export-activity-nav">
-						<TabbedArea ref="tabbedArea" className="activities" defaultActiveKey={1}>
-							<TabPane key={1} eventKey={1} tab={<Message message="savemap.savemaptab"/>} >
+					<div className='export-activity-nav'>
+						<TabbedArea ref='tabbedArea' className='activities' defaultActiveKey={1}>
+							<TabPane key={1} eventKey={1} tab={<Message message='savemap.savemaptab'/>} >
 								<SaveTab onClose={this._onClose}/>
 							</TabPane>
 							{!(this.state.id)?
-								<TabPane key={2} eventKey={2} tab={<Message message="savemap.exportmaptab"/>}>
+								<TabPane key={2} eventKey={2} tab={<Message message='savemap.exportmaptab'/>}>
 									<ExportTab layersVisible={this.state.layersVisible} onClose={this._onClose}/>
 								</TabPane>
 							: null}
@@ -62,6 +60,6 @@ module.exports = React.createClass({
 				</Modal.Footer>
 			</Modal>
 			</div>
-			);
-		}
+		);
+	}
 });

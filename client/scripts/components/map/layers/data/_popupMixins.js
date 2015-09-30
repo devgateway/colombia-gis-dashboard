@@ -1,3 +1,4 @@
+'use strict';
 var _ = require('lodash');
 
 var PointsActions=require('../../../../actions/infoWindowActions.js');
@@ -9,22 +10,22 @@ var HighCharts = require('highcharts-browserify');
 module.exports = {
 
   _getInfoData: function (id, level, filters, type) {
-    var param = level? level.substring(0,2) : "de";
-    var infoWindow = [{"param":param,"values":[id]}];
+    var param = level? level.substring(0,2) : 'de';
+    var infoWindow = [{'param':param,'values':[id]}];
     var data;
     debugger;
     switch(type) {
-      case "points":
+      case 'points':
         data = PointsActions.getPointsFromAPI(infoWindow, filters) || [];
         break;
-      case "shapes":
+      case 'shapes':
         data = ShapesActions.getShapesFromAPI(infoWindow, filters) || [];
         break;
-      case "indicators":
+      case 'indicators':
         var filtersClone = _.clone(filters);
-        if (param=="de"){
-          _.assign(filtersClone, {'departments': [id], "municipalities":[]});
-        } else if (param=="mu") {
+        if (param==='de'){
+          _.assign(filtersClone, {'departments': [id], 'municipalities':[]});
+        } else if (param==='mu') {
           _.assign(filtersClone, {'municipalities': [id], 'departments': []});
         }
         data = IndicatorsActions.getInfoFromAPI(infoWindow, filtersClone) || [];
@@ -49,7 +50,7 @@ module.exports = {
         titleArray.push(i18n.t('map.popup.funding') +  this.props.fundingUS.toFixed(2));
     } else if (this.state.infoWindow){
       this.state.infoWindow.map(function(node, index) {
-        titleArray.push(i18n.t("map.popup."+node.key));
+        titleArray.push(i18n.t('map.popup.'+node.key));
       });
     }
     return titleArray;
@@ -60,7 +61,7 @@ module.exports = {
         if(index.getAttribute(attr)){
           index.style.display=display;
         }
-      })
+      });
   },
 
   _renderChart: function() {
@@ -97,11 +98,11 @@ module.exports = {
               type: 'pie',
             },
             title: {
-              align: "left",
+              align: 'left',
               text: titleArray[tabId],
               style: { 
-                "color": "#4278AA", 
-                "fontSize": "14px" 
+                'color': '#4278AA', 
+                'fontSize': '14px' 
               }
             },
             tooltip: {
@@ -109,7 +110,7 @@ module.exports = {
             },
             plotOptions: {
               pie: {
-                  innerSize: "70%",
+                  innerSize: '70%',
                   name: 'Cantidad total',
                   animation: false,
                   dataLabels: {
@@ -136,7 +137,7 @@ module.exports = {
       }
 
     }
-    this.setAttributeDisplay(".popup-nav-wrapper", "data-originalreactid", "inline");
+    this.setAttributeDisplay('.popup-nav-wrapper', 'data-originalreactid', 'inline');
   },
 
-}
+};

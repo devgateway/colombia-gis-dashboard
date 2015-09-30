@@ -1,3 +1,4 @@
+'use strict';
 var React = require('react/addons');
 var Modal=require('react-bootstrap/lib/Modal');
 var Input=require('react-bootstrap/lib/Input');
@@ -14,21 +15,19 @@ var Tags= React.createClass({
 	},
 
 	render:function() {
-		return (<Input ref="tags"
-			className="form-control taginput"
-			type="text" maxLength="80"
-			defaultValue={this.props.value} onBlur={this._update} />)
+		return (
+			<Input ref='tags'
+			className='form-control taginput'
+			type='text' maxLength='80'
+			defaultValue={this.props.value} onBlur={this._update} />
+		);
 	}
-
-})
+});
 
 
 module.exports = React.createClass({
 
 	mixins: [Reflux.connect(Store)],
-
-	componentDidMount : function(){
-    },
 
 	save:function(){
 		this.props.onClose();
@@ -40,7 +39,7 @@ module.exports = React.createClass({
 	},
 
 	getInitialState:function(){
-		return {title:'', description:''}
+		return {'title':'', 'description':''};
 	},
 
 	_updateTags:function(tags){
@@ -64,27 +63,27 @@ module.exports = React.createClass({
 	render:function() {
 		var errorArray = this.state.errorMsg?this.state.errorMsg.split(','):null;
 		return (
-			<div className="">
-				<div className="">
-					<Input name="title"
-						type="text"
-						className="form-control title"
+			<div>
+				<div>
+					<Input name='title'
+						type='text'
+						className='form-control title'
 						onChange={this._updateTitle}
 						placeholder={i18n.t('savemap.savemaptitle')}
-						value={this.state.map.title} maxLength="100" addonAfter='*'/>
-					<Input type='textarea' name="description"
+						value={this.state.map.title} maxLength='100' addonAfter='*'/>
+					<Input type='textarea' name='description'
 						onChange={this._updateDescription}
-						className="form-control description"
-						rows="3"
+						className='form-control description'
+						rows='3'
 						placeholder={i18n.t('savemap.savemapdescription')}
-						value={this.state.map.description} maxLength="300" addonAfter='*' />
+						value={this.state.map.description} maxLength='300' addonAfter='*' />
 				</div>
 
-				<div className="">
-					<h4 className="modal-title"><Message message='savemap.savemaptags'/></h4>
+				<div>
+					<h4 className='modal-title'><Message message='savemap.savemaptags'/></h4>
 					<Tags onUpdate={this._updateTags} value={this.state.map.tags}/>
 				</div>
-				<div className="required"><Message message='savemap.mandatoryFields'/>
+				<div className='required'><Message message='savemap.mandatoryFields'/>
 					{
 						_.map(errorArray, function(e){
 							return (<Message message={e}/>)
@@ -92,9 +91,9 @@ module.exports = React.createClass({
 					}
 				</div>
 
-				<div className="adjacent-buttons">
-					<Button className="btn btn-apply pull-right" onClick={this.save.bind(this)}>{i18n.t('savemap.savebutton')}</Button>
-					<Button  className="pull-right" onClick={this.props.onClose.bind(this)}>{i18n.t('savemap.closebutton')}</Button>
+				<div className='adjacent-buttons'>
+					<Button className='btn btn-apply pull-right' onClick={this.save.bind(this)}>{i18n.t('savemap.savebutton')}</Button>
+					<Button  className='pull-right' onClick={this.props.onClose.bind(this)}>{i18n.t('savemap.closebutton')}</Button>
 				</div>
 			</div>
 			);

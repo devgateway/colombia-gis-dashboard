@@ -22,11 +22,11 @@ module.exports = Reflux.createStore({
 
   _handleArcgisLayersUpdate: function(data) {
     
-    if (data.latestChange && data.latestChange.property == "addLayer") {
-      this._addNewLegend(data.latestChange.value)
-    } else if (data.latestChange && data.latestChange.property == "deleteLayer") {
+    if (data.latestChange && data.latestChange.property === 'addLayer') {
+      this._addNewLegend(data.latestChange.value);
+    } else if (data.latestChange && data.latestChange.property === 'deleteLayer') {
       this._removeLegend(data.latestChange.value);
-    } else if (data.latestChange && data.latestChange.property == "visible") {
+    } else if (data.latestChange && data.latestChange.property === 'visible') {
       this._setLegendVisibility(data.latestChange.value.id, data.latestChange.value.visible);
     }
 
@@ -37,9 +37,10 @@ module.exports = Reflux.createStore({
       'id': layer.id
     });
     if (!layerLegends) {
-      if (layer.type == 'Feature Service') {
+      var url = '';
+      if (layer.type === 'Feature Service') {
         for (var i = 0; i < layer.layer.layers.length; i++) {
-          var url = layer.url + "/" + i + "?f=json";
+          url = layer.url + '/' + i + '?f=json';
           API.findLegends(url).then(
             function(legends) {
               LegendActions.getLegends.completed(legends, layer);
@@ -48,7 +49,7 @@ module.exports = Reflux.createStore({
           });
         }
       } else {
-        var url = layer.url + "/legend?&f=json";
+        url = layer.url + '/legend?&f=json';
         API.findLegends(url).then(
           function(legends) {
             LegendActions.getLegends.completed(legends, layer);
@@ -75,20 +76,20 @@ module.exports = Reflux.createStore({
         'id': layer.id,
         'layerTitle': layer.title,
         'visible': true,
-        "legendGroups": []
+        'legendGroups': []
       };
     }
-    if (layer.type == 'Feature Service') {
+    if (layer.type === 'Feature Service') {
       var legendGroup = {};
       var subLayerLegend = _.find(layerLegends.legendGroups, {
         'layerName': legends.name
       });
       if (!subLayerLegend) {
         _.assign(legendGroup, {
-          "layerName": legends.name
+          'layerName': legends.name
         });
         _.assign(legendGroup, {
-          "legends": API.parseLegendsFromDrawInfo(legends)
+          'legends': API.parseLegendsFromDrawInfo(legends)
         });
         layerLegends.legendGroups.push(legendGroup);
         if (isNewLegend) {
@@ -99,10 +100,10 @@ module.exports = Reflux.createStore({
       legends.layers.map(function(layer) {
         var legendGroup = {};
         _.assign(legendGroup, {
-          "layerName": layer.layerName
+          'layerName': layer.layerName
         });
         _.assign(legendGroup, {
-          "legends": layer.legend
+          'legends': layer.legend
         });
         layerLegends.legendGroups.push(legendGroup);
       });
@@ -119,7 +120,7 @@ module.exports = Reflux.createStore({
   },
 
   _removeLegend: function(legendId) {
-    var index = _.indexOf(_.pluck(this.state.layersLegends, 'id'), legendId);;
+    var index = _.indexOf(_.pluck(this.state.layersLegends, 'id'), legendId);
     if (index >= 0) {
       this.state.layersLegends.splice(index, 1);
       this.trigger(this.state);

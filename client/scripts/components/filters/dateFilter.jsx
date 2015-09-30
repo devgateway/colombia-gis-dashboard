@@ -19,33 +19,28 @@ var DateFilter = React.createClass({
     },
 
     _setStartDate: function(date){
-        //this.setState({'startDate': date});
         this.actions.updateItemValue('sd', date);
         if (!this.state.ed && date!=''){
             var d = $.datepicker.parseDate(DateFormat, date);
             d.setFullYear(d.getFullYear() + 1);
-            var dFormated = $.datepicker.formatDate(DateFormat,d)
-            //this.setState({'endDate': dFormated});
+            var dFormated = $.datepicker.formatDate(DateFormat,d);
             this.actions.updateItemValue('ed', dFormated);
         }
     },    
 
     _setEndDate: function(date){
-        //this.setState({'endDate': date});
         this.actions.updateItemValue('ed', date);
         if (!this.state.sd && date!=''){
             var d = $.datepicker.parseDate(DateFormat, date);
             d.setFullYear(d.getFullYear() - 1);
-            var dFormated = $.datepicker.formatDate(DateFormat,d)
-            //this.setState({'startDate': dFormated});
+            var dFormated = $.datepicker.formatDate(DateFormat,d);
             this.actions.updateItemValue('sd', dFormated);
         }
     },
 
     _clearDates: function(){
-        //this.setState({'endDate': '', 'startDate': ''});
-        this.actions.updateItemValue('sd', "");
-        this.actions.updateItemValue('ed', "");
+        this.actions.updateItemValue('sd', '');
+        this.actions.updateItemValue('ed', '');
     },    
 
     componentDidMount: function(){
@@ -68,22 +63,22 @@ var DateFilter = React.createClass({
         console.log('DateFilter -> render');
         if (this.props.active){
             return(
-                <div className="tab-content">
-                    <div className="tab-pane fade active in">
-                        <div className="filter-group-panel selected">
-                            <div className="filter-group-panel-header">
-                                <span className="filter-label" role="label"><Message message='filters.subActivitiesBetween'/></span>                                                                
+                <div className='tab-content'>
+                    <div className='tab-pane fade active in'>
+                        <div className='filter-group-panel selected'>
+                            <div className='filter-group-panel-header'>
+                                <span className='filter-label' role='label'><Message message='filters.subActivitiesBetween'/></span>                                                                
                             </div>
-                            <div className="input-group date">
-                                <span className="filter-label" role="label"><Message message='filters.startDate'/></span>
+                            <div className='input-group date'>
+                                <span className='filter-label' role='label'><Message message='filters.startDate'/></span>
                                 <DatePicker dateFormat={DateFormat} maxDate={this.state.ed} defaultDate={this.state.sd} onChange={this._setStartDate}/>
                             </div>
-                            <div className="input-group date">
-                                <span className="filter-label" role="label"><Message message='filters.endDate'/></span>
+                            <div className='input-group date'>
+                                <span className='filter-label' role='label'><Message message='filters.endDate'/></span>
                                 <DatePicker dateFormat={DateFormat} minDate={this.state.sd} defaultDate={this.state.ed} onChange={this._setEndDate}/>
                             </div>
-                            <div className="input-group date">
-                                <button type="button" className="btn btn-apply clear-dates" role="button" onClick={this._clearDates}><Message message="filters.clearDates"/></button>    
+                            <div className='input-group date'>
+                                <button type='button' className='btn btn-apply clear-dates' role='button' onClick={this._clearDates}><Message message='filters.clearDates'/></button>    
                             </div>
                         </div>
                     </div>

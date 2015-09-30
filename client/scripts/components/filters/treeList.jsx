@@ -1,4 +1,4 @@
-/*Tree list*/
+'use strict';
 
 var React = require('react');
 var PureRenderMixin = require('react/addons').addons.PureRenderMixin;
@@ -25,7 +25,6 @@ var TreeView =  React.createClass({
 
   _onToggle:function(){
     if (this.state.expanded){
-      //this.setState(_.assign(this.state,{expanded: false})); 
       this.props.itemExpanded(-1); 
     } else {
       this.props.itemExpanded(this.props.index);
@@ -50,9 +49,8 @@ var TreeView =  React.createClass({
   },
 
   render: function() {
-    //console.log("render location -> "+this.props.name);
     return ( 
-      <div className="item-container">
+      <div className='item-container'>
         <Item {...this.props} 
           showOnlySelected={this.props.showOnlySelected}
           onItemChange={this._onItemChange} 
@@ -61,7 +59,7 @@ var TreeView =  React.createClass({
           childrenTotal={this.props.nested? this.props.nested.length : 0}
           childrenSelected={this.props.nested? this._getNestedSelected().length : 0}/>
           {(this.props.nested && this.state.expanded)? 
-            <ul className="filter-list tabbed">
+            <ul className='filter-list tabbed'>
             {
               this.props.nested.map(function(item) {   
                   return (<li><TreeView {...item} showOnlySelected={this.props.showOnlySelected} onItemChange={this.props.onItemChange} expanded={false}/></li>)            
@@ -85,7 +83,7 @@ module.exports = React.createClass({
   },
   
   componentDidUpdate: function() {
-    $(this.getDOMNode()).find('.filter-list-container').mCustomScrollbar({theme:"inset-dark"});
+    $(this.getDOMNode()).find('.filter-list-container').mCustomScrollbar({theme:'inset-dark'});
     var lowestLevel = this.state[this.state.lowestLevel];
     var lowerLevelCounterSelected =  0;
     var lowerLevelCounterTotal = 0;
@@ -104,34 +102,34 @@ module.exports = React.createClass({
 
   render: function() {
     var items = this.state.itemsTree || [];    
-    var noResults = "";
+    var noResults = '';
     if (this.state.noResults){
-      noResults = <div className="filter-no-results">
-                    <br/>{<Message message="filters.noResults"/>}
+      noResults = <div className='filter-no-results'>
+                    <br/>{<Message message='filters.noResults'/>}
                 </div>
     }
     if (this.props.active){
       return ( 
-        <div className="tab-content">
-          <div className="tab-pane fade active in">
-            <div className="filter-group-panel selected">
+        <div className='tab-content'>
+          <div className='tab-pane fade active in'>
+            <div className='filter-group-panel selected'>
               
-              <div className="filter-group-panel-header">
-                <span className="filter-label" role="label">{<Message message={this.props.label}/>}</span>
-                <div className="show-selected">
+              <div className='filter-group-panel-header'>
+                <span className='filter-label' role='label'>{<Message message={this.props.label}/>}</span>
+                <div className='show-selected'>
                   <span><CustomCheckbox onChange={this._onShowSelectedClicked}/></span>
-                  <span><Message message="filters.showOnlySelected"/></span>                                    
+                  <span><Message message='filters.showOnlySelected'/></span>                                    
                 </div>                
                 <SelectAllNone onSelectAll={this._onSelectAll} onSelectNone={this._onSelectNone}/>
               </div>
               <KeywordSearch onSearch={this._onSearch} onSearchEnterKey={this._onSearchEnterKey}/>
               {noResults}
-              <div className="filter-list-container">
+              <div className='filter-list-container'>
               {
                 items.map(function(item, index) { 
                   var exp = this.state.itemExpanded==index? true : false;
                   if (this.state.itemExpanded==index){
-                    console.log("itemExpanded -> "+this.state.itemExpanded);
+                    console.log('itemExpanded -> '+this.state.itemExpanded);
                   }                    
                   return (
                     <TreeView {...item} 

@@ -17,9 +17,9 @@ module.exports = {
 		var callback = function() {
 			this._initialized = true;
 			this._restore(savedData);
-		}.bind(this)
+		}.bind(this);
 		if (!this._initialized) {
-			this._loadDataList(this.state.levels, callback)
+			this._loadDataList(this.state.levels, callback);
 		} else {
 			callback();
 		}
@@ -43,14 +43,14 @@ module.exports = {
 
 	},
 	_setSavedValues: function(level, param, values) {
-		if (level.levelParam == param) {
+		if (level.levelParam === param) {
 			_.forEach(values, function(value) {
 				_.assign(_.find(this.state[param], function(i) {
-					return i.id == value
+					return i.id == value;
 				}), {
 					'selected': true
 				});
-			}.bind(this))
+			}.bind(this));
 		} else if (level.child) {
 			this._setSavedValues(level.child, param, values);
 		}
@@ -68,7 +68,7 @@ module.exports = {
 
 	onUpdateAllSelection: function(selected) {
 		for (var key in this.state) {
-			if (key != "itemsTree") {
+			if (key !== 'itemsTree') {
 				_.forEach(this.state[key], function(item) {
 					_.assign(item, {
 						'selected': selected
@@ -80,7 +80,7 @@ module.exports = {
 	},
 
 	onFilterByKeyword: function(keyword) {
-		console.log("TreeMixin -> onFilterByKeyword: " + keyword);
+		console.log('TreeMixin -> onFilterByKeyword: ' + keyword);
 		this.update({
 			'keyword': keyword
 		});
@@ -89,7 +89,7 @@ module.exports = {
 
 	_capitalize: function(items) {
 		return _.map(items, function(i) {
-			i.label = this._capitalizeStr(i.name)
+			i.label = this._capitalizeStr(i.name);
 			return i;
 		}.bind(this));
 	},
@@ -108,7 +108,7 @@ module.exports = {
 					'level': level.levelParam
 				}); //assign level to each item
 				_.assign(item, {
-					'cid': item.id + "#" + item[level.parentIdField]
+					'cid': item.id + '#' + item[level.parentIdField]
 				}); //create a complex id (cid) for duplicated items with different parents
 			});
 			var stateList = {};
@@ -140,7 +140,7 @@ module.exports = {
 			}.bind(this));
 		}
 		if (_.filter(itemsTree, function(it) {
-				return !it.hide
+				return !it.hide;
 			}).length == 0) {
 			this.update({
 				'itemsTree': itemsTree,
@@ -167,7 +167,7 @@ module.exports = {
 		_.forEach(parentList, function(parent) {
 			var item = _.clone(parent);
 			var children = _.clone(_.filter(childrenList, function(child) {
-				return child[parentIdField] == parent.id
+				return child[parentIdField] == parent.id;
 			}), true);
 			_.assign(item, {
 				'nested': children
@@ -179,7 +179,7 @@ module.exports = {
 
 	_updateChildSelection: function(item, selected) {
 		_.assign(_.find(this.state[item.level], function(e) {
-			return e.cid == item.cid
+			return e.cid == item.cid;
 		}), {
 			'selected': selected
 		});
@@ -193,7 +193,7 @@ module.exports = {
 	_itemMatchs: function(item, keyword) {
 		if (keyword.length > 1) {
 			var pattern = new RegExp(keyword, 'i');
-			return pattern.test(item.name)
+			return pattern.test(item.name);
 		} else {
 			return true;
 		}
@@ -240,4 +240,4 @@ module.exports = {
 			this.trigger(this.state);
 		}
 	}
-}
+};

@@ -1,3 +1,4 @@
+'use strict';
 
 var DateStore = require('../stores/filters/dateStore.js');
 var ValueRangeStore = require('../stores/filters/valueRangeStore.js');

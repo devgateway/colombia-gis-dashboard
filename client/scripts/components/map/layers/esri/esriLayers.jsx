@@ -3,8 +3,8 @@
 var React = require('react');
 var Reflux = require('reflux');
 
-var ArcgisLayerStore = require('../../../../stores/arcgisLayerStore.js')
-var ArcgisLayerActions = require('../../../../actions/arcgisLayersActions.js')
+var ArcgisLayerStore = require('../../../../stores/arcgisLayerStore.js');
+var ArcgisLayerActions = require('../../../../actions/arcgisLayersActions.js');
 
 var FeatureLayerClass = L.esri.featureLayer;
 var MapSeverClass = L.esri.dynamicMapLayer;
@@ -15,7 +15,7 @@ var API = require('../../../../api/esri.js');
 var _ = require('lodash');
 
 function writeLog(message){
-  console.log('Map>esriLayers: '+message)
+  console.log('Map>esriLayers: '+message);
 }
 /*
   This reads the layer store metadata, creates the leaflet layers based on the stored data add them to the map and keep the leaflet 
@@ -24,11 +24,7 @@ function writeLog(message){
   */
   module.exports = React.createClass({
 
-  //mixins: [Reflux.connect(ArcgisLayerStore, 'arcgis')],
-
-  mixins: [Reflux.listenTo(ArcgisLayerStore, "_onStatusChange")],
-
-
+  mixins: [Reflux.listenTo(ArcgisLayerStore, '_onStatusChange')],
 
   _onStatusChange: function(status) {
     console.log('map->esriLayers>_onStatusChange'); 
@@ -87,18 +83,18 @@ function writeLog(message){
       }
     });
     newLayers.map(function(l) {
-      if (l.type === "Feature Service") {
+      if (l.type === 'Feature Service') {
         this._createFeatureService(l);
       } else {
         var layerClass;
-        if (l.type === "Map Service") {
+        if (l.type === 'Map Service') {
           if (l.layer.singleFusedMapCache) {
             layerClass = TiledMapServerClass;
           } else {
             layerClass = MapSeverClass;
           }
         }
-        if (l.type === "Image Service") {
+        if (l.type === 'Image Service') {
           layerClass = TiledMapServerClass;
         }
         this._createLayer(layerClass, l);
@@ -153,7 +149,7 @@ function writeLog(message){
     if (nextState.layers.length > self.state.layers.length) {
       self._loadLayers(nextState.layers);
     } else {
-      self._updateLayers(nextState.layers)
+      self._updateLayers(nextState.layers);
     }
   },
 
@@ -164,7 +160,7 @@ function writeLog(message){
     self.state.layers.map(function(l){
       var layerToCheck = _.findWhere(nextState.layers, {id: l.id});
       if(!layerToCheck){
-        if(l.type=='Feature Service'){
+        if(l.type==='Feature Service'){
           _.map(_.keys(self.state.leafletLayers), function(k){
             console.log('k:' + k); 
             console.log('l.id:' + l.id);       
@@ -186,7 +182,7 @@ function writeLog(message){
 
    layers.map(function(l) {
 
-    if(l.type=='Feature Service'){
+    if(l.type==='Feature Service'){
       _.map(l.layer.layers,function(featureLayer){
        var index=featureLayer.id.toString();
               var leafletLayer = this.state.leafletLayers[l.id+'-'+index]; ///find layer by metadata id 
@@ -196,36 +192,30 @@ function writeLog(message){
                   feature.setOpacity(featureLayer.opacity);
                   if (featureLayer.visible){
                     feature.show();
-                  }else{
+                  } else {
                     feature.hide();
                   }
-                }catch(error){
+                } catch (error){
                   console.log('error');
                 }
               })
 
             }.bind(this));   
-
-
-
-    }else{
-
-    var leafletLayer = this.state.leafletLayers[l.id]; ///find layer by metadata id 
-
-    if (!leafletLayer) {
-      return;
-    }
-        //set leaflet layers properties from metadata values 
-        leafletLayer.setOpacity(l.opacity);
-        leafletLayer.setZIndex(l.zIndex + 1 * 3000);
-        leafletLayer._update();
+    } else {
+      var leafletLayer = this.state.leafletLayers[l.id]; ///find layer by metadata id 
+      if (!leafletLayer) {
+        return;
+      }
+      //set leaflet layers properties from metadata values 
+      leafletLayer.setOpacity(l.opacity);
+      leafletLayer.setZIndex(l.zIndex + 1 * 3000);
+      leafletLayer._update();
       if (l.visible) { //check if metadata is visible 
         this._addLayer(leafletLayer);
       } else {
         this._removeLayer(leafletLayer);
       }
     }
-
   }.bind(this));
 },
 
@@ -252,7 +242,6 @@ componentDidMount: function() {
     .on('changeorder', this._onLayerChange, this);
   },
 
-
   _addLayer: function(layer) {
     writeLog('_addLayer');
     var map = this._getMap();
@@ -274,7 +263,7 @@ componentDidMount: function() {
   _onLayerChange: function(e) {
     console.log('Layer Changed');
 
-    var layers = _.values(this.state.leafletLayers)
+    var layers = _.values(this.state.leafletLayers);
     
     var obj = _.find(layers, function(l) {
       return L.stamp(l) == L.stamp(e.layer)

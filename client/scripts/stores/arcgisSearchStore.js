@@ -14,13 +14,13 @@ var storedState;
 function flagToTrue(obj,flag){
 	if(obj){
 		obj[flag]=true;
-		return obj
+		return obj;
 	}
 }
 function flagToFalse(obj,flag){
 	if(obj){
 		obj[flag]=false;
-		return obj
+		return obj;
 	}
 }
 
@@ -40,7 +40,7 @@ module.exports = Reflux.createStore({
 		if (data){
 			if(options.append){
 				_.assign(data,{'results':this.appendSearchResults(data.results)});
-			};
+			}
 			this.update({'search':data});
 		}
 	},

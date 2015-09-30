@@ -3,10 +3,10 @@
 var Reflux = require('reflux');
 
 var names=[
-	"add","remove","load","clean",
-	"updateItemSelection","updateAllSelection",
-	"filterByKeyword","selectFilteredByKeyword",
-	"updateItemValue"];
+	'add','remove','load','clean',
+	'updateItemSelection','updateAllSelection',
+	'filterByKeyword','selectFilteredByKeyword',
+	'updateItemValue'];
 
 module.exports = {
 	ClassificationType: Reflux.createActions(names),

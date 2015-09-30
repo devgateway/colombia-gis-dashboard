@@ -1,4 +1,4 @@
-/*http://facebook.github.io/react/docs/component-specs.html*/
+'use strict';
 var React = require('react');
 var Reflux = require('reflux');
 
@@ -52,8 +52,8 @@ module.exports = React.createClass({
 
   _onChangeCounter: function(param, selected, total) {
     var counters = _.clone(this.state.counters);
-    counters[param] = {"selected": selected, "total": total};
-    this.setState({"counters": counters});
+    counters[param] = {'selected': selected, 'total': total};
+    this.setState({'counters': counters});
   },
 
   getInitialState: function() {
@@ -68,28 +68,28 @@ module.exports = React.createClass({
   var filters = _.sortBy(FilterMap.filters, 'order');
   var idx = 1;
   return(
-    <div className="activity-nav">
-      <div className="tab-pane "> 
-        <div className="activity-nav">
-          <nav className="activities" >
-            <ul className="activities nav nav-tabs">
+    <div className='activity-nav'>
+      <div className='tab-pane '> 
+        <div className='activity-nav'>
+          <nav className='activities' >
+            <ul className='activities nav nav-tabs'>
               {
                 _.filter(filters,function(it){return (it.modes.indexOf(this.state.mode) > -1)}.bind(this)).map(function(def){
                   return (
                     <li onClick={this._onActivateFilter.bind(null,def.index)} className={(this.state.activeIndex==def.index)?'active':''}>
-                      <a href="#">
+                      <a href='#'>
                         <Message message={def.label}/>
                         {def.param?
-                          this.state.counters[def.param]? " ("+this.state.counters[def.param].selected+"/"+this.state.counters[def.param].total+")" : ""
-                        : ""}
+                          this.state.counters[def.param]? ' ('+this.state.counters[def.param].selected+'/'+this.state.counters[def.param].total+')' : ''
+                        : ''}
                       </a>                    
                     </li>
                     )
                 }.bind(this))
               }
               <li>
-                <div className="filters-more" onClick={this.state.mode=="basic"? this._turnAdvancedOn : this._turnBasicOn}>
-                  {this.state.mode=="basic"? <Message message="filters.moreFilters"/> : <Message message="filters.lessFilters"/>}
+                <div className='filters-more' onClick={this.state.mode=='basic'? this._turnAdvancedOn : this._turnBasicOn}>
+                  {this.state.mode=='basic'? <Message message='filters.moreFilters'/> : <Message message='filters.lessFilters'/>}
                 </div>
               </li>
             </ul> 
@@ -103,9 +103,9 @@ module.exports = React.createClass({
           </div>
         </div>
       </div>
-      <div className="button-pane">
-        <button type="button" className="btn btn-apply" role="button" onClick={this._resetFilter}><Message message="filters.reset"/></button>
-        <button type="button" className="btn btn-apply space-left" role="button" onClick={this._applyFilter}><Message message="filters.apply"/></button>
+      <div className='button-pane'>
+        <button type='button' className='btn btn-apply' role='button' onClick={this._resetFilter}><Message message='filters.reset'/></button>
+        <button type='button' className='btn btn-apply space-left' role='button' onClick={this._applyFilter}><Message message='filters.apply'/></button>
       </div>
     </div>
     );

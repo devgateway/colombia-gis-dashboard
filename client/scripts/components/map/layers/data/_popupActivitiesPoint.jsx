@@ -15,11 +15,11 @@ var MyActivities = React.createClass({
     }
     var link;
     if(this.props.externalFile){
-      this.props.externalFile.map(function(l){link=l.value})
+      this.props.externalFile.map(function(l){link=l.value});
     }
     return (
       <div>
-        <div className="subactivities-list">
+        <div className='subactivities-list'>
         <Message message='map.popup.programList'/>: {items.length}
         <ul>
         {
@@ -29,7 +29,7 @@ var MyActivities = React.createClass({
         }
         </ul></div>
         <If condition={link}>
-          <div><a className="btn btn-apply" href={link} target='_blank'><Message message='map.popup.downloadFile'/></a></div>
+          <div><a className='btn btn-apply' href={link} target='_blank'><Message message='map.popup.downloadFile'/></a></div>
         </If>
       </div>
     );
@@ -63,12 +63,11 @@ module.exports  = React.createClass({
     console.log('_popupActivitiesPoint>click');
     this.setState({'tabId':tabId});
     this.forceUpdate();
-
   },
 
 
   render: function() {
-    console.log('_popupActivitiesPoint>render id:' + this.props.id +" tab "+this.state.tabId);
+    console.log('_popupActivitiesPoint>render id:' + this.props.id +' tab '+this.state.tabId);
     var tabId = this.state.tabId ? this.state.tabId : 0;
     var titleArray = this._getTitles();
     var infoData=[];
@@ -84,51 +83,51 @@ module.exports  = React.createClass({
     }
     return (
       <div>
-        <div className="leaflet-popup-content">
-          <div className="panel panel-default" >
-            <div className="panel-heading popup-header" >
-              <h3 className="panel-title" >{this.props.name}</h3>
-              <span className="title-label"> - <Message message="map.popup.totalActivities"/></span>
+        <div className='leaflet-popup-content'>
+          <div className='panel panel-default' >
+            <div className='panel-heading popup-header' >
+              <h3 className='panel-title' >{this.props.name}</h3>
+              <span className='title-label'> - <Message message='map.popup.totalActivities'/></span>
             </div>
-            <div className="popup-nav-wrapper">
-              <nav className="tabs" role="tablist" >
-                <ul className="tabs nav nav-tabs" role="tablist" >
-                <li className={tabId==0? "active" : ""} role="tab" >
-                  <a href="#" onClick={this.handleClick.bind(this, 0)}>
-                    <span className="popup-icon chart" title={i18n.t("map.popup.costShareBreakdown")}></span>
+            <div className='popup-nav-wrapper'>
+              <nav className='tabs' role='tablist' >
+                <ul className='tabs nav nav-tabs' role='tablist' >
+                <li className={tabId==0? 'active' : ''} role='tab' >
+                  <a href='#' onClick={this.handleClick.bind(this, 0)}>
+                    <span className='popup-icon chart' title={i18n.t('map.popup.costShareBreakdown')}></span>
                   </a>
                 </li>
-                <li className={tabId==1? "active" : ""} role="tab" >
-                  <a href="#" onClick={this.handleClick.bind(this, 1)}>
-                    <span className="popup-icon funding-dev-obj" title={i18n.t("map.popup.objectivesInfoWindow")}></span>
+                <li className={tabId==1? 'active' : ''} role='tab' >
+                  <a href='#' onClick={this.handleClick.bind(this, 1)}>
+                    <span className='popup-icon funding-dev-obj' title={i18n.t('map.popup.objectivesInfoWindow')}></span>
                   </a>
                 </li>
-                <li className={tabId==2? "active" : ""} role="tab" >
-                  <a href="#" onClick={this.handleClick.bind(this, 2)}>
-                    <span className="popup-icon subactivities" title={i18n.t("map.popup.activityClassication")}></span>
+                <li className={tabId==2? 'active' : ''} role='tab' >
+                  <a href='#' onClick={this.handleClick.bind(this, 2)}>
+                    <span className='popup-icon subactivities' title={i18n.t('map.popup.activityClassication')}></span>
                   </a>
                 </li>
-                <li className={tabId==3? "active" : ""} role="tab" >
-                  <a href="#" onClick={this.handleClick.bind(this, 3)}>
-                    <span className="popup-icon export" title={i18n.t("map.popup.ppp")}></span>
+                <li className={tabId==3? 'active' : ''} role='tab' >
+                  <a href='#' onClick={this.handleClick.bind(this, 3)}>
+                    <span className='popup-icon export' title={i18n.t('map.popup.ppp')}></span>
                   </a>
                 </li>
-                <li className={tabId==4? "active" : ""} role="tab" >
-                  <a href="#" onClick={this.handleClick.bind(this, 4)}>
-                    <span className="popup-icon subactivitiesList" title={i18n.t("map.popup.subActivities")}></span>
+                <li className={tabId==4? 'active' : ''} role='tab' >
+                  <a href='#' onClick={this.handleClick.bind(this, 4)}>
+                    <span className='popup-icon subactivitiesList' title={i18n.t('map.popup.subActivities')}></span>
                   </a>
                 </li>
                 </ul>
               </nav>
             </div>
-            <div className="panel-body">
-              <div className="chart-container" id="container"></div>
+            <div className='panel-body'>
+              <div className='chart-container' id='container'></div>
               <If condition={showLoading} >
-                <Loading container="popup-loading-container"/>
+                <Loading container='popup-loading-container'/>
               </If>
               <If condition={tabId==4 && !showLoading} >
-                <div className="subactivities-container">
-                  <div className="sub-activities-title">{titleArray[tabId]}</div>
+                <div className='subactivities-container'>
+                  <div className='sub-activities-title'>{titleArray[tabId]}</div>
                   <MyActivities data={infoData[4]} externalFile={infoData[5]} />
                 </div>
               </If>

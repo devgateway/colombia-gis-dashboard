@@ -35,7 +35,7 @@ module.exports  = React.createClass({
   },
 
   _getInfoWindowData: function () {
-      var filters = {filters:[{param:"st",values:["E1"]}]};
+      var filters = {filters:[{param:'st',values:['E1']}]};
       var data = InfoWindowActions.getInfoFromAPI(filters) || [];
       return data;
   },
@@ -44,6 +44,7 @@ module.exports  = React.createClass({
     console.log('chart1>componentDidMount');
     this._renderChart();
   },
+
   componentDidUpdate: function() {
     console.log('chart1>componentDidUpdate');
     this._renderChart();
@@ -85,15 +86,15 @@ module.exports  = React.createClass({
     var titleArray = this._getTitles();
     var infoData = this._getData();
 
-    if(infoData.length>0 && infoData.length>vars["tab"] && infoData[vars["tab"]].length>0){
-      $(this.getDOMNode()).find('.chart-not-found').get(0).style.display="none"; 
-      if(vars["tab"]!=4 ){
+    if(infoData.length>0 && infoData.length>vars['tab'] && infoData[vars['tab']].length>0){
+      $(this.getDOMNode()).find('.chart-not-found').get(0).style.display='none'; 
+      if(vars['tab']!=4 ){
         var chartdata = [];
         var totalValue = 0;
-        infoData[vars["tab"]].map(function(node, index) {
+        infoData[vars['tab']].map(function(node, index) {
             totalValue += parseInt(node.value);
         });
-        infoData[vars["tab"]].map(function(node, index) {
+        infoData[vars['tab']].map(function(node, index) {
           var chartnode = [];
           chartnode.push(node.name);
           chartnode.push(parseInt(parseInt(node.value)/totalValue*100));
@@ -111,16 +112,16 @@ module.exports  = React.createClass({
               type: 'pie',
             },
             title: {
-              align: "left",
-              text: titleArray[vars["tab"]],
+              align: 'left',
+              text: titleArray[vars['tab']],
               style: { 
-                "color": "#4278AA", 
-                "fontSize": "14px" 
+                'color': '#4278AA', 
+                'fontSize': '14px' 
               }
             },
             plotOptions: {
               pie: {
-                  innerSize: "70%",
+                  innerSize: '70%',
                   name: 'Quantity',
                   animation: false,
                   dataLabels: {
@@ -156,7 +157,7 @@ module.exports  = React.createClass({
         });
       }
     } else {
-      $(this.getDOMNode()).find('.chart-not-found').get(0).style.display="";  
+      $(this.getDOMNode()).find('.chart-not-found').get(0).style.display='';  
     }
   },
 
@@ -165,17 +166,17 @@ module.exports  = React.createClass({
       console.log('chart1>render');
       var vars = this._getVarsFromPath();
       var titleArray = this._getTitles();
-      var infoData = this._getData(vars["id"]);
+      var infoData = this._getData(vars['id']);
       return (
-        <div className="chart">
-          <div className="chart-container" id="container"></div>
-          <If condition={vars["tab"]==4} >
-            <div className="activities-content">
-              <div className="sub-activities-title">{titleArray[vars["tab"]]}</div>
+        <div className='chart'>
+          <div className='chart-container' id='container'></div>
+          <If condition={vars['tab']==4} >
+            <div className='activities-content'>
+              <div className='sub-activities-title'>{titleArray[vars['tab']]}</div>
               <MyActivities data={infoData[4]} />
             </div>
           </If>
-          <div className="chart-not-found">There where no results available</div>
+          <div className='chart-not-found'>There where no results available</div>
         </div>
       );
     }

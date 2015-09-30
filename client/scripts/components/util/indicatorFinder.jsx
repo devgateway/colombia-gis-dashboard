@@ -16,35 +16,35 @@ var Tooltip=require('react-bootstrap/lib/Tooltip');
 var IndicatorsFinderStore=require('../../stores/indicatorsFinderStore.js');
 var Reflux = require('reflux');
 var Actions=require('../../actions/indicatorFinderActions.js');
-var CheckBox=require('../commons/customCheckbox.jsx')
+var CheckBox=require('../commons/customCheckbox.jsx');
 
 module.exports = React.createClass({
 
 	mixins: [Reflux.connect(IndicatorsFinderStore)],
 
 	getInitialState:function(){
-		return { showModal: false, typesSelected: [], currentPage: 1, "showLoading": false};
+		return {'showModal': false, 'typesSelected': [], currentPage: 1, 'showLoading': false};
 	},
 
 	close:function(){
-		this.setState({ showModal: false });
+		this.setState({'showModal': false});
 		if (this.props.onClose){
 			this.props.onClose();
 		}
 	},
 
 	open:function(){
-		this.setState({ showModal: true });
+		this.setState({'showModal': true});
 	},
 
 	_updateType:function(type){
 		var typesSelected = _.clone(this.state.typesSelected);
-		if(type.selected){
+		if (type.selected){
 			typesSelected.push(type.value);
-		}else{
+		} else {
 			typesSelected.splice(typesSelected.indexOf(type.value));
 		}
-		this.setState({"typesSelected": typesSelected});
+		this.setState({'typesSelected': typesSelected});
 		Actions.updateQuery('t',typesSelected);
 	},
 
@@ -53,12 +53,12 @@ module.exports = React.createClass({
 		state.activities = undefined;
 		state._activitySelected = undefined;
 		this.setState(state);//reset activitySelected
-		this.setState({"programSelected": event.target.value, "showLoading": true});
+		this.setState({'programSelected': event.target.value, 'showLoading': true});
 		Actions.getActivitiesByProgram(event.target.value);
 	},
 
 	_activityChanged:function(event){
-		this.setState({"_activitySelected": event.target.value});
+		this.setState({'_activitySelected': event.target.value});
 		Actions.updateQuery('pr',event.target.value);
 	},
 
@@ -73,20 +73,19 @@ module.exports = React.createClass({
 
 	componentDidMount:function(){
 		Actions.load();
-		debugger;
 		if (this.props.visible){
 			this.open();
 		}
 	},
 
 	_handlePagination:function(event,val){
-		this.setState({"currentPage": val.eventKey});
+		this.setState({'currentPage': val.eventKey});
 		Actions.updateQuery('page',val.eventKey);
 		Actions.find();
 	},
 
 	_find:function(){
-		this.setState({"currentPage": 1, "showLoading": true});
+		this.setState({'currentPage': 1, 'showLoading': true});
 		Actions.updateQuery('page', 1);//reset page
 		Actions.find();
 	},
@@ -99,22 +98,22 @@ module.exports = React.createClass({
 
 	render:function() {
 		var totalPages = Math.ceil(this.state.results.count/10);
-		console.log("#programs -> "+this.state.programs.length);
+		console.log('#programs -> '+this.state.programs.length);
 		return (
 			<div>
 				<Button bsStyle='primary' bsSize='large' onClick={this.open}>{this.props.label || 'Open'}</Button>
-				<Modal  {...this.props} bsSize='large' className="indicator-search" aria-labelledby='contained-modal-title-lg' show={this.state.showModal} onHide={this.close}>
+				<Modal  {...this.props} bsSize='large' className='indicator-search' aria-labelledby='contained-modal-title-lg' show={this.state.showModal} onHide={this.close}>
 					<Modal.Header>
-					<a className="close-dialog" href="#" onClick={this.close}>
-					<i className="fa fa-times-circle-o"></i></a>
-						<Modal.Title><i className="fa fa-arrows-h"></i><Message message='layers.selectIndicator'/></Modal.Title>
+					<a className='close-dialog' href='#' onClick={this.close}>
+					<i className='fa fa-times-circle-o'></i></a>
+						<Modal.Title><i className='fa fa-arrows-h'></i><Message message='layers.selectIndicator'/></Modal.Title>
 					</Modal.Header>
-					<Modal.Body className="finder">
+					<Modal.Body className='finder'>
 					<Grid fluid={true}>
-						<Row className="blue-panel">
-							<Col md={2}><span className="title"><Message message='layers.program'/></span></Col>
+						<Row className='blue-panel'>
+							<Col md={2}><span className='title'><Message message='layers.program'/></span></Col>
 							<Col md={10}>
-								<select className="form-control" value={this.state.programSelected} onChange ={this._programChanged} style={{width:'100%'}}>
+								<select className='form-control' value={this.state.programSelected} onChange ={this._programChanged} style={{width:'100%'}}>
 									<option><Message message='layers.select'/></option>
 									{this.state.programs?_.map(this.state.programs, function(item){
 										return (<option value={item.code}>{item.description}</option>)
@@ -122,10 +121,10 @@ module.exports = React.createClass({
 								</select>
 							</Col>
 						</Row>
-						<Row className="blue-panel">
-							<Col md={2}><span className="title"><Message message='layers.activity'/></span></Col>
+						<Row className='blue-panel'>
+							<Col md={2}><span className='title'><Message message='layers.activity'/></span></Col>
 							<Col md={10}>
-								<select className="form-control" disabled={this.state.activities?"":"disabled"} value={this.state._activitySelected} onChange={this._activityChanged} style={{width:'100%'}}>
+								<select className='form-control' disabled={this.state.activities?'':'disabled'} value={this.state._activitySelected} onChange={this._activityChanged} style={{width:'100%'}}>
 									<option><Message message='layers.select'/></option>
 									{this.state.activities?_.map(this.state.activities, function(item){
 										return (<option value={item.id}>{item.name}</option>)
@@ -133,8 +132,8 @@ module.exports = React.createClass({
 								</select>
 							</Col>
 						</Row>
-						<Row className="blue-panel">
-							<Col md={2}><span className="title"><Message message='layers.type'/></span></Col>
+						<Row className='blue-panel'>
+							<Col md={2}><span className='title'><Message message='layers.type'/></span></Col>
 							<Col md={10}>
 								<ul>
 								{_.map(this.state.types, function(type){
@@ -144,30 +143,30 @@ module.exports = React.createClass({
 								</ul>
 							</Col>
 						</Row>
-						<Row className="blue-panel">
-							<Col md={2}><span className="title"><Message message='layers.keyword'/></span></Col>
+						<Row className='blue-panel'>
+							<Col md={2}><span className='title'><Message message='layers.keyword'/></span></Col>
 							<Col md={7}>
-								<input type="text" placeholder={i18n.t('layers.keyword')} onChange={this._changeKeyword} style={{width:'100%'}}/>
+								<input type='text' placeholder={i18n.t('layers.keyword')} onChange={this._changeKeyword} style={{width:'100%'}}/>
 							</Col>
 							<Col md={3}>
-								<Button className="btn btn-apply pull-right" disabled={this.state._activitySelected?"":"disabled"} onClick={this._find}><Message message='layers.find'/></Button>
+								<Button className='btn btn-apply pull-right' disabled={this.state._activitySelected?'':'disabled'} onClick={this._find}><Message message='layers.find'/></Button>
 							</Col>
 						</Row>
 						<Row>
 							<Col md={12}>
 								{this.state.showLoading?
-								<div><img className="img-centered" src="images/ajax-loader-small.gif"/></div>
+								<div><img className='img-centered' src='images/ajax-loader-small.gif'/></div>
 								:null}
 							</Col>							
 						</Row>
 						{
-							this.state.showNoResults? <div className="filter-no-results"><br/><Message message="filters.noResults"/></div> : ""
+							this.state.showNoResults? <div className='filter-no-results'><br/><Message message='filters.noResults'/></div> : ''
 						}
 						{this.state.results.indicators.length>0?
-							<div className="container-full">
+							<div className='container-full'>
 								<Row>
 									<Col md={12}>
-									<div className="indicator-table">
+									<div className='indicator-table'>
 										<Table striped condensed hover>
 											<thead>
 												<tr>
@@ -180,7 +179,7 @@ module.exports = React.createClass({
 												{_.map(this.state.results.indicators, function(indicator){
 													return (<tr>
 														<td>{indicator.refCode}</td>
-														<td className="description">{indicator.description}</td>
+														<td className='description'>{indicator.description}</td>
 														<td><Button onClick={this._changeIndicator.bind(null,indicator)} bsStyle='primary' bsSize='xsmall'><Message message='layers.select'/></Button></td>
 														</tr>)
 												}.bind(this))}
@@ -209,10 +208,10 @@ module.exports = React.createClass({
 					</Grid>
 				</Modal.Body>
 				<Modal.Footer>
-					<Button className="pull-right" onClick={this.close}><Message message='layers.close'/></Button>
+					<Button className='pull-right' onClick={this.close}><Message message='layers.close'/></Button>
 				</Modal.Footer>
 			</Modal>
 		</div>
-	);}
-
+		);
+	}
 });

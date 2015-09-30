@@ -41,10 +41,10 @@ module.exports = React.createClass({
         var minQuarter = this._getYearPeriod(unencodedValues[0]);
         var maxQuarter = this._getYearPeriod(unencodedValues[1]);
         LayerActions.changeGroupFilterSelection('indicators',[
-          {"param": "fyi", "values": minYear},
-          {"param": "sq", "values": minQuarter},
-          {"param": "fyf", "values": maxYear},
-          {"param": "eq", "values": maxQuarter}          
+          {'param': 'fyi', 'values': minYear},
+          {'param': 'sq', 'values': minQuarter},
+          {'param': 'fyf', 'values': maxYear},
+          {'param': 'eq', 'values': maxQuarter}          
         ]);
       },
 
@@ -101,21 +101,15 @@ module.exports = React.createClass({
           this.tooltips[i].className += 'sliderTooltip';
           this.tipHandles[i].appendChild(this.tooltips[i]);
         }
-
-        slider.noUiSlider.on('set', this._onSet)
-        slider.noUiSlider.on('update', this._onUpdate)
+        slider.noUiSlider.on('set', this._onSet);
+        slider.noUiSlider.on('update', this._onUpdate);
       },
 
       render: function() {
         console.log('time slider render');
-        var display = (this.state.layer && this.state.layer.visible) ? "block" : "none";
-        return ( < div style = {
-            {
-              display: display
-            }
-          }
-          className = "timeSliderContainer" >
-          < /div>);
-        }
-
-      });
+        var display = (this.state.layer && this.state.layer.visible) ? 'block' : 'none';
+        return ( 
+          <div style={{display: display}} className = 'timeSliderContainer'></div>
+          );
+      }
+});

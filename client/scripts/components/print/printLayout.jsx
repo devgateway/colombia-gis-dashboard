@@ -1,15 +1,9 @@
-
 'use strict';
-
-
 var React = require('react/addons');
 var Router = require('react-router'),Route = Router.Route,  RouteHandler = require('react-router').RouteHandler;
 var Reflux = require('reflux');
-var Actions=require('../../actions/saveActions.js');
 
 module.exports = React.createClass({
-
-	
 
 	render: function() {
 		return (
@@ -17,6 +11,6 @@ module.exports = React.createClass({
 			{/* defer to the child route handler */}
 			<RouteHandler {...this.props}/>
 		</div>
-		)
+		);
 	}
 });

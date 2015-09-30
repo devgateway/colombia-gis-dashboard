@@ -1,9 +1,10 @@
+'use strict';
 var React = require('react');
 
 var AllNoneSelector = React.createClass({
 
     _onAllSelected:function(){
-        this.props.onSelectAll();
+      this.props.onSelectAll();
     },
     
     _nonNoneSelected:function(){
@@ -12,11 +13,11 @@ var AllNoneSelector = React.createClass({
 
     render: function() {
         return(
-              <div className="filter-selectors">
-                  <span><a href="#" onClick={this._onAllSelected}>
-                    <Message message="filters.selectAll"/>
-                  </a></span> / <span><a href="#" onClick={this._nonNoneSelected}>
-                    <Message message="filters.deselectAll"/>
+              <div className='filter-selectors'>
+                  <span><a href='#' onClick={this._onAllSelected}>
+                    <Message message='filters.selectAll'/>
+                  </a></span> / <span><a href='#' onClick={this._nonNoneSelected}>
+                    <Message message='filters.deselectAll'/>
                   </a></span>
               </div>
             );

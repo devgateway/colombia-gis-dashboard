@@ -9,27 +9,27 @@ var RestoreActions = require('../actions/restoreActions.js');
 var _ = require('lodash');
 var assign = require('object-assign');
 
-var CommonsMixins = require('./_mixins.js')
-var DataLayerMixins = require('./_overlaysMixins.js')
-var IndicatorsFinderStore = require('./indicatorsFinderStore.js')
+var CommonsMixins = require('./_mixins.js');
+var DataLayerMixins = require('./_overlaysMixins.js');
+var IndicatorsFinderStore = require('./indicatorsFinderStore.js');
 var GeoStats = require('../api/geostats.js');
 
 
 var defaultStyle = {
-	"color": {
+	'color': {
 		r: 255,
 		g: 255,
 		b: 255,
 		a: 0
 	},
-	"weight": 1,
-	"opacity": 1,
+	'weight': 1,
+	'opacity': 1,
 	'fillOpacity': 0.9
 };
 
 
 var defaultBreaks = {
-	'symbol':{'symbol':{width:10, type:"esriSMS", style:"esriSMSSquare"}},
+	'symbol':{'symbol':{width:10, type:'esriSMS', style:'esriSMSSquare'}},
 	'field': 'Progress',
 	breaks: {
 		'Level0': {
@@ -103,14 +103,15 @@ var defaultBreaks = {
 			})
 		}
 	}
-}
+};
+
 module.exports = Reflux.createStore({
 
 	listenables: [LayersAction, RestoreActions],
 	mixins: [CommonsMixins, DataLayerMixins],
 
 	init: function() {		
-		this.listenTo(IndicatorsFinderStore, "_indicatorSelected");
+		this.listenTo(IndicatorsFinderStore, '_indicatorSelected');
 	},
 
 	_getLayerId: function() {
@@ -132,30 +133,30 @@ module.exports = Reflux.createStore({
 	_indicatorSelected: function(data) {
 		if (data.indicatorSelected.id && this.state.layerFilters.indicatorId != data.indicatorSelected.id){
 			this.onChangeGroupFilterSelection('indicators', [
-				{"param": "indicatorId", "values": data.indicatorSelected.id},
-				{"param": "indicatorName", "values": data.indicatorSelected.description},
-				{"param": "activityId", "values": data.activitySelected}
-			], "indicators");
+				{'param': 'indicatorId', 'values': data.indicatorSelected.id},
+				{'param': 'indicatorName', 'values': data.indicatorSelected.description},
+				{'param': 'activityId', 'values': data.activitySelected}
+			], 'indicators');
 			this.update({'visible': true});
 		}
 	},
 
 	onChangeGroupFilterSelection: function(layerId, filters) {
-		if (layerId == this._getLayerId()){
+		if (layerId === this._getLayerId()){
 			_.forEach(filters, function(filter){
 				this.onChangeFilterSelection(layerId, filter.param, filter.values, true);
 			}.bind(this));
-			this._applyLayerFilters(this.state.layerFilters, "indicators");
+			this._applyLayerFilters(this.state.layerFilters, 'indicators');
 		}
 	},
 
 	onChangeFilterSelection: function(layerId, param, value, silent) {
-		if (layerId == this._getLayerId()){
+		if (layerId === this._getLayerId()){
 			var filters=_.clone(this.state.layerFilters || []);
 		    filters[param] = value;
 		    _.assign(this.state.layerFilters,filters);
 		    if (!silent){
-		    	this._applyLayerFilters(filters, "indicators");
+		    	this._applyLayerFilters(filters, 'indicators');
 		    }
 		}
 	},
@@ -178,27 +179,27 @@ module.exports = Reflux.createStore({
 
 	getInitialState: function() {
 		return this.state = this.storedState || _.assign(_.clone(this._getDefState()), {
-			level: "departament",
+			level: 'departament',
 			visible: false,
 			breaks: defaultBreaks, //defaul styles breaks
 			defaultStyle: defaultStyle, //Default symbol styles
-			saveItems: ["breaks", "defaultStyle", "level", "opacity", "visible", "layerFilters"],
+			saveItems: ['breaks', 'defaultStyle', 'level', 'opacity', 'visible', 'layerFilters'],
 			layerFilters:  
-				{"indicatorId": "",
-				"activityId": "",
-				"fyi": "2005",
-				"sq": "1",
-				"fyf": "2016",
-				"eq": "1"}
+				{'indicatorId': '',
+				'activityId': '',
+				'fyi': '2005',
+				'sq': '1',
+				'fyf': '2016',
+				'eq': '1'}
 		});
 	},
 
 	/*Load GIS data by level*/
 	_loadIndicatorsGeoData: function(newLevel) {
 		LoadingAction.showLoading();
-		if (newLevel == 'departament') {
+		if (newLevel === 'departament') {
 			this._loadBy_Departments(); //load data 
-		} else if (newLevel == 'municipality') {
+		} else if (newLevel === 'municipality') {
 			this._loadBy_Muncipalities();
 		}
 	},
@@ -214,8 +215,8 @@ module.exports = Reflux.createStore({
 		var self = this;
 		API.getIndicatorsByMuncipalities(this.state.layerFilters).then(
 			function(data) {
-				if (data.length==0){
-			        LayersAction.showNoResultsPopup("layers.noResultsForDataLayerMessage");   
+				if (data.length===0){
+			        LayersAction.showNoResultsPopup('layers.noResultsForDataLayerMessage');   
 			    }
 				API.loadMunicipalitiesShapes().then(
 					function(geoData) {
@@ -230,7 +231,7 @@ module.exports = Reflux.createStore({
 							if (feature) {
 								_.assign(d, {'id': d.idMun}); //overwrite indicatorId with locationId
 								_.assign(feature, {'hasValue': true}); //indicate that the feature has valid values
-								_.assign(feature.properties, _.omit(_.clone(d), "name")); //set feature values	
+								_.assign(feature.properties, _.omit(_.clone(d), 'name')); //set feature values	
 							}
 						});
 						var geoDataFeaturesValid = _.filter(geoData.features, {'hasValue': true});
@@ -251,8 +252,8 @@ module.exports = Reflux.createStore({
 		var self = this;
 		API.getIndicatorsByDepartment(this.state.layerFilters).then(
 			function(data) {
-				if (data.length==0){
-			        LayersAction.showNoResultsPopup("layers.noResultsForDataLayerMessage");
+				if (data.length===0){
+			        LayersAction.showNoResultsPopup('layers.noResultsForDataLayerMessage');
 			    }
 				API.loadDepartmentsShapes().then(
 					function(geoData) {
@@ -267,7 +268,7 @@ module.exports = Reflux.createStore({
 							if (feature) {
 								_.assign(d, {'id': d.idDep}); //overwrite indicatorId with locationId
 								_.assign(feature, {'hasValue': true}); //indicate that the feature has valid values
-								_.assign(feature.properties, _.omit(_.clone(d), "name")); //set feature values
+								_.assign(feature.properties, _.omit(_.clone(d), 'name')); //set feature values
 							}
 						});
 						var geoDataFeaturesValid = _.filter(geoData.features, {'hasValue': true});

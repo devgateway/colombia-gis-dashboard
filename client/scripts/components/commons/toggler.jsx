@@ -1,3 +1,4 @@
+'use strict';
 var React = require('react/addons');
 
 var TogglerContent=React.createClass({
@@ -16,11 +17,11 @@ var TogglerContent=React.createClass({
 
 var Toggler=React.createClass({
   componentWillReceiveProps :function(nextProps){
-    this.setState({'expanded': nextProps.expanded || this.state.expanded})
+    this.setState({'expanded': nextProps.expanded || this.state.expanded});
   },
 
   getInitialState:function(){
-    return {'expanded':false}
+    return {'expanded':false};
   },
 
   _toggle:function(){
@@ -33,7 +34,7 @@ var Toggler=React.createClass({
     return child ? React.addons.cloneWithProps(child, {'stage':(this.state.expanded?'expanded':'collapsed'), 'onClick':this._toggle}) : null;
   }, this);
 
-   return (<div className="toggler" >{children}</div>)
+   return (<div className='toggler' >{children}</div>)
  }
 
 });
@@ -41,4 +42,4 @@ var Toggler=React.createClass({
 module.exports ={
   Toggler:Toggler,
   TogglerContent:TogglerContent
-}
+};

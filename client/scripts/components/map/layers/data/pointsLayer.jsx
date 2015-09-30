@@ -18,8 +18,6 @@
    })
    .map(function(topName) { // convert eg. `topBlur` => `blur`
      return topName.slice(3).toLowerCase();
-     // var lowerFirstLetter = topName.slice(3, 4).toLowerCase();  // first letter after top
-     // return lowerFirstLetter + topName.slice(4);
    });
 
  module.exports = React.createClass({
@@ -28,8 +26,8 @@
 
        _pointToLayer: function(feature, latlng) {
          var style = this._getStyle(feature.properties.activities);
-         var rgbColor = style.color.r + "," + style.color.g + "," + style.color.b;
-         var rgbaColor = rgbColor + "," + style.color.a;
+         var rgbColor = style.color.r + ',' + style.color.g + ',' + style.color.b;
+         var rgbaColor = rgbColor + ',' + style.color.a;
          var icon = NumberedDivIcon({
            radius: style.radius,
            rbgaColor: rgbaColor,
@@ -51,7 +49,7 @@
          this.layer.eachLayer(function(l) {
             if(l._icon){
              var style = this._getStyle(l.feature.properties.activities);
-             var rgbColor = style.color.r + "," + style.color.g + "," + style.color.b;
+             var rgbColor = style.color.r + ',' + style.color.g + ',' + style.color.b;
              var rgbaColor = rgbColor + "," + style.color.a;
              $(l._icon).css('width', style.radius);
              $(l._icon).css('height', style.radius);
@@ -90,7 +88,7 @@
            this.fixReactEvents(e.popup);
         }.bind(this));
         layer.on('popupclose', function(e) {
-            e.popup.setContent("");
+            e.popup.setContent('');
             _closed = true;
         });
       },
@@ -184,6 +182,5 @@
 
        render: function() {
          return ( < div > < /div>);
-         }
-
-       });
+      }
+});

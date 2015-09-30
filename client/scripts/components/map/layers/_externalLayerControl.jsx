@@ -2,13 +2,12 @@
 var React = require('react/addons');
 var Reflux = require('reflux');
 var ArcgisLayerStore = require('../../../stores/arcgisLayerStore.js');
-var ArcgisLayerActions = require('../../../actions/arcgisLayersActions.js')
-var _=require('lodash')
+var ArcgisLayerActions = require('../../../actions/arcgisLayersActions.js');
+var _=require('lodash');
 var Toggler=require('../../commons/toggler.jsx').Toggler;
 var TogglerContent=require('../../commons/toggler.jsx').TogglerContent;
 var If=require('../../commons/if.jsx');
 var LanStore=require('../../../stores/lanStore.js');
-
 
 var Layer=require('./_layer.jsx');
 var InnerLayer=require('./_innerLayer.jsx');
@@ -52,7 +51,7 @@ var FeatureLayer=React.createClass({
 });
 
 module.exports  = React.createClass({
-  mixins: [Reflux.listenTo(ArcgisLayerStore,"_onStatusChange"), Reflux.connect(LanStore, 'lan')],
+  mixins: [Reflux.listenTo(ArcgisLayerStore,'_onStatusChange'), Reflux.connect(LanStore, 'lan')],
 
   _onStatusChange: function(status) {
     this.setState(status); //create a new array in order to isolate the state
@@ -90,23 +89,23 @@ module.exports  = React.createClass({
     return (
     <div>
       <If condition={features.length > 0} >
-        <div className="layer-control-toggle">
+        <div className='layer-control-toggle'>
           <h3>Overlays</h3>
         </div>
-        <div className="layer-control-panel">
-          <ul className="layer-control">
+        <div className='layer-control-panel'>
+          <ul className='layer-control'>
           {
             features.map(function(l){
             return (
-                <li className="external-layer-control">
+                <li className='external-layer-control'>
                   <Toggler ref='toggler'>
-                    <TogglerContent visibleWhen="collapsed">
-                      <div toggler={true} className="toggler-button"><i className="fa fa-chevron-down"></i></div>
+                    <TogglerContent visibleWhen='collapsed'>
+                      <div toggler={true} className='toggler-button'><i className='fa fa-chevron-down'></i></div>
                     </TogglerContent>
-                    <TogglerContent visibleWhen="expanded">
-                      <div toggler={true} className="toggler-button"><i className="fa fa-chevron-up"></i></div>
+                    <TogglerContent visibleWhen='expanded'>
+                      <div toggler={true} className='toggler-button'><i className='fa fa-chevron-up'></i></div>
                     </TogglerContent>
-                    <TogglerContent visibleWhen="collapsed">
+                    <TogglerContent visibleWhen='collapsed'>
                       <FeatureLayer
                         onDelete={this._onDelete}
                         onChangeOpacity={this._handleChangeOpacity}
@@ -119,7 +118,7 @@ module.exports  = React.createClass({
                         title={l.title}
                         showBasicControl={true}/>
                     </TogglerContent>
-                    <TogglerContent visibleWhen="expanded">
+                    <TogglerContent visibleWhen='expanded'>
                       <FeatureLayer
                         onDelete={this._onDelete}
                         onChangeOpacity={this._handleChangeOpacity}
@@ -141,23 +140,23 @@ module.exports  = React.createClass({
       </If>
 
       <If condition={tiles.length > 0} >
-        <div className="layer-control-toggle">
+        <div className='layer-control-toggle'>
           <h3>Tiles</h3>
         </div>
-        <div className="layer-control-panel">
-          <ul className="layer-control">
+        <div className='layer-control-panel'>
+          <ul className='layer-control'>
           {
             tiles.map(function(l){
              return (
               <li>
                 <Toggler ref='toggler'>
-                  <TogglerContent visibleWhen="collapsed">
-                    <div toggler={true} className="toggler-button"><i className="fa fa-chevron-down"></i></div>
+                  <TogglerContent visibleWhen='collapsed'>
+                    <div toggler={true} className='toggler-button'><i className='fa fa-chevron-down'></i></div>
                   </TogglerContent>
-                  <TogglerContent visibleWhen="expanded">
-                    <div toggler={true} className="toggler-button"><i className="fa fa-chevron-up"></i></div>
+                  <TogglerContent visibleWhen='expanded'>
+                    <div toggler={true} className='toggler-button'><i className='fa fa-chevron-up'></i></div>
                   </TogglerContent>
-                  <TogglerContent visibleWhen="collapsed">
+                  <TogglerContent visibleWhen='collapsed'>
                     <Layer
                       onDelete={this._onDelete}
                       onMoveUp={this._handleMoveUp}
@@ -172,7 +171,7 @@ module.exports  = React.createClass({
                       title={l.title}
                       showBasicControl={true}/>
                   </TogglerContent>
-                  <TogglerContent visibleWhen="expanded">
+                  <TogglerContent visibleWhen='expanded'>
                     <Layer
                       onDelete={this._onDelete}
                       onMoveUp={this._handleMoveUp}

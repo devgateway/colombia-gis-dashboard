@@ -10,7 +10,7 @@ var DateFilter = React.createClass({
     componentDidUpdate: function(){
         var self = this;
         $(this.getDOMNode()).datepicker({
-            dateFormat: self.props.dateFormat || "dd/mm/yy",
+            dateFormat: self.props.dateFormat || 'dd/mm/yy',
             maxDate: self.props.maxDate,
             minDate: self.props.minDate,
             defaultDate: self.props.defaultDate,
@@ -27,7 +27,7 @@ var DateFilter = React.createClass({
     componentDidMount: function(){
         var self = this;
         $(this.getDOMNode()).datepicker({
-            dateFormat: self.props.dateFormat || "dd/mm/yy",
+            dateFormat: self.props.dateFormat || 'dd/mm/yy',
             maxDate: self.props.maxDate,
             minDate: self.props.minDate,
             defaultDate: self.props.defaultDate,
@@ -54,7 +54,7 @@ var DateFilter = React.createClass({
     render: function() { 
         var key = Date.now();
         return(
-            <input type="text" key={key} value={this.props.defaultDate} className="start-date"/>
+            <input type='text' key={key} value={this.props.defaultDate} className='start-date'/>
         )
     }
 });

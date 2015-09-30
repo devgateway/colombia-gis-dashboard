@@ -71,7 +71,7 @@ module.exports = function(grunt) {
       grunt.registerTask('default', []);
     };
   }
-
+  
   // Run task functions to configure Grunt.
   invokeConfigFn(utilConfig);
   invokeConfigFn(compileConfig);

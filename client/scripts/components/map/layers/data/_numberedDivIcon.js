@@ -1,7 +1,5 @@
 'use strict';
 
-
-
 module.exports = function(options) {
 
   var Icon = L.Icon.extend({
@@ -17,10 +15,10 @@ module.exports = function(options) {
     createIcon: function() {
       var div = document.createElement('div');
       var numdiv = document.createElement('div');
-      numdiv.setAttribute("class", "number");
-      numdiv.setAttribute("style", "height:" + this.options.radius + "px");
-      numdiv.setAttribute("style", "line-height:" + this.options.radius + "px");
-      numdiv.innerHTML = "<div>" + this.options.number + "</div>" || '';
+      numdiv.setAttribute('class', 'number');
+      numdiv.setAttribute('style', 'height:' + this.options.radius + 'px');
+      numdiv.setAttribute('style', 'line-height:' + this.options.radius + 'px');
+      numdiv.innerHTML = '<div>' + this.options.number + '</div>' || '';
       div.appendChild(numdiv);
 
       
@@ -35,4 +33,4 @@ module.exports = function(options) {
    
   });
   return new Icon(options);
-}
+};

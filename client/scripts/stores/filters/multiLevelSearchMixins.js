@@ -21,10 +21,10 @@ module.exports = {
 	},
 
 	_setSavedValues: function(level, param, values){
-		if (level.levelParam == param){
+		if (level.levelParam === param){
 			_.forEach(values, function(value){
-				_.assign(_.find(this.state[param], function(i){return i.id == value}), {'selected': true});
-			}.bind(this))
+				_.assign(_.find(this.state[param], function(i){return i.id == value;}), {'selected': true});
+			}.bind(this));
 		} else if (level.child){
 			this._setSavedValues(level.child, param, values);
 		}
@@ -41,7 +41,7 @@ module.exports = {
 
 	onUpdateAllSelection: function(selected){
 		for (var key in this.state) {
-			if (key != "itemsTree"){
+			if (key !== 'itemsTree'){
 				_.forEach(this.state[key], function(item){
 					_.assign(item, {'selected': selected});
 				});
@@ -65,7 +65,7 @@ module.exports = {
 
 	_capitalize: function(items) {
 		return _.map(items, function(i) {
-			i.label = this._capitalizeStr(i.name)
+			i.label = this._capitalizeStr(i.name);
 			return i;
 		}.bind(this));
 	},
@@ -81,7 +81,7 @@ module.exports = {
 		Util.get(window.DATA_PATH + level.sourcePath).then(function(data) {
 			_.forEach(data, function(item){
 				_.assign(item, {'level': level.levelParam, 'hide': true});//assign level to each item, and hide it
-				_.assign(item, {'cid': item.id + "#" + item[level.parentIdField]});//create a complex id (cid) for duplicated items with different parents
+				_.assign(item, {'cid': item.id + '#' + item[level.parentIdField]});//create a complex id (cid) for duplicated items with different parents
 				if (parentParam){
 					var parentsTrace = this._getParentsTrace(item[level.parentIdField], parentParam);
 					_.assign(item, {'parentsTrace': parentsTrace});
@@ -99,7 +99,7 @@ module.exports = {
 	},
 
 	_getParentsTrace: function(parentId, parentParam){
-		var parent = _.find(this.state[parentParam], function(e){return e.id == parentId});
+		var parent = _.find(this.state[parentParam], function(e){return e.id == parentId;});
 		var parentsTrace = _.clone(parent.parentsTrace) || [];
 		parentsTrace.push(parent.name);
 		return parentsTrace;
@@ -107,13 +107,13 @@ module.exports = {
 
 	
 	_updateChildSelection: function(item, selected){
-		_.assign(_.find(this.state[item.level], function(e){return e.cid == item.cid}), {'selected': selected});
+		_.assign(_.find(this.state[item.level], function(e){return e.cid == item.cid;}), {'selected': selected});
 	},	
 
 	_itemMatchs: function(item, keyword) {
 	    if (keyword.length > 1) {
 	      var pattern = new RegExp(keyword, 'i');
-	      return pattern.test(item.name)
+	      return pattern.test(item.name);
 	    } else {
 	      return false;
 	    }
@@ -126,4 +126,4 @@ module.exports = {
 			this.trigger(this.state);
 		}
 	}
-}
+};

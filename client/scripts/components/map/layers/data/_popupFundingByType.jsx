@@ -42,7 +42,7 @@ module.exports  = React.createClass({
   },
 
   render: function() {
-    console.log('popup>render id:' + this.props.id +" tab "+this.state.tabId);
+    console.log('popup>render id:' + this.props.id +' tab '+this.state.tabId);
     var showLoading=true;
     if(this.state.infoWindow){
       showLoading=false;
@@ -52,18 +52,18 @@ module.exports  = React.createClass({
     }
     return (
       <div>
-        <div className="leaflet-popup-content">
-          <div className="panel panel-default" >
-            <div className="panel-heading popup-header" >
-              <h3 className="panel-title" >{this.props.NAME_1} 
+        <div className='leaflet-popup-content'>
+          <div className='panel panel-default' >
+            <div className='panel-heading popup-header' >
+              <h3 className='panel-title' >{this.props.NAME_1} 
               <If condition={this.props.NAME_2} >
                 - {this.props.NAME_2}
               </If>
               </h3>
             </div>
-            <div className="chart-container" id="container"></div>
+            <div className='chart-container' id='container'></div>
             <If condition={showLoading} >
-              <Loading container="popup-loading-container"/>
+              <Loading container='popup-loading-container'/>
             </If>
           </div>
         </div>

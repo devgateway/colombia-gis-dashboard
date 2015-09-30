@@ -16,16 +16,16 @@ module.exports = {
 	onRestoreData: function(savedData) {
 		console.log('............. mixins.js -> onRestoreData');
 		if (!this._initialized){
-			this._loadItems()
+			this._loadItems();	
 		}
 
 		if(savedData.filterData && savedData.filterData.filters){
 			this.onUpdateAllSelection(false);
 			_.forEach(savedData.filterData.filters, function(filter){
-				if (filter.param == this.state.param){
+				if (filter.param === this.state.param){
 					_.forEach(filter.values, function(value){
-						_.assign(_.find(this.state.items, function(i){return i.id == value}), {'selected': true});
-					}.bind(this))
+						_.assign(_.find(this.state.items, function(i){return i.id == value;}), {'selected': true});
+					}.bind(this));
 				}
 			}.bind(this));
 		}
@@ -33,7 +33,7 @@ module.exports = {
 	},
 
 	onUpdateItemSelection: function(item, selected){
-		_.assign(_.find(this.state.items, function(i){return i.id == item.id}), {'selected': selected});
+		_.assign(_.find(this.state.items, function(i){return i.id == item.id;}), {'selected': selected});
 		this.update({'items': _.clone(this.state.items)});
 	},	
 
@@ -73,7 +73,7 @@ module.exports = {
 	_itemMatchs: function(item, keyword) {
 	    if (keyword.length > 1) {
 	      var pattern = new RegExp(keyword, 'i');
-	      return pattern.test(item.name)
+	      return pattern.test(item.name);
 	    } else {
 	    	if (this.state.searchAndSelectMode){
 	    		return false;
@@ -85,7 +85,7 @@ module.exports = {
 
 	_capitalize: function(items) {
 		return _.map(items, function(i) {
-			i.label = this._capitalizeStr(i.name)
+			i.label = this._capitalizeStr(i.name);
 			return i;
 		}.bind(this));
 	},
@@ -118,4 +118,4 @@ module.exports = {
 			this.trigger(this.state);
 		}
 	}
-}
+};

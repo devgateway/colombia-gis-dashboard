@@ -1,6 +1,6 @@
 'use strict';
 
-var React = require('react/addons')
+var React = require('react/addons');
 var Reflux = require('reflux');
 var LanStore=require('../../stores/lanStore.js');
 var Link = require('react-router').Link;
@@ -11,7 +11,7 @@ var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 
 var BarContent = React.createClass({
   render: function() {
-    return <div className="slider_content">{this.props.children}</div>;
+    return <div className='slider_content'>{this.props.children}</div>;
   }
 });
 
@@ -31,23 +31,23 @@ module.exports  = React.createClass({
 
   componentDidUpdate:function(){
     if(this.state.open){
-      $(this.getDOMNode()).find('.panel-toggle').tooltip({content: i18n.t("app.hideMenu")});
+      $(this.getDOMNode()).find('.panel-toggle').tooltip({content: i18n.t('app.hideMenu')});
     } else {
-      $(this.getDOMNode()).find('.panel-toggle').tooltip({content: i18n.t("app.menu")});
+      $(this.getDOMNode()).find('.panel-toggle').tooltip({content: i18n.t('app.menu')});
     }
   },
   
   toggle: function() {
-    $(this.getDOMNode()).find(".slider_content").toggle( "slide" );
+    $(this.getDOMNode()).find('.slider_content').toggle( 'slide' );
     if(this.state.open){
       $(this.getDOMNode()).find('.panel-toggle').tooltip({
         delay:10,
-        content: i18n.t("app.menu")});
+        content: i18n.t('app.menu')});
       this.setState({
         open: false
       });
     } else {
-      $(this.getDOMNode()).find('.panel-toggle').tooltip({content: i18n.t("app.hideMenu")});
+      $(this.getDOMNode()).find('.panel-toggle').tooltip({content: i18n.t('app.hideMenu')});
       this.setState({
         open: true
       });
@@ -56,14 +56,14 @@ module.exports  = React.createClass({
   },
   
   render: function() {
-    var content = this.state.open? this.props.children : "";
+    var content = this.state.open? this.props.children : '';
     return (
-      <div id="sidebar-wrapper">
-        <div className="panel-toggle" title={i18n.t("app.menu")}>
-          <i className="fa fa-bars" onClick={this.toggle}></i>
+      <div id='sidebar-wrapper'>
+        <div className='panel-toggle' title={i18n.t('app.menu')}>
+          <i className='fa fa-bars' onClick={this.toggle}></i>
         </div>
         
-        <div className="slider_content">
+        <div className='slider_content'>
           {this.props.children}
         </div>
       </div>

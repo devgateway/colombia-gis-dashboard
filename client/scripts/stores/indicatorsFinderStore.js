@@ -22,41 +22,41 @@ module.exports = Reflux.createStore({
     this.update({showNoResults: false});
     API.getIndicatorsList(this.state.query).then(function(data) {
       this.update({results:data, showLoading: false});
-      if (!data.indicators || data.indicators.length==0){
+      if (!data.indicators || data.indicators.length===0){
         this.update({showNoResults: true});
       }    
     }.bind(this)).fail(
       function(xhttp,err){
-        console.log(err)
+        console.log(err);
       }
     );
   },
 
   onUpdateIndicator:function(indicator, activityId){
-    this.update({"indicatorSelected": indicator, "activitySelected": activityId});
+    this.update({'indicatorSelected': indicator, 'activitySelected': activityId});
     this.trigger(this.state);
   },
 
   onGetActivitiesByProgram: function(value){
-    var filters = {"filters":[{"id":value}]};
+    var filters = {'filters':[{'id':value}]};
     this.update({'results':{indicators:[]}}, {'silent': true});
     API.getActivityList(filters).then(function(data) {
       this.update({activities:data, showLoading: false});
       }.bind(this)).fail(
       function(xhttp,err){
-        console.log(err)
+        console.log(err);
       }
     );
   },
 
   onUpdateQuery: function(filter,value){
-    var query=_.clone(this.state.query)
-    value = Array.isArray(value)? value : [value]; //"values" in query should be an array
+    var query=_.clone(this.state.query);
+    value = Array.isArray(value)? value : [value]; //'values' in query should be an array
     var param = _.find(query, {'param': filter});
     if (param){
       param.values = value;
     } else {
-      query.push({"param": filter, "values": value});
+      query.push({'param': filter, 'values': value});
     }
     _.assign(this.state.query,query);
     this.trigger(this.state);
@@ -70,11 +70,11 @@ module.exports = Reflux.createStore({
   loadTypes:function(){
     Util.get(window.MOCK_PATH + '/indicatorType.json').then(
       function(data){
-        this.update({types:data})
+        this.update({types:data});
       }.bind(this)
     ).fail(
       function(xhttp,err){
-        console.log(err)
+        console.log(err);
       } 
     );
   },
@@ -82,11 +82,11 @@ module.exports = Reflux.createStore({
   loadPrograms:function(){
     Util.get(window.MOCK_PATH + '/programs.json').then(
       function(data){
-        this.update({programs:data})
+        this.update({programs:data});
       }.bind(this)
     ).fail(
       function(xhttp,err){
-        console.log(err)
+        console.log(err);
       } 
     );
   },
@@ -96,11 +96,11 @@ module.exports = Reflux.createStore({
       this.state = { 
         'indicatorSelected': {},
         query: [
-          {"param":"pr","values":[]},
-          {"param":"t","values":[]},
-          {"param":"k","values":[]},
-          {"param":"page","values":[1]},
-          {"param":"size","values":[10]}
+          {'param':'pr','values':[]},
+          {'param':'t','values':[]},
+          {'param':'k','values':[]},
+          {'param':'page','values':[1]},
+          {'param':'size','values':[10]}
         ],
         filter:{
             indicator:undefined

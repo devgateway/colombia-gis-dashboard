@@ -1,11 +1,11 @@
 'use strict';
 var React = require('react/addons');
 var Reflux = require('reflux');
-var Store=require('../../stores/filters/printAgregator.js')
+var Store=require('../../stores/filters/printAgregator.js');
+
 module.exports = React.createClass({
 
-	  mixins: [Reflux.connect(Store)],
-
+	mixins: [Reflux.connect(Store)],
 	
 	render: function() {
 		console.log('PRINT FILTEEEEEEEEEEEEEER')

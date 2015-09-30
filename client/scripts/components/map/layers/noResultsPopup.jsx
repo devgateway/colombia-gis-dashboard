@@ -13,33 +13,33 @@ module.exports = React.createClass({
 	
 
 	close:function(){
-		this.setState({ showModal: false });
+		this.setState({'showModal': false });
 	},
 
 	open:function(){
-		this.setState({ showModal: true });
+		this.setState({'showModal': true });
 	},	
 	
 	render:function() {
 		return (
 			<div>
-				<Modal  {...this.props} bsSize='large' className="indicator-search" aria-labelledby='contained-modal-title-lg' show={this.state.showModal} onHide={this.close}>
+				<Modal  {...this.props} bsSize='large' className='indicator-search' aria-labelledby='contained-modal-title-lg' show={this.state.showModal} onHide={this.close}>
 					<Modal.Header>
-					<a className="close-dialog" href="#" onClick={this.close}>
-					<i className="fa fa-times-circle-o"></i></a>
-						<Modal.Title><i className="fa fa-arrows-h"></i><Message message='layers.noResultsForDataLayer'/></Modal.Title>
+					<a className='close-dialog' href='#' onClick={this.close}>
+					<i className='fa fa-times-circle-o'></i></a>
+						<Modal.Title><i className='fa fa-arrows-h'></i><Message message='layers.noResultsForDataLayer'/></Modal.Title>
 					</Modal.Header>
-					<Modal.Body className="finder">
-						<div className="blue-panel">
-							<div className="plain-panel">
-								<div className="filter-no-results"><br/>
+					<Modal.Body className='finder'>
+						<div className='blue-panel'>
+							<div className='plain-panel'>
+								<div className='filter-no-results'><br/>
 									{i18n.t(this.state.modalText)}
 								</div>
 					        </div>
 						</div>						
 					</Modal.Body>
 					<Modal.Footer>
-						<Button className="pull-right" onClick={this.close}><Message message='layers.close'/></Button>
+						<Button className='pull-right' onClick={this.close}><Message message='layers.close'/></Button>
 					</Modal.Footer>
 				</Modal>
 			</div>

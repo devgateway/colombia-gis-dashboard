@@ -34,14 +34,16 @@ module.exports = {
 	
 
 	_rgbToHex: function(r, g, b){
-		return "#"+this._toHex(r)+this._toHex(g)+this._toHex(b);
+		return '#'+this._toHex(r)+this._toHex(g)+this._toHex(b);
 	},
 
 	_toHex: function (n) {
 		n = parseInt(n,10);
-		if (isNaN(n)) return "00";
+		if (isNaN(n)){
+		 	return '00';
+		}
 		n = Math.max(0,Math.min(n,255));
-		return "0123456789ABCDEF".charAt((n-n%16)/16) + "0123456789ABCDEF".charAt(n%16);
-	},
+		return '0123456789ABCDEF'.charAt((n-n%16)/16) + '0123456789ABCDEF'.charAt(n%16);
+	}
 };
 

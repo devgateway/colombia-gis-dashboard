@@ -77,10 +77,10 @@ module.exports = React.createClass({
   addFeatureLayer: function(fLayer) {
     console.log('map->_mapLeaflet>addFeatureLayer');
     var url = fLayer[0].url;
-    var feature = new L.esri.FeatureLayer(url + "/0", {
+    var feature = new L.esri.FeatureLayer(url + '/0', {
       style: function() {
         return {
-          color: "#70ca49",
+          color: '#70ca49',
           weight: 2
         };
       }
@@ -119,7 +119,7 @@ module.exports = React.createClass({
 
   render: function() {
     console.log('map->_mapLeaflet>render');
-    return <div className = "map react-leaflet-map" > < /div>
+    return (<div className = 'map react-leaflet-map' > < /div>);
   }
 
 });

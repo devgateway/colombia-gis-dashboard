@@ -5,6 +5,7 @@
 * Licensed under the MIT license
 */
 
+'use strict';
 
 (function (definition) {
     // This file will function properly as a <script> tag, or a module

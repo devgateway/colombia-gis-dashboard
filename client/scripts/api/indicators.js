@@ -14,7 +14,7 @@ module.exports = {
             url: 'http://test.monitor.net.co/gisservice/gisservice.svc/Filters/IndicatorSearch/Json',
             type: 'json',
             method: 'post',
-            contentType: "application/json",
+            contentType: 'application/json',
             data: JSON.stringify(filters),
             crossOrigin: true
         }).fail(logFailure);
@@ -25,7 +25,7 @@ module.exports = {
             url: 'http://test.monitor.net.co/gisservice/gisservice.svc/Filters/ActivitiesListByProgram/Json',
             type: 'json',
             method: 'post',
-            contentType: "application/json",
+            contentType: 'application/json',
             data: JSON.stringify(filters),
             crossOrigin: true
         }).fail(logFailure);

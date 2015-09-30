@@ -1,12 +1,10 @@
-/*Tree list*/
+'use strict';
 
 var React = require('react');
 var PureRenderMixin = require('react/addons').addons.PureRenderMixin;
 var _ = require('lodash');
 var If = require('../../commons/if.jsx');
-
 var CommonsMixins = require('./commonsMixins.jsx');
-
 
 function checkNestedVisibility(item) {
 
@@ -22,13 +20,11 @@ function checkNestedVisibility(item) {
         } 
       }
     }
-
   return false;
 }
 
-
 var TreeView = React.createClass({
-
+  
   _isVisible: function(item) {
     return checkNestedVisibility(item);
   },
@@ -42,14 +38,17 @@ var TreeView = React.createClass({
   render: function() {
     var visible = this._isVisible(this.props);
     return (
-      (visible) ? <li> {this.props.name} 
-          <ul> {
+      (visible) ? 
+        <ul> {this.props.name} 
+          <li> {
             (this.props.nested? _.map(this.props.nested, function(item) {
                return (<TreeView {...item}/>)            
               }.bind(this)): null)
-           }
-         </ul> 
-        </li>:null);
+            }
+          </li> 
+        </ul>
+      :null
+    );
   }
 });
 
@@ -61,7 +60,6 @@ module.exports = React.createClass({
   mixins: [CommonsMixins],
 
   _isVisible:function(){
-    debugger;
     for(var i=0;i < this.state.itemsTree.length;i++){
       if (checkNestedVisibility(this.state.itemsTree[i])){
         return true;
@@ -78,15 +76,18 @@ module.exports = React.createClass({
 
   render: function() {
     console.log('...........RENDER TREE LIST ...........');
-
     var items = this.state.itemsTree || [];
-    return (this._isVisible()? <div>
-      <h4> <Message message={this.props.label}/></h4>
-      <ul> {
-        items.map(function(item, index) {
-          return ( <TreeView {...item}/>)            
-        }.bind(this))
-      } </ul> </div>:null);    
-
+    return (
+      this._isVisible()? 
+        <div>
+          <h4> <Message message={this.props.label}/></h4>
+          <ul> 
+            {items.map(function(item, index) {
+              return ( <TreeView {...item}/>)            
+            }.bind(this))} 
+          </ul> 
+        </div>
+      :null
+    );    
   }
 });

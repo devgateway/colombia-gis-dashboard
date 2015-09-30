@@ -1,4 +1,4 @@
-/*Basic list*/
+'use strict';
 
 var React = require('react');
 var PureRenderMixin = require('react/addons').addons.PureRenderMixin;
@@ -15,7 +15,7 @@ module.exports = React.createClass({
   mixins: [CommonsMixins, PureRenderMixin],
 
   componentDidUpdate: function(){
-    $(this.getDOMNode()).find('.filter-list-container').mCustomScrollbar({theme:"inset-dark"});
+    $(this.getDOMNode()).find('.filter-list-container').mCustomScrollbar({theme:'inset-dark'});
     var listsFull = [];
     if (this.state.levels){
       this._getLists(listsFull, this.state.levels, true);
@@ -63,30 +63,30 @@ module.exports = React.createClass({
     if (this.state.levels){
       this._getLists(listsFiltered, this.state.levels);
     } 
-    var noResults = "";
+    var noResults = '';
     if (!this._hasItems(listsFiltered)){
-      noResults = <div className="filter-no-results">
-                    <br/>{<Message message="filters.performSearch"/>}
+      noResults = <div className='filter-no-results'>
+                    <br/>{<Message message='filters.performSearch'/>}
                 </div>
     }
     if (this.props.active){
       return ( 
-        <div className="tab-content">
-          <div className="tab-pane fade active in">
-            <div className="filter-group-panel selected">
+        <div className='tab-content'>
+          <div className='tab-pane fade active in'>
+            <div className='filter-group-panel selected'>
               
-              <div className="filter-group-panel-header">
-                <span className="filter-label" role="label">{<Message message={this.props.label}/>}</span>                
-                <div className="show-selected">
+              <div className='filter-group-panel-header'>
+                <span className='filter-label' role='label'>{<Message message={this.props.label}/>}</span>                
+                <div className='show-selected'>
                   <span><CustomCheckbox onChange={this._onShowSelectedClicked}/></span>
-                  <span><Message message="filters.showSelected"/></span>                                    
+                  <span><Message message='filters.showSelected'/></span>                                    
                 </div> 
                 <SelectAllNone onSelectAll={this._onSelectAll} onSelectNone={this._onSelectNone}/>
               </div>
-              <KeywordSearch onSearch={this._onSearch} lengthLimit="3" onClear={this._onSearchClear}/>
+              <KeywordSearch onSearch={this._onSearch} lengthLimit='3' onClear={this._onSearchClear}/>
               {noResults}
-              <div className="filter-list-container">
-                <ul className="filter-list">
+              <div className='filter-list-container'>
+                <ul className='filter-list'>
                 {
                   listsFiltered.map(function(list) {
                     return (list.map(function(item) {

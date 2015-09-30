@@ -1,3 +1,4 @@
+'use strict';
 var alphabet = { a:/[\u0061\u24D0\uFF41\u1E9A\u00E0\u00E1\u00E2\u1EA7\u1EA5\u1EAB\u1EA9\u00E3\u0101\u0103\u1EB1\u1EAF\u1EB5\u1EB3\u0227\u01E1\u00E4\u01DF\u1EA3\u00E5\u01FB\u01CE\u0201\u0203\u1EA1\u1EAD\u1EB7\u1E01\u0105\u2C65\u0250]/ig,
     aa:/[\uA733]/ig,
     ae:/[\u00E6\u01FD\u01E3]/ig,
@@ -49,7 +50,7 @@ module.exports = {
   replaceDiacritics: function(str) {
     for (var letter in alphabet) {
       str = str.replace(alphabet[letter], letter);
-  }
-  return str;
-}
-}
+    }
+    return str;
+    }
+};

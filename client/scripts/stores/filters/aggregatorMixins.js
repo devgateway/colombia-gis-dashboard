@@ -32,4 +32,4 @@ init: function() {
 		this.listenTo(ValueRangeStore, this._collectFilters(['vr1','vr2']));
 
 	},
-}
+};

@@ -9,21 +9,20 @@ var API = require('../api/esri.js');
 var _ = require('lodash');
 var LoadingAction = require('../actions/loadingActions.js');
 
-var CommonsMixins = require('./_mixins.js')
+var CommonsMixins = require('./_mixins.js');
 
 var storedState;//= require('./layer_samples.js');
 
 function setVisibility(layers){
 	layers.map(function(l){
 		l.visible=l.defaultVisibility; 
-	})
-	
+	});
 }
+
 function setOpaciy(layers){
 	layers.map(function(l){
 		l.opacity=1; 
-	})
-	
+	});	
 }
 
 module.exports = Reflux.createStore({
@@ -38,17 +37,17 @@ module.exports = Reflux.createStore({
 			
 			var options={'opacity': 1,'visible':true, 'created':null}; //default values for all layers 
 
-			if (layer.type=='Feature Service'){
+			if (layer.type==='Feature Service'){
 				setVisibility(layer.layer.layers);
 				setOpaciy(layer.layer.layers);	
-			}else{
+			} else {
 				_.assign(options,{'zIndex': this.nextZindex()});
 			}
 
 			_.assign(layer, options);
 			this.state.layers.push(layer);
-			var latestChange  = new Object();
-			latestChange['latestChange'] = {'property':'addLayer', 'value':layer};
+			var latestChange  = {};
+			latestChange.latestChange = {'property':'addLayer', 'value':layer};
 			this.update(latestChange, {'silent': true});
 			this.trigger(this.state);
 		}
@@ -57,7 +56,7 @@ module.exports = Reflux.createStore({
 	onServiceCreated: function(id) {
 		_.assign(_.findWhere(this.state.layers, {id: id}), {
 			created: true
-		})
+		});
 	},
 
 	onLayerAdded: function(id) {
@@ -71,15 +70,15 @@ module.exports = Reflux.createStore({
 		console.log(arguments);
 		var theLayer = _.findWhere(this.state.layers, {'id': id});
 		var isFeature=theLayer.type=='Feature Service';
-		var latestChange  = new Object();
+		var latestChange = {};
 
-		if (property == 'delete') {
-			var index = _.indexOf(_.pluck(this.state.layers, 'id'), theLayer.id);;
+		if (property === 'delete') {
+			var index = _.indexOf(_.pluck(this.state.layers, 'id'), theLayer.id);
 			this.state.layers.splice(index, 1);
-			latestChange['latestChange'] = {'property':'deleteLayer', 'value':theLayer.id};
+			latestChange.latestChange = {'property':'deleteLayer', 'value':theLayer.id};
 			this.update(latestChange, {'silent': true});
 			ArcgisLayersActions.restoreLayerButton(theLayer.id);
-		} else if (property == 'moveDown' && !isFeature) {
+		} else if (property === 'moveDown' && !isFeature) {
 			var currentZindex = theLayer.zIndex;
 			if (currentZindex > 0) {
 				var newZindex = currentZindex - 1;
@@ -89,7 +88,7 @@ module.exports = Reflux.createStore({
 				theLayer.zIndex = newZindex; //the layer gets z-index-1
 				replaceWith.zIndex = currentZindex; //the one that was in tha position takes  theLayer's z-index
 			}
-		} else if (property == 'moveUp' && !isFeature) {
+		} else if (property === 'moveUp' && !isFeature) {
 			var currentZindex = theLayer.zIndex;
 			if (currentZindex < this.state.layers.length) {
 				var newZindex = currentZindex + 1;
@@ -102,23 +101,23 @@ module.exports = Reflux.createStore({
 		} else {
 			if(!idx){
 				theLayer[property] = value;
-				latestChange['latestChange'] = {'property':'visible', 'value':theLayer};
+				latestChange.latestChange = {'property':'visible', 'value':theLayer};
 				this.update(latestChange, {'silent': true});
 			}
 
 			if (isFeature){ //this is feature layer
 				if (idx){
 					_.find(theLayer.layer.layers,{id:parseInt(idx)})[property]=value;	
-					latestChange['latestChange'] = {'property':'visible', 'value':theLayer};
+					latestChange.latestChange = {'property':'visible', 'value':theLayer};
 					this.update(latestChange, {'silent': true});
-				}else{
+				} else {
 					theLayer.layer.layers.map(function(l){
-						l[property]=value
-					})
+						l[property]=value;
+					});
 				}
 			}
 		}
-		this.trigger(this.state)
+		this.trigger(this.state);
 	},
 
 	onRestoreData: function(savedData) {
@@ -131,7 +130,7 @@ module.exports = Reflux.createStore({
 
 	nextZindex: function() {
 		if (!this.lastZindex) {
-			this.lastZindex = 0
+			this.lastZindex = 0;
 		}
 		return this.lastZindex++;
 	},
@@ -140,7 +139,7 @@ module.exports = Reflux.createStore({
 		if (!this.state) {
 			this.state = storedState || {
 				layers: [],
-				saveItems: ["layers"]
+				saveItems: ['layers']
 			};
 		}
 		return this.state;

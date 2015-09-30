@@ -1,3 +1,4 @@
+'use strict';
 var _=require('lodash');
 
 module.exports = {
@@ -19,7 +20,7 @@ module.exports = {
   },
 
   _onSearchEnterKey: function(keyword) {
-    this.actions.selectFilteredByKeyword(keyword)
+    this.actions.selectFilteredByKeyword(keyword);
   },
 
   _onShowSelectedClicked: function(selected) {
@@ -50,4 +51,4 @@ module.exports = {
     }
   },
 
-}
+};

@@ -1,3 +1,4 @@
+'use strict';
 var React = require('react');
 var Reflux = require('reflux');
 var If=require('../../../commons/if.jsx');
@@ -18,30 +19,30 @@ module.exports=React.createClass({
   render:function(){
     if (this.props.visible) {
       return (<div>
-                <div className="legend-group-title" onClick={this._toggleVisibility}>
-                  <i className={this.state.expanded? "fa fa-sort-asc" : "fa fa-sort-desc"}/>
+                <div className='legend-group-title' onClick={this._toggleVisibility}>
+                  <i className={this.state.expanded? 'fa fa-sort-asc' : 'fa fa-sort-desc'}/>
                   <span><Message message={this.props.layerTitle}/></span>
                 </div>
                 <If condition={this.state.expanded}>
-                  <div className="legend-group">
+                  <div className='legend-group'>
                     <ul>
                     {
                       this.props.legendGroups.map(function(legendGroup){
                         return (
                           <li>
                             <h2><Message message={legendGroup.layerName}/></h2>
-                            <div className="legends-list">
+                            <div className='legends-list'>
                               <ul>
                               {
                                 legendGroup.legends.map(function(legend){
-                                  var image = "";
+                                  var image = '';
                                   
 
                                   if (legend.imageData || (legend.symbol && legend.symbol.imageData)){
                                     var imgData = legend.imageData? legend.imageData : legend.symbol.imageData;
-                                    var imgColor = legend.imageColor? legend.imageColor : "#FFFFFF";
+                                    var imgColor = legend.imageColor? legend.imageColor : '#FFFFFF';
                                     var cntType = legend.contentType? legend.contentType : legend.symbol.contentType;
-                                    var src = "data:"+cntType+";base64,"+imgData;
+                                    var src = 'data:'+cntType+';base64,'+imgData;
                                     image = <img src={src} style={{backgroundColor:imgColor}}/>;
                                   } else {
                                     image = <LegendSymbol symbol={legend.symbol}/>
