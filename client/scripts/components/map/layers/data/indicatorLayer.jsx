@@ -18,8 +18,6 @@
    })
    .map(function(topName) { // convert eg. `topBlur` => `blur`
      return topName.slice(3).toLowerCase();
-     // var lowerFirstLetter = topName.slice(3, 4).toLowerCase();  // first letter after top
-     // return lowerFirstLetter + topName.slice(4);
    });
 
 module.exports = React.createClass({
@@ -42,7 +40,7 @@ module.exports = React.createClass({
       var featureValue;
       var isFilteredByMunicipality = false;
       var isMunicipalitySelected = false;
-      if(this.state.breakStyle && this.state.breakStyle == "breakValues") {
+      if(this.state.breakStyle && this.state.breakStyle == 'breakValues') {
         featureValue = feature.properties.value?feature.properties.value:0;
 
       } else {
@@ -55,7 +53,7 @@ module.exports = React.createClass({
       }
       
       var style = this._getStyle(featureValue, !isFilteredByMunicipality || isMunicipalitySelected);
-      var rgbColor = style.color.r + "," + style.color.g + "," + style.color.b + "," + style.color.a;
+      var rgbColor = style.color.r + ',' + style.color.g + ',' + style.color.b + ',' + style.color.a;
 
       return {
         color: 'rgba(' + rgbColor + ')',
@@ -79,7 +77,7 @@ module.exports = React.createClass({
        var popupHolder = this.getDOMNode();
        _closed = false;
        var _onChange = function() {
-         popupHolder.firstChild.style.display = "";
+         popupHolder.firstChild.style.display = '';
          e.popup.setContent(popupHolder.innerHTML);
          this.fixReactIds(e.popup);
        }.bind(this)
@@ -94,7 +92,7 @@ module.exports = React.createClass({
        this.fixReactEvents(e.popup);
     }.bind(this));
     layer.on('popupclose', function(e) {
-        e.popup.setContent("");
+        e.popup.setContent('');
         _closed = true;
     });
    },

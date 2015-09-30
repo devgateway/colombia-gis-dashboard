@@ -17,13 +17,13 @@ var CustomCheckbox = React.createClass({
 
     componentWillReceiveProps :function(nextProps){
         if(nextProps.selected!=undefined){
-            this.setState({'selected':nextProps.selected})
+            this.setState({'selected':nextProps.selected});
         };
     },
  
 
     render: function() {
-        var classes = this.state.selected===true? "selectable selected" : "selectable";
+        var classes = this.state.selected===true? 'selectable selected' : 'selectable';
         return(
             <span className={classes} onClick={this._onClick}>
                 

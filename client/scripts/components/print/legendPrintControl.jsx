@@ -1,10 +1,8 @@
-/*http://facebook.github.io/react/docs/component-specs.html*/
+'use strict';
 var React = require('react');
 var Reflux = require('reflux');
-
 var LegendStore=require('../../stores/esriLayesLegendsStore.js');
 var DataLegendStore=require('../../stores/dataLayersLegendsStore.js');
-
 var LegendActions=require('../../actions/legendActions.js');
 var If=require('../commons/if.jsx')
 var Legend=require('./_legendPrint.jsx');
@@ -27,11 +25,8 @@ var LegendControl  = React.createClass({
     var esri=_.clone(this.state.esri.layersLegends) || [];
     var  data =this.state.data.layersLegends || [];
     var legends=data.concat(esri);  
-    
-    var legendContent = "";
-    var buttonLabel = this.state.shown? <Message message="layers.hideLegend"/> : <Message message="layers.showLegend"/>
-
-    
+    var legendContent = '';
+    var buttonLabel = this.state.shown? <Message message='layers.hideLegend'/> : <Message message='layers.showLegend'/>;
     return (
       <div>
       {
@@ -39,8 +34,8 @@ var LegendControl  = React.createClass({
           return (<Legend legendGroups={l.legendGroups} layerTitle={l.layerTitle} visible={l.visible}/>);
         })
       }
-      </div>);
-
+      </div>
+    );
   }
 });
 

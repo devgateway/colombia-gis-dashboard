@@ -16,8 +16,8 @@ module.exports = {
             type: 'json',
             method: 'post',
             //method: 'get',
-            contentType: "application/json",
-            data: JSON.stringify({"filters": filters? filters : []}),
+            contentType: 'application/json',
+            data: JSON.stringify({'filters': filters? filters : []}),
             crossOrigin: true
         }).fail(logFailure);
     },
@@ -29,8 +29,8 @@ module.exports = {
             type: 'json',
             method: 'post',
             //method: 'get',
-            contentType: "application/json",
-            data: JSON.stringify({"filters": filters? filters : []}),
+            contentType: 'application/json',
+            data: JSON.stringify({'filters': filters? filters : []}),
             crossOrigin: true
         }).fail(logFailure);
     },
@@ -54,12 +54,12 @@ module.exports = {
     getIndicatorsByDepartment: function (filters) {
         return request({
             //url: 'http://test.monitor.net.co/gisservice/gisservice.svc/Filters/DepartmentsFunding/Json',
-            //data: JSON.stringify({"filters": filters? filters : []}),
+            //data: JSON.stringify({'filters': filters? filters : []}),
             url: 'http://test.monitor.net.co/gisservice/gisservice.svc/IndicatorInfoByDepartments/Json',
             data: JSON.stringify(filters),
             type: 'json',
             method: 'post',
-            contentType: "application/json",
+            contentType: 'application/json',
             crossOrigin: true
         }).fail(logFailure);
     },
@@ -67,12 +67,12 @@ module.exports = {
     getIndicatorsByMuncipalities: function (filters) {
         return request({
             //url: 'http://test.monitor.net.co/gisservice/gisservice.svc/Filters/MunicipalitiesFunding/Json',
-            //data: JSON.stringify({"filters": filters? filters : []}),
+            //data: JSON.stringify({'filters': filters? filters : []}),
             url: 'http://test.monitor.net.co/gisservice/gisservice.svc/IndicatorInfoByMunicipalities/Json',
             data: JSON.stringify(filters),
             type: 'json',
             method: 'post',
-            contentType: "application/json",
+            contentType: 'application/json',
             crossOrigin: true
         }).fail(logFailure);
     }

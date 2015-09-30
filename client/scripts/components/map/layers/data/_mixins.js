@@ -1,10 +1,12 @@
+'use strict';
+
 var _ = require('lodash');
 
 module.exports = {
 
 	componentDidUpdate: function(prev, prevState) {
 		
-		options = {};
+		var options = {};
 		var newState = this.state;
 
 		if (!this.layer && newState.geoData) {
@@ -12,21 +14,18 @@ module.exports = {
 		}
 		/*I can change values only if the layer was created in */
 		if (this.layer) {
-			if (newState.geoData != prevState.geoData) {
+			if (newState.geoData !== prevState.geoData) {
 				this.props.getMap().removeLayer(this.layer);
 				this.layer = this._createLayer(newState.geoData, options);
 			}
-
-
-			if (newState.breaks != prevState.breaks) {
+			if (newState.breaks !== prevState.breaks) {
 				
 				this._setStyles();
 			}
-
 			this.layer.setOpacity(newState.opacity, 1);
-			if (newState.visible == false) {
+			if (newState.visible === false) {
 				if (this.props.getMap().hasLayer(this.layer)) {
-					this.props.getMap().removeLayer(this.layer)
+					this.props.getMap().removeLayer(this.layer);
 				}
 
 			} else if (!this.props.getMap().hasLayer(this.layer)) {
@@ -61,7 +60,7 @@ module.exports = {
 		if (this.state.geoData) {
 
 			var breakData = _.find(_.values(this.state.breaks.breaks), function(t) {
-				return ((isMunicipalitySelected || value> 0) && value >=  t.min && value < t.max)
+				return ((isMunicipalitySelected || value> 0) && value >=  t.min && value < t.max);
 			});
 
 			if (breakData) {
@@ -74,6 +73,4 @@ module.exports = {
 
 	},
 
-
-
-}
+};

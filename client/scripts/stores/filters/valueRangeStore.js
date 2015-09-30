@@ -22,10 +22,10 @@ module.exports = Reflux.createStore({
 	onRestoreData: function(savedData) {
 		if(savedData.filterData && savedData.filterData.filters){
 			_.forEach(savedData.filterData.filters, function(filter){
-				if (filter.param == 'vr1'){
+				if (filter.param === 'vr1'){
 					_.assign(this.state, {'vr1': filter.values[0]});
 				}
-				if (filter.param == 'vr2'){
+				if (filter.param === 'vr2'){
 					_.assign(this.state, {'vr2': filter.values[0]});
 				}
 			}.bind(this));
@@ -42,10 +42,10 @@ module.exports = Reflux.createStore({
 	onLoadFromSaved: function(data){
 		this.onClean();
 		_.forEach(data.filters, function(filter){
-			if (filter.param == 'vr1'){
+			if (filter.param === 'vr1'){
 				_.assign(this.state, {'vr1': filter.values});
 			}
-			if (filter.param == 'vr2'){
+			if (filter.param === 'vr2'){
 				_.assign(this.state, {'vr2': filter.values});
 			}
 		}.bind(this));	
@@ -57,4 +57,4 @@ module.exports = Reflux.createStore({
 		_.assign(this.state, {'vr1': ''});
 		_.assign(this.state, {'vr2': ''});			
 	}	
-})
+});

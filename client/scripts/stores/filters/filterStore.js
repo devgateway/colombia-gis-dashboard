@@ -18,19 +18,18 @@ module.exports = Reflux.createStore({
 					
 				if (_.isArray(params)){
 					_.forEach(params, function(param){
-						this.state[param] = _.isArray(value)? _.map(_.filter(value[param].items, function(it){return it.selected}), 'id'): [value[param]];
+						this.state[param] = _.isArray(value)? _.map(_.filter(value[param].items, function(it){return it.selected;}), 'id'): [value[param]];
 					}.bind(this));
 				} else {
-					this.state[params] = _.map(_.filter(value.items, function(it){return it.selected}), 'id');
+					this.state[params] = _.map(_.filter(value.items, function(it){return it.selected;}), 'id');
 				} 
-			}
+			};
 		} else {
-			return function(value){
-						
+			return function(value){					
 				_.forEach(params, function(param){
-					this.state[param] =  _.map(_.filter(value[param], function(it){return it.selected}), 'id');
+					this.state[param] =  _.map(_.filter(value[param], function(it){return it.selected;}), 'id');
 				}.bind(this));				
-			}
+			};
 		}
 	},
 
@@ -38,7 +37,7 @@ module.exports = Reflux.createStore({
 	_translate:function(){
 		var filters = [];
 		for (var key in this.state) {
-			if (this.state.hasOwnProperty(key) && this.state[key].length>0 && this.state[key][0]!=""){
+			if (this.state.hasOwnProperty(key) && this.state[key].length>0 && this.state[key][0]!==''){
 			  	var selection = {'param': key, 'values': this.state[key]};
 			    filters.push(selection);
 			}
@@ -55,4 +54,4 @@ module.exports = Reflux.createStore({
 	getInitialState: function() {
 		return (this.state = {});
 	}
-})
+});

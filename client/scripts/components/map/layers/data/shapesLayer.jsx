@@ -32,7 +32,7 @@
       var featureValue;
       var isFilteredByMunicipality = false;
       var isMunicipalitySelected = false;
-      if(this.state.breakStyle && this.state.breakStyle == "breakValues") {
+      if(this.state.breakStyle && this.state.breakStyle == 'breakValues') {
         featureValue = feature.properties.fundingUS?feature.properties.fundingUS:0;
 
       } else {
@@ -46,7 +46,7 @@
       
       if(this.state.filters && featureValue==0){
         this.state.filters.map(function(l){
-          if(l.param == 'mu'){
+          if(l.param === 'mu'){
             isFilteredByMunicipality = true;
             l.values.map(function(muId){
               if(muId == feature.properties.ID_2){
@@ -58,7 +58,7 @@
       }
 
       var style = this._getStyle(featureValue, !isFilteredByMunicipality || isMunicipalitySelected);
-      var rgbColor = style.color.r + "," + style.color.g + "," + style.color.b + "," + style.color.a;
+      var rgbColor = style.color.r + ',' + style.color.g + ',' + style.color.b + ',' + style.color.a;
 
       return {
         color: 'rgba(' + rgbColor + ')',
@@ -82,7 +82,7 @@
        var popupHolder = this.getDOMNode();
        _closed = false;
        var _onChange = function() {
-         popupHolder.firstChild.style.display = "";
+         popupHolder.firstChild.style.display = '';
          e.popup.setContent(popupHolder.innerHTML);
        }.bind(this)
        React.render(React.createElement(Popup, _.assign(feature.properties, {
@@ -95,7 +95,7 @@
        e.popup.setContent(popupHolder.innerHTML);
      }.bind(this));
      layer.on('popupclose', function(e) {
-        e.popup.setContent("");
+        e.popup.setContent('');
         _closed = true;
      });
    },

@@ -49,19 +49,19 @@ var ValueRangeFilter = React.createClass({
         console.log('valueRangeFilter -> render');
         if (this.props.active){
             return(
-                <div className="tab-content">
-                    <div className="tab-pane fade active in">
-                        <div className="filter-group-panel selected">
-                            <div className="filter-group-panel-header">
-                                <span className="filter-label" role="label"><Message message='filters.valueRangesBetween'/></span>                                                                
+                <div className='tab-content'>
+                    <div className='tab-pane fade active in'>
+                        <div className='filter-group-panel selected'>
+                            <div className='filter-group-panel-header'>
+                                <span className='filter-label' role='label'><Message message='filters.valueRangesBetween'/></span>                                                                
                             </div>
-                            <div className="input-group date">
-                                <span className="filter-label" role="label">Min $: </span>
-                                <input type="text" value={this.state.valueRangeMin} onChange={this._rangeMinChanged} className="start-date"/>
+                            <div className='input-group date'>
+                                <span className='filter-label' role='label'>Min $: </span>
+                                <input type='text' value={this.state.valueRangeMin} onChange={this._rangeMinChanged} className='start-date'/>
                             </div>
-                            <div className="input-group date">
-                                <span className="filter-label" role="label">Max $: </span>
-                                <input type="text" value={this.state.valueRangeMax} onChange={this._rangeMaxChanged} className="start-date"/>
+                            <div className='input-group date'>
+                                <span className='filter-label' role='label'>Max $: </span>
+                                <input type='text' value={this.state.valueRangeMax} onChange={this._rangeMaxChanged} className='start-date'/>
                             </div>
                         </div>
                     </div>

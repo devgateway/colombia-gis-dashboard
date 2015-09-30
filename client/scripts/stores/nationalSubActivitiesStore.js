@@ -27,7 +27,7 @@ module.exports=Reflux.createStore({
     },
 
     onGetPopupInfoFromAPI: function(infoWindowFilter, filters) {
-        console.log("stores->infoWindowShapesStore: onGetInfoFromAPI");
+        console.log('stores->infoWindowShapesStore: onGetInfoFromAPI');
         this.update({'infoWindowFilter': infoWindowFilter, 'infoWindow': null});
         API.getInfoFromAPI(infoWindowFilter, filters).then(
           function(data){
@@ -43,7 +43,7 @@ module.exports=Reflux.createStore({
     },
 
     getInfo: function(infoType) {
-        console.log("stores->infoWindowShapesStore: getInfo");
+        console.log('stores->infoWindowShapesStore: getInfo');
         if (this.state[infoType]) {
           return this.state[infoType];
         } else {

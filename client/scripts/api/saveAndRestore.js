@@ -11,32 +11,32 @@ module.exports = {
 
 
   saveMapToAPI: function(params) {
-    //console.log("scripts->api->saveAndRestoreMap: saveMapToAPI");
+    //console.log('scripts->api->saveAndRestoreMap: saveMapToAPI');
     return reqwest({
       url: window.MAP_SAVE_URL,
       type: 'json',
       method: 'post',
-      contentType: "application/json",
+      contentType: 'application/json',
       data: JSON.stringify(params),
       crossOrigin: true
     }).fail(logFailure);
   },
 
   updateMapToAPI: function(id, params) {
-    //console.log("scripts->api->saveAndRestoreMap: updateMapToAPI");
+    //console.log('scripts->api->saveAndRestoreMap: updateMapToAPI');
     var url = tim(window.MAP_UPDATE_DELETE_URL,{id:id});
     return reqwest({
       url: url,
       type: 'json',
       method: 'put',
-      contentType: "application/json",
+      contentType: 'application/json',
       data: JSON.stringify(params),
       crossOrigin: true
     }).fail(logFailure);
   },
 
   deleteMapToAPI: function(id) {
-    //console.log("scripts->api->saveAndRestoreMap: deleteMapToAPI");
+    //console.log('scripts->api->saveAndRestoreMap: deleteMapToAPI');
     var url = tim(window.MAP_UPDATE_DELETE_URL,{id:id});
     return reqwest({
       url: url,
@@ -47,7 +47,7 @@ module.exports = {
   },
 
   findMaps: function() {
-    //console.log("scripts->api->saveAndRestoreMap:findMaps" );
+    //console.log('scripts->api->saveAndRestoreMap:findMaps' );
 
     return reqwest({
       url: window.MAP_LIST_URL,
@@ -59,7 +59,7 @@ module.exports = {
   },
 
   getMapById: function(id) {
-    //console.log("scripts->api->saveAndRestoreMap: restoreMapFromAPI id: " + id);
+    //console.log('scripts->api->saveAndRestoreMap: restoreMapFromAPI id: ' + id);
     var url = tim(window.MAP_GET_URL,{id:id});
     return reqwest({
       url:url, 
@@ -70,7 +70,7 @@ module.exports = {
   },
 
   pdf:function(id){
-    //console.log("scripts->api->saveAndRestoreMap: pdf id: " + id);
+    //console.log('scripts->api->saveAndRestoreMap: pdf id: ' + id);
     var url = tim(window.MAP_PDF_URL,{id:id});
     return reqwest({
       url:url, 
@@ -81,7 +81,7 @@ module.exports = {
   },
 
   image:function(id){
-    //console.log("scripts->api->saveAndRestoreMap: image id: " + id);
+    //console.log('scripts->api->saveAndRestoreMap: image id: ' + id);
     var url = tim(window.MAP_IMAGE_URL,{id:id});
     return reqwest({
       url:url, 
@@ -96,8 +96,8 @@ module.exports = {
       url: 'http://test.monitor.net.co/gisservice/gisservice.svc/SubActivitiesListToExcel',
       type: 'json',
       method: 'post',
-      contentType: "application/json",
-      data: JSON.stringify({"filters": filters}),
+      contentType: 'application/json',
+      data: JSON.stringify({'filters': filters}),
       crossOrigin: true
     }).fail(logFailure);
   },
@@ -107,7 +107,7 @@ module.exports = {
       url: 'http://test.monitor.net.co/gisservice/gisservice.svc/IndicatorDetails/Json',
       type: 'json',
       method: 'post',
-      contentType: "application/json",
+      contentType: 'application/json',
       data: JSON.stringify(filters),
       crossOrigin: true
     }).fail(logFailure);

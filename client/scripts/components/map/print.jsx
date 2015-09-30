@@ -11,19 +11,11 @@ module.exports  = React.createClass({
     window.print();
   },
 
-  componentDidMount:function(){
-  
-  },
-
-
-
   render: function() {
     return (
-
       <div className="print-btn">
         <button onClick={this.print}>Print</button>
       </div>
-      );
+    );
   }
-
 });

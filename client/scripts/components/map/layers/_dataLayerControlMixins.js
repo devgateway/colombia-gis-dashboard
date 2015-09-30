@@ -1,3 +1,5 @@
+'use strict';
+
   module.exports={
 
   _changevisibility: function(id, value) {
@@ -16,4 +18,4 @@
   	LayerActions.changeLayerValue('level','municipality'); //TODO:property mame should be in a globar variable 
   },
 
-}
+};

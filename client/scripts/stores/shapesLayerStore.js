@@ -9,23 +9,18 @@ var RestoreActions = require('../actions/restoreActions.js');
 var _ = require('lodash');
 var assign = require('object-assign');
 
-var CommonsMixins = require('./_mixins.js')
-var DataLayerMixins = require('./_overlaysMixins.js')
-
-
-//var departmentsGeoJson = require('./data/_departmentsGeo.js');
-
-//var municipalitiesGeoJson = require('./data/_municipalitiesGeo.js');
+var CommonsMixins = require('./_mixins.js');
+var DataLayerMixins = require('./_overlaysMixins.js');
 
 var defaultStyle = {
-	"color": {
+	'color': {
 		r: 255,
 		g: 255,
 		b: 255,
 		a: 0
 	},
-	"weight": 1,
-	"opacity": 1,
+	'weight': 1,
+	'opacity': 1,
 	'fillOpacity': 0.9
 };
 
@@ -33,7 +28,7 @@ var defaultStyle = {
 /*. The range of the break is greater than or equal to the minimum value and less than the maximum value.*/
 
 var defaultBreaks = {
-	'symbol':{'symbol':{width:10, type:"esriSMS", style:"esriSMSSquare"}},
+	'symbol':{'symbol':{width:10, type:'esriSMS', style:'esriSMSSquare'}},
 	'field': ' - Funding',
 	breaks: {
 		'Level0': {
@@ -107,7 +102,8 @@ var defaultBreaks = {
 			})
 		}
 	}
-}
+};
+
 module.exports = Reflux.createStore({
 
 	listenables: [LayersAction, RestoreActions],
@@ -143,42 +139,41 @@ module.exports = Reflux.createStore({
 	},
 	
 	onChangeGroupFilterSelection: function(layerId, filters) {
-		if (layerId == this._getLayerId()){
+		if (layerId === this._getLayerId()){
 			_.forEach(filters, function(filter){
 				this.onChangeFilterSelection(layerId, filter.param, filter.values, true);
 			}.bind(this));
-			this._applyFilters(filters, "shapes");
+			this._applyFilters(filters, 'shapes');
 		}
 	},
 
 	onChangeFilterSelection: function(layerId, param, value, silent) {
-		debugger
-		if (layerId == this._getLayerId()){
+		if (layerId === this._getLayerId()){
 			var filters=_.clone(this.state.filters || []);
-		    value = Array.isArray(value)? value : [value]; //"values" in query should be an array
+		    value = Array.isArray(value)? value : [value]; //'values' in query should be an array
 		    var filter = _.find(filters, {'param': param});
 		    if (filter){
 		      filter.values = value;
 		    } else {
-		      filters.push({"param": param, "values": value});
+		      filters.push({'param': param, 'values': value});
 		    }
 		    _.assign(this.state.filters,filters);
-		    //this.update({"filters": filters}, {'silent': true});
+		    //this.update({'filters': filters}, {'silent': true});
 		    if (!silent){
-		    	this._applyFilters(filters, "shapes");
+		    	this._applyFilters(filters, 'shapes');
 		    }
 		}
 	},
 
 	getInitialState: function() {
 		return this.state = this.storedState || _.assign(_.clone(this._getDefState()), {
-			level: "departament",
+			level: 'departament',
 			subtitle:'layers.fundingByTypeDepartmentSubtitle',
 			fundingType: 'commitments',
 			visible: false,
 			breaks: defaultBreaks, //defaul styles breaks
 			defaultStyle: defaultStyle, //Default symbol styles
-			saveItems: ["breaks", "defaultStyle", "level", "opacity", "visible", "filters"]
+			saveItems: ['breaks', 'defaultStyle', 'level', 'opacity', 'visible', 'filters']
 		});
 	},
 
@@ -212,7 +207,7 @@ module.exports = Reflux.createStore({
 							});
 							if (feature) {
 								_.assign(feature, {'hasValue': true}); //indicate that the feature has valid values
-								_.assign(feature.properties, _.omit(_.clone(d), "name")); //set feature values	
+								_.assign(feature.properties, _.omit(_.clone(d), 'name')); //set feature values	
 							}
 						});
 						var geoDataFeaturesValid = _.filter(geoData.features, {'hasValue': true});
@@ -248,7 +243,7 @@ module.exports = Reflux.createStore({
 							});
 							if (feature) {
 								_.assign(feature, {'hasValue': true}); //indicate that the feature has valid values
-								_.assign(feature.properties, _.omit(_.clone(d), "name")); //set feature values
+								_.assign(feature.properties, _.omit(_.clone(d), 'name')); //set feature values
 							}
 						});
 						var geoDataFeaturesValid = _.filter(geoData.features, {'hasValue': true});

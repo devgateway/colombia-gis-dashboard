@@ -20,7 +20,7 @@ var MyActivities = React.createClass({
     }
     return (
       <div>
-        <div className="subactivities-list">
+        <div className='subactivities-list'>
         <Message message='map.popup.programList'/>: {items.length}
         <ul>
         {
@@ -30,7 +30,7 @@ var MyActivities = React.createClass({
         }
         </ul></div>
         <If condition={link}>
-          <div><a className="btn btn-apply" href={link} target='_blank'><Message message='map.popup.downloadFile'/></a></div>
+          <div><a className='btn btn-apply' href={link} target='_blank'><Message message='map.popup.downloadFile'/></a></div>
         </If>
       </div>
     );
@@ -41,7 +41,7 @@ module.exports  = React.createClass({
   mixins: [Reflux.connect(Store)],
 
   _getInfoData: function () {
-    Actions.getPopupInfoFromAPI([{"param":"de","values":["CN"]}], this.state.filters);
+    Actions.getPopupInfoFromAPI([{'param':'de','values':['CN']}], this.state.filters);
   },
 
   _getData: function(tabId) {
@@ -58,7 +58,7 @@ module.exports  = React.createClass({
     var titleArray = [];
     if (this.state.infoWindow){
       this.state.infoWindow.map(function(node, index) {
-        titleArray.push(i18n.t("map.popup."+node.key));
+        titleArray.push(i18n.t('map.popup.'+node.key));
       });
     }
     return titleArray;
@@ -106,11 +106,11 @@ module.exports  = React.createClass({
               type: 'pie',
             },
             title: {
-              align: "left",
+              align: 'left',
               text: titleArray[tabId],
               style: {
-                "color": "#4278AA",
-                "fontSize": "14px"
+                'color': '#4278AA',
+                'fontSize': '14px'
               }
             },
             tooltip: {
@@ -118,7 +118,7 @@ module.exports  = React.createClass({
             },
             plotOptions: {
               pie: {
-                  innerSize: "70%",
+                  innerSize: '70%',
                   name: 'Cantidad total',
                   animation: false,
                   dataLabels: {
@@ -145,7 +145,7 @@ module.exports  = React.createClass({
       }
 
     }
-    this.setAttributeDisplay(".popup-nav-wrapper2", "data-originalreactid", "inline");
+    this.setAttributeDisplay('.popup-nav-wrapper2', 'data-originalreactid', 'inline');
   },
 
   componentWillMount:function(){
@@ -153,12 +153,12 @@ module.exports  = React.createClass({
   },
 
   componentDidMount: function() {
-    this._renderChart("myContainer");
+    this._renderChart('myContainer');
   },
 
   componentDidUpdate: function(props,newState) {
-    $(this.getDOMNode()).find("#chartContainer").html("");
-    this._renderChart("chartContainer");
+    $(this.getDOMNode()).find('#chartContainer').html('');
+    this._renderChart('chartContainer');
   },
 
   handleClick:function(tabId){
@@ -180,45 +180,45 @@ module.exports  = React.createClass({
     }
     return (
       <div>
-        <div className="popup-nav-wrapper2">
-          <nav className="tabs" role="tablist" >
-            <ul className="tabs nav national-tabs" role="tablist" >
-            <li className={tabId==0? "active" : ""} role="tab" >
-              <a href="#" onClick={this.handleClick.bind(this, 0)}>
-                <span className="popup-icon chart" title="Cost Share Breakdown"></span>
+        <div className='popup-nav-wrapper2'>
+          <nav className='tabs' role='tablist' >
+            <ul className='tabs nav national-tabs' role='tablist' >
+            <li className={tabId==0? 'active' : ''} role='tab' >
+              <a href='#' onClick={this.handleClick.bind(this, 0)}>
+                <span className='popup-icon chart' title='Cost Share Breakdown'></span>
               </a>
             </li>
-            <li className={tabId==1? "active" : ""} role="tab" >
-              <a href="#" onClick={this.handleClick.bind(this, 1)}>
-                <span className="popup-icon funding-dev-obj" title="Development Objectives"></span>
+            <li className={tabId==1? 'active' : ''} role='tab' >
+              <a href='#' onClick={this.handleClick.bind(this, 1)}>
+                <span className='popup-icon funding-dev-obj' title='Development Objectives'></span>
               </a>
             </li>
-            <li className={tabId==2? "active" : ""} role="tab" >
-              <a href="#" onClick={this.handleClick.bind(this, 2)}>
-                <span className="popup-icon subactivities" title="Activity Classication"></span>
+            <li className={tabId==2? 'active' : ''} role='tab' >
+              <a href='#' onClick={this.handleClick.bind(this, 2)}>
+                <span className='popup-icon subactivities' title='Activity Classication'></span>
               </a>
             </li>
-            <li className={tabId==3? "active" : ""} role="tab" >
-              <a href="#" onClick={this.handleClick.bind(this, 3)}>
-                <span className="popup-icon export" title="Public Private Partnership"></span>
+            <li className={tabId==3? 'active' : ''} role='tab' >
+              <a href='#' onClick={this.handleClick.bind(this, 3)}>
+                <span className='popup-icon export' title='Public Private Partnership'></span>
               </a>
             </li>
-            <li className={tabId==4? "active" : ""} role="tab" >
-              <a href="#" onClick={this.handleClick.bind(this, 4)}>
-                <span className="popup-icon subactivitiesList" title="Sub Activities"></span>
+            <li className={tabId==4? 'active' : ''} role='tab' >
+              <a href='#' onClick={this.handleClick.bind(this, 4)}>
+                <span className='popup-icon subactivitiesList' title='Sub Activities'></span>
               </a>
             </li>
             </ul>
           </nav>
         </div>
-        <div className="panel-body">
-          <div className="chart-container" id="chartContainer"></div>
+        <div className='panel-body'>
+          <div className='chart-container' id='chartContainer'></div>
           <If condition={showLoading} >
-            <Loading container="popup-loading-container"/>
+            <Loading container='popup-loading-container'/>
           </If>
           <If condition={tabId==4 && !showLoading} >
-            <div className="subactivities-container">
-              <div className="sub-activities-title">{titleArray[tabId]}</div>
+            <div className='subactivities-container'>
+              <div className='sub-activities-title'>{titleArray[tabId]}</div>
               <MyActivities data={infoData[4]} externalFile={infoData[5]} />
             </div>
           </If>

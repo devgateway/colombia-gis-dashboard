@@ -1,4 +1,4 @@
-/*http://facebook.github.io/react/docs/component-specs.html*/
+'use strict';
 var React = require('react');
 var Reflux = require('reflux');
 
@@ -6,7 +6,7 @@ var LegendStore=require('../../../../stores/esriLayesLegendsStore.js');
 var DataLegendStore=require('../../../../stores/dataLayersLegendsStore.js');
 
 var LegendActions=require('../../../../actions/legendActions.js');
-var If=require('../../../commons/if.jsx')
+var If=require('../../../commons/if.jsx');
 var Legend=require('./_legend.jsx');
 
 var _=require('lodash');
@@ -28,14 +28,14 @@ var LegendControl  = React.createClass({
     var data =this.state.data.layersLegends || [];
     var legends=data.concat(esri);  
     
-    var legendContent = "";
-    var buttonLabel = this.state.esri.shown? <Message message="layers.hideLegend"/> : <Message message="layers.showLegend"/>;
+    var legendContent = '';
+    var buttonLabel = this.state.esri.shown? <Message message='layers.hideLegend'/> : <Message message='layers.showLegend'/>;
     
     return (
-      <div className="legends-container">
-        <button className="show-legends-button" onClick={this._toggleVisibility}>{buttonLabel}</button>
+      <div className='legends-container'>
+        <button className='show-legends-button' onClick={this._toggleVisibility}>{buttonLabel}</button>
         <If condition={this.state.esri.shown}> 
-          <div className="legends-content">
+          <div className='legends-content'>
           {
             legends.map(function(l){
               return (<Legend legendGroups={l.legendGroups} layerTitle={l.layerTitle} visible={l.visible}/>);

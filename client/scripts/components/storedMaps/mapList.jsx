@@ -24,7 +24,7 @@ var Pagination=require('react-bootstrap/lib/Pagination');
 
 module.exports  = React.createClass({
 
-mixins: [Reflux.connect(Store,"store"), Reflux.connect(LanStore, 'lan')],
+mixins: [Reflux.connect(Store,'store'), Reflux.connect(LanStore, 'lan')],
 
   componentDidMount:function(){
     Actions.findMaps();
@@ -36,7 +36,7 @@ mixins: [Reflux.connect(Store,"store"), Reflux.connect(LanStore, 'lan')],
 
   _update:function(id){
     //Actions.openMap(id);
-    Actions.showModal('update', id)
+    Actions.showModal('update', id);
   },
 
   _showDeleteModal:function(isVisible, id){
@@ -72,103 +72,99 @@ mixins: [Reflux.connect(Store,"store"), Reflux.connect(LanStore, 'lan')],
   render: function() {
     var origMapList=this.state.store.maps || [];
     var mapList=_.sortBy(_.union(_.filter(origMapList, {hide:undefined}), _.filter(origMapList, {hide:false})), 
-      function(n){return n.title.toLowerCase()});
+      function(n){return n.title.toLowerCase();});
     var showDeleteModal=this.state.store.showDeleteModal || false;
     var itemsSize=mapList.length>this.state.pageSize?Math.ceil(mapList.length/this.state.pageSize):1;
 
     return (
-
-      <div className="saved-maps">
-      <div className="text-search-wrapper">
-      <div className="search-box">
-      <button type="submit" className="search-button" onClick={this.handleClick}>
-      <i className="fa fa-search"></i>
-      </button>
-      <input onKeyUp={this._onKeyUp} className="keyword-search" type="text" placeholder={i18n.t("savemap.savedmapssearch")} ref="search_input"/>
-      </div>
-      </div>
-      <h3><Message message='savemap.savedmapstitle'/></h3>
-      <ul>
-        {
-          _.map(mapList,function(m, i){
-            var lowerBound = (this.state.activePage-1) * 3;
-            var upperBound = this.state.activePage * 3;
-            if(i>=lowerBound && i<upperBound ){
+      <div className='saved-maps'>
+        <div className='text-search-wrapper'>
+          <div className='search-box'>
+            <button type='submit' className='search-button' onClick={this.handleClick}>
+              <i className='fa fa-search'></i>
+            </button>
+            <input onKeyUp={this._onKeyUp} className='keyword-search' type='text' placeholder={i18n.t('savemap.savedmapssearch')} ref='search_input'/>
+          </div>
+        </div>
+        <h3><Message message='savemap.savedmapstitle'/></h3>
+        <ul>
+          {
+            _.map(mapList,function(m, i){
+              var lowerBound = (this.state.activePage-1) * 3;
+              var upperBound = this.state.activePage * 3;
+              if(i>=lowerBound && i<upperBound ){
                 return (
-                  <li className="saved-map-list">
+                  <li className='saved-map-list'>
                     <Grid fluid>
                       <Row>
                         <Col sm={8}>
-                            <h4 className="pull-left">{m.title}</h4>
+                            <h4 className='pull-left'>{m.title}</h4>
                         </Col>
 
                         <Col sm={4}>
-                            <div className="save-map-actions pull-right">
-                              <a href="#">
-                              <i className="pull-right fa fa-times" title={i18n.t('savemap.tooltipdelete')} onClick={this._showDeleteModal.bind(this, true, m._id)}></i>
-                              </a>
-                              <a href="#">
-                              <i className="pull-right fa fa-pencil" title={i18n.t('savemap.tooltipupdate')} onClick={this._update.bind(this,m._id)}></i>
-                              </a>
-                              <PrintDialog key={m.id} id={m._id}/>
-                              <ImageDialog key={m.id} id={m._id}/>
-                              <a href="#">
-                              <i className="pull-right fa fa-folder-open" title={i18n.t('savemap.tooltipopen')} onClick={this._open.bind(this,m._id)}></i>
-                              </a>
+                          <div className='save-map-actions pull-right'>
+                            <a href='#'>
+                            <i className='pull-right fa fa-times' title={i18n.t('savemap.tooltipdelete')} onClick={this._showDeleteModal.bind(this, true, m._id)}></i>
+                            </a>
+                            <a href='#'>
+                            <i className='pull-right fa fa-pencil' title={i18n.t('savemap.tooltipupdate')} onClick={this._update.bind(this,m._id)}></i>
+                            </a>
+                            <PrintDialog key={m.id} id={m._id}/>
+                            <ImageDialog key={m.id} id={m._id}/>
+                            <a href='#'>
+                            <i className='pull-right fa fa-folder-open' title={i18n.t('savemap.tooltipopen')} onClick={this._open.bind(this,m._id)}></i>
+                            </a>
                           </div>
                         </Col>
                       </Row>
-                      </Grid>
-
-                      <Grid fluid>
+                    </Grid>
+                    <Grid fluid>
                       <Row>
                         <Col md={12}>
-                        <Panel className="pull-left">
-                          {m.description}
-                        </Panel>
+                          <Panel className='pull-left'>
+                            {m.description}
+                          </Panel>
                         </Col>
                       </Row>
                       <Row>
                         <Col md={12}>
-                        <Panel className="pull-left">
-                          {
-                            _.map(m.tags,function(t){
-                              return (<span className="label-tag">{t}</span> )
-                            })
-                          }
-                        </Panel>
+                          <Panel className='pull-left'>
+                            {
+                              _.map(m.tags,function(t){
+                                return (<span className='label-tag'>{t}</span> )
+                              })
+                            }
+                          </Panel>
                         </Col>
                       </Row>
                     </Grid>
-
-                </li>)
-            }
-          }.bind(this))
-
-        }
-      </ul>
-      <div>
-        <If condition={mapList.length>0}>
-          <Pagination bsSize='small' items={itemsSize} activePage={this.state.activePage} onSelect={this.handlePageSelect} />
-        </If>
+                  </li>
+                );
+              }
+            }.bind(this))
+          }
+        </ul>
+        <div>
+          <If condition={mapList.length>0}>
+            <Pagination bsSize='small' items={itemsSize} activePage={this.state.activePage} onSelect={this.handlePageSelect} />
+          </If>
+        </div>
+        <Modal className='dialog-save-map' {...this.props} bsSize='medium' aria-labelledby='contained-modal-title-lg'
+         show={showDeleteModal} onHide={this._showDeleteModal.bind(this, false)}>
+          <Modal.Header>
+            <Modal.Title><Message message='savemap.confirmation'/></Modal.Title>
+            <a className='close-dialog' href='#' onClick={this._showDeleteModal.bind(this, false)}>
+            <i className='fa fa-times-circle-o'></i></a>
+          </Modal.Header>
+          <Modal.Body>
+            <div className='plain-panel'><Message message='savemap.areyousure'/></div>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button className='btn btn-apply pull-right' onClick={this._delete.bind(this)}><Message message='savemap.yes'/></Button>
+            <Button  className='pull-right' onClick={this._showDeleteModal.bind(this, false)}><Message message='savemap.no'/></Button>
+          </Modal.Footer>
+        </Modal>
       </div>
-      <Modal className='dialog-save-map' {...this.props} bsSize='medium' aria-labelledby='contained-modal-title-lg'
-       show={showDeleteModal} onHide={this._showDeleteModal.bind(this, false)}>
-        <Modal.Header>
-          <Modal.Title><Message message='savemap.confirmation'/></Modal.Title>
-          <a className="close-dialog" href="#" onClick={this._showDeleteModal.bind(this, false)}>
-          <i className="fa fa-times-circle-o"></i></a>
-        </Modal.Header>
-        <Modal.Body>
-          <div className="plain-panel"><Message message='savemap.areyousure'/></div>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button className="btn btn-apply pull-right" onClick={this._delete.bind(this)}><Message message='savemap.yes'/></Button>
-          <Button  className="pull-right" onClick={this._showDeleteModal.bind(this, false)}><Message message='savemap.no'/></Button>
-        </Modal.Footer>
-      </Modal>
-      </div>
-      );
+    );
   }
-
 });

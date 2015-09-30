@@ -20,8 +20,8 @@ module.exports = {
 
 
     buildLayerInfo:function(layer,options){
-        return _.assign(createObject(),{'layer':layer},options)
-    } ,
+        return _.assign(createObject(),{'layer':layer},options);
+    },
 
     buildObject:function(assignable){
     	return _.assign(createObject(),assignable);

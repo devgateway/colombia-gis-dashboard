@@ -2,7 +2,7 @@
 var React = require('react/addons');
 var Reflux = require('reflux');
 var ArcgisLayerStore = require('../../../stores/arcgisLayerStore.js');
-var ArcgisLayerActions = require('../../../actions/arcgisLayersActions.js')
+var ArcgisLayerActions = require('../../../actions/arcgisLayersActions.js');
 var _=require('lodash')
 var Toggler=require('../../commons/toggler.jsx').Toggler;
 var TogglerContent=require('../../commons/toggler.jsx').TogglerContent;
@@ -16,7 +16,7 @@ var NoResultsPopup=require('./NoResultsPopup.jsx');
 
 
 module.exports  = React.createClass({
-  mixins: [Reflux.listenTo(ArcgisLayerStore,"_onStatusChange"), Reflux.connect(LanStore, 'lan')],
+  mixins: [Reflux.listenTo(ArcgisLayerStore,'_onStatusChange'), Reflux.connect(LanStore, 'lan')],
 
   _onStatusChange: function(status) {
     this.setState(status); //create a new array in order to isolate the state
@@ -50,12 +50,12 @@ module.exports  = React.createClass({
     
     return (
     <div>
-      <div className="layer-control-toggle">
+      <div className='layer-control-toggle'>
         <h3><Message message='layers.dataLayers'/></h3>
       </div>
-      <div className="layer-control-panel">
+      <div className='layer-control-panel'>
         <NoResultsPopup/>
-        <ul className="layer-control">
+        <ul className='layer-control'>
           <li>
             <PointsLayerControl/>
           </li>

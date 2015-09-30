@@ -17,7 +17,7 @@ var getCommonEsriParams=function(){
         _.assign(esri_params,{'token':token});
     }
     return esri_params;
-}
+};
 
 module.exports = {
 
@@ -50,7 +50,7 @@ module.exports = {
         /*Token is mandatory for this end point */   
         var url = this.getTargetURL(window.ESRI_SELF_URL+'?');   
         return request({
-            url:url ,
+            url: url ,
             type: 'json',
             data:_.assign(getCommonEsriParams(),{'token':token}), //in this case we should use the new token 
             method: 'get',
@@ -60,9 +60,9 @@ module.exports = {
 
 
     getService:function(url){
-        var url = this.getTargetURL(url+'?');
+        var serviceUrl = this.getTargetURL(url+'?');
         return request({
-            url: url,
+            url: serviceUrl,
             type: 'json',
             data:getCommonEsriParams(),
             method: 'get',
@@ -80,15 +80,15 @@ module.exports = {
         var num = '&num=' + (options.num || '10');
         var query = '(' + options.query + ')' + ' AND (' + types + ')   '; //AND (access:shared)
 
-        return 'q='+ query+start+num
+        return 'q='+ query+start+num;
     },
 
 
     createLefleatLayer:function(lClass,options, url){
         var uri = url || this.getService().metadata.url;
-        _.assign( options,{useCors: true,cacheLayers:false,url:uri})
+        _.assign( options,{useCors: true,cacheLayers:false,url:uri});
         if(window.ESIR_USE_PROXY){
-            _.assign(options,{proxy:window.ESRI_PROXY_URL})
+            _.assign(options,{proxy:window.ESRI_PROXY_URL});
         }
         var token=Storage.get('token');
         if (token){
@@ -110,14 +110,14 @@ module.exports = {
 
     parseLegendsFromDrawInfo: function(legends) {
       var legendArray = [];
-      if (legends.drawingInfo.renderer.type == 'uniqueValue'){
+      if (legends.drawingInfo.renderer.type === 'uniqueValue'){
         legends.drawingInfo.renderer.uniqueValueInfos.map(function(valueInfo){
-          legendArray.push({"label": valueInfo.label, "symbol": valueInfo.symbol});          
+          legendArray.push({'label': valueInfo.label, 'symbol': valueInfo.symbol});          
         });
         return legendArray;            
       } else {
         var rdrr = legends.drawingInfo.renderer;
-        legendArray.push({"label": rdrr.label, "symbol": rdrr.symbol});
+        legendArray.push({'label': rdrr.label, 'symbol': rdrr.symbol});
         return legendArray;            
       }
     },

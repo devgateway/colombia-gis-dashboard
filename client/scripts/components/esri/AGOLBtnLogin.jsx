@@ -19,7 +19,7 @@ module.exports  = React.createClass({
   },
 
   componentWillMount:function(){
-   window.oauthCallback = function(token) {this.loginSuccessful(token)}.bind(this);
+   window.oauthCallback = function(token) {this.loginSuccessful(token);}.bind(this);
  },
 
  loginSuccessful:function(token){
@@ -37,8 +37,11 @@ logOut:function(){
 
 render: function() {
   return (
-    <div className="arcgis-sig-in">
-    {(!this.state.login.token?<button onClick={this.oauth}>AGOL LOGIN</button>:<button onClick={this.logOut}>AGOL LogOut</button>)}
+    <div className='arcgis-sig-in'>
+      {(!this.state.login.token?
+        <button onClick={this.oauth}>AGOL LOGIN</button>
+        :<button onClick={this.logOut}>AGOL LogOut</button>
+      )}
     </div>
     );
 }

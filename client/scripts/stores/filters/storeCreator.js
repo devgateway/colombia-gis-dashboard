@@ -21,8 +21,8 @@ function makeStore(actions, source, initParams) {
       this.state = {};
       _.assign(this.state, initParams);
     }
-  })
-};
+  });
+}
 
 function makeTreeStore(actions, initParams) {
   return Reflux.createStore({
@@ -33,8 +33,8 @@ function makeTreeStore(actions, initParams) {
       this.state = {};
       _.assign(this.state, initParams);
     } 
-  })
-};
+  });
+}
 
 function makeMultiLevelSearchStore(actions, initParams) {
   return Reflux.createStore({
@@ -45,8 +45,8 @@ function makeMultiLevelSearchStore(actions, initParams) {
       this.state = {};
       _.assign(this.state, initParams);
     } 
-  })
-};
+  });
+}
 
 var subImplementersTree = {
     'level': 0, 
@@ -129,4 +129,4 @@ module.exports = {
   SubActivityStatus: makeStore(Actions.SubActivityStatus, 'subActivityStatus.json', {'param': 'st'}),
   SubActivities: makeStore(Actions.SubActivities, 'subActivitiesList.json', {'param': 'sa', 'searchAndSelectMode': true}),
   TargetPopulation: makeStore(Actions.TargetPopulation, 'targetPopulation.json', {'param': 'tp'})
-}
+};

@@ -1,4 +1,4 @@
-/*http://facebook.github.io/react/docs/component-specs.html*/
+'use strict';
 var React = require('react');
 var Reflux = require('reflux');
 var SingleList=require('./singleList.jsx');

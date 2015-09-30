@@ -36,13 +36,13 @@ module.exports = Reflux.createStore({
     
     if (data.subProperty) {
       var level = data.subProperty;
-      this._setLegendColor(data.id, data.breaks.breaks[level].style.color, level.split("Level")[1])
-      this._setLegendLabel(data.id, data.breaks.breaks[level], level.split("Level")[1])
+      this._setLegendColor(data.id, data.breaks.breaks[level].style.color, level.split('Level')[1]);
+      this._setLegendLabel(data.id, data.breaks.breaks[level], level.split('Level')[1]);
     } else {
       _.map(data.breaks.breaks, function(b, i){
-        self._setLegendColor(data.id, b.style.color, i.split("Level")[1]);
-        self._setLegendLabel(data.id, b, i.split("Level")[1])
-      })
+        self._setLegendColor(data.id, b.style.color, i.split('Level')[1]);
+        self._setLegendLabel(data.id, b, i.split('Level')[1]);
+      });
     }
       
     this.trigger(this.state);
@@ -55,9 +55,9 @@ module.exports = Reflux.createStore({
 
     _.map(keys,
       function(level) {
-        var label = " " + breaks[level]["min"] + " - " + breaks[level]["max"];
-        var hexColor = this._rgbToHex(breaks[level]["style"]["color"]["r"], breaks[level]["style"]["color"]["g"], breaks[level]["style"]["color"]["b"]);
-        var rgbColor = [breaks[level]["style"]["color"]["r"], breaks[level]["style"]["color"]["g"], breaks[level]["style"]["color"]["b"]];
+        var label = ' ' + breaks[level].min + ' - ' + breaks[level].max;
+        var hexColor = this._rgbToHex(breaks[level].style.color.r, breaks[level].style.color.g, breaks[level].style.color.b);
+        var rgbColor = [breaks[level].style.color.r, breaks[level].style.color.g, breaks[level].style.color.b];
           
         
         var symbol=_.clone(data.breaks.symbol);
@@ -65,11 +65,11 @@ module.exports = Reflux.createStore({
             _.assign(theSymbol,{color:rgbColor});
             _.assign(symbol,{symbol:theSymbol});
 
-        if(id=='shapes' || id=='indicators'){
+        if(id==='shapes' || id==='indicators'){
           label += ' %';
         }
 
-        var legendData=_.assign({height: 20,imageColor: hexColor,label: label,url: "",width: 20},symbol);
+        var legendData=_.assign({height: 20,imageColor: hexColor,label: label,url: '',width: 20},symbol);
         
         legends.push(legendData);
       
@@ -77,7 +77,7 @@ module.exports = Reflux.createStore({
 
     var theGroup = _.assign(this._createGroupObject(data), {
       legends: legends
-    })
+    });
 
     var legend = _.assign(this._createLegendObject(data), {
       legendGroups: [theGroup]
@@ -91,27 +91,29 @@ module.exports = Reflux.createStore({
       'id': data.id,
       'layerTitle': data.title,
       'visible': data.visible,
-      "legendGroups": []
-    }
+      'legendGroups': []
+    };
   },
 
   _createGroupObject: function(data) {
     return {
-      "layerName": data.subtitle,
-      "legends": []
-    }
+      'layerName': data.subtitle,
+      'legends': []
+    };
   },
 
 
   _rgbToHex: function(r, g, b) {
-    return "#" + this._toHex(r) + this._toHex(g) + this._toHex(b);
+    return '#' + this._toHex(r) + this._toHex(g) + this._toHex(b);
   },
 
   _toHex: function(n) {
     n = parseInt(n, 10);
-    if (isNaN(n)) return "00";
+    if (isNaN(n)){
+      return '00';
+    }
     n = Math.max(0, Math.min(n, 255));
-    return "0123456789ABCDEF".charAt((n - n % 16) / 16) + "0123456789ABCDEF".charAt(n % 16);
+    return '0123456789ABCDEF'.charAt((n - n % 16) / 16) + '0123456789ABCDEF'.charAt(n % 16);
   },
 
 
@@ -121,7 +123,7 @@ module.exports = Reflux.createStore({
     });
     if (layerLegend) {
       var legend = layerLegend.legendGroups[0].legends[level];
-      if (legend.contentType == "image/png") {
+      if (legend.contentType === 'image/png') {
         legend.imageColor = this._rgbToHex(rgbColor.r, rgbColor.g, rgbColor.b);
       } else {
         legend.symbol.color[0] = rgbColor.r;
@@ -137,18 +139,17 @@ module.exports = Reflux.createStore({
       'id': layerId
     });
     if (layerLegend) {
-
+      var minLabel, maxLabel;
       var legend = layerLegend.legendGroups[0].legends[level];
-      if (layerLegend.id == 'shapes'  || layerLegend.id=='indicators') {
-        var minLabel = brk.min.toFixed(brk.min < 10 ? 2 : 0);
-        var maxLabel = brk.max.toFixed(brk.max < 10 ? 2 : 0);
+      if (layerLegend.id === 'shapes'  || layerLegend.id === 'indicators') {
+        minLabel = brk.min.toFixed(brk.min < 10 ? 2 : 0);
+        maxLabel = brk.max.toFixed(brk.max < 10 ? 2 : 0);
         maxLabel += ' %';
-
       } else {
-        var minLabel = brk.min.toFixed(0)
-        var maxLabel =  brk.max>brk.min?(brk.max - 1).toFixed(0):(brk.max).toFixed(0)
+        minLabel = brk.min.toFixed(0);
+        maxLabel =  brk.max>brk.min?(brk.max - 1).toFixed(0):(brk.max).toFixed(0);
       }
-      legend.label = " " + minLabel + " - " + maxLabel;
+      legend.label = ' ' + minLabel + ' - ' + maxLabel;
     }
   },
 

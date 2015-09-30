@@ -38,7 +38,7 @@ module.exports = Reflux.createStore({
   },
 
   onChangeLayerValue: function(id, property, value, subProperty) {
-    if (property == 'visible'){
+    if (property === 'visible'){
       var layersVisible = _.clone(this.state.layersVisible);
       layersVisible[id] = value;
       this.update({'layersVisible': layersVisible});
@@ -109,7 +109,7 @@ module.exports = Reflux.createStore({
     var errorMsg = '';
     var isValid = true;
     if(options.title){
-      if(!isUpdate && _.find(this.state.maps, function(m){return m.title==options.title})){
+      if(!isUpdate && _.find(this.state.maps, function(m){return m.title===options.title;})){
         errorMsg = errorMsg + 'savemap.titleIsDuplicated,';
         isValid = false;
       } else if(options.title.length>100){
@@ -129,7 +129,7 @@ module.exports = Reflux.createStore({
       isValid = false;
     }
 
-    var tagArray = options.tags && typeof options.tags == "string" ? options.tags.split(','):options.tags;
+    var tagArray = options.tags && typeof options.tags === 'string' ? options.tags.split(','):options.tags;
     if(tagArray){
       if(tagArray.length>3){
         errorMsg = errorMsg + 'savemap.tagsQuantity,';
@@ -184,7 +184,7 @@ module.exports = Reflux.createStore({
         'pointsState': pointsData,
         'arcgisState': arcgisData
       }
-    }
+    };
     return(params);
   },
 
@@ -192,9 +192,9 @@ module.exports = Reflux.createStore({
     var dataToSave = {};
     if (stateVar && stateVar.saveItems) {
       stateVar.saveItems.map(function(l) {
-        var assignable = new Object();
+        var assignable = {};
         assignable[l] = _.clone(stateVar[l], true);
-        _.assign(dataToSave, assignable)
+        _.assign(dataToSave, assignable);
       });
     } else {
       dataToSave = null;
@@ -207,7 +207,7 @@ module.exports = Reflux.createStore({
   },
 
   _saveMap: function(params) {
-    console.log("stores->saveStore: _saveMap");
+    console.log('stores->saveStore: _saveMap');
     var self = this;
     API.saveMapToAPI(params).then(
       function(data) {
@@ -224,7 +224,7 @@ module.exports = Reflux.createStore({
 
 
   _updateMap: function(id, params) {
-    console.log("stores->saveStore: _updateMap");
+    console.log('stores->saveStore: _updateMap');
     var self = this;
     API.updateMapToAPI(id, params).then(
       function(data) {
@@ -240,7 +240,7 @@ module.exports = Reflux.createStore({
   },
 
   onRestoreMapFromAPI: function(id) {
-    console.log("stores->saveStore: onOpenMap"+id);
+    console.log('stores->saveStore: onOpenMap'+id);
     var self=this;
     API.getMapById(id).then(
       function(data) {
@@ -271,7 +271,7 @@ module.exports = Reflux.createStore({
   onShowModal: function(key, id) {
     var map = {};
     if (id){
-      map = _.find(this.state.maps, function(l){return l._id==id});
+      map = _.find(this.state.maps, function(l){return l._id==id;});
     }
     this.update({
       'key': key,
@@ -280,7 +280,7 @@ module.exports = Reflux.createStore({
       'showModal': true,
       'errorMsg': ''
     });
-    if(key=='update'){
+    if(key==='update'){
       this.onOpenMap(id);
     }
   },
