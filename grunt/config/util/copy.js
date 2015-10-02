@@ -7,14 +7,28 @@ var taskConfig = function(grunt) {
   grunt.config.set('copy', {
     server: {
       files: [{
-         expand: true,
-          cwd: '<%= yeogurt.client %>/',
-          dest: '<%= yeogurt.tmp %>',
-          src: [
-            'styles/styleguide.md'
-          ]
-        }]
+        expand: true,
+        cwd: '<%= yeogurt.client %>/',
+        dest: '<%= yeogurt.tmp %>',
+        src: [
+          'styles/styleguide.md'
+        ]
+      }]
     },
+
+    fonts: {
+      files: [{
+          expand: true,
+          cwd: '<%= yeogurt.client %>/bower_components/font-awesome/',
+          dest: '<%= yeogurt.dist %>/',
+          src: ['fonts/**/*', ]
+        }
+
+      ]
+    },
+
+
+
     dist: {
       files: [{
         expand: true,
@@ -27,7 +41,9 @@ var taskConfig = function(grunt) {
           'images/**/*.{webp}',
           '!*.js',
           '*.{ico,png,txt}',
-          '*.html'
+          '*.html',
+          'json-data/**/*',
+          'locales/**/'
         ]
       }]
     }

@@ -10,6 +10,7 @@ var taskConfig = function(grunt) {
     'injector',
     'wiredep',
     'copy:dist',
+    'copy:fonts',
     'concurrent',
     'useminPrepare',
     'concat:generated',
