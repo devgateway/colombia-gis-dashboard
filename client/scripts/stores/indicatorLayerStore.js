@@ -137,7 +137,8 @@ module.exports = Reflux.createStore({
 				{'param': 'indicatorName', 'values': data.indicatorSelected.description},
 				{'param': 'activityId', 'values': data.activitySelected}
 			], 'indicators');
-			this.update({'visible': true});
+			//this.update({'visible': true});
+			LayersAction.changeLayerValue('indicators', 'visible', true);
 		}
 	},
 
@@ -162,11 +163,7 @@ module.exports = Reflux.createStore({
 	},
 
 	onRestoreData: function(savedData) {
-		debugger;
-		if(savedData.indicatorsState){
-			if (!this.state.visible && savedData.indicatorsState.visible) {
-		        this.update({'visible': true}); //Hack for changing colors
-		    }
+		if(savedData.indicatorsState && savedData.indicatorsState.visible){
 			this.update({
 		   		'dataToRestore': savedData.indicatorsState,
 		   		'isRestorePending': true, 

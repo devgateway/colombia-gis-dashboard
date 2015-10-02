@@ -29,7 +29,11 @@ module.exports = {
 			} else if (property === 'visible') {
 				this.update(assignable);
 				if (value == true && !this.state.geoData) {
-					this._load(this.state.level);
+					if (id === 'indicators'){
+						this._loadIndicatorsGeoData(this.state.level);
+					} else {
+						this._load(this.state.level);
+					}								
 				}
 
 			} else if (property === 'color') {

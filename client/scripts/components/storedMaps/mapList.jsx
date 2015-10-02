@@ -13,10 +13,6 @@ var Panel=require('react-bootstrap/lib/Panel');
 var Label=require('react-bootstrap/lib/Label');
 var Tooltip=require('react-bootstrap/lib/Tooltip');
 var _=require('lodash');
-var PrintDialog=require('./printDialog.jsx');
-var ImageDialog=require('./imageDialog.jsx');
-
-var SaveMap=require('./saveOrExportDialog.jsx');
 var Modal=require('react-bootstrap/lib/Modal');
 var Button=require('react-bootstrap/lib/Button');
 var Pagination=require('react-bootstrap/lib/Pagination');
@@ -59,14 +55,12 @@ mixins: [Reflux.connect(Store,'store'), Reflux.connect(LanStore, 'lan')],
   },
 
   handlePageSelect:function(event, selectedEvent){
-    this.setState({
-      activePage: selectedEvent.eventKey
-    });
+    this.setState({'activePage': selectedEvent.eventKey});
   },
   
 
   getInitialState:function(){
-    return {pageSize:3, activePage:1, showDownload:false}
+    return {'pageSize':3, 'activePage':1, 'showDownload':false}
   },
 
   render: function() {
@@ -106,11 +100,6 @@ mixins: [Reflux.connect(Store,'store'), Reflux.connect(LanStore, 'lan')],
                             <a href='#'>
                             <i className='pull-right fa fa-times' title={i18n.t('savemap.tooltipdelete')} onClick={this._showDeleteModal.bind(this, true, m._id)}></i>
                             </a>
-                            <a href='#'>
-                            <i className='pull-right fa fa-pencil' title={i18n.t('savemap.tooltipupdate')} onClick={this._update.bind(this,m._id)}></i>
-                            </a>
-                            <PrintDialog key={m.id} id={m._id}/>
-                            <ImageDialog key={m.id} id={m._id}/>
                             <a href='#'>
                             <i className='pull-right fa fa-folder-open' title={i18n.t('savemap.tooltipopen')} onClick={this._open.bind(this,m._id)}></i>
                             </a>

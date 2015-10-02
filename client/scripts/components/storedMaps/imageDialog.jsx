@@ -59,10 +59,13 @@ module.exports = React.createClass({
 				<Message message='savemap.imageloadmessage'/>
 			</p>);
 		
+		if (!this.props.id){
+			return null;
+		}
 		return (
 			<span>
 				<a href='#'>
-					<i className='pull-right fa fa-file-image-o' title={i18n.t('savemap.tooltipprintpng')} onClick={this._open}></i>
+					<i className='fa fa-file-image-o' title={i18n.t('savemap.tooltipprintpng')} onClick={this.props.id? this._open : null}></i>
 				</a>
 				
 				<Modal className='dialog-print-map' bsSize='large' aria-labelledby='contained-modal-title-lg' show={this.state.visible} onHide={this.close}>
