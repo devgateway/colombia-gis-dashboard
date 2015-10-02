@@ -27,7 +27,7 @@ module.exports = Reflux.createStore({
   listenables: [LayersActions, SaveActions],
 
   init: function() {
-    this.state = {mapName : '','layersVisible': {'indicators': false, 'points': true, 'shapes': false}};
+    this.state = {'currentMap': {}, 'mapName' : '','layersVisible': {'indicators': false, 'points': true, 'shapes': false}};
     this.listenTo(LanStore, this._handleLanDataUpdate);
     this.listenTo(IndicatorsLayerStore, this._handleIndicatorsDataUpdate);
     this.listenTo(ShapesLayerStore, this._handleShapesDataUpdate);
@@ -46,13 +46,14 @@ module.exports = Reflux.createStore({
   },
 
   onExportActivities: function() {
+    var self = this;
     API.exportActivities(_.clone(filterState, true)).then(
       function(data) {        
         if (data[0] && data[0].name){
-          this.onHideModal(); //tell save dialog that everything is done 
+          self.update({'visible': false, 'exportDisabled': false});
           location.href = data[0].name;
         } else {
-          this.update({'error': 'savemap.exportError,'});        
+          this.update({'error': 'savemap.exportError,', 'exportDisabled': false});        
         }
       }.bind(this)).fail(function(err) {
         this.update({'error': err});
@@ -61,14 +62,13 @@ module.exports = Reflux.createStore({
   },
 
   onExportIndicators: function() {
+    var self = this;
     API.exportIndicators(_.clone(indicatorsState.layerFilters, true)).then(
       function(data) {        
-        this.onHideModal(); //tell save dialog that everything is done 
+        self.update({'visible': false, 'exportDisabled': false});
         window.open(data);
       }.bind(this)).fail(function(err) {
-        this.update({
-          'error': err
-        });
+        this.update({'error': err, 'exportDisabled': false});
         console.log('onExportIndicators: Error on export data ...');
       }.bind(this));
   },
@@ -211,30 +211,24 @@ module.exports = Reflux.createStore({
     var self = this;
     API.saveMapToAPI(params).then(
       function(data) {
-        self.onHideModal(); //tell save dialog that everything is done 
         self.onFindMaps(); //refresh map list
-        self.update({'mapName':data.title});
+        self.update({'currentMap':data, 'visible': false});
       }.bind(this)).fail(function(err) {
-        self.update({
-          'error': err
-        });
+        self.update({'error': err});
         console.log('_saveMap: Error saving data ...');
       });
   },
-
 
   _updateMap: function(id, params) {
     console.log('stores->saveStore: _updateMap');
     var self = this;
     API.updateMapToAPI(id, params).then(
       function(data) {
-        this.onHideModal(); //tell save dialog that everything is done 
         this.onFindMaps(); //refresh map list
-
+        _.assign(data, {'_id': self.state.currentMap._id});
+        self.update({'currentMap':data, 'visible': false});
       }.bind(this)).fail(function(err) {
-        self.update({
-          'error': err
-        });
+        self.update({'error': err});
         console.log('_updateMap: Error saving data ...');
       });
   },
@@ -245,9 +239,9 @@ module.exports = Reflux.createStore({
     API.getMapById(id).then(
       function(data) {
           RestoreActions.restoreData(data.map);
+          self.update({'currentMap': data});
           self.update({'mapName':data.title});  
           self.update({'mapDescription':data.description});
-
       }).fail(function() {
       console.log('onRestoreMapFromAPI: Error saving data ...');
     });
@@ -345,7 +339,7 @@ module.exports = Reflux.createStore({
 
   _handlePointsDataUpdate: function(data) {
     pointsState = data;
-    filterState = data.filters;//takes filters state (workaround for listener problem)
+    filterState = data.filters || filterState;//takes filters state (workaround for listener problem)
   },
 
   _handleArcgisDataUpdate: function(data) {
