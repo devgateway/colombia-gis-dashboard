@@ -38,7 +38,7 @@ module.exports = {
     loadDepartmentsShapes:function(){
       
         return request({
-            url: 'json-data/departmentsGeoOptimized.json',
+            url: window.DATA_PATH + '/departmentsGeoOptimized.json',
             type: 'json'
         }).fail(logFailure);  
     },
@@ -46,7 +46,7 @@ module.exports = {
     loadMunicipalitiesShapes:function(){
       
         return request({
-            url: 'json-data/municipalitiesOptimized.json',
+            url: window.DATA_PATH + '/municipalitiesOptimized.json',
             type: 'json'
         }).fail(logFailure);  
     },
