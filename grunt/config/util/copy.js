@@ -27,8 +27,6 @@ var taskConfig = function(grunt) {
       ]
     },
 
-
-
     dist: {
       files: [{
         expand: true,
@@ -36,7 +34,6 @@ var taskConfig = function(grunt) {
         dest: '<%= yeogurt.dist %>/',
         src: [
           'styles/styleguide.md',
-          'docs/styleguide/public/images',
           'styles/fonts/**/*.{woff,otf,ttf,eot,svg}',
           'images/**/*.{webp}',
           '!*.js',

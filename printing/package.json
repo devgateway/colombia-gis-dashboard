@@ -1,9 +1,10 @@
 {
-  "name": "printing",
+  "name": "monitor-printing-service",
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./app"
+    "install-windows-service": "winser -i -s -c",
+    "uninstall-windows-service": "winser  -r -x -s"
   },
   "dependencies": {
     "bluebird": "^2.9.34",
@@ -13,6 +14,7 @@
     "node-uuid": "^1.4.3",
     "phantomjs": "^1.9.17",
     "tinytim": "^0.1.1",
-    "uuid": "^2.0.1"
+    "uuid": "^2.0.1",
+    "winser": "^1.0.0"
   }
 }

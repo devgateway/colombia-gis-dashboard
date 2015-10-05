@@ -35,15 +35,10 @@ if ((window.location.host.indexOf('localhost') > -1) || (window.location.host.in
 	window.MAP_PDF_URL = 'http://localhost:3033/pdf/{{id}}';
 	window.MAP_IMAGE_URL = 'http://localhost:3033/png/{{id}}';
 	window.MAP_DOWNLOAD_URL = 'http://localhost:3033/download/{{name}}';
-
-
 }
-
-
 
 window.ESIR_USE_PROXY = true;
 window.Message = require('./components/commons/message.jsx');
-
 var React = require('react');
 var Router = require('react-router');
 var router = require('./router.jsx');
