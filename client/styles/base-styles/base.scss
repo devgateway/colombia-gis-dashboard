@@ -1,4 +1,4 @@
-//variables
+//color variables
 $black: #000000;
 $bgBlack:#242a2d;
 $grey:#454545;
@@ -15,14 +15,15 @@ $border-grey:#eeeeee;
 $border-grey-alt:#d1d1d1;
 $danger:#d9534f;
 
+// dimensions
 $gutter: 1em;
-$base-font-family: 'Open Sans', sans-serif;
-$base-line-height: 110%;
+
 
 // fonts
+$base-font-family: 'Open Sans', sans-serif;
+$base-line-height: 110%;
 $text-small: 1.3rem;
 
-// dimensions
 
 //mixins
 @mixin bgLayout{background-color: rgba(0,0,0,0.7);}

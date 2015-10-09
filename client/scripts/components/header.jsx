@@ -21,17 +21,24 @@ module.exports = React.createClass({
         <div className='navbar navbar-fixed-top map-header'>
           <div className='navbar-inner'>
             <div className='container-fluid' role='main'>
-              <h1> <Message message='app.description'/> </h1>
-              <h2> {this.state.currentMap.title || <Message message='app.title'/>} </h2>
+              <div className="map-title">
+                <h1> <Message message='app.description'/> </h1>
+                <h2> {this.state.currentMap.title || <Message message='app.title'/>} </h2>
+              </div>
+              <div className="header-action-nav">
+                <ul>
+                    <li><ExportDialog/></li>
+                    <li><SaveDialog/></li>
+                    <li><PrintDialog id={this.state.currentMap? this.state.currentMap._id : null}/></li>
+                </ul>
+              </div>
               <div className='header-nav'>
-                <AGOLProfile/>                
-                <ExportDialog/>
-                <SaveDialog/>
-                <PrintDialog id={this.state.currentMap? this.state.currentMap._id : null}/>
+                <AGOLProfile/>
+
                 <ImageDialog id={this.state.currentMap? this.state.currentMap._id : null}/>
                 <li><a href='#'><Message message='app.menu'/></a></li>
                 <li><NationalSubActivities/></li>
-                <LanSelector/>                
+                <LanSelector/>
               </div>
             </div>
           </div>

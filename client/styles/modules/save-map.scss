@@ -1,5 +1,9 @@
 .save-map-trigger{
   display:inline;
+  .fa{
+    color: saturate(lighten( $blue, 35), 65);
+    font-size:16px;
+  }
 }
 .dialog-save-map{
   z-index: 10005;
