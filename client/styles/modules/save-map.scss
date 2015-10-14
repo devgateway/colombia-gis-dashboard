@@ -1,15 +1,49 @@
 .save-map-trigger{
   display:inline;
+
   .fa{
-    color: saturate(lighten( $blue, 35), 65);
-    font-size:16px;
+    color: $header-icon-color;
+    margin-left:2px;
+    margin-right:2px;
+
+    &.fa-pencil-square-o {
+      font-size: 19px;
+      margin-left: 8px;
+      margin-top:1px;
+    }
+
+    &.fa-share-square-o {
+      font-size: 19px;
+      margin-top:1px;
+    }
+
+    &.fa-floppy-o {
+      font-size: 18px;
+    }
   }
 }
+
+.fa.fa-file-pdf-o{
+  color:$header-icon-color;
+  font-size: 16px;
+  margin-left: 4px;
+  margin-top:1px;
+}
+
+.fa.fa-file-image-o{
+  color:$header-icon-color;
+  font-size: 16px;
+  margin-left: 4px;
+  margin-top:1px;
+}
+
 .dialog-save-map{
   z-index: 10005;
 }
+
 .modal-header{
     padding-bottom: $gutter*2.7;
+
     .fa.fa-folder-open{
       margin-right:$gutter/2;
     }
@@ -45,7 +79,7 @@ h4{
     @include floatLeft;
     @include textUppercase;
     @include textBold;
-    font-size:13px;
+    font-size:$modal-title;
     color:$blue;
     margin-bottom:$gutter/2;
   }
@@ -58,6 +92,7 @@ h4{
     font-size:20px;
     &:hover{ color: $grey}
   }
+  @include floatRight;
 }
 .blue-panel{
   background: lighten($blue, 45);
@@ -66,7 +101,7 @@ h4{
 }
 
 .plain-panel{
-  padding:20px;
+  padding:$modal-padding;
   h4{ margin-bottom: $gutter}
 }
 
@@ -90,7 +125,7 @@ h4{
     @include space-reset;
     @include textUppercase;
     @include textBold;
-    font-size:13px;
+    font-size:$modal-title;
     color:$blue;
     margin-top:$gutter;
   }
@@ -100,7 +135,7 @@ h4{
     &.panel-default{border-color: transparent}
     .panel-body{
       padding:0 0 $gutter/2 0;
-      font-size:12px;
+      font-size:$default-text-size;
       color: $blue;
   }
 
@@ -126,6 +161,11 @@ h4{
      margin-left: $gutter/1.5;
      font-size:14px;
   }
+  i.pull-right.fa.fa-trash{
+    font-size:15px;
+    float:right;
+    margin-top:-1px;
+  }
 }
 .saved-map-list{
   background: #d7e0e4;
@@ -145,7 +185,7 @@ h4{
 // pring map dialog
 .dialog-print-map{
   .modal-body{
-    padding:20px;
+    padding:$modal-padding;
   }
 }
 .pagination> a{
@@ -171,7 +211,7 @@ h4{
   @include textBold;
   @include textUppercase;
   @include transitionColor;
-  font-size:12px;
+  font-size:$default-text-size;
   margin-right:$gutter*2.5;
   margin-top:$gutter/2.4;
   cursor:pointer;

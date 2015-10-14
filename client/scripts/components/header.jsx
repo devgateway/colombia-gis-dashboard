@@ -27,15 +27,15 @@ module.exports = React.createClass({
               </div>
               <div className="header-action-nav">
                 <ul>
-                    <li><ExportDialog/></li>
                     <li><SaveDialog/></li>
+                    <li><ExportDialog/></li>
                     <li><PrintDialog id={this.state.currentMap? this.state.currentMap._id : null}/></li>
+                    <li><ImageDialog id={this.state.currentMap? this.state.currentMap._id : null}/></li>
                 </ul>
               </div>
               <div className='header-nav'>
                 <AGOLProfile/>
 
-                <ImageDialog id={this.state.currentMap? this.state.currentMap._id : null}/>
                 <li><a href='#'><Message message='app.menu'/></a></li>
                 <li><NationalSubActivities/></li>
                 <LanSelector/>

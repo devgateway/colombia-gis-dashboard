@@ -57,7 +57,7 @@ mixins: [Reflux.connect(Store,'store'), Reflux.connect(LanStore, 'lan')],
   handlePageSelect:function(event, selectedEvent){
     this.setState({'activePage': selectedEvent.eventKey});
   },
-  
+
 
   getInitialState:function(){
     return {'pageSize':3, 'activePage':1, 'showDownload':false}
@@ -65,7 +65,7 @@ mixins: [Reflux.connect(Store,'store'), Reflux.connect(LanStore, 'lan')],
 
   render: function() {
     var origMapList=this.state.store.maps || [];
-    var mapList=_.sortBy(_.union(_.filter(origMapList, {hide:undefined}), _.filter(origMapList, {hide:false})), 
+    var mapList=_.sortBy(_.union(_.filter(origMapList, {hide:undefined}), _.filter(origMapList, {hide:false})),
       function(n){return n.title.toLowerCase();});
     var showDeleteModal=this.state.store.showDeleteModal || false;
     var itemsSize=mapList.length>this.state.pageSize?Math.ceil(mapList.length/this.state.pageSize):1;
@@ -98,7 +98,7 @@ mixins: [Reflux.connect(Store,'store'), Reflux.connect(LanStore, 'lan')],
                         <Col sm={4}>
                           <div className='save-map-actions pull-right'>
                             <a href='#'>
-                            <i className='pull-right fa fa-times' title={i18n.t('savemap.tooltipdelete')} onClick={this._showDeleteModal.bind(this, true, m._id)}></i>
+                            <i className='pull-right fa fa-trash' title={i18n.t('savemap.tooltipdelete')} onClick={this._showDeleteModal.bind(this, true, m._id)}></i>
                             </a>
                             <a href='#'>
                             <i className='pull-right fa fa-folder-open' title={i18n.t('savemap.tooltipopen')} onClick={this._open.bind(this,m._id)}></i>
