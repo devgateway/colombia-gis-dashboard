@@ -2045,7 +2045,6 @@ h4.modal-title {
   margin-bottom: 0.5em; }
 
 .close-dialog {
-  float: right;
   float: right; }
   .close-dialog .fa.fa-times-circle-o {
     -webkit-transition: color 600ms ease;
@@ -2154,7 +2153,7 @@ h4.modal-title {
     border-color: #eeeeee; }
 
 .non-btn-action {
-  color: #72aa3c;
+  color: #659735;
   font-weight: bold;
   text-transform: uppercase;
   -webkit-transition: color 600ms ease;
@@ -2166,7 +2165,7 @@ h4.modal-title {
   margin-top: 0.41667em;
   cursor: pointer; }
   .non-btn-action:hover {
-    color: #58842e; }
+    color: #659735; }
   .non-btn-action .fa {
     margin-right: 0.5em; }
 
