@@ -57,6 +57,7 @@
   width:116%;
   color:$black;
   margin-bottom:7px;
+
   &.small{
     height: 20px;
     font-size:0.95em;
@@ -151,21 +152,26 @@
 
   .toggler{
      clear:left;
+
     .toggler-title{
       @include floatLeft;
     }
+
     .toggler-btn{
       width: 20px;
       @include floatLeft;
       padding-right:100px;
     }
+
     .updown{
       @include floatLeft;
     }
+
     .fa{
       color: $blue;
       margin-left:-10px;
     }
+
   }
 
 
@@ -205,9 +211,11 @@
       top:10px;
       right:10px;
     }
+
   .fa.fa-arrow-down {
     margin-left:$gutter/2;
   }
+
   .fa.fa-times,
   .fa.fa-arrow-down,
   .fa.fa-arrow-up{
@@ -217,6 +225,7 @@
 
   ul {
     padding-left:5;
+
     li{
       display:block;
       margin-bottom: 20px;
@@ -249,21 +258,26 @@
     .title{
       width:90%;
       margin-left:-10px;
+
       .control-title{
         font-size:$default-text-size;
         margin:0 0 0 $gutter;
         width:100%;
+
           .selectable{
             float:left;
             }
+
         }
     }
   }
   .control-wrapper{
       margin-top:-10px;
+
       &.transparency{
         clear:both;
         margin: 6px auto 0 $gutter*2.7
       }
+
     }
 }
