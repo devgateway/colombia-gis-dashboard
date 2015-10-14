@@ -161,10 +161,6 @@
     }
     .updown{
       @include floatLeft;
-      margin-right: 5px;
-    }
-    .clear-fix{
-      clear: both;
     }
     .fa{
       color: $blue;

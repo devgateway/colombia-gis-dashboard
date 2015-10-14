@@ -52,7 +52,8 @@
   li{
     border-left: 1px solid saturate(lighten( $blue, 35), 65);
     @include floatLeft;
-    margin-right:13px;
+    margin-right:$header-nav-margin;
+    margin-left:$header-nav-margin;
     white-space:nowrap;
   }
   a {
