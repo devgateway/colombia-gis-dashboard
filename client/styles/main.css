@@ -2112,10 +2112,12 @@ h4.modal-title {
   .save-map-actions .fa {
     margin-left: 0.66667em;
     font-size: 14px; }
-  .save-map-actions i.pull-right.fa.fa-trash {
-    font-size: 15px;
-    float: right;
-    margin-top: -1px; }
+    .save-map-actions .fa:hover {
+      color: #98ca68; }
+    .save-map-actions .fa.fa-trash {
+      font-size: 15px;
+      float: right;
+      margin-top: -1px; }
 
 .saved-map-list {
   background: #d7e0e4;
@@ -2173,11 +2175,11 @@ h4.modal-title {
   border-radius: 2px;
   background-clip: padding-box;
   /* stops bg color from leaking outside the border: */
-  background: #8ba8c7;
+  background: #74a4d6;
   color: #ffffff;
   margin-right: 0.5em;
   padding: 0.16667em 0.5em;
-  font-size: 11px; }
+  font-size: 12px; }
 
 .export-activity-nav {
   padding-top: 1em; }

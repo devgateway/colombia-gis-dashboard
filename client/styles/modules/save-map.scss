@@ -160,17 +160,20 @@ h4{
   .fa{
      margin-left: $gutter/1.5;
      font-size:14px;
-  }
-  i.pull-right.fa.fa-trash{
-    font-size:15px;
-    float:right;
-    margin-top:-1px;
+     &:hover{
+       color: $green;
+     }
+     &.fa-trash{
+       font-size:15px;
+       float:right;
+       margin-top:-1px;
+     }
   }
 }
 .saved-map-list{
-  background: #d7e0e4;
+  background: $saved-map-list-bg;
   @include border-radius(3px);
-  margin-top:$gutter;
+  margin-top: $gutter;
   h4{
     @include textBold;
     font-size:13px;
@@ -191,19 +194,23 @@ h4{
 .pagination> a{
   border-color: $border-grey;
   color:$black;
+
   &:hover{
-    background-color: darken($green,20%);
+    background-color: $green-dark;
   }
 }
+
 .pagination > .active > a,
 .pagination > .active > a:focus{
   color:$black;
   background-color: $green;
   border-color: $border-grey;
+
   &:hover{
-    background-color: darken($green,20%);
+    background-color: $green-dark;
     border-color: $border-grey;
   }
+
 }
 // button in panel to save current map
 .non-btn-action{
@@ -215,28 +222,34 @@ h4{
   margin-right:$gutter*2.5;
   margin-top:$gutter/2.4;
   cursor:pointer;
+
   &:hover{
     color:darken($green,25%);
   }
+
   .fa{
     margin-right: $gutter/2;
   }
+
 }
 
 .label-tag{
   @include border-radius(2px);
-  background:lighten($blue,20%);
+  background:$bgblue;
   color: $white;
   margin-right:$gutter/2;
   padding: $gutter/6 $gutter/2;
-  font-size:11px;
+  font-size:$default-text-size;
 }
 
 .export-activity-nav{
   padding-top:$gutter;
+
   ul.activities{
     margin-left:$gutter*3;
+
     li{
+
       a{
         @include bluebg;
         @include textUppercase;
@@ -251,6 +264,7 @@ h4{
         }
       }
     }
+
   .tab-content{
     min-height:150px;
     width:100%;
