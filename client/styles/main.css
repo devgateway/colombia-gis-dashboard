@@ -1735,7 +1735,7 @@ ul.tabs {
   bottom: 42px;
   left: 0;
   padding: 6px 6px 4px 6px;
-  border: 1px solid #cccccc; }
+  border: 1px solid #d1d1d1; }
 
 .legend-group ul {
   list-style: none;
@@ -1745,15 +1745,15 @@ ul.tabs {
   font-size: 1.2rem; }
 
 .legend-group-title {
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  background-clip: padding-box;
+  /* stops bg color from leaking outside the border: */
   cursor: pointer;
   color: #ffffff;
   background: #b9d4e1;
   padding: 0.66667em 0.5em;
   margin-bottom: 4px;
-  -webkit-border-radius: 2px;
-  border-radius: 2px;
-  background-clip: padding-box;
-  /* stops bg color from leaking outside the border: */
   position: relative; }
   .legend-group-title .fa {
     color: #ffffff;

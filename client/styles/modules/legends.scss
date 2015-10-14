@@ -35,36 +35,42 @@
   bottom: 42px;
   left:0;
   padding:6px 6px 4px 6px ;
-  border:1px solid #cccccc;
+  border:1px solid $border-grey-alt;
 }
 
 .legend-group{
+
   ul{
-  list-style:none;
-  padding-left:0;
+    list-style:none;
+    padding-left:0;
   }
+
   h2{
     color: $grey;
     font-size:1.2rem;
   }
+
 }
 
 .legend-group-title{
+  @include border-radius(2px);
   cursor:pointer;
   color: $white;
   background: #b9d4e1;
   padding:$gutter/1.5 $gutter/2;
   margin-bottom:4px;
-  @include border-radius(2px);
   position:relative;
+
   .fa{
     color: $white;
     font-size:14px;
     position:absolute;
     left:9px;
+
   &.fa-sort-asc{top:14px}
   &.fa-sort-desc{top:9px;}
   }
+
   span{
       padding-left: $gutter/2;
       font-weight:600;
