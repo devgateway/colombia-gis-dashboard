@@ -1,4 +1,4 @@
-//variables
+//color variables
 $black: #000000;
 $bgBlack:#242a2d;
 $grey:#454545;
@@ -12,17 +12,26 @@ $bgblue:#74a4d6;
 $white: #ffffff;
 $yellow: #e9ba00;
 $border-grey:#eeeeee;
+$background-grey: #e6edee;
 $border-grey-alt:#d1d1d1;
+$saved-map-list-bg: #d7e0e4;
 $danger:#d9534f;
-
-$gutter: 1em;
-$base-font-family: 'Open Sans', sans-serif;
-$base-line-height: 110%;
-
-// fonts
-$text-small: 1.3rem;
+$header-icon-color: #a0cdff;
 
 // dimensions
+$gutter: 1em;
+$modal-padding: 20px;
+$header-nav-margin: 13px;
+
+
+// fonts
+$base-font-family: 'Open Sans', sans-serif;
+$base-line-height: 110%;
+$text-small: 1.3rem;
+$modal-title: 13px;
+$default-text-size:12px;
+
+
 
 //mixins
 @mixin bgLayout{background-color: rgba(0,0,0,0.7);}

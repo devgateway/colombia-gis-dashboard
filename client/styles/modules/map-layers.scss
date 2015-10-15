@@ -7,7 +7,7 @@
 
 .esri-result-item {
   padding: 5px;
-  border-right: 1px solid #dedede;
+  border-right: 1px solid $border-grey;
   display: inline-block;
 }
 
@@ -57,6 +57,7 @@
   width:116%;
   color:$black;
   margin-bottom:7px;
+
   &.small{
     height: 20px;
     font-size:0.95em;
@@ -91,7 +92,7 @@
     @include floatLeft;
     margin-top:0;
     margin-right:10px;
-    font-size:12px;
+    font-size: $default-text-size;
     line-height:23px;
     color: $blue;
     &.color-control{
@@ -151,25 +152,26 @@
 
   .toggler{
      clear:left;
+
     .toggler-title{
       @include floatLeft;
     }
+
     .toggler-btn{
       width: 20px;
       @include floatLeft;
       padding-right:100px;
     }
+
     .updown{
       @include floatLeft;
-      margin-right: 5px;
     }
-    .clear-fix{
-      clear: both;
-    }
+
     .fa{
       color: $blue;
       margin-left:-10px;
     }
+
   }
 
 
@@ -209,9 +211,11 @@
       top:10px;
       right:10px;
     }
+
   .fa.fa-arrow-down {
     margin-left:$gutter/2;
   }
+
   .fa.fa-times,
   .fa.fa-arrow-down,
   .fa.fa-arrow-up{
@@ -221,6 +225,7 @@
 
   ul {
     padding-left:5;
+
     li{
       display:block;
       margin-bottom: 20px;
@@ -253,21 +258,26 @@
     .title{
       width:90%;
       margin-left:-10px;
+
       .control-title{
-        font-size:12px;
+        font-size:$default-text-size;
         margin:0 0 0 $gutter;
         width:100%;
+
           .selectable{
             float:left;
             }
+
         }
     }
   }
   .control-wrapper{
       margin-top:-10px;
+
       &.transparency{
         clear:both;
         margin: 6px auto 0 $gutter*2.7
       }
+
     }
 }

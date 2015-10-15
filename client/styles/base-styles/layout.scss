@@ -10,22 +10,40 @@
     @include topbottomContainer;
   }
 }
-h1 {
-  @include floatLeft;
-  @include textBold;
-  font-size: 1.4rem;
-  color: $white;
-  text-transform: uppercase;
-  margin-top: $gutter;
+
+.map-title{
+  float:left;
+  margin-right:$gutter;
+  h1 {
+    @include floatLeft;
+    @include textBold;
+    font-size: 1.4rem;
+    color: $white;
+    text-transform: uppercase;
+    margin-top: $gutter;
+  }
+  h2 {
+    color: $white;
+    font-size: $text-small;
+    @include textBold;
+    display: inline-block;
+    line-height: $base-line-height;
+    margin-top: 1.2em;
+    margin-left: $gutter/2.5;
+  }
 }
-h2 {
-  color: $white;
-  font-size: $text-small;
-  @include textBold;
-  display: inline-block;
-  line-height: $base-line-height;
-  margin-top: 1.2em;
-  margin-left: $gutter/2.5;
+
+.header-action-nav {
+  float:left;
+  position:relative;
+  margin-top:15px;
+  ul{
+    @include listUnstyled;
+    li{
+      float:left;
+      margin-right:$gutter/2;
+    }
+  }
 }
 .header-nav {
   @include floatRight;
@@ -34,7 +52,8 @@ h2 {
   li{
     border-left: 1px solid saturate(lighten( $blue, 35), 65);
     @include floatLeft;
-    margin-right:13px;
+    margin-right:$header-nav-margin;
+    margin-left:$header-nav-margin;
     white-space:nowrap;
   }
   a {
@@ -142,7 +161,7 @@ h2 {
     padding: 0;
     height: 100%;
     overflow: hidden;
-    background-color: #fff;
+    background-color: $white;
   }
 }
 .slider-enter {

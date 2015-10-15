@@ -22,13 +22,13 @@
   border:1px solid lighten($grey,60%);
 }
 .bs-callout-default h4 {
-    color: #777;
+    color: $grey;
 }
 .bs-callout-primary {
-    border-left-color: #a0cdff;
+    border-left-color: $header-icon-color;
 }
 .bs-callout-primary h4 {
-    color: #428bca;
+    color: $yellow;
 }
 .bs-callout-success {
     border-left-color: $green;
@@ -44,16 +44,16 @@
     color: $danger;
 }
 .bs-callout-warning {
-    border-left-color: #f0ad4e;
+    border-left-color: $yellow;
 }
 .bs-callout-warning h4 {
-    color: #f0ad4e;
+    color: $yellow;
 }
 .bs-callout-info {
     border-left-color: $blue;
 }
 .bs-callout-info h4 {
-    color: #5bc0de;
+    color: $blue;
 }
 
 .bs-callout-simple {

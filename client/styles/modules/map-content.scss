@@ -1,6 +1,6 @@
 .toggler{
   @include border-radius(4px);
-  background: #d7e0e4;
+  background: $background-grey;
   overflow:hidden;
   position:relative;
   margin-bottom:5px;
@@ -24,13 +24,10 @@
   cursor:pointer;
 }
 .toggler-button{
-  background: #d7e0e4;
+  background: $background-grey;
   padding:5px 10px;
   margin-top:3px;
   cursor:pointer;
-  &:hover{
-  background: darken(#d7e0e4,1%);
-  }
 }
 .layer-control-panel{
   ul{
@@ -86,8 +83,8 @@
     font-size: 11px;
     margin: -2px auto 10px -3px;
     outline:none;
-    color:#888888;
-    background: #e6edee;
+    color:$grey-light;
+    background: $background-grey;
     border:none;
     clear:both;
     text-align:center;

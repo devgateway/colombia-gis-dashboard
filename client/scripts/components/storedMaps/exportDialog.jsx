@@ -84,7 +84,7 @@ module.exports = React.createClass({
 					              	onClick={this._exportTypeIndicators} label='savemap.exportindicators'/>
 					            : null}
 				            </CustomRadioGroup>
-				        </div>					
+				        </div>
 						{errorArray?
 							<div className='filter-no-results'><br/>
 								{
