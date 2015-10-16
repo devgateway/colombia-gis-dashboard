@@ -35,7 +35,7 @@ if (args.length < 4) {
 	};
 
 	page.paperSize = {
-		format: 'portrait',
+		format: 'landscape',
 		orientation: 'A4',
 		margin: {
 			top: '50px',

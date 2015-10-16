@@ -18,7 +18,7 @@ var binPath = phantomjs.path
 var tmpFolder = path.join(__dirname, '/tmp');
 
 
-var HOST = "http://devgateway.github.io/colombia-gis-dashboard";
+var HOST = "http://localhost:9010";
 
 if (process.env.NODE_ENV == 'production') {
     HOST = 'http://devgateway.github.io/colombia-gis-dashboard'

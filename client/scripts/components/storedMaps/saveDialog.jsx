@@ -106,13 +106,13 @@ module.exports = React.createClass({
 								className='form-control title'
 								onChange={this._updateTitle}
 								placeholder={i18n.t('savemap.savemaptitle')}
-								value={this.state.saveAs? '' : this.state.currentMap.title} maxLength='100' addonAfter='*'/>
+								value={this.state.currentMap.title} maxLength='100' addonAfter='*'/>
 							<Input type='textarea' name='description'
 								onChange={this._updateDescription}
 								className='form-control description'
 								rows='3'
 								placeholder={i18n.t('savemap.savemapdescription')}
-								value={this.state.saveAs? '' : this.state.currentMap.description} maxLength='300' addonAfter='*' />
+								value={this.state.currentMap.description} maxLength='300' addonAfter='*' />
 						</div>
 
 						<div>
