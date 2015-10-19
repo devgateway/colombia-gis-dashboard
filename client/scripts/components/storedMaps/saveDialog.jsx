@@ -38,47 +38,69 @@ module.exports = React.createClass({
 		if(!this.state.saveAs && this.state.currentMap && this.state.currentMap._id){
 			Actions.updateMap(this.state.currentMap._id, this.state.currentMap);
 		} else {
-			Actions.saveMap(this.state.currentMap);
+			Actions.saveMap(this.state.newMap);
 		}
 	},
 
 	getInitialState:function(){
-		return {'title':'', 'description':'', 'visible':false};
+		return {'title':'', 'description':'', 'saveVisible':false};
 	},
 
 	_updateTags:function(tags){
-		var map = _.clone(this.state.currentMap);
-		map.tags = tags;
-		this.setState({'currentMap':map});
+		if (this.state.saveAs){
+			var map = _.clone(this.state.newMap);
+			map.tags = tags;
+			this.setState({'newMap':map});
+		} else {
+			var map = _.clone(this.state.currentMap);
+			map.tags = tags;
+			this.setState({'currentMap':map});
+		}
 	},
 
 	_updateTitle:function(event){
-		var map = _.clone(this.state.currentMap);
-		map.title = event.target.value;
-		this.setState({'currentMap':map});
+		if (this.state.saveAs){
+			var map = _.clone(this.state.newMap);
+			map.title = event.target.value;
+			this.setState({'newMap':map});
+		} else {
+			var map = _.clone(this.state.currentMap);
+			map.title = event.target.value;
+			this.setState({'currentMap':map});
+		}		
 	},
 
 	_updateDescription:function(event){
-		var map = _.clone(this.state.currentMap);
-		map.description = event.target.value;
-		this.setState({'currentMap':map});
+		if (this.state.saveAs){
+			var map = _.clone(this.state.newMap);
+			map.description = event.target.value;
+			this.setState({'newMap':map});
+		} else {
+			var map = _.clone(this.state.currentMap);
+			map.description = event.target.value;
+			this.setState({'currentMap':map});
+		}	
 	},
 
 	_onClose:function(){
-		this.setState({'visible':false, 'errorMsg': ''});
+		this.setState({'saveVisible':false, 'errorMsg': ''});
 	},
 
 	_openSave:function(){
-		this.setState({'visible':true, 'saveAs': false});
+		this.setState({'saveVisible':true, 'saveAs': false});
 	},
 
 	_openSaveAs:function(){
-		this.setState({'visible':true, 'saveAs': true, 'currentMap': this.state.currentMap || {}});
+		this.setState({
+			'saveVisible':true, 
+			'saveAs': true, 
+			'newMap':{'title':'', 'description':'', 'tags':''}});
 	},
 
 	render:function() {
 		var errorArray = this.state.errorMsg?this.state.errorMsg.split(','):null;
 		var saveLabel = this.state.saveAs? i18n.t('savemap.saveasnewbutton') : i18n.t('savemap.savebutton');
+		var map = this.state.saveAs? this.state.newMap : this.state.currentMap;
 		return (
 			<div className='save-map-trigger'>
 			<a href="#">
@@ -90,7 +112,7 @@ module.exports = React.createClass({
 				</a>
 			: null}
 			<Modal animation={false} className='dialog-save-map' {...this.props} bsSize='large' aria-labelledby='contained-modal-title-lg'
-			 show={this.state.visible} onHide={this._onClose}>
+			 show={this.state.saveVisible} onHide={this._onClose}>
 				<Modal.Header>
 					<Modal.Title>
 						<i className='fa fa-folder-open'></i>{saveLabel}
@@ -106,18 +128,18 @@ module.exports = React.createClass({
 								className='form-control title'
 								onChange={this._updateTitle}
 								placeholder={i18n.t('savemap.savemaptitle')}
-								value={this.state.currentMap.title} maxLength='100' addonAfter='*'/>
+								value={map.title} maxLength='100' addonAfter='*'/>
 							<Input type='textarea' name='description'
 								onChange={this._updateDescription}
 								className='form-control description'
 								rows='3'
 								placeholder={i18n.t('savemap.savemapdescription')}
-								value={this.state.currentMap.description} maxLength='300' addonAfter='*' />
+								value={map.description} maxLength='300' addonAfter='*' />
 						</div>
 
 						<div>
 							<h4 className='modal-title'><Message message='savemap.savemaptags'/></h4>
-							<Tags onUpdate={this._updateTags} value={this.state.saveAs? '' : this.state.currentMap.tags}/>
+							<Tags onUpdate={this._updateTags} value={map.tags}/>
 						</div>
 						<div className='required'><Message message='savemap.mandatoryFields'/>
 							{

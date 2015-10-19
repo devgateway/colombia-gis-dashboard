@@ -28,7 +28,7 @@ module.exports = React.createClass({
 	},
 
 	getInitialState:function(){
-		return {'type': 'activities', 'visible': false};
+		return {'type': 'activities', 'exportVisible': false};
 	},
 
 	_exportTypeActivities:function(type){
@@ -40,7 +40,7 @@ module.exports = React.createClass({
 	},
 
 	_onClose:function(){
-		this.setState({'visible': false, 'error': ''});
+		this.setState({'exportVisible': false, 'error': ''});
 	},
 
 	_open:function(){
@@ -49,7 +49,7 @@ module.exports = React.createClass({
 		} else if (this.state.type==='indicators' && !this.state.layersVisible.indicators){
 			this.setState({'type': 'activities'});
 		}
-		this.setState({'visible': true});
+		this.setState({'exportVisible': true});
 	},
 
 	render:function() {
@@ -63,7 +63,7 @@ module.exports = React.createClass({
 				<i className="fa fa-share-square-o" title={i18n.t('savemap.exportmap')} onClick={this._open}></i>
 			</a>
 			<Modal animation={false} className='dialog-save-map' {...this.props} bsSize='large' aria-labelledby='contained-modal-title-lg'
-			 show={this.state.visible} onHide={this._onClose}>
+			 show={this.state.exportVisible} onHide={this._onClose}>
 				<Modal.Header>
 					<Modal.Title>
 						<i className='fa fa-folder-open'></i><Message message='savemap.exportmap'/>

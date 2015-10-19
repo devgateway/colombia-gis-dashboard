@@ -50,7 +50,7 @@ module.exports = Reflux.createStore({
     API.exportActivities(_.clone(filterState, true)).then(
       function(data) {        
         if (data[0] && data[0].name){
-          self.update({'visible': false, 'exportDisabled': false});
+          self.update({'exportVisible': false, 'exportDisabled': false});
           location.href = data[0].name;
         } else {
           this.update({'error': 'savemap.exportError,', 'exportDisabled': false});        
@@ -65,7 +65,7 @@ module.exports = Reflux.createStore({
     var self = this;
     API.exportIndicators(_.clone(indicatorsState.layerFilters, true)).then(
       function(data) {        
-        self.update({'visible': false, 'exportDisabled': false});
+        self.update({'exportVisible': false, 'exportDisabled': false});
         window.open(data);
       }.bind(this)).fail(function(err) {
         this.update({'error': err, 'exportDisabled': false});
@@ -146,6 +146,7 @@ module.exports = Reflux.createStore({
     }
     if (!isValid){
       this.update({
+        'saveVisible':true,
         'errorMsg': errorMsg,
         'map':{
           'title': options.title,
@@ -212,7 +213,7 @@ module.exports = Reflux.createStore({
     API.saveMapToAPI(params).then(
       function(data) {
         self.onFindMaps(); //refresh map list
-        self.update({'currentMap':data, 'visible': false});
+        self.update({'currentMap':data, 'saveVisible': false});
       }.bind(this)).fail(function(err) {
         self.update({'error': err});
         console.log('_saveMap: Error saving data ...');
@@ -226,7 +227,7 @@ module.exports = Reflux.createStore({
       function(data) {
         this.onFindMaps(); //refresh map list
         _.assign(data, {'_id': self.state.currentMap._id});
-        self.update({'currentMap':data, 'visible': false});
+        self.update({'currentMap':data, 'saveVisible': false});
       }.bind(this)).fail(function(err) {
         self.update({'error': err});
         console.log('_updateMap: Error saving data ...');
