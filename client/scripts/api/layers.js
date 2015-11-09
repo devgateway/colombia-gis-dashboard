@@ -11,11 +11,9 @@ module.exports = {
 
     getActivitiesByDepartment: function (filters) {
         return request({
-            //url: 'mock-data/departmentsFunding.json',
-            url: 'http://test.monitor.net.co/gisservice/gisservice.svc/Filters/DepartmentsFunding/Json',
+            url: window.DATA_API_URL + '/gisservice/gisservice.svc/Filters/DepartmentsFunding/Json',
             type: 'json',
             method: 'post',
-            //method: 'get',
             contentType: 'application/json',
             data: JSON.stringify({'filters': filters? filters : []}),
             crossOrigin: true
@@ -24,11 +22,9 @@ module.exports = {
 
     getActivitiesByMuncipalities: function (filters) {
         return request({
-            //url: 'mock-data/municipalitiesFunding.json',
-            url: 'http://test.monitor.net.co/gisservice/gisservice.svc/Filters/MunicipalitiesFunding/Json',
+            url: window.DATA_API_URL + '/gisservice/gisservice.svc/Filters/MunicipalitiesFunding/Json',
             type: 'json',
             method: 'post',
-            //method: 'get',
             contentType: 'application/json',
             data: JSON.stringify({'filters': filters? filters : []}),
             crossOrigin: true
@@ -53,9 +49,7 @@ module.exports = {
 
     getIndicatorsByDepartment: function (filters) {
         return request({
-            //url: 'http://test.monitor.net.co/gisservice/gisservice.svc/Filters/DepartmentsFunding/Json',
-            //data: JSON.stringify({'filters': filters? filters : []}),
-            url: 'http://test.monitor.net.co/gisservice/gisservice.svc/IndicatorInfoByDepartments/Json',
+            url: window.DATA_API_URL + '/gisservice/gisservice.svc/IndicatorInfoByDepartments/Json',
             data: JSON.stringify(filters),
             type: 'json',
             method: 'post',
@@ -66,9 +60,7 @@ module.exports = {
 
     getIndicatorsByMuncipalities: function (filters) {
         return request({
-            //url: 'http://test.monitor.net.co/gisservice/gisservice.svc/Filters/MunicipalitiesFunding/Json',
-            //data: JSON.stringify({'filters': filters? filters : []}),
-            url: 'http://test.monitor.net.co/gisservice/gisservice.svc/IndicatorInfoByMunicipalities/Json',
+            url: window.DATA_API_URL + '/gisservice/gisservice.svc/IndicatorInfoByMunicipalities/Json',
             data: JSON.stringify(filters),
             type: 'json',
             method: 'post',

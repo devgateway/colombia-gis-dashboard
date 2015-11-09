@@ -16,6 +16,8 @@ window.MAP_PDF_URL = 'http://map-print.adstg.org/pdf/{{id}}';
 window.MAP_IMAGE_URL = 'http://map-print.adstg.org/png/{{id}}';
 window.MAP_DOWNLOAD_URL = 'http://map-print.adstg.org/download/{{name}}';
 
+window.DATA_API_URL = 'http://test.monitor.net.co';
+
 window.DATA_PATH = './json-data';
 window.MOCK_PATH = './mock-data';
 

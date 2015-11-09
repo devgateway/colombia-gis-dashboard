@@ -95,7 +95,7 @@ module.exports = {
 
   exportActivities: function(filters) {
     return reqwest({
-      url: 'http://test.monitor.net.co/gisservice/gisservice.svc/SubActivitiesListToExcel',
+      url: window.DATA_API_URL + '/gisservice/gisservice.svc/SubActivitiesListToExcel',
       type: 'json',
       method: 'post',
       contentType: 'application/json',
@@ -106,7 +106,7 @@ module.exports = {
 
   exportIndicators: function(filters) {
     return reqwest({
-      url: 'http://test.monitor.net.co/gisservice/gisservice.svc/IndicatorDetails/Json',
+      url: window.DATA_API_URL + '/gisservice/gisservice.svc/IndicatorDetails/Json',
       type: 'json',
       method: 'post',
       contentType: 'application/json',
