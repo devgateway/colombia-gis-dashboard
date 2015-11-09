@@ -35,8 +35,8 @@ module.exports = React.createClass({
 
 	save:function(){
 		//this._onClose();
-		if(!this.state.saveAs && this.state.currentMap && this.state.currentMap._id){
-			Actions.updateMap(this.state.currentMap._id, this.state.currentMap);
+		if(!this.state.saveAs && this.state.currentMap && this.state.currentMap.id){
+			Actions.updateMap(this.state.currentMap.id, this.state.currentMap);
 		} else {
 			Actions.saveMap(this.state.newMap);
 		}
@@ -106,7 +106,7 @@ module.exports = React.createClass({
 			<a href="#">
 				<i className="fa fa-floppy-o" title={i18n.t('savemap.tooltipsaveasnewmap')} onClick={this._openSaveAs}></i>
 			</a> 
-			{this.state.currentMap._id?
+			{this.state.currentMap.id?
 				<a href="#">
 					<i className="fa fa-pencil-square-o" title={i18n.t('savemap.tooltipsavemap')} onClick={this._openSave}></i>
 				</a>

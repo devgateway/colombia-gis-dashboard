@@ -86,6 +86,7 @@ mixins: [Reflux.connect(Store,'store'), Reflux.connect(LanStore, 'lan')],
             _.map(mapList,function(m, i){
               var lowerBound = (this.state.activePage-1) * 3;
               var upperBound = this.state.activePage * 3;
+              var tags = m.tags.split(',');
               if(i>=lowerBound && i<upperBound ){
                 return (
                   <li className='saved-map-list'>
@@ -98,10 +99,10 @@ mixins: [Reflux.connect(Store,'store'), Reflux.connect(LanStore, 'lan')],
                         <Col sm={4}>
                           <div className='save-map-actions pull-right'>
                             <a href='#'>
-                            <i className='pull-right fa fa-trash' title={i18n.t('savemap.tooltipdelete')} onClick={this._showDeleteModal.bind(this, true, m._id)}></i>
+                            <i className='pull-right fa fa-trash' title={i18n.t('savemap.tooltipdelete')} onClick={this._showDeleteModal.bind(this, true, m.id)}></i>
                             </a>
                             <a href='#'>
-                            <i className='pull-right fa fa-folder-open' title={i18n.t('savemap.tooltipopen')} onClick={this._open.bind(this,m._id)}></i>
+                            <i className='pull-right fa fa-folder-open' title={i18n.t('savemap.tooltipopen')} onClick={this._open.bind(this,m.id)}></i>
                             </a>
                           </div>
                         </Col>
@@ -119,7 +120,7 @@ mixins: [Reflux.connect(Store,'store'), Reflux.connect(LanStore, 'lan')],
                         <Col md={12}>
                           <Panel className='pull-left'>
                             {
-                              _.map(m.tags,function(t){
+                              _.map(tags,function(t){
                                 return (<span className='label-tag'>{t}</span> )
                               })
                             }

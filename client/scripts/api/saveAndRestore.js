@@ -1,6 +1,7 @@
 'use strict';
 var reqwest = require('reqwest');
 var tim = require('tinytim').tim;
+var _=require('lodash');
 
 function logFailure(err) {
   debugger;
@@ -25,19 +26,20 @@ module.exports = {
   updateMapToAPI: function(id, params) {
     //console.log('scripts->api->saveAndRestoreMap: updateMapToAPI');
     var url = tim(window.MAP_UPDATE_DELETE_URL,{id:id});
+    var paramsWithId = _.assign(_.clone(params), {'id': id});
     return reqwest({
-      url: url,
+      url: window.MAP_UPDATE_URL,
       type: 'json',
       method: 'put',
       contentType: 'application/json',
-      data: JSON.stringify(params),
+      data: JSON.stringify(paramsWithId),
       crossOrigin: true
     }).fail(logFailure);
   },
 
   deleteMapToAPI: function(id) {
     //console.log('scripts->api->saveAndRestoreMap: deleteMapToAPI');
-    var url = tim(window.MAP_UPDATE_DELETE_URL,{id:id});
+    var url = tim(window.MAP_DELETE_URL,{id:id});
     return reqwest({
       url: url,
       type: 'json',
