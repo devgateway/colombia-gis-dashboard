@@ -186,6 +186,11 @@ module.exports = Reflux.createStore({
         'arcgisState': arcgisData
       }
     };
+    //var mapStrinfied = JSON.stringify(params.map).replace(/[\\"']/g, '\\$&').replace(/\u0000/g, '\\0');
+    var mapStrinfied = JSON.stringify(params.map);
+    _.assign(params, {'map': mapStrinfied});//convert map json object to string
+    _.assign(params, {'tags': params.tags? params.tags.join() : ''});//convert tag array to string    
+    debugger;
     return(params);
   },
 
@@ -238,7 +243,11 @@ module.exports = Reflux.createStore({
     console.log('stores->saveStore: onOpenMap'+id);
     var self=this;
     API.getMapById(id).then(
-      function(data) {
+      function(responseData) {
+          var data = responseData[0]; // fix for response as array
+          var mapParsed = JSON.parse(data.map.replace(/[\\']/g, ''));
+          _.assign(data, {'map': mapParsed}); //parse map string into json object   
+          _.assign(data, {'tags': data.tags.split(',')}); //split tags string into string array   
           RestoreActions.restoreData(data.map);
           self.update({'currentMap': data});
           self.update({'mapName':data.title});  

@@ -27,10 +27,11 @@ if ((window.location.host.indexOf('localhost') > -1) || (window.location.host.in
 	window.DATA_PATH = '/json-data';
 	window.MOCK_PATH = '/mock-data';
 
-	window.MAP_SAVE_URL = 'http://localhost:3033/save';
-	window.MAP_UPDATE_DELETE_URL = 'http://localhost:3033/save/{{id}}';
-	window.MAP_LIST_URL = 'http://localhost:3033/maps';
-	window.MAP_GET_URL = 'http://localhost:3033/map/{{id}}';
+	window.MAP_SAVE_URL = 'http://test.monitor.net.co/gisservice/GisService.svc/MapSave/Json';
+	window.MAP_DELETE_URL = 'http://test.monitor.net.co/gisservice/GISService.svc/MapDelete?MapId={{id}}';
+	window.MAP_UPDATE_URL = 'http://test.monitor.net.co/gisservice/GISService.svc/MapUpdate/Json';
+	window.MAP_LIST_URL = 'http://test.monitor.net.co/gisservice/GISService.svc/GetMaps/Json';
+	window.MAP_GET_URL = 'http://test.monitor.net.co/gisservice/GISService.svc/MapById?MapId={{id}}';
 
 	window.MAP_PDF_URL = 'http://localhost:3033/pdf/{{id}}';
 	window.MAP_IMAGE_URL = 'http://localhost:3033/png/{{id}}';

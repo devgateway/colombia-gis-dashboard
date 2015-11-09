@@ -252,7 +252,7 @@ var geostats = function(a) {
 	
 		this.ranges = Array(); // init empty array to prevent bug when calling classification after another with less items (sample getQuantile(6) and getQuantile(4))
 		
-		for (i = 0; i < (this.bounds.length - 1); i++) {
+		for (var i = 0; i < (this.bounds.length - 1); i++) {
 			this.ranges[i] = this.bounds[i] + this.separator + this.bounds[i + 1];
 		}
 	};
@@ -285,7 +285,7 @@ var geostats = function(a) {
 		if (this.stat_sum  == null) {
 			
 			this.stat_sum = 0;
-			for (i = 0; i < this.pop(); i++) {
+			for (var i = 0; i < this.pop(); i++) {
 				this.stat_sum += parseFloat(this.serie[i]);
 			}
 			
@@ -432,7 +432,7 @@ var geostats = function(a) {
 	/** check if the serie contains negative value */
 	this._hasNegativeValue = function() {
 		
-		for (i = 0; i < this.serie.length; i++) {
+		for (var i = 0; i < this.serie.length; i++) {
 	    	if(this.serie[i] < 0)
 	    		return true;
 	    }
@@ -443,7 +443,7 @@ var geostats = function(a) {
 	/** check if the serie contains zero value */
 	this._hasZeroValue = function() {
 		
-		for (i = 0; i < this.serie.length; i++) {
+		for (var i = 0; i < this.serie.length; i++) {
 	    	if(parseFloat(this.serie[i]) === 0)
 	    		return true;
 	    }
@@ -533,7 +533,7 @@ var geostats = function(a) {
 	    var val = tmpMin;
 	    var interval = (tmpMax - tmpMin) / nbClass;
 
-	    for (i = 0; i <= nbClass; i++) {
+	    for (var i = 0; i <= nbClass; i++) {
 	        a[i] = val;
 	        val += interval;
 	    }
@@ -618,13 +618,13 @@ var geostats = function(a) {
 	    	a[supBound] = this.mean() + ( this.stddev() / 2);
 	    	
 	    	// Values < to infBound, except first one
-	    	for (i = infBound - 1; i > 0; i--) {
+	    	for (var i = infBound - 1; i > 0; i--) {
 	    		var val = a[i+1] - this.stddev();
 		        a[i] = val;
 		    }
 	    	
 	    	// Values > to supBound, except last one
-	    	for (i = supBound + 1; i < nbClass; i++) {
+	    	for (var i = supBound + 1; i < nbClass; i++) {
 	    		var val = a[i-1] + this.stddev();
 		        a[i] = val;
 		    }
@@ -638,13 +638,13 @@ var geostats = function(a) {
 	    	a[meanBound] = this.mean();
 	    	
 	    	// Values < to the mean, except first one
-	    	for (i = meanBound - 1; i > 0; i--) {
+	    	for (var i = meanBound - 1; i > 0; i--) {
 	    		var val = a[i+1] - this.stddev();
 		        a[i] = val;
 		    }
 	    	
 	    	// Values > to the mean, except last one
-	    	for (i = meanBound + 1; i < nbClass; i++) {
+	    	for (var i = meanBound + 1; i < nbClass; i++) {
 	    		var val = a[i-1] + this.stddev();
 		        a[i] = val;
 		    }
@@ -696,7 +696,7 @@ var geostats = function(a) {
 	    var interval = (logMax - logMin) / nbClass;
 	    
 	    // we compute log bounds
-	    for (i = 0; i < nbClass; i++) {
+	    for (var i = 0; i < nbClass; i++) {
 	    	if(i == 0) {
 	    		a[i] = logMin;
 	    	} else {
@@ -733,7 +733,7 @@ var geostats = function(a) {
 	    var denominator = 0;
 	    
 	    // we compute the (french) "Raison"
-	    for (i = 1; i <= nbClass; i++) {
+	    for (var i = 1; i <= nbClass; i++) {
 	        denominator += i;
 	    }
 
@@ -743,7 +743,7 @@ var geostats = function(a) {
 	    
 	    var interval = (tmpMax - tmpMin) / denominator;
 
-	    for (i = 0; i <= nbClass; i++) {
+	    for (var i = 0; i <= nbClass; i++) {
 	    	if(i == 0) {
 	    		a[i] = tmpMin;
 	    	} else {
@@ -770,7 +770,7 @@ var geostats = function(a) {
 		if (this._nodata())
 			return;
 		
-		dataList = this.sorted();
+		var dataList = this.sorted();
 
 		// now iterate through the datalist:
 		// determine mat1 and mat2
@@ -842,7 +842,7 @@ var geostats = function(a) {
 		var kclass = []
 
 		// fill the kclass (classification) array with zeros:
-		for (i = 0; i <= nbClass; i++) {
+		for (var i = 0; i <= nbClass; i++) {
 			kclass.push(0);
 		}
 
@@ -893,7 +893,7 @@ var geostats = function(a) {
 
 		var a = Array();
 
-		for (i = 0; i < this.pop(); i++) {
+		for (var i = 0; i < this.pop(); i++) {
 			if(a.indexOf(tmp[i]) === -1)
 				a.push(tmp[i]);
 		}
@@ -951,7 +951,7 @@ var geostats = function(a) {
 		
 		var bounds, i;
 
-		for (i = 0; i < this.ranges.length; i++) {
+		for (var i = 0; i < this.ranges.length; i++) {
 			bounds = this.ranges[i].split(/ - /);
 			if (value <= parseFloat(bounds[1])) {
 				return i;
@@ -977,7 +977,7 @@ var geostats = function(a) {
 		
 		var cnt = 1; // bounds array counter
 		
-		for (i = 0; i < tmp.length; i++) {
+		for (var i = 0; i < tmp.length; i++) {
 			
 			if(i == 0) var range_firstvalue = tmp[i]; // we init first range value
 			
@@ -1082,7 +1082,7 @@ var geostats = function(a) {
 		
 		if(this.is_uniqueValues == false) {
 			
-			for (i = 0; i < (this.ranges.length); i++) {
+			for (var i = 0; i < (this.ranges.length); i++) {
 				if(getcounter===true) {
 					cnt = ' <span class="geostats-legend-counter">(' + this.counter[i] + ')</span>';
 				}
@@ -1132,7 +1132,7 @@ var geostats = function(a) {
 		} else {
 			
 			// only if classification is done on unique values
-			for (i = 0; i < (this.bounds.length); i++) {
+			for (var i = 0; i < (this.bounds.length); i++) {
 				if(getcounter===true) {
 					cnt = ' <span class="geostats-legend-counter">(' + this.counter[i] + ')</span>';
 				}
@@ -1149,7 +1149,7 @@ var geostats = function(a) {
 		
 		// finally we create HTML and return it
 		var content  = '<div class="geostats-legend"><div class="geostats-legend-title">' + _t(lg) + '</div>';
-		for (i = 0; i < (elements.length); i++) {
+		for (var i = 0; i < (elements.length); i++) {
 			content += elements[i];
 		}
 		content += '</div>';
