@@ -20,6 +20,16 @@ module.exports = {
         }).fail(logFailure);
     },
 
+    getTypeList: function () {
+        return request({
+            url: window.LIST_SOURCE_INDICATORTYPE,
+            type: 'json',
+            method: 'get',
+            contentType: 'application/json',
+           crossOrigin: true
+        }).fail(logFailure);
+    },
+
     getActivityList: function (filters) {
         return request({
             url: window.DATA_API_URL + '/gisservice/gisservice.svc/Filters/ActivitiesListByProgram/Json',

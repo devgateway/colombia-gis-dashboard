@@ -129,7 +129,7 @@ module.exports = {
               verticalAlign: 'middle',
               labelFormatter: function() {
                 var name = this.name.length>21?this.name.substring(0,20):this.name;
-                return name + ' ' + this.percentage.toFixed(1) + '%';
+                return name + ' ' + this.percentage.toFixed(3) + '%';
               }
             },
             series: [{data: chartdata}]

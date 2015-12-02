@@ -15,7 +15,7 @@ function makeStore(actions, source, initParams) {
     listenables: [actions, RestoreActions],
     mixins: [Mixins],
     load: function() {
-     this._loadItems(window.DATA_PATH + '/' + source);
+     this._loadItems(source);
     },
     init: function(){
       this.state = {};
@@ -51,11 +51,11 @@ function makeMultiLevelSearchStore(actions, initParams) {
 var subImplementersTree = {
     'level': 0, 
     'levelParam': 'sit', 
-    'sourcePath': '/subImplementersType.json',
+    'sourcePath': window.LIST_SOURCE_SUBIMPLEMENTERSTYPE,
     'child': {
       'level': 1, 
       'levelParam': 'si', 
-      'sourcePath': '/subImplementers.json', 
+      'sourcePath': window.LIST_SOURCE_SUBIMPLEMENTERS, 
       'parentIdField': 'idType'
       }
     };
@@ -63,11 +63,11 @@ var subImplementersTree = {
 var locationTree = {
     'level': 0, 
     'levelParam': 'de', 
-    'sourcePath': '/departmentList.json',
+    'sourcePath': window.LIST_SOURCE_DEPARTAMENTS,
     'child': {
       'level': 1, 
       'levelParam': 'mu', 
-      'sourcePath': '/municipalitiesList.json', 
+      'sourcePath': window.LIST_SOURCE_MUNICIPALITIES, 
       'parentIdField': 'idDepto'
       }
     };
@@ -75,11 +75,11 @@ var locationTree = {
 var classificationTypeBasic = {
     'level': 0, 
     'levelParam': 'a1', 
-    'sourcePath': '/clasificationType1.json',
+    'sourcePath': window.LIST_SOURCE_CLASSIFICATIONTYPE1,
     'child': {
       'level': 1, 
       'levelParam': 'a2', 
-      'sourcePath': '/clasificationType2.json', 
+      'sourcePath': window.LIST_SOURCE_CLASSIFICATIONTYPE2, 
       'parentIdField': 'idLevel1'
       }
     };
@@ -87,26 +87,26 @@ var classificationTypeBasic = {
 var classificationTypeAdvanced = {
     'level': 0, 
     'levelParam': 'a1', 
-    'sourcePath': '/clasificationType1.json',
+    'sourcePath': window.LIST_SOURCE_CLASSIFICATIONTYPE1,
     'child': {
       'level': 1, 
       'levelParam': 'a2', 
-      'sourcePath': '/clasificationType2.json', 
+      'sourcePath': window.LIST_SOURCE_CLASSIFICATIONTYPE2, 
       'parentIdField': 'idLevel1',
       'child': {
         'level': 2, 
         'levelParam': 'a3', 
-        'sourcePath': '/clasificationType3.json', 
+        'sourcePath': window.LIST_SOURCE_CLASSIFICATIONTYPE3, 
         'parentIdField': 'idLevel2',
         'child': {
           'level': 3, 
           'levelParam': 'a4', 
-          'sourcePath': '/clasificationType4.json', 
+          'sourcePath': window.LIST_SOURCE_CLASSIFICATIONTYPE4, 
           'parentIdField': 'idLevel3',
           'child': {
             'level': 4, 
             'levelParam': 'a5', 
-            'sourcePath': '/clasificationType5.json', 
+            'sourcePath': window.LIST_SOURCE_CLASSIFICATIONTYPE5, 
             'parentIdField': 'idLevel4'
             }
           }
@@ -119,14 +119,14 @@ module.exports = {
   SubImplementers: makeTreeStore(Actions.SubImplementers, {'levels': subImplementersTree, 'lowestLevel': 'si'}),
   ClassificationTypeBasic: makeTreeStore(Actions.ClassificationType, {'levels': classificationTypeBasic, 'lowestLevel': 'a2'}),
   ClassificationTypeAdvanced: makeMultiLevelSearchStore(Actions.ClassificationType, {'levels': classificationTypeAdvanced, 'lowestLevel': 'a5'}),
-  AorCor: makeStore(Actions.AorCor, 'aor-corNames.json', {'param': 'ar'}),
-  ContractType: makeStore(Actions.ContractType, 'contractTypes.json', {'param': 'ct'}),
-  Crops: makeStore(Actions.Crops, 'cropsList.json', {'param': 'cr'}),
-  DevelopmentObjectives: makeStore(Actions.DevelopmentObjectives, 'doList.json', {'param': 'do'}),
-  EnvironmentalManagementPlans: makeStore(Actions.EnvironmentalManagementPlans, 'typesEnviromentalPlans.json', {'param': 'te'}),
-  PublicPrivatePartnership: makeStore(Actions.PublicPrivatePartnership, 'publicPrivatePartnership.json', {'param': 'pp'}),
-  RapidImpact: makeStore(Actions.RapidImpact, 'rapidImpact.json', {'param': 'ri'}),
-  SubActivityStatus: makeStore(Actions.SubActivityStatus, 'subActivityStatus.json', {'param': 'st'}),
-  SubActivities: makeStore(Actions.SubActivities, 'subActivitiesList.json', {'param': 'sa', 'searchAndSelectMode': true}),
-  TargetPopulation: makeStore(Actions.TargetPopulation, 'targetPopulation.json', {'param': 'tp'})
+  AorCor: makeStore(Actions.AorCor, window.LIST_SOURCE_AORCORNAMES, {'param': 'ar'}),
+  ContractType: makeStore(Actions.ContractType, window.LIST_SOURCE_CONTRACTTYPES, {'param': 'ct'}),
+  Crops: makeStore(Actions.Crops, window.LIST_SOURCE_CROPS, {'param': 'cr'}),
+  DevelopmentObjectives: makeStore(Actions.DevelopmentObjectives, window.LIST_SOURCE_DOS, {'param': 'do'}),
+  EnvironmentalManagementPlans: makeStore(Actions.EnvironmentalManagementPlans, window.LIST_SOURCE_TYPESENVIROMENTALPLANS, {'param': 'te'}),
+  PublicPrivatePartnership: makeStore(Actions.PublicPrivatePartnership, window.LIST_SOURCE_PPP, {'param': 'pp'}),
+  RapidImpact: makeStore(Actions.RapidImpact, window.LIST_SOURCE_RAPIDIMPACT, {'param': 'ri'}),
+  SubActivityStatus: makeStore(Actions.SubActivityStatus, window.LIST_SOURCE_SUBACTIVITYSTATUS, {'param': 'st'}),
+  SubActivities: makeStore(Actions.SubActivities, window.LIST_SOURCE_SUBACTIVITYLIST, {'param': 'sa', 'searchAndSelectMode': true}),
+  TargetPopulation: makeStore(Actions.TargetPopulation, window.LIST_SOURCE_TARGETPOPULATION, {'param': 'tp'})
 };

@@ -5,6 +5,11 @@ function createPoint(obj){
 	return  {'type': 'Feature','properties': obj,'geometry': {'type': 'Point','coordinates': [obj.longitude,obj.latitude]}};
 }
 
+function logFailure(err, message) {
+    console.error(message);
+    console.error(err);
+}
+
 
 module.exports = {	
 	/*
@@ -20,18 +25,14 @@ module.exports = {
 		return features;
 	},
 
-
 	request: function(url){
 		return reqwest({ url: url+'?f=json', type: 'json', method: 'get',  crossOrigin: true} );
 
 	},
 
-
 	get: function(url) {
-		return reqwest({url: url, type: 'json',  method: 'get',  crossOrigin: true });
+		return reqwest({url: url, type: 'json',  method: 'get',  contentType: 'application/json', crossOrigin: true }).fail(logFailure);
 	},
-
-	
 
 	_rgbToHex: function(r, g, b){
 		return '#'+this._toHex(r)+this._toHex(g)+this._toHex(b);

@@ -68,7 +68,7 @@ module.exports = Reflux.createStore({
   },
 
   loadTypes:function(){
-    Util.get(window.DATA_PATH + '/indicatorType.json').then(
+    API.getTypeList().then(
       function(data){
         this.update({types:data});
       }.bind(this)
@@ -80,7 +80,7 @@ module.exports = Reflux.createStore({
   },
 
   loadPrograms:function(){
-    Util.get(window.DATA_PATH + '/programs.json').then(
+    Util.get(window.LIST_SOURCE_PROGRAMS).then(
       function(data){
         this.update({programs:data});
       }.bind(this)

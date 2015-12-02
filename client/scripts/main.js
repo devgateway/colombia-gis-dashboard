@@ -21,6 +21,31 @@ window.DATA_API_URL = 'http://test.monitor.net.co';
 window.DATA_PATH = './json-data';
 window.MOCK_PATH = './mock-data';
 
+window.LIST_SOURCE_SUBIMPLEMENTERSTYPE = './json-data/subImplementersType.json';
+window.LIST_SOURCE_SUBIMPLEMENTERS = './json-data/subImplementers.json';
+window.LIST_SOURCE_DEPARTAMENTS = './json-data/departmentList.json';
+window.LIST_SOURCE_MUNICIPALITIES = './json-data/municipalitiesList.json';
+window.LIST_SOURCE_CLASSIFICATIONTYPE1 = './json-data/clasificationType1.json';
+window.LIST_SOURCE_CLASSIFICATIONTYPE2 = './json-data/clasificationType2.json';
+window.LIST_SOURCE_CLASSIFICATIONTYPE3 = './json-data/clasificationType3.json';
+window.LIST_SOURCE_CLASSIFICATIONTYPE4 = './json-data/clasificationType4.json';
+window.LIST_SOURCE_CLASSIFICATIONTYPE5 = './json-data/clasificationType5.json';
+window.LIST_SOURCE_AORCORNAMES = './json-data/aor-corNames.json';
+window.LIST_SOURCE_CONTRACTTYPES = './json-data/contractTypes.json';
+window.LIST_SOURCE_CROPS = './json-data/cropsList.json';
+window.LIST_SOURCE_DOS = './json-data/doList.json';
+window.LIST_SOURCE_TYPESENVIROMENTALPLANS = './json-data/typesEnviromentalPlans.json';
+window.LIST_SOURCE_PPP = './json-data/publicPrivatePartnership.json';
+window.LIST_SOURCE_RAPIDIMPACT = './json-data/rapidImpact.json';
+window.LIST_SOURCE_SUBACTIVITYSTATUS = './json-data/subActivityStatus.json';
+window.LIST_SOURCE_SUBACTIVITYLIST = './json-data/subActivitiesList.json';
+window.LIST_SOURCE_TARGETPOPULATION = './json-data/targetPopulation.json';
+window.LIST_SOURCE_PROGRAMS = './json-data/programs.json';
+window.LIST_SOURCE_FUNDINGTYPE = './json-data/fundingTypes.json';
+window.LIST_SOURCE_INDICATORTYPE = 'http://test.monitor.net.co/gisservice/GisService.svc/Filters/IndicatorTypes/Json';
+
+
+
 /*
 if ((window.location.host.indexOf('localhost') > -1) || (window.location.host.indexOf('127.0.0.1') > -1)) {
 	window.ESRI_PROXY_URL = 'http://localhost:3553';

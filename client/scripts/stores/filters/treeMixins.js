@@ -102,7 +102,7 @@ module.exports = {
 	},
 
 	_loadDataList: function(level, callback) {
-		Util.get(window.DATA_PATH + level.sourcePath).then(function(data) {
+		Util.get(level.sourcePath).then(function(data) {
 			_.forEach(data, function(item) {
 				_.assign(item, {
 					'level': level.levelParam
