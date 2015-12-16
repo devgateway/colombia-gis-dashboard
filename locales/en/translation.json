@@ -160,7 +160,8 @@
 			"objectivesInfoWindow": "Development Objectives",
 			"activityClassication": "Activity Classification",
 			"ppp": "Public Private Partnership",
-			"subActivities": "Sub Activities"
+			"activities": "Activities",
+			"subActivities": "Activities"
 		},
 		"nationalSubActivities": "National SubActivities"
 	},
