@@ -43,7 +43,9 @@ module.exports = {
 		for (var key in this.state) {
 			if (key !== 'itemsTree'){
 				_.forEach(this.state[key], function(item){
-					_.assign(item, {'selected': selected});
+					if (!item.hide){
+						_.assign(item, {'selected': selected});
+					}
 				});
 			}
 		}

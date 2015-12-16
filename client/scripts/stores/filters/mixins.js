@@ -39,7 +39,9 @@ module.exports = {
 
 	onUpdateAllSelection: function(selected){
 		_.forEach(this.state.items, function(item){
-			_.assign(item, {'selected': selected});
+			if (!item.hide){
+				_.assign(item, {'selected': selected});
+			}
 		});
 		this.update({'items': _.clone(this.state.items)});		
 	},	

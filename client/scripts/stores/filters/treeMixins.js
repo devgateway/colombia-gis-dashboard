@@ -67,16 +67,20 @@ module.exports = {
 	},
 
 	onUpdateAllSelection: function(selected) {
-		for (var key in this.state) {
-			if (key !== 'itemsTree') {
-				_.forEach(this.state[key], function(item) {
-					_.assign(item, {
-						'selected': selected
-					});
-				});
-			}
-		}
+		this._updateAllSelectionByList(this.state.itemsTree, selected);
 		this._createItemsTree();
+	},
+
+	_updateAllSelectionByList: function(list, selected) {
+		debugger;
+		_.forEach(list, function(item) {
+			if (!item.hide){
+				_.assign(_.find(this.state[item.level], {'id': item.id}), {'selected': selected});
+			}
+			if (item.nested){
+				this._updateAllSelectionByList(item.nested, selected);
+			}
+		}.bind(this));
 	},
 
 	onFilterByKeyword: function(keyword) {

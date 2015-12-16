@@ -82,6 +82,7 @@ module.exports = Reflux.createStore({
   loadPrograms:function(){
     Util.get(window.LIST_SOURCE_PROGRAMS).then(
       function(data){
+        debugger;
         this.update({programs:data});
       }.bind(this)
     ).fail(
