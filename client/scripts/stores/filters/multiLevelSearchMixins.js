@@ -43,7 +43,9 @@ module.exports = {
 		for (var key in this.state) {
 			if (key !== 'itemsTree'){
 				_.forEach(this.state[key], function(item){
-					_.assign(item, {'selected': selected});
+					if (!item.hide){
+						_.assign(item, {'selected': selected});
+					}
 				});
 			}
 		}
@@ -78,7 +80,7 @@ module.exports = {
 	},	
 
 	_loadDataList: function(level, parentParam) {
-		Util.get(window.DATA_PATH + level.sourcePath).then(function(data) {
+		Util.get(level.sourcePath).then(function(data) {
 			_.forEach(data, function(item){
 				_.assign(item, {'level': level.levelParam, 'hide': true});//assign level to each item, and hide it
 				_.assign(item, {'cid': item.id + '#' + item[level.parentIdField]});//create a complex id (cid) for duplicated items with different parents

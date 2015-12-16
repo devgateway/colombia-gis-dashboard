@@ -39,7 +39,9 @@ module.exports = {
 
 	onUpdateAllSelection: function(selected){
 		_.forEach(this.state.items, function(item){
-			_.assign(item, {'selected': selected});
+			if (!item.hide){
+				_.assign(item, {'selected': selected});
+			}
 		});
 		this.update({'items': _.clone(this.state.items)});		
 	},	
@@ -104,6 +106,7 @@ module.exports = {
 					_.assign(item, {'hide': true});//hide the item by default					
 				}.bind(this));
 			}
+			debugger;
 			this.update({items: _.sortBy(this._capitalize(data), 'name'), loaded:true});
 			this._initialized=true;
 		}.bind(this)).fail(function() {

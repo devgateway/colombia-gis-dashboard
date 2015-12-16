@@ -114,7 +114,7 @@ module.exports  = React.createClass({
                 </li>
                 <li className={tabId==4? 'active' : ''} role='tab' >
                   <a href='#' onClick={this.handleClick.bind(this, 4)}>
-                    <span className='popup-icon subactivitiesList' title={i18n.t('map.popup.subActivities')}></span>
+                    <span className='popup-icon subactivitiesList' title={i18n.t('map.popup.activities')}></span>
                   </a>
                 </li>
                 </ul>

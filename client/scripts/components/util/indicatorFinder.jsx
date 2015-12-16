@@ -53,6 +53,7 @@ module.exports = React.createClass({
 		state.activities = undefined;
 		state._activitySelected = undefined;
 		this.setState(state);//reset activitySelected
+		debugger;
 		this.setState({'programSelected': event.target.value, 'showLoading': true});
 		Actions.getActivitiesByProgram(event.target.value);
 	},
@@ -116,7 +117,7 @@ module.exports = React.createClass({
 								<select className='form-control' value={this.state.programSelected} onChange ={this._programChanged} style={{width:'100%'}}>
 									<option><Message message='layers.select'/></option>
 									{this.state.programs?_.map(this.state.programs, function(item){
-										return (<option value={item.code}>{item.description}</option>)
+										return (<option value={item.id}>{item.name}</option>)
 									}):null}
 								</select>
 							</Col>

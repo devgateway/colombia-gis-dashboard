@@ -35,7 +35,7 @@ module.exports = React.createClass({
 
       },
 
-      _onSet: function(values, handle, unencodedValues) {
+      _onChange: function(values, handle, unencodedValues) {
         var minYear = this._getYear(unencodedValues[0]);
         var maxYear = this._getYear(unencodedValues[1]);
         var minQuarter = this._getYearPeriod(unencodedValues[0]);
@@ -53,6 +53,12 @@ module.exports = React.createClass({
         var year = this._getYear(value); //min year
         var period = this._getYearPeriod(value)
         this.tooltips[handle].innerHTML = year + '-' + this.state.label + period;
+      },
+
+      componentDidUpdate: function() {
+        var minSet = ((parseInt(this.state.layer.layerFilters.fyi) - this.state.min) * this.state.range) + (parseInt(this.state.layer.layerFilters.sq) - 1);
+        var maxSet = ((parseInt(this.state.layer.layerFilters.fyf) - this.state.min) * this.state.range) + (parseInt(this.state.layer.layerFilters.eq) - 1);
+        this.getDOMNode().noUiSlider.set([minSet, maxSet]);       
       },
 
       componentDidMount: function() {
@@ -101,7 +107,7 @@ module.exports = React.createClass({
           this.tooltips[i].className += 'sliderTooltip';
           this.tipHandles[i].appendChild(this.tooltips[i]);
         }
-        slider.noUiSlider.on('set', this._onSet);
+        slider.noUiSlider.on('change', this._onChange);
         slider.noUiSlider.on('update', this._onUpdate);
       },
 

@@ -21,6 +21,31 @@ window.DATA_API_URL = 'http://test.monitor.net.co';
 window.DATA_PATH = './json-data';
 window.MOCK_PATH = './mock-data';
 
+window.LIST_SOURCE_SUBIMPLEMENTERSTYPE = 'http://test.monitor.net.co/gisservice/GisService.svc/Filters/SubImplementersType/Json';
+window.LIST_SOURCE_SUBIMPLEMENTERS = 'http://test.monitor.net.co/gisservice/GisService.svc/Filters/SubImplementers/Json';
+window.LIST_SOURCE_DEPARTAMENTS = 'http://test.monitor.net.co/gisservice/GisService.svc/Filters/DepartmentsList/Json';
+window.LIST_SOURCE_MUNICIPALITIES = 'http://test.monitor.net.co/gisservice/GisService.svc/Filters/MunicipalitiesList/Json';
+window.LIST_SOURCE_CLASSIFICATIONTYPE1 = 'http://test.monitor.net.co/gisservice/GisService.svc/Filters/ClasificationType/Json';
+window.LIST_SOURCE_CLASSIFICATIONTYPE2 = 'http://test.monitor.net.co/gisservice/GisService.svc/Filters/ClasificationSubType/Json';
+window.LIST_SOURCE_CLASSIFICATIONTYPE3 = 'http://test.monitor.net.co/gisservice/GisService.svc/Filters/ClasificationLevel3/Json';
+window.LIST_SOURCE_CLASSIFICATIONTYPE4 = 'http://test.monitor.net.co/gisservice/GisService.svc/Filters/ClasificationLevel4/Json';
+window.LIST_SOURCE_CLASSIFICATIONTYPE5 = 'http://test.monitor.net.co/gisservice/GisService.svc/Filters/ClasificationLevel5/Json';
+window.LIST_SOURCE_AORCORNAMES = 'http://test.monitor.net.co/gisservice/GisService.svc/Filters/AORs/Json';
+window.LIST_SOURCE_CONTRACTTYPES = './json-data/contractTypes.json';
+window.LIST_SOURCE_CROPS = 'http://test.monitor.net.co/gisservice/GisService.svc/Filters/CropsList/Json';
+window.LIST_SOURCE_DOS = 'http://test.monitor.net.co/gisservice/GisService.svc/Filters/DOList/Json';
+window.LIST_SOURCE_TYPESENVIROMENTALPLANS = './json-data/typesEnviromentalPlans.json';
+window.LIST_SOURCE_PPP = './json-data/publicPrivatePartnership.json';
+window.LIST_SOURCE_RAPIDIMPACT = './json-data/rapidImpact.json';
+window.LIST_SOURCE_SUBACTIVITYSTATUS = 'http://test.monitor.net.co/gisservice/GisService.svc/Filters/SubActivityStatus/Json';
+window.LIST_SOURCE_SUBACTIVITYLIST = 'http://test.monitor.net.co/gisservice/GisService.svc/Filters/SubActivitiesList/Json';
+window.LIST_SOURCE_TARGETPOPULATION = 'http://test.monitor.net.co/gisservice/GisService.svc/Filters/TargetPopulation/Json';
+window.LIST_SOURCE_PROGRAMS = 'http://test.monitor.net.co/gisservice/GisService.svc/Filters/DOList/Json';
+window.LIST_SOURCE_FUNDINGTYPE = 'http://test.monitor.net.co/gisservice/GisService.svc/Filters/fundingType/Json';
+window.LIST_SOURCE_INDICATORTYPE = 'http://test.monitor.net.co/gisservice/GisService.svc/Filters/IndicatorTypes/Json';
+
+
+
 /*
 if ((window.location.host.indexOf('localhost') > -1) || (window.location.host.indexOf('127.0.0.1') > -1)) {
 	window.ESRI_PROXY_URL = 'http://localhost:3553';

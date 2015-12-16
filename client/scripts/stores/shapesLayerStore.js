@@ -178,7 +178,7 @@ module.exports = Reflux.createStore({
 	},
 
 	_loadFundingFilter: function() {
-		Util.get(window.DATA_PATH + '/fundingTypes.json').then(function(data) {
+		Util.get(window.LIST_SOURCE_FUNDINGTYPE).then(function(data) {
 			this.update({fundingSourceItems: data});
 		}.bind(this)).fail(function() {
 			console.log('Failed to load data ');

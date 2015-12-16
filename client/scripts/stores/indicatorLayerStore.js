@@ -135,7 +135,11 @@ module.exports = Reflux.createStore({
 			this.onChangeGroupFilterSelection('indicators', [
 				{'param': 'indicatorId', 'values': data.indicatorSelected.id},
 				{'param': 'indicatorName', 'values': data.indicatorSelected.description},
-				{'param': 'activityId', 'values': data.activitySelected}
+				{'param': 'activityId', 'values': data.activitySelected},
+				{'param': 'fyi', 'values': '2010'},
+				{'param': 'sq', 'values': '1'},
+				{'param': 'fyf', 'values': '2016'},
+				{'param': 'eq', 'values': '1'}
 			], 'indicators');
 			//this.update({'visible': true});
 			LayersAction.changeLayerValue('indicators', 'visible', true);
@@ -184,7 +188,7 @@ module.exports = Reflux.createStore({
 			layerFilters:  
 				{'indicatorId': '',
 				'activityId': '',
-				'fyi': '2005',
+				'fyi': '2010',
 				'sq': '1',
 				'fyf': '2016',
 				'eq': '1'}

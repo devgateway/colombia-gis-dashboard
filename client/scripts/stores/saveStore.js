@@ -218,7 +218,7 @@ module.exports = Reflux.createStore({
     API.saveMapToAPI(params).then(
       function(data) {
         self.onFindMaps(); //refresh map list
-        self.update({'currentMap':data, 'saveVisible': false});
+        self.update({'currentMap':data[0], 'saveVisible': false});
       }.bind(this)).fail(function(err) {
         self.update({'error': err});
         console.log('_saveMap: Error saving data ...');
@@ -232,7 +232,7 @@ module.exports = Reflux.createStore({
       function(data) {
         this.onFindMaps(); //refresh map list
         _.assign(data, {'_id': self.state.currentMap._id});
-        self.update({'currentMap':data, 'saveVisible': false});
+        self.update({'currentMap':data[0], 'saveVisible': false});
       }.bind(this)).fail(function(err) {
         self.update({'error': err});
         console.log('_updateMap: Error saving data ...');

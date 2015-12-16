@@ -16,6 +16,7 @@ module.exports = React.createClass({
   mixins: [Reflux.connect(SaveStore)],
 
   render: function() {
+    debugger;   
     return (
       <div>
         <div className='navbar navbar-fixed-top map-header'>
@@ -29,8 +30,8 @@ module.exports = React.createClass({
                 <ul>
                     <li><SaveDialog/></li>
                     <li><ExportDialog/></li>
-                    <li><PrintDialog id={this.state.currentMap? this.state.currentMap._id : null}/></li>
-                    <li><ImageDialog id={this.state.currentMap? this.state.currentMap._id : null}/></li>
+                    <li><PrintDialog id={this.state.currentMap? this.state.currentMap.id : null}/></li>
+                    <li><ImageDialog id={this.state.currentMap? this.state.currentMap.id : null}/></li>
                 </ul>
               </div>
               <div className='header-nav'>
