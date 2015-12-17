@@ -138,7 +138,7 @@ module.exports = React.createClass({
 							<Col md={10}>
 								<ul>
 								{_.map(this.state.types, function(type){
-										return (<li><CheckBox onChange={this._updateType} value={type.code}/> {type.name} </li>)
+										return (<li><CheckBox onChange={this._updateType} value={type.id}/> {type.name} </li>)
 									}.bind(this))
 								}
 								</ul>

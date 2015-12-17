@@ -37,7 +37,7 @@ module.exports = React.createClass({
               <div className='header-nav'>
                 <AGOLProfile/>
 
-                <li><a href='#'><Message message='app.menu'/></a></li>
+                <li><a href={window.HOME_URL}><Message message='app.menu'/></a></li>
                 <li><NationalSubActivities/></li>
                 <LanSelector/>
               </div>

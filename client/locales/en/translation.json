@@ -163,7 +163,7 @@
 			"activities": "Activities",
 			"subActivities": "Activities"
 		},
-		"nationalSubActivities": "National SubActivities"
+		"nationalSubActivities": "National extent only subactivities"
 	},
 	"savemap":{
 		"exportsavebutton": "Export/Save Map",
