@@ -47,7 +47,7 @@ module.exports = React.createClass({
 
 					</Modal.Header>
 					<Modal.Body>
-						<NationalPopupContent/>
+						<NationalPopupContent filters={this.state.filters}/>
 					</Modal.Body>
 				</Modal>
 			</span>

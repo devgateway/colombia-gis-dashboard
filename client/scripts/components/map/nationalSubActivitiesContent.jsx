@@ -38,10 +38,11 @@ var MyActivities = React.createClass({
 });
 
 module.exports  = React.createClass({
-  mixins: [Reflux.connect(Store)],
+  mixins: [Reflux.connect(Store), 'filters'],
 
   _getInfoData: function () {
-    Actions.getPopupInfoFromAPI([{'param':'de','values':['CN']}], this.state.filters);
+    debugger;
+    Actions.getPopupInfoFromAPI([{'param':'de','values':['CN']}], this.props.filters);
   },
 
   _getData: function(tabId) {

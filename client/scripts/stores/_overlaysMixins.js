@@ -81,6 +81,9 @@ module.exports = {
 	},
 
 	_load: function(newLevel) {
+		if (this._getLayerId()==='indicators') {
+			return; //ignores call for indicators layer because it has its own implementation
+		} 
 		LoadingAction.showLoading();
 		if (newLevel === 'departament') {
 			this._loadByDepartments(); //load data 
