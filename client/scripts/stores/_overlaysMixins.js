@@ -81,8 +81,10 @@ module.exports = {
 	},
 
 	_load: function(newLevel) {
+		if (this._getLayerId()==='indicators') {
+			return; //ignores call for indicators layer because it has its own implementation
+		} 
 		LoadingAction.showLoading();
-		console.log('layer: '+this._getLayerId());
 		if (newLevel === 'departament') {
 			this._loadByDepartments(); //load data 
 		} else if (newLevel === 'municipality') {
@@ -109,7 +111,7 @@ module.exports = {
 	},
 
 	_applyFilters: function(data, specialTriggerFrom) {
-		if (this._getLayerId()==='indicators' || (specialTriggerFrom && this._getLayerId()!==specialTriggerFrom)) {
+		if (specialTriggerFrom && this._getLayerId()!==specialTriggerFrom) {
 			return;
 		} else {
 			this.update({
