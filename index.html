@@ -10,4 +10,5 @@
             results = regex.exec(location.search);
         return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
       }
-      window.HOME_URL = getParameterByName('home_url');</script> </body> </html>
+      window.HOME_URL = getParameterByName('home_url');
+      console.log('home_url: '+window.HOME_URL);</script> </body> </html>
