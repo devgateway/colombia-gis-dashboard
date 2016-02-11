@@ -202,6 +202,8 @@ module.exports = Reflux.createStore({
 			this._loadBy_Departments(); //load data 
 		} else if (newLevel === 'municipality') {
 			this._loadBy_Muncipalities();
+		} else if (newLevel === 'country') {
+			this._loadBy_Country();
 		}
 	},
 
@@ -216,12 +218,9 @@ module.exports = Reflux.createStore({
 		var self = this;
 		API.getIndicatorsByMuncipalities(this.state.layerFilters).then(
 			function(data) {
-				if (data.length===0){
-			        LayersAction.showNoResultsPopup('layers.noResultsForDataLayerMessage');   
-			    }
+				var items = [];
 				API.loadMunicipalitiesShapes().then(
 					function(geoData) {
-						var items = [];
 						_.map(data, function(d) {
 							if(!isNaN(d.id)){
 								items.push(d.value);
@@ -240,7 +239,9 @@ module.exports = Reflux.createStore({
 						var geoStats = new GeoStats(items);
 						self._setGeoData(geoData, geoStats);
 					});
-
+				if (items.length===0){
+			        LayersAction.showNoResultsPopup('layers.noResultsForDataLayerMessage');   
+			    }				
 		}.bind(this)).fail(function() {
 			console.log('Error loading data ...');
 		});
@@ -253,15 +254,12 @@ module.exports = Reflux.createStore({
 		var self = this;
 		API.getIndicatorsByDepartment(this.state.layerFilters).then(
 			function(data) {
-				if (data.length===0){
-			        LayersAction.showNoResultsPopup('layers.noResultsForDataLayerMessage');
-			    }
+				var items = [];
 				API.loadDepartmentsShapes().then(
 					function(geoData) {
-						var items = [];
 						_.map(data, function(d) {
 							if(!isNaN(d.id)){
-								items.push(d.values);
+								items.push(d.value);
 							}
 							var feature = _.find(geoData.features, function(e) {
 								return e.properties.ID == d.idDep; //replacer.replaceDiacritics(e.properties.NAME_1).toUpperCase()==d.name
@@ -277,6 +275,45 @@ module.exports = Reflux.createStore({
 						var geoStats = new GeoStats(items);
 						self._setGeoData(geoData, geoStats);
 					});
+				if (items.length===0){
+			        LayersAction.showNoResultsPopup('layers.noResultsForDataLayerMessage');   
+			    }
+		}.bind(this)).fail(function() {
+			console.log('Error loading data ...');
+		});
+	},
+
+
+	_loadBy_Country: function() {
+		//var geoData = _.clone(departmentsGeoJson);
+		this.update({subtitle:'layers.indicatorDepartmentSubtitle'});
+		var self = this;
+		API.getIndicatorsByDepartment(this.state.layerFilters).then(
+			function(data) {
+				var items = [];
+				API.loadCountryShape().then(
+					function(geoData) {						
+						_.map(data, function(d) {
+							if (d.idDep=='CN'){
+								if(!isNaN(d.id)){
+									items.push(d.value);
+								}
+								var feature = geoData.features[0];
+								if (feature) {
+									_.assign(d, {'id': d.idDep}); //overwrite indicatorId with locationId
+									_.assign(feature, {'hasValue': true}); //indicate that the feature has valid values
+									_.assign(feature.properties, _.omit(_.clone(d), 'name')); //set feature values
+								}
+							}
+						});
+						var geoDataFeaturesValid = _.filter(geoData.features, {'hasValue': true});
+						_.assign(geoData, {'features': geoDataFeaturesValid});
+						var geoStats = new GeoStats(items);
+						self._setGeoData(geoData, geoStats);
+					});
+				if (items.length===0){
+			        LayersAction.showNoResultsPopup('layers.noResultsForDataLayerMessage');
+			    }				
 		}.bind(this)).fail(function() {
 			console.log('Error loading data ...');
 		});

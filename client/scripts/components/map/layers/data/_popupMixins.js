@@ -27,6 +27,8 @@ module.exports = {
           _.assign(filtersClone, {'departments': [id], 'municipalities':[]});
         } else if (param==='mu') {
           _.assign(filtersClone, {'municipalities': [id], 'departments': []});
+        } else {
+          _.assign(filtersClone, {'municipalities': [], 'departments': ['CN']});
         }
         data = IndicatorsActions.getInfoFromAPI(infoWindow, filtersClone) || [];
         break;

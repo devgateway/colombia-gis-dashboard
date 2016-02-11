@@ -113,6 +113,7 @@
 		"loadMoreResults":"CLICK TO ADD MORE RESULTS",
 		"search":"Search Layers",
 		"noResults":"There are no results that match your search",
+		"byCountry":"National",
 		"byDepartment":"Departments",
 		"byMunicipality":"Municipalities",
 		"searchLayers": "Search Layers",

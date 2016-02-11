@@ -99,6 +99,10 @@ module.exports = {
     LayerActions.changeLayerValue(id,'opacity',value); 
   },
 
+  _showByCountry:function(){
+    LayerActions.changeLayerValue(this._getLayerId(),'level','country'); 
+  },
+
   _showByDepartment:function(){
     LayerActions.changeLayerValue(this._getLayerId(),'level','departament'); 
   },

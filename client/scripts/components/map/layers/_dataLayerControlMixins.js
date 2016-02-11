@@ -16,6 +16,5 @@
 
   _showByMunicipality:function(){
   	LayerActions.changeLayerValue('level','municipality'); //TODO:property mame should be in a globar variable 
-  },
-
+  }
 };

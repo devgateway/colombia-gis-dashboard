@@ -31,6 +31,14 @@ module.exports = {
         }).fail(logFailure);
     },
 
+    loadCountryShape:function(){
+      
+        return request({
+            url: window.DATA_PATH + '/countryShapeOptimized.json',
+            type: 'json'
+        }).fail(logFailure);  
+    },
+
     loadDepartmentsShapes:function(){
       
         return request({

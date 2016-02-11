@@ -59,6 +59,12 @@ module.exports = React.createClass({
 
   render: function() {
     var level=this.state.level;
+    var breaks = this.state.breaks.breaks;
+    var showClassification = true;
+    if(level=='country'){
+      breaks = new Object({'Level4':this.state.breaks.breaks.Level4});
+      showClassification = false;
+    }
     return (
       <li>
         <Toggler ref='toggler' expanded={this.state.expanded}>
@@ -88,6 +94,7 @@ module.exports = React.createClass({
               <li className='levels'>
                 <h3><Message message='layers.level'/></h3>
                 <CustomRadioGroup>
+                  <CustomRadio className='horizontal' name='country' checked={(level=='country')? true : false} onClick={this._showByCountry} label='layers.byCountry'/>
                   <CustomRadio className='horizontal' name='departament' checked={(level=='departament')? true : false} onClick={this._showByDepartment} label='layers.byDepartment'/>
                   <CustomRadio className='horizontal' name='municipality' checked={(level=='municipality')? true : false} onClick={this._showByMunicipality} label='layers.byMunicipality'/>
                 </CustomRadioGroup>
@@ -111,12 +118,14 @@ module.exports = React.createClass({
                 <div className='clearFix'/>
                 <h3 className='color-control'><Message message='layers.classificationScheme'/></h3>
                 <div>
-                  <div className='breaksTemplates'>
-                    <div className={this.state.breakSelected==0?'label label-info-selected':'label label-info'} onClick={this._changeBreaksWrapper.bind(this, 0)} title={i18n.t('filters.defaultTip')}><Message message='filters.default'/></div>
-                    <div className={this.state.breakSelected==1?'label label-info-selected':'label label-info'} onClick={this._changeBreaksWrapper.bind(this, 1)} title={i18n.t('filters.jenksTip')}><Message message='filters.jenks'/></div>
-                    <div className={this.state.breakSelected==2?'label label-info-selected':'label label-info'} onClick={this._changeBreaksWrapper.bind(this, 2)} title={i18n.t('filters.arithmeticTip')}><Message message='filters.arithmetic'/></div>
-                    <div className={this.state.breakSelected==3?'label label-info-selected':'label label-info'} onClick={this._changeBreaksWrapper.bind(this, 3)} title={i18n.t('filters.geometricTip')}><Message message='filters.geometric'/></div>
-                  </div>
+                  <If condition={showClassification}>
+                    <div className='breaksTemplates'>
+                      <div className={this.state.breakSelected==0?'label label-info-selected':'label label-info'} onClick={this._changeBreaksWrapper.bind(this, 0)} title={i18n.t('filters.defaultTip')}><Message message='filters.default'/></div>
+                      <div className={this.state.breakSelected==1?'label label-info-selected':'label label-info'} onClick={this._changeBreaksWrapper.bind(this, 1)} title={i18n.t('filters.jenksTip')}><Message message='filters.jenks'/></div>
+                      <div className={this.state.breakSelected==2?'label label-info-selected':'label label-info'} onClick={this._changeBreaksWrapper.bind(this, 2)} title={i18n.t('filters.arithmeticTip')}><Message message='filters.arithmetic'/></div>
+                      <div className={this.state.breakSelected==3?'label label-info-selected':'label label-info'} onClick={this._changeBreaksWrapper.bind(this, 3)} title={i18n.t('filters.geometricTip')}><Message message='filters.geometric'/></div>
+                    </div>
+                  </If>
                   <div className='clearFix'/>
                   <div className='breaksTemplates'>
                     <h3 className='color-control'><Message message='layers.colorPalettes'/></h3>
@@ -138,8 +147,8 @@ module.exports = React.createClass({
                 <h3 className='color-control percent-funding'><Message message='layers.advancePercent'/></h3>
                 <h3 className='color-control'><Message message='layers.colorSelection'/></h3>
                 {
-                  _.map(_.keys(this.state.breaks.breaks),function(key){
-                    var br=this.state.breaks.breaks[key];
+                  _.map(_.keys(breaks),function(key){
+                    var br=breaks[key];
                     var minLabel = br.min.toFixed(br.min<10?2:0);
                     var maxLabel = br.max.toFixed(br.max<10?2:0);
                   return (

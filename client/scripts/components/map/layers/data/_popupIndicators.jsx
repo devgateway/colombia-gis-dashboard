@@ -124,7 +124,13 @@ module.exports  = React.createClass({
         <div className='leaflet-popup-content'>
           <div className='panel panel-default' >
             <div className='panel-heading popup-header' >
-              <h3 className='panel-title' >{this.props.NAME_1}
+              <h3 className='panel-title' >
+              <If condition={this.props.level=='country'} >
+                {this.props.name}
+              </If>
+              <If condition={this.props.level!='country'} >
+                {this.props.NAME_1}
+              </If>
               <If condition={this.props.NAME_2} >
                 - {this.props.NAME_2}
               </If>

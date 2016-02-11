@@ -101,10 +101,11 @@ module.exports = React.createClass({
 		var errorArray = this.state.errorMsg?this.state.errorMsg.split(','):null;
 		var saveLabel = this.state.saveAs? i18n.t('savemap.saveasnewbutton') : i18n.t('savemap.savebutton');
 		var map = this.state.saveAs? this.state.newMap : this.state.currentMap;
+		debugger;
 		return (
 			<div className='save-map-trigger'>
 			<a href="#">
-				<i className="fa fa-floppy-o" title={i18n.t('savemap.tooltipsaveasnewmap')} onClick={this._openSaveAs}></i>
+				<i className="fa fa-floppy-o" title={saveLabel} onClick={this._openSaveAs}></i>
 			</a> 
 			{this.state.currentMap.id?
 				<a href="#">

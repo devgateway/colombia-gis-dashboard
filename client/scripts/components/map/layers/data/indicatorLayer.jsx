@@ -73,7 +73,9 @@ module.exports = React.createClass({
        return _closed;
     }.bind(this);
     layer.on('popupopen', function(e) {
+      if (layer._popup){
        layer._popup.options.autoPanPaddingTopLeft = new L.Point(0, 83);
+     }
        var popupHolder = this.getDOMNode();
        _closed = false;
        var _onChange = function() {

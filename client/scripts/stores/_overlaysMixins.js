@@ -24,8 +24,12 @@ module.exports = {
 					'silent': true,
 					'subProperty':subProperty
 				}); //update level on current state
-				this._load(value); //load the new level, do  not trigger the state since it will be triggered by the load method  
-
+				if (id === 'indicators'){
+					this._loadIndicatorsGeoData(this.state.level);
+				} else {
+					this._load(this.state.level);
+				}	
+			
 			} else if (property === 'visible') {
 				this.update(assignable);
 				if (value == true && !this.state.geoData) {

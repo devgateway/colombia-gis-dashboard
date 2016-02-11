@@ -46,7 +46,7 @@ window.LIST_SOURCE_INDICATORTYPE = 'http://test.monitor.net.co/gisservice/GisSer
 
 
 
-/*
+
 if ((window.location.host.indexOf('localhost') > -1) || (window.location.host.indexOf('127.0.0.1') > -1)) {
 	window.ESRI_PROXY_URL = 'http://localhost:3553';
 	window.DATA_PATH = '/json-data';
@@ -61,7 +61,7 @@ if ((window.location.host.indexOf('localhost') > -1) || (window.location.host.in
 	window.MAP_IMAGE_URL = 'http://localhost:3033/png/{{id}}';
 	window.MAP_DOWNLOAD_URL = 'http://localhost:3033/download/{{name}}';
 }
-*/
+
 window.ESIR_USE_PROXY = true;
 window.Message = require('./components/commons/message.jsx');
 var React = require('react');

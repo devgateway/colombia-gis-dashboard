@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "start": "node server.js",
     "install-windows-service": "winser -i -s -c",
     "uninstall-windows-service": "winser  -r -x -s"
   },
