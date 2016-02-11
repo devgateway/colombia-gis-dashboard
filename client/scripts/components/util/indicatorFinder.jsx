@@ -53,7 +53,6 @@ module.exports = React.createClass({
 		state.activities = undefined;
 		state._activitySelected = undefined;
 		this.setState(state);//reset activitySelected
-		debugger;
 		this.setState({'programSelected': event.target.value, 'showLoading': true});
 		Actions.getActivitiesByProgram(event.target.value);
 	},

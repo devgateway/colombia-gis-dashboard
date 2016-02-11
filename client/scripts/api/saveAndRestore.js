@@ -4,7 +4,6 @@ var tim = require('tinytim').tim;
 var _=require('lodash');
 
 function logFailure(err) {
-  debugger;
   console.error(err);
 }
 

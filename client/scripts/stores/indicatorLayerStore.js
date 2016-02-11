@@ -218,11 +218,11 @@ module.exports = Reflux.createStore({
 		var self = this;
 		API.getIndicatorsByMuncipalities(this.state.layerFilters).then(
 			function(data) {
-				var items = [];
 				API.loadMunicipalitiesShapes().then(
 					function(geoData) {
+						var items = [];
 						_.map(data, function(d) {
-							if(!isNaN(d.id)){
+							if(!isNaN(d.idMun)){
 								items.push(d.value);
 							}							
 							var feature = _.find(geoData.features, function(e) {
@@ -234,15 +234,15 @@ module.exports = Reflux.createStore({
 								_.assign(feature.properties, _.omit(_.clone(d), 'name')); //set feature values	
 							}
 						});
+						if (items.length===0){
+					        LayersAction.showNoResultsPopup('layers.noResultsForDataLayerMessage');   
+					    }	
 						var geoDataFeaturesValid = _.filter(geoData.features, {'hasValue': true});
 						_.assign(geoData, {'features': geoDataFeaturesValid});
 						var geoStats = new GeoStats(items);
 						self._setGeoData(geoData, geoStats);
-					});
-				if (items.length===0){
-			        LayersAction.showNoResultsPopup('layers.noResultsForDataLayerMessage');   
-			    }				
-		}.bind(this)).fail(function() {
+					});							
+			}.bind(this)).fail(function() {
 			console.log('Error loading data ...');
 		});
 	},
@@ -270,15 +270,15 @@ module.exports = Reflux.createStore({
 								_.assign(feature.properties, _.omit(_.clone(d), 'name')); //set feature values
 							}
 						});
+						if (items.length===0){
+					        LayersAction.showNoResultsPopup('layers.noResultsForDataLayerMessage');   
+					    }
 						var geoDataFeaturesValid = _.filter(geoData.features, {'hasValue': true});
 						_.assign(geoData, {'features': geoDataFeaturesValid});
 						var geoStats = new GeoStats(items);
 						self._setGeoData(geoData, geoStats);
-					});
-				if (items.length===0){
-			        LayersAction.showNoResultsPopup('layers.noResultsForDataLayerMessage');   
-			    }
-		}.bind(this)).fail(function() {
+					});				
+			}.bind(this)).fail(function() {
 			console.log('Error loading data ...');
 		});
 	},
@@ -306,15 +306,15 @@ module.exports = Reflux.createStore({
 								}
 							}
 						});
+						if (items.length===0){
+					        LayersAction.showNoResultsPopup('layers.noResultsForDataLayerMessage');
+					    }	
 						var geoDataFeaturesValid = _.filter(geoData.features, {'hasValue': true});
 						_.assign(geoData, {'features': geoDataFeaturesValid});
 						var geoStats = new GeoStats(items);
 						self._setGeoData(geoData, geoStats);
-					});
-				if (items.length===0){
-			        LayersAction.showNoResultsPopup('layers.noResultsForDataLayerMessage');
-			    }				
-		}.bind(this)).fail(function() {
+					});						
+			}.bind(this)).fail(function() {
 			console.log('Error loading data ...');
 		});
 	}

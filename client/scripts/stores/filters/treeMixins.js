@@ -36,7 +36,7 @@ module.exports = {
 			
 			this._createItemsTree();
 			if(this.state.de){
-				debugger;
+				//debugger;
 			}
 			this.trigger(this.state, true);
 		}
@@ -72,7 +72,6 @@ module.exports = {
 	},
 
 	_updateAllSelectionByList: function(list, selected) {
-		debugger;
 		_.forEach(list, function(item) {
 			if (!item.hide){
 				_.assign(_.find(this.state[item.level], {'id': item.id}), {'selected': selected});

@@ -190,7 +190,6 @@ module.exports = Reflux.createStore({
     var mapStrinfied = JSON.stringify(params.map);
     _.assign(params, {'map': mapStrinfied});//convert map json object to string
     _.assign(params, {'tags': params.tags? params.tags.join() : ''});//convert tag array to string    
-    debugger;
     return(params);
   },
 

@@ -13,7 +13,6 @@ module.exports = {
     var param = level? level.substring(0,2) : 'de';
     var infoWindow = [{'param':param,'values':[id]}];
     var data;
-    debugger;
     switch(type) {
       case 'points':
         data = PointsActions.getPointsFromAPI(infoWindow, filters) || [];

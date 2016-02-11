@@ -16,7 +16,6 @@ module.exports = React.createClass({
 
   mixins: [Reflux.connect(SaveStore), Reflux.connect(LanStore)],
   render: function() {
-    debugger;   
     return (
       <div>
         <div className='navbar navbar-fixed-top map-header'>

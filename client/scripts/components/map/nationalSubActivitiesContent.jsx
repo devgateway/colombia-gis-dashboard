@@ -41,7 +41,6 @@ module.exports  = React.createClass({
   mixins: [Reflux.connect(Store), 'filters'],
 
   _getInfoData: function () {
-    debugger;
     Actions.getPopupInfoFromAPI([{'param':'de','values':['CN']}], this.props.filters);
   },
 

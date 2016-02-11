@@ -42,7 +42,6 @@ var DisaggregationsTab = React.createClass({
 
 var YearsAdvanceTab = React.createClass({
   render: function() {
-      debugger;
     return (
       <div>
         <h3 className='panel-title' ><Message message='map.popup.fiscalYearAdvance'/></h3>
