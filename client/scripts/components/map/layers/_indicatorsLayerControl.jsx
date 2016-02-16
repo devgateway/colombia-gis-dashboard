@@ -53,6 +53,24 @@ module.exports = React.createClass({
     }
   },
 
+  _onChangeLevel: function(level){
+    if (this.state.layerFilters.indicatorId){
+      switch(level) {
+        case 'country':
+          this._showByCountry();
+          break;
+        case 'departament':
+          this._showByDepartment();
+          break;
+        case 'municipality':
+          this._showByMunicipality();
+          break;
+      }
+    } else {
+      this.setState({'showFinder': true, 'expanded': true});
+    }    
+  },
+
   _onFinderClose:function(indicator){
     this.setState({'showFinder': false, 'expanded': false});
   },
@@ -94,9 +112,9 @@ module.exports = React.createClass({
               <li className='levels'>
                 <h3><Message message='layers.level'/></h3>
                 <CustomRadioGroup>
-                  <CustomRadio className='horizontal' name='country' checked={(level=='country')? true : false} onClick={this._showByCountry} label='layers.byCountry'/>
-                  <CustomRadio className='horizontal' name='departament' checked={(level=='departament')? true : false} onClick={this._showByDepartment} label='layers.byDepartment'/>
-                  <CustomRadio className='horizontal' name='municipality' checked={(level=='municipality')? true : false} onClick={this._showByMunicipality} label='layers.byMunicipality'/>
+                  <CustomRadio className='horizontal' name='country' checked={(level=='country')? true : false} onClick={this._onChangeLevel} label='layers.byCountry'/>
+                  <CustomRadio className='horizontal' name='departament' checked={(level=='departament')? true : false} onClick={this._onChangeLevel} label='layers.byDepartment'/>
+                  <CustomRadio className='horizontal' name='municipality' checked={(level=='municipality')? true : false} onClick={this._onChangeLevel} label='layers.byMunicipality'/>
                 </CustomRadioGroup>
               </li>
               <li className='indicator'>

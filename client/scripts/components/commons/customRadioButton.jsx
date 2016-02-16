@@ -11,7 +11,7 @@ var RadioGroup=React.createClass({
             if(child){
                 if (child.props.name==name){
                     child.props.checked=true;
-                    child.props._onClick();
+                    child.props._onClick(name);
                 } else{
                     child.props.checked=false;
                 }

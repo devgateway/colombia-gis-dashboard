@@ -118,7 +118,7 @@
          reactEventNames.forEach(function(eventName) {
            el.addEventListener(eventName, function(e) {
              var popupEl = e.target,
-               reactId = e.target.dataset.originalreactid,
+               reactId = e.target.dataset? e.target.dataset.originalreactid : '',
                reactTarget = document.querySelector('[data-reactid="' + reactId + '"]'),
                proxiedEvent;
 

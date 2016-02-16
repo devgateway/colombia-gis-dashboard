@@ -106,7 +106,7 @@ module.exports = React.createClass({
 			<a href="#">
 				<i className="fa fa-floppy-o" title={saveLabel} onClick={this._openSaveAs}></i>
 			</a> 
-			{this.state.currentMap.id?
+			{(this.state.currentMap && this.state.currentMap.id) ?
 				<a href="#">
 					<i className="fa fa-pencil-square-o" title={i18n.t('savemap.tooltipsavemap')} onClick={this._openSave}></i>
 				</a>
