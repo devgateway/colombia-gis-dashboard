@@ -40,7 +40,7 @@ module.exports = React.createClass({
 				<div className='clearFix'/>
 				
 				<Row>
-					<Col lg={12} md={12}><h1>Map Legends</h1></Col>
+					<Col lg={12} md={12}><h1><Message message='layers.mapLegends'/></h1></Col>
 				</Row>
 				
 				<Row>
@@ -51,7 +51,7 @@ module.exports = React.createClass({
 				
 				<div className='clearFix'/>
 				<Row>
-					<Col lg={12} md={12}><h1>Data filters</h1></Col>
+					<Col lg={12} md={12}><h1><Message message='filters.dataFilters'/></h1></Col>
 				</Row>
 
 				<Row>

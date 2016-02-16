@@ -48,15 +48,6 @@ window.LIST_SOURCE_INDICATORTYPE = 'http://test.monitor.net.co/gisservice/GisSer
 
 
 if ((window.location.host.indexOf('localhost') > -1) || (window.location.host.indexOf('127.0.0.1') > -1)) {
-	window.ESRI_PROXY_URL = 'http://localhost:3553';
-	window.DATA_PATH = '/json-data';
-	window.MOCK_PATH = '/mock-data';
-
-	window.MAP_SAVE_URL = 'http://localhost:3033/save';
-	window.MAP_UPDATE_DELETE_URL = 'http://localhost:3033/save/{{id}}';
-	window.MAP_LIST_URL = 'http://localhost:3033/maps';
-	window.MAP_GET_URL = 'http://localhost:3033/map/{{id}}';
-
 	window.MAP_PDF_URL = 'http://localhost:3033/pdf/{{id}}';
 	window.MAP_IMAGE_URL = 'http://localhost:3033/png/{{id}}';
 	window.MAP_DOWNLOAD_URL = 'http://localhost:3033/download/{{name}}';

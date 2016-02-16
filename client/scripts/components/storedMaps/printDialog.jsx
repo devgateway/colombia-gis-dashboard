@@ -40,7 +40,9 @@ module.exports = React.createClass({
 	render:function() {
 		var downloadMessage=(
 			<p className="bs-callout bs-callout-success">
-				<a href={tim(window.MAP_DOWNLOAD_URL,{'name':this.state.file||null})}><Message message="savemap.printreadymessage"/></a>
+				<a  onClick={this._close} href={tim(window.MAP_DOWNLOAD_URL,{'name':this.state.file||null})}>
+					<Message message="savemap.printreadymessage"/>
+				</a>
 			</p>
 			);
 		var waitMessage=(
@@ -57,7 +59,7 @@ module.exports = React.createClass({
 				<a href="#">
 					<i className="fa fa-file-pdf-o" title={i18n.t('savemap.tooltipprint')} onClick={this.props.id? this._open : null}></i>
 				</a>
-				<Modal className='dialog-print-map' bsSize='large' aria-labelledby='contained-modal-title-lg' show={this.state.visible} onHide={this.close}>
+				<Modal className='dialog-print-map' bsSize='large' aria-labelledby='contained-modal-title-lg' show={this.state.visible} onHide={this._close}>
 					<Modal.Header>
 						<Modal.Title>
 							<i className="fa fa-folder-open"></i> <Message message='savemap.downloadtitle'/>

@@ -20,7 +20,7 @@ module.exports = React.createClass({
 	mixins: [Reflux.connect(LanStore, 'lan')],
 
 	_close:function(){
-		this.setState({'visible':false});
+		this.setState({'visible':false, 'file':null});
 	},
 	_open:function(){
 		this.setState({'visible':true});
@@ -41,16 +41,12 @@ module.exports = React.createClass({
 	render:function() {
 		var downloadMessage=(
 			<p className='bs-callout bs-callout-success'>
-			 	<Grid>
-		    		<Row>
-		    			<Col  md={4} mdOffset={4}>
-							<a href={tim(window.MAP_DOWNLOAD_URL,{'name':this.state.file||null})}>
-								<img  width='171' height='117'  src={tim(window.MAP_DOWNLOAD_URL,{'name':this.state.file||null})}/>
-								<Message message='savemap.imagereadymessage'/>
-							</a>
-						</Col>
-					</Row>
-				</Grid>
+			 	<div>
+					<a href={tim(window.MAP_DOWNLOAD_URL,{'name':this.state.file||null})} onClick={this._close}>
+						<img  width='171' height='117'  src={tim(window.MAP_DOWNLOAD_URL,{'name':this.state.file||null})}/>
+						<Message message='savemap.imagereadymessage'/>
+					</a>
+				</div>
 			</p>);
 		
 		var waitMessage=(
@@ -66,17 +62,15 @@ module.exports = React.createClass({
 			<span>
 				<a href='#'>
 					<i className='fa fa-file-image-o' title={i18n.t('savemap.tooltipprintpng')} onClick={this.props.id? this._open : null}></i>
-				</a>
-				
-				<Modal className='dialog-print-map' bsSize='large' aria-labelledby='contained-modal-title-lg' show={this.state.visible} onHide={this.close}>
-				
-				<Modal.Header>
-					<Modal.Title>
-						<i className='fa fa-folder-open'></i> <Message message='savemap.imagedownloadtitle'/>
-					</Modal.Title>
-					<a className='close-dialog' href='#' onClick={this._close}>
-					<i className='fa fa-times-circle-o'></i></a>
-				</Modal.Header>
+				</a>				
+				<Modal className='dialog-print-map' bsSize='large' aria-labelledby='contained-modal-title-lg' show={this.state.visible} onHide={this._close}>					
+					<Modal.Header>
+						<Modal.Title>
+							<i className='fa fa-folder-open'></i> <Message message='savemap.imagedownloadtitle'/>
+						</Modal.Title>
+						<a className='close-dialog' href='#' onClick={this._close}>
+						<i className='fa fa-times-circle-o'></i></a>
+					</Modal.Header>
 					<Modal.Body>
 						{(this.state.file)?downloadMessage:waitMessage}
 					</Modal.Body>

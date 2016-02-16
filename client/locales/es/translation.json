@@ -12,6 +12,7 @@
 	},
 
 	"filters": {
+		"dataFilters": "Filtro de Datos",
 		"title":"Filtros",
 		"basicFilters":"Filtros Básicos",
 		"advancedFilters":"Filtros Avanzados",
@@ -69,6 +70,7 @@
 	},
 
 	"layers": {
+		"mapLegends": "Leyendas del Mapa",
 		"showLegend":"Mostrar Leyendas",
 		"hideLegend":"Ocultar Leyendas",
 		"indicatorTitle":"Indicadores",

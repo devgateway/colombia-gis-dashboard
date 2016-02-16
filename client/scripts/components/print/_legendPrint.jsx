@@ -15,12 +15,12 @@ module.exports=React.createClass({
     if (this.props.visible) {
       return (<div className='pdf'>
         <div className='legend '>
-          <div className='title'>{this.props.layerTitle}</div>
+          <div className='title'><Message message={this.props.layerTitle}/></div>
             <ul className='group'>
               {this.props.legendGroups.map(function(legendGroup){
                 return (
                   <li>
-                    <div className='title'> {legendGroup.layerName}</div>
+                    <div className='title'><Message message={legendGroup.layerName}/></div>
                       <ul className='items'>
                       {
                         legendGroup.legends.map(function(legend){

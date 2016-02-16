@@ -18,15 +18,7 @@ var binPath = phantomjs.path
 var tmpFolder = path.join(__dirname, '/tmp');
 
 
-var HOST = "http://devgateway.github.io/colombia-gis-dashboard";
-
-if (process.env.NODE_ENV == 'production') {
-    HOST = 'http://devgateway.github.io/colombia-gis-dashboard'
-}
-
-if (process.env.NODE_ENV == 'development') {
-    HOST = 'http://localhost:9010'
-}
+var HOST = "http://adriana-hp/gistest/gis";
 
 console.log('TARGET HOST IS ...' + HOST);
 
@@ -198,33 +190,15 @@ function delegate(req, res, format) {
             'name': fileName
         });
     };
-
+    console.log('req.params.id: '+req.params.id);
     var id = req.params.id;
+    var version=0;
     if (!id) { //id is not numeric
         res.status(400);
     } else {
-        getMapByid(id).then(function(map) {
-            if (map) {
-                checkFileExist(map._id, map.version, format).then(function(fileName) {
-
-                    if (fileName) {
-                        makeResponse(fileName);
-                    } else {
-                        makeFile(map._id, map.version, format).then(makeResponse);
-                    }
-
-                })
-
-            } else {
-                res.sendStatus(404)
-            }
-        })
-
+        makeFile(id, version, format).then(makeResponse);
     }
-
-
 }
-
 
 function joinName(id, version, extension) {
     return id + '.' + version + '.' + extension;
