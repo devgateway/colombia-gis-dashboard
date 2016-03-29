@@ -202,7 +202,8 @@ function writeLog(message){
 
             }.bind(this));   
     } else {
-      var leafletLayer = this.state.leafletLayers[l.id]; ///find layer by metadata id 
+      var leafletLayer = null; 
+      leafletLayer = this.state.leafletLayers[l.id]; ///find layer by metadata id 
       if (!leafletLayer) {
         return;
       }

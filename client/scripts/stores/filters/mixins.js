@@ -19,6 +19,7 @@ module.exports = {
 			this._loadItems();	
 		}
 
+		this.state.items.map(function(i) {_.assign(i, {'selected': false})});//reset all filter selection
 		if(savedData.filterData && savedData.filterData.filters){
 			this.onUpdateAllSelection(false);
 			_.forEach(savedData.filterData.filters, function(filter){
@@ -94,6 +95,9 @@ module.exports = {
 
 	_capitalizeStr: function(label) {
 		var str = label.toLowerCase();
+		if (!str || str.length==0){
+			return "";
+		}
 		return str[0].toUpperCase() + str.replace(/ ([a-z])/g, function(a, b) {
 			return ' ' + b.toUpperCase();
 		}).slice(1);

@@ -23,7 +23,16 @@ var taskConfig = function(grunt) {
           dest: '<%= yeogurt.dist %>/',
           src: ['fonts/**/*', ]
         }
+      ]
+    },
 
+    img: {
+      files: [{
+          expand: true,
+          cwd: '<%= yeogurt.client %>/bower_components/mjolnic-bootstrap-colorpicker/dist/',
+          dest: '<%= yeogurt.dist %>/',
+          src: ['img/**/*', ]
+        }
       ]
     },
 

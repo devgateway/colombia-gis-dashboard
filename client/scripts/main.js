@@ -4,7 +4,7 @@ window.ESRI_CLIENT_ID = 'Lcs7MzyMULXvbqEB';
 window.ESRI_AUTH2_URL = 'https://www.arcgis.com/sharing/oauth2/authorize?client_id=';
 window.ESRI_SEARCH_URL = 'http://www.arcgis.com/sharing/rest/search?f=json&';
 window.ESRI_SELF_URL = 'https://www.arcgis.com/sharing/rest/portals/self';
-window.ESRI_PROXY_URL = 'http://esri-proxy.adstg.org/';
+window.ESRI_PROXY_URL = 'http://localhost:3553/';//'http://esri-proxy.adstg.org/';
 
 window.MAP_SAVE_URL = 'http://test.monitor.net.co/gisservice/GisService.svc/MapSave/Json';
 window.MAP_DELETE_URL = 'http://test.monitor.net.co/gisservice/GISService.svc/MapDelete?MapId={{id}}';

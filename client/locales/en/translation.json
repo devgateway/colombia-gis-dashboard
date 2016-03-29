@@ -155,6 +155,7 @@
 			"fiscalYear": "Fiscal Year",
 			"value": "Value",
 			"totalActivities":"Total Activities",
+			"totalAmount":"Total Amount",
 			"totalSubActivities":"Total SubActivities",
 			"programList":"Program List",
 			"downloadFile":"Download file",

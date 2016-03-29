@@ -4,6 +4,7 @@ var _ = require('lodash');
 var PointsActions=require('../../../../actions/infoWindowActions.js');
 var ShapesActions=require('../../../../actions/infoWindowShapesActions.js');
 var IndicatorsActions=require('../../../../actions/infoWindowIndicatorsActions.js');
+var UtilFormat=require('../../../../util/utilFormat.js');
 var HighCharts = require('highcharts-browserify');
 
 
@@ -48,7 +49,7 @@ module.exports = {
   _getTitles: function() {
     var titleArray = [];
     if(this.props.isShapePopup && this.props.fundingUS){
-        titleArray.push(i18n.t('map.popup.funding') +  this.props.fundingUS.toFixed(2));
+        titleArray.push(i18n.t('map.popup.funding') +  UtilFormat.formatWithThousandsSeparator(this.props.fundingUS.toFixed(2)));
     } else if (this.state.infoWindow){
       this.state.infoWindow.map(function(node, index) {
         titleArray.push(i18n.t('map.popup.'+node.key));
@@ -88,6 +89,8 @@ module.exports = {
           }
         });
 
+        var symbol = tabId==3? "" : "US$";
+        var totalAmount =  tabId==3? i18n.t('map.popup.totalActivities') : i18n.t('map.popup.totalAmount');
         var chart = new HighCharts.Chart({
             colors: ['#FFC614', '#3897D3', '#18577A', '#97CB68', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#50B432', '#FF9655', '#FFF263', '#6AF9C4'],
             chart: {
@@ -107,12 +110,12 @@ module.exports = {
               }
             },
             tooltip: {
-                pointFormat: '{series.name}:  <b>$ {point.y}</b>',                
+                pointFormat: '{series.name}:  <b>'+symbol+' {point.y}</b>',                
             },
             plotOptions: {
               pie: {
                   innerSize: '70%',
-                  name: 'Cantidad total',
+                  name: totalAmount,
                   animation: false,
                   dataLabels: {
                       enabled: false

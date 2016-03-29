@@ -853,9 +853,15 @@ var geostats = function(a) {
 		kclass[0] = parseFloat(dataList[0])
 		var countNum = nbClass
 		while (countNum >= 2) {
-			var id = parseInt((mat1[k][countNum]) - 2)
-			kclass[countNum - 1] = dataList[id]
-			k = parseInt((mat1[k][countNum] - 1))
+			/*var id = parseInt((mat1[k][countNum]) - 2)
+				kclass[countNum - 1] = dataList[id]
+				k = parseInt((mat1[k][countNum] - 1))
+			*/
+			if (mat1[k]){
+				var id = parseInt((mat1[k][countNum]) - 2)
+				kclass[countNum - 1] = dataList[id]
+				k = parseInt((mat1[k][countNum] - 1))
+			} 
 			// spits out the rank and value of the break values:
 			// console.log("id="+id,"rank = " + String(mat1[k][countNum]),"val =
 			// " + String(dataList[id]))

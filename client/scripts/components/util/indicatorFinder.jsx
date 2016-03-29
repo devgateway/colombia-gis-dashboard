@@ -42,7 +42,7 @@ module.exports = React.createClass({
 		if (type.selected){
 			typesSelected.push(type.value);
 		} else {
-			typesSelected.splice(typesSelected.indexOf(type.value));
+			_.remove(typesSelected, function (tp) { return tp==type.value});
 		}
 		this.setState({'typesSelected': typesSelected});
 		Actions.updateQuery('t',typesSelected);

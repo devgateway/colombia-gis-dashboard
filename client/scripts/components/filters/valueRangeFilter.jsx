@@ -56,11 +56,11 @@ var ValueRangeFilter = React.createClass({
                                 <span className='filter-label' role='label'><Message message='filters.valueRangesBetween'/></span>                                                                
                             </div>
                             <div className='input-group date'>
-                                <span className='filter-label' role='label'>Min $: </span>
+                                <span className='filter-label' role='label'>Min US$: </span>
                                 <input type='text' value={this.state.valueRangeMin} onChange={this._rangeMinChanged} className='start-date'/>
                             </div>
                             <div className='input-group date'>
-                                <span className='filter-label' role='label'>Max $: </span>
+                                <span className='filter-label' role='label'>Max US$: </span>
                                 <input type='text' value={this.state.valueRangeMax} onChange={this._rangeMaxChanged} className='start-date'/>
                             </div>
                         </div>

@@ -167,8 +167,8 @@ module.exports = React.createClass({
                 {
                   _.map(_.keys(breaks),function(key){
                     var br=breaks[key];
-                    var minLabel = br.min.toFixed(br.min<10?2:0);
-                    var maxLabel = br.max.toFixed(br.max<10?2:0);
+                    var minLabel = isNaN(br.min)? '0.00' : br.min.toFixed(br.min<10?2:0);
+                    var maxLabel = isNaN(br.max)? '0.00' : br.max.toFixed(br.max<10?2:0);
                   return (
                           <Breaker  level={key} label={minLabel+' - '+maxLabel} color={br.style.color} onChangeColor={this._changeColor} />
                           )

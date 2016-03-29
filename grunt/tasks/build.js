@@ -11,6 +11,7 @@ var taskConfig = function(grunt) {
     'wiredep',
     'copy:dist',
     'copy:fonts',
+    'copy:img',
     'concurrent',
     'useminPrepare',
     'concat:generated',

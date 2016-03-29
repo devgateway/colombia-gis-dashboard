@@ -94,8 +94,14 @@ module.exports=React.createClass({
 					<div className='esri-result-list'>
 						{
 							this.props.search.results.map(function(record){
-								return( <ResultRecord  onAddLayer={this.props.onAddLayer}  token={this.props.token}   {...record}/>
-							)}.bind(this))
+								if (this.props.token.length==0 && record.licenseInfo!=null){
+									return null;
+								} else {
+									return(
+										<ResultRecord  onAddLayer={this.props.onAddLayer}  token={this.props.token}   {...record}/>
+									)
+								}
+							}.bind(this))
 						}
 						{(this.props.search.nextStart>-1)?(
 							<div className='esri-result-item'>

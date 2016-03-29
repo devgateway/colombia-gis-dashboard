@@ -258,7 +258,7 @@ module.exports = Reflux.createStore({
 				API.loadDepartmentsShapes().then(
 					function(geoData) {
 						_.map(data, function(d) {
-							if(!isNaN(d.id)){
+							if(!isNaN(d.idDep)){
 								items.push(d.value);
 							}
 							var feature = _.find(geoData.features, function(e) {
@@ -288,19 +288,19 @@ module.exports = Reflux.createStore({
 		//var geoData = _.clone(departmentsGeoJson);
 		this.update({subtitle:'layers.indicatorDepartmentSubtitle'});
 		var self = this;
-		API.getIndicatorsByDepartment(this.state.layerFilters).then(
+		API.getIndicatorsByMuncipalities(this.state.layerFilters).then(
 			function(data) {
 				var items = [];
 				API.loadCountryShape().then(
 					function(geoData) {						
 						_.map(data, function(d) {
-							if (d.idDep=='CN'){
+							if (d.idMun=='CN1'){
 								if(!isNaN(d.id)){
 									items.push(d.value);
 								}
 								var feature = geoData.features[0];
 								if (feature) {
-									_.assign(d, {'id': d.idDep}); //overwrite indicatorId with locationId
+									_.assign(d, {'id': d.idMun}); //overwrite indicatorId with locationId
 									_.assign(feature, {'hasValue': true}); //indicate that the feature has valid values
 									_.assign(feature.properties, _.omit(_.clone(d), 'name')); //set feature values
 								}
