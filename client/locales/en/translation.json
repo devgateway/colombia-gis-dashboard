@@ -133,7 +133,7 @@
 		"select": "Select",
 		"close": "Close",
 		"noResultsForDataLayer": "No Results",
-		"noResultsForDataLayerMessage": "There are not results to show in map that matchs with selected filters."
+		"noResultsForDataLayerMessage": "There are not results to show in map that match the selected filters."
 	},
 
 	"map": {

@@ -89,8 +89,8 @@ module.exports = {
           }
         });
 
-        var symbol = tabId==3? "" : "US$";
-        var totalAmount =  tabId==3? i18n.t('map.popup.totalActivities') : i18n.t('map.popup.totalAmount');
+        var symbol = tabId==2 || tabId==3? "" : "US$";
+        var totalAmount =  tabId==2 || tabId==3? i18n.t('map.popup.totalActivities') : i18n.t('map.popup.totalAmount');
         var chart = new HighCharts.Chart({
             colors: ['#FFC614', '#3897D3', '#18577A', '#97CB68', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#50B432', '#FF9655', '#FFF263', '#6AF9C4'],
             chart: {

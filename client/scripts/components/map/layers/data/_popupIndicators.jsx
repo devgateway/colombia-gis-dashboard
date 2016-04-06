@@ -41,6 +41,12 @@ var DisaggregationsTab = React.createClass({
 });
 
 var YearsAdvanceTab = React.createClass({
+
+  openLink: function() {
+    var link = _.find(this.props.data, {'key': 'Excel file'}).value[0].value;
+    window.open(link);
+  },
+  
   render: function() {
     return (
       <div>
@@ -66,9 +72,9 @@ var YearsAdvanceTab = React.createClass({
           </tbody>
         </Table>
         <div>
-          <a className='btn btn-apply' href={_.find(this.props.data, {'key': 'Excel file'}).value[0].value} target='_blank'>
+          <button className='btn btn-apply' onClick={this.openLink.bind(this)}>
             <Message message='map.popup.downloadFile'/>
-          </a>
+          </button>
         </div>
       </div>
     );

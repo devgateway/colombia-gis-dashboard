@@ -8,6 +8,15 @@ var Loading = require('../../../commons/loading.jsx');
 var Mixins = require('./_popupMixins.js');
 
 var MyActivities = React.createClass({
+
+  openLink: function() {
+    var link;
+    if(this.props.externalFile){
+      this.props.externalFile.map(function(l){link=l.value});
+    }
+    window.open(link);
+  },
+
   render: function() {
     var items = [];
     if(this.props.data){
@@ -29,7 +38,11 @@ var MyActivities = React.createClass({
         }
         </ul></div>
         <If condition={link}>
-          <div><a className='btn btn-apply' href={link} target='_blank'><Message message='map.popup.downloadFile'/></a></div>
+          <div>
+            <button className='btn btn-apply' onClick={this.openLink.bind(this)}>
+              <Message message='map.popup.downloadFile'/>
+            </button>
+          </div>
         </If>
       </div>
     );
