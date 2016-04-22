@@ -20,6 +20,8 @@
      return topName.slice(3).toLowerCase();
    });
 
+var testElement;
+
  module.exports = React.createClass({
 
        mixins: [Mixins, Reflux.connect(Store)],
@@ -68,26 +70,28 @@
         var _isClosed = function() {
            return _closed;
         }.bind(this);
+        var popupHolder = this.getDOMNode();
         layer.on('popupopen', function(e) {
            layer._popup.options.autoPanPaddingTopLeft = new L.Point(0, 83);
-           var popupHolder = this.getDOMNode();
            _closed = false;
            var _onChange = function() {
              popupHolder.firstChild.style.display = "";
              e.popup.setContent(popupHolder.innerHTML);
              this.fixReactIds(e.popup);
            }.bind(this)
-           React.render(React.createElement(Popup, _.assign(feature.properties, {
+           testElement = React.createElement(Popup, _.assign(feature.properties, {
              isClosed: _isClosed,
              onChange: _onChange,
              level: this.state.level,
              filters: this.state.filters
-           })), popupHolder);
+           }));
+           React.render(testElement, popupHolder);
            e.popup.setContent(popupHolder.innerHTML);
            this.fixReactIds(e.popup);
            this.fixReactEvents(e.popup);
         }.bind(this));
         layer.on('popupclose', function(e) {
+            //React.unmountComponentAtNode(popupHolder);
             e.popup.setContent('');
             _closed = true;
         });

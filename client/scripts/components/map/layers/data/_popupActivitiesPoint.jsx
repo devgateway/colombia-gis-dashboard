@@ -7,6 +7,8 @@ var If=require('../../../commons/if.jsx');
 var Loading = require('../../../commons/loading.jsx');
 var Mixins = require('./_popupMixins.js');
 
+var linkDownloaded = false;
+
 var MyActivities = React.createClass({
 
   openLink: function() {
@@ -14,7 +16,10 @@ var MyActivities = React.createClass({
     if(this.props.externalFile){
       this.props.externalFile.map(function(l){link=l.value});
     }
-    window.open(link);
+    if (!linkDownloaded){
+      linkDownloaded = true;
+      window.open(link);
+    }
   },
 
   render: function() {
@@ -27,13 +32,13 @@ var MyActivities = React.createClass({
       this.props.externalFile.map(function(l){link=l.value});
     }
     return (
-      <div>
+      <div key={"lfpp"+Date.now()} >
         <div className='subactivities-list'>
         <Message message='map.popup.programList'/>: {items.length}
         <ul>
         {
           items.map(function(node, index) {
-            return <li>{node.name} - ({node.value})</li>
+            return <li key={"actName:"+node.name}>{node.name} - ({node.value})</li>
           })
         }
         </ul></div>
@@ -68,16 +73,16 @@ module.exports  = React.createClass({
 
   componentDidUpdate: function(props,newState) {
     console.log('_popupActivitiesPoint>componentDidUpdate');
+    linkDownloaded = false;
     this.props.onChange();
     this._renderChart();
   },
-
+  
   handleClick:function(tabId){
     console.log('_popupActivitiesPoint>click');
     this.setState({'tabId':tabId});
-    this.forceUpdate();
+    //this.forceUpdate();
   },
-
 
   render: function() {
     console.log('_popupActivitiesPoint>render id:' + this.props.id +' tab '+this.state.tabId);
@@ -96,7 +101,7 @@ module.exports  = React.createClass({
     }
     return (
       <div>
-        <div className='leaflet-popup-content'>
+        <div key={"lfpp"+Date.now()} className='leaflet-popup-content'>
           <div className='panel panel-default' >
             <div className='panel-heading popup-header' >
               <h3 className='panel-title' >{this.props.name}</h3>
@@ -138,12 +143,12 @@ module.exports  = React.createClass({
               <If condition={showLoading} >
                 <Loading container='popup-loading-container'/>
               </If>
-              <If condition={tabId==4 && !showLoading} >
-                <div className='subactivities-container'>
+              {tabId==4 && !showLoading?
+                <div className='subactivities-container' id='subactivities-container'>
                   <div className='sub-activities-title'>{titleArray[tabId]}</div>
                   <MyActivities data={infoData[4]} externalFile={infoData[5]} />
                 </div>
-              </If>
+              : null}
             </div>
           </div>
         </div>

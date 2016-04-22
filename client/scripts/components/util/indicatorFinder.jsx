@@ -23,7 +23,7 @@ module.exports = React.createClass({
 	mixins: [Reflux.connect(IndicatorsFinderStore)],
 
 	getInitialState:function(){
-		return {'showModal': false, 'typesSelected': [], currentPage: 1, 'showLoading': false};
+		return {'showModal': false, 'typesSelected': [], currentPage: 1, 'showLoading': false, keyword: ''};
 	},
 
 	close:function(){
@@ -63,7 +63,8 @@ module.exports = React.createClass({
 	},
 
 	_changeKeyword:function(event){
-		Actions.updateQuery('k',event.target.value);
+		this.setState({'keyword': event.target.value});
+		Actions.updateQuery('k', event.target.value);
 	},
 
 	_changeIndicator:function(indicator,event){
@@ -137,7 +138,7 @@ module.exports = React.createClass({
 							<Col md={10}>
 								<ul>
 								{_.map(this.state.types, function(type){
-										return (<li><CheckBox onChange={this._updateType} value={type.id}/> {type.name} </li>)
+										return (<li><CheckBox onChange={this._updateType} value={type.id} selected={this.state.typesSelected.indexOf(type.id)!=-1}/> {type.name} </li>)
 									}.bind(this))
 								}
 								</ul>
@@ -146,7 +147,7 @@ module.exports = React.createClass({
 						<Row className='blue-panel'>
 							<Col md={2}><span className='title'><Message message='layers.keyword'/></span></Col>
 							<Col md={7}>
-								<input type='text' placeholder={i18n.t('layers.keyword')} onChange={this._changeKeyword} style={{width:'100%'}}/>
+								<input type='text' placeholder={i18n.t('layers.keyword')} onChange={this._changeKeyword} style={{width:'100%'}} value={this.state.keyword}/>
 							</Col>
 							<Col md={3}>
 								<Button className='btn btn-apply pull-right' disabled={this.state._activitySelected?'':'disabled'} onClick={this._find}><Message message='layers.find'/></Button>

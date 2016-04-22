@@ -9,6 +9,7 @@ var Mixins = require('./_popupMixins.js');
 var Table=require('react-bootstrap/lib/Table');
 var _ = require('lodash');
 
+var linkDownloaded = false;
 var DisaggregationsTab = React.createClass({
   render: function() {
     return (
@@ -44,7 +45,10 @@ var YearsAdvanceTab = React.createClass({
 
   openLink: function() {
     var link = _.find(this.props.data, {'key': 'Excel file'}).value[0].value;
-    window.open(link);
+    if (!linkDownloaded){
+      linkDownloaded = true;
+      window.open(link);
+    }
   },
   
   render: function() {
@@ -100,6 +104,7 @@ module.exports  = React.createClass({
 
   componentDidUpdate: function(props,newState) {
     console.log('popup>componentDidUpdate');
+    linkDownloaded = false;
     this.props.onChange();
     this.setAttributeDisplay('.popup-nav-wrapper', 'data-originalreactid', 'inline');
   },
