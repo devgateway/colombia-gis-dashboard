@@ -15,22 +15,23 @@ module.exports = {
 	//TODO:FIX LOADING
 	onRestoreData: function(savedData) {
 		console.log('............. mixins.js -> onRestoreData');
-		if (!this._initialized){
-			this._loadItems();	
+		if (!this._initialized){ 
+			this.load();	
 		}
-
-		this.state.items.map(function(i) {_.assign(i, {'selected': false})});//reset all filter selection
-		if(savedData.filterData && savedData.filterData.filters){
-			this.onUpdateAllSelection(false);
-			_.forEach(savedData.filterData.filters, function(filter){
-				if (filter.param === this.state.param){
-					_.forEach(filter.values, function(value){
-						_.assign(_.find(this.state.items, function(i){return i.id == value;}), {'selected': true});
-					}.bind(this));
-				}
-			}.bind(this));
+		if (this.state.items){
+			this.state.items.map(function(i) {_.assign(i, {'selected': false})});//reset all filter selection
+			if(savedData.filterData && savedData.filterData.filters){
+				this.onUpdateAllSelection(false);
+				_.forEach(savedData.filterData.filters, function(filter){
+					if (filter.param === this.state.param){
+						_.forEach(filter.values, function(value){
+							_.assign(_.find(this.state.items, function(i){return i.id == value;}), {'selected': true});
+						}.bind(this));
+					}
+				}.bind(this));
+			}
+			this.update({'items': _.clone(this.state.items)});
 		}
-		this.update({'items': _.clone(this.state.items)});
 	},
 
 	onUpdateItemSelection: function(item, selected){

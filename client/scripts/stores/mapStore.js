@@ -24,7 +24,7 @@ module.exports = Reflux.createStore({
     this.update({ loading: true });
   },
 
-  onRestoreData: function(savedData) {  
+  onRestoreData: function(savedData) { 
     this.update(savedData.mapState);
   },
 

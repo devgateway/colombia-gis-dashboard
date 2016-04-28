@@ -14,7 +14,6 @@ function checkNestedVisibility(item) {
   
   if (item.nested) {
     for (var i = 0; i < item.nested.length; i++) {
-        console.log(item.nested[i].name);        
         if(checkNestedVisibility(item.nested[i])){
           return true;
         } 

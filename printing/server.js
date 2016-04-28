@@ -18,7 +18,8 @@ var binPath = phantomjs.path
 var tmpFolder = path.join(__dirname, '/tmp');
 
 
-var HOST = "http://adriana-hp/gistest/gis";
+//var HOST = "http://test.monitor.net.co/gisservice/GisService.svc";
+var HOST = "http://localhost:9010";
 
 console.log('TARGET HOST IS ...' + HOST);
 
@@ -136,11 +137,12 @@ app.get('/maps', function(req, res) {
 
 app.get('/map/:id', function(req, res) {
     // Finding all planets in the solar system
+    console.log('get map -> '+req.params.id);
     db.find({
         '_id': req.params.id
     }, function(err, docs) {
         if (docs.length > 0) {
-            res.json(docs[0]);
+            res.json(docs);
         } else {
 
             res.sendStatus(404);

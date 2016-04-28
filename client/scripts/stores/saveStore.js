@@ -244,6 +244,9 @@ module.exports = Reflux.createStore({
     API.getMapById(id).then(
       function(responseData) {
           var data = responseData[0]; // fix for response as array
+          if (!data.id && data._id){
+            _.assign(data, {'id': data._id});
+          }
           var mapParsed = JSON.parse(data.map.replace(/[\\']/g, ''));
           _.assign(data, {'map': mapParsed}); //parse map string into json object   
           _.assign(data, {'tags': data.tags.split(',')}); //split tags string into string array   
@@ -259,6 +262,11 @@ module.exports = Reflux.createStore({
   onFindMaps: function() {
     API.findMaps().then(
       function(data) {
+        _.forEach(data, function(item){
+          if (!item.id && item._id){
+            _.assign(item, {'id': item._id});
+          }
+        });
         this.update({
           'maps': data
         });
