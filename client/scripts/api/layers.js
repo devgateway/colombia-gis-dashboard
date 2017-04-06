@@ -10,25 +10,45 @@ function logFailure(err, message) {
 module.exports = {
 
     getActivitiesByDepartment: function (filters) {
-        return request({
-            url: window.DATA_API_URL + '/gisservice/gisservice.svc/Filters/DepartmentsFunding/Json',
-            type: 'json',
-            method: 'post',
-            contentType: 'application/json',
-            data: JSON.stringify({'filters': filters? filters : []}),
-            crossOrigin: true
-        }).fail(logFailure);
+        if (!filters || filters.length == 0){
+            return request({
+                url: window.DATA_API_URL + '/gisservice/gisservice.svc/Filters/DepartmentsFunding/Json',
+                type: 'json',
+                method: 'get',
+                contentType: 'application/json',
+               crossOrigin: true
+            }).fail(logFailure);
+        } else {
+            return request({
+                url: window.DATA_API_URL + '/gisservice/gisservice.svc/Filters/DepartmentsFunding/Json',
+                type: 'json',
+                method: 'post',
+                contentType: 'application/json',
+                data: JSON.stringify({'filters': filters? filters : []}),
+                crossOrigin: true
+            }).fail(logFailure);
+        }
     },
 
     getActivitiesByMuncipalities: function (filters) {
-        return request({
-            url: window.DATA_API_URL + '/gisservice/gisservice.svc/Filters/MunicipalitiesFunding/Json',
-            type: 'json',
-            method: 'post',
-            contentType: 'application/json',
-            data: JSON.stringify({'filters': filters? filters : []}),
-            crossOrigin: true
-        }).fail(logFailure);
+         if (!filters || filters.length == 0){
+            return request({
+                url: window.DATA_API_URL + '/gisservice/gisservice.svc/Filters/MunicipalitiesFunding/Json',
+                type: 'json',
+                method: 'get',
+                contentType: 'application/json',
+               crossOrigin: true
+            }).fail(logFailure);
+        } else {
+            return request({
+                url: window.DATA_API_URL + '/gisservice/gisservice.svc/Filters/MunicipalitiesFunding/Json',
+                type: 'json',
+                method: 'post',
+                contentType: 'application/json',
+                data: JSON.stringify({'filters': filters? filters : []}),
+                crossOrigin: true
+            }).fail(logFailure);
+        }
     },
 
     loadCountryShape:function(){
